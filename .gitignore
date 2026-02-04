@@ -1,0 +1,26 @@
+# Data artifacts (generated)
+out/
+
+# Raw data cache (if large or regenerated)
+data/raw/
+data/staging/
+
+# Build/test caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
