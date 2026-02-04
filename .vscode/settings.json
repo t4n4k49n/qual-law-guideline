@@ -1,0 +1,36 @@
+{
+  "window.title": "[B] ${activeEditorShort}${separator}${rootName}${separator}${appName}",
+  "workbench.colorCustomizations": {
+    // ===== ベース色（あなたのまま）=====
+    "titleBar.activeBackground": "#960000",
+    "titleBar.inactiveBackground": "#4d0000",
+
+    "activityBar.background": "#7a0000",
+    "sideBar.background": "#3d0000",
+
+    "editor.background": "#1a0000",
+    "tab.activeBackground": "#5e0000",
+    "tab.inactiveBackground": "#2e0000",
+
+    "panel.background": "#260000",
+    "statusBar.background": "#960000",
+
+    // ===== 主要な区切り（レイアウト境界）だけ白 =====
+
+    // 上下のバー境界（タイトルバー/ステータスバー）
+    "titleBar.border": "#ffffff",
+    "statusBar.border": "#ffffff",
+
+    // 左：Activity Bar ↔ Explorer(Side Bar) の境界
+    "activityBar.border": "#ffffff",
+
+    // Explorer(Side Bar) ↔ Editor/Panel 側の境界
+    "sideBar.border": "#ffffff",
+
+    // 上段(Editor) ↔ 下段(Panel) の境界（Problems/Terminal/Codexが載ってる帯）
+    "panel.border": "#ffffff",
+
+    // 分割境界（例：下段の CODEX ↔ TERMINAL、Editor分割、縦横の仕切り）
+    "sash.hoverBorder": "#ffffff"
+  }
+}
