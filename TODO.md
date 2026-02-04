@@ -1,15 +1,15 @@
 # TODO
 
-Current Branch: main
+Current Branch: chore/setup
 
 ## Now（雛形）
-- [ ] run: <new_run_id>_<task>
-  - （要ユーザー入力：最初に実装したい最小機能を教えてください）
-- [ ] run: <new_run_id>_<task>
-  - （要ユーザー入力：次に実装したい内容を教えてください）
+- [ ] run: <new_run_id>_ir-schema
+  - 法令・ガイドラインを共通IR（YAML）に正規化するスキーマを確定する
+- [ ] run: <new_run_id>_pipeline-min
+  - 生データ（PDF/HTML/TXT/XML等）からIR/YAMLへ変換する最小パイプラインを用意する
 
 ## Next（雛形）
-- （要ユーザー入力：次にやる候補を教えてください）
+- 祖先/文脈の出し分けルール（表示プロファイル）をYAMLで表現する
 
 ## Notes（固定）
 - TODO.md は上書き更新する。履歴は Git のコミットで追える（重要な更新はコミットに含める）。
