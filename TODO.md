@@ -1,6 +1,6 @@
 # TODO
 
-Current Branch: chore/setup
+Current Branch: feat/reference-docs
 
 ## Now（雛形）
 - [ ] run: <new_run_id>_ir-schema
@@ -10,6 +10,7 @@ Current Branch: chore/setup
 
 ## Next（雛形）
 - 祖先/文脈の出し分けルール（表示プロファイル）をYAMLで表現する
+- 参照ドキュメントを根拠にIRスキーマの確定版を作る
 
 ## Notes（固定）
 - TODO.md は上書き更新する。履歴は Git のコミットで追える（重要な更新はコミットに含める）。

@@ -18,3 +18,6 @@
 - 再発防止：
 - 確認コマンド：
 - 参考run：`runs/<run_id>/RUN.md`
+
+## 参照資料
+- `docs/REFERENCE.md`
