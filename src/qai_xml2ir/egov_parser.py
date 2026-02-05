@@ -24,6 +24,19 @@ def lname(elem: etree._Element) -> str:
     return tag
 
 
+def is_subitem_tag(tag: str) -> bool:
+    return tag in {"Subitem1", "Subitem2", "Subitem3", "Subitem4"}
+
+
+def should_skip(elem: etree._Element) -> bool:
+    def is_true(val: Optional[str]) -> bool:
+        if val is None:
+            return False
+        return val.strip().lower() in {"true", "1"}
+
+    return is_true(elem.get("Delete")) or is_true(elem.get("Hide"))
+
+
 def text_without_rt(elem: etree._Element) -> str:
     parts: List[str] = []
 
@@ -164,17 +177,23 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
     nid_builder = NidBuilder()
     children: List[Node] = []
 
-    main = find_first(law_body, "MainProvision")
-    if main is not None:
-        children.extend(parse_main_provision(main, nid_builder))
-
-    suppl_nodes = []
+    suppl_idx = 0
+    body_appdx_idx = 0
     for child in law_body:
-        if lname(child) == "SupplProvision":
-            suppl_nodes.append(
-                parse_suppl_provision(child, nid_builder, len(suppl_nodes) + 1)
-            )
-    children.extend(suppl_nodes)
+        tag = lname(child)
+        if tag == "MainProvision":
+            children.extend(parse_main_provision(child, nid_builder))
+        elif tag == "SupplProvision":
+            suppl_idx += 1
+            children.append(parse_suppl_provision(child, nid_builder, suppl_idx))
+        elif tag.startswith("Appdx"):
+            if should_skip(child):
+                LOGGER.info("Skipping deleted/hidden %s under LawBody", tag)
+                continue
+            body_appdx_idx += 1
+            children.append(parse_appendix(child, nid_builder, body_appdx_idx))
+        else:
+            continue
 
     root_node = build_root(children)
 
@@ -195,19 +214,54 @@ def parse_main_provision(
     ch_idx = 0
     sec_idx = 0
     art_idx = 0
+    appdx_idx = 0
+    appdx_idx = 0
+    part_idx = 0
+    p_idx = 0
+    appdx_idx = 0
     for child in main:
         tag = lname(child)
+        if tag in {"Part", "Chapter", "Section", "Article"} and should_skip(child):
+            LOGGER.info("Skipping deleted/hidden %s under MainProvision", tag)
+            continue
         if tag == "Chapter":
             ch_idx += 1
             try:
-                nodes.append(parse_chapter(child, nid_builder, ch_idx))
+                nodes.append(
+                    parse_chapter(
+                        child,
+                        nid_builder,
+                        ch_idx,
+                        scope_prefix="",
+                        article_scope_prefix="",
+                    )
+                )
             except Exception:
                 LOGGER.exception("Failed while parsing Chapter element")
+                raise
+        elif tag == "Part":
+            part_idx += 1
+            try:
+                nodes.append(
+                    parse_part(
+                        child,
+                        nid_builder,
+                        part_idx,
+                        parent_nid=None,
+                        article_scope_prefix="",
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Part element")
                 raise
         elif tag == "Section":
             sec_idx += 1
             try:
-                nodes.append(parse_section(child, nid_builder, None, sec_idx))
+                nodes.append(
+                    parse_section(
+                        child, nid_builder, None, sec_idx, article_scope_prefix=""
+                    )
+                )
             except Exception:
                 LOGGER.exception("Failed while parsing Section element")
                 raise
@@ -216,15 +270,29 @@ def parse_main_provision(
             try:
                 nodes.append(
                     parse_article(
-                        child, nid_builder, ord_from_attr_or_index(child, art_idx)
+                        child,
+                        nid_builder,
+                        ord_from_attr_or_index(child, art_idx),
+                        scope_prefix="",
                     )
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Article element")
                 raise
+        elif tag == "Paragraph":
+            p_idx += 1
+            try:
+                nodes.append(parse_top_paragraph(child, nid_builder, p_idx))
+            except Exception:
+                LOGGER.exception("Failed while parsing top-level Paragraph")
+                raise
         elif tag.startswith("Appdx"):
             try:
-                nodes.append(parse_appendix(child, nid_builder, len(nodes) + 1))
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s under MainProvision", tag)
+                    continue
+                appdx_idx += 1
+                nodes.append(parse_appendix(child, nid_builder, appdx_idx))
             except Exception:
                 LOGGER.exception("Failed while parsing Appendix element")
                 raise
@@ -234,12 +302,17 @@ def parse_main_provision(
 
 
 def parse_chapter(
-    chapter: etree._Element, nid_builder: NidBuilder, ch_ord: int
+    chapter: etree._Element,
+    nid_builder: NidBuilder,
+    ch_ord: int,
+    scope_prefix: str,
+    article_scope_prefix: str = "",
 ) -> Node:
     title = find_text(chapter, "ChapterTitle")
     num, heading = split_num_heading(title)
+    chapter_nid = nid_builder.unique(f"{scope_prefix}ch{ch_ord}")
     node = Node(
-        nid=nid_builder.unique(f"ch{ch_ord}"),
+        nid=chapter_nid,
         kind="chapter",
         kind_raw="章",
         num=num,
@@ -253,10 +326,21 @@ def parse_chapter(
     art_idx = 0
     for child in chapter:
         tag = lname(child)
+        if tag in {"Section", "Article"} and should_skip(child):
+            LOGGER.info("Skipping deleted/hidden %s under Chapter", tag)
+            continue
         if tag == "Section":
             sec_idx += 1
             try:
-                node.children.append(parse_section(child, nid_builder, ch_ord, sec_idx))
+                node.children.append(
+                    parse_section(
+                        child,
+                        nid_builder,
+                        chapter_nid,
+                        sec_idx,
+                        article_scope_prefix=article_scope_prefix,
+                    )
+                )
             except Exception:
                 LOGGER.exception("Failed while parsing Section in Chapter")
                 raise
@@ -265,7 +349,10 @@ def parse_chapter(
             try:
                 node.children.append(
                     parse_article(
-                        child, nid_builder, ord_from_attr_or_index(child, art_idx)
+                        child,
+                        nid_builder,
+                        ord_from_attr_or_index(child, art_idx),
+                        scope_prefix=article_scope_prefix,
                     )
                 )
             except Exception:
@@ -273,8 +360,17 @@ def parse_chapter(
                 raise
         elif tag.startswith("Appdx"):
             try:
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s under Chapter", tag)
+                    continue
+                appdx_idx += 1
                 node.children.append(
-                    parse_appendix(child, nid_builder, len(node.children) + 1)
+                    parse_appendix(
+                        child,
+                        nid_builder,
+                        appdx_idx,
+                        scope_prefix=article_scope_prefix,
+                    )
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Appendix in Chapter")
@@ -288,12 +384,13 @@ def parse_chapter(
 def parse_section(
     section: etree._Element,
     nid_builder: NidBuilder,
-    ch_ord: Optional[int],
+    parent_nid: Optional[str],
     sec_ord: int,
+    article_scope_prefix: str = "",
 ) -> Node:
     title = find_text(section, "SectionTitle")
     num, heading = split_num_heading(title)
-    prefix = f"ch{ch_ord}." if ch_ord is not None else ""
+    prefix = f"{parent_nid}." if parent_nid else ""
     node = Node(
         nid=nid_builder.unique(f"{prefix}sec{sec_ord}"),
         kind="section",
@@ -308,21 +405,64 @@ def parse_section(
     art_idx = 0
     for child in section:
         tag = lname(child)
+        if tag in {"Subsection", "Division", "Article"} and should_skip(child):
+            LOGGER.info("Skipping deleted/hidden %s under Section", tag)
+            continue
         if tag == "Article":
             art_idx += 1
             try:
                 node.children.append(
                     parse_article(
-                        child, nid_builder, ord_from_attr_or_index(child, art_idx)
+                        child,
+                        nid_builder,
+                        ord_from_attr_or_index(child, art_idx),
+                        scope_prefix=article_scope_prefix,
                     )
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Article in Section")
                 raise
-        elif tag.startswith("Appdx"):
+        elif tag == "Subsection":
             try:
                 node.children.append(
-                    parse_appendix(child, nid_builder, len(node.children) + 1)
+                    parse_subsection(
+                        child,
+                        nid_builder,
+                        node.nid,
+                        len(node.children) + 1,
+                        article_scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Subsection in Section")
+                raise
+        elif tag == "Division":
+            try:
+                node.children.append(
+                    parse_division(
+                        child,
+                        nid_builder,
+                        node.nid,
+                        len(node.children) + 1,
+                        article_scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Division in Section")
+                raise
+        elif tag.startswith("Appdx"):
+            try:
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s under Section", tag)
+                    continue
+                appdx_idx += 1
+                node.children.append(
+                    parse_appendix(
+                        child,
+                        nid_builder,
+                        appdx_idx,
+                        scope_prefix=article_scope_prefix,
+                    )
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Appendix in Section")
@@ -334,7 +474,10 @@ def parse_section(
 
 
 def parse_article(
-    article: etree._Element, nid_builder: NidBuilder, art_ord: Optional[int]
+    article: etree._Element,
+    nid_builder: NidBuilder,
+    art_ord: Optional[int],
+    scope_prefix: str = "",
 ) -> Node:
     num = find_text(article, "ArticleTitle")
     heading = find_text(article, "ArticleCaption")
@@ -350,8 +493,10 @@ def parse_article(
         p_attr = p.get("Num")
         fold = (p_num_text is None or p_num_text == "") and (p_attr in (None, "", "1"))
 
+    article_key = normalized_num or str(art_ord)
+    article_nid = nid_builder.unique(f"{scope_prefix}art{article_key}")
     node = Node(
-        nid=nid_builder.unique(f"art{normalized_num or art_ord}"),
+        nid=article_nid,
         kind="article",
         kind_raw="条",
         num=num,
@@ -374,25 +519,26 @@ def parse_article(
                 i_idx += 1
                 try:
                     node.children.append(
-                        parse_item(child, nid_builder, art_ord, None, i_idx)
+                        parse_item(child, nid_builder, article_nid, i_idx)
                     )
                 except Exception:
                     LOGGER.exception("Failed while parsing Item in folded Article")
                     raise
-            elif tag.startswith("Subitem"):
+            elif is_subitem_tag(tag):
                 try:
                     node.children.append(
-                        parse_subitem(child, nid_builder, art_ord, None, None)
+                        parse_subitem(child, nid_builder, article_nid, None)
                     )
                 except Exception:
                     LOGGER.exception("Failed while parsing Subitem in folded Article")
                     raise
     else:
         p_idx = 0
+        appdx_idx = 0
         for p in paragraphs:
             p_idx += 1
             try:
-                node.children.append(parse_paragraph(p, nid_builder, art_ord, p_idx))
+                node.children.append(parse_paragraph(p, nid_builder, article_nid, p_idx))
             except Exception:
                 LOGGER.exception("Failed while parsing Paragraph")
                 raise
@@ -402,8 +548,17 @@ def parse_article(
                 continue
             if tag.startswith("Appdx"):
                 try:
+                    if should_skip(child):
+                        LOGGER.info("Skipping deleted/hidden %s under Article", tag)
+                        continue
+                    appdx_idx += 1
                     node.children.append(
-                        parse_appendix(child, nid_builder, len(node.children) + 1)
+                        parse_appendix(
+                            child,
+                            nid_builder,
+                            appdx_idx,
+                            scope_prefix=scope_prefix,
+                        )
                     )
                 except Exception:
                     LOGGER.exception("Failed while parsing Appendix in Article")
@@ -411,11 +566,231 @@ def parse_article(
     return node
 
 
-def parse_paragraph(
+def parse_part(
+    part: etree._Element,
+    nid_builder: NidBuilder,
+    idx: int,
+    parent_nid: Optional[str],
+    article_scope_prefix: str = "",
+) -> Node:
+    title = find_text(part, "PartTitle")
+    num, heading = split_num_heading(title)
+    num_attr = part.get("Num")
+    ord_val = major_ord_from_num_attr(num_attr) or idx
+    prefix = f"{parent_nid}." if parent_nid else ""
+    node = Node(
+        nid=nid_builder.unique(f"{prefix}part{ord_val}"),
+        kind="part",
+        kind_raw="編",
+        num=num,
+        ord=ord_val,
+        heading=heading,
+        text=None,
+        role="structural",
+        normativity=None,
+    )
+    ch_idx = 0
+    art_idx = 0
+    appdx_idx = 0
+    for child in part:
+        tag = lname(child)
+        if tag in {"Chapter", "Article"} and should_skip(child):
+            LOGGER.info("Skipping deleted/hidden %s under Part", tag)
+            continue
+        if tag == "Chapter":
+            ch_idx += 1
+            try:
+                node.children.append(
+                    parse_chapter(
+                        child,
+                        nid_builder,
+                        ch_idx,
+                        scope_prefix=f"{node.nid}.",
+                        article_scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Chapter in Part")
+                raise
+        elif tag == "Article":
+            art_idx += 1
+            try:
+                node.children.append(
+                    parse_article(
+                        child,
+                        nid_builder,
+                        ord_from_attr_or_index(child, art_idx),
+                        scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Article in Part")
+                raise
+        elif tag.startswith("Appdx"):
+            try:
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s under Part", tag)
+                    continue
+                appdx_idx += 1
+                node.children.append(
+                    parse_appendix(
+                        child,
+                        nid_builder,
+                        appdx_idx,
+                        scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Appendix in Part")
+                raise
+    return node
+
+
+def parse_subsection(
+    subsection: etree._Element,
+    nid_builder: NidBuilder,
+    parent_nid: str,
+    idx: int,
+    article_scope_prefix: str = "",
+) -> Node:
+    title = find_text(subsection, "SubsectionTitle")
+    num, heading = split_num_heading(title)
+    num_attr = subsection.get("Num")
+    ord_val = major_ord_from_num_attr(num_attr) or idx
+    node = Node(
+        nid=nid_builder.unique(f"{parent_nid}.subsec{ord_val}"),
+        kind="subsection",
+        kind_raw="款",
+        num=num,
+        ord=ord_val,
+        heading=heading,
+        text=None,
+        role="structural",
+        normativity=None,
+    )
+    art_idx = 0
+    appdx_idx = 0
+    for child in subsection:
+        tag = lname(child)
+        if tag in {"Division", "Article"} and should_skip(child):
+            LOGGER.info("Skipping deleted/hidden %s under Subsection", tag)
+            continue
+        if tag == "Division":
+            try:
+                node.children.append(
+                    parse_division(
+                        child,
+                        nid_builder,
+                        node.nid,
+                        len(node.children) + 1,
+                        article_scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Division in Subsection")
+                raise
+        elif tag == "Article":
+            art_idx += 1
+            try:
+                node.children.append(
+                    parse_article(
+                        child,
+                        nid_builder,
+                        ord_from_attr_or_index(child, art_idx),
+                        scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Article in Subsection")
+                raise
+        elif tag.startswith("Appdx"):
+            try:
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s under Subsection", tag)
+                    continue
+                appdx_idx += 1
+                node.children.append(
+                    parse_appendix(
+                        child,
+                        nid_builder,
+                        appdx_idx,
+                        scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Appendix in Subsection")
+                raise
+    return node
+
+
+def parse_division(
+    division: etree._Element,
+    nid_builder: NidBuilder,
+    parent_nid: str,
+    idx: int,
+    article_scope_prefix: str = "",
+) -> Node:
+    title = find_text(division, "DivisionTitle")
+    num, heading = split_num_heading(title)
+    num_attr = division.get("Num")
+    ord_val = major_ord_from_num_attr(num_attr) or idx
+    node = Node(
+        nid=nid_builder.unique(f"{parent_nid}.div{ord_val}"),
+        kind="division",
+        kind_raw="目",
+        num=num,
+        ord=ord_val,
+        heading=heading,
+        text=None,
+        role="structural",
+        normativity=None,
+    )
+    art_idx = 0
+    appdx_idx = 0
+    for child in division:
+        tag = lname(child)
+        if tag == "Article" and should_skip(child):
+            LOGGER.info("Skipping deleted/hidden %s under Division", tag)
+            continue
+        if tag == "Article":
+            art_idx += 1
+            try:
+                node.children.append(
+                    parse_article(
+                        child,
+                        nid_builder,
+                        ord_from_attr_or_index(child, art_idx),
+                        scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Article in Division")
+                raise
+        elif tag.startswith("Appdx"):
+            try:
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s under Division", tag)
+                    continue
+                appdx_idx += 1
+                node.children.append(
+                    parse_appendix(
+                        child,
+                        nid_builder,
+                        appdx_idx,
+                        scope_prefix=article_scope_prefix,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Appendix in Division")
+                raise
+    return node
+
+
+def parse_top_paragraph(
     paragraph: etree._Element,
     nid_builder: NidBuilder,
-    art_ord: int,
     p_idx: int,
+    scope_prefix: str = "mp",
 ) -> Node:
     p_num_text = find_text(paragraph, "ParagraphNum")
     num = p_num_text or "1"
@@ -423,7 +798,7 @@ def parse_paragraph(
     heading = find_text(paragraph, "ParagraphCaption")
     text = extract_sentence_text_in(paragraph, "ParagraphSentence")
     node = Node(
-        nid=nid_builder.unique(f"art{art_ord}.p{p_ord}"),
+        nid=nid_builder.unique(f"{scope_prefix}.p{p_ord}"),
         kind="paragraph",
         kind_raw="項",
         num=num,
@@ -442,15 +817,60 @@ def parse_paragraph(
             i_idx += 1
             try:
                 node.children.append(
-                    parse_item(child, nid_builder, art_ord, p_ord, i_idx)
+                    parse_item(child, nid_builder, node.nid, i_idx)
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Item in top-level Paragraph")
+                raise
+        elif is_subitem_tag(tag):
+            try:
+                node.children.append(
+                    parse_subitem(child, nid_builder, node.nid, None)
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Subitem in top-level Paragraph")
+                raise
+    return node
+def parse_paragraph(
+    paragraph: etree._Element,
+    nid_builder: NidBuilder,
+    article_nid: str,
+    p_idx: int,
+) -> Node:
+    p_num_text = find_text(paragraph, "ParagraphNum")
+    num = p_num_text or "1"
+    p_ord = ord_from_attr_or_index(paragraph, p_idx) or p_idx
+    heading = find_text(paragraph, "ParagraphCaption")
+    text = extract_sentence_text_in(paragraph, "ParagraphSentence")
+    node = Node(
+        nid=nid_builder.unique(f"{article_nid}.p{p_ord}"),
+        kind="paragraph",
+        kind_raw="項",
+        num=num,
+        ord=p_ord,
+        heading=heading,
+        text=text or None,
+        role="normative",
+        normativity="must",
+    )
+    if detect_definition(text):
+        node.role = "definition"
+    i_idx = 0
+    for child in paragraph:
+        tag = lname(child)
+        if tag == "Item":
+            i_idx += 1
+            try:
+                node.children.append(
+                    parse_item(child, nid_builder, node.nid, i_idx)
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Item in Paragraph")
                 raise
-        elif tag.startswith("Subitem"):
+        elif is_subitem_tag(tag):
             try:
                 node.children.append(
-                    parse_subitem(child, nid_builder, art_ord, p_ord, None)
+                    parse_subitem(child, nid_builder, node.nid, None)
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Subitem in Paragraph")
@@ -461,17 +881,13 @@ def parse_paragraph(
 def parse_item(
     item: etree._Element,
     nid_builder: NidBuilder,
-    art_ord: int,
-    p_ord: Optional[int],
+    parent_nid: str,
     i_idx: Optional[int] = None,
 ) -> Node:
     num = find_text(item, "ItemTitle")
     i_ord = ord_from_attr_or_index(item, i_idx or 1) or (i_idx or 1)
     text = extract_sentence_text_in(item, "ItemSentence")
-    nid_prefix = f"art{art_ord}."
-    if p_ord is not None:
-        nid_prefix += f"p{p_ord}."
-    nid = f"{nid_prefix}i{i_ord}"
+    nid = f"{parent_nid}.i{i_ord}"
     node = Node(
         nid=nid_builder.unique(nid),
         kind="item",
@@ -488,11 +904,11 @@ def parse_item(
     s_idx = 0
     for child in item:
         tag = lname(child)
-        if tag.startswith("Subitem"):
+        if is_subitem_tag(tag):
             s_idx += 1
             try:
                 node.children.append(
-                    parse_subitem(child, nid_builder, art_ord, p_ord, i_ord, s_idx)
+                    parse_subitem(child, nid_builder, node.nid, s_idx)
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Subitem in Item")
@@ -503,9 +919,7 @@ def parse_item(
 def parse_subitem(
     elem: etree._Element,
     nid_builder: NidBuilder,
-    art_ord: int,
-    p_ord: Optional[int],
-    i_ord: Optional[int],
+    parent_nid: str,
     s_idx: Optional[int] = None,
 ) -> Node:
     tag = lname(elem)
@@ -519,17 +933,12 @@ def parse_subitem(
     slug = slug_iroha(title) if tag == "Subitem1" else None
     ord_val = extract_digits(title) or (s_idx or 1)
 
-    nid_prefix = f"art{art_ord}."
-    if p_ord is not None:
-        nid_prefix += f"p{p_ord}."
-    if i_ord is not None:
-        nid_prefix += f"i{i_ord}."
     if tag == "Subitem1" and slug:
-        nid = f"{nid_prefix}{slug}"
+        nid = f"{parent_nid}.{slug}"
     elif tag == "Subitem1":
-        nid = f"{nid_prefix}s{ord_val}"
+        nid = f"{parent_nid}.s{ord_val}"
     else:
-        nid = f"{nid_prefix}pt{ord_val}"
+        nid = f"{parent_nid}.pt{ord_val}"
 
     node = Node(
         nid=nid_builder.unique(nid),
@@ -544,25 +953,83 @@ def parse_subitem(
     )
     if detect_definition(text):
         node.role = "definition"
+    sub_idx = 0
+    for child in elem:
+        if is_subitem_tag(lname(child)):
+            sub_idx += 1
+            try:
+                node.children.append(
+                    parse_subitem(child, nid_builder, node.nid, sub_idx)
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing nested Subitem")
+                raise
     return node
 
 
 def parse_appendix(
-    elem: etree._Element, nid_builder: NidBuilder, idx: int
+    elem: etree._Element,
+    nid_builder: NidBuilder,
+    idx: int,
+    scope_prefix: str = "",
 ) -> Node:
+    return parse_appdx(elem, nid_builder, scope_prefix, idx)
+
+
+def appendix_kind_key(tag: str) -> str:
+    base_tag = tag.replace("SupplProvision", "", 1)
+    mapping = {
+        "AppdxTable": "appdx_table",
+        "AppdxNote": "appdx_note",
+        "AppdxStyle": "appdx_style",
+        "Appdx": "appdx",
+        "AppdxFig": "appdx_fig",
+        "AppdxFormat": "appdx_format",
+    }
+    return mapping.get(base_tag, "appdx")
+
+
+def parse_appdx(
+    elem: etree._Element,
+    nid_builder: NidBuilder,
+    scope_prefix: str,
+    fallback_idx: int,
+) -> Node:
+    tag = lname(elem)
+    base_tag = tag.replace("SupplProvision", "", 1)
+    key = appendix_kind_key(tag)
+    title_keys = {
+        "AppdxTable": ["SupplProvisionAppdxTableTitle", "AppdxTableTitle"],
+        "AppdxNote": ["SupplProvisionAppdxNoteTitle", "AppdxNoteTitle"],
+        "AppdxStyle": ["SupplProvisionAppdxStyleTitle", "AppdxStyleTitle"],
+        "AppdxFig": ["SupplProvisionAppdxFigTitle", "AppdxFigTitle"],
+        "AppdxFormat": ["SupplProvisionAppdxFormatTitle", "AppdxFormatTitle"],
+        "Appdx": [
+            "SupplProvisionAppdxTitle",
+            "AppdxTitle",
+            "ArithFormulaTitle",
+            "ArithFormulaNum",
+        ],
+    }
     title = None
-    for key in ("AppdxTableTitle", "AppdxStyleTitle", "AppdxTitle"):
-        title = find_text(elem, key)
+    for title_key in title_keys.get(base_tag, []):
+        title = find_text(elem, title_key)
         if title:
             break
-    text = extract_sentence_text(elem)
-    nid = nid_builder.unique(f"appendix{idx}")
+    if title is None and base_tag == "Appdx":
+        title = find_text(elem, "ArithFormulaNum")
+    ord_val = ord_from_attr_or_index(elem, fallback_idx) or fallback_idx
+    normalized_num = normalize_num_attr(elem.get("Num"))
+    suffix = normalized_num or str(fallback_idx)
+    prefix = f"{scope_prefix}" if scope_prefix else ""
+    nid = nid_builder.unique(f"{prefix}{key}{suffix}")
+    text = text_without_rt(elem).strip() or None
     return Node(
         nid=nid,
         kind="appendix",
-        kind_raw=lname(elem),
+        kind_raw=tag,
         num=title,
-        ord=idx,
+        ord=ord_val,
         heading=None,
         text=text or None,
         role="structural",
@@ -585,18 +1052,73 @@ def parse_suppl_provision(
         normativity=None,
     )
     art_idx = 0
+    ch_idx = 0
+    p_idx = 0
+    appdx_idx = 0
     for child in suppl:
         tag = lname(child)
-        if tag == "Article":
+        if tag in {"Chapter", "Paragraph", "Article"} and should_skip(child):
+            LOGGER.info("Skipping deleted/hidden %s in SupplProvision", tag)
+            continue
+        if tag == "Chapter":
+            ch_idx += 1
+            try:
+                node.children.append(
+                    parse_chapter(
+                        child,
+                        nid_builder,
+                        ch_idx,
+                        scope_prefix=f"{node.nid}.",
+                        article_scope_prefix=f"{node.nid}.",
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Chapter in SupplProvision")
+                raise
+        elif tag == "Paragraph":
+            p_idx += 1
+            try:
+                node.children.append(
+                    parse_top_paragraph(
+                        child,
+                        nid_builder,
+                        p_idx,
+                        scope_prefix=node.nid,
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Paragraph in SupplProvision")
+                raise
+        elif tag == "Article":
             art_idx += 1
             try:
                 node.children.append(
                     parse_article(
-                        child, nid_builder, ord_from_attr_or_index(child, art_idx)
+                        child,
+                        nid_builder,
+                        ord_from_attr_or_index(child, art_idx),
+                        scope_prefix=f"{node.nid}.",
                     )
                 )
             except Exception:
                 LOGGER.exception("Failed while parsing Article in SupplProvision")
+                raise
+        elif tag.startswith("SupplProvisionAppdx"):
+            try:
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s in SupplProvision", tag)
+                    continue
+                appdx_idx += 1
+                node.children.append(
+                    parse_appendix(
+                        child,
+                        nid_builder,
+                        appdx_idx,
+                        scope_prefix=f"{node.nid}.",
+                    )
+                )
+            except Exception:
+                LOGGER.exception("Failed while parsing Appendix in SupplProvision")
                 raise
     return node
 
