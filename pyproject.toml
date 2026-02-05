@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qai-xml2ir"
+version = "0.1.0"
+description = "e-Gov XML to RegDoc IR bundle"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "lxml>=5.0.0",
+  "PyYAML>=6.0",
+  "typer>=0.12.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+xml2ir = "qai_xml2ir.cli:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "integration: real XML integration tests (skipped unless EGOV_XML_SAMPLE_* is set)",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

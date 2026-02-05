@@ -28,6 +28,34 @@
 
 ---
 
+## xml2ir（e-Gov XML -> RegDoc）
+e-Gov「日本法令XML」をRegDoc IRの4部セット（IR + parser_profile + regdoc_profile + meta）へ変換する最小パイプライン。
+
+### 公式スキーマ（参照用）
+- e-Gov法令XMLスキーマ: https://laws.e-gov.go.jp/docs/law-data-basic/419a603-xml-schema-for-japanese-law/
+
+### 使い方
+```bash
+xml2ir bundle --input 416M60000100179_20260501_507M60000100117.xml --out-dir out/ \
+  --doc-id jp_mhlw_gmp_ordinance \
+  --short-title "GMP省令" \
+  --retrieved-at 2026-02-02 \
+  --source-url "https://laws.e-gov.go.jp/law/416M60000100179/20260501_507M60000100117"
+```
+
+### 出力（同一 out_dir に4ファイル）
+- `{doc_id}.regdoc_ir.yaml`
+- `{doc_id}.parser_profile.yaml`
+- `{doc_id}.regdoc_profile.yaml`
+- `{doc_id}.meta.yaml`
+
+### 実データ統合テスト（任意）
+環境変数で実XMLを指定すると integration テストが有効になる。
+```bash
+$env:EGOV_XML_SAMPLE_1="C:\\path\\to\\sample1.xml"
+python -m pytest -m integration
+```
+
 ## 指針ドキュメント
 - `docs/REFERENCE.md`
 
