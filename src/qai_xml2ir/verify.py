@@ -97,9 +97,15 @@ def check_appendix_scoped_indices(root) -> List[str]:
                 continue
             by_key.setdefault(key, []).append(num)
         for key, nums in by_key.items():
-            if nums and min(nums) != 1:
+            if not nums:
+                continue
+            count = len(nums)
+            if any(num > count for num in nums):
+                continue
+            expected = list(range(1, count + 1))
+            if sorted(nums) != expected:
                 parent_nid = _get(parent, "nid")
                 problems.append(
-                    f"appendix index for {key} under {parent_nid} starts at {min(nums)}"
+                    f"appendix index for {key} under {parent_nid} is not contiguous: {sorted(nums)}"
                 )
     return problems
