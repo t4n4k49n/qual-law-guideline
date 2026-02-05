@@ -5,8 +5,9 @@ from pathlib import Path
 
 import pytest
 import yaml
+from typer.testing import CliRunner
 
-from qai_xml2ir.cli import bundle
+from qai_xml2ir.cli import app
 from qai_xml2ir.verify import (
     assert_unique_nids,
     check_annex_article_nids,
@@ -35,13 +36,27 @@ def test_integration_real_xml(tmp_path: Path) -> None:
     if not xml_paths:
         pytest.skip("No EGOV_XML_SAMPLE_* environment variables provided.")
 
+    runner = CliRunner()
     for idx, xml_path in enumerate(xml_paths, start=1):
         if not xml_path.exists():
             pytest.skip(f"Missing sample XML: {xml_path}")
 
         out_dir = tmp_path / "out" / f"doc{idx}"
         doc_id = f"jp_test_doc_{idx}"
-        bundle(input=xml_path, out_dir=out_dir, doc_id=doc_id, emit_only="all")
+        result = runner.invoke(
+            app,
+            [
+                "--input",
+                str(xml_path),
+                "--out-dir",
+                str(out_dir),
+                "--doc-id",
+                doc_id,
+                "--emit-only",
+                "all",
+            ],
+        )
+        assert result.exit_code == 0, result.output
 
         ir_path = out_dir / f"{doc_id}.regdoc_ir.yaml"
         parser_profile_path = out_dir / f"{doc_id}.parser_profile.yaml"
