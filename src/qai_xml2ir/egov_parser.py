@@ -50,6 +50,14 @@ def extract_sentence_text(
     return "".join(text_without_rt(s).strip() for s in sents).strip()
 
 
+def extract_sentence_text_in(elem: etree._Element, container_tag: str) -> str:
+    container = find_first(elem, container_tag)
+    if container is None:
+        return ""
+    sents = container.findall(".//Sentence")
+    return "".join(text_without_rt(s).strip() for s in sents).strip()
+
+
 def find_first(elem: etree._Element, tag: str) -> Optional[etree._Element]:
     for child in elem.iter():
         if lname(child) == tag:
@@ -93,6 +101,27 @@ def ord_from_attr_or_index(elem: etree._Element, index: int) -> Optional[int]:
     return index
 
 
+def normalize_num_attr(num: Optional[str]) -> Optional[str]:
+    if not num:
+        return None
+    normalized = num.translate(str.maketrans("０１２３４５６７８９", "0123456789"))
+    cleaned = re.sub(r"[^0-9_]", "", normalized)
+    return cleaned or None
+
+
+def major_ord_from_num_attr(num: Optional[str]) -> Optional[int]:
+    normalized = normalize_num_attr(num)
+    if not normalized:
+        return None
+    head = normalized.split("_", 1)[0]
+    if not head:
+        return None
+    try:
+        return int(head)
+    except ValueError:
+        return None
+
+
 def build_display_name(node: Node) -> Optional[str]:
     parts: List[str] = []
     if node.num:
@@ -124,7 +153,9 @@ class ParsedLaw:
 def parse_egov_xml(path: Path) -> ParsedLaw:
     tree = etree.parse(str(path))
     root = tree.getroot()
-    law_body = find_first(root, "LawBody") or root
+    law_body = find_first(root, "LawBody")
+    if law_body is None:
+        law_body = root
 
     title = find_text(law_body, "LawTitle") or ""
     law_number = find_text(root, "LawNum") or find_text(law_body, "LawNum")
@@ -140,7 +171,9 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
     suppl_nodes = []
     for child in law_body:
         if lname(child) == "SupplProvision":
-            suppl_nodes.append(parse_suppl_provision(child, nid_builder, len(suppl_nodes) + 1))
+            suppl_nodes.append(
+                parse_suppl_provision(child, nid_builder, len(suppl_nodes) + 1)
+            )
     children.extend(suppl_nodes)
 
     root_node = build_root(children)
@@ -303,9 +336,11 @@ def parse_section(
 def parse_article(
     article: etree._Element, nid_builder: NidBuilder, art_ord: Optional[int]
 ) -> Node:
-    art_ord = art_ord or 0
     num = find_text(article, "ArticleTitle")
     heading = find_text(article, "ArticleCaption")
+    num_attr = article.get("Num")
+    normalized_num = normalize_num_attr(num_attr)
+    art_ord = major_ord_from_num_attr(num_attr) or art_ord or 0
 
     paragraphs = [c for c in article if lname(c) == "Paragraph"]
     fold = False
@@ -316,7 +351,7 @@ def parse_article(
         fold = (p_num_text is None or p_num_text == "") and (p_attr in (None, "", "1"))
 
     node = Node(
-        nid=nid_builder.unique(f"art{art_ord}"),
+        nid=nid_builder.unique(f"art{normalized_num or art_ord}"),
         kind="article",
         kind_raw="条",
         num=num,
@@ -328,7 +363,7 @@ def parse_article(
     )
 
     if fold and paragraphs:
-        text = extract_sentence_text(paragraphs[0])
+        text = extract_sentence_text_in(paragraphs[0], "ParagraphSentence")
         node.text = text or None
         if detect_definition(text):
             node.role = "definition"
@@ -386,7 +421,7 @@ def parse_paragraph(
     num = p_num_text or "1"
     p_ord = ord_from_attr_or_index(paragraph, p_idx) or p_idx
     heading = find_text(paragraph, "ParagraphCaption")
-    text = extract_sentence_text(paragraph)
+    text = extract_sentence_text_in(paragraph, "ParagraphSentence")
     node = Node(
         nid=nid_builder.unique(f"art{art_ord}.p{p_ord}"),
         kind="paragraph",
@@ -432,7 +467,7 @@ def parse_item(
 ) -> Node:
     num = find_text(item, "ItemTitle")
     i_ord = ord_from_attr_or_index(item, i_idx or 1) or (i_idx or 1)
-    text = extract_sentence_text(item)
+    text = extract_sentence_text_in(item, "ItemSentence")
     nid_prefix = f"art{art_ord}."
     if p_ord is not None:
         nid_prefix += f"p{p_ord}."
@@ -475,7 +510,8 @@ def parse_subitem(
 ) -> Node:
     tag = lname(elem)
     title = find_text(elem, f"{tag}Title")
-    text = extract_sentence_text(elem)
+    sentence_tag = f"{tag}Sentence"
+    text = extract_sentence_text_in(elem, sentence_tag)
 
     kind = "subitem" if tag == "Subitem1" else "point"
     kind_raw = title or ("イロハ" if tag == "Subitem1" else tag)
@@ -566,9 +602,11 @@ def parse_suppl_provision(
 
 
 def extract_as_of_from_filename(name: str) -> Optional[str]:
-    m = re.search(r"_(\\d{8})_", name)
+    m = re.search(r"_(\d{8})_", name)
     if not m:
-        return None
+        m = re.search(r"(\d{8})", name)
+        if not m:
+            return None
     raw = m.group(1)
     return f"{raw[0:4]}-{raw[4:6]}-{raw[6:8]}"
 
