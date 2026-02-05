@@ -22,6 +22,9 @@ xml2ir = "qai_xml2ir.cli:app"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+  "integration: real XML integration tests (skipped unless EGOV_XML_SAMPLE_* is set)",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

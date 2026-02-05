@@ -9,10 +9,28 @@ def build_parser_profile(
 ) -> Dict[str, Any]:
     marker_types: List[Dict[str, Any]] = [
         {
+            "id": "part",
+            "kind": "part",
+            "kind_raw": "編",
+            "match": r"^第[一二三四五六七八九十百千]+編",
+        },
+        {
             "id": "chapter",
             "kind": "chapter",
             "kind_raw": "章",
             "match": r"^第[一二三四五六七八九十百千]+章",
+        },
+        {
+            "id": "subsection",
+            "kind": "subsection",
+            "kind_raw": "款",
+            "match": r"^第[一二三四五六七八九十百千]+款",
+        },
+        {
+            "id": "division",
+            "kind": "division",
+            "kind_raw": "目",
+            "match": r"^第[一二三四五六七八九十百千]+目",
         },
         {
             "id": "section",
@@ -53,15 +71,20 @@ def build_parser_profile(
     ]
 
     structure = {
-        "root": {"children": ["chapter", "section", "article", "annex", "appendix"]},
+        "root": {
+            "children": ["part", "chapter", "section", "article", "annex", "appendix"]
+        },
+        "part": {"children": ["chapter", "article"]},
         "chapter": {"children": ["section", "article"]},
-        "section": {"children": ["article"]},
+        "section": {"children": ["subsection", "division", "article"]},
+        "subsection": {"children": ["division", "article"]},
+        "division": {"children": ["article"]},
         "article": {"children": ["paragraph", "item", "subitem", "point"]},
         "paragraph": {"children": ["item", "subitem", "point"]},
         "item": {"children": ["subitem", "point"]},
         "subitem": {"children": ["point"]},
         "point": {"children": []},
-        "annex": {"children": ["article"]},
+        "annex": {"children": ["chapter", "paragraph", "article", "appendix"]},
         "appendix": {"children": []},
     }
 
