@@ -48,7 +48,7 @@ def build_parser_profile(
             "id": "point",
             "kind": "point",
             "kind_raw": "（1）",
-            "match": r"^(\\([0-9]+\\)|（[0-9０-９]+）)",
+            "match": r"^(\([0-9]+\)|（[0-9０-９]+）)",
         },
     ]
 
