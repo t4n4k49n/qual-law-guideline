@@ -57,10 +57,14 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 
 ## 6) PR作成
 
+- PR本文は `runs/<run_id>/PR.md` に作成する
+- **PR.md のタイトルと表の見出しは日本語で書く**
+- PRをあげる準備として、RUN系書類（`RUN.md` / `PR.md`）を `git add` しておく
 - 変更内容、検証結果、AIレビュー結果をPR本文に記載
 - 比較表（人間レビュー用）をPRに添付
+- **GitHubでPRを作成し、リンクを共有する**
 
 ## 7) 正式版への昇格
 
-- PR承認後に `data/normalized/<doc_id>/<version>/` へコピー
+- **PR承認が確認できたら** `data/normalized/<doc_id>/<version>/` へコピー
 - 既存版は残す（上書き禁止）
