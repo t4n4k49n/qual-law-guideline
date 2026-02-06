@@ -46,6 +46,7 @@ def test_integration_real_xml(tmp_path: Path) -> None:
         result = runner.invoke(
             app,
             [
+                "bundle",
                 "--input",
                 str(xml_path),
                 "--out-dir",
