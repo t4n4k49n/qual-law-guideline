@@ -1,0 +1,51 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: jp_egov_416M60000100179_20260501_507M60000100117
+  title: 医薬品及び医薬部外品の製造管理及び品質管理の基準に関する省令
+  short_title: null
+  jurisdiction: JP
+  doc_type: ministerial_ordinance
+  language: ja
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: 416M60000100179
+    e_gov_revision_id: 507M60000100117
+    law_number: 平成十六年厚生労働省令第百七十九号
+    cfr_title: null
+    cfr_part: null
+    eu_volume: null
+    pics_doc_id: null
+    who_publication_id: null
+  version:
+    as_of: '2026-05-01'
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources: []
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v1
+    path: jp_egov_416M60000100179_20260501_507M60000100117.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: jp_law_default_v1
+    path: jp_egov_416M60000100179_20260501_507M60000100117.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: jp_egov_416M60000100179_20260501_507M60000100117.regdoc_profile.yaml
+generation:
+  created_at: '2026-02-06T06:32:03Z'
+  tool:
+    name: qai_xml2ir
+    version: null
+  inputs:
+  - path: %USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\416M60000100179_20260501_507M60000100117\416M60000100179_20260501_507M60000100117.xml
+    checksum: eb76f1e2592b93b7085c93b27f24a64361d55fd9b077a6e44fe634fae4b3ba83
+  notes: []
