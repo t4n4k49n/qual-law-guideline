@@ -32,9 +32,24 @@ def guess_doc_type(law_number: Optional[str]) -> str:
     return "statute"
 
 
-def build_default_doc_id(law_id: Optional[str], as_of: Optional[str], stem: str) -> str:
+def _normalize_as_of_for_doc_id(as_of: Optional[str]) -> Optional[str]:
+    if not as_of:
+        return None
+    return as_of.replace('-', '')
+
+
+def build_default_doc_id(
+    law_id: Optional[str],
+    as_of: Optional[str],
+    revision_id: Optional[str],
+    stem: str,
+) -> str:
+    if law_id and as_of and revision_id:
+        as_of_raw = _normalize_as_of_for_doc_id(as_of)
+        return f"jp_egov_{law_id}_{as_of_raw}_{revision_id}"
     if law_id and as_of:
-        return f"jp_egov_{law_id}_{as_of}"
+        as_of_raw = _normalize_as_of_for_doc_id(as_of)
+        return f"jp_egov_{law_id}_{as_of_raw}"
     return stem
 
 
@@ -51,7 +66,7 @@ def bundle(
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
     parsed = parse_egov_xml(input)
-    doc_id = doc_id or build_default_doc_id(parsed.law_id, parsed.as_of, input.stem)
+    doc_id = doc_id or build_default_doc_id(parsed.law_id, parsed.as_of, parsed.revision_id, input.stem)
 
     index = {"display_name_by_nid": {}}
     collect_display_names(parsed.root, index["display_name_by_nid"])
@@ -86,6 +101,7 @@ def bundle(
             law_id=parsed.law_id,
             law_number=parsed.law_number,
             as_of=parsed.as_of,
+            revision_id=parsed.revision_id,
             effective_from=None,
             effective_to=None,
             revision_note=None,
