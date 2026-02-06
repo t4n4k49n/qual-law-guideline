@@ -160,6 +160,7 @@ class ParsedLaw:
     law_id: Optional[str]
     law_number: Optional[str]
     as_of: Optional[str]
+    revision_id: Optional[str]
     root: Node
 
 
@@ -198,11 +199,13 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
     root_node = build_root(children)
 
     as_of = extract_as_of_from_filename(path.name)
+    revision_id = extract_revision_id_from_filename(path.name)
     return ParsedLaw(
         title=title,
         law_id=law_id,
         law_number=law_number,
         as_of=as_of,
+        revision_id=revision_id,
         root=root_node,
     )
 
@@ -1131,6 +1134,15 @@ def extract_as_of_from_filename(name: str) -> Optional[str]:
             return None
     raw = m.group(1)
     return f"{raw[0:4]}-{raw[4:6]}-{raw[6:8]}"
+
+
+
+
+def extract_revision_id_from_filename(name: str) -> Optional[str]:
+    m = re.search(r"_(\d{8})_([0-9A-Za-z]+)", name)
+    if not m:
+        return None
+    return m.group(2)
 
 
 def extract_law_id_from_filename(name: str) -> Optional[str]:

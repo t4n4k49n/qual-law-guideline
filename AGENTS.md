@@ -24,6 +24,10 @@
 - 破壊的操作・秘密情報（.env / credential / rm / 大量削除 等）は都度確認してから
 - 余分なrunは削除せず、必要なら `runs/ARCHIVE_<run_id>/` に移動して保管（任意だが推奨）
 
+## 正規化RUN（Normalized Run）
+- 正規化RUNは、`data/normalized/` へ正式版を昇格させるための特別RUNを指す。
+- 指示で「正規化RUN」または「正規化ラン」「normalized run」と指定された場合、`docs/NORMALIZED_RUN_PLAYBOOK.md` に従って実行する。
+
 ## README/TODOの埋め方（重要）
 - README.md と TODO.md はプロジェクト内容に依存するため、最初は雛形のみを作る。
 - 5ファイル作成後、ユーザーに以下のいずれかを依頼し、情報が揃ってから追記する（勝手に埋めない）：

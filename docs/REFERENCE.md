@@ -29,7 +29,7 @@
 
 ### 正式版の取り扱い
 1) まず `out/<run_id>/` に出力する  
-2) 「1版として採用」と判断したものだけ `data/normalized/<doc_id>/<version>/` にコピーする  
+2) 「1版として採用」と判断したものだけ `data/normalized/<doc_id>/` にコピーする  
 3) `data/normalized/` は Git の履歴で追えるようにする  
 
 ### 正式化の判断基準（最小）
