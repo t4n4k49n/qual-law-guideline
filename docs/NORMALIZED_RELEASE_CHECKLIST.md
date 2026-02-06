@@ -1,6 +1,6 @@
 # 正式版（data/normalized）への格納チェックリスト
 
-目的: `out/<run_id>/` の成果物を `data/normalized/<doc_id>/<version>/` に昇格するための最小要件を、短いチェックで満たす。
+目的: `out/<run_id>/` の成果物を `data/normalized/<doc_id>/` に昇格するための最小要件を、短いチェックで満たす。
 
 ## チェックリスト（最小）
 
@@ -30,7 +30,6 @@ command:
   argv: "xml2ir bundle --input ... --out-dir ... --doc-id ..."
 outputs:
   doc_id: "<doc_id>"
-  version: "<version>"
   files:
     - "<doc_id>.regdoc_ir.yaml"
     - "<doc_id>.parser_profile.yaml"
