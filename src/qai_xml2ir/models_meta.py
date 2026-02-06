@@ -13,6 +13,7 @@ def build_meta(
     law_id: Optional[str],
     law_number: Optional[str],
     as_of: Optional[str],
+    revision_id: Optional[str],
     effective_from: Optional[str],
     effective_to: Optional[str],
     revision_note: Optional[str],
@@ -39,6 +40,7 @@ def build_meta(
             "issuer": {"name": None, "kind": None},
             "identifiers": {
                 "e_gov_law_id": law_id,
+                "e_gov_revision_id": revision_id,
                 "law_number": law_number,
                 "cfr_title": None,
                 "cfr_part": None,

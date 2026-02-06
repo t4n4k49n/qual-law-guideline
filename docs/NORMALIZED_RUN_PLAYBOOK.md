@@ -1,7 +1,7 @@
 # NORMALIZED RUN PLAYBOOK
 
 正規化RUN（normalized run）を迷いなく実行するための手順書。
-目的は `out/<run_id>/` の成果物を、正式版として `data/normalized/<doc_id>/<version>/` に昇格できる状態にすること。
+目的は `out/<run_id>/` の成果物を、正式版として `data/normalized/<doc_id>/` に昇格できる状態にすること。
 
 ## 0) 前提
 
@@ -12,7 +12,9 @@
 ## 1) 実行前確認
 
 - 対象の入力XMLパスを確認
-- `doc_id` と `version`（例: `20260501`）を決める
+- `doc_id` を決める
+  - **e-GovのURIに準拠**: `jp_egov_<law_id>_<as_of(yyyymmdd)>_<revision_id>`
+  - 例: `https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117` → `jp_egov_336M50000100002_20260501_507M60000100117`
 - ブランチ名と `run_id` を決める
 
 ## 2) 実行
@@ -69,5 +71,5 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 
 ## 7) 正式版への昇格
 
-- **PR承認が確認できたら** `data/normalized/<doc_id>/<version>/` へコピー
+- **PR承認が確認できたら** `data/normalized/<doc_id>/` へコピー
 - 既存版は残す（上書き禁止）
