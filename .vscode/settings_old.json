@@ -1,0 +1,40 @@
+{
+    "window.title": "[B] ${activeEditorShort}${separator}${rootName}${separator}${appName}",
+    // ★ここが「Antigravityの淡いデフォルト」をまとめて駆逐する鍵
+    "workbench.colorTheme": "Dark Modern", // ない場合は "Dark+ (default dark)"
+    "workbench.colorCustomizations": {
+        // ===== あなたの赤い世界観（必要最小限）=====
+        "titleBar.activeBackground": "#960000",
+        "titleBar.inactiveBackground": "#4d0000",
+        "activityBar.background": "#7a0000",
+        "sideBar.background": "#3d0000",
+        "editor.background": "#1a0000",
+        "panel.background": "#260000",
+        "statusBar.background": "#960000",
+        "tab.activeBackground": "#5e0000",
+        "tab.inactiveBackground": "#2e0000",
+        // ===== 境界だけ白（方針維持）=====
+        "titleBar.border": "#ffffff",
+        "statusBar.border": "#ffffff",
+        "activityBar.border": "#ffffff",
+        "sideBar.border": "#ffffff",
+        "panel.border": "#ffffff",
+        "sash.hoverBorder": "#ffffff",
+        // ===== 文字の可読性（白線とは別の“薄桃アイボリー”）=====
+        "titleBar.activeForeground": "#ffe6e6",
+        "titleBar.inactiveForeground": "#d9a7a7",
+        "tab.activeForeground": "#ffffff",
+        "tab.inactiveForeground": "#ffe6e6",
+        "tab.unfocusedActiveForeground": "#ffe6e6",
+        "tab.unfocusedInactiveForeground": "#d9a7a7",
+        "sideBar.foreground": "#ffe6e6",
+        "sideBarTitle.foreground": "#ffffff",
+        "activityBar.foreground": "#ffe6e6",
+        "activityBar.inactiveForeground": "#d9a7a7",
+        "list.foreground": "#ffe6e6",
+        "list.hoverForeground": "#ffffff",
+        "list.activeSelectionForeground": "#ffffff",
+        "list.inactiveSelectionForeground": "#ffe6e6",
+        "statusBar.foreground": "#ffe6e6"
+    }
+}
