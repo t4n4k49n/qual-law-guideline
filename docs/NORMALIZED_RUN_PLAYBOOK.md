@@ -72,6 +72,9 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 - **PR.md のタイトルと表の見出しは日本語で書く**
 - PRをあげる準備として、RUN系書類（`RUN.md` / `PR.md`）を `git add` しておく
 - 変更内容、検証結果、AIレビュー結果をPR本文に記載
+- 対象e-Gov法令URLを必ず記載する
+  - 形式: `https://laws.e-gov.go.jp/law/<law_id>/<as_of_revision>`
+  - 変換例: `416M60000100179_20260501_507M60000100117` → `https://laws.e-gov.go.jp/law/416M60000100179/20260501_507M60000100117`
 - 比較表（人間レビュー用）をPRに添付
 - PR作成前に、本文・`RUN.md`・`PR.md` から `C:\\Users\\` を検索し、0件であることを確認する
 - **GitHubでPRを作成し、リンクを共有する**
