@@ -84,3 +84,5 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 
 - **PR承認が確認できたら** `data/normalized/<doc_id>/` へコピー
 - 既存版は残す（上書き禁止）
+- 既存版を退避する場合は `ARCHIVE_<doc_id>` へリネームする
+- 同名が既に存在する場合は `ARCHIVE_<doc_id>_2`, `ARCHIVE_<doc_id>_3` のように連番を付与する
