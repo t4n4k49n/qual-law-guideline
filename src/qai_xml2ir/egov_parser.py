@@ -184,31 +184,41 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
 
     suppl_idx = 0
     body_appdx_idx = 0
+    top_idx = 0
     for child in law_body:
         tag = lname(child)
         if tag == "MainProvision":
-            children.extend(parse_main_provision(child, nid_builder, parent_ord=None))
+            top_idx += 1
+            children.extend(
+                parse_main_provision(
+                    child,
+                    nid_builder,
+                    parent_ord=build_ord(None, [top_idx]),
+                )
+            )
         elif tag == "SupplProvision":
+            top_idx += 1
             suppl_idx += 1
             children.append(
                 parse_suppl_provision(
                     child,
                     nid_builder,
                     local_segments=[suppl_idx],
-                    parent_ord=None,
+                    parent_ord=build_ord(None, [top_idx]),
                 )
             )
         elif tag.startswith("Appdx"):
             if should_skip(child):
                 LOGGER.info("Skipping deleted/hidden %s under LawBody", tag)
                 continue
+            top_idx += 1
             body_appdx_idx += 1
             children.append(
                 parse_appendix(
                     child,
                     nid_builder,
                     local_segments=[body_appdx_idx],
-                    parent_ord=None,
+                    parent_ord=build_ord(None, [top_idx]),
                 )
             )
         else:
