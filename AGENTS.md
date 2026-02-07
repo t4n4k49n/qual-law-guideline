@@ -26,7 +26,7 @@
 
 ## 正規化RUN（Normalized Run）
 - 正規化RUNは、`data/normalized/` へ正式版を昇格させるための特別RUNを指す。
-- 指示で「正規化RUN」または「正規化ラン」「normalized run」と指定された場合、`docs/NORMALIZED_RUN_PLAYBOOK.md` に従って実行する。
+- 指示で「正規化RUN」または「正規化ラン」「normalized run」と指定された場合、`docs/NORMALIZED_RUN_PLAYBOOK.md` に従って実行する。なお、必ず「7) 正式版への昇格（文書コミット）」まで実施すること。
 
 ## README/TODOの埋め方（重要）
 - README.md と TODO.md はプロジェクト内容に依存するため、最初は雛形のみを作る。
