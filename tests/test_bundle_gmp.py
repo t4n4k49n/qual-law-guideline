@@ -76,6 +76,8 @@ def test_bundle_outputs(tmp_path: Path) -> None:
     meta = yaml.safe_load(meta_path.read_text(encoding="utf-8"))
 
     assert ir["doc_id"] == doc_id
+    assert ir["schema"] == "qai.regdoc_ir.v2"
     assert regdoc_profile["doc_id"] == doc_id
     assert meta["doc"]["id"] == doc_id
+    assert meta["bundle"]["ir"]["schema"] == "qai.regdoc_ir.v2"
     assert meta["bundle"]["parser_profile"]["id"] == "jp_law_default_v1"
