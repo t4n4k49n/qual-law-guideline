@@ -12,6 +12,12 @@
 ## 1) 実行前確認
 
 - 対象の入力XMLパスを確認
+- **機密情報対策（必須）**:
+  - `RUN.md` / `PR.md` / PR本文に、`C:\Users\...` などの個人環境の絶対パスを書かない
+  - パスは `%USERPROFILE%` などの環境変数表記、または `<workspace-relative-path>` を使う
+  - 例:
+    - NG: `%USERPROFILE%\Documents\...`
+    - OK: `%USERPROFILE%\Documents\...`
 - `doc_id` を決める
   - **e-GovのURIに準拠**: `jp_egov_<law_id>_<as_of(yyyymmdd)>_<revision_id>`
   - 例: `https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117` → `jp_egov_336M50000100002_20260501_507M60000100117`
@@ -67,6 +73,7 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 - PRをあげる準備として、RUN系書類（`RUN.md` / `PR.md`）を `git add` しておく
 - 変更内容、検証結果、AIレビュー結果をPR本文に記載
 - 比較表（人間レビュー用）をPRに添付
+- PR作成前に、本文・`RUN.md`・`PR.md` から `C:\\Users\\` を検索し、0件であることを確認する
 - **GitHubでPRを作成し、リンクを共有する**
 
 ## 7) 正式版への昇格
