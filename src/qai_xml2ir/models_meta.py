@@ -73,7 +73,7 @@ def build_meta(
             },
         },
         "bundle": {
-            "ir": {"schema": "qai.regdoc_ir.v2", "path": ir_path},
+            "ir": {"schema": "qai.regdoc_ir.v3", "path": ir_path},
             "parser_profile": {
                 "schema": "qai.parser_profile.v1",
                 "id": parser_profile_id,

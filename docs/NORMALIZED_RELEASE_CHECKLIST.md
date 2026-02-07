@@ -47,8 +47,9 @@ review:
 - 最小ルール例:
   - `schema` / `doc_id` / `content` が存在する
   - `content` 直下がツリー構造であり、`nid` が一意である
-  - `ord` が `^\d{6}(\.\d{6})*$` に一致する（`root` を除く）
-  - 同一親の `children` が `ord` の辞書順で昇順になっている
+  - `ord` が整数である（`root` を除く）
+  - `ord` が文書内で一意で、walk順で厳密増加している
+  - 同一親の `children` が `ord` 昇順になっている
   - `appendix` の連番や `annex` の `article` 命名が破綻していない
 - 実装済みの検証:
   - `tests/test_integration_real_xml.py` 内の `verify` 関数群を利用

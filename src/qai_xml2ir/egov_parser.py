@@ -10,7 +10,7 @@ from lxml import etree
 
 from .models_ir import Node, build_root
 from .nid import IROHA_ORDER, NidBuilder, extract_digits, slug_iroha
-from .ord_key import build_ord, normalize_num_attr, num_attr_to_segments
+from .ord_key import assign_document_order, normalize_num_attr, num_attr_to_segments
 
 LOGGER = logging.getLogger(__name__)
 
@@ -193,7 +193,7 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
                 parse_main_provision(
                     child,
                     nid_builder,
-                    parent_ord=build_ord(None, [top_idx]),
+                    parent_ord=None,
                 )
             )
         elif tag == "SupplProvision":
@@ -204,7 +204,7 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
                     child,
                     nid_builder,
                     local_segments=[suppl_idx],
-                    parent_ord=build_ord(None, [top_idx]),
+                    parent_ord=None,
                 )
             )
         elif tag.startswith("Appdx"):
@@ -218,13 +218,14 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
                     child,
                     nid_builder,
                     local_segments=[body_appdx_idx],
-                    parent_ord=build_ord(None, [top_idx]),
+                    parent_ord=None,
                 )
             )
         else:
             continue
 
     root_node = build_root(children)
+    assign_document_order(root_node)
 
     as_of = extract_as_of_from_filename(path.name)
     revision_id = extract_revision_id_from_filename(path.name)
@@ -239,7 +240,7 @@ def parse_egov_xml(path: Path) -> ParsedLaw:
 
 
 def parse_main_provision(
-    main: etree._Element, nid_builder: NidBuilder, parent_ord: Optional[str]
+    main: etree._Element, nid_builder: NidBuilder, parent_ord: Optional[int]
 ) -> List[Node]:
     nodes: List[Node] = []
     ch_idx = 0
@@ -358,7 +359,7 @@ def parse_chapter(
     chapter: etree._Element,
     nid_builder: NidBuilder,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     scope_prefix: str,
     article_scope_prefix: str = "",
 ) -> Node:
@@ -366,7 +367,7 @@ def parse_chapter(
     num, heading = split_num_heading(title)
     chapter_key = local_segments[0] if local_segments else 1
     chapter_nid = nid_builder.unique(f"{scope_prefix}ch{chapter_key}")
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     node = Node(
         nid=chapter_nid,
         kind="chapter",
@@ -446,14 +447,14 @@ def parse_section(
     nid_builder: NidBuilder,
     parent_nid: Optional[str],
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     article_scope_prefix: str = "",
 ) -> Node:
     title = find_text(section, "SectionTitle")
     num, heading = split_num_heading(title)
     prefix = f"{parent_nid}." if parent_nid else ""
     sec_key = local_segments[0] if local_segments else 1
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     node = Node(
         nid=nid_builder.unique(f"{prefix}sec{sec_key}"),
         kind="section",
@@ -549,14 +550,14 @@ def parse_article(
     article: etree._Element,
     nid_builder: NidBuilder,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     scope_prefix: str = "",
 ) -> Node:
     num = find_text(article, "ArticleTitle")
     heading = find_text(article, "ArticleCaption")
     num_attr = article.get("Num")
     normalized_num = normalize_num_attr(num_attr)
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
 
     paragraphs = [c for c in article if lname(c) == "Paragraph"]
     fold = False
@@ -675,14 +676,14 @@ def parse_part(
     part: etree._Element,
     nid_builder: NidBuilder,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     parent_nid: Optional[str],
     article_scope_prefix: str = "",
 ) -> Node:
     title = find_text(part, "PartTitle")
     num, heading = split_num_heading(title)
     part_key = local_segments[0] if local_segments else 1
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     prefix = f"{parent_nid}." if parent_nid else ""
     node = Node(
         nid=nid_builder.unique(f"{prefix}part{part_key}"),
@@ -760,13 +761,13 @@ def parse_subsection(
     nid_builder: NidBuilder,
     parent_nid: str,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     article_scope_prefix: str = "",
 ) -> Node:
     title = find_text(subsection, "SubsectionTitle")
     num, heading = split_num_heading(title)
     subsec_key = local_segments[0] if local_segments else 1
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     node = Node(
         nid=nid_builder.unique(f"{parent_nid}.subsec{subsec_key}"),
         kind="subsection",
@@ -843,13 +844,13 @@ def parse_division(
     nid_builder: NidBuilder,
     parent_nid: str,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     article_scope_prefix: str = "",
 ) -> Node:
     title = find_text(division, "DivisionTitle")
     num, heading = split_num_heading(title)
     div_key = local_segments[0] if local_segments else 1
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     node = Node(
         nid=nid_builder.unique(f"{parent_nid}.div{div_key}"),
         kind="division",
@@ -908,13 +909,13 @@ def parse_top_paragraph(
     paragraph: etree._Element,
     nid_builder: NidBuilder,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     scope_prefix: str = "mp",
 ) -> Node:
     p_num_text = find_text(paragraph, "ParagraphNum")
     num = p_num_text or "1"
     p_key = local_segments[0] if local_segments else 1
-    p_ord = build_ord(parent_ord, local_segments)
+    p_ord = None
     heading = find_text(paragraph, "ParagraphCaption")
     text = extract_sentence_text_in(paragraph, "ParagraphSentence")
     node = Node(
@@ -980,12 +981,12 @@ def parse_paragraph(
     nid_builder: NidBuilder,
     article_nid: str,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
 ) -> Node:
     p_num_text = find_text(paragraph, "ParagraphNum")
     num = p_num_text or "1"
     p_key = local_segments[0] if local_segments else 1
-    p_ord = build_ord(parent_ord, local_segments)
+    p_ord = None
     heading = find_text(paragraph, "ParagraphCaption")
     text = extract_sentence_text_in(paragraph, "ParagraphSentence")
     node = Node(
@@ -1051,11 +1052,11 @@ def parse_item(
     nid_builder: NidBuilder,
     parent_nid: str,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
 ) -> Node:
     num = find_text(item, "ItemTitle")
     i_key = local_segments[0] if local_segments else 1
-    i_ord = build_ord(parent_ord, local_segments)
+    i_ord = None
     text = extract_sentence_text_in(item, "ItemSentence")
     nid = f"{parent_nid}.i{i_key}"
     node = Node(
@@ -1105,7 +1106,7 @@ def parse_subitem(
     nid_builder: NidBuilder,
     parent_nid: str,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
 ) -> Node:
     tag = lname(elem)
     title = find_text(elem, f"{tag}Title")
@@ -1116,7 +1117,7 @@ def parse_subitem(
     kind_raw = title or ("イロハ" if tag == "Subitem1" else tag)
 
     slug = slug_iroha(title) if tag == "Subitem1" else None
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     seg_key = local_segments[0] if local_segments else 1
 
     if tag == "Subitem1" and slug:
@@ -1172,7 +1173,7 @@ def parse_appendix(
     elem: etree._Element,
     nid_builder: NidBuilder,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
     scope_prefix: str = "",
 ) -> Node:
     return parse_appdx(
@@ -1202,7 +1203,7 @@ def parse_appdx(
     nid_builder: NidBuilder,
     scope_prefix: str,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
 ) -> Node:
     tag = lname(elem)
     base_tag = tag.replace("SupplProvision", "", 1)
@@ -1227,7 +1228,7 @@ def parse_appdx(
             break
     if title is None and base_tag == "Appdx":
         title = find_text(elem, "ArithFormulaNum")
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     normalized_num = normalize_num_attr(elem.get("Num"))
     suffix = normalized_num or "_".join(str(seg) for seg in local_segments)
     prefix = f"{scope_prefix}" if scope_prefix else ""
@@ -1250,10 +1251,10 @@ def parse_suppl_provision(
     suppl: etree._Element,
     nid_builder: NidBuilder,
     local_segments: List[int],
-    parent_ord: Optional[str],
+    parent_ord: Optional[int],
 ) -> Node:
     annex_key = local_segments[0] if local_segments else 1
-    ord_val = build_ord(parent_ord, local_segments)
+    ord_val = None
     node = Node(
         nid=nid_builder.unique(f"annex{annex_key}"),
         kind="annex",

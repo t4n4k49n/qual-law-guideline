@@ -182,14 +182,16 @@ def test_ir_structure(tmp_path: Path) -> None:
     write_sample_xml(xml_path)
     parsed = parse_egov_xml(xml_path)
     ir = IRDocument(doc_id="jp_test_doc", content=parsed.root, index={})
-    assert ir.schema == "qai.regdoc_ir.v2"
+    assert ir.schema == "qai.regdoc_ir.v3"
 
     nodes = flatten(ir.content)
-    assert all(n.ord is None or isinstance(n.ord, str) for n in nodes)
+    assert all(n.ord is None or isinstance(n.ord, int) for n in nodes)
     assert all(
-        n.nid == "root" or re.fullmatch(r"\d{6}(?:\.\d{6})*", n.ord or "")
+        n.nid == "root" or (isinstance(n.ord, int) and n.ord > 0)
         for n in nodes
     )
+    ords = [n.ord for n in nodes if n.nid != "root"]
+    assert ords == list(range(1, len(ords) + 1))
     articles = [n for n in nodes if n.kind == "article"]
     assert len(articles) >= 2
     assert parsed.as_of == "2026-05-01"
@@ -414,3 +416,55 @@ def test_ord_subitem_iroha_sorting(tmp_path: Path) -> None:
     subitems = [n for n in nodes if n.kind == "subitem"]
     ordered = sorted(subitems, key=lambda n: n.ord or "")
     assert [n.num for n in ordered] == ["イ", "ロ", "ハ"]
+
+
+def test_ord_absolute_order_with_parallel_num(tmp_path: Path) -> None:
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+<Law>
+  <LawBody>
+    <LawTitle>並列表現順序</LawTitle>
+    <MainProvision>
+      <Article Num="15_1">
+        <ArticleTitle>第十五条の一</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>A</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+      <Article Num="15:16">
+        <ArticleTitle>第十五条及び第十六条</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>B</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+      <Article Num="15_2">
+        <ArticleTitle>第十五条の二</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>C</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+      <Article Num="20">
+        <ArticleTitle>第二十条</ArticleTitle>
+        <Paragraph Num="1">
+          <ParagraphSentence><Sentence>D</Sentence></ParagraphSentence>
+          <Item Num="1:2">
+            <ItemTitle>一及び二</ItemTitle>
+            <ItemSentence><Sentence>E</Sentence></ItemSentence>
+          </Item>
+          <Item Num="3">
+            <ItemTitle>三</ItemTitle>
+            <ItemSentence><Sentence>F</Sentence></ItemSentence>
+          </Item>
+        </Paragraph>
+      </Article>
+    </MainProvision>
+  </LawBody>
+</Law>
+"""
+    xml_path = tmp_path / "304A00000000000_20240101_000A00000000000.xml"
+    xml_path.write_text(xml, encoding="utf-8", newline="\n")
+
+    parsed = parse_egov_xml(xml_path)
+    nodes = flatten(parsed.root)
+
+    a_15_1 = next(n for n in nodes if n.kind == "article" and n.num == "第十五条の一")
+    a_1516 = next(n for n in nodes if n.kind == "article" and n.num == "第十五条及び第十六条")
+    a_15_2 = next(n for n in nodes if n.kind == "article" and n.num == "第十五条の二")
+    assert a_15_1.ord < a_1516.ord < a_15_2.ord
+
+    item_12 = next(n for n in nodes if n.kind == "item" and n.num == "一及び二")
+    item_3 = next(n for n in nodes if n.kind == "item" and n.num == "三")
+    assert item_12.ord < item_3.ord
