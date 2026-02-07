@@ -1,11 +1,16 @@
 ## 概要
 
-data/normalized に残っていた v2時代の成果（336/416）を ARICHIVE_ 接頭辞付きディレクトリへ移動し、現行運用（v3中心）との混在を避けます。
+`data/normalized` に残っていた v2時代の成果（336/416）を `ARCHIVE_` 接頭辞付きディレクトリへ移動し、現行運用（v3中心）との混在を避けます。
 
 ## 変更内容
 
-- data/normalized/jp_egov_336M50000100002_20260501_507M60000100117 -> data/normalized/ARICHIVE_jp_egov_336M50000100002_20260501_507M60000100117
-- data/normalized/jp_egov_416M60000100179_20260501_507M60000100117 -> data/normalized/ARICHIVE_jp_egov_416M60000100179_20260501_507M60000100117
+- `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117` -> `data/normalized/ARCHIVE_jp_egov_336M50000100002_20260501_507M60000100117_2`
+- `data/normalized/jp_egov_416M60000100179_20260501_507M60000100117` -> `data/normalized/ARCHIVE_jp_egov_416M60000100179_20260501_507M60000100117_2`
+
+## ルール
+
+- 退避ディレクトリ名は `ARCHIVE_<doc_id>`
+- 既存ディレクトリと衝突した場合は `_2`, `_3` の連番を付与
 
 ## 補足
 
