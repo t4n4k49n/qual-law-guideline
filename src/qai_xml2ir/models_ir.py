@@ -10,7 +10,7 @@ class Node:
     kind: str
     kind_raw: Optional[str]
     num: Optional[str]
-    ord: Optional[str]
+    ord: Optional[int]
     heading: Optional[str]
     text: Optional[str]
     role: str
@@ -45,7 +45,7 @@ class IRDocument:
     doc_id: str
     content: Node
     index: Dict[str, Any] = field(default_factory=dict)
-    schema: str = "qai.regdoc_ir.v2"
+    schema: str = "qai.regdoc_ir.v3"
 
     def to_dict(self) -> Dict[str, Any]:
         return {
