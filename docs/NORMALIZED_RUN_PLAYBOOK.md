@@ -44,6 +44,7 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
   - `assert_unique_nids`
   - `check_annex_article_nids`
   - `check_appendix_scoped_indices`
+  - `check_ord_format_and_order`（ord存在/一意/単調増加）
 
 ### 4-2) AIレビュー（目視代替）
 

@@ -12,6 +12,12 @@ from .models_ir import IRDocument
 from .models_meta import build_meta
 from .models_profiles import build_parser_profile, build_regdoc_profile
 from .serialize import sha256_file, write_yaml
+from .verify import (
+    assert_unique_nids,
+    check_annex_article_nids,
+    check_appendix_scoped_indices,
+    check_ord_format_and_order,
+)
 
 app = typer.Typer(add_completion=False)
 
@@ -71,6 +77,7 @@ def bundle(
     index = {"display_name_by_nid": {}}
     collect_display_names(parsed.root, index["display_name_by_nid"])
     ir_doc = IRDocument(doc_id=doc_id, content=parsed.root, index=index)
+    _run_verify_or_fail(ir_doc.content)
 
     parser_profile = build_parser_profile()
     regdoc_profile = build_regdoc_profile(doc_id)
@@ -117,6 +124,26 @@ def bundle(
             notes=[],
         )
         write_yaml(meta_path, meta)
+
+
+def _run_verify_or_fail(root) -> None:
+    assert_unique_nids(root)
+    collisions, invalid_annex = check_annex_article_nids(root)
+    appendix_problems = check_appendix_scoped_indices(root)
+    ord_problems = check_ord_format_and_order(root)
+
+    errors = []
+    if collisions:
+        errors.append(f"annex nid collisions: {collisions}")
+    if invalid_annex:
+        errors.append(f"invalid annex article nids: {invalid_annex}")
+    if appendix_problems:
+        errors.append(f"appendix index problems: {appendix_problems}")
+    if ord_problems:
+        errors.append(f"ord problems: {ord_problems}")
+
+    if errors:
+        raise typer.BadParameter("verify failed: " + " | ".join(errors))
 
 
 if __name__ == "__main__":
