@@ -12,6 +12,7 @@ from qai_xml2ir.verify import (
     assert_unique_nids,
     check_annex_article_nids,
     check_appendix_scoped_indices,
+    check_ord_format_and_order,
     summarize_kinds,
 )
 
@@ -85,6 +86,9 @@ def test_integration_real_xml(tmp_path: Path) -> None:
 
         appendix_problems = check_appendix_scoped_indices(root)
         assert not appendix_problems
+
+        ord_problems = check_ord_format_and_order(root)
+        assert not ord_problems
 
         meta = _load_yaml(meta_path)
         assert meta["bundle"]["ir"]["path"] == ir_path.name

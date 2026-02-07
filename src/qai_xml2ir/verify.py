@@ -74,6 +74,7 @@ def check_annex_article_nids(root) -> Tuple[List[str], List[str]]:
 
 
 _APPDX_RE = re.compile(r"(appdx_(?:table|note|style|fig|format)|appdx)([0-9_]+)$")
+_ORD_RE = re.compile(r"^\d{6}(?:\.\d{6})*$")
 
 
 def check_appendix_scoped_indices(root) -> List[str]:
@@ -108,4 +109,33 @@ def check_appendix_scoped_indices(root) -> List[str]:
                 problems.append(
                     f"appendix index for {key} under {parent_nid} is not contiguous: {sorted(nums)}"
                 )
+    return problems
+
+
+def check_ord_format_and_order(root) -> List[str]:
+    problems: List[str] = []
+    for node in walk_nodes(root):
+        nid = _get(node, "nid")
+        ord_val = _get(node, "ord")
+        if nid != "root":
+            if not isinstance(ord_val, str) or not _ORD_RE.fullmatch(ord_val):
+                problems.append(f"invalid ord format at {nid}: {ord_val!r}")
+        children = _get_children(node)
+        if not children:
+            continue
+        ords: List[str] = []
+        has_invalid_child = False
+        for child in children:
+            child_nid = _get(child, "nid")
+            child_ord = _get(child, "ord")
+            if not isinstance(child_ord, str):
+                problems.append(f"missing ord at {child_nid}")
+                has_invalid_child = True
+                continue
+            ords.append(child_ord)
+        if has_invalid_child:
+            continue
+        if ords != sorted(ords):
+            parent_nid = _get(node, "nid")
+            problems.append(f"children ord not sorted under {parent_nid}")
     return problems
