@@ -4,6 +4,7 @@ import re
 from typing import List, Optional
 
 SEG_WIDTH = 6
+ORD_WIDTH = 8
 
 
 def normalize_num_attr(num: Optional[str]) -> Optional[str]:
@@ -30,3 +31,18 @@ def build_ord(parent_ord: Optional[str], local_segs: List[int]) -> str:
     if parent_ord:
         return f"{parent_ord}.{local_part}"
     return local_part
+
+
+def assign_document_order(root) -> int:
+    counter = 0
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        nid = getattr(node, "nid", None)
+        if nid != "root":
+            counter += 1
+            node.ord = f"{counter:0{ORD_WIDTH}d}"
+        children = getattr(node, "children", None) or []
+        if children:
+            stack.extend(reversed(children))
+    return counter

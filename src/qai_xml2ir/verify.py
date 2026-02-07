@@ -3,6 +3,8 @@ from __future__ import annotations
 import re
 from typing import Dict, Iterable, Iterator, List, Optional, Tuple
 
+from .ord_key import ORD_WIDTH
+
 
 def _get(node, key: str):
     if isinstance(node, dict):
@@ -74,7 +76,7 @@ def check_annex_article_nids(root) -> Tuple[List[str], List[str]]:
 
 
 _APPDX_RE = re.compile(r"(appdx_(?:table|note|style|fig|format)|appdx)([0-9_]+)$")
-_ORD_RE = re.compile(r"^\d{6}(?:\.\d{6})*$")
+_ORD_RE = re.compile(rf"^[0-9]{{{ORD_WIDTH}}}$")
 
 
 def check_appendix_scoped_indices(root) -> List[str]:
@@ -114,12 +116,30 @@ def check_appendix_scoped_indices(root) -> List[str]:
 
 def check_ord_format_and_order(root) -> List[str]:
     problems: List[str] = []
+    ord_seen = set()
+    prev_ord: Optional[str] = None
     for node in walk_nodes(root):
         nid = _get(node, "nid")
         ord_val = _get(node, "ord")
         if nid != "root":
-            if not isinstance(ord_val, str) or not _ORD_RE.fullmatch(ord_val):
+            if not isinstance(ord_val, str):
+                problems.append(f"missing ord at {nid}")
+                ord_valid = False
+            elif not _ORD_RE.fullmatch(ord_val):
                 problems.append(f"invalid ord format at {nid}: {ord_val!r}")
+                ord_valid = False
+            else:
+                ord_valid = True
+            if ord_valid:
+                if ord_val in ord_seen:
+                    problems.append(f"duplicate ord value at {nid}: {ord_val}")
+                else:
+                    ord_seen.add(ord_val)
+                if prev_ord is not None and ord_val <= prev_ord:
+                    problems.append(
+                        f"ord is not strictly increasing in walk order at {nid}: {ord_val} <= {prev_ord}"
+                    )
+                prev_ord = ord_val
         children = _get_children(node)
         if not children:
             continue
