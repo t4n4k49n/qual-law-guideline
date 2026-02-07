@@ -6,5 +6,6 @@ __all__ = [
     "models_meta",
     "models_profiles",
     "nid",
+    "ord_key",
     "serialize",
 ]

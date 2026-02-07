@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 
 from qai_xml2ir.egov_parser import parse_egov_xml
 from qai_xml2ir.models_ir import IRDocument
@@ -181,8 +182,14 @@ def test_ir_structure(tmp_path: Path) -> None:
     write_sample_xml(xml_path)
     parsed = parse_egov_xml(xml_path)
     ir = IRDocument(doc_id="jp_test_doc", content=parsed.root, index={})
+    assert ir.schema == "qai.regdoc_ir.v2"
 
     nodes = flatten(ir.content)
+    assert all(n.ord is None or isinstance(n.ord, str) for n in nodes)
+    assert all(
+        n.nid == "root" or re.fullmatch(r"\d{6}(?:\.\d{6})*", n.ord or "")
+        for n in nodes
+    )
     articles = [n for n in nodes if n.kind == "article"]
     assert len(articles) >= 2
     assert parsed.as_of == "2026-05-01"
@@ -317,3 +324,93 @@ def test_appendix_scoped_indexing(tmp_path: Path) -> None:
     assert any(n.nid == "appdx_style1" for n in appendices)
     assert any(n.nid == "appdx_table2" for n in appendices)
     assert any(n.nid == "annex1.appdx_table1" for n in appendices)
+
+
+def test_ord_article_branch_sorting(tmp_path: Path) -> None:
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+<Law>
+  <LawBody>
+    <LawTitle>条枝番ソート</LawTitle>
+    <MainProvision>
+      <Article Num="29">
+        <ArticleTitle>第二十九条</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>A</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+      <Article Num="29_2">
+        <ArticleTitle>第二十九条の二</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>B</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+      <Article Num="29_2_2">
+        <ArticleTitle>第二十九条の二の二</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>C</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+    </MainProvision>
+  </LawBody>
+</Law>
+"""
+    xml_path = tmp_path / "300A00000000000_20240101_000A00000000000.xml"
+    xml_path.write_text(xml, encoding="utf-8", newline="\n")
+    parsed = parse_egov_xml(xml_path)
+    articles = [n for n in flatten(parsed.root) if n.kind == "article"]
+    ordered = sorted(articles, key=lambda n: n.ord or "")
+    assert [n.num for n in ordered] == ["第二十九条", "第二十九条の二", "第二十九条の二の二"]
+
+
+def test_ord_collision_avoidance_article_vs_paragraph(tmp_path: Path) -> None:
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+<Law>
+  <LawBody>
+    <LawTitle>衝突回避</LawTitle>
+    <MainProvision>
+      <Article Num="29_2">
+        <ArticleTitle>第二十九条の二</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>A</Sentence></ParagraphSentence></Paragraph>
+        <Paragraph Num="2"><ParagraphSentence><Sentence>B</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+      <Article Num="29_2_2">
+        <ArticleTitle>第二十九条の二の二</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>C</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+    </MainProvision>
+  </LawBody>
+</Law>
+"""
+    xml_path = tmp_path / "301A00000000000_20240101_000A00000000000.xml"
+    xml_path.write_text(xml, encoding="utf-8", newline="\n")
+    parsed = parse_egov_xml(xml_path)
+    nodes = flatten(parsed.root)
+    art_29_2_2 = next(n for n in nodes if n.kind == "article" and n.nid == "art29_2_2")
+    p2 = next(n for n in nodes if n.kind == "paragraph" and n.nid == "art29_2.p2")
+    assert art_29_2_2.ord != p2.ord
+
+
+def test_ord_subitem_iroha_sorting(tmp_path: Path) -> None:
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+<Law>
+  <LawBody>
+    <LawTitle>イロハ順</LawTitle>
+    <MainProvision>
+      <Article Num="1">
+        <ArticleTitle>第一条</ArticleTitle>
+        <Paragraph Num="1">
+          <ParagraphSentence><Sentence>A</Sentence></ParagraphSentence>
+          <Item Num="1">
+            <ItemTitle>一</ItemTitle>
+            <ItemSentence><Sentence>B</Sentence></ItemSentence>
+            <Subitem1><Subitem1Title>イ</Subitem1Title><Subitem1Sentence><Sentence>I</Sentence></Subitem1Sentence></Subitem1>
+            <Subitem1><Subitem1Title>ロ</Subitem1Title><Subitem1Sentence><Sentence>R</Sentence></Subitem1Sentence></Subitem1>
+            <Subitem1><Subitem1Title>ハ</Subitem1Title><Subitem1Sentence><Sentence>H</Sentence></Subitem1Sentence></Subitem1>
+          </Item>
+        </Paragraph>
+      </Article>
+    </MainProvision>
+  </LawBody>
+</Law>
+"""
+    xml_path = tmp_path / "302A00000000000_20240101_000A00000000000.xml"
+    xml_path.write_text(xml, encoding="utf-8", newline="\n")
+    parsed = parse_egov_xml(xml_path)
+    nodes = flatten(parsed.root)
+    subitems = [n for n in nodes if n.kind == "subitem"]
+    ordered = sorted(subitems, key=lambda n: n.ord or "")
+    assert [n.num for n in ordered] == ["イ", "ロ", "ハ"]
