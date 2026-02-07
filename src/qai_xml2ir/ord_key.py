@@ -3,8 +3,6 @@ from __future__ import annotations
 import re
 from typing import List, Optional
 
-SEG_WIDTH = 6
-
 
 def normalize_num_attr(num: Optional[str]) -> Optional[str]:
     if not num:
@@ -21,12 +19,15 @@ def num_attr_to_segments(num_attr: Optional[str]) -> List[int]:
     return [int(part) for part in normalized.split("_") if part != ""]
 
 
-def format_segments(segs: List[int]) -> str:
-    return ".".join(f"{seg:0{SEG_WIDTH}d}" for seg in segs)
-
-
-def build_ord(parent_ord: Optional[str], local_segs: List[int]) -> str:
-    local_part = format_segments([*local_segs, 0])
-    if parent_ord:
-        return f"{parent_ord}.{local_part}"
-    return local_part
+def assign_document_order(root) -> int:
+    counter = 0
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if getattr(node, "nid", None) != "root":
+            counter += 1
+            node.ord = counter
+        children = getattr(node, "children", None) or []
+        if children:
+            stack.extend(reversed(children))
+    return counter
