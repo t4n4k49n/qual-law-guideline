@@ -89,3 +89,7 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 - 既存版は残す（上書き禁止）
 - 既存版を退避する場合は `ARCHIVE_<doc_id>` へリネームする
 - 同名が既に存在する場合は `ARCHIVE_<doc_id>_2`, `ARCHIVE_<doc_id>_3` のように連番を付与する
+- 昇格コミットをpushしたら、**必ず `main` 反映まで完了させる**
+  - 対象PRが未マージなら、そのPRに昇格コミットを含めてマージする
+  - 対象PRが既にマージ済みなら、昇格反映用の新規ブランチ/PRを作成して `main` へ取り込む
+  - 反映確認: `main` で `data/normalized/<doc_id>/` の存在を確認し、確認結果を `RUN.md` に追記する
