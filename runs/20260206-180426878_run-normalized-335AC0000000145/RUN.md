@@ -16,7 +16,7 @@
   - *.meta.yaml: メタデータ
 
 ## Command
-- python -m qai_xml2ir.cli --input "%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\335AC0000000145_20260501_507AC0000000037\335AC0000000145_20260501_507AC0000000037.xml" --out-dir out/20260206-180426878_run-normalized-335AC0000000145 --doc-id jp_egov_335AC0000000145_20260501_507AC0000000037 --emit-only all
+- python -m qai_xml2ir.cli --input "$env:USERPROFILE\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\335AC0000000145_20260501_507AC0000000037\335AC0000000145_20260501_507AC0000000037.xml" --out-dir out/20260206-180426878_run-normalized-335AC0000000145 --doc-id jp_egov_335AC0000000145_20260501_507AC0000000037 --emit-only all
 
 ## Verification
 - Script: src/qai_xml2ir/verify.py

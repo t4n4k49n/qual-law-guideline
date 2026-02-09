@@ -7,7 +7,7 @@
 - manifest.yaml を更新（検証/レビュー結果を記録）
 
 ## Command
-python -m qai_xml2ir.cli --input "%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336M50000100002_20260501_507M60000100117\336M50000100002_20260501_507M60000100117.xml" --out-dir "out\20260206-122710668_run-normalized-run-playbook" --doc-id "jp_egov_336M50000100002_20260501_507M60000100117" --emit-only all
+python -m qai_xml2ir.cli --input "$env:USERPROFILE\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336M50000100002_20260501_507M60000100117\336M50000100002_20260501_507M60000100117.xml" --out-dir "out\20260206-122710668_run-normalized-run-playbook" --doc-id "jp_egov_336M50000100002_20260501_507M60000100117" --emit-only all
 
 ## Outputs
 - out\20260206-122710668_run-normalized-run-playbook\jp_egov_336M50000100002_20260501_507M60000100117.regdoc_ir.yaml

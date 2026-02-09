@@ -6,7 +6,7 @@
 - manifest.yaml を正式版向けに更新（検証/レビュー結果を追記）
 
 ## Command
-python -m qai_xml2ir.cli --input "%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336M50000100002_20260501_507M60000100117\336M50000100002_20260501_507M60000100117.xml" --out-dir "out\20260206-111530177_run-xml2ir-336M50000100002" --doc-id "jp_test_336M50000100002_20260501" --emit-only all
+python -m qai_xml2ir.cli --input "$env:USERPROFILE\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336M50000100002_20260501_507M60000100117\336M50000100002_20260501_507M60000100117.xml" --out-dir "out\20260206-111530177_run-xml2ir-336M50000100002" --doc-id "jp_test_336M50000100002_20260501" --emit-only all
 
 ## Outputs
 - out\20260206-111530177_run-xml2ir-336M50000100002\jp_test_336M50000100002_20260501.regdoc_ir.yaml
