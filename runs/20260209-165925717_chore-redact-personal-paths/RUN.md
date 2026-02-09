@@ -62,27 +62,27 @@ git grep -n -I -i "<username>" <remote-ref>
 - origin/fix/ord-absolute-order: 17件
 - origin/run/normalized-336M50000100002-v3: 17件
 
-## 置換方針（文脈別）
-- 実行コマンド（PowerShell文脈）: `%USERPROFILE%\...` -> `$env:USERPROFILE\...`
-- 説明文・手順・PR本文（シェル非依存/CMD互換）: `%USERPROFILE%\...` -> `%USERPROFILE%\...`
-- meta.yamlの入力元path（可搬性重視）: `%USERPROFILE%\...` -> `%USERPROFILE%\...`
+## 置換方針（統一）
+- すべての記述で、`C:\Users\<username>\...` を `%USERPROFILE%\...` に統一する。
+- 注記: 初期にシェル別の書き分けを検討したが採用せず、最終方針を一括置換に統一した。
 
 ## 置換前後サマリ
 
-### ファイル数ベース（4象限）
-| 区分 | PowerShell置換 (`$env:USERPROFILE`) | 非PowerShell置換 (`%USERPROFILE%`) | 両方混在 |
-|---|---:|---:|---:|
-| ローカル（実ファイル） | 3 | 14 | 0 |
-| リモート（branch+file単位） | 93 | 366 | 0 |
+### ファイル数ベース
+| 区分 | 件数 |
+|---|---:|
+| ローカル（実ファイル数） | 17 |
+| リモート（branch+file単位のファイル数） | 459 |
+| リモート（ブランチ重複除外のユニークファイルパス数） | 21 |
 
 - 補足: ローカル実ファイルは対象17ファイルすべてで、`%USERPROFILE%\...` のヒットは各ファイル1件のみ（同一ファイル内の複数ヒットなし）。
-- 補足: リモートをブランチ重複除外のユニークファイルパスで集計すると、PowerShell置換 3 / 非PowerShell置換 18 / 混在 0 / 合計 21。
+- 補足: ローカル実ファイルは「1ファイル1置換」で、ファイル数 17 と置換数 19 は別指標として管理する。
 
-### 置換数ベース（4象限）
-| 区分 | PowerShell置換 (`$env:USERPROFILE`) | 非PowerShell置換 (`%USERPROFILE%`) | 合計 |
-|---|---:|---:|---:|
-| ローカル（置換行数） | 3 | 16 | 19 |
-| リモート（置換行数） | 93 | 366 | 459 |
+### 置換数ベース
+| 区分 | 件数 |
+|---|---:|
+| ローカル（置換行数） | 19 |
+| リモート（置換行数） | 459 |
 
 - 置換後（予定）: ユーザー名 `<username>` を含む絶対パスを環境変数ベース表記に統一。
 
@@ -92,11 +92,30 @@ git grep -n -I -i "<username>" <remote-ref>
 - `rg -n -i "<username>"` と `git grep -n -I -i "<username>" origin/main` の再検証
 - 差分確認後にコミット
 ## 実施結果
-- ローカル実ファイルの置換を実施し、`ryoki` は作業ツリー（`.git`除外）で0件。
+- ローカル実ファイルの置換を実施し、`<username>` は作業ツリー（`.git`除外）で0件。
 - ブランチ `chore/redact-personal-paths` をリモートへpush済み。
 - PR作成: https://github.com/T4N4K4-KUN/qual-law-guideline/pull/44
 
 ## 検証結果（最新）
-- `rg -n -uu -g "!.git" -i "ryoki"` => 0件
-- `git grep -n -I -i "ryoki" origin/chore/redact-personal-paths` => 0件
-- `git grep -n -I -i "ryoki" origin/main` => 16件（PR #44 未マージ分）
+- `rg -n -uu -g "!.git" -i "<username>"` => 0件
+- `git grep -n -I -i "<username>" origin/chore/redact-personal-paths` => 0件
+- `git grep -n -I -i "<username>" origin/main` => 16件（PR #44 未マージ分）
+## 追記（今回の確認ログ）
+ローカル残件は指定どおり今回の RUN.md だけです。次に、リモートのコード本体とGitHubメタ情報（PR/Issue/コメント）を再監査して、RUN.md 以外に残件がないことを確認します。
+
+Ran $hits = git grep -n -I -i "<username>" origin/chore/redact-personal-paths; $hits | Where-Object { $_ -notmatch 'runs/20260209-165925717_chore-redact-personal-paths/RUN.md' } | Measure-Object | Select-Object -ExpandProperty Count
+- result: 0
+
+Ran gh api "search/issues?q=repo:T4N4K4-KUN/qual-law-guideline+%22C:%5C%5CUsers%5C%5C<username>%22+in:body,comments&per_page=100" --jq '.total_count' for 1s
+- result: 0
+
+Ran gh api "search/issues?q=repo:T4N4K4-KUN/qual-law-guideline+<username>+in:body,comments&per_page=100" --jq '.total_count'
+- result: 0
+
+- 監査記録はこの RUN.md に集約する（別ファイルは作成しない）。
+- 結論: 今回の RUN.md を除けば、ローカル実ファイル・origin/chore/redact-personal-paths・GitHubメタ情報（PR/Issue/コメント）に `<username>` 残件なし。
+
+## クローズ追記（2026-02-09）
+- クローズ範囲: ローカル修正内容をリモートへ同期済み（本RUNの目的範囲は完了）。
+- 保留範囲: 履歴書換え作業ログに起因する残件の最終駆逐は、専用RUNで実施する。
+- 次回開始手順: 既存ローカルを退避し、新規クローン環境で履歴駆逐タスクを開始する。
