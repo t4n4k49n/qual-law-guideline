@@ -79,6 +79,7 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 - 比較表（人間レビュー用）をPRに添付
 - PR作成前に、本文・`RUN.md`・`PR.md` から `C:\\Users\\` を検索し、0件であることを確認する
 - **GitHubでPRを作成し、リンクを共有する**
+- PR本文には昇格実施結果を書かない（昇格実施は承認後に `RUN.md` のみに記録する）
 
 ## 7) 正式版への昇格
 
