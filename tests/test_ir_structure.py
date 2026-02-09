@@ -468,3 +468,34 @@ def test_ord_absolute_order_with_parallel_num(tmp_path: Path) -> None:
     item_12 = next(n for n in nodes if n.kind == "item" and n.num == "一及び二")
     item_3 = next(n for n in nodes if n.kind == "item" and n.num == "三")
     assert item_12.ord < item_3.ord
+
+
+def test_article_nid_no_collision_between_colon_and_plain_num(tmp_path: Path) -> None:
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+<Law>
+  <LawBody>
+    <LawTitle>コロンNum衝突回避</LawTitle>
+    <MainProvision>
+      <Article Num="15:16">
+        <ArticleTitle>第十五条及び第十六条</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>A</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+      <Article Num="1516">
+        <ArticleTitle>第千五百十六条</ArticleTitle>
+        <Paragraph Num="1"><ParagraphSentence><Sentence>B</Sentence></ParagraphSentence></Paragraph>
+      </Article>
+    </MainProvision>
+  </LawBody>
+</Law>
+"""
+    xml_path = tmp_path / "305A00000000000_20240101_000A00000000000.xml"
+    xml_path.write_text(xml, encoding="utf-8", newline="\n")
+
+    parsed = parse_egov_xml(xml_path)
+    articles = [n for n in flatten(parsed.root) if n.kind == "article"]
+    nids = {n.nid for n in articles}
+
+    assert "art15__16" in nids
+    assert "art1516" in nids
+    assert "art15__16_2" not in nids
+    assert "art1516_2" not in nids
