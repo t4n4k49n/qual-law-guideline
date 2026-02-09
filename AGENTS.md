@@ -28,6 +28,7 @@
 - 正規化RUNは、`data/normalized/` へ正式版を昇格させるための特別RUNを指す。
 - 指示で「正規化RUN」または「正規化ラン」「normalized run」と指定された場合、`docs/NORMALIZED_RUN_PLAYBOOK.md` に従って実行する。なお、必ず「7) 正式版への昇格（文書コミット）」まで実施すること。
 - `data/normalized/` への複写はPR承認確認後にのみ行う（承認前の複写は禁止）。
+- PR本文（`runs/<run_id>/PR.md`）は承認時点の内容で固定し、承認後の昇格実績は `RUN.md` のみに追記する。
 - `data/normalized/` の退避命名は `ARCHIVE_<doc_id>` を使用し、同名が既にある場合は `ARCHIVE_<doc_id>_2`, `ARCHIVE_<doc_id>_3` のように連番を付与する。
 
 ## README/TODOの埋め方（重要）
