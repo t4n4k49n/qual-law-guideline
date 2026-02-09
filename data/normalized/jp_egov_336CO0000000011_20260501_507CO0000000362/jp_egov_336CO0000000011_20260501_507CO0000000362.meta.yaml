@@ -1,0 +1,56 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: jp_egov_336CO0000000011_20260501_507CO0000000362
+  title: 医薬品、医療機器等の品質、有効性及び安全性の確保等に関する法律施行令
+  short_title: null
+  jurisdiction: JP
+  doc_type: cabinet_order
+  language: ja
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: 336CO0000000011
+    e_gov_revision_id: 507CO0000000362
+    law_number: 昭和三十六年政令第十一号
+    cfr_title: null
+    cfr_part: null
+    eu_volume: null
+    pics_doc_id: null
+    who_publication_id: null
+  version:
+    as_of: '2026-05-01'
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://laws.e-gov.go.jp/law/336CO0000000011/20260501_507CO0000000362
+    format: xml
+    retrieved_at: '2026-02-09'
+    checksum: null
+    label: e-Gov
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v3
+    path: jp_egov_336CO0000000011_20260501_507CO0000000362.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: jp_law_default_v1
+    path: jp_egov_336CO0000000011_20260501_507CO0000000362.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: jp_egov_336CO0000000011_20260501_507CO0000000362.regdoc_profile.yaml
+generation:
+  created_at: '2026-02-09T03:51:47Z'
+  tool:
+    name: qai_xml2ir
+    version: null
+  inputs:
+  - path: %USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336CO0000000011_20260501_507CO0000000362\336CO0000000011_20260501_507CO0000000362.xml
+    checksum: b7ae8a7aaa36d084a7c2adedc91cade0d6cae742b03ffa7e70a669114a3e1e77
+  notes: []
