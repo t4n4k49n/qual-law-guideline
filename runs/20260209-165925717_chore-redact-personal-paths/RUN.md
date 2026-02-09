@@ -3,7 +3,7 @@
 - run_id: 20260209-165925717_chore-redact-personal-paths
 - branch: chore/redact-personal-paths
 - date: 2026-02-09 16:59:25 +09:00
-- status: 調査記録（未編集）
+- status: 実施済み（置換完了・PR作成済み）
 
 ## 目的
 - ローカルとリモートの両方を同じ優先度で対象化し、`<username>` を含む記述を駆逐する。
@@ -91,3 +91,12 @@ git grep -n -I -i "<username>" <remote-ref>
 - リモート側は本ブランチで対処可能範囲を先行修正し、残分は対象ブランチへ展開方針を決定
 - `rg -n -i "<username>"` と `git grep -n -I -i "<username>" origin/main` の再検証
 - 差分確認後にコミット
+## 実施結果
+- ローカル実ファイルの置換を実施し、`<username>` は作業ツリー（`.git`除外）で0件。
+- ブランチ `chore/redact-personal-paths` をリモートへpush済み。
+- PR作成: https://github.com/T4N4K4-KUN/qual-law-guideline/pull/44
+
+## 検証結果（最新）
+- `rg -n -uu -g "!.git" -i "<username>"` => 0件
+- `git grep -n -I -i "<username>" origin/chore/redact-personal-paths` => 0件
+- `git grep -n -I -i "<username>" origin/main` => 16件（PR #44 未マージ分）
