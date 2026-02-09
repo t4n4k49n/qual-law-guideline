@@ -1,0 +1,32 @@
+schema: qai.regdoc_profile.v1
+doc_id: jp_egov_336CO0000000011_20260501_507CO0000000362
+profiles:
+  dq_gmp_checklist:
+    selectable_kinds:
+    - subitem
+    - item
+    - paragraph
+    - statement
+    grouping_policy:
+    - when_kind: subitem
+      group_under_kind: item
+    - when_kind: item
+      group_under_kind: paragraph
+    - when_kind: paragraph
+      group_under_kind: article
+    - when_kind: statement
+      group_under_kind: article
+    context_display_policy:
+    - when_kind: subitem
+      include_ancestors_until_kind: article
+      include_headings: true
+      include_chapeau_text: true
+    - when_kind: item
+      include_ancestors_until_kind: article
+      include_headings: true
+      include_chapeau_text: true
+    - when_kind: paragraph
+      include_ancestors_until_kind: article
+      include_headings: true
+      include_chapeau_text: true
+    render_templates: {}
