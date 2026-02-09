@@ -16,7 +16,7 @@
   - `RUN.md` / `PR.md` / PR本文に、`C:\Users\...` などの個人環境の絶対パスを書かない
   - パスは `%USERPROFILE%` などの環境変数表記、または `<workspace-relative-path>` を使う
   - 例:
-    - NG: `C:\Users\ryoki\Documents\...`
+    - NG: `%USERPROFILE%\Documents\...`
     - OK: `%USERPROFILE%\Documents\...`
 - `doc_id` を決める
   - **e-GovのURIに準拠**: `jp_egov_<law_id>_<as_of(yyyymmdd)>_<revision_id>`

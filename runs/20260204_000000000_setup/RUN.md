@@ -14,7 +14,7 @@ started_at: 2026-01-26 (JST)
 
 ## HUMAN: 最初に人がやること（最小限）
 - GitHubで新規リポジトリを作成（private推奨）
-- VS Codeで`C:\Users\ryoki\Documents\GitHub`を開く
+- VS Codeで`%USERPROFILE%\Documents\GitHub`を開く
 - ローカルへclone（Codexに"https://github.com/T4N4K4-KUN/hogehogeをCloneして"と指示）
 - `runs/20260204_000000000_setup/` を作成し、このファイルを `runs/20260204_000000000_setup/RUN.md` として保存（UTF-8 BOMなし / LF）
 - 下の「Codexへの開始指示（コピペ用）」をCodexに貼って開始

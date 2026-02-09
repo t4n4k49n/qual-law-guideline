@@ -51,6 +51,6 @@ generation:
     name: qai_xml2ir
     version: null
   inputs:
-  - path: C:\Users\ryoki\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336CO0000000011_20260501_507CO0000000362\336CO0000000011_20260501_507CO0000000362.xml
+  - path: %USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336CO0000000011_20260501_507CO0000000362\336CO0000000011_20260501_507CO0000000362.xml
     checksum: b7ae8a7aaa36d084a7c2adedc91cade0d6cae742b03ffa7e70a669114a3e1e77
   notes: []
