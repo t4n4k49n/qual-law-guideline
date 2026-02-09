@@ -83,6 +83,8 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 ## 7) 正式版への昇格
 
 - **PR承認が確認できたら** `data/normalized/<doc_id>/` へコピー
+- **承認前の `data/normalized/` 複写は厳禁**
+- 昇格実施結果は `runs/<run_id>/RUN.md` に記録し、PR本文（`runs/<run_id>/PR.md`）は承認時点の内容を後追い更新しない
 - 既存版は残す（上書き禁止）
 - 既存版を退避する場合は `ARCHIVE_<doc_id>` へリネームする
 - 同名が既に存在する場合は `ARCHIVE_<doc_id>_2`, `ARCHIVE_<doc_id>_3` のように連番を付与する
