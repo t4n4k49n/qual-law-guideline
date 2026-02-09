@@ -8,6 +8,7 @@ def normalize_num_attr(num: Optional[str]) -> Optional[str]:
     if not num:
         return None
     normalized = num.translate(str.maketrans("０１２３４５６７８９", "0123456789"))
+    normalized = normalized.replace(":", "__")
     cleaned = re.sub(r"[^0-9_]", "", normalized)
     return cleaned or None
 
