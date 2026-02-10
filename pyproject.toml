@@ -19,6 +19,7 @@ dev = ["pytest>=8.0"]
 
 [project.scripts]
 xml2ir = "qai_xml2ir.cli:app"
+text2ir = "qai_text2ir.cli:app"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -31,3 +32,6 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+qai_text2ir = ["profiles/*.yaml"]
