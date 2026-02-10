@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import re
 from collections import defaultdict
 from dataclasses import dataclass
@@ -10,13 +11,48 @@ from qai_xml2ir.models_ir import IRDocument, Node, build_root
 from qai_xml2ir.nid import NidBuilder
 from qai_xml2ir.ord_key import assign_document_order
 
+LOGGER = logging.getLogger(__name__)
+
+GAP_WARN_MAX_BY_FAMILY = {
+    "alpha": 2,
+    "roman": 3,
+    "digit": 2,
+}
+
 
 @dataclass
 class MarkerMatch:
+    marker_id: str
     kind: str
     kind_raw: Optional[str]
     num: Optional[str]
     span_end: int
+    order: int
+
+
+@dataclass
+class LastSeen:
+    value: int
+    raw: str
+    line_no: int
+    sibling_index: int
+
+
+@dataclass
+class AttachCandidate:
+    marker: MarkerMatch
+    parent_idx: int
+    parent_nid: str
+    parent_kind: str
+    pop_count: int
+    value: Optional[int]
+    family: Optional[str]
+    continuity_score: int
+    total_score: int
+    diff: Optional[int]
+    gap: Optional[int]
+    had_last: bool
+    rare_roman_penalized: bool
 
 
 class _NodeFactory:
@@ -124,37 +160,239 @@ def _find_parent_candidate(
     return None
 
 
+def _find_parent_candidates(
+    stack: List[Node],
+    new_kind: str,
+    structure: Dict[str, Any],
+) -> List[int]:
+    matches: List[int] = []
+    for idx in range(len(stack) - 1, -1, -1):
+        allowed = _structure_children(stack[idx].kind, structure)
+        if new_kind in allowed:
+            matches.append(idx)
+    return matches
+
+
+def _roman_to_int(value: str) -> Optional[int]:
+    roman_values = {
+        "i": 1,
+        "v": 5,
+        "x": 10,
+        "l": 50,
+        "c": 100,
+        "d": 500,
+        "m": 1000,
+    }
+    text = value.strip().lower()
+    if not text or any(ch not in roman_values for ch in text):
+        return None
+    total = 0
+    prev = 0
+    for ch in reversed(text):
+        cur = roman_values[ch]
+        if cur < prev:
+            total -= cur
+        else:
+            total += cur
+            prev = cur
+    return total
+
+
+def _marker_family(marker: MarkerMatch) -> Optional[str]:
+    marker_id = marker.marker_id.lower()
+    if "alpha" in marker_id:
+        return "alpha"
+    if "roman" in marker_id:
+        return "roman"
+    if "digit" in marker_id:
+        return "digit"
+    if marker.num and marker.num.isdigit():
+        return "digit"
+    if marker.num and len(marker.num) == 1 and marker.num.isalpha():
+        return "alpha"
+    if marker.num and re.fullmatch(r"[ivxlcdm]+", marker.num.lower()):
+        return "roman"
+    return None
+
+
+def _parse_marker_value(marker: MarkerMatch) -> Optional[int]:
+    if marker.num is None:
+        return None
+    family = _marker_family(marker)
+    raw = marker.num.strip().lower()
+    if family == "alpha" and len(raw) == 1 and raw.isalpha():
+        return ord(raw) - ord("a") + 1
+    if family == "digit" and raw.isdigit():
+        return int(raw)
+    if family == "roman":
+        return _roman_to_int(raw)
+    return None
+
+
+def _score_candidate(
+    *,
+    candidate: AttachCandidate,
+    parent_last_seen: Dict[str, LastSeen],
+) -> AttachCandidate:
+    score = 0
+    continuity_score = 0
+    diff: Optional[int] = None
+    gap: Optional[int] = None
+    had_last = False
+    rare_roman_penalized = False
+
+    score -= candidate.pop_count * 5
+
+    if candidate.value is not None:
+        last = parent_last_seen.get(candidate.marker.marker_id)
+        if last is not None:
+            had_last = True
+            diff = candidate.value - last.value
+            if diff == 1:
+                continuity_score = 100
+            elif diff >= 2:
+                gap = diff - 1
+                max_gap = GAP_WARN_MAX_BY_FAMILY.get(candidate.family or "", 0)
+                if gap <= max_gap:
+                    continuity_score = 60 - 10 * gap
+                else:
+                    continuity_score = -30
+            else:
+                continuity_score = -50
+        if (
+            candidate.family == "roman"
+            and not had_last
+            and candidate.marker.num is not None
+            and len(candidate.marker.num.strip()) == 1
+            and candidate.value >= 50
+        ):
+            score -= 40
+            rare_roman_penalized = True
+
+    score += continuity_score
+    candidate.total_score = score
+    candidate.continuity_score = continuity_score
+    candidate.diff = diff
+    candidate.gap = gap
+    candidate.had_last = had_last
+    candidate.rare_roman_penalized = rare_roman_penalized
+    return candidate
+
+
+def _choose_best_candidate(candidates: List[AttachCandidate]) -> AttachCandidate:
+    return max(
+        candidates,
+        key=lambda c: (
+            c.total_score,
+            c.continuity_score,
+            -c.pop_count,
+            -c.marker.order,
+        ),
+    )
+
+
 def _select_marker_with_context(
     text: str,
     compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
     stack: List[Node],
     structure: Dict[str, Any],
-) -> Tuple[Optional[MarkerMatch], Optional[int]]:
-    best: Optional[Tuple[int, int, MarkerMatch]] = None
+    parent_last_seen: Dict[str, Dict[str, LastSeen]],
+    line_no: int,
+) -> Tuple[Optional[AttachCandidate], List[MarkerMatch]]:
+    marker_matches: List[MarkerMatch] = []
     for order, (marker, pattern) in enumerate(compiled_markers):
         m = pattern.match(text)
         if not m:
             continue
-        kind = marker["kind"]
-        parent_idx = _find_parent_candidate(stack, kind, structure)
-        parent_rank = parent_idx if parent_idx is not None else -1
-        if parent_idx is None:
-            parent_idx = None
-        candidate = (
-            parent_rank,
-            -order,
+        marker_matches.append(
             MarkerMatch(
-                kind=kind,
+                marker_id=str(marker.get("id") or f"marker_{order}"),
+                kind=marker["kind"],
                 kind_raw=marker.get("kind_raw"),
                 num=_extract_num(marker, m),
                 span_end=m.end(),
-            ),
+                order=order,
+            )
         )
-        if best is None or candidate > best:
-            best = candidate
-    if best is None:
-        return None, None
-    return best[2], best[0]
+    if not marker_matches:
+        return None, []
+
+    candidates: List[AttachCandidate] = []
+    top_idx = len(stack) - 1
+    for marker_match in marker_matches:
+        for parent_idx in _find_parent_candidates(stack, marker_match.kind, structure):
+            parent = stack[parent_idx]
+            parent_state = parent_last_seen.get(parent.nid, {})
+            value = _parse_marker_value(marker_match)
+            family = _marker_family(marker_match)
+            base = AttachCandidate(
+                marker=marker_match,
+                parent_idx=parent_idx,
+                parent_nid=parent.nid,
+                parent_kind=parent.kind,
+                pop_count=top_idx - parent_idx,
+                value=value,
+                family=family,
+                continuity_score=0,
+                total_score=0,
+                diff=None,
+                gap=None,
+                had_last=False,
+                rare_roman_penalized=False,
+            )
+            candidates.append(
+                _score_candidate(
+                    candidate=base,
+                    parent_last_seen=parent_state,
+                )
+            )
+
+    if not candidates:
+        return None, marker_matches
+
+    chosen = _choose_best_candidate(candidates)
+    if len(marker_matches) > 1:
+        raw_marker = text[: chosen.marker.span_end].strip()
+        matched_marker_ids = ",".join(m.marker_id for m in marker_matches)
+        alpha_last = parent_last_seen.get(chosen.parent_nid, {}).get("paren_alpha")
+        roman_last = parent_last_seen.get(chosen.parent_nid, {}).get("paren_roman")
+        LOGGER.warning(
+            "marker ambiguity resolved at line=%s raw=%r matched=[%s] chosen=%s/%s parent=%s/%s alpha_last=%s roman_last=%s diff=%s gap=%s score=%s",
+            line_no,
+            raw_marker,
+            matched_marker_ids,
+            chosen.marker.marker_id,
+            chosen.marker.kind,
+            chosen.parent_kind,
+            chosen.parent_nid,
+            alpha_last.raw if alpha_last else None,
+            roman_last.raw if roman_last else None,
+            chosen.diff,
+            chosen.gap,
+            chosen.total_score,
+        )
+    if chosen.gap is not None and chosen.gap >= 1:
+        LOGGER.warning(
+            "marker gap adopted at line=%s marker=%s raw=%r parent=%s/%s diff=%s gap=%s",
+            line_no,
+            chosen.marker.marker_id,
+            text[: chosen.marker.span_end].strip(),
+            chosen.parent_kind,
+            chosen.parent_nid,
+            chosen.diff,
+            chosen.gap,
+        )
+    if chosen.rare_roman_penalized and chosen.marker.marker_id == "paren_roman":
+        LOGGER.warning(
+            "rare roman adoption at line=%s marker=%s raw=%r parent=%s/%s score=%s",
+            line_no,
+            chosen.marker.marker_id,
+            text[: chosen.marker.span_end].strip(),
+            chosen.parent_kind,
+            chosen.parent_nid,
+            chosen.total_score,
+        )
+    return chosen, marker_matches
 
 
 def _append_text(node: Node, line: str, line_no: int, source_label: str) -> None:
@@ -201,6 +439,7 @@ def parse_text_to_ir(
     stack: List[Node] = [root]
     current = root
     node_factory = _NodeFactory(structural_kinds=structural_kinds)
+    parent_last_seen: Dict[str, Dict[str, LastSeen]] = {}
 
     lines = input_path.read_text(encoding="utf-8").splitlines()
     for line_no, raw_line in enumerate(lines, start=1):
@@ -212,15 +451,18 @@ def parse_text_to_ir(
         created_nodes: List[Node] = []
         depth = 0
         while depth < max_depth:
-            marker_match, parent_idx = _select_marker_with_context(
+            selected, _matched = _select_marker_with_context(
                 remaining,
                 compiled_markers,
                 stack,
                 structure,
+                parent_last_seen,
+                line_no,
             )
-            if marker_match is None:
+            if selected is None:
                 break
-            actual_parent_idx = 0 if parent_idx is None else parent_idx
+            marker_match = selected.marker
+            actual_parent_idx = selected.parent_idx
             parent = stack[actual_parent_idx]
             node = node_factory.create_node(
                 kind=marker_match.kind,
@@ -231,6 +473,16 @@ def parse_text_to_ir(
                 parent_nid=parent.nid,
             )
             parent.children.append(node)
+            parent_state = parent_last_seen.setdefault(parent.nid, {})
+            if marker_match.num is not None:
+                value = _parse_marker_value(marker_match)
+                if value is not None:
+                    parent_state[marker_match.marker_id] = LastSeen(
+                        value=value,
+                        raw=marker_match.num,
+                        line_no=line_no,
+                        sibling_index=len(parent.children) - 1,
+                    )
             stack = stack[: actual_parent_idx + 1] + [node]
             current = node
             created_nodes.append(node)
