@@ -5,6 +5,10 @@ applies_to:
   family: US_CFR
   jurisdiction: US
   defaults: true
+language: en
+source_label: CFR
+context_root_kind: section
+structural_kinds: [part, subpart, section]
 marker_types:
   - id: part
     kind: part
@@ -50,4 +54,3 @@ warnings: {}
 compound_prefix:
   enabled: true
   max_depth: 6
-

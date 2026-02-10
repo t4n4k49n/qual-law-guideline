@@ -20,8 +20,9 @@ class MarkerMatch:
 
 
 class _NodeFactory:
-    def __init__(self) -> None:
+    def __init__(self, structural_kinds: set[str]) -> None:
         self._nid_builder = NidBuilder()
+        self._structural_kinds = structural_kinds
         self._kind_prefix = {
             "part": "part",
             "subpart": "subpt",
@@ -61,7 +62,7 @@ class _NodeFactory:
         source_label: str,
         parent_nid: str,
     ) -> Node:
-        role = "structural" if kind in {"part", "subpart", "section"} else "normative"
+        role = "structural" if kind in self._structural_kinds else "normative"
         normativity = None if role == "structural" else "must"
         token = self._token(kind, num, parent_nid)
         base_nid = token if parent_nid == "root" else f"{parent_nid}.{token}"
@@ -85,6 +86,23 @@ def _compile_markers(parser_profile: Dict[str, Any]) -> List[Tuple[Dict[str, Any
     for marker in parser_profile.get("marker_types", []):
         compiled.append((marker, re.compile(marker["match"])))
     return compiled
+
+
+def _extract_num(marker: Dict[str, Any], match: re.Match[str]) -> Optional[str]:
+    groups = match.groupdict() if match.groupdict() else {}
+    num_group = marker.get("num_group")
+    if isinstance(num_group, str):
+        selected = groups.get(num_group)
+        if selected:
+            return selected
+    direct = groups.get("num")
+    if direct:
+        return direct
+    for key in groups:
+        value = groups.get(key)
+        if value:
+            return value
+    return None
 
 
 def _structure_children(parent_kind: str, structure: Dict[str, Any]) -> List[str]:
@@ -119,15 +137,16 @@ def _select_marker_with_context(
             continue
         kind = marker["kind"]
         parent_idx = _find_parent_candidate(stack, kind, structure)
+        parent_rank = parent_idx if parent_idx is not None else -1
         if parent_idx is None:
-            continue
+            parent_idx = None
         candidate = (
-            parent_idx,
+            parent_rank,
             -order,
             MarkerMatch(
                 kind=kind,
                 kind_raw=marker.get("kind_raw"),
-                num=(m.groupdict().get("num") if m.groupdict() else None),
+                num=_extract_num(marker, m),
                 span_end=m.end(),
             ),
         )
@@ -172,13 +191,16 @@ def parse_text_to_ir(
     compiled_markers = _compile_markers(parser_profile)
     structure = parser_profile.get("structure") or {}
     compound = parser_profile.get("compound_prefix") or {}
+    structural_kinds = set(
+        parser_profile.get("structural_kinds") or ["part", "subpart", "section"]
+    )
     compound_enabled = bool(compound.get("enabled"))
     max_depth = int(compound.get("max_depth", 1))
 
     root = build_root([])
     stack: List[Node] = [root]
     current = root
-    node_factory = _NodeFactory()
+    node_factory = _NodeFactory(structural_kinds=structural_kinds)
 
     lines = input_path.read_text(encoding="utf-8").splitlines()
     for line_no, raw_line in enumerate(lines, start=1):
@@ -218,7 +240,7 @@ def parse_text_to_ir(
                 break
 
         if created_nodes:
-            if current.kind in {"part", "subpart", "section"}:
+            if current.kind in structural_kinds:
                 if remaining:
                     if current.heading is None:
                         current.heading = remaining
