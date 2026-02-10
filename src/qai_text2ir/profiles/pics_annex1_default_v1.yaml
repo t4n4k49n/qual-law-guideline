@@ -1,0 +1,46 @@
+schema: qai.parser_profile.v1
+id: pics_annex1_default_v1
+title: PIC/S PE 009-17 Annex 1 markers
+applies_to:
+  family: PICS
+  jurisdiction: INTL
+  defaults: false
+language: en
+source_label: PIC/S
+context_root_kind: chapter
+structural_kinds: [chapter]
+marker_types:
+  - id: annex
+    kind: chapter
+    kind_raw: ANNEX
+    match: '^ANNEX\s+(?P<num>\d+)\b'
+  - id: paragraph_decimal
+    kind: paragraph
+    kind_raw: "1.1"
+    match: '^(?P<alpha>\d+(?:\.\d+)*)\s+'
+  - id: item_alpha
+    kind: item
+    kind_raw: "(a)"
+    match: '^\((?P<alpha>[a-z])\)\s*'
+  - id: point_roman
+    kind: point
+    kind_raw: "(i)"
+    match: '^\((?P<roman>[ivxlcdm]+)\)\s*'
+    num_group: roman
+structure:
+  root:
+    children: [chapter]
+  chapter:
+    children: [paragraph, item]
+  paragraph:
+    children: [item, point]
+  item:
+    children: [point]
+  point:
+    children: []
+diagnostics: []
+warnings: {}
+compound_prefix:
+  enabled: true
+  max_depth: 3
+

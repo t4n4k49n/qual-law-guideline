@@ -1,0 +1,5 @@
+CHAPTER 5 PRODUCTION
+5.1 Principle
+5.1.1 Production operations should follow written procedures.
+i. Records should be complete and traceable.
+

@@ -1,0 +1,48 @@
+schema: qai.parser_profile.v1
+id: pics_part1_default_v1
+title: PIC/S PE 009-17 Part I chapter markers
+applies_to:
+  family: PICS
+  jurisdiction: INTL
+  defaults: false
+language: en
+source_label: PIC/S
+context_root_kind: chapter
+structural_kinds: [chapter]
+marker_types:
+  - id: chapter
+    kind: chapter
+    kind_raw: CHAPTER
+    match: '^CHAPTER\s+(?P<num>\d+)\b'
+  - id: paragraph_decimal
+    kind: paragraph
+    kind_raw: "5.1"
+    match: '^(?P<n>\d+\.\d+)\s+'
+    num_group: n
+  - id: item_decimal
+    kind: item
+    kind_raw: "5.1.1"
+    match: '^(?P<n>\d+\.\d+\.\d+)\s+'
+    num_group: n
+  - id: point_roman
+    kind: point
+    kind_raw: "i."
+    match: '^(?P<roman>[ivxlcdm]+)\.\s+'
+    num_group: roman
+structure:
+  root:
+    children: [chapter]
+  chapter:
+    children: [paragraph, item, point]
+  paragraph:
+    children: [item, point]
+  item:
+    children: [point]
+  point:
+    children: []
+diagnostics: []
+warnings: {}
+compound_prefix:
+  enabled: false
+  max_depth: 1
+
