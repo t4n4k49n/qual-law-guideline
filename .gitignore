@@ -20,6 +20,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 data/normalized/ARCHIVE_*/
+docs/qual-law-guideline_docs_txtconcat_20260210-170306036.txt
+src/qai_xml2ir/qual-law-guideline_src_quai_xml2ir_pyconcat_20260210-170606847.txt
 .vscode/
 references/
 pipelines/

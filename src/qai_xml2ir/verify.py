@@ -150,3 +150,24 @@ def check_ord_format_and_order(root) -> List[str]:
             parent_nid = _get(node, "nid")
             problems.append(f"children ord not sorted under {parent_nid}")
     return problems
+
+
+def verify_document(ir_doc: Dict) -> None:
+    root = ir_doc.get("content")
+    if root is None:
+        raise AssertionError("regdoc_ir content is missing")
+    assert_unique_nids(root)
+    collisions, invalid_annex = check_annex_article_nids(root)
+    appendix_problems = check_appendix_scoped_indices(root)
+    ord_problems = check_ord_format_and_order(root)
+    errors: List[str] = []
+    if collisions:
+        errors.append(f"annex nid collisions: {collisions}")
+    if invalid_annex:
+        errors.append(f"invalid annex article nids: {invalid_annex}")
+    if appendix_problems:
+        errors.append(f"appendix index problems: {appendix_problems}")
+    if ord_problems:
+        errors.append(f"ord problems: {ord_problems}")
+    if errors:
+        raise AssertionError("verify failed: " + " | ".join(errors))

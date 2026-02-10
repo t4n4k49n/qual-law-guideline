@@ -1,0 +1,53 @@
+schema: qai.parser_profile.v1
+id: us_cfr_default_v1
+title: US CFR default markers
+applies_to:
+  family: US_CFR
+  jurisdiction: US
+  defaults: true
+marker_types:
+  - id: part
+    kind: part
+    kind_raw: PART
+    match: '^PART\s+(?P<num>\d+)\b'
+  - id: subpart
+    kind: subpart
+    kind_raw: Subpart
+    match: '^Subpart\s+(?P<num>[A-Z])\b'
+  - id: section
+    kind: section
+    kind_raw: "§"
+    match: '^§\s*(?P<num>\d+(?:\.\d+)*)\b'
+  - id: paren_alpha
+    kind: paragraph
+    kind_raw: "(a)"
+    match: '^\((?P<num>[a-z])\)\s*'
+  - id: paren_digit
+    kind: item
+    kind_raw: "(1)"
+    match: '^\((?P<num>\d+)\)\s*'
+  - id: paren_roman
+    kind: subitem
+    kind_raw: "(i)"
+    match: '^\((?P<num>[ivxlcdm]+)\)\s*'
+structure:
+  root:
+    children: [part, section]
+  part:
+    children: [subpart, section]
+  subpart:
+    children: [section]
+  section:
+    children: [paragraph, item]
+  paragraph:
+    children: [item, subitem]
+  item:
+    children: [subitem]
+  subitem:
+    children: []
+diagnostics: []
+warnings: {}
+compound_prefix:
+  enabled: true
+  max_depth: 6
+
