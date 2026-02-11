@@ -409,6 +409,15 @@ def _append_text(node: Node, line: str, line_no: int, source_label: str) -> None
     node.source_spans.append({"source_label": source_label, "locator": f"line:{line_no}"})
 
 
+def _find_latest_non_note_stack_index(stack: List[Node]) -> Optional[int]:
+    for idx in range(len(stack) - 1, -1, -1):
+        kind = stack[idx].kind
+        if kind in {"document", "note", "history"}:
+            continue
+        return idx
+    return None
+
+
 def _build_display_name(node: Node) -> str:
     if node.heading:
         return node.heading
@@ -522,6 +531,37 @@ def parse_text_to_ir(
             root.children.append(preamble)
             stack = [root, preamble]
             current = preamble
+        elif current.kind in {"note", "history"}:
+            fallback: Optional[Node] = None
+            if len(stack) >= 2 and stack[-1] is current:
+                note_parent = stack[-2]
+                for sibling in reversed(note_parent.children[:-1]):
+                    if sibling.kind not in {"note", "history"}:
+                        fallback = sibling
+                        break
+            if fallback is not None:
+                LOGGER.warning(
+                    "non-marker line after %s at line=%s attached to previous sibling=%s/%s",
+                    current.kind,
+                    line_no,
+                    fallback.kind,
+                    fallback.nid,
+                )
+                stack = stack[:-1] + [fallback]
+                current = fallback
+            else:
+                fallback_idx = _find_latest_non_note_stack_index(stack)
+                if fallback_idx is not None:
+                    fallback = stack[fallback_idx]
+                    LOGGER.warning(
+                        "non-marker line after %s at line=%s attached to previous non-note node=%s/%s",
+                        current.kind,
+                        line_no,
+                        fallback.kind,
+                        fallback.nid,
+                    )
+                    stack = stack[: fallback_idx + 1]
+                    current = fallback
         _append_text(current, stripped_for_match, line_no, source_label)
 
     assign_document_order(root)

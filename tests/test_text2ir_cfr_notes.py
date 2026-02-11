@@ -44,3 +44,31 @@ def test_cfr_note_lines_are_split_under_section(tmp_path: Path) -> None:
     assert "[62 FR" not in (subitem.get("text") or "")
     assert "Authority:" not in (subitem.get("text") or "")
     assert "Source:" not in (subitem.get("text") or "")
+
+
+def test_non_marker_line_after_note_falls_back_to_previous_body_node(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "§ 11.10 Controls for closed systems.",
+            "(a) Primary paragraph text.",
+            "[62 FR 13464, Mar. 20, 1997]",
+            "Continuation after note should belong to paragraph (a).",
+            "(b) Next paragraph.",
+        ]
+    )
+    input_path = tmp_path / "CFR_PART11_note_fallback.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+
+    profile = load_parser_profile(profile_id="us_cfr_default_v1")
+    ir = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="us_cfr_note_fallback_check",
+        parser_profile=profile,
+    ).to_dict()
+
+    nodes = _flatten(ir["content"])
+    note = next(n for n in nodes if n["kind"] == "note")
+    paragraph_a = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "a")
+
+    assert note.get("text") == "[62 FR 13464, Mar. 20, 1997]"
+    assert "Continuation after note should belong to paragraph (a)." in (paragraph_a.get("text") or "")
