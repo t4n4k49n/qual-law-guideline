@@ -26,6 +26,7 @@ class MarkerMatch:
     kind: str
     kind_raw: Optional[str]
     num: Optional[str]
+    raw_token: str
     span_end: int
     order: int
 
@@ -314,6 +315,7 @@ def _select_marker_with_context(
                 kind=marker["kind"],
                 kind_raw=marker.get("kind_raw"),
                 num=_extract_num(marker, m),
+                raw_token=m.group(0).strip(),
                 span_end=m.end(),
                 order=order,
             )
@@ -399,14 +401,23 @@ def _select_marker_with_context(
     return chosen, marker_matches
 
 
+def _normalize_line_text(line: str) -> str:
+    # Join OCR/PDF style split words like "environ- ment" safely.
+    normalized = re.sub(r"([A-Za-z])-\s+([A-Za-z])", r"\1\2", line)
+    return normalized.rstrip()
+
+
 def _append_text(node: Node, line: str, line_no: int, source_label: str) -> None:
-    if not line:
+    normalized = _normalize_line_text(line)
+    if not normalized:
         return
     if node.text:
-        node.text = f"{node.text}\n{line}"
+        node.text = f"{node.text}\n{normalized}"
     else:
-        node.text = line
-    node.source_spans.append({"source_label": source_label, "locator": f"line:{line_no}"})
+        node.text = normalized
+    span = {"source_label": source_label, "locator": f"line:{line_no}"}
+    if not node.source_spans or node.source_spans[-1] != span:
+        node.source_spans.append(span)
 
 
 def _find_latest_non_note_stack_index(stack: List[Node]) -> Optional[int]:
@@ -416,6 +427,31 @@ def _find_latest_non_note_stack_index(stack: List[Node]) -> Optional[int]:
             continue
         return idx
     return None
+
+
+def _resolved_kind_raw(marker: MarkerMatch) -> Optional[str]:
+    if marker.kind in {"paragraph", "item", "subitem"}:
+        return marker.raw_token or marker.kind_raw
+    return marker.kind_raw or marker.raw_token
+
+
+def _normalize_structural_heading(kind: str, heading: str) -> str:
+    if kind in {"part", "subpart"}:
+        return heading.lstrip("—–- ").strip()
+    return heading.strip()
+
+
+def _split_section_heading_and_chapeau(remaining: str) -> Tuple[str, Optional[str]]:
+    text = remaining.strip()
+    if not text:
+        return "", None
+    m = re.search(r"\.\s+([A-Z0-9(])", text)
+    if not m:
+        return text, None
+    split_pos = m.start() + 1
+    heading = text[:split_pos].strip()
+    chapeau = text[split_pos:].strip()
+    return heading, chapeau or None
 
 
 def _build_display_name(node: Node) -> str:
@@ -438,7 +474,7 @@ def parse_text_to_ir(
     doc_id: str,
     parser_profile: Dict[str, Any],
 ) -> IRDocument:
-    source_label = input_path.name
+    source_label = parser_profile.get("source_label") or input_path.name
     compiled_markers = _compile_markers(parser_profile)
     structure = parser_profile.get("structure") or {}
     compound = parser_profile.get("compound_prefix") or {}
@@ -464,7 +500,7 @@ def parse_text_to_ir(
         created_nodes: List[Node] = []
         depth = 0
         while depth < max_depth:
-            selected, _matched = _select_marker_with_context(
+            selected, matched = _select_marker_with_context(
                 remaining,
                 compiled_markers,
                 stack,
@@ -473,13 +509,40 @@ def parse_text_to_ir(
                 line_no,
             )
             if selected is None:
+                if matched:
+                    structural_match = next((m for m in matched if m.kind in structural_kinds), None)
+                    if structural_match is not None:
+                        LOGGER.warning(
+                            "orphan structural marker adopted at line=%s kind=%s token=%r -> root",
+                            line_no,
+                            structural_match.kind,
+                            structural_match.raw_token,
+                        )
+                        parent = root
+                        node = node_factory.create_node(
+                            kind=structural_match.kind,
+                            kind_raw=_resolved_kind_raw(structural_match),
+                            num=structural_match.num,
+                            line_no=line_no,
+                            source_label=source_label,
+                            parent_nid=parent.nid,
+                        )
+                        parent.children.append(node)
+                        stack = [root, node]
+                        current = node
+                        created_nodes.append(node)
+                        depth += 1
+                        remaining = remaining[structural_match.span_end :].lstrip()
+                        if not compound_enabled:
+                            break
+                        continue
                 break
             marker_match = selected.marker
             actual_parent_idx = selected.parent_idx
             parent = stack[actual_parent_idx]
             node = node_factory.create_node(
                 kind=marker_match.kind,
-                kind_raw=marker_match.kind_raw,
+                kind_raw=_resolved_kind_raw(marker_match),
                 num=marker_match.num,
                 line_no=line_no,
                 source_label=source_label,
@@ -509,10 +572,17 @@ def parse_text_to_ir(
                 _append_text(current, stripped_for_match, line_no, source_label)
             elif current.kind in structural_kinds:
                 if remaining:
-                    if current.heading is None:
-                        current.heading = remaining
+                    if current.kind == "section":
+                        heading, chapeau = _split_section_heading_and_chapeau(remaining)
                     else:
-                        _append_text(current, remaining, line_no, source_label)
+                        heading = _normalize_structural_heading(current.kind, remaining)
+                        chapeau = None
+                    if current.heading is None:
+                        current.heading = heading or None
+                    else:
+                        _append_text(current, heading, line_no, source_label)
+                    if chapeau:
+                        _append_text(current, chapeau, line_no, source_label)
             elif remaining:
                 _append_text(current, remaining, line_no, source_label)
             continue

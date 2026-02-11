@@ -1,0 +1,12 @@
+marker ambiguity resolved at line=5 raw='(c)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subpta.sec11_1 alpha_last=b roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=6 raw='(d)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subpta.sec11_1 alpha_last=c roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=11 raw='(i)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subpta.sec11_1 alpha_last=h roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=14 raw='(l)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subpta.sec11_1 alpha_last=k roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=15 raw='(m)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subpta.sec11_1 alpha_last=l roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=42 raw='(c)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subptb.sec11_10 alpha_last=b roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=43 raw='(d)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subptb.sec11_10 alpha_last=c roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=48 raw='(i)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subptb.sec11_10 alpha_last=h roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=68 raw='(c)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subptc.sec11_100 alpha_last=b roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=75 raw='(i)' matched=[paren_alpha,paren_roman] chosen=paren_roman/subitem parent=item/subptc.sec11_200.pa.i1 alpha_last=None roman_last=None diff=None gap=None score=0
+marker ambiguity resolved at line=83 raw='(c)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subptc.sec11_300 alpha_last=b roman_last=None diff=1 gap=None score=95
+marker ambiguity resolved at line=84 raw='(d)' matched=[paren_alpha,paren_roman] chosen=paren_alpha/paragraph parent=section/subptc.sec11_300 alpha_last=c roman_last=None diff=1 gap=None score=95

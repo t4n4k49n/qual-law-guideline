@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Dict, List
 
+import re
 import yaml
 
 from qai_text2ir import cli
@@ -53,11 +54,13 @@ def test_text2ir_bundle_outputs_and_structure(tmp_path: Path) -> None:
 
     verify_document(ir)
 
-    assert parser_profile["id"] == "us_cfr_default_v1"
+    assert parser_profile["id"] == "us_cfr_default_v2"
     assert regdoc_profile["profiles"]["dq_gmp_checklist"]["context_display_policy"][0]["include_ancestors_until_kind"] == "section"
     assert meta["doc"]["identifiers"]["cfr_title"] == "21"
     assert meta["doc"]["identifiers"]["cfr_part"] == "11"
     assert meta["doc"]["sources"][0]["format"] == "txt"
+    input_entry = meta["generation"]["inputs"][0]
+    assert not re.match(r"^[A-Za-z]:\\", input_entry["path"])
 
     nodes = _flatten(ir["content"])
     kinds = [n["kind"] for n in nodes]
@@ -75,4 +78,3 @@ def test_text2ir_bundle_outputs_and_structure(tmp_path: Path) -> None:
     assert "Continuation text for the same clause." in subitem["text"]
     assert any(span.get("locator") == "line:4" for span in subitem["source_spans"])
     assert any(span.get("locator") == "line:5" for span in subitem["source_spans"])
-
