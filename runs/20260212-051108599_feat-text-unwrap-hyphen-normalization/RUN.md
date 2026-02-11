@@ -1,0 +1,12 @@
+# RUN
+- run_id: 20260212-051108599_feat-text-unwrap-hyphen-normalization
+- purpose: regenerate PART211 bundle after serializer no-wrap change
+- input: %USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\11.CFR\Un-fomatted\PART211.txt
+- command: python -m qai_text2ir.cli --input <PART211.txt> --out-dir out/20260212-051108599_feat-text-unwrap-hyphen-normalization --doc-id us_cfr_part211_unformatted_unwrapcheck --title "21 CFR Part 211" --short-title "21 CFR Part 211" --cfr-title 21 --cfr-part 211 --source-url "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-C/part-211" --retrieved-at 2026-02-12
+- outputs:
+  - out/20260212-051108599_feat-text-unwrap-hyphen-normalization/us_cfr_part211_unformatted_unwrapcheck.regdoc_ir.yaml
+  - out/20260212-051108599_feat-text-unwrap-hyphen-normalization/us_cfr_part211_unformatted_unwrapcheck.parser_profile.yaml
+  - out/20260212-051108599_feat-text-unwrap-hyphen-normalization/us_cfr_part211_unformatted_unwrapcheck.regdoc_profile.yaml
+  - out/20260212-051108599_feat-text-unwrap-hyphen-normalization/us_cfr_part211_unformatted_unwrapcheck.meta.yaml
+- check:
+  - phrase around "...preparation of drug products..." is single-line in YAML (no serializer wrap at that point)

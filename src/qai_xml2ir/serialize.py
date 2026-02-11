@@ -37,10 +37,11 @@ def write_yaml(path: Path, data: Dict[str, Any]) -> None:
             f"Refusing to overwrite existing file: {path} (type exact 'Yes' once to allow overwrite)"
         )
     with path.open("w", encoding="utf-8", newline="\n") as f:
-        yaml.safe_dump(
+        yaml.dump(
             data,
             f,
+            Dumper=yaml.SafeDumper,
             allow_unicode=True,
             sort_keys=False,
-            width=120,
+            width=float("inf"),
         )
