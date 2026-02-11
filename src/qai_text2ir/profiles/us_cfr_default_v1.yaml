@@ -37,7 +37,7 @@ marker_types:
   - id: note_fr
     kind: note
     kind_raw: "[FR]"
-    match: '^\[(?=.*\bFR\b).+\]\s*$'
+    match: '^\[(?=.*\b\d+\s+FR\b).+\]\s*$'
   - id: note_authority_source
     kind: note
     kind_raw: "Authority/Source"
