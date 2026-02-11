@@ -34,6 +34,14 @@ marker_types:
     kind: subitem
     kind_raw: "(i)"
     match: '^\((?P<num>[ivxlcdm]+)\)\s*'
+  - id: note_fr
+    kind: note
+    kind_raw: "[FR]"
+    match: '^\[(?=.*\bFR\b).+\]\s*$'
+  - id: note_authority_source
+    kind: note
+    kind_raw: "Authority/Source"
+    match: '^(?i:(Authority|Source)):\s+.*$'
 structure:
   root:
     children: [part, section]
@@ -42,7 +50,7 @@ structure:
   subpart:
     children: [section]
   section:
-    children: [paragraph, item]
+    children: [paragraph, item, note]
   paragraph:
     children: [item, subitem]
   item:
