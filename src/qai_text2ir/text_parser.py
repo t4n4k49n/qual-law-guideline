@@ -5,7 +5,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from qai_xml2ir.models_ir import IRDocument, Node, build_root
 from qai_xml2ir.nid import NidBuilder
@@ -17,6 +17,28 @@ GAP_WARN_MAX_BY_FAMILY = {
     "alpha": 2,
     "roman": 3,
     "digit": 2,
+}
+
+HYPHEN_WRAP_PATTERN = re.compile(r"([A-Za-z]{2,})[-\u2010\u2011]\s+([A-Za-z]{2,})")
+HYPHEN_WORD_PATTERN = re.compile(r"\b[A-Za-z]+-[A-Za-z]+\b")
+PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
+KEEP_HYPHEN_ALLOWLIST = {
+    "time-stamped",
+    "time-sequenced",
+    "computer-generated",
+}
+KEEP_PREFIXES = {
+    "time",
+    "non",
+    "pre",
+    "post",
+    "re",
+    "co",
+    "self",
+    "semi",
+    "multi",
+    "inter",
+    "intra",
 }
 
 
@@ -37,6 +59,12 @@ class LastSeen:
     raw: str
     line_no: int
     sibling_index: int
+
+
+@dataclass
+class AppendState:
+    pending_paragraph_break: bool = False
+    in_pre: bool = False
 
 
 @dataclass
@@ -401,23 +429,228 @@ def _select_marker_with_context(
     return chosen, marker_matches
 
 
-def _normalize_line_text(line: str) -> str:
-    # Join OCR/PDF style split words like "environ- ment" safely.
-    normalized = re.sub(r"([A-Za-z])-\s+([A-Za-z])", r"\1\2", line)
-    return normalized.rstrip()
+def normalize_visible_chars(s: str) -> str:
+    return s.replace("\r", "").replace("\u00ad", "").rstrip()
 
 
-def _append_text(node: Node, line: str, line_no: int, source_label: str) -> None:
-    normalized = _normalize_line_text(line)
-    if not normalized:
+def is_preformatted_line(raw_line: str) -> bool:
+    if not raw_line:
+        return False
+    if raw_line.startswith("\t"):
+        return True
+    if raw_line.startswith("    "):
+        return True
+    if "|" in raw_line:
+        return True
+    if re.search(r"[-=]{5,}", raw_line):
+        return True
+    if len(re.findall(r" {2,}", raw_line)) >= 2:
+        return True
+    return False
+
+
+def _get_append_state(
+    states: Dict[Tuple[str, str], AppendState],
+    node: Node,
+    field: str,
+) -> AppendState:
+    key = (node.nid, field)
+    state = states.get(key)
+    if state is None:
+        state = AppendState()
+        states[key] = state
+    return state
+
+
+def _append_content(
+    node: Node,
+    raw_line: str,
+    *,
+    field: str,
+    line_no: int,
+    source_label: str,
+    states: Dict[Tuple[str, str], AppendState],
+) -> None:
+    state = _get_append_state(states, node, field)
+    normalized = normalize_visible_chars(raw_line)
+    if not normalized.strip():
+        state.pending_paragraph_break = True
         return
-    if node.text:
-        node.text = f"{node.text}\n{normalized}"
+
+    pre = is_preformatted_line(normalized)
+    current_value = getattr(node, field) or ""
+    incoming = normalized if pre else normalized.lstrip()
+    if not incoming:
+        state.pending_paragraph_break = True
+        return
+
+    if not current_value:
+        updated = incoming
     else:
-        node.text = normalized
+        if state.in_pre or pre:
+            sep = "\n"
+        elif state.pending_paragraph_break:
+            sep = "\n\n"
+        else:
+            sep = " "
+        updated = f"{current_value}{sep}{incoming}"
+
+    setattr(node, field, updated)
+    state.pending_paragraph_break = False
+    state.in_pre = pre
+
     span = {"source_label": source_label, "locator": f"line:{line_no}"}
     if not node.source_spans or node.source_spans[-1] != span:
         node.source_spans.append(span)
+
+
+def _mark_pending_break(
+    node: Node,
+    *,
+    field: str,
+    states: Dict[Tuple[str, str], AppendState],
+) -> None:
+    state = _get_append_state(states, node, field)
+    state.pending_paragraph_break = True
+
+
+def _append_text(
+    node: Node,
+    line: str,
+    line_no: int,
+    source_label: str,
+    states: Dict[Tuple[str, str], AppendState],
+) -> None:
+    _append_content(
+        node,
+        line,
+        field="text",
+        line_no=line_no,
+        source_label=source_label,
+        states=states,
+    )
+
+
+def _append_heading(
+    node: Node,
+    line: str,
+    line_no: int,
+    source_label: str,
+    states: Dict[Tuple[str, str], AppendState],
+) -> None:
+    _append_content(
+        node,
+        line,
+        field="heading",
+        line_no=line_no,
+        source_label=source_label,
+        states=states,
+    )
+
+
+def _repair_hyphenated_wraps(
+    text: str,
+    *,
+    hyphen_words: Set[str],
+    plain_words: Set[str],
+) -> str:
+    def _choose(match: re.Match[str]) -> str:
+        left = match.group(1)
+        right = match.group(2)
+        keep = f"{left}-{right}"
+        drop = f"{left}{right}"
+        keep_l = keep.lower()
+        drop_l = drop.lower()
+        left_l = left.lower()
+        if keep_l in KEEP_HYPHEN_ALLOWLIST or keep_l in hyphen_words:
+            return keep
+        if drop_l in plain_words:
+            return drop
+        if left_l in KEEP_PREFIXES:
+            return keep
+        return drop
+
+    previous = text
+    while True:
+        updated = HYPHEN_WRAP_PATTERN.sub(_choose, previous)
+        if updated == previous:
+            return updated
+        previous = updated
+
+
+def _collect_word_sets(root: Node) -> Tuple[Set[str], Set[str]]:
+    hyphen_words: Set[str] = set()
+    plain_words: Set[str] = set()
+
+    def _visit(node: Node) -> None:
+        for value in (node.heading, node.text):
+            if not value:
+                continue
+            hyphen_words.update(word.lower() for word in HYPHEN_WORD_PATTERN.findall(value))
+            plain_words.update(word.lower() for word in PLAIN_WORD_PATTERN.findall(value))
+        for child in node.children:
+            _visit(child)
+
+    _visit(root)
+    return hyphen_words, plain_words
+
+
+def _postprocess_node_text(
+    root: Node,
+    *,
+    hyphen_words: Set[str],
+    plain_words: Set[str],
+) -> None:
+    def _visit(node: Node) -> None:
+        for field in ("heading", "text"):
+            value = getattr(node, field)
+            if not value:
+                continue
+            if "\n" in value:
+                continue
+            setattr(
+                node,
+                field,
+                _repair_hyphenated_wraps(
+                    value,
+                    hyphen_words=hyphen_words,
+                    plain_words=plain_words,
+                ),
+            )
+        for child in node.children:
+            _visit(child)
+
+    _visit(root)
+
+
+def qualitycheck_document(root: Node) -> List[str]:
+    warnings: List[str] = []
+
+    def _is_preformatted_text_block(text: str) -> bool:
+        if "\n" not in text:
+            return False
+        return any(is_preformatted_line(line) for line in text.splitlines())
+
+    def _visit(node: Node) -> None:
+        for field in ("heading", "text"):
+            value = getattr(node, field)
+            if not value:
+                continue
+            if HYPHEN_WRAP_PATTERN.search(value):
+                warnings.append(f"{node.nid}:{field}: unresolved hyphen-space pattern remains")
+            if "\n" in value and "\n\n" not in value and not _is_preformatted_text_block(value):
+                warnings.append(f"{node.nid}:{field}: single newline remains in prose")
+        for child in node.children:
+            _visit(child)
+
+    _visit(root)
+    return warnings
+
+
+def run_text_postprocess_and_qualitycheck(root: Node) -> List[str]:
+    hyphen_words, plain_words = _collect_word_sets(root)
+    _postprocess_node_text(root, hyphen_words=hyphen_words, plain_words=plain_words)
+    return qualitycheck_document(root)
 
 
 def _find_latest_non_note_stack_index(stack: List[Node]) -> Optional[int]:
@@ -489,12 +722,15 @@ def parse_text_to_ir(
     current = root
     node_factory = _NodeFactory(structural_kinds=structural_kinds)
     parent_last_seen: Dict[str, Dict[str, LastSeen]] = {}
+    append_states: Dict[Tuple[str, str], AppendState] = {}
 
     lines = input_path.read_text(encoding="utf-8").splitlines()
     for line_no, raw_line in enumerate(lines, start=1):
-        stripped_for_match = raw_line.lstrip()
-        if not stripped_for_match:
+        if not raw_line.strip():
+            if current is not root:
+                _mark_pending_break(current, field="text", states=append_states)
             continue
+        stripped_for_match = raw_line.lstrip()
 
         remaining = stripped_for_match
         created_nodes: List[Node] = []
@@ -569,7 +805,7 @@ def parse_text_to_ir(
 
         if created_nodes:
             if current.kind in {"note", "history"}:
-                _append_text(current, stripped_for_match, line_no, source_label)
+                _append_text(current, raw_line, line_no, source_label, append_states)
             elif current.kind in structural_kinds:
                 if remaining:
                     if current.kind == "section":
@@ -577,14 +813,11 @@ def parse_text_to_ir(
                     else:
                         heading = _normalize_structural_heading(current.kind, remaining)
                         chapeau = None
-                    if current.heading is None:
-                        current.heading = heading or None
-                    else:
-                        _append_text(current, heading, line_no, source_label)
+                    _append_heading(current, heading, line_no, source_label, append_states)
                     if chapeau:
-                        _append_text(current, chapeau, line_no, source_label)
+                        _append_text(current, chapeau, line_no, source_label, append_states)
             elif remaining:
-                _append_text(current, remaining, line_no, source_label)
+                _append_text(current, remaining, line_no, source_label, append_states)
             continue
 
         if current is root:
@@ -632,8 +865,11 @@ def parse_text_to_ir(
                     )
                     stack = stack[: fallback_idx + 1]
                     current = fallback
-        _append_text(current, stripped_for_match, line_no, source_label)
+        _append_text(current, raw_line, line_no, source_label, append_states)
 
+    _quality_warnings = run_text_postprocess_and_qualitycheck(root)
+    for warning in _quality_warnings:
+        LOGGER.warning("qualitycheck: %s", warning)
     assign_document_order(root)
     index = {"display_name_by_nid": {}}
     _collect_display_names(root, index["display_name_by_nid"])

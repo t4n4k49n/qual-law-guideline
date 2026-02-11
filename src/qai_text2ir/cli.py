@@ -12,7 +12,7 @@ from qai_xml2ir.serialize import sha256_file, write_yaml
 from qai_xml2ir.verify import verify_document
 
 from .profile_loader import load_parser_profile
-from .text_parser import parse_text_to_ir
+from .text_parser import parse_text_to_ir, qualitycheck_document
 
 app = typer.Typer(add_completion=False)
 
@@ -174,6 +174,8 @@ def bundle(
     jurisdiction: Optional[str] = typer.Option(None, "--jurisdiction"),
     language: Optional[str] = typer.Option(None, "--language"),
     emit_only: str = typer.Option("all", "--emit-only"),
+    qualitycheck: bool = typer.Option(True, "--qualitycheck/--no-qualitycheck"),
+    strict: bool = typer.Option(False, "--strict"),
 ) -> None:
     if not isinstance(doc_id, str):
         doc_id = None
@@ -225,6 +227,14 @@ def bundle(
         doc_id=resolved_doc_id,
         parser_profile=parser_profile,
     )
+    if qualitycheck:
+        qc_warnings = qualitycheck_document(ir_doc.content)
+        for msg in qc_warnings:
+            typer.echo(f"[qualitycheck] {msg}", err=True)
+        if strict and qc_warnings:
+            raise typer.BadParameter(
+                f"qualitycheck found {len(qc_warnings)} warning(s); re-run with --no-qualitycheck or fix input/profile."
+            )
     verify_document(ir_doc.to_dict())
 
     if regdoc_profile_path:
