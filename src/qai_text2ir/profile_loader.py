@@ -18,6 +18,7 @@ def load_parser_profile(
     *,
     profile_id: Optional[str] = None,
     path: Optional[Path] = None,
+    family: str = "US_CFR",
 ) -> Dict[str, Any]:
     profiles_dir = Path(__file__).resolve().parent / "profiles"
     if path is not None:
@@ -25,5 +26,10 @@ def load_parser_profile(
     elif profile_id:
         profile_path = profiles_dir / f"{profile_id}.yaml"
     else:
-        profile_path = profiles_dir / "us_cfr_default_v1.yaml"
+        if family == "US_CFR":
+            profile_path = profiles_dir / "us_cfr_default_v2.yaml"
+            if not profile_path.exists():
+                profile_path = profiles_dir / "us_cfr_default_v1.yaml"
+        else:
+            profile_path = profiles_dir / "us_cfr_default_v1.yaml"
     return _load_yaml(profile_path)

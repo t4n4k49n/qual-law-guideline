@@ -1,0 +1,64 @@
+schema: qai.parser_profile.v1
+id: us_cfr_default_v2
+title: US CFR default markers
+applies_to:
+  family: US_CFR
+  jurisdiction: US
+  defaults: true
+language: en
+source_label: CFR
+context_root_kind: section
+structural_kinds: [part, subpart, section]
+marker_types:
+  - id: part
+    kind: part
+    kind_raw: PART
+    match: '^PART\s+(?P<num>\d+)\b'
+  - id: subpart
+    kind: subpart
+    kind_raw: Subpart
+    match: '^Subpart\s+(?P<num>[A-Z])\b'
+  - id: section
+    kind: section
+    kind_raw: "§"
+    match: '^§\s*(?P<num>\d+(?:\.\d+)*)\b'
+  - id: paren_alpha
+    kind: paragraph
+    kind_raw: "(a)"
+    match: '^\((?P<num>[a-z])\)\s*'
+  - id: paren_digit
+    kind: item
+    kind_raw: "(1)"
+    match: '^\((?P<num>\d+)\)\s*'
+  - id: paren_roman
+    kind: subitem
+    kind_raw: "(i)"
+    match: '^\((?P<num>[ivxlcdm]+)\)\s*'
+  - id: note_fr
+    kind: note
+    kind_raw: "[FR]"
+    match: '^\[(?=.*\b\d+\s+FR\b).+\]\s*$'
+  - id: note_authority_source
+    kind: note
+    kind_raw: "Authority/Source"
+    match: '^(?i:(Authority|Source)):\s+.*$'
+structure:
+  root:
+    children: [part, subpart, section, note]
+  part:
+    children: [subpart, section, note]
+  subpart:
+    children: [section, note]
+  section:
+    children: [paragraph, item, note]
+  paragraph:
+    children: [item, subitem]
+  item:
+    children: [subitem]
+  subitem:
+    children: []
+diagnostics: []
+warnings: {}
+compound_prefix:
+  enabled: true
+  max_depth: 6

@@ -88,6 +88,13 @@ def _build_regdoc_profile(doc_id: str, context_root_kind: str = "section") -> Di
     }
 
 
+def _safe_meta_input_path(input_path: Path) -> str:
+    try:
+        return str(input_path.resolve().relative_to(Path.cwd().resolve()))
+    except ValueError:
+        return input_path.name
+
+
 def _build_text_meta(
     *,
     doc_id: str,
@@ -204,7 +211,11 @@ def bundle(
     resolved_title = title or resolved_doc_id
     resolved_short_title = short_title or resolved_title
 
-    parser_profile = load_parser_profile(profile_id=parser_profile_id, path=parser_profile_path)
+    parser_profile = load_parser_profile(
+        profile_id=parser_profile_id,
+        path=parser_profile_path,
+        family="US_CFR",
+    )
     applies_to = parser_profile.get("applies_to") or {}
     resolved_jurisdiction = jurisdiction or applies_to.get("jurisdiction") or "US"
     resolved_language = language or _infer_default_language(resolved_jurisdiction, parser_profile)
@@ -252,7 +263,7 @@ def bundle(
             ir_path=ir_path.name,
             parser_profile_path=parser_profile_path.name,
             regdoc_profile_path=regdoc_profile_path.name,
-            input_path=str(input),
+            input_path=_safe_meta_input_path(input),
             input_checksum=sha256_file(input),
         )
         write_yaml(meta_path, meta)
