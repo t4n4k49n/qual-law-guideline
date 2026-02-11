@@ -1,0 +1,10 @@
+file: %USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\11.CFR\Un-fomatted\PART11.txt
+total_non_marker_lines: 6
+
+19: [62 FR 13464, Mar. 20, 1997, as amended at 69 FR 71655, Dec. 9, 2004; 79 FR 71253, 71291, Dec. 1, 2014; 80 FR 56144, 56336, Sept. 17, 2015; 80 FR 74352, 74547, 74667, Nov. 27, 2015; 81 FR 20170, Apr. 6, 2016; 81 FR 34218, May 27, 2016; 86 FR 68830, Dec. 3, 2021]
+39: Persons who use closed systems to create, modify, maintain, or transmit electronic records shall employ proce-dures and controls designed to ensure the authenticity, integrity, and, when appropriate, the confidentiality of elec-tronic records, and to ensure that the signer cannot readily repudiate the signed record as not genuine. Such pro-cedures and controls shall include the following: 
+54:  Persons who use open systems to cre-ate, modify, maintain, or transmit electronic records shall employ proce-dures and controls designed to ensure the authenticity, integrity, and, as ap-propriate, the confidentiality of elec-tronic records from the point of their creation to the point of their receipt.
+55:  Such procedures and controls shall in-clude those identified in § 11.10, as ap-propriate, and additional measures such as document encryption and use of appropriate digital signature stand-ards to ensure, as necessary under the circumstances, record authenticity, in-tegrity, and confidentiality.
+63:  Electronic signatures and hand-written signatures executed to elec-tronic records shall be linked to their respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to fal-sify an electronic record by ordinary means.
+71: [62 FR 13464, Mar. 20, 1997, as amended at 88 FR 13018, Mar. 2, 2023]
+

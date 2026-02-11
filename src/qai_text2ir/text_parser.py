@@ -98,8 +98,12 @@ class _NodeFactory:
         source_label: str,
         parent_nid: str,
     ) -> Node:
-        role = "structural" if kind in self._structural_kinds else "normative"
-        normativity = None if role == "structural" else "must"
+        if kind in {"note", "history"}:
+            role = "informative"
+            normativity = None
+        else:
+            role = "structural" if kind in self._structural_kinds else "normative"
+            normativity = None if role == "structural" else "must"
         token = self._token(kind, num, parent_nid)
         base_nid = token if parent_nid == "root" else f"{parent_nid}.{token}"
         nid = self._nid_builder.unique(base_nid)
@@ -492,7 +496,9 @@ def parse_text_to_ir(
                 break
 
         if created_nodes:
-            if current.kind in structural_kinds:
+            if current.kind in {"note", "history"}:
+                _append_text(current, stripped_for_match, line_no, source_label)
+            elif current.kind in structural_kinds:
                 if remaining:
                     if current.heading is None:
                         current.heading = remaining
