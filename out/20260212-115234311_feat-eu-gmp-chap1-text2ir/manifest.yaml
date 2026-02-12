@@ -1,0 +1,29 @@
+schema: qai.run_manifest.v1
+run_id: 20260212-115234311_feat-eu-gmp-chap1-text2ir
+created_at: '2026-02-12T02:53:36Z'
+git:
+  commit: 69d2e195426e8b624caaa47b9166de92fd792689
+  branch: feat/eu-gmp-chap1-text2ir
+input:
+  path: data/human-readable/eu_gmp/vol4/chap1_2013-01_en.txt
+  checksum: c7062690a0431465173d3d25db4467a23fb65af7848c80f9edab9dbc5c4911f3
+command:
+  argv: python -m qai_text2ir.cli --input data/human-readable/eu_gmp/vol4/chap1_2013-01_en.txt
+    --out-dir out/20260212-115234311_feat-eu-gmp-chap1-text2ir --doc-id eu_gmp_vol4_chap1_20130131
+    --title "EU GMP Vol.4 Chapter 1 Pharmaceutical Quality System" --short-title "EU
+    GMP Ch1 PQS" --jurisdiction EU --language en --doc-type guideline --source-url
+    "https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en"
+    --source-format pdf --retrieved-at "2026-02-12" --eu-volume "4" --parser-profile
+    src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml --emit-only all
+outputs:
+  doc_id: eu_gmp_vol4_chap1_20130131
+  files:
+  - eu_gmp_vol4_chap1_20130131.regdoc_ir.yaml
+  - eu_gmp_vol4_chap1_20130131.parser_profile.yaml
+  - eu_gmp_vol4_chap1_20130131.regdoc_profile.yaml
+  - eu_gmp_vol4_chap1_20130131.meta.yaml
+review:
+  method: visual
+  notes: Chapter 1 heading, paragraph 1.1-1.10, paragraph 1.4 item (i)-(xiv), and
+    paragraph 1.8 bullet subitems were confirmed. One hyphen-wrap quality warning
+    remains at item (xiv).

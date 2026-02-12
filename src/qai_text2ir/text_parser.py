@@ -157,6 +157,83 @@ def _compile_markers(parser_profile: Dict[str, Any]) -> List[Tuple[Dict[str, Any
     return compiled
 
 
+def _starts_with_any_marker(
+    text: str,
+    compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
+) -> bool:
+    for _, pattern in compiled_markers:
+        if pattern.match(text):
+            return True
+    return False
+
+
+def _find_structural_marker_end(
+    text: str,
+    compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
+    structural_kinds: Set[str],
+) -> Optional[int]:
+    for marker, pattern in compiled_markers:
+        if marker.get("kind") not in structural_kinds:
+            continue
+        matched = pattern.match(text)
+        if matched:
+            return matched.end()
+    return None
+
+
+def _looks_like_heading_line(text: str) -> bool:
+    candidate = text.strip()
+    if not candidate:
+        return False
+    if len(candidate) > 120:
+        return False
+    if re.search(r"[.!?]\s*$", candidate):
+        return False
+    return True
+
+
+def _merge_structural_marker_heading_lines(
+    lines: List[str],
+    compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
+    structural_kinds: Set[str],
+) -> List[str]:
+    # Keep line count stable: merged next line is replaced with an empty line.
+    merged = list(lines)
+    idx = 0
+    while idx < len(merged) - 1:
+        current = merged[idx]
+        if not current.strip():
+            idx += 1
+            continue
+        current_stripped = current.lstrip()
+        marker_end = _find_structural_marker_end(
+            current_stripped,
+            compiled_markers,
+            structural_kinds,
+        )
+        if marker_end is None:
+            idx += 1
+            continue
+        if current_stripped[marker_end:].strip():
+            idx += 1
+            continue
+        next_line = merged[idx + 1]
+        next_stripped = next_line.strip()
+        if not next_stripped:
+            idx += 1
+            continue
+        if _starts_with_any_marker(next_line.lstrip(), compiled_markers):
+            idx += 1
+            continue
+        if not _looks_like_heading_line(next_stripped):
+            idx += 1
+            continue
+        merged[idx] = f"{current.rstrip()} {next_stripped}"
+        merged[idx + 1] = ""
+        idx += 2
+    return merged
+
+
 def _extract_num(marker: Dict[str, Any], match: re.Match[str]) -> Optional[str]:
     groups = match.groupdict() if match.groupdict() else {}
     num_group = marker.get("num_group")
@@ -725,6 +802,7 @@ def parse_text_to_ir(
     append_states: Dict[Tuple[str, str], AppendState] = {}
 
     lines = input_path.read_text(encoding="utf-8").splitlines()
+    lines = _merge_structural_marker_heading_lines(lines, compiled_markers, structural_kinds)
     for line_no, raw_line in enumerate(lines, start=1):
         if not raw_line.strip():
             if current is not root:
