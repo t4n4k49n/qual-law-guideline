@@ -22,10 +22,12 @@ GAP_WARN_MAX_BY_FAMILY = {
 HYPHEN_WRAP_PATTERN = re.compile(r"([A-Za-z]{2,})[-\u2010\u2011]\s+([A-Za-z]{2,})")
 HYPHEN_WORD_PATTERN = re.compile(r"\b[A-Za-z]+-[A-Za-z]+\b")
 PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
+PAGE_NUMBER_LINE_PATTERN = re.compile(r"^\s*\d{1,3}\s*$")
 KEEP_HYPHEN_ALLOWLIST = {
     "time-stamped",
     "time-sequenced",
     "computer-generated",
+    "system-based",
 }
 KEEP_PREFIXES = {
     "time",
@@ -510,20 +512,34 @@ def normalize_visible_chars(s: str) -> str:
     return s.replace("\r", "").replace("\u00ad", "").rstrip()
 
 
+def _leading_space_count(raw_line: str) -> int:
+    return len(raw_line) - len(raw_line.lstrip(" "))
+
+
 def is_preformatted_line(raw_line: str) -> bool:
     if not raw_line:
         return False
+    leading_spaces = _leading_space_count(raw_line)
     if raw_line.startswith("\t"):
         return True
-    if raw_line.startswith("    "):
+    if leading_spaces >= 12:
         return True
     if "|" in raw_line:
         return True
     if re.search(r"[-=]{5,}", raw_line):
         return True
-    if len(re.findall(r" {2,}", raw_line)) >= 2:
+    core = raw_line.lstrip(" ")
+    if leading_spaces >= 4 and re.search(r" {2,}", core):
+        return True
+    if len(re.findall(r" {2,}", core)) >= 2:
         return True
     return False
+
+
+def _is_preformatted_text_block(text: str) -> bool:
+    if "\n" not in text:
+        return False
+    return any(is_preformatted_line(line) for line in text.splitlines())
 
 
 def _get_append_state(
@@ -683,16 +699,24 @@ def _postprocess_node_text(
             value = getattr(node, field)
             if not value:
                 continue
-            if "\n" in value:
-                continue
+            parts = value.split("\n\n")
+            processed: List[str] = []
+            for part in parts:
+                if _is_preformatted_text_block(part):
+                    processed.append(part)
+                    continue
+                folded = part.replace("\n", " ")
+                processed.append(
+                    _repair_hyphenated_wraps(
+                        folded,
+                        hyphen_words=hyphen_words,
+                        plain_words=plain_words,
+                    )
+                )
             setattr(
                 node,
                 field,
-                _repair_hyphenated_wraps(
-                    value,
-                    hyphen_words=hyphen_words,
-                    plain_words=plain_words,
-                ),
+                "\n\n".join(processed),
             )
         for child in node.children:
             _visit(child)
@@ -703,11 +727,6 @@ def _postprocess_node_text(
 def qualitycheck_document(root: Node) -> List[str]:
     warnings: List[str] = []
 
-    def _is_preformatted_text_block(text: str) -> bool:
-        if "\n" not in text:
-            return False
-        return any(is_preformatted_line(line) for line in text.splitlines())
-
     def _visit(node: Node) -> None:
         for field in ("heading", "text"):
             value = getattr(node, field)
@@ -715,7 +734,13 @@ def qualitycheck_document(root: Node) -> List[str]:
                 continue
             if HYPHEN_WRAP_PATTERN.search(value):
                 warnings.append(f"{node.nid}:{field}: unresolved hyphen-space pattern remains")
-            if "\n" in value and "\n\n" not in value and not _is_preformatted_text_block(value):
+            is_pre = _is_preformatted_text_block(value)
+            if not is_pre:
+                for line in value.splitlines():
+                    if PAGE_NUMBER_LINE_PATTERN.match(line):
+                        warnings.append(f"{node.nid}:{field}: page-number-only line remains")
+                        break
+            if "\n" in value and "\n\n" not in value and not is_pre:
                 warnings.append(f"{node.nid}:{field}: single newline remains in prose")
         for child in node.children:
             _visit(child)
@@ -793,10 +818,16 @@ def parse_text_to_ir(
     )
     compound_enabled = bool(compound.get("enabled"))
     max_depth = int(compound.get("max_depth", 1))
+    preprocess = parser_profile.get("preprocess") or {}
+    drop_line_regexes = [re.compile(p) for p in (preprocess.get("drop_line_regexes") or [])]
+    drop_line_exact = {v for v in (preprocess.get("drop_line_exact") or []) if isinstance(v, str) and v}
+    use_indent_dedent = bool(preprocess.get("use_indent_dedent"))
+    dedent_pop_kinds = set(preprocess.get("dedent_pop_kinds") or [])
 
     root = build_root([])
     stack: List[Node] = [root]
     current = root
+    node_indent_by_nid: Dict[str, int] = {root.nid: 0}
     node_factory = _NodeFactory(structural_kinds=structural_kinds)
     parent_last_seen: Dict[str, Dict[str, LastSeen]] = {}
     append_states: Dict[Tuple[str, str], AppendState] = {}
@@ -804,11 +835,17 @@ def parse_text_to_ir(
     lines = input_path.read_text(encoding="utf-8").splitlines()
     lines = _merge_structural_marker_heading_lines(lines, compiled_markers, structural_kinds)
     for line_no, raw_line in enumerate(lines, start=1):
+        stripped_raw = raw_line.strip()
+        if stripped_raw in drop_line_exact:
+            continue
+        if any(pat.match(stripped_raw) for pat in drop_line_regexes):
+            continue
         if not raw_line.strip():
             if current is not root:
                 _mark_pending_break(current, field="text", states=append_states)
             continue
         stripped_for_match = raw_line.lstrip()
+        current_indent = _leading_space_count(raw_line)
 
         remaining = stripped_for_match
         created_nodes: List[Node] = []
@@ -842,6 +879,7 @@ def parse_text_to_ir(
                             parent_nid=parent.nid,
                         )
                         parent.children.append(node)
+                        node_indent_by_nid[node.nid] = current_indent
                         stack = [root, node]
                         current = node
                         created_nodes.append(node)
@@ -863,6 +901,7 @@ def parse_text_to_ir(
                 parent_nid=parent.nid,
             )
             parent.children.append(node)
+            node_indent_by_nid[node.nid] = current_indent
             parent_state = parent_last_seen.setdefault(parent.nid, {})
             if marker_match.num is not None:
                 value = _parse_marker_value(marker_match)
@@ -897,6 +936,17 @@ def parse_text_to_ir(
             elif remaining:
                 _append_text(current, remaining, line_no, source_label, append_states)
             continue
+
+        if use_indent_dedent:
+            while len(stack) > 1:
+                top = stack[-1]
+                if top.kind not in dedent_pop_kinds:
+                    break
+                created_indent = node_indent_by_nid.get(top.nid, 0)
+                if current_indent >= created_indent:
+                    break
+                stack = stack[:-1]
+            current = stack[-1]
 
         if current is root:
             preamble = node_factory.create_node(
