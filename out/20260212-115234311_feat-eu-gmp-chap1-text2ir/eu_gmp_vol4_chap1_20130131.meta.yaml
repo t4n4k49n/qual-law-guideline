@@ -1,0 +1,52 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: eu_gmp_vol4_chap1_20130131
+  title: EU GMP Vol.4 Chapter 1 Pharmaceutical Quality System
+  short_title: EU GMP Ch1 PQS
+  jurisdiction: EU
+  doc_type: guideline
+  language: en
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: null
+    e_gov_revision_id: null
+    law_number: null
+    eu_volume: '4'
+  version:
+    as_of: null
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en
+    format: pdf
+    retrieved_at: '2026-02-12'
+    checksum: null
+    label: EU GMP
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v3
+    path: eu_gmp_vol4_chap1_20130131.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: eu_gmp_chap1_default_v1
+    path: eu_gmp_vol4_chap1_20130131.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: eu_gmp_vol4_chap1_20130131.regdoc_profile.yaml
+generation:
+  created_at: '2026-02-12T02:52:44Z'
+  tool:
+    name: qai_text2ir
+    version: null
+  inputs:
+  - path: data\human-readable\eu_gmp\vol4\chap1_2013-01_en.txt
+    checksum: c7062690a0431465173d3d25db4467a23fb65af7848c80f9edab9dbc5c4911f3
+  notes: []

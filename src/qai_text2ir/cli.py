@@ -102,11 +102,16 @@ def _build_text_meta(
     short_title: str,
     cfr_title: Optional[str],
     cfr_part: Optional[str],
+    doc_type: str,
     source_url: Optional[str],
+    source_format: str,
     retrieved_at: Optional[str],
     jurisdiction: str,
     language: str,
     source_label: str,
+    eu_volume: Optional[str],
+    pics_doc_id: Optional[str],
+    who_publication_id: Optional[str],
     parser_profile_id: str,
     ir_path: str,
     parser_profile_path: str,
@@ -118,7 +123,7 @@ def _build_text_meta(
         doc_id=doc_id,
         title=title,
         short_title=short_title,
-        doc_type="regulation",
+        doc_type=doc_type,
         law_id=None,
         law_number=None,
         as_of=None,
@@ -126,8 +131,8 @@ def _build_text_meta(
         effective_from=None,
         effective_to=None,
         revision_note=None,
-        source_url=None,
-        retrieved_at=None,
+        source_url=source_url,
+        retrieved_at=retrieved_at,
         parser_profile_id=parser_profile_id,
         ir_path=ir_path,
         parser_profile_path=parser_profile_path,
@@ -139,18 +144,40 @@ def _build_text_meta(
     )
     meta["doc"]["jurisdiction"] = jurisdiction
     meta["doc"]["language"] = language
-    meta["doc"]["doc_type"] = "regulation"
-    meta["doc"]["identifiers"]["cfr_title"] = cfr_title
-    meta["doc"]["identifiers"]["cfr_part"] = cfr_part
-    meta["doc"]["sources"] = [
-        {
-            "url": source_url,
-            "format": "txt",
-            "retrieved_at": retrieved_at,
-            "checksum": None,
-            "label": source_label,
-        }
-    ]
+    identifiers = meta["doc"].setdefault("identifiers", {})
+    if cfr_title:
+        identifiers["cfr_title"] = cfr_title
+    else:
+        identifiers.pop("cfr_title", None)
+    if cfr_part:
+        identifiers["cfr_part"] = cfr_part
+    else:
+        identifiers.pop("cfr_part", None)
+    if eu_volume:
+        identifiers["eu_volume"] = eu_volume
+    else:
+        identifiers.pop("eu_volume", None)
+    if pics_doc_id:
+        identifiers["pics_doc_id"] = pics_doc_id
+    else:
+        identifiers.pop("pics_doc_id", None)
+    if who_publication_id:
+        identifiers["who_publication_id"] = who_publication_id
+    else:
+        identifiers.pop("who_publication_id", None)
+
+    if source_url:
+        meta["doc"]["sources"] = [
+            {
+                "url": source_url,
+                "format": source_format,
+                "retrieved_at": retrieved_at,
+                "checksum": None,
+                "label": source_label,
+            }
+        ]
+    else:
+        meta["doc"]["sources"] = []
     meta["generation"]["tool"]["name"] = "qai_text2ir"
     meta["generation"]["created_at"] = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     return meta
@@ -165,8 +192,13 @@ def bundle(
     short_title: Optional[str] = typer.Option(None, "--short-title"),
     cfr_title: Optional[str] = typer.Option(None, "--cfr-title"),
     cfr_part: Optional[str] = typer.Option(None, "--cfr-part"),
+    doc_type: str = typer.Option("regulation", "--doc-type"),
     source_url: Optional[str] = typer.Option(None, "--source-url"),
+    source_format: Optional[str] = typer.Option(None, "--source-format"),
     retrieved_at: Optional[str] = typer.Option(None, "--retrieved-at"),
+    eu_volume: Optional[str] = typer.Option(None, "--eu-volume"),
+    pics_doc_id: Optional[str] = typer.Option(None, "--pics-doc-id"),
+    who_publication_id: Optional[str] = typer.Option(None, "--who-publication-id"),
     parser_profile_path: Optional[Path] = typer.Option(None, "--parser-profile", exists=True, dir_okay=False),
     parser_profile_id: Optional[str] = typer.Option(None, "--parser-profile-id"),
     regdoc_profile_path: Optional[Path] = typer.Option(None, "--regdoc-profile", exists=True, dir_okay=False),
@@ -187,10 +219,20 @@ def bundle(
         cfr_title = None
     if not isinstance(cfr_part, str):
         cfr_part = None
+    if not isinstance(doc_type, str):
+        doc_type = "regulation"
     if not isinstance(source_url, str):
         source_url = None
+    if not isinstance(source_format, str):
+        source_format = None
     if not isinstance(retrieved_at, str):
         retrieved_at = None
+    if not isinstance(eu_volume, str):
+        eu_volume = None
+    if not isinstance(pics_doc_id, str):
+        pics_doc_id = None
+    if not isinstance(who_publication_id, str):
+        who_publication_id = None
     if not isinstance(parser_profile_path, Path):
         parser_profile_path = None
     if not isinstance(parser_profile_id, str):
@@ -212,6 +254,10 @@ def bundle(
     resolved_doc_id = doc_id or input.stem
     resolved_title = title or resolved_doc_id
     resolved_short_title = short_title or resolved_title
+    inferred_source_format = source_format
+    if inferred_source_format is None:
+        lowered = (source_url or "").lower()
+        inferred_source_format = "pdf" if ".pdf" in lowered else "txt"
 
     parser_profile = load_parser_profile(
         profile_id=parser_profile_id,
@@ -264,11 +310,16 @@ def bundle(
             short_title=resolved_short_title,
             cfr_title=cfr_title,
             cfr_part=cfr_part,
+            doc_type=doc_type,
             source_url=source_url,
+            source_format=inferred_source_format,
             retrieved_at=retrieved_at,
             jurisdiction=resolved_jurisdiction,
             language=resolved_language,
             source_label=source_label,
+            eu_volume=eu_volume,
+            pics_doc_id=pics_doc_id,
+            who_publication_id=who_publication_id,
             parser_profile_id=parser_profile["id"],
             ir_path=ir_path.name,
             parser_profile_path=parser_profile_path.name,
