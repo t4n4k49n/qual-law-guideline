@@ -6,7 +6,7 @@ from typing import Dict, List
 import yaml
 
 from qai_text2ir import cli
-from qai_text2ir.text_parser import parse_text_to_ir
+from qai_text2ir.text_parser import parse_text_to_ir, qualitycheck_document
 from qai_xml2ir.verify import verify_document
 
 
@@ -87,3 +87,80 @@ def test_bundle_meta_doc_type_source_format_and_identifiers(tmp_path: Path) -> N
     assert meta["doc"]["identifiers"]["eu_volume"] == "4"
     assert "cfr_title" not in meta["doc"]["identifiers"]
     assert "cfr_part" not in meta["doc"]["identifiers"]
+
+
+def test_drop_page_numbers_and_fix_hyphen_wrap(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "Chapter 1",
+            "Pharmaceutical Quality System",
+            "1.4 Product quality review",
+            "(xiv) This should ensure that process, procedural or system-",
+            " based errors or problems have not been overlooked.",
+            "   3",
+        ]
+    )
+    input_path = tmp_path / "eu_gmp_drop_page_and_hyphen.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+    profile_path = Path("src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml")
+    parser_profile = yaml.safe_load(profile_path.read_text(encoding="utf-8"))
+
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="eu_gmp_drop_page_and_hyphen",
+        parser_profile=parser_profile,
+    )
+    ir_dict = ir_doc.to_dict()
+    verify_document(ir_dict)
+
+    nodes = _flatten(ir_dict["content"])
+    item_xiv = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "xiv")
+    text_xiv = item_xiv.get("text") or ""
+    assert "system-based" in text_xiv
+    assert "system- based" not in text_xiv
+    assert " 3 " not in f" {text_xiv} "
+    warnings = qualitycheck_document(ir_doc.content)
+    assert not any("unresolved hyphen-space pattern remains" in w for w in warnings)
+    assert not any("page-number-only line remains" in w for w in warnings)
+
+
+def test_parse_item_roman_rparen_and_dedent_back_to_paragraph(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "Chapter 1",
+            "Pharmaceutical Quality System",
+            "1.13 The principles of quality risk management are that:",
+            "    i) The evaluation of the risk to quality is based on scientific knowledge,",
+            "       experience with the process and ultimately links to the protection of the patient",
+            "    ii) The level of effort, formality and documentation of the quality risk",
+            "        management process is commensurate with the level of risk",
+            "Examples of the processes and applications of quality risk management can be found.",
+            "8",
+        ]
+    )
+    input_path = tmp_path / "eu_gmp_item_rparen_dedent.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+    profile_path = Path("src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml")
+    parser_profile = yaml.safe_load(profile_path.read_text(encoding="utf-8"))
+
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="eu_gmp_item_rparen_dedent",
+        parser_profile=parser_profile,
+    )
+    ir_dict = ir_doc.to_dict()
+    verify_document(ir_dict)
+
+    nodes = _flatten(ir_dict["content"])
+    paragraph_113 = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "1.13")
+    item_i = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "i")
+    item_ii = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "ii")
+
+    assert item_i["nid"].startswith(paragraph_113["nid"])
+    assert item_ii["nid"].startswith(paragraph_113["nid"])
+    assert "Examples of the processes and applications of quality risk management can be found." in (
+        paragraph_113.get("text") or ""
+    )
+    assert "Examples of the processes and applications of quality risk management can be found." not in (
+        item_ii.get("text") or ""
+    )
