@@ -7,6 +7,7 @@ from typing import Dict, List
 import yaml
 
 from qai_text2ir import cli
+from qai_text2ir.profile_loader import load_parser_profile
 from qai_text2ir.text_parser import parse_text_to_ir, qualitycheck_document
 from qai_xml2ir.verify import verify_document
 
@@ -98,9 +99,11 @@ def test_drop_page_numbers_and_fix_hyphen_wrap(tmp_path: Path) -> None:
         [
             "Chapter 1",
             "Pharmaceutical Quality System",
+            "Pharmaceutical Quality System1",
             "1.4 Product quality review",
             "(xiv) This should ensure that process, procedural or system-",
             " based errors or problems have not been overlooked.",
+            "Commission Européenne, B-1049 Bruxelles / Europese Commissie, B-1049 Brussel - Belgium Telephone: (32-2) 299 11 11.",
             "   3",
         ]
     )
@@ -121,6 +124,8 @@ def test_drop_page_numbers_and_fix_hyphen_wrap(tmp_path: Path) -> None:
     text_xiv = item_xiv.get("text") or ""
     assert "system-based" in text_xiv
     assert "system- based" not in text_xiv
+    assert "Commission" not in "\n".join((n.get("text") or "") for n in nodes)
+    assert "Pharmaceutical Quality System1" not in "\n".join((n.get("text") or "") for n in nodes)
     for node in nodes:
         for field in ("heading", "text"):
             value = node.get(field) or ""
@@ -198,3 +203,8 @@ def test_preformatted_block_still_repairs_hyphen_wrap(tmp_path: Path) -> None:
 
     assert "system-based" in text_xiv
     assert "system-            based" not in text_xiv
+
+
+def test_profile_loader_defaults_to_eu_gmp_v2() -> None:
+    profile = load_parser_profile(family="EU_GMP")
+    assert profile["id"] == "eu_gmp_chap1_default_v2"

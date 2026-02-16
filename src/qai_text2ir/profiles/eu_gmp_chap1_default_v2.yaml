@@ -4,7 +4,7 @@ title: EU GMP Vol.4 Chapter 1 markers
 applies_to:
   family: EU_GMP
   jurisdiction: EU
-  defaults: false
+  defaults: true
 language: en
 source_label: EU GMP
 context_root_kind: chapter
@@ -12,6 +12,8 @@ structural_kinds: [chapter]
 preprocess:
   drop_line_regexes:
     - '^\d{1,3}$'
+    - '^Commission.*B-1049.*Telephone:.*$'
+    - '^Pharmaceutical Quality System\d*$'
     - '^\f$'
   use_indent_dedent: true
   dedent_pop_kinds: ["subitem", "item"]
