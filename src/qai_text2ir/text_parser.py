@@ -703,7 +703,13 @@ def _postprocess_node_text(
             processed: List[str] = []
             for part in parts:
                 if _is_preformatted_text_block(part):
-                    processed.append(part)
+                    processed.append(
+                        _repair_hyphenated_wraps(
+                            part,
+                            hyphen_words=hyphen_words,
+                            plain_words=plain_words,
+                        )
+                    )
                     continue
                 folded = part.replace("\n", " ")
                 processed.append(
@@ -732,14 +738,13 @@ def qualitycheck_document(root: Node) -> List[str]:
             value = getattr(node, field)
             if not value:
                 continue
+            for line in value.splitlines():
+                if PAGE_NUMBER_LINE_PATTERN.match(line):
+                    warnings.append(f"{node.nid}:{field}: page-number-only line remains")
+                    break
             if HYPHEN_WRAP_PATTERN.search(value):
                 warnings.append(f"{node.nid}:{field}: unresolved hyphen-space pattern remains")
             is_pre = _is_preformatted_text_block(value)
-            if not is_pre:
-                for line in value.splitlines():
-                    if PAGE_NUMBER_LINE_PATTERN.match(line):
-                        warnings.append(f"{node.nid}:{field}: page-number-only line remains")
-                        break
             if "\n" in value and "\n\n" not in value and not is_pre:
                 warnings.append(f"{node.nid}:{field}: single newline remains in prose")
         for child in node.children:
