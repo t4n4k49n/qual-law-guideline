@@ -9,6 +9,14 @@ language: en
 source_label: EU GMP
 context_root_kind: chapter
 structural_kinds: [chapter]
+preprocess:
+  drop_line_regexes:
+    - '^\s*\d{1,3}\s*$'
+    - '^Commission\s+Europ.+Telephone:.*$'
+  drop_line_exact:
+    - ''
+  use_indent_dedent: true
+  dedent_pop_kinds: ["subitem", "item"]
 marker_types:
   - id: chapter
     kind: chapter
@@ -23,6 +31,11 @@ marker_types:
     kind: item
     kind_raw: "(i)"
     match: '^\((?P<n>[ivxlcdm]+)\)\s+'
+    num_group: n
+  - id: item_roman_rparen
+    kind: item
+    kind_raw: "i)"
+    match: '^(?P<n>[ivxlcdm]+)\)\s+'
     num_group: n
   - id: bullet
     kind: subitem
