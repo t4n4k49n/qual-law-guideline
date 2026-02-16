@@ -1,0 +1,67 @@
+schema: qai.parser_profile.v1
+id: who_lbm_3rd_default_v1
+title: WHO LBM 3rd (2004) markers
+applies_to:
+  family: WHO_LBM
+  jurisdiction: WHO
+  defaults: true
+language: en
+source_label: "WHO LBM"
+context_root_kind: chapter
+structural_kinds: ["chapter", "annex"]
+
+preprocess:
+  drop_line_regexes:
+    - '^(?:•\s*[0-9ivxlcdm]+\s*•)+$'
+    - '^\f$'
+  strip_inline_regexes:
+    - '(?i)\bLABORATORY BIOSAFETY MANUAL\b'
+    - '•\s*[0-9ivxlcdm]+\s*•'
+  use_indent_dedent: true
+  dedent_pop_kinds: ["subitem", "item"]
+
+marker_types:
+  - id: chapter_num_dot
+    kind: chapter
+    kind_raw: "1."
+    match: '^(?P<n>\d{1,2})\.\s+(?=[^.]{3,65}\s*$)(?!.*\b(must|should|shall|may)\b)'
+    num_group: n
+  - id: annex
+    kind: annex
+    kind_raw: "Annex"
+    match: '(?i)^Annex\s+(?P<n>\d+)\b'
+    num_group: n
+  - id: item_num_dot
+    kind: item
+    kind_raw: "1."
+    match: '^(?P<n>\d{1,3})\.\s+'
+    num_group: n
+  - id: item_alpha_upper_dot
+    kind: item
+    kind_raw: "A."
+    match: '^(?P<n>[A-Z])\.\s+'
+    num_group: n
+  - id: bullet
+    kind: subitem
+    kind_raw: "•"
+    match: '^[•]\s+'
+
+structure:
+  root:
+    children: [chapter, annex]
+  chapter:
+    children: [item, subitem, note, history]
+  annex:
+    children: [item, subitem, note, history]
+  item:
+    children: [subitem, note, history]
+  subitem:
+    children: [note, history]
+  note:
+    children: []
+  history:
+    children: []
+
+compound_prefix:
+  enabled: false
+  max_depth: 1

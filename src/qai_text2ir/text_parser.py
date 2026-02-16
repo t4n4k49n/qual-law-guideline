@@ -28,6 +28,7 @@ KEEP_HYPHEN_ALLOWLIST = {
     "time-sequenced",
     "computer-generated",
     "system-based",
+    "laboratory-acquired",
 }
 KEEP_PREFIXES = {
     "time",
@@ -722,7 +723,11 @@ def _postprocess_node_text(
             setattr(
                 node,
                 field,
-                "\n\n".join(processed),
+                _repair_hyphenated_wraps(
+                    "\n\n".join(processed),
+                    hyphen_words=hyphen_words,
+                    plain_words=plain_words,
+                ),
             )
         for child in node.children:
             _visit(child)
@@ -826,6 +831,7 @@ def parse_text_to_ir(
     preprocess = parser_profile.get("preprocess") or {}
     drop_line_regexes = [re.compile(p) for p in (preprocess.get("drop_line_regexes") or [])]
     drop_line_exact = {v for v in (preprocess.get("drop_line_exact") or []) if isinstance(v, str) and v}
+    strip_inline_regexes = [re.compile(p) for p in (preprocess.get("strip_inline_regexes") or [])]
     use_indent_dedent = bool(preprocess.get("use_indent_dedent"))
     dedent_pop_kinds = set(preprocess.get("dedent_pop_kinds") or [])
 
@@ -840,17 +846,21 @@ def parse_text_to_ir(
     lines = input_path.read_text(encoding="utf-8").splitlines()
     lines = _merge_structural_marker_heading_lines(lines, compiled_markers, structural_kinds)
     for line_no, raw_line in enumerate(lines, start=1):
-        stripped_raw = raw_line.strip()
+        raw_blank = not raw_line.strip()
+        cleaned_line = raw_line
+        for pat in strip_inline_regexes:
+            cleaned_line = pat.sub("", cleaned_line)
+        stripped_raw = cleaned_line.strip()
+        if not stripped_raw:
+            if raw_blank and current is not root:
+                _mark_pending_break(current, field="text", states=append_states)
+            continue
         if stripped_raw in drop_line_exact:
             continue
         if any(pat.match(stripped_raw) for pat in drop_line_regexes):
             continue
-        if not raw_line.strip():
-            if current is not root:
-                _mark_pending_break(current, field="text", states=append_states)
-            continue
-        stripped_for_match = raw_line.lstrip()
-        current_indent = _leading_space_count(raw_line)
+        stripped_for_match = cleaned_line.lstrip()
+        current_indent = _leading_space_count(cleaned_line)
 
         remaining = stripped_for_match
         created_nodes: List[Node] = []
@@ -927,7 +937,7 @@ def parse_text_to_ir(
 
         if created_nodes:
             if current.kind in {"note", "history"}:
-                _append_text(current, raw_line, line_no, source_label, append_states)
+                _append_text(current, cleaned_line, line_no, source_label, append_states)
             elif current.kind in structural_kinds:
                 if remaining:
                     if current.kind == "section":
@@ -998,7 +1008,7 @@ def parse_text_to_ir(
                     )
                     stack = stack[: fallback_idx + 1]
                     current = fallback
-        _append_text(current, raw_line, line_no, source_label, append_states)
+        _append_text(current, cleaned_line, line_no, source_label, append_states)
 
     _quality_warnings = run_text_postprocess_and_qualitycheck(root)
     for warning in _quality_warnings:
