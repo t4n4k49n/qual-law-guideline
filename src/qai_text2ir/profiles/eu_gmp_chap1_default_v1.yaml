@@ -4,7 +4,7 @@ title: EU GMP Vol.4 Chapter 1 markers
 applies_to:
   family: EU_GMP
   jurisdiction: EU
-  defaults: true
+  defaults: false
 language: en
 source_label: EU GMP
 context_root_kind: chapter

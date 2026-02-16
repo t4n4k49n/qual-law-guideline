@@ -30,6 +30,10 @@ def load_parser_profile(
             profile_path = profiles_dir / "us_cfr_default_v2.yaml"
             if not profile_path.exists():
                 profile_path = profiles_dir / "us_cfr_default_v1.yaml"
+        elif family == "EU_GMP":
+            profile_path = profiles_dir / "eu_gmp_chap1_default_v2.yaml"
+        elif family == "PICS":
+            profile_path = profiles_dir / "pics_part1_default_v1.yaml"
         else:
             profile_path = profiles_dir / "us_cfr_default_v1.yaml"
     return _load_yaml(profile_path)
