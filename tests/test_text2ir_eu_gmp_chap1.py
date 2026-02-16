@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 from typing import Dict, List
 
 import yaml
@@ -15,6 +16,10 @@ def _flatten(node: Dict) -> List[Dict]:
     for child in node.get("children", []):
         out.extend(_flatten(child))
     return out
+
+
+def _load_profile(path: str) -> Dict:
+    return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
 
 
 def test_eu_gmp_chapter_heading_merge_and_hierarchy(tmp_path: Path) -> None:
@@ -32,8 +37,7 @@ def test_eu_gmp_chapter_heading_merge_and_hierarchy(tmp_path: Path) -> None:
     )
     input_path = tmp_path / "eu_gmp_ch1.txt"
     input_path.write_text(text, encoding="utf-8", newline="\n")
-    profile_path = Path("src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml")
-    parser_profile = yaml.safe_load(profile_path.read_text(encoding="utf-8"))
+    parser_profile = _load_profile("src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml")
 
     ir_doc = parse_text_to_ir(
         input_path=input_path,
@@ -77,7 +81,7 @@ def test_bundle_meta_doc_type_source_format_and_identifiers(tmp_path: Path) -> N
         source_url="https://example.org/chapter1.pdf",
         retrieved_at="2026-02-12",
         eu_volume="4",
-        parser_profile_path=Path("src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml"),
+        parser_profile_path=Path("src/qai_text2ir/profiles/eu_gmp_chap1_default_v2.yaml"),
         emit_only="all",
     )
 
@@ -102,8 +106,7 @@ def test_drop_page_numbers_and_fix_hyphen_wrap(tmp_path: Path) -> None:
     )
     input_path = tmp_path / "eu_gmp_drop_page_and_hyphen.txt"
     input_path.write_text(text, encoding="utf-8", newline="\n")
-    profile_path = Path("src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml")
-    parser_profile = yaml.safe_load(profile_path.read_text(encoding="utf-8"))
+    parser_profile = _load_profile("src/qai_text2ir/profiles/eu_gmp_chap1_default_v2.yaml")
 
     ir_doc = parse_text_to_ir(
         input_path=input_path,
@@ -118,7 +121,11 @@ def test_drop_page_numbers_and_fix_hyphen_wrap(tmp_path: Path) -> None:
     text_xiv = item_xiv.get("text") or ""
     assert "system-based" in text_xiv
     assert "system- based" not in text_xiv
-    assert " 3 " not in f" {text_xiv} "
+    for node in nodes:
+        for field in ("heading", "text"):
+            value = node.get(field) or ""
+            for line in value.splitlines():
+                assert not re.fullmatch(r"\s*\d{1,3}\s*", line)
     warnings = qualitycheck_document(ir_doc.content)
     assert not any("unresolved hyphen-space pattern remains" in w for w in warnings)
     assert not any("page-number-only line remains" in w for w in warnings)
@@ -140,8 +147,7 @@ def test_parse_item_roman_rparen_and_dedent_back_to_paragraph(tmp_path: Path) ->
     )
     input_path = tmp_path / "eu_gmp_item_rparen_dedent.txt"
     input_path.write_text(text, encoding="utf-8", newline="\n")
-    profile_path = Path("src/qai_text2ir/profiles/eu_gmp_chap1_default_v1.yaml")
-    parser_profile = yaml.safe_load(profile_path.read_text(encoding="utf-8"))
+    parser_profile = _load_profile("src/qai_text2ir/profiles/eu_gmp_chap1_default_v2.yaml")
 
     ir_doc = parse_text_to_ir(
         input_path=input_path,
@@ -164,3 +170,31 @@ def test_parse_item_roman_rparen_and_dedent_back_to_paragraph(tmp_path: Path) ->
     assert "Examples of the processes and applications of quality risk management can be found." not in (
         item_ii.get("text") or ""
     )
+    assert " 8 " not in f" {paragraph_113.get('text') or ''} "
+
+
+def test_preformatted_block_still_repairs_hyphen_wrap(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "Chapter 1",
+            "Pharmaceutical Quality System",
+            "1.4 Product quality review",
+            "(xiv) process, procedural or system-",
+            "            based errors are reviewed.",
+        ]
+    )
+    input_path = tmp_path / "eu_gmp_preformatted_hyphen.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+    parser_profile = _load_profile("src/qai_text2ir/profiles/eu_gmp_chap1_default_v2.yaml")
+
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="eu_gmp_preformatted_hyphen",
+        parser_profile=parser_profile,
+    )
+    nodes = _flatten(ir_doc.to_dict()["content"])
+    item_xiv = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "xiv")
+    text_xiv = item_xiv.get("text") or ""
+
+    assert "system-based" in text_xiv
+    assert "system-            based" not in text_xiv

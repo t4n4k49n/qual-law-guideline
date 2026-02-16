@@ -1,0 +1,57 @@
+schema: qai.parser_profile.v1
+id: eu_gmp_chap1_default_v2
+title: EU GMP Vol.4 Chapter 1 markers
+applies_to:
+  family: EU_GMP
+  jurisdiction: EU
+  defaults: false
+language: en
+source_label: EU GMP
+context_root_kind: chapter
+structural_kinds: [chapter]
+preprocess:
+  drop_line_regexes:
+    - '^\d{1,3}$'
+    - '^\f$'
+  use_indent_dedent: true
+  dedent_pop_kinds: ["subitem", "item"]
+marker_types:
+  - id: chapter
+    kind: chapter
+    kind_raw: Chapter
+    match: '(?i)^Chapter\s+(?P<num>\d+)\b'
+  - id: paragraph_decimal
+    kind: paragraph
+    kind_raw: "1.1"
+    match: '^(?P<n>\d+(?:\.\d+)+)\s+'
+    num_group: n
+  - id: item_paren_roman
+    kind: item
+    kind_raw: "(i)"
+    match: '^\((?P<n>[ivxlcdm]+)\)\s+'
+    num_group: n
+  - id: item_roman_rparen
+    kind: item
+    kind_raw: "i)"
+    match: '^(?P<n>[ivxlcdm]+)\)\s+'
+    num_group: n
+  - id: bullet
+    kind: subitem
+    kind_raw: "•"
+    match: '^[•]\s+'
+structure:
+  root:
+    children: [chapter]
+  chapter:
+    children: [paragraph, item, subitem, note]
+  paragraph:
+    children: [item, subitem, note]
+  item:
+    children: [subitem, note]
+  subitem:
+    children: [note]
+  note:
+    children: []
+compound_prefix:
+  enabled: false
+  max_depth: 1
