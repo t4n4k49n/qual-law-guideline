@@ -1,0 +1,6 @@
+Intro line
+ANNEX 1
+Line A
+This line references Annex 1 in sentence and should not stop.
+ANNEX 2
+Line B
