@@ -1,0 +1,8 @@
+PE 009-17 (Annexes) -170- 25 August 2023
+ANNEX 11
+COMPUTERISED SYSTEMS
+4. Validation
+4.1 The validation documentation and reports should cover:
+a. a description of the system;
+b. acceptance criteria and test records;
+textending.Annex 11 Computerised systems
