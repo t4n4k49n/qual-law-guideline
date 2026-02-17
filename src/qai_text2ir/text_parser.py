@@ -23,6 +23,7 @@ HYPHEN_WRAP_PATTERN = re.compile(r"([A-Za-z]{2,})[-\u2010\u2011]\s+([A-Za-z]{2,}
 HYPHEN_WORD_PATTERN = re.compile(r"\b[A-Za-z]+-[A-Za-z]+\b")
 PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
 PAGE_NUMBER_LINE_PATTERN = re.compile(r"^\s*\d{1,3}\s*$")
+TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s+\d{1,3}\s*$")
 KEEP_HYPHEN_ALLOWLIST = {
     "time-stamped",
     "time-sequenced",
@@ -735,6 +736,29 @@ def _postprocess_node_text(
     _visit(root)
 
 
+def _qualitycheck_structure(parent: Node, warnings: List[str]) -> None:
+    sibling_counts: Dict[Tuple[str, str], int] = defaultdict(int)
+    for child in parent.children:
+        if child.role == "structural" and child.num:
+            sibling_counts[(child.kind, child.num)] += 1
+    for (kind, num), count in sibling_counts.items():
+        if count > 1:
+            warnings.append(
+                f"{parent.nid}: duplicate structural siblings kind={kind} num={num} count={count}"
+            )
+    for child in parent.children:
+        _qualitycheck_structure(child, warnings)
+
+
+def _qualitycheck_toc_like_headings(node: Node, warnings: List[str]) -> None:
+    if node.kind in {"chapter", "annex"} and node.heading:
+        heading = node.heading.strip()
+        if len(heading) >= 20 and TOC_LIKE_HEADING_PATTERN.match(heading):
+            warnings.append(f"{node.nid}: heading looks like TOC entry")
+    for child in node.children:
+        _qualitycheck_toc_like_headings(child, warnings)
+
+
 def qualitycheck_document(root: Node) -> List[str]:
     warnings: List[str] = []
 
@@ -756,6 +780,8 @@ def qualitycheck_document(root: Node) -> List[str]:
             _visit(child)
 
     _visit(root)
+    _qualitycheck_structure(root, warnings)
+    _qualitycheck_toc_like_headings(root, warnings)
     return warnings
 
 
@@ -807,6 +833,79 @@ def _build_display_name(node: Node) -> str:
     return node.kind
 
 
+def _find_last_in_stack(stack: List[Node], kind: str) -> Optional[Node]:
+    for node in reversed(stack):
+        if node.kind == kind:
+            return node
+    return None
+
+
+def _norm(value: str) -> str:
+    lowered = value.lower().strip()
+    lowered = re.sub(r"[\(\)\[\]\{\}:;,.]", " ", lowered)
+    lowered = re.sub(r"\s+", " ", lowered)
+    return lowered.strip()
+
+
+def _is_same_or_prefix(left: str, right: str) -> bool:
+    return left == right or left.startswith(right) or right.startswith(left)
+
+
+def _should_drop_repeated_structural_header_line(
+    stripped_raw: str,
+    stack: List[Node],
+    kinds: Set[str],
+) -> bool:
+    if not stripped_raw:
+        return False
+    root = stack[0] if stack else None
+    if "chapter" in kinds:
+        chapter = _find_last_in_stack(stack, "chapter")
+        chapter_match = re.match(r"^(?P<n>\d{1,2})\.\s+(?P<title>.+)$", stripped_raw)
+        if chapter and chapter.num and chapter.heading and chapter_match and chapter_match.group("n") == chapter.num:
+            line_heading = _norm(chapter_match.group("title"))
+            chapter_heading = _norm(chapter.heading)
+            if line_heading and chapter_heading and _is_same_or_prefix(line_heading, chapter_heading):
+                return True
+        if chapter_match and root:
+            chapter_num = chapter_match.group("n")
+            line_heading = _norm(chapter_match.group("title"))
+            for sibling in root.children:
+                if sibling.kind != "chapter" or sibling.num != chapter_num or not sibling.heading:
+                    continue
+                chapter_heading = _norm(sibling.heading)
+                if line_heading and chapter_heading and _is_same_or_prefix(line_heading, chapter_heading):
+                    return True
+    if "annex" in kinds:
+        annex_match = re.match(r"(?i)^annex\s+(?P<n>\d+)\b", stripped_raw)
+        annex_title = ""
+        if annex_match:
+            annex_title = stripped_raw[annex_match.end() :].strip()
+            annex_title = annex_title.lstrip(".:- ").strip()
+        annex = _find_last_in_stack(stack, "annex")
+        if annex and annex.num and annex_match and annex_match.group("n") == annex.num:
+            if not annex.heading or not annex_title:
+                return True
+            line_heading = _norm(annex_title)
+            annex_heading = _norm(annex.heading)
+            if line_heading and annex_heading and _is_same_or_prefix(line_heading, annex_heading):
+                return True
+            return True
+        if annex_match and root:
+            annex_num = annex_match.group("n")
+            for sibling in root.children:
+                if sibling.kind != "annex" or sibling.num != annex_num:
+                    continue
+                if not sibling.heading or not annex_title:
+                    return True
+                line_heading = _norm(annex_title)
+                annex_heading = _norm(sibling.heading)
+                if line_heading and annex_heading and _is_same_or_prefix(line_heading, annex_heading):
+                    return True
+                return True
+    return False
+
+
 def _collect_display_names(node: Node, table: Dict[str, str]) -> None:
     table[node.nid] = _build_display_name(node)
     for child in node.children:
@@ -834,6 +933,13 @@ def parse_text_to_ir(
     strip_inline_regexes = [re.compile(p) for p in (preprocess.get("strip_inline_regexes") or [])]
     use_indent_dedent = bool(preprocess.get("use_indent_dedent"))
     dedent_pop_kinds = set(preprocess.get("dedent_pop_kinds") or [])
+    repeated_header_cfg = preprocess.get("drop_repeated_structural_headers") or {}
+    drop_repeated_structural_headers_enabled = bool(repeated_header_cfg.get("enabled"))
+    repeated_header_kinds = {
+        str(v).strip().lower()
+        for v in (repeated_header_cfg.get("kinds") or [])
+        if str(v).strip()
+    }
 
     root = build_root([])
     stack: List[Node] = [root]
@@ -854,6 +960,12 @@ def parse_text_to_ir(
         if not stripped_raw:
             if raw_blank and current is not root:
                 _mark_pending_break(current, field="text", states=append_states)
+            continue
+        if drop_repeated_structural_headers_enabled and _should_drop_repeated_structural_header_line(
+            stripped_raw,
+            stack,
+            repeated_header_kinds,
+        ):
             continue
         if stripped_raw in drop_line_exact:
             continue
