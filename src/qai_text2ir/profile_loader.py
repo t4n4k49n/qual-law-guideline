@@ -35,7 +35,9 @@ def load_parser_profile(
         elif family == "PICS":
             profile_path = profiles_dir / "pics_part1_default_v1.yaml"
         elif family == "WHO_LBM":
-            profile_path = profiles_dir / "who_lbm_3rd_default_v3.yaml"
+            profile_path = profiles_dir / "who_lbm_3rd_default_v4.yaml"
+            if not profile_path.exists():
+                profile_path = profiles_dir / "who_lbm_3rd_default_v3.yaml"
             if not profile_path.exists():
                 profile_path = profiles_dir / "who_lbm_3rd_default_v2.yaml"
             if not profile_path.exists():
