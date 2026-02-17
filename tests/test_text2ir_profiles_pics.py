@@ -6,6 +6,7 @@ from typing import Dict, List
 import yaml
 
 from qai_text2ir import cli
+from qai_text2ir.profile_loader import load_parser_profile
 from qai_xml2ir.verify import verify_document
 
 
@@ -93,3 +94,7 @@ def test_text2ir_pics_annex1_profile(tmp_path: Path) -> None:
     assert bundled["meta"]["doc"]["language"] == "en"
     assert bundled["meta"]["doc"]["sources"][0]["label"] == "PIC/S"
 
+
+def test_profile_loader_defaults_to_pics_v2() -> None:
+    profile = load_parser_profile(family="PICS")
+    assert profile["id"] == "pics_part1_default_v2"
