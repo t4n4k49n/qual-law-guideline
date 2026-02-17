@@ -1,10 +1,10 @@
 schema: qai.parser_profile.v1
-id: who_lbm_3rd_default_v1
-title: WHO LBM 3rd (2004) markers
+id: who_lbm_3rd_default_v2
+title: WHO LBM 3rd (2004) markers v2
 applies_to:
   family: WHO_LBM
   jurisdiction: WHO
-  defaults: false
+  defaults: true
 language: en
 source_label: "WHO LBM"
 context_root_kind: chapter
@@ -14,17 +14,24 @@ preprocess:
   drop_line_regexes:
     - '^(?:•\s*[0-9ivxlcdm]+\s*•)+$'
     - '^\f$'
+    - '^(?P<n>\d{1,2})\.\s+.+\s+\d{1,3}\s*$'
+    - '(?i)^annex\s+\d+\s+.+\s+\d{1,3}\s*$'
+    - '(?i)^(foreword|acknowledgements)\s+[ivxlcdm]+\s*$'
+    - '(?i)^(references|index)\s+\d{1,3}\s*$'
   strip_inline_regexes:
     - '(?i)\bLABORATORY BIOSAFETY MANUAL\b'
     - '•\s*[0-9ivxlcdm]+\s*•'
   use_indent_dedent: true
   dedent_pop_kinds: ["subitem", "item"]
+  drop_repeated_structural_headers:
+    enabled: true
+    kinds: ["chapter", "annex"]
 
 marker_types:
   - id: chapter_num_dot
     kind: chapter
     kind_raw: "1."
-    match: '^(?P<n>\d{1,2})\.\s+(?=[^.]{3,65}\s*$)(?!.*\b(must|should|shall|may)\b)'
+    match: '^(?P<n>\d{1,2})\.\s+(?=[^.]{3,65}\s*$)(?!.*\b(must|should|shall|may)\b)(?!.*\s+\d{1,3}\s*$)'
     num_group: n
   - id: annex
     kind: annex
