@@ -1,0 +1,6 @@
+2. QUALITY MANAGEMENT
+2.1 Responsibilities of the Quality Unit
+2.19 ... should include but not necessarily be limited to:
+1. Releasing or rejecting all APIs.
+ Receipt, identification, sampling, and quarantine of incoming materials,
+pending release or rejection;
