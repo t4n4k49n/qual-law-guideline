@@ -192,13 +192,13 @@ def _find_structural_marker_end(
     text: str,
     compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
     structural_kinds: Set[str],
-) -> Optional[int]:
+) -> Optional[Tuple[str, int]]:
     for marker, pattern in compiled_markers:
         if marker.get("kind") not in structural_kinds:
             continue
         matched = pattern.match(text)
         if matched:
-            return matched.end()
+            return str(marker.get("kind")), matched.end()
     return None
 
 
@@ -221,24 +221,37 @@ def _merge_structural_marker_heading_lines(
     # Keep line count stable: merged next line is replaced with an empty line.
     merged = list(lines)
     idx = 0
+    max_blank_lookahead = 2
     while idx < len(merged) - 1:
         current = merged[idx]
         if not current.strip():
             idx += 1
             continue
         current_stripped = current.lstrip()
-        marker_end = _find_structural_marker_end(
+        marker_info = _find_structural_marker_end(
             current_stripped,
             compiled_markers,
             structural_kinds,
         )
-        if marker_end is None:
+        if marker_info is None:
             idx += 1
             continue
+        marker_kind, marker_end = marker_info
         if current_stripped[marker_end:].strip():
             idx += 1
             continue
-        next_line = merged[idx + 1]
+        next_idx = idx + 1
+        blank_count = 0
+        while next_idx < len(merged) and not merged[next_idx].strip() and blank_count < max_blank_lookahead:
+            next_idx += 1
+            blank_count += 1
+        if next_idx >= len(merged):
+            idx += 1
+            continue
+        if marker_kind == "annex" and blank_count > 0 and not current_stripped.startswith("ANNEX"):
+            idx += 1
+            continue
+        next_line = merged[next_idx]
         next_stripped = next_line.strip()
         if not next_stripped:
             idx += 1
@@ -250,8 +263,8 @@ def _merge_structural_marker_heading_lines(
             idx += 1
             continue
         merged[idx] = f"{current.rstrip()} {next_stripped}"
-        merged[idx + 1] = ""
-        idx += 2
+        merged[next_idx] = ""
+        idx = next_idx + 1
     return merged
 
 
@@ -907,6 +920,32 @@ def _should_drop_repeated_structural_header_line(
     if not stripped_raw:
         return False
     root = stack[0] if stack else None
+    if "part" in kinds:
+        part_match = re.match(r"(?i)^PART\s+(?P<n>[IVXLCDM]+)\.?\s*(?P<title>.*)$", stripped_raw)
+        if part_match:
+            part_num = part_match.group("n").strip().upper()
+            part_title = part_match.group("title").strip()
+            part = _find_last_in_stack(stack, "part")
+            # Empty-title lines can be real structural markers, so only drop when
+            # the same part is clearly repeated while already inside that part.
+            if not part_title:
+                if part and part.num and part.num.upper() == part_num:
+                    return True
+            else:
+                line_heading = _norm(part_title)
+                if part and part.num and part.num.upper() == part_num and part.heading:
+                    part_heading = _norm(part.heading)
+                    if line_heading and part_heading and _is_same_or_prefix(line_heading, part_heading):
+                        return True
+                if root:
+                    for sibling in root.children:
+                        if sibling.kind != "part" or not sibling.num:
+                            continue
+                        if sibling.num.upper() != part_num or not sibling.heading:
+                            continue
+                        part_heading = _norm(sibling.heading)
+                        if line_heading and part_heading and _is_same_or_prefix(line_heading, part_heading):
+                            return True
     if "chapter" in kinds:
         chapter = _find_last_in_stack(stack, "chapter")
         chapter_match = re.match(r"^(?P<n>\d{1,2})\.\s+(?P<title>.+)$", stripped_raw)
@@ -930,6 +969,10 @@ def _should_drop_repeated_structural_header_line(
         if annex_match:
             annex_title = stripped_raw[annex_match.end() :].strip()
             annex_title = annex_title.lstrip(".:- ").strip()
+            # Standalone "Annex N." in prose is typically a cross-reference, not a heading.
+            # Real annex headings survive via merged marker+title lines.
+            if not annex_title and re.match(r"^Annex\s+\d+\.?\s*$", stripped_raw):
+                return True
         annex = _find_last_in_stack(stack, "annex")
         if annex and annex.num and annex_match and annex_match.group("n") == annex.num:
             if not annex.heading or not annex_title:

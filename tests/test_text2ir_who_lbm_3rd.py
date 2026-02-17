@@ -93,9 +93,9 @@ def test_qualitycheck_no_single_newline_in_prose_for_fixture(tmp_path: Path) -> 
     assert not any("unresolved hyphen-space pattern remains" in w for w in warnings)
 
 
-def test_profile_loader_defaults_to_who_lbm_v3() -> None:
+def test_profile_loader_defaults_to_who_lbm_v4() -> None:
     profile = load_parser_profile(family="WHO_LBM")
-    assert profile["id"] == "who_lbm_3rd_default_v3"
+    assert profile["id"] == "who_lbm_3rd_default_v4"
 
 
 def test_drop_toc_entries_dont_create_chapters(tmp_path: Path) -> None:
