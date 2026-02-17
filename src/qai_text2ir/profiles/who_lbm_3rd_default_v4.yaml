@@ -35,10 +35,16 @@ preprocess:
     kinds: ["part", "chapter", "annex"]
   merge_structural_heading_continuations:
     enabled: true
-    kinds: ["chapter", "annex"]
-    max_next_line_len: 60
+    kinds: ["chapter", "annex", "part"]
+    max_next_line_len: 80
     max_merge_lines: 2
     max_blank_lookahead: 2
+  join_mid_sentence_marker_refs_into_prev:
+    enabled: true
+    kinds: ["annex"]
+    max_ref_line_len: 40
+    prev_must_not_end_regex: '[.!?]\s*$'
+    prev_prefer_endwords: ["in", "to", "of", "see", "as", "with", "for", "from", "by", "at", "on"]
 
 marker_types:
   - id: part_roman
@@ -54,7 +60,7 @@ marker_types:
   - id: annex
     kind: annex
     kind_raw: "Annex"
-    match: '(?i)^Annex\s+(?P<n>\d+)\s*(?:[.:\-–—])?(?:\s+|$)(?!.*\s{2,}\d{1,3}\s*$)'
+    match: '(?i)^ANNEX\s+(?P<n>\d+)(?!\s*[.:\-–—]\s*$)\s*(?:[.:\-–—])?\s*'
     num_group: n
   - id: item_num_dot
     kind: item
