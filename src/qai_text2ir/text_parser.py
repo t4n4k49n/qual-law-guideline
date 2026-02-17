@@ -88,6 +88,23 @@ class AttachCandidate:
     rare_roman_penalized: bool
 
 
+@dataclass
+class SkipBlockRule:
+    start_pattern: re.Pattern[str]
+    end_pattern: re.Pattern[str]
+    include_start: bool
+    include_end: bool
+    max_lines: int
+
+
+@dataclass
+class SkipBlockState:
+    active: bool = False
+    rule_index: Optional[int] = None
+    seen_lines: int = 0
+    start_line: int = 0
+
+
 class _NodeFactory:
     def __init__(self, structural_kinds: set[str]) -> None:
         self._nid_builder = NidBuilder()
@@ -912,6 +929,36 @@ def _collect_display_names(node: Node, table: Dict[str, str]) -> None:
         _collect_display_names(child, table)
 
 
+def _compile_skip_blocks(preprocess: Dict[str, Any]) -> List[SkipBlockRule]:
+    raw_blocks = preprocess.get("skip_blocks") or []
+    rules: List[SkipBlockRule] = []
+    for raw in raw_blocks:
+        if not isinstance(raw, dict):
+            continue
+        start_regex = raw.get("start_regex")
+        end_regex = raw.get("end_regex")
+        if not isinstance(start_regex, str) or not start_regex:
+            continue
+        if not isinstance(end_regex, str) or not end_regex:
+            continue
+        include_start = bool(raw.get("include_start", False))
+        include_end = bool(raw.get("include_end", True))
+        max_lines_raw = raw.get("max_lines", 2000)
+        max_lines = int(max_lines_raw) if isinstance(max_lines_raw, (int, float, str)) else 2000
+        if max_lines <= 0:
+            max_lines = 2000
+        rules.append(
+            SkipBlockRule(
+                start_pattern=re.compile(start_regex),
+                end_pattern=re.compile(end_regex),
+                include_start=include_start,
+                include_end=include_end,
+                max_lines=max_lines,
+            )
+        )
+    return rules
+
+
 def parse_text_to_ir(
     *,
     input_path: Path,
@@ -933,6 +980,7 @@ def parse_text_to_ir(
     strip_inline_regexes = [re.compile(p) for p in (preprocess.get("strip_inline_regexes") or [])]
     use_indent_dedent = bool(preprocess.get("use_indent_dedent"))
     dedent_pop_kinds = set(preprocess.get("dedent_pop_kinds") or [])
+    skip_block_rules = _compile_skip_blocks(preprocess)
     repeated_header_cfg = preprocess.get("drop_repeated_structural_headers") or {}
     drop_repeated_structural_headers_enabled = bool(repeated_header_cfg.get("enabled"))
     repeated_header_kinds = {
@@ -948,6 +996,7 @@ def parse_text_to_ir(
     node_factory = _NodeFactory(structural_kinds=structural_kinds)
     parent_last_seen: Dict[str, Dict[str, LastSeen]] = {}
     append_states: Dict[Tuple[str, str], AppendState] = {}
+    skip_block_state = SkipBlockState()
 
     lines = input_path.read_text(encoding="utf-8").splitlines()
     lines = _merge_structural_marker_heading_lines(lines, compiled_markers, structural_kinds)
@@ -957,6 +1006,44 @@ def parse_text_to_ir(
         for pat in strip_inline_regexes:
             cleaned_line = pat.sub("", cleaned_line)
         stripped_raw = cleaned_line.strip()
+        if skip_block_state.active and skip_block_state.rule_index is not None:
+            active_rule = skip_block_rules[skip_block_state.rule_index]
+            skip_block_state.seen_lines += 1
+            if active_rule.end_pattern.match(stripped_raw):
+                skip_block_state.active = False
+                skip_block_state.rule_index = None
+                skip_block_state.seen_lines = 0
+                skip_block_state.start_line = 0
+                if not active_rule.include_end:
+                    continue
+            elif skip_block_state.seen_lines > active_rule.max_lines:
+                LOGGER.warning(
+                    "skip_blocks end not found within max_lines=%s start_line=%s end_regex=%r",
+                    active_rule.max_lines,
+                    skip_block_state.start_line,
+                    active_rule.end_pattern.pattern,
+                )
+                skip_block_state.active = False
+                skip_block_state.rule_index = None
+                skip_block_state.seen_lines = 0
+                skip_block_state.start_line = 0
+            else:
+                continue
+        if not skip_block_state.active and skip_block_rules:
+            for idx, rule in enumerate(skip_block_rules):
+                if not rule.start_pattern.match(stripped_raw):
+                    continue
+                skip_block_state.active = True
+                skip_block_state.rule_index = idx
+                skip_block_state.seen_lines = 0
+                skip_block_state.start_line = line_no
+                if not rule.include_start:
+                    continue
+                break
+            if skip_block_state.active and skip_block_state.rule_index is not None:
+                active_rule = skip_block_rules[skip_block_state.rule_index]
+                if not active_rule.include_start:
+                    continue
         if not stripped_raw:
             if raw_blank and current is not root:
                 _mark_pending_break(current, field="text", states=append_states)
