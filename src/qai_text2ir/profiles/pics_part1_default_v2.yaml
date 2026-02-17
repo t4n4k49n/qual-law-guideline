@@ -1,0 +1,74 @@
+schema: qai.parser_profile.v1
+id: pics_part1_default_v2
+title: PIC/S PE 009-17 Part I markers (chapter1-ready)
+applies_to:
+  family: PICS
+  jurisdiction: INTL
+  defaults: true
+language: en
+source_label: "PIC/S"
+context_root_kind: chapter
+structural_kinds: [chapter]
+
+preprocess:
+  merge_structural_heading_continuations:
+    enabled: true
+    kinds: ["chapter"]
+    max_next_line_len: 120
+    max_merge_lines: 1
+    max_blank_lookahead: 2
+  drop_repeated_structural_headers:
+    enabled: true
+    kinds: ["chapter"]
+  drop_line_regexes:
+    - '^\s*-\s*\d{1,3}\s*-\s*$'
+    - '(?i)^\s*PE\s*009-17\s*\(Part\s+I\)\s*-\s*\d{1,3}\s*-\s*\d{1,2}\s+\w+\s+\d{4}\s*$'
+  strip_inline_regexes:
+    - '(?i)\bPE\s*009-17\s*\(Part\s+I\)\b'
+
+marker_types:
+  - id: chapter
+    kind: chapter
+    kind_raw: CHAPTER
+    match: '(?i)^CHAPTER\s+(?P<num>\d+)\s*:?\s*'
+  - id: paragraph_decimal
+    kind: paragraph
+    kind_raw: "1.1"
+    match: '^(?P<n>\d+\.\d+)\s+'
+    num_group: n
+  - id: item_decimal
+    kind: item
+    kind_raw: "1.1.1"
+    match: '^(?P<n>\d+\.\d+\.\d+)\s+'
+    num_group: n
+  - id: point_roman
+    kind: point
+    kind_raw: "i."
+    match: '^(?P<roman>[ivxlcdm]+)\.\s+'
+    num_group: roman
+  - id: bullet
+    kind: subitem
+    kind_raw: "•"
+    match: '^[•]\s+'
+
+structure:
+  root:
+    children: [chapter]
+  chapter:
+    children: [paragraph, item, point, subitem, note, history]
+  paragraph:
+    children: [item, point, subitem, note, history]
+  item:
+    children: [point, subitem, note, history]
+  point:
+    children: [subitem, note, history]
+  subitem:
+    children: [note, history]
+  note:
+    children: []
+  history:
+    children: []
+
+compound_prefix:
+  enabled: false
+  max_depth: 1

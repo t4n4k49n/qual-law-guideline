@@ -235,6 +235,9 @@ def _is_punctuation_only(value: str) -> bool:
 
 
 def _looks_like_heading_continuation(remainder: str, next_stripped: str) -> bool:
+    # Avoid swallowing section labels like "PRINCIPLE" after an already-complete heading.
+    if re.match(r"^[A-Z][A-Z\s/&()\-]{0,40}$", next_stripped) and len(next_stripped.split()) == 1:
+        return False
     if re.match(r"^[a-z]", next_stripped):
         return True
     if re.search(r"[–—\-:/]\s*$", remainder):
@@ -1118,6 +1121,17 @@ def _should_drop_repeated_structural_header_line(
             chapter_heading = _norm(chapter.heading)
             if line_heading and chapter_heading and _is_same_or_prefix(line_heading, chapter_heading):
                 return True
+        chapter_word_match = re.match(r"(?i)^chapter\s+(?P<n>\d{1,2})\b\s*(?P<title>.*)$", stripped_raw)
+        if chapter and chapter.num and chapter_word_match and chapter_word_match.group("n") == chapter.num:
+            chapter_word_title = chapter_word_match.group("title").strip()
+            chapter_word_title = chapter_word_title.lstrip(".:- ").strip()
+            if not chapter_word_title:
+                return True
+            if chapter.heading:
+                line_heading = _norm(chapter_word_title)
+                chapter_heading = _norm(chapter.heading)
+                if line_heading and chapter_heading and _is_same_or_prefix(line_heading, chapter_heading):
+                    return True
         if chapter_match and root:
             chapter_num = chapter_match.group("n")
             line_heading = _norm(chapter_match.group("title"))
