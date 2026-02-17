@@ -102,9 +102,9 @@ def test_drop_toc_entries_dont_create_chapters(tmp_path: Path) -> None:
     text = "\n".join(
         [
             "Contents",
-            "1. General principles 1",
-            "2. Microbiological risk assessment 7",
-            "Annex 1 First aid 138",
+            "1. General principles                                             1",
+            "2. Microbiological risk assessment                               7",
+            "Annex 1 First aid                                                138",
             "Foreword vii",
             "Index 170",
             "1. General principles",
