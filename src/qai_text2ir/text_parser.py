@@ -23,7 +23,7 @@ HYPHEN_WRAP_PATTERN = re.compile(r"([A-Za-z]{2,})[-\u2010\u2011]\s+([A-Za-z]{2,}
 HYPHEN_WORD_PATTERN = re.compile(r"\b[A-Za-z]+-[A-Za-z]+\b")
 PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
 PAGE_NUMBER_LINE_PATTERN = re.compile(r"^\s*\d{1,3}\s*$")
-TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s+\d{1,3}\s*$")
+TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s{2,}\d{1,3}\s*$")
 KEEP_HYPHEN_ALLOWLIST = {
     "time-stamped",
     "time-sequenced",
@@ -44,6 +44,16 @@ KEEP_PREFIXES = {
     "inter",
     "intra",
 }
+HEADING_CONTINUATION_ENDWORDS = {
+    "and",
+    "for",
+    "to",
+    "of",
+    "in",
+    "on",
+    "with",
+}
+HEADING_CONTINUATION_BLOCK_WORDS = {"must", "shall", "should", "may"}
 
 
 @dataclass
@@ -213,15 +223,65 @@ def _looks_like_heading_line(text: str) -> bool:
     return True
 
 
+def _strip_inline_patterns(text: str, strip_inline_regexes: List[re.Pattern[str]]) -> str:
+    cleaned = text
+    for pat in strip_inline_regexes:
+        cleaned = pat.sub("", cleaned)
+    return cleaned
+
+
+def _is_punctuation_only(value: str) -> bool:
+    return bool(value) and not re.sub(r"[\s\.\:\-–—]", "", value)
+
+
+def _looks_like_heading_continuation(remainder: str, next_stripped: str) -> bool:
+    if re.match(r"^[a-z]", next_stripped):
+        return True
+    if re.search(r"[–—\-:/]\s*$", remainder):
+        return True
+    remainder_words = re.findall(r"[A-Za-z]+", remainder.lower())
+    if remainder_words and remainder_words[-1] in HEADING_CONTINUATION_ENDWORDS:
+        return True
+    if (
+        len(remainder.strip()) <= 40
+        and len(next_stripped) <= 40
+        and not re.search(r"\b(?:must|shall|should|may)\b", next_stripped, flags=re.IGNORECASE)
+    ):
+        return True
+    return False
+
+
 def _merge_structural_marker_heading_lines(
     lines: List[str],
     compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
     structural_kinds: Set[str],
+    *,
+    strip_inline_regexes: List[re.Pattern[str]],
+    continuation_cfg: Dict[str, Any],
 ) -> List[str]:
     # Keep line count stable: merged next line is replaced with an empty line.
     merged = list(lines)
+    continuation_enabled = bool(continuation_cfg.get("enabled"))
+    continuation_kinds = {
+        str(v).strip().lower()
+        for v in (continuation_cfg.get("kinds") or [])
+        if str(v).strip()
+    }
+    max_next_line_len_raw = continuation_cfg.get("max_next_line_len", 60)
+    max_next_line_len = int(max_next_line_len_raw) if str(max_next_line_len_raw).strip() else 60
+    max_merge_lines_raw = continuation_cfg.get("max_merge_lines", 2)
+    max_merge_lines = int(max_merge_lines_raw) if str(max_merge_lines_raw).strip() else 2
+    max_blank_lookahead_raw = continuation_cfg.get("max_blank_lookahead", 2)
+    max_blank_lookahead = (
+        int(max_blank_lookahead_raw) if str(max_blank_lookahead_raw).strip() else 2
+    )
+    if max_next_line_len <= 0:
+        max_next_line_len = 60
+    if max_merge_lines <= 0:
+        max_merge_lines = 1
+    if max_blank_lookahead < 0:
+        max_blank_lookahead = 0
     idx = 0
-    max_blank_lookahead = 2
     while idx < len(merged) - 1:
         current = merged[idx]
         if not current.strip():
@@ -237,34 +297,64 @@ def _merge_structural_marker_heading_lines(
             idx += 1
             continue
         marker_kind, marker_end = marker_info
-        if current_stripped[marker_end:].strip():
+        merged_any = False
+        merged_count = 0
+        while merged_count < max_merge_lines:
+            current_stripped = merged[idx].lstrip()
+            remainder = current_stripped[marker_end:].strip()
+            remainder_for_rule = "" if _is_punctuation_only(remainder) else remainder
+
+            next_idx = idx + 1
+            blank_count = 0
+            while (
+                next_idx < len(merged)
+                and not merged[next_idx].strip()
+                and blank_count < max_blank_lookahead
+            ):
+                next_idx += 1
+                blank_count += 1
+            if next_idx >= len(merged):
+                break
+
+            next_line = merged[next_idx]
+            next_cleaned = _strip_inline_patterns(next_line, strip_inline_regexes)
+            next_stripped = next_cleaned.strip()
+            if not next_stripped:
+                break
+            if _starts_with_any_marker(next_line.lstrip(), compiled_markers):
+                break
+            if not _looks_like_heading_line(next_stripped):
+                break
+            should_merge = False
+            if not remainder_for_rule:
+                should_merge = True
+            elif (
+                continuation_enabled
+                and marker_kind in continuation_kinds
+                and len(next_stripped) <= max_next_line_len
+                and _looks_like_heading_continuation(remainder_for_rule, next_stripped)
+            ):
+                should_merge = True
+
+            if not should_merge:
+                break
+
+            merged[idx] = f"{merged[idx].rstrip()} {next_stripped}"
+            merged[next_idx] = ""
+            merged_any = True
+            merged_count += 1
+
+            if re.search(
+                r"\b(?:must|shall|should|may)\b",
+                merged[idx][marker_end:],
+                flags=re.IGNORECASE,
+            ):
+                break
+
+        if merged_any:
             idx += 1
-            continue
-        next_idx = idx + 1
-        blank_count = 0
-        while next_idx < len(merged) and not merged[next_idx].strip() and blank_count < max_blank_lookahead:
-            next_idx += 1
-            blank_count += 1
-        if next_idx >= len(merged):
+        else:
             idx += 1
-            continue
-        if marker_kind == "annex" and blank_count > 0 and not current_stripped.startswith("ANNEX"):
-            idx += 1
-            continue
-        next_line = merged[next_idx]
-        next_stripped = next_line.strip()
-        if not next_stripped:
-            idx += 1
-            continue
-        if _starts_with_any_marker(next_line.lstrip(), compiled_markers):
-            idx += 1
-            continue
-        if not _looks_like_heading_line(next_stripped):
-            idx += 1
-            continue
-        merged[idx] = f"{current.rstrip()} {next_stripped}"
-        merged[next_idx] = ""
-        idx = next_idx + 1
     return merged
 
 
@@ -1062,6 +1152,7 @@ def parse_text_to_ir(
         for v in (repeated_header_cfg.get("kinds") or [])
         if str(v).strip()
     }
+    heading_continuation_cfg = preprocess.get("merge_structural_heading_continuations") or {}
 
     root = build_root([])
     stack: List[Node] = [root]
@@ -1073,7 +1164,13 @@ def parse_text_to_ir(
     skip_block_state = SkipBlockState()
 
     lines = input_path.read_text(encoding="utf-8").splitlines()
-    lines = _merge_structural_marker_heading_lines(lines, compiled_markers, structural_kinds)
+    lines = _merge_structural_marker_heading_lines(
+        lines,
+        compiled_markers,
+        structural_kinds,
+        strip_inline_regexes=strip_inline_regexes,
+        continuation_cfg=heading_continuation_cfg,
+    )
     for line_no, raw_line in enumerate(lines, start=1):
         raw_blank = not raw_line.strip()
         cleaned_line = raw_line
