@@ -42,7 +42,7 @@ def main() -> None:
     )
     parser.add_argument("--input", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
-    parser.add_argument("--annex-no", type=int, default=11)
+    parser.add_argument("--annex", "--annex-no", dest="annex_no", required=True, type=int)
     args = parser.parse_args()
 
     count = slice_annex(
