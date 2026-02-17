@@ -251,6 +251,61 @@ def _looks_like_heading_continuation(remainder: str, next_stripped: str) -> bool
     return False
 
 
+def _join_mid_sentence_marker_refs_into_prev(
+    lines: List[str],
+    *,
+    strip_inline_regexes: List[re.Pattern[str]],
+    join_cfg: Dict[str, Any],
+) -> List[str]:
+    if not bool(join_cfg.get("enabled")):
+        return lines
+    kinds = {
+        str(v).strip().lower()
+        for v in (join_cfg.get("kinds") or [])
+        if str(v).strip()
+    }
+    if not kinds:
+        return lines
+    max_ref_line_len_raw = join_cfg.get("max_ref_line_len", 40)
+    max_ref_line_len = int(max_ref_line_len_raw) if str(max_ref_line_len_raw).strip() else 40
+    if max_ref_line_len <= 0:
+        max_ref_line_len = 40
+    prev_must_not_end = re.compile(str(join_cfg.get("prev_must_not_end_regex") or r"[.!?]\s*$"))
+    prev_prefer_endwords = [
+        str(v).strip().lower()
+        for v in (join_cfg.get("prev_prefer_endwords") or [])
+        if str(v).strip()
+    ]
+
+    merged = list(lines)
+    bare_patterns: List[re.Pattern[str]] = []
+    if "annex" in kinds:
+        bare_patterns.append(re.compile(r"(?i)^annex\s+\d+\.?\s*$"))
+    if not bare_patterns:
+        return merged
+
+    for idx in range(1, len(merged)):
+        raw = merged[idx]
+        cleaned = _strip_inline_patterns(raw.lstrip(), strip_inline_regexes).strip()
+        if not cleaned or len(cleaned) > max_ref_line_len:
+            continue
+        if not any(pat.match(cleaned) for pat in bare_patterns):
+            continue
+        prev_raw = merged[idx - 1]
+        prev_cleaned = _strip_inline_patterns(prev_raw, strip_inline_regexes).strip()
+        if not prev_cleaned:
+            continue
+        if prev_must_not_end.search(prev_cleaned):
+            continue
+        if prev_prefer_endwords:
+            words = re.findall(r"[A-Za-z]+", prev_cleaned.lower())
+            if words and words[-1] not in prev_prefer_endwords:
+                continue
+        merged[idx - 1] = f"{prev_raw.rstrip()} {cleaned}"
+        merged[idx] = ""
+    return merged
+
+
 def _merge_structural_marker_heading_lines(
     lines: List[str],
     compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
@@ -288,8 +343,9 @@ def _merge_structural_marker_heading_lines(
             idx += 1
             continue
         current_stripped = current.lstrip()
+        current_cleaned = _strip_inline_patterns(current_stripped, strip_inline_regexes)
         marker_info = _find_structural_marker_end(
-            current_stripped,
+            current_cleaned,
             compiled_markers,
             structural_kinds,
         )
@@ -301,7 +357,16 @@ def _merge_structural_marker_heading_lines(
         merged_count = 0
         while merged_count < max_merge_lines:
             current_stripped = merged[idx].lstrip()
-            remainder = current_stripped[marker_end:].strip()
+            current_cleaned = _strip_inline_patterns(current_stripped, strip_inline_regexes)
+            current_marker_info = _find_structural_marker_end(
+                current_cleaned,
+                compiled_markers,
+                structural_kinds,
+            )
+            if current_marker_info is None:
+                break
+            marker_kind, marker_end = current_marker_info
+            remainder = current_cleaned[marker_end:].strip()
             remainder_for_rule = "" if _is_punctuation_only(remainder) else remainder
 
             next_idx = idx + 1
@@ -321,7 +386,7 @@ def _merge_structural_marker_heading_lines(
             next_stripped = next_cleaned.strip()
             if not next_stripped:
                 break
-            if _starts_with_any_marker(next_line.lstrip(), compiled_markers):
+            if _starts_with_any_marker(next_cleaned.lstrip(), compiled_markers):
                 break
             if not _looks_like_heading_line(next_stripped):
                 break
@@ -344,9 +409,18 @@ def _merge_structural_marker_heading_lines(
             merged_any = True
             merged_count += 1
 
+            merged_cleaned = _strip_inline_patterns(merged[idx].lstrip(), strip_inline_regexes)
+            merged_marker_info = _find_structural_marker_end(
+                merged_cleaned,
+                compiled_markers,
+                structural_kinds,
+            )
+            merged_remainder = (
+                merged_cleaned[merged_marker_info[1] :].strip() if merged_marker_info else ""
+            )
             if re.search(
                 r"\b(?:must|shall|should|may)\b",
-                merged[idx][marker_end:],
+                merged_remainder,
                 flags=re.IGNORECASE,
             ):
                 break
@@ -1059,12 +1133,11 @@ def _should_drop_repeated_structural_header_line(
         if annex_match:
             annex_title = stripped_raw[annex_match.end() :].strip()
             annex_title = annex_title.lstrip(".:- ").strip()
-            # Standalone "Annex N." in prose is typically a cross-reference, not a heading.
-            # Real annex headings survive via merged marker+title lines.
-            if not annex_title and re.match(r"^Annex\s+\d+\.?\s*$", stripped_raw):
-                return True
         annex = _find_last_in_stack(stack, "annex")
-        if annex and annex.num and annex_match and annex_match.group("n") == annex.num:
+        in_same_annex_context = bool(
+            annex and annex.num and annex_match and annex_match.group("n") == annex.num
+        )
+        if in_same_annex_context:
             if not annex.heading or not annex_title:
                 return True
             line_heading = _norm(annex_title)
@@ -1072,7 +1145,7 @@ def _should_drop_repeated_structural_header_line(
             if line_heading and annex_heading and _is_same_or_prefix(line_heading, annex_heading):
                 return True
             return True
-        if annex_match and root:
+        if annex_match and root and in_same_annex_context:
             annex_num = annex_match.group("n")
             for sibling in root.children:
                 if sibling.kind != "annex" or sibling.num != annex_num:
@@ -1153,6 +1226,7 @@ def parse_text_to_ir(
         if str(v).strip()
     }
     heading_continuation_cfg = preprocess.get("merge_structural_heading_continuations") or {}
+    join_mid_sentence_cfg = preprocess.get("join_mid_sentence_marker_refs_into_prev") or {}
 
     root = build_root([])
     stack: List[Node] = [root]
@@ -1164,6 +1238,11 @@ def parse_text_to_ir(
     skip_block_state = SkipBlockState()
 
     lines = input_path.read_text(encoding="utf-8").splitlines()
+    lines = _join_mid_sentence_marker_refs_into_prev(
+        lines,
+        strip_inline_regexes=strip_inline_regexes,
+        join_cfg=join_mid_sentence_cfg,
+    )
     lines = _merge_structural_marker_heading_lines(
         lines,
         compiled_markers,

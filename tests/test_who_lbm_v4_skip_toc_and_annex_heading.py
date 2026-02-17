@@ -45,10 +45,10 @@ def test_skip_toc_block_does_not_create_structural_nodes_from_toc() -> None:
     assert "Actual chapter body" in (chapter_1[0].get("text") or "")
 
 
-def test_annex_dot_only_heading_is_not_left_as_heading(tmp_path: Path) -> None:
+def test_annex_heading_line_without_inline_title_uses_next_line_heading(tmp_path: Path) -> None:
     text = "\n".join(
         [
-            "Annex 4.",
+            "ANNEX 4",
             "Equipment safety",
             "• item",
         ]
