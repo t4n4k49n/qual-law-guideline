@@ -205,6 +205,7 @@ def bundle(
     context_root_kind: Optional[str] = typer.Option(None, "--context-root-kind"),
     jurisdiction: Optional[str] = typer.Option(None, "--jurisdiction"),
     language: Optional[str] = typer.Option(None, "--language"),
+    family: Optional[str] = typer.Option(None, "--family"),
     emit_only: str = typer.Option("all", "--emit-only"),
     qualitycheck: bool = typer.Option(True, "--qualitycheck/--no-qualitycheck"),
     strict: bool = typer.Option(False, "--strict"),
@@ -245,6 +246,8 @@ def bundle(
         jurisdiction = None
     if not isinstance(language, str):
         language = None
+    if not isinstance(family, str):
+        family = None
 
     if emit_only not in {"all", "meta", "parser_profile", "regdoc_ir", "regdoc_profile"}:
         raise typer.BadParameter(
@@ -259,10 +262,11 @@ def bundle(
         lowered = (source_url or "").lower()
         inferred_source_format = "pdf" if ".pdf" in lowered else "txt"
 
+    resolved_family = family or ("WHO_LBM" if (jurisdiction or "").upper() == "WHO" else "US_CFR")
     parser_profile = load_parser_profile(
         profile_id=parser_profile_id,
         path=parser_profile_path,
-        family="US_CFR",
+        family=resolved_family,
     )
     applies_to = parser_profile.get("applies_to") or {}
     resolved_jurisdiction = jurisdiction or applies_to.get("jurisdiction") or "US"

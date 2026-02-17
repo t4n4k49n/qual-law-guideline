@@ -776,6 +776,37 @@ def _qualitycheck_toc_like_headings(node: Node, warnings: List[str]) -> None:
         _qualitycheck_toc_like_headings(child, warnings)
 
 
+def _nest_root_chapters_under_parts(root: Node) -> None:
+    if not root.children:
+        return
+    if not any(child.kind == "part" for child in root.children):
+        return
+
+    nested_root_children: List[Node] = []
+    active_part: Optional[Node] = None
+    pending_chapters_before_first_part: List[Node] = []
+    for child in root.children:
+        if child.kind == "part":
+            if pending_chapters_before_first_part:
+                child.children = pending_chapters_before_first_part + child.children
+                pending_chapters_before_first_part = []
+            active_part = child
+            nested_root_children.append(child)
+            continue
+        if child.kind == "chapter" and active_part is not None:
+            active_part.children.append(child)
+            continue
+        if child.kind == "chapter":
+            pending_chapters_before_first_part.append(child)
+            continue
+        if child.kind == "annex":
+            active_part = None
+        nested_root_children.append(child)
+    if pending_chapters_before_first_part:
+        nested_root_children.extend(pending_chapters_before_first_part)
+    root.children = nested_root_children
+
+
 def qualitycheck_document(root: Node) -> List[str]:
     warnings: List[str] = []
 
@@ -1209,6 +1240,7 @@ def parse_text_to_ir(
                     current = fallback
         _append_text(current, cleaned_line, line_no, source_label, append_states)
 
+    _nest_root_chapters_under_parts(root)
     _quality_warnings = run_text_postprocess_and_qualitycheck(root)
     for warning in _quality_warnings:
         LOGGER.warning("qualitycheck: %s", warning)
