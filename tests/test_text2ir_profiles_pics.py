@@ -95,6 +95,6 @@ def test_text2ir_pics_annex1_profile(tmp_path: Path) -> None:
     assert bundled["meta"]["doc"]["sources"][0]["label"] == "PIC/S"
 
 
-def test_profile_loader_defaults_to_pics_v2() -> None:
+def test_profile_loader_defaults_to_pics_v3() -> None:
     profile = load_parser_profile(family="PICS")
-    assert profile["id"] == "pics_part1_default_v2"
+    assert profile["id"] == "pics_part1_default_v3"

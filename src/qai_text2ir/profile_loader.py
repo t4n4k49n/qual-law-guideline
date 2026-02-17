@@ -33,7 +33,9 @@ def load_parser_profile(
         elif family == "EU_GMP":
             profile_path = profiles_dir / "eu_gmp_chap1_default_v2.yaml"
         elif family == "PICS":
-            profile_path = profiles_dir / "pics_part1_default_v2.yaml"
+            profile_path = profiles_dir / "pics_part1_default_v3.yaml"
+            if not profile_path.exists():
+                profile_path = profiles_dir / "pics_part1_default_v2.yaml"
             if not profile_path.exists():
                 profile_path = profiles_dir / "pics_part1_default_v1.yaml"
         elif family == "WHO_LBM":
