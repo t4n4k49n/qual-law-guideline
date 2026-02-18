@@ -27,6 +27,11 @@ TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s{2,}\d{1,3}\s*$")
 FIGURE_TABLE_START_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\d+[:\.]", re.IGNORECASE)
 TABLE_CAPTION_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\S+[:\.]?\s+.+$", re.IGNORECASE)
 TABLE_NOTE_TRIGGER_PATTERN = re.compile(r"^(?:Note|Notes|NOTE)\b|^[*†‡•]\s+|^\([a-z0-9]+\)\s+")
+DEFAULT_NOTE_START_REGEXES = [
+    r"^(?:Note|Notes|NB)\b[:：]?\s*",
+    r"^(注|注記|備考|※)\s*[:：]?\s*",
+    r"^（注）\s*",
+]
 KEEP_HYPHEN_ALLOWLIST = {
     "time-stamped",
     "time-sequenced",
@@ -350,6 +355,46 @@ def _find_table_caption(
             return idx, candidate
         return None
     return None
+
+
+def _collect_note_block(
+    lines: List[str],
+    start_idx: int,
+    *,
+    strip_inline_regexes: List[re.Pattern[str]],
+    drop_line_regexes: List[re.Pattern[str]],
+    drop_line_exact: Set[str],
+    compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
+    start_patterns: List[re.Pattern[str]],
+    max_lines: int,
+) -> Tuple[List[Tuple[int, str]], int]:
+    if start_idx >= len(lines):
+        return [], start_idx
+    first = _strip_inline_patterns(lines[start_idx], strip_inline_regexes).strip()
+    if not first:
+        return [], start_idx
+    if not any(pat.match(first) for pat in start_patterns):
+        return [], start_idx
+
+    note_entries: List[Tuple[int, str]] = []
+    idx = start_idx
+    while idx < len(lines) and len(note_entries) < max_lines:
+        raw = lines[idx]
+        cleaned = _strip_inline_patterns(raw, strip_inline_regexes).strip()
+        if not cleaned:
+            break
+        if cleaned in drop_line_exact or any(pat.match(cleaned) for pat in drop_line_regexes):
+            break
+        if idx > start_idx and _starts_with_any_marker(cleaned, compiled_markers):
+            break
+        if idx > start_idx and not (raw.startswith(" ") or raw.startswith("\t")):
+            if any(pat.match(cleaned) for pat in start_patterns):
+                pass
+            else:
+                break
+        note_entries.append((idx, cleaned))
+        idx += 1
+    return note_entries, idx
 
 
 def _is_punctuation_only(value: str) -> bool:
@@ -1534,6 +1579,16 @@ def parse_text_to_ir(
     }
     heading_continuation_cfg = preprocess.get("merge_structural_heading_continuations") or {}
     join_mid_sentence_cfg = preprocess.get("join_mid_sentence_marker_refs_into_prev") or {}
+    extract_notes_cfg = preprocess.get("extract_notes") or {}
+    extract_notes_enabled = bool(extract_notes_cfg.get("enabled"))
+    note_start_regexes = extract_notes_cfg.get("start_regexes") or DEFAULT_NOTE_START_REGEXES
+    note_start_patterns = [
+        re.compile(p, flags=re.IGNORECASE) for p in note_start_regexes if isinstance(p, str) and p.strip()
+    ]
+    note_max_lines_raw = extract_notes_cfg.get("max_lines", 50)
+    note_max_lines = int(note_max_lines_raw) if str(note_max_lines_raw).strip() else 50
+    if note_max_lines <= 0:
+        note_max_lines = 50
 
     root = build_root([])
     stack: List[Node] = [root]
@@ -1543,6 +1598,7 @@ def parse_text_to_ir(
     parent_last_seen: Dict[str, Dict[str, LastSeen]] = {}
     append_states: Dict[Tuple[str, str], AppendState] = {}
     skip_block_state = SkipBlockState()
+    last_attachable_node: Optional[Node] = None
 
     lines_base = (
         list(lines_override)
@@ -1675,6 +1731,7 @@ def parse_text_to_ir(
                 row_node.text = row_text
                 header_node.children.append(row_node)
                 node_indent_by_nid[row_node.nid] = _leading_space_count(lines[row_idx])
+                last_attachable_node = row_node
 
             notes, note_end_idx = _collect_table_notes(
                 lines,
@@ -1708,6 +1765,37 @@ def parse_text_to_ir(
             for note_idx, _ in notes:
                 lines[note_idx] = ""
             continue
+
+        if extract_notes_enabled and note_start_patterns:
+            notes_block, _ = _collect_note_block(
+                lines,
+                idx,
+                strip_inline_regexes=strip_inline_regexes,
+                drop_line_regexes=drop_line_regexes,
+                drop_line_exact=drop_line_exact,
+                compiled_markers=compiled_markers,
+                start_patterns=note_start_patterns,
+                max_lines=note_max_lines,
+            )
+            if notes_block:
+                attach_parent = last_attachable_node or (current if current is not root else root)
+                note_node = node_factory.create_node(
+                    kind="note",
+                    kind_raw="note",
+                    num=None,
+                    line_no=notes_block[0][0] + 1 + line_no_offset,
+                    source_label=source_label,
+                    parent_nid=attach_parent.nid,
+                )
+                note_node.text = "\n\n".join(text for _, text in notes_block)
+                for note_idx, _ in notes_block[1:]:
+                    note_node.source_spans.append(
+                        {"source_label": source_label, "locator": f"line:{note_idx + 1 + line_no_offset}"}
+                    )
+                attach_parent.children.append(note_node)
+                for note_idx, _ in notes_block:
+                    lines[note_idx] = ""
+                continue
 
         stripped_for_match = cleaned_line.lstrip()
         current_indent = _leading_space_count(cleaned_line)
@@ -1780,6 +1868,8 @@ def parse_text_to_ir(
             stack = stack[: actual_parent_idx + 1] + [node]
             current = node
             created_nodes.append(node)
+            if node.kind in {"subitem", "item", "paragraph", "statement", "table_row"}:
+                last_attachable_node = node
             depth += 1
             remaining = remaining[marker_match.span_end :].lstrip()
             if not compound_enabled:
