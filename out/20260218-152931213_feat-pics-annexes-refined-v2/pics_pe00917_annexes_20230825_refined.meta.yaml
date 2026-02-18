@@ -1,0 +1,52 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: pics_pe00917_annexes_20230825_refined
+  title: PIC/S GMP Guide (PE 009-17) Annexes (25 August 2023) [refined]
+  short_title: PIC/S Annexes refined
+  jurisdiction: INTL
+  doc_type: guideline
+  language: en
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: null
+    e_gov_revision_id: null
+    law_number: null
+    pics_doc_id: PE 009-17 (Annexes)
+  version:
+    as_of: null
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://picscheme.org/docview/8881
+    format: pdf
+    retrieved_at: '2026-02-18'
+    checksum: null
+    label: PIC/S
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v3
+    path: pics_pe00917_annexes_20230825_refined.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: pics_annexes_default_v2
+    path: pics_pe00917_annexes_20230825_refined.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: pics_pe00917_annexes_20230825_refined.regdoc_profile.yaml
+generation:
+  created_at: '2026-02-18T06:29:35Z'
+  tool:
+    name: qai_text2ir
+    version: null
+  inputs:
+  - path: data\human-readable\pics\pe009-17_annexes_2023-08-25_en.txt
+    checksum: 2074846d2adffc316b7cf5ecd063f66dc65d3355acd6fa6db09a07d48ab6c5f7
+  notes: []
