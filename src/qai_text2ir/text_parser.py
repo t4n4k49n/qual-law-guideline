@@ -24,6 +24,7 @@ HYPHEN_WORD_PATTERN = re.compile(r"\b[A-Za-z]+-[A-Za-z]+\b")
 PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
 PAGE_NUMBER_LINE_PATTERN = re.compile(r"^\s*\d{1,3}\s*$")
 TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s{2,}\d{1,3}\s*$")
+FIGURE_TABLE_START_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\d+[:\.]", re.IGNORECASE)
 KEEP_HYPHEN_ALLOWLIST = {
     "time-stamped",
     "time-sequenced",
@@ -238,6 +239,12 @@ def _looks_like_heading_continuation(remainder: str, next_stripped: str) -> bool
     # Avoid swallowing section labels like "PRINCIPLE" after an already-complete heading.
     if re.match(r"^[A-Z][A-Z\s/&()\-]{0,40}$", next_stripped) and len(next_stripped.split()) == 1:
         return False
+    if (
+        len(next_stripped.split()) >= 2
+        and re.match(r"^[A-Z0-9][A-Z0-9\s/&()\-]{1,200}$", remainder.strip())
+        and re.match(r"^[A-Z0-9][A-Z0-9\s/&()\-]{1,200}$", next_stripped)
+    ):
+        return True
     if re.match(r"^[a-z]", next_stripped):
         return True
     if re.search(r"[–—\-:/]\s*$", remainder):
@@ -395,7 +402,10 @@ def _merge_structural_marker_heading_lines(
                 break
             should_merge = False
             if not remainder_for_rule:
-                should_merge = True
+                if not continuation_enabled:
+                    should_merge = True
+                elif marker_kind in continuation_kinds and len(next_stripped) <= max_next_line_len:
+                    should_merge = True
             elif (
                 continuation_enabled
                 and marker_kind in continuation_kinds
@@ -718,6 +728,8 @@ def _leading_space_count(raw_line: str) -> int:
 def is_preformatted_line(raw_line: str) -> bool:
     if not raw_line:
         return False
+    if re.match(r"^\s*[↓↑←→↕↔]+\s*$", raw_line):
+        return True
     leading_spaces = _leading_space_count(raw_line)
     if raw_line.startswith("\t"):
         return True
@@ -738,6 +750,8 @@ def is_preformatted_line(raw_line: str) -> bool:
 def _is_preformatted_text_block(text: str) -> bool:
     if "\n" not in text:
         return False
+    if any(FIGURE_TABLE_START_PATTERN.match(line) for line in text.splitlines()):
+        return True
     return any(is_preformatted_line(line) for line in text.splitlines())
 
 

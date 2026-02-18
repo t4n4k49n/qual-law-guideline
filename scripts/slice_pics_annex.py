@@ -22,27 +22,38 @@ def slice_annex(*, input_path: Path, output_path: Path, annex_id: str) -> int:
     lines = input_path.read_text(encoding="utf-8", errors="ignore").splitlines()
     target_annex_id = _norm_annex_id(annex_id)
 
-    start = None
-    end = None
+    heading_positions: list[tuple[int, str]] = []
     for idx, line in enumerate(lines):
         match = ANNEX_HEADING_RE.match(line.strip())
         if not match:
             continue
-        current_annex_id = match.group("id").upper()
-        if start is None:
-            if current_annex_id == target_annex_id:
-                start = idx
-            continue
-        if current_annex_id != target_annex_id:
-            end = idx
-            break
+        heading_positions.append((idx, match.group("id").upper()))
 
-    if start is None:
+    target_starts = [idx for idx, annex in heading_positions if annex == target_annex_id]
+    if not target_starts:
         raise SystemExit(f"ANNEX {target_annex_id} start not found in {input_path}")
-    if end is None:
-        end = len(lines)
 
-    out_lines = lines[start:end]
+    best_start = None
+    best_end = None
+    best_len = -1
+    for start in target_starts:
+        end = len(lines)
+        for idx, annex in heading_positions:
+            if idx <= start:
+                continue
+            if annex != target_annex_id:
+                end = idx
+                break
+        span_len = end - start
+        if span_len > best_len:
+            best_start = start
+            best_end = end
+            best_len = span_len
+
+    if best_start is None or best_end is None:
+        raise SystemExit(f"ANNEX {target_annex_id} range could not be determined in {input_path}")
+
+    out_lines = lines[best_start:best_end]
     while out_lines and not out_lines[0].strip():
         out_lines.pop(0)
     while out_lines and not out_lines[-1].strip():
