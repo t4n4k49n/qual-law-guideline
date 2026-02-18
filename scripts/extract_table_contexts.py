@@ -103,17 +103,18 @@ def collect_table_from(lines: List[str], start_idx: int) -> Optional[Tuple[int, 
     rows: List[Tuple[int, str]] = [(start_idx + 1, lines[start_idx])]
     rows.append((start_idx + 2, lines[start_idx + 1]))
     cur = start_idx + 2
-    while cur + 1 < len(lines):
-        nxt = lines[cur + 1]
+    while cur < len(lines):
+        nxt = lines[cur]
         if not nxt.strip():
             break
         if "|" not in nxt:
             break
-        rows.append((cur + 2, nxt))
+        rows.append((cur + 1, nxt))
         cur += 1
     if len(rows) < 3:
         return None
-    return cur + 1, rows
+    last_row_zero_based = rows[-1][0] - 1
+    return last_row_zero_based, rows
 
 
 def collect_notes(lines: List[str], idx: int) -> Tuple[int, List[Tuple[int, str]]]:
