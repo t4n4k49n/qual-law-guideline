@@ -3,8 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Dict, List
 
-import yaml
-
+from qai_text2ir.profile_loader import load_parser_profile
 from qai_text2ir.text_parser import parse_text_to_ir
 
 
@@ -16,7 +15,7 @@ def _flatten(node: Dict) -> List[Dict]:
 
 
 def _load_profile(path: str) -> Dict:
-    return yaml.safe_load(Path(path).read_text(encoding="utf-8"))
+    return load_parser_profile(path=Path(path))
 
 
 def test_annex1_document_map_skipped_without_duplicate_sections() -> None:

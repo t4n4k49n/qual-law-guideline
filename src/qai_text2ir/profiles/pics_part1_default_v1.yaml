@@ -1,6 +1,7 @@
 schema: qai.parser_profile.v1
 id: pics_part1_default_v1
 title: PIC/S PE 009-17 Part I chapter markers
+extends: pics_pe00917_common_v1
 applies_to:
   family: PICS
   jurisdiction: INTL
@@ -45,4 +46,3 @@ warnings: {}
 compound_prefix:
   enabled: false
   max_depth: 1
-

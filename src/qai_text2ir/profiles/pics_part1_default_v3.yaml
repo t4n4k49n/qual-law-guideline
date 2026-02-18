@@ -1,6 +1,7 @@
 schema: qai.parser_profile.v1
 id: pics_part1_default_v3
 title: PIC/S PE 009-17 Part I markers (full-doc, drop TOC/headers/footers)
+extends: pics_pe00917_common_v1
 applies_to:
   family: PICS
   jurisdiction: INTL
@@ -19,8 +20,6 @@ preprocess:
       max_lines: 2000
   drop_line_regexes:
     - '(?i)^\s*PE\s*009-17\s*\(Part\s+I\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$'
-    - '(?i)^\s*web\s+site:\s*https?://\S+\s*$'
-    - '^\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*$'
     - '(?i)^(?!CHAPTER\b)[A-Z][A-Z\s/&\-]{3,80}\s+\d{1,3}\s*$'
   strip_inline_regexes:
     - '(?i)(?<=\S)Chapter\s+\d{1,2}\s+[A-Za-z][A-Za-z\s/&\-]{0,80}$'

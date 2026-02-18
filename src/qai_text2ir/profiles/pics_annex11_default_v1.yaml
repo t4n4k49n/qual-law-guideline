@@ -1,6 +1,7 @@
 schema: qai.parser_profile.v1
 id: pics_annex11_default_v1
 title: PIC/S PE 009-17 Annex 11 (Computerised systems) markers
+extends: pics_pe00917_common_v1
 applies_to:
   family: PICS
   jurisdiction: INTL
@@ -16,7 +17,6 @@ preprocess:
     - '^Annex\s+11\s+Computerised\s+systems\s*$'
   strip_inline_regexes:
     - '(?i)(?<=\S)Annex\s+11\s+Computerised\s+systems\s*$'
-    - '[\x00-\x1F]'
   merge_structural_heading_continuations:
     enabled: true
     kinds: [annex]
