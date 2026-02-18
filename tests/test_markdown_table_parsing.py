@@ -134,3 +134,62 @@ def test_markdown_table_real_excerpt_with_japanese_notes() -> None:
     note_text = notes[0].get("text") or ""
     assert "注 1）" in note_text
     assert "注 2）" in note_text
+
+
+def test_markdown_table_caption_and_note_variants() -> None:
+    input_path = Path("tests/fixtures/markdown_table_caption_note_variants.md")
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="markdown_table_caption_note_variants",
+        parser_profile=_profile(),
+    )
+    ir = ir_doc.to_dict()
+    verify_document(ir)
+
+    nodes = _flatten(ir["content"])
+    tables = [n for n in nodes if n.get("kind") == "table"]
+    assert len(tables) == 3
+    headings = [t.get("heading") or "" for t in tables]
+    assert any("表１：試験項目" in h for h in headings)
+    assert any("表(1)検査一覧" in h for h in headings)
+    assert any("表1.管理項目" in h for h in headings)
+
+    notes = [n for n in tables[0].get("children", []) if n.get("kind") == "note"]
+    assert len(notes) == 1
+    note_text = notes[0].get("text") or ""
+    assert "† 脚注A" in note_text
+    assert "‡脚注B" in note_text
+    assert "※ 備考C" in note_text
+
+
+def test_context_resolution_for_real_excerpt_row_excludes_siblings() -> None:
+    input_path = Path("tests/fixtures/markdown_table_real_excerpt.md")
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="markdown_table_real_excerpt_context",
+        parser_profile=_profile(),
+    )
+    root = ir_doc.content
+    rows: List = []
+
+    def _visit(node) -> None:
+        if node.kind == "table_row":
+            rows.append(node)
+        for child in node.children:
+            _visit(child)
+
+    _visit(root)
+    assert len(rows) >= 2
+    selected_row = rows[0]
+    sibling_row = rows[1]
+
+    regdoc_profile = _build_regdoc_profile("markdown_table_real_excerpt", context_root_kind="section")
+    purpose = regdoc_profile["profiles"]["dq_gmp_checklist"]
+    resolved = resolve_context_nodes(root, selected_row.nid, purpose)
+    resolved_nids = {n.nid for n in resolved}
+    resolved_kinds = {n.kind for n in resolved}
+
+    assert selected_row.nid in resolved_nids
+    assert sibling_row.nid not in resolved_nids
+    assert "table_header" in resolved_kinds
+    assert "note" in resolved_kinds

@@ -25,9 +25,12 @@ PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
 PAGE_NUMBER_LINE_PATTERN = re.compile(r"^\s*\d{1,3}\s*$")
 TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s{2,}\d{1,3}\s*$")
 FIGURE_TABLE_START_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\d+[:\.]", re.IGNORECASE)
-TABLE_CAPTION_PATTERN = re.compile(r"^\s*(?:Figure|Table|表)\s*\S*[:：\.]?\s+.+$", re.IGNORECASE)
+TABLE_CAPTION_PATTERN = re.compile(
+    r"^\s*(?:Figure|Table|表)\s*(?:\(\s*[0-9０-９]+\s*\)|[0-9０-９一二三四五六七八九十A-Za-z\-]*)\s*[:：\.]?\s*\S.*$",
+    re.IGNORECASE,
+)
 TABLE_NOTE_TRIGGER_PATTERN = re.compile(
-    r"^(?:Note|Notes|NOTE|NB|注|注記|備考|※|（注）)\b|^[*†‡•]\s+|^\([a-z0-9]+\)\s+",
+    r"^(?:Note|Notes|NOTE|NB)\b|^(?:注|注記|備考|※|（注）)\s*[:：]?\s*|^[*†‡•]+\s*|^\([a-z0-9ivxlcdm]+\)\s+",
     re.IGNORECASE,
 )
 DEFAULT_NOTE_START_REGEXES = [
