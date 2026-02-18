@@ -108,3 +108,29 @@ def test_context_resolution_for_table_row_includes_header_and_note() -> None:
     assert "note" in resolved_kinds
     assert selected_row.nid in resolved_nids
     assert sibling_row.nid not in resolved_nids
+
+
+def test_markdown_table_real_excerpt_with_japanese_notes() -> None:
+    input_path = Path("tests/fixtures/markdown_table_real_excerpt.md")
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="markdown_table_real_excerpt",
+        parser_profile=_profile(),
+    )
+    ir = ir_doc.to_dict()
+    verify_document(ir)
+
+    root = ir["content"]
+    nodes = _flatten(root)
+    table = next(n for n in nodes if n.get("kind") == "table")
+    assert "表１ 清浄区域の分類" in (table.get("heading") or "")
+
+    header = next(n for n in table.get("children", []) if n.get("kind") == "table_header")
+    rows = [n for n in header.get("children", []) if n.get("kind") == "table_row"]
+    assert len(rows) >= 5
+
+    notes = [n for n in table.get("children", []) if n.get("kind") == "note"]
+    assert len(notes) == 1
+    note_text = notes[0].get("text") or ""
+    assert "注 1）" in note_text
+    assert "注 2）" in note_text
