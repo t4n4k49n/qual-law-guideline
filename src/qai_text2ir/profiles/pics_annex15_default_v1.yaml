@@ -1,6 +1,7 @@
 schema: qai.parser_profile.v1
 id: pics_annex15_default_v1
 title: PIC/S PE 009-17 Annex 15 (Qualification and validation) markers
+extends: pics_pe00917_common_v1
 applies_to:
   family: PICS
   jurisdiction: INTL
@@ -12,13 +13,9 @@ structural_kinds: [annex, section]
 
 preprocess:
   drop_line_regexes:
-    - '(?i)^\s*PE\s*009-17\s*\(Annexes\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$'
-    - '^\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*$'
-    - '(?i)^\s*web\s+site:\s*https?://\S+\s*$'
     - '^\s*Annex\s+15\s+Qualification\s+and\s+validation\s*$'
   strip_inline_regexes:
     - '(?i)(?<=\S)Annex\s+15\s+Qualification\s+and\s+validation\s*$'
-    - '[\x00-\x1F]'
   merge_structural_heading_continuations:
     enabled: true
     kinds: [annex, section]
