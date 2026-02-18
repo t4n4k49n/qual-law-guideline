@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import shlex
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import typer
 import yaml
@@ -11,7 +14,7 @@ from qai_xml2ir.models_meta import build_meta
 from qai_xml2ir.serialize import sha256_file, write_yaml
 from qai_xml2ir.verify import verify_document
 
-from .profile_loader import load_parser_profile
+from .profile_loader import load_parser_profile_with_provenance
 from .text_parser import parse_text_to_ir, qualitycheck_document
 
 app = typer.Typer(add_completion=False)
@@ -93,6 +96,70 @@ def _safe_meta_input_path(input_path: Path) -> str:
         return str(input_path.resolve().relative_to(Path.cwd().resolve()))
     except ValueError:
         return input_path.name
+
+
+def _write_yaml_no_prompt(path: Path, data: Dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="\n") as f:
+        yaml.safe_dump(
+            data,
+            f,
+            allow_unicode=True,
+            sort_keys=False,
+            width=float("inf"),
+        )
+
+
+def _git_info() -> Tuple[Optional[str], Optional[str]]:
+    try:
+        commit = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    except Exception:
+        commit = None
+    try:
+        branch = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    except Exception:
+        branch = None
+    return commit or None, branch or None
+
+
+def _extract_tag_value(tags: List[str], prefix: str) -> Optional[str]:
+    token = f"{prefix}="
+    for tag in tags:
+        if tag.startswith(token):
+            return tag[len(token) :]
+    return None
+
+
+def _extract_refine_summary(ir_doc: Dict[str, Any]) -> Dict[str, Any]:
+    root = ir_doc.get("content") or {}
+    children = root.get("children") or []
+    applied: List[Dict[str, str]] = []
+    refine_kind: Optional[str] = None
+    for node in children:
+        if not isinstance(node, dict):
+            continue
+        tags = node.get("tags") or []
+        if not isinstance(tags, list):
+            continue
+        used_profile_id = _extract_tag_value(tags, "refined_by")
+        if not used_profile_id:
+            continue
+        key = str(node.get("num") or _extract_tag_value(tags, "refine_key") or "")
+        node_refine_kind = _extract_tag_value(tags, "refine_kind")
+        if node_refine_kind and refine_kind is None:
+            refine_kind = node_refine_kind
+        applied.append({"key": key, "used_profile_id": used_profile_id})
+    return {"kind": refine_kind or "annex", "applied": applied}
 
 
 def _build_text_meta(
@@ -209,6 +276,8 @@ def bundle(
     emit_only: str = typer.Option("all", "--emit-only"),
     qualitycheck: bool = typer.Option(True, "--qualitycheck/--no-qualitycheck"),
     strict: bool = typer.Option(False, "--strict"),
+    write_manifest: bool = typer.Option(True, "--write-manifest/--no-write-manifest"),
+    overwrite_manifest: bool = typer.Option(False, "--overwrite-manifest"),
 ) -> None:
     if not isinstance(doc_id, str):
         doc_id = None
@@ -263,7 +332,7 @@ def bundle(
         inferred_source_format = "pdf" if ".pdf" in lowered else "txt"
 
     resolved_family = family or ("WHO_LBM" if (jurisdiction or "").upper() == "WHO" else "US_CFR")
-    parser_profile = load_parser_profile(
+    parser_profile, profile_provenance = load_parser_profile_with_provenance(
         profile_id=parser_profile_id,
         path=parser_profile_path,
         family=resolved_family,
@@ -277,6 +346,7 @@ def bundle(
         doc_id=resolved_doc_id,
         parser_profile=parser_profile,
     )
+    qc_warnings: List[str] = []
     if qualitycheck:
         qc_warnings = qualitycheck_document(ir_doc.content)
         for msg in qc_warnings:
@@ -332,6 +402,52 @@ def bundle(
             input_checksum=sha256_file(input),
         )
         write_yaml(meta_path, meta)
+
+    if write_manifest:
+        manifest_path = out_dir / "manifest.yaml"
+        if manifest_path.exists() and not overwrite_manifest:
+            typer.echo(
+                f"[manifest] skip existing file (use --overwrite-manifest): {manifest_path}",
+                err=True,
+            )
+            return
+        commit, branch = _git_info()
+        command_argv = " ".join(shlex.quote(v) for v in sys.argv)
+        parser_profile_sha = sha256_file(parser_profile_path) if parser_profile_path.exists() else None
+        ir_dict = ir_doc.to_dict()
+        manifest: Dict[str, Any] = {
+            "schema": "qai.run_manifest.v1",
+            "run_id": out_dir.name,
+            "created_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+            "git": {"commit": commit, "branch": branch},
+            "input": {
+                "path": _safe_meta_input_path(input),
+                "checksum": sha256_file(input),
+            },
+            "command": {"argv": command_argv},
+            "outputs": {
+                "doc_id": resolved_doc_id,
+                "files": [
+                    f"{stem}.regdoc_ir.yaml",
+                    f"{stem}.parser_profile.yaml",
+                    f"{stem}.regdoc_profile.yaml",
+                    f"{stem}.meta.yaml",
+                ],
+            },
+            "parser_profile": {
+                "id": str(parser_profile.get("id") or ""),
+                "resolved_sha256": parser_profile_sha,
+                "provenance": profile_provenance,
+            },
+            "qualitycheck": {
+                "enabled": bool(qualitycheck),
+                "strict": bool(strict),
+                "warnings_count": len(qc_warnings),
+                "warnings": qc_warnings[:20],
+            },
+            "refine": _extract_refine_summary(ir_dict),
+        }
+        _write_yaml_no_prompt(manifest_path, manifest)
 
 
 if __name__ == "__main__":
