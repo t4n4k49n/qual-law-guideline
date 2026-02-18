@@ -1,0 +1,13 @@
+ANNEX 3
+GENERAL REQUIREMENTS
+1. PRINCIPLE
+1.1 First paragraph in annex 3.
+2. SCOPE
+2.1 Second paragraph in annex 3.
+
+ANNEX 15
+QUALIFICATION AND VALIDATION
+2. DOCUMENTATION, INCLUDING VMP
+2.1 Good documentation should be maintained.
+i. First item
+ii. Second item
