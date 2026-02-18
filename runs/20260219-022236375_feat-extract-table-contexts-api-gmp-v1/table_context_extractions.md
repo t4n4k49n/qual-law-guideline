@@ -4,8 +4,9 @@
 - extracted_blocks_raw: **8**
 - extracted_blocks_unique: **5**
 - quality_summary:
-  - caption_missing_count: 3
-  - caption_missing_ratio: 0.600
+  - caption_missing_count: 0
+  - caption_missing_ratio: 0.000
+  - caption_inferred_count: 3
   - ancestors_missing_count: 0
   - suspicious_ancestor_count: 0
   - records_with_notes_count: 0
@@ -32,11 +33,11 @@
 
 ## 2. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
-- lines: 24..32
+- lines: 1..32
 - ancestors:
   - L1: 1.3 適用範囲
 - table_caption:
-  - (none)
+  - L1: 1.3 適用範囲 [inferred]
 - table_block:
   - L24: | 生産形態 | 形態ごとの生産工程の事例 | | | | |
   - L25: | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -52,11 +53,11 @@
 
 ## 3. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
-- lines: 36..44
+- lines: 1..44
 - ancestors:
   - L1: 1.3 適用範囲
 - table_caption:
-  - (none)
+  - L1: 1.3 適用範囲 [inferred]
 - table_block:
   - L36: | 生産形態 | 形態ごとの生産工程の事例 | <----- | ------ | -----> | 形態ごとの生産工程の事例 |
   - L37: | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -72,11 +73,11 @@
 
 ## 4. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
-- lines: 47..55
+- lines: 1..55
 - ancestors:
   - L1: 1.3 適用範囲
 - table_caption:
-  - (none)
+  - L1: 1.3 適用範囲 [inferred]
 - table_block:
   - L47: | 生産形態 | 形態ごとの生産工程の事例 | 〃 | 〃 | 〃 | 〃 |
   - L48: | :--- | :--- | :--- | :--- | :--- | :--- |

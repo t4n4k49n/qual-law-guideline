@@ -4,8 +4,9 @@
 - extracted_blocks_raw: **52**
 - extracted_blocks_unique: **34**
 - quality_summary:
-  - caption_missing_count: 11
-  - caption_missing_ratio: 0.324
+  - caption_missing_count: 0
+  - caption_missing_ratio: 0.000
+  - caption_inferred_count: 11
   - ancestors_missing_count: 0
   - suspicious_ancestor_count: 0
   - records_with_notes_count: 4
@@ -32,11 +33,11 @@
 
 ## 2. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
-- lines: 24..32
+- lines: 1..32
 - ancestors:
   - L1: 1.3 適用範囲
 - table_caption:
-  - (none)
+  - L1: 1.3 適用範囲 [inferred]
 - table_block:
   - L24: | 生産形態 | 形態ごとの生産工程の事例 | | | | |
   - L25: | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -52,11 +53,11 @@
 
 ## 3. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
-- lines: 36..44
+- lines: 1..44
 - ancestors:
   - L1: 1.3 適用範囲
 - table_caption:
-  - (none)
+  - L1: 1.3 適用範囲 [inferred]
 - table_block:
   - L36: | 生産形態 | 形態ごとの生産工程の事例 | <----- | ------ | -----> | 形態ごとの生産工程の事例 |
   - L37: | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -72,11 +73,11 @@
 
 ## 4. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
-- lines: 47..55
+- lines: 1..55
 - ancestors:
   - L1: 1.3 適用範囲
 - table_caption:
-  - (none)
+  - L1: 1.3 適用範囲 [inferred]
 - table_block:
   - L47: | 生産形態 | 形態ごとの生産工程の事例 | 〃 | 〃 | 〃 | 〃 |
   - L48: | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -208,13 +209,13 @@
 
 ## 9. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 260..265
+- lines: 182..265
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L260: | 病原体等のリスク群 | 実験室の BSL | 実験室の使用目的 | 実験手技及び運用 | 実験室の安全機器 |
   - L261: | :--- | :--- | :--- | :--- | :--- |
@@ -227,13 +228,13 @@
 
 ## 10. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 272..284
+- lines: 182..284
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L272: | ＢＳＬ | １ | ２ | ３ | ４ |
   - L273: | :--- | :--- | :--- | :--- | :--- |
@@ -253,13 +254,13 @@
 
 ## 11. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 298..303
+- lines: 182..303
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L298: | ＡＢＳＬ | 実験手技 | 安全機器 | 設備基準 |
   - L299: | :--- | :--- | :--- | :--- |
@@ -272,13 +273,13 @@
 
 ## 12. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 394..443
+- lines: 182..443
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L394: | 項目 | １種病原体等 | ２種病原体等 | ２種病原体等 | ３種病原体等 | ３種病原体等 | ４種病原体等 | ４種病原体等 |
   - L395: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -333,13 +334,13 @@
 
 ## 13. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 467..488
+- lines: 182..488
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L467: | 項目 | １種病原体等 | ２種病原体等 | ２種病原体等 | ３種病原体等 | ３種病原体等 | ４種病原体等 | ４種病原体等 |
   - L468: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -368,13 +369,13 @@
 
 ## 14. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 510..529
+- lines: 182..529
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L510: | 区分 | 省令での記載項目 | 記帳の内容 | １種病原体等 | ２種病原体等 | ３種病原体等 |
   - L511: | :--- | :--- | :--- | :---: | :---: | :---: |
@@ -401,13 +402,13 @@
 
 ## 15. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 535..541
+- lines: 182..541
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L535: | 対象者 | 省令での記載項目 | 回数等 | 備考 |
   - L536: | :--- | :--- | :--- | :--- |
@@ -419,13 +420,13 @@
 
 ## 16. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 559..573
+- lines: 182..573
 - ancestors:
   - L2: **第２章  安 全 管 理 体 制**
   - L76: **第３章  安 全 管 理 基 準**
   - L182: **第４章  健 康 管 理**
 - table_caption:
-  - (none)
+  - L182: **第４章  健 康 管 理** [inferred]
 - table_block:
   - L559: | 省令での記載項目 | 具体的内容 | 国立感染症研究所病原体等安全管理規程における該当部分 |
   - L560: | :--- | :--- | :--- |

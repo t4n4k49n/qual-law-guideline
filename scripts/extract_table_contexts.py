@@ -180,12 +180,15 @@ def extract_from_file(path: Path) -> List[Dict[str, object]]:
     while i < len(lines):
         caption_line_no: Optional[int] = None
         caption_text: Optional[str] = None
+        caption_inferred = False
+        caption_source: Optional[str] = None
         table_start = i
 
         line = normalize_for_match(lines[i])
         if TABLE_CAPTION_PATTERN.match(line):
             caption_line_no = i + 1
             caption_text = lines[i]
+            caption_source = "inline_caption"
             table_start = i + 1
 
         table_info = collect_table_from(lines, table_start)
@@ -198,15 +201,24 @@ def extract_from_file(path: Path) -> List[Dict[str, object]]:
                 caption_idx, caption_raw = nearby
                 caption_line_no = caption_idx + 1
                 caption_text = caption_raw
+                caption_source = "nearby_caption"
         end_idx, table_lines = table_info
         after_idx, note_lines = collect_notes(lines, end_idx + 1)
         ancestor_idx_base = (caption_line_no - 1) if caption_line_no else table_start
         ancestors = find_ancestor_headings(lines, ancestor_idx_base)
+        if caption_text is None and ancestors:
+            nearest = ancestors[-1]
+            caption_line_no = nearest[0]
+            caption_text = nearest[1]
+            caption_inferred = True
+            caption_source = "heading_fallback"
 
         rec = {
             "source_path": _sanitize_path_for_output(str(path)),
             "ancestors": [{"line": ln, "text": txt} for ln, txt in ancestors],
             "table_caption": {"line": caption_line_no, "text": caption_text} if caption_text else None,
+            "caption_inferred": caption_inferred,
+            "caption_source": caption_source,
             "table_lines": [{"line": ln, "text": txt} for ln, txt in table_lines],
             "note_lines": [{"line": ln, "text": txt} for ln, txt in note_lines],
             "start_line": (caption_line_no or table_lines[0][0]),
@@ -247,12 +259,15 @@ def dedupe_records(records: List[Dict[str, object]]) -> List[Dict[str, object]]:
 
 def build_quality_summary(records: List[Dict[str, object]]) -> Dict[str, object]:
     caption_missing = 0
+    caption_inferred_count = 0
     ancestors_missing = 0
     suspicious_ancestor = 0
     notes_found = 0
     for rec in records:
         if not rec.get("table_caption"):
             caption_missing += 1
+        if rec.get("caption_inferred"):
+            caption_inferred_count += 1
         ancestors = rec.get("ancestors") or []
         if not ancestors:
             ancestors_missing += 1
@@ -268,6 +283,7 @@ def build_quality_summary(records: List[Dict[str, object]]) -> Dict[str, object]
         "records": total,
         "caption_missing_count": caption_missing,
         "caption_missing_ratio": (caption_missing / total) if total else 0.0,
+        "caption_inferred_count": caption_inferred_count,
         "ancestors_missing_count": ancestors_missing,
         "ancestors_missing_ratio": (ancestors_missing / total) if total else 0.0,
         "suspicious_ancestor_count": suspicious_ancestor,
@@ -330,6 +346,7 @@ def main() -> int:
     lines.append("- quality_summary:")
     lines.append(f"  - caption_missing_count: {summary['caption_missing_count']}")
     lines.append(f"  - caption_missing_ratio: {summary['caption_missing_ratio']:.3f}")
+    lines.append(f"  - caption_inferred_count: {summary['caption_inferred_count']}")
     lines.append(f"  - ancestors_missing_count: {summary['ancestors_missing_count']}")
     lines.append(f"  - suspicious_ancestor_count: {summary['suspicious_ancestor_count']}")
     lines.append(f"  - records_with_notes_count: {summary['records_with_notes_count']}")
@@ -354,7 +371,10 @@ def main() -> int:
         caption = rec.get("table_caption")
         lines.append("- table_caption:")
         if caption:
-            lines.append(f"  - L{caption['line']}: {caption['text']}")
+            caption_suffix = ""
+            if rec.get("caption_inferred"):
+                caption_suffix = " [inferred]"
+            lines.append(f"  - L{caption['line']}: {caption['text']}{caption_suffix}")
         else:
             lines.append("  - (none)")
         lines.append("- table_block:")
