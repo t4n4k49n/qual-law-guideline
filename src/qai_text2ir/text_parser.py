@@ -239,6 +239,10 @@ def _looks_like_heading_continuation(remainder: str, next_stripped: str) -> bool
     # Avoid swallowing section labels like "PRINCIPLE" after an already-complete heading.
     if re.match(r"^[A-Z][A-Z\s/&()\-]{0,40}$", next_stripped) and len(next_stripped.split()) == 1:
         return False
+    if re.search(r"\bPE\s*\d{3}-\d{2}\b", next_stripped, flags=re.IGNORECASE):
+        return False
+    if re.search(r"\b\d{1,3}\s+August\s+\d{4}\b", next_stripped, flags=re.IGNORECASE):
+        return False
     if (
         len(next_stripped.split()) >= 2
         and re.match(r"^[A-Z0-9][A-Z0-9\s/&()\-]{1,200}$", remainder.strip())
