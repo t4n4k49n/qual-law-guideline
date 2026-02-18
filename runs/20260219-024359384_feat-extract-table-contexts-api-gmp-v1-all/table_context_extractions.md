@@ -1,10 +1,16 @@
 # Table Context Extraction
 
-- input_root: `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable`
+- input_root: `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable`
 - extracted_blocks_raw: **52**
 - extracted_blocks_unique: **34**
+- quality_summary:
+  - caption_missing_count: 14
+  - caption_missing_ratio: 0.412
+  - ancestors_missing_count: 13
+  - suspicious_ancestor_count: 0
+  - records_with_notes_count: 0
 
-## 1. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 1. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 11..21
 - ancestors:
@@ -24,7 +30,7 @@
 - notes:
   - (none)
 
-## 2. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 2. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 24..32
 - ancestors:
@@ -44,7 +50,7 @@
 - notes:
   - (none)
 
-## 3. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 3. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 36..44
 - ancestors:
@@ -64,7 +70,7 @@
 - notes:
   - (none)
 
-## 4. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 4. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 47..55
 - ancestors:
@@ -84,13 +90,13 @@
 - notes:
   - (none)
 
-## 5. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.txt`
+## 5. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.txt`
 
 - merged_sources: 4
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン_formatted.md`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン_formatted.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン_formatted_old.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン_formatted.md`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン_formatted.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン_formatted_old.txt`
 
 - lines: 11..20
 - ancestors:
@@ -110,15 +116,15 @@
 - notes:
   - (none)
 
-## 6. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_standard.txt`
+## 6. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_standard.txt`
 
 - merged_sources: 6
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_standard.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_verbatim.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_formatted.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_チェック済み_原文準拠.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_チェック済み_標準表記.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_standard.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_verbatim.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_formatted.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_原文準拠.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_標準表記.txt`
 
 - lines: 198..207
 - ancestors:
@@ -139,15 +145,15 @@
 - notes:
   - (none)
 
-## 7. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_standard.txt`
+## 7. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_standard.txt`
 
 - merged_sources: 6
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_standard.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_verbatim.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_formatted.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_チェック済み_原文準拠.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_チェック済み_標準表記.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_standard.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_verbatim.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_formatted.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_原文準拠.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_標準表記.txt`
 
 - lines: 494..501
 - ancestors:
@@ -166,15 +172,15 @@
 - notes:
   - (none)
 
-## 8. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_standard.txt`
+## 8. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_standard.txt`
 
 - merged_sources: 6
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_standard.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\aseptic_guideline_checked_verbatim.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_formatted.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_チェック済み_原文準拠.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\07.無菌操作法指針\無菌操作法指針_チェック済み_標準表記.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_standard.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_verbatim.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_formatted.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_原文準拠.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_標準表記.txt`
 
 - lines: 505..511
 - ancestors:
@@ -192,7 +198,7 @@
 - notes:
   - (none)
 
-## 9. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 9. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 260..265
 - ancestors:
@@ -209,7 +215,7 @@
 - notes:
   - (none)
 
-## 10. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 10. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 272..284
 - ancestors:
@@ -233,7 +239,7 @@
 - notes:
   - (none)
 
-## 11. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 11. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 298..303
 - ancestors:
@@ -250,7 +256,7 @@
 - notes:
   - (none)
 
-## 12. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 12. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 394..441
 - ancestors:
@@ -309,7 +315,7 @@
 - notes:
   - (none)
 
-## 13. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 13. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 467..488
 - ancestors:
@@ -342,7 +348,7 @@
 - notes:
   - (none)
 
-## 14. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 14. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 510..529
 - ancestors:
@@ -373,7 +379,7 @@
 - notes:
   - (none)
 
-## 15. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 15. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 535..539
 - ancestors:
@@ -389,7 +395,7 @@
 - notes:
   - (none)
 
-## 16. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\08.病原体等安全管理規程\病原体等安全管理規程.txt`
+## 16. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 559..573
 - ancestors:
@@ -415,7 +421,7 @@
 - notes:
   - (none)
 
-## 17. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1 (2).txt`
+## 17. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1 (2).txt`
 
 - lines: 93..99
 - ancestors:
@@ -434,7 +440,7 @@
 - notes:
   - (none)
 
-## 18. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1 (2).txt`
+## 18. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1 (2).txt`
 
 - lines: 105..111
 - ancestors:
@@ -453,7 +459,7 @@
 - notes:
   - (none)
 
-## 19. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1 (2).txt`
+## 19. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1 (2).txt`
 
 - lines: 187..192
 - ancestors:
@@ -471,7 +477,7 @@
 - notes:
   - (none)
 
-## 20. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1 (2).txt`
+## 20. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1 (2).txt`
 
 - lines: 198..204
 - ancestors:
@@ -490,7 +496,7 @@
 - notes:
   - (none)
 
-## 21. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1 (2).txt`
+## 21. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1 (2).txt`
 
 - lines: 382..388
 - ancestors:
@@ -509,7 +515,7 @@
 - notes:
   - (none)
 
-## 22. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1 (2).txt`
+## 22. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1 (2).txt`
 
 - lines: 407..413
 - ancestors:
@@ -528,7 +534,7 @@
 - notes:
   - (none)
 
-## 23. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1.txt`
+## 23. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 48..54
 - ancestors:
@@ -545,7 +551,7 @@
 - notes:
   - (none)
 
-## 24. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1.txt`
+## 24. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 60..66
 - ancestors:
@@ -562,7 +568,7 @@
 - notes:
   - (none)
 
-## 25. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1.txt`
+## 25. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 142..147
 - ancestors:
@@ -578,7 +584,7 @@
 - notes:
   - (none)
 
-## 26. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1.txt`
+## 26. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 153..160
 - ancestors:
@@ -595,7 +601,7 @@
 - notes:
   - (none)
 
-## 27. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1.txt`
+## 27. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 338..344
 - ancestors:
@@ -613,7 +619,7 @@
 - notes:
   - (none)
 
-## 28. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\backups\PICS_PE_009-17_ANNEX-1.txt`
+## 28. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/backups/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 363..369
 - ancestors:
@@ -632,7 +638,7 @@
 - notes:
   - (none)
 
-## 29. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\PICS_PE_009-17_ANNEX-1.txt`
+## 29. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 102..108
 - ancestors:
@@ -651,7 +657,7 @@
 - notes:
   - (none)
 
-## 30. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\PICS_PE_009-17_ANNEX-1.txt`
+## 30. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 118..124
 - ancestors:
@@ -670,7 +676,7 @@
 - notes:
   - (none)
 
-## 31. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\PICS_PE_009-17_ANNEX-1.txt`
+## 31. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 221..226
 - ancestors:
@@ -688,7 +694,7 @@
 - notes:
   - (none)
 
-## 32. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\PICS_PE_009-17_ANNEX-1.txt`
+## 32. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 232..238
 - ancestors:
@@ -707,7 +713,7 @@
 - notes:
   - (none)
 
-## 33. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\PICS_PE_009-17_ANNEX-1.txt`
+## 33. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 524..530
 - ancestors:
@@ -726,7 +732,7 @@
 - notes:
   - (none)
 
-## 34. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\12.PICS\PICS_PE_009-17_ANNEX-1.txt`
+## 34. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/12.PICS/PICS_PE_009-17_ANNEX-1.txt`
 
 - lines: 549..555
 - ancestors:
@@ -744,5 +750,4 @@
   - L555: | **D** | 200 | 100 | 50 | - |
 - notes:
   - (none)
-
 

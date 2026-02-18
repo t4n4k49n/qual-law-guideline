@@ -1,10 +1,16 @@
 # Table Context Extraction
 
-- input_root: `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン`
+- input_root: `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン`
 - extracted_blocks_raw: **8**
 - extracted_blocks_unique: **5**
+- quality_summary:
+  - caption_missing_count: 3
+  - caption_missing_ratio: 0.600
+  - ancestors_missing_count: 0
+  - suspicious_ancestor_count: 0
+  - records_with_notes_count: 0
 
-## 1. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 1. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 11..21
 - ancestors:
@@ -24,7 +30,7 @@
 - notes:
   - (none)
 
-## 2. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 2. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 24..32
 - ancestors:
@@ -44,7 +50,7 @@
 - notes:
   - (none)
 
-## 3. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 3. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 36..44
 - ancestors:
@@ -64,7 +70,7 @@
 - notes:
   - (none)
 
-## 4. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.md`
+## 4. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
 - lines: 47..55
 - ancestors:
@@ -84,13 +90,13 @@
 - notes:
   - (none)
 
-## 5. `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.txt`
+## 5. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.txt`
 
 - merged_sources: 4
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン_formatted.md`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン_formatted.txt`
-  - `%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\human-readable\06.原薬GMPガイドライン\原薬GMPガイドライン_formatted_old.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン_formatted.md`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン_formatted.txt`
+  - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン_formatted_old.txt`
 
 - lines: 11..20
 - ancestors:
@@ -109,7 +115,4 @@
   - L20: | クラシカル発酵を応用した原薬 | セルバンクの確立 | セルバンクの維持管理 | **セルの発酵工程への導入** | **分離及び精製** | **物理的加工処理及び包装** |
 - notes:
   - (none)
-
-
-
 

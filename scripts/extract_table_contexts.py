@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -180,7 +181,7 @@ def extract_from_file(path: Path) -> List[Dict[str, object]]:
         ancestors = find_ancestor_headings(lines, ancestor_idx_base)
 
         rec = {
-            "source_path": str(path),
+            "source_path": _sanitize_path_for_output(str(path)),
             "ancestors": [{"line": ln, "text": txt} for ln, txt in ancestors],
             "table_caption": {"line": caption_line_no, "text": caption_text} if caption_text else None,
             "table_lines": [{"line": ln, "text": txt} for ln, txt in table_lines],
@@ -258,6 +259,16 @@ def gather_files(root: Path) -> List[Path]:
     return sorted(files)
 
 
+def _sanitize_path_for_output(path: str) -> str:
+    user_home = os.path.expanduser("~")
+    if user_home:
+        normalized = path.replace("\\", "/")
+        home_normalized = user_home.replace("\\", "/")
+        if normalized.lower().startswith(home_normalized.lower()):
+            return "%USERPROFILE%" + normalized[len(home_normalized):]
+    return path
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Extract table blocks with ancestor context.")
     parser.add_argument("--input-root", type=Path, required=True)
@@ -290,7 +301,7 @@ def main() -> int:
     lines: List[str] = []
     lines.append("# Table Context Extraction")
     lines.append("")
-    lines.append(f"- input_root: `{args.input_root}`")
+    lines.append(f"- input_root: `{_sanitize_path_for_output(str(args.input_root))}`")
     lines.append(f"- extracted_blocks_raw: **{len(all_records)}**")
     lines.append(f"- extracted_blocks_unique: **{len(unique_records)}**")
     lines.append("- quality_summary:")
