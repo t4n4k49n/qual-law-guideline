@@ -136,8 +136,21 @@ def collect_notes(lines: List[str], idx: int) -> Tuple[int, List[Tuple[int, str]
     return cur, notes
 
 
+def read_text_with_fallback(path: Path) -> str:
+    last_exc: Optional[Exception] = None
+    for enc in ("utf-8", "cp932", "utf-16"):
+        try:
+            return path.read_text(encoding=enc)
+        except Exception as exc:
+            last_exc = exc
+            continue
+    if last_exc is not None:
+        raise last_exc
+    return path.read_text(encoding="utf-8", errors="ignore")
+
+
 def extract_from_file(path: Path) -> List[Dict[str, object]]:
-    lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+    lines = read_text_with_fallback(path).splitlines()
     out: List[Dict[str, object]] = []
     i = 0
     while i < len(lines):
@@ -208,6 +221,36 @@ def dedupe_records(records: List[Dict[str, object]]) -> List[Dict[str, object]]:
     return [by_sig[sig] for sig in order]
 
 
+def build_quality_summary(records: List[Dict[str, object]]) -> Dict[str, object]:
+    caption_missing = 0
+    ancestors_missing = 0
+    suspicious_ancestor = 0
+    notes_found = 0
+    for rec in records:
+        if not rec.get("table_caption"):
+            caption_missing += 1
+        ancestors = rec.get("ancestors") or []
+        if not ancestors:
+            ancestors_missing += 1
+        for a in ancestors:
+            text = str(a.get("text") or "")
+            if text.endswith("。") or "には" in text:
+                suspicious_ancestor += 1
+                break
+        if rec.get("note_lines"):
+            notes_found += 1
+    total = len(records)
+    return {
+        "records": total,
+        "caption_missing_count": caption_missing,
+        "caption_missing_ratio": (caption_missing / total) if total else 0.0,
+        "ancestors_missing_count": ancestors_missing,
+        "ancestors_missing_ratio": (ancestors_missing / total) if total else 0.0,
+        "suspicious_ancestor_count": suspicious_ancestor,
+        "records_with_notes_count": notes_found,
+    }
+
+
 def gather_files(root: Path) -> List[Path]:
     files: List[Path] = []
     for ext in ("*.txt", "*.md"):
@@ -220,6 +263,7 @@ def main() -> int:
     parser.add_argument("--input-root", type=Path, required=True)
     parser.add_argument("--output-md", type=Path, required=True)
     parser.add_argument("--output-jsonl", type=Path, required=True)
+    parser.add_argument("--output-summary-json", type=Path, required=False)
     args = parser.parse_args()
 
     files = gather_files(args.input_root)
@@ -227,6 +271,7 @@ def main() -> int:
     for f in files:
         all_records.extend(extract_from_file(f))
     unique_records = dedupe_records(all_records)
+    summary = build_quality_summary(unique_records)
 
     args.output_md.parent.mkdir(parents=True, exist_ok=True)
     args.output_jsonl.parent.mkdir(parents=True, exist_ok=True)
@@ -234,6 +279,13 @@ def main() -> int:
     with args.output_jsonl.open("w", encoding="utf-8", newline="\n") as fj:
         for rec in unique_records:
             fj.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    if args.output_summary_json is not None:
+        args.output_summary_json.parent.mkdir(parents=True, exist_ok=True)
+        args.output_summary_json.write_text(
+            json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
 
     lines: List[str] = []
     lines.append("# Table Context Extraction")
@@ -241,6 +293,12 @@ def main() -> int:
     lines.append(f"- input_root: `{args.input_root}`")
     lines.append(f"- extracted_blocks_raw: **{len(all_records)}**")
     lines.append(f"- extracted_blocks_unique: **{len(unique_records)}**")
+    lines.append("- quality_summary:")
+    lines.append(f"  - caption_missing_count: {summary['caption_missing_count']}")
+    lines.append(f"  - caption_missing_ratio: {summary['caption_missing_ratio']:.3f}")
+    lines.append(f"  - ancestors_missing_count: {summary['ancestors_missing_count']}")
+    lines.append(f"  - suspicious_ancestor_count: {summary['suspicious_ancestor_count']}")
+    lines.append(f"  - records_with_notes_count: {summary['records_with_notes_count']}")
     lines.append("")
     for idx, rec in enumerate(unique_records, start=1):
         lines.append(f"## {idx}. `{rec['source_path']}`")
@@ -281,6 +339,10 @@ def main() -> int:
     print(f"wrote: {args.output_jsonl}")
     print(f"extracted_blocks_raw={len(all_records)}")
     print(f"extracted_blocks_unique={len(unique_records)}")
+    print(
+        "quality_summary="
+        + json.dumps(summary, ensure_ascii=False, separators=(",", ":"))
+    )
     return 0
 
 
