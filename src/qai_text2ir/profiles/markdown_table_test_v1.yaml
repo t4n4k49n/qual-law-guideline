@@ -1,0 +1,39 @@
+schema: qai.parser_profile.v1
+id: markdown_table_test_v1
+title: "Markdown table test profile"
+applies_to:
+  family: TEST
+  jurisdiction: INTL
+  defaults: false
+language: en
+source_label: "test"
+context_root_kind: section
+structural_kinds:
+  - section
+
+marker_types:
+  - id: section
+    kind: section
+    kind_raw: "Section"
+    match: '^Section\s+(?P<n>\d+)\.\s+(?P<title>.+)$'
+    num_group: n
+
+structure:
+  root:
+    children: [section]
+  section:
+    children: [paragraph, item, subitem, note, history]
+  paragraph:
+    children: [item, subitem, note, history]
+  item:
+    children: [subitem, note, history]
+  subitem:
+    children: [note, history]
+  note:
+    children: []
+  history:
+    children: []
+
+compound_prefix:
+  enabled: false
+  max_depth: 1
