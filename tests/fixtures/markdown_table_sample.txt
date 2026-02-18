@@ -1,0 +1,7 @@
+Section 1. Scope
+Table 1: Example
+| Item | Requirement |
+| --- | --- |
+| A | Do A |
+| B | Do B |
+Note: Applies to all items.
