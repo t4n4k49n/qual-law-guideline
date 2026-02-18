@@ -4,11 +4,11 @@
 - extracted_blocks_raw: **52**
 - extracted_blocks_unique: **34**
 - quality_summary:
-  - caption_missing_count: 14
-  - caption_missing_ratio: 0.412
-  - ancestors_missing_count: 13
+  - caption_missing_count: 11
+  - caption_missing_ratio: 0.324
+  - ancestors_missing_count: 2
   - suspicious_ancestor_count: 0
-  - records_with_notes_count: 0
+  - records_with_notes_count: 4
 
 ## 1. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/06.原薬GMPガイドライン/原薬GMPガイドライン.md`
 
@@ -126,11 +126,13 @@
   - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_原文準拠.txt`
   - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_標準表記.txt`
 
-- lines: 198..207
+- lines: 196..210
 - ancestors:
-  - (none)
+  - L144: **５．２ 無菌作業要件**
+  - L155: **６．１ 構造設備の設計上の要点**
+  - L191: **７．１ 清浄度レベルによる作業所の分類**
 - table_caption:
-  - (none)
+  - L196: **表１ 清浄区域の分類**
 - table_block:
   - L198: | 名称 | 空気の清浄度レベル注 1） | 最大許容微粒子数（個／m3） | | | |
   - L199: |---|---|---|---|---|---|
@@ -143,7 +145,8 @@
   - L206: | | グレードC (ISO 8) | 352,000 | 2,900 | 3,520,000 | 29,000 |
   - L207: | | グレード D | 3,520,000 | 29,000 | 作業形態による注 2） | 作業形態による注 2） |
 - notes:
-  - (none)
+  - L209: 注 1） 括弧内の ISO クラスは，作業時の微粒子数に対応したものである．
+  - L210: 注 2） 最大許容微粒子数を規定しないケースもある．
 
 ## 7. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/aseptic_guideline_checked_standard.txt`
 
@@ -155,11 +158,13 @@
   - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_原文準拠.txt`
   - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_標準表記.txt`
 
-- lines: 494..501
+- lines: 492..501
 - ancestors:
-  - (none)
+  - L424: **１１．１ 一般要求事項**
+  - L462: **１１．２ 日常管理要求事項**
+  - L479: **１１．３ 環境モニタリング判定基準例**
 - table_caption:
-  - (none)
+  - L492: **表２ 微生物管理に係る環境モニタリングの頻度**
 - table_block:
   - L494: | グレード | 空中浮遊 微粒子 | 空中微生物 | 表面付着微生物 | |
   - L495: |---|---|---|---|---|
@@ -182,11 +187,13 @@
   - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_原文準拠.txt`
   - `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/07.無菌操作法指針/無菌操作法指針_チェック済み_標準表記.txt`
 
-- lines: 505..511
+- lines: 503..514
 - ancestors:
-  - (none)
+  - L424: **１１．１ 一般要求事項**
+  - L462: **１１．２ 日常管理要求事項**
+  - L479: **１１．３ 環境モニタリング判定基準例**
 - table_caption:
-  - (none)
+  - L503: **表 3 環境微生物の許容基準(作業時) 注）1**
 - table_block:
   - L505: | グレード | 空中微生物 | | 表面付着微生物 | |
   - L506: |---|---|---|---|---|
@@ -196,13 +203,16 @@
   - L510: | C | 100 | 50 | 25 | ---- |
   - L511: | D | 200 | 100 | 50 | ---- |
 - notes:
-  - (none)
+  - L513: 注）1 許容基準は平均値評価とする．
+  - L514: 注）2 1 枚あたりの測定時間は，最大 4 時間までとし，作業時間中測定を行う．
 
 ## 9. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 260..265
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:
@@ -219,7 +229,9 @@
 
 - lines: 272..284
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:
@@ -243,7 +255,9 @@
 
 - lines: 298..303
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:
@@ -258,9 +272,11 @@
 
 ## 12. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 394..441
+- lines: 394..443
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:
@@ -313,13 +329,15 @@
   - L440: | 点検・基準維持 | 年1回以上 | 年1回以上 | 年1回以上 | 年1回以上 | 年1回以上 | 定期的 | 定期的 |
   - L441: | HEPA 交換時滅菌 | ○ | ○ | ○<br>(安全キャビネット) | ○ | ○<br>(安全キャビネット) | ○ | ○<br>(安全キャビネット) |
 - notes:
-  - (none)
+  - L443: 注釈)
 
 ## 13. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 467..488
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:
@@ -352,7 +370,9 @@
 
 - lines: 510..529
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:
@@ -381,9 +401,11 @@
 
 ## 15. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
-- lines: 535..539
+- lines: 535..541
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:
@@ -393,13 +415,15 @@
   - L538: | **（同上）**<br><br>管理区域に立ち入らない者 | ・ 病原体等の管理<br>・ 病原体等による感染症の発生の予防及びまん延の防止に関する法令<br>・ 感染症発生予防規程 | 初回前（*）<br>年１回以上 | ・ 主に病原体等のセキュリティについて、項目ごとに、一般的事項（概要）を中心とした教育等を行う。 |
   - L539: | **その他の者** | ・ 病原体等による感染症の発生の予防・まん延防止に関して必要な事項 | 必要に応じて適宜 | ・ 設備のメンテナンスに立入る者、施設の見学者、共同研究者等が対象となる。<br>・ 対象者に応じた必要最低限の教育等を行う。 |
 - notes:
-  - (none)
+  - L541: ※ 上記の項目又は事項の全部又は一部に関し十分な知識及び技能を有していると認められた者に対する当該項目又は事項の教育及び訓練の省略規定を設けた。
 
 ## 16. `%USERPROFILE%/Documents/GitHub/qual-law-guideline_OLD-HANDMADE/data/human-readable/08.病原体等安全管理規程/病原体等安全管理規程.txt`
 
 - lines: 559..573
 - ancestors:
-  - (none)
+  - L2: **第２章  安 全 管 理 体 制**
+  - L76: **第３章  安 全 管 理 基 準**
+  - L182: **第４章  健 康 管 理**
 - table_caption:
   - (none)
 - table_block:

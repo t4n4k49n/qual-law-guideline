@@ -17,6 +17,15 @@ TABLE_CAPTION_PATTERN = re.compile(r"^\s*(?:Table|表)\s*[0-9０-９一二三四
 NOTE_START_PATTERN = re.compile(r"^\s*(?:Note|Notes|NB|注|注記|備考|※|（注）)\s*[:：]?.*$", re.IGNORECASE)
 
 
+def normalize_for_match(line: str) -> str:
+    t = line.strip()
+    # Strip common markdown emphasis wrappers.
+    t = t.strip("*").strip()
+    t = re.sub(r"\*\*(.*?)\*\*", r"\1", t)
+    t = re.sub(r"__(.*?)__", r"\1", t)
+    return t
+
+
 def looks_like_md_separator(line: str) -> bool:
     s = line.strip()
     if "|" not in s:
@@ -35,7 +44,7 @@ def looks_like_md_separator(line: str) -> bool:
 
 
 def is_heading_line(line: str) -> bool:
-    t = line.strip()
+    t = normalize_for_match(line)
     if not t:
         return False
     if "。" in t:
@@ -48,7 +57,11 @@ def is_heading_line(line: str) -> bool:
         return True
     if NUMERIC_HEADING_PATTERN.match(t):
         return True
+    if re.match(r"^[０-９]+(?:[．.][０-９]+){1,3}\s*[^\s].*$", t):
+        return True
     if ROMAN_HEADING_PATTERN.match(t):
+        return True
+    if re.match(r"^[０-９一二三四五六七八九十百千]+[．.][０-９一二三四五六七八九十百千]+\s*[^\s].*$", t):
         return True
     return False
 
@@ -84,7 +97,7 @@ def find_nearby_caption(lines: List[str], table_start_idx: int, max_lookback: in
             cur -= 1
             looked += 1
             continue
-        if TABLE_CAPTION_PATTERN.match(t):
+        if TABLE_CAPTION_PATTERN.match(normalize_for_match(t)):
             return cur, lines[cur]
         if "|" in t:
             return None
@@ -122,15 +135,20 @@ def collect_table_from(lines: List[str], start_idx: int) -> Optional[Tuple[int, 
 def collect_notes(lines: List[str], idx: int) -> Tuple[int, List[Tuple[int, str]]]:
     notes: List[Tuple[int, str]] = []
     cur = idx
+    skipped_blank = 0
     while cur < len(lines):
         t = lines[cur].strip()
+        if not t and not notes and skipped_blank < 2:
+            skipped_blank += 1
+            cur += 1
+            continue
         if not t:
             break
-        if not notes and not NOTE_START_PATTERN.match(t):
+        if not notes and not NOTE_START_PATTERN.match(normalize_for_match(t)):
             break
         if notes and is_heading_line(t):
             break
-        if notes and not (NOTE_START_PATTERN.match(t) or lines[cur].startswith((" ", "\t"))):
+        if notes and not (NOTE_START_PATTERN.match(normalize_for_match(t)) or lines[cur].startswith((" ", "\t"))):
             break
         notes.append((cur + 1, lines[cur]))
         cur += 1
@@ -159,7 +177,7 @@ def extract_from_file(path: Path) -> List[Dict[str, object]]:
         caption_text: Optional[str] = None
         table_start = i
 
-        line = lines[i].strip()
+        line = normalize_for_match(lines[i])
         if TABLE_CAPTION_PATTERN.match(line):
             caption_line_no = i + 1
             caption_text = lines[i]
