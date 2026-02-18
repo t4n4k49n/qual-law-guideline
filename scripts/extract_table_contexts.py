@@ -7,11 +7,9 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 
-HEADING_PATTERNS = [
-    re.compile(r"^\s*第[0-9０-９一二三四五六七八九十百千]+章"),
-    re.compile(r"^\s*\d+(?:\.\d+){1,3}\s+"),
-    re.compile(r"^\s*[IVXLC]+\.\s+", re.IGNORECASE),
-]
+CHAPTER_HEADING_PATTERN = re.compile(r"^\s*第[0-9０-９一二三四五六七八九十百千]+章(?:\s+[^\s].*)?$")
+NUMERIC_HEADING_PATTERN = re.compile(r"^\s*\d+(?:\.\d+){1,3}\s+[^\s].*$")
+ROMAN_HEADING_PATTERN = re.compile(r"^\s*[IVXLC]+\.\s+[^\s].*$", re.IGNORECASE)
 
 TABLE_CAPTION_PATTERN = re.compile(r"^\s*(?:Table|表)\s*[0-9０-９一二三四五六七八九十]+\s*[:：]?.*$", re.IGNORECASE)
 NOTE_START_PATTERN = re.compile(r"^\s*(?:Note|Notes|NB|注|注記|備考|※|（注）)\s*[:：]?.*$", re.IGNORECASE)
@@ -38,7 +36,19 @@ def is_heading_line(line: str) -> bool:
     t = line.strip()
     if not t:
         return False
-    return any(pat.match(t) for pat in HEADING_PATTERNS)
+    if "。" in t:
+        return False
+    if len(t) > 80:
+        return False
+    if "には" in t and CHAPTER_HEADING_PATTERN.match(t):
+        return False
+    if CHAPTER_HEADING_PATTERN.match(t):
+        return True
+    if NUMERIC_HEADING_PATTERN.match(t):
+        return True
+    if ROMAN_HEADING_PATTERN.match(t):
+        return True
+    return False
 
 
 def find_ancestor_headings(lines: List[str], idx: int, max_count: int = 3) -> List[Tuple[int, str]]:
