@@ -1266,6 +1266,7 @@ def _refine_subtrees(
     input_path: Path,
     doc_id: str,
     parser_profile: Dict[str, Any],
+    profiles_dir_override: Optional[Path] = None,
 ) -> None:
     refine_cfg = (parser_profile.get("postprocess") or {}).get("refine_subtrees") or {}
     if not bool(refine_cfg.get("enabled")):
@@ -1328,7 +1329,10 @@ def _refine_subtrees(
         if not slice_lines:
             continue
 
-        sub_profile = load_parser_profile(profile_id=profile_id)
+        sub_profile = load_parser_profile(
+            profile_id=profile_id,
+            profiles_dir_override=profiles_dir_override,
+        )
         sub_doc = parse_text_to_ir(
             input_path=input_path,
             doc_id=f"{doc_id}__refine_{refine_kind}_{dispatch_value}",
@@ -1336,6 +1340,7 @@ def _refine_subtrees(
             lines_override=slice_lines,
             line_no_offset=start_line - 1,
             finalize=False,
+            profiles_dir_override=profiles_dir_override,
         )
         sub_root = sub_doc.content
         sub_nodes = [child for child in sub_root.children if child.kind == refine_kind]
@@ -1353,6 +1358,12 @@ def _refine_subtrees(
         node.normativity = refined.normativity
         node.source_spans = refined.source_spans
         node.children = refined.children
+        if f"refined_by={profile_id}" not in node.tags:
+            node.tags.append(f"refined_by={profile_id}")
+        if f"refine_kind={refine_kind}" not in node.tags:
+            node.tags.append(f"refine_kind={refine_kind}")
+        if f"refine_key={dispatch_value}" not in node.tags:
+            node.tags.append(f"refine_key={dispatch_value}")
 
 
 def parse_text_to_ir(
@@ -1363,6 +1374,7 @@ def parse_text_to_ir(
     lines_override: Optional[List[str]] = None,
     line_no_offset: int = 0,
     finalize: bool = True,
+    profiles_dir_override: Optional[Path] = None,
 ) -> IRDocument:
     source_label = parser_profile.get("source_label") or input_path.name
     compiled_markers = _compile_markers(parser_profile)
@@ -1635,6 +1647,7 @@ def parse_text_to_ir(
             input_path=input_path,
             doc_id=doc_id,
             parser_profile=parser_profile,
+            profiles_dir_override=profiles_dir_override,
         )
         _nest_root_chapters_under_parts(root)
         _quality_warnings = run_text_postprocess_and_qualitycheck(root)

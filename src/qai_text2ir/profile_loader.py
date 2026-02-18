@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 import yaml
+from qai_xml2ir.serialize import sha256_file
 
 CONCAT_UNIQ_LIST_PATHS: set[Tuple[str, ...]] = {
     ("structural_kinds",),
@@ -114,22 +115,48 @@ def _default_profile_path(*, family: str, profiles_dir: Path) -> Path:
     return profiles_dir / "us_cfr_default_v1.yaml"
 
 
-def load_parser_profile(
+def _provenance_path(profile_path: Path, profiles_dir: Path) -> str:
+    try:
+        return str(profile_path.relative_to(Path.cwd().resolve()))
+    except ValueError:
+        pass
+    try:
+        return str(Path("profiles") / profile_path.relative_to(profiles_dir.resolve()))
+    except ValueError:
+        return str(profile_path)
+
+
+def _dedupe_provenance(entries: List[Dict[str, str]]) -> List[Dict[str, str]]:
+    seen: set[str] = set()
+    deduped: List[Dict[str, str]] = []
+    for entry in entries:
+        key = entry.get("path", "")
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(entry)
+    return deduped
+
+
+def _load_parser_profile_core(
     *,
     profile_id: Optional[str] = None,
     path: Optional[Path] = None,
     family: str = "US_CFR",
     profiles_dir_override: Optional[Path] = None,
     _stack: Optional[list[str]] = None,
-) -> Dict[str, Any]:
+) -> Tuple[Dict[str, Any], List[Dict[str, str]]]:
     profiles_dir = profiles_dir_override or (Path(__file__).resolve().parent / "profiles")
     stack = list(_stack or [])
     if path is not None:
         profile_path = path
+        current_profile_id = path.stem
     elif profile_id:
         profile_path = profiles_dir / f"{profile_id}.yaml"
+        current_profile_id = profile_id
     else:
         profile_path = _default_profile_path(family=family, profiles_dir=profiles_dir)
+        current_profile_id = profile_path.stem
     profile_path = profile_path.resolve()
     if not profile_path.exists():
         raise ValueError(f"Parser profile not found: {profile_path}")
@@ -141,20 +168,75 @@ def load_parser_profile(
 
     raw = _load_yaml(profile_path)
     extends_raw = raw.get("extends")
+    provenance_entry = {
+        "profile_id": str(current_profile_id),
+        "internal_id": str(raw.get("id") or ""),
+        "path": _provenance_path(profile_path, profiles_dir),
+        "sha256": sha256_file(profile_path),
+        "extends": str(extends_raw) if extends_raw is not None else "",
+    }
+
     if extends_raw is None:
-        return raw
+        return raw, [provenance_entry]
 
     extends_items = _resolve_extends_items(extends_raw)
     merged_base: Dict[str, Any] = {}
+    provenance: List[Dict[str, str]] = []
     next_stack = [*stack, path_key]
     for base_id in extends_items:
-        base = load_parser_profile(
+        base, base_prov = _load_parser_profile_core(
             profile_id=base_id,
             profiles_dir_override=profiles_dir,
             _stack=next_stack,
         )
         merged_base = _deep_merge(merged_base, base)
+        provenance.extend(base_prov)
 
     child = deepcopy(raw)
     child.pop("extends", None)
-    return _deep_merge(merged_base, child)
+    provenance.append(provenance_entry)
+    return _deep_merge(merged_base, child), _dedupe_provenance(provenance)
+
+
+def load_parser_profile_with_provenance(
+    *,
+    profile_id: Optional[str] = None,
+    path: Optional[Path] = None,
+    family: str = "US_CFR",
+    profiles_dir_override: Optional[Path] = None,
+) -> Tuple[Dict[str, Any], List[Dict[str, str]]]:
+    profile, provenance = _load_parser_profile_core(
+        profile_id=profile_id,
+        path=path,
+        family=family,
+        profiles_dir_override=profiles_dir_override,
+        _stack=None,
+    )
+    return profile, provenance
+
+
+def load_parser_profile(
+    *,
+    profile_id: Optional[str] = None,
+    path: Optional[Path] = None,
+    family: str = "US_CFR",
+    profiles_dir_override: Optional[Path] = None,
+    _stack: Optional[list[str]] = None,
+) -> Dict[str, Any]:
+    # _stack is kept for backwards compatibility with existing internal callers.
+    if _stack:
+        profile, _ = _load_parser_profile_core(
+            profile_id=profile_id,
+            path=path,
+            family=family,
+            profiles_dir_override=profiles_dir_override,
+            _stack=_stack,
+        )
+        return profile
+    profile, _ = load_parser_profile_with_provenance(
+        profile_id=profile_id,
+        path=path,
+        family=family,
+        profiles_dir_override=profiles_dir_override,
+    )
+    return profile
