@@ -63,6 +63,11 @@ def is_heading_line(line: str) -> bool:
         return True
     if re.match(r"^[０-９一二三四五六七八九十百千]+[．.][０-９一二三四五六七八九十百千]+\s*[^\s].*$", t):
         return True
+    if re.match(r"^[A-Z][A-Z0-9 /,&()'-]{5,}$", t):
+        # Treat plain all-caps section banners as headings.
+        alpha = [c for c in t if c.isalpha()]
+        if alpha and sum(1 for c in alpha if c.isupper()) / len(alpha) >= 0.9:
+            return True
     return False
 
 

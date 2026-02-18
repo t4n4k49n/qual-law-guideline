@@ -6,7 +6,7 @@
 - quality_summary:
   - caption_missing_count: 11
   - caption_missing_ratio: 0.324
-  - ancestors_missing_count: 2
+  - ancestors_missing_count: 0
   - suspicious_ancestor_count: 0
   - records_with_notes_count: 4
 
@@ -449,9 +449,9 @@
 
 - lines: 93..99
 - ancestors:
-  - L68: i. Isolators:
   - L74: i. Isolators:
   - L80: i. Isolators:
+  - L87: CLEANROOM AND CLEAN AIR EQUIPMENT QUALIFICATION
 - table_caption:
   - L93: Table 1: Maximum permitted total particle concentration for classification,
 - table_block:
@@ -468,9 +468,9 @@
 
 - lines: 105..111
 - ancestors:
-  - L68: i. Isolators:
   - L74: i. Isolators:
   - L80: i. Isolators:
+  - L87: CLEANROOM AND CLEAN AIR EQUIPMENT QUALIFICATION
 - table_caption:
   - L105: Table 2: Maximum permitted microbial contamination level during qualification
 - table_block:
@@ -487,9 +487,9 @@
 
 - lines: 187..192
 - ancestors:
-  - L74: i. Isolators:
-  - L80: i. Isolators:
+  - L155: HEATING AND COOLING AND HYDRAULIC SYSTEMS
   - L171: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
+  - L180: TERMINALLY STERILISED PRODUCTS
 - table_caption:
   - L187: Table 3: Examples of operations and grades for terminally sterilised preparation and processing operations
 - table_block:
@@ -505,9 +505,9 @@
 
 - lines: 198..204
 - ancestors:
-  - L74: i. Isolators:
-  - L80: i. Isolators:
   - L171: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
+  - L180: TERMINALLY STERILISED PRODUCTS
+  - L193: ASEPTIC PREPARATION AND PROCESSING
 - table_caption:
   - L198: Table 4: Examples of operations and grades for aseptic preparation and processing operations
 - table_block:
@@ -524,9 +524,9 @@
 
 - lines: 382..388
 - ancestors:
-  - L80: i. Isolators:
-  - L171: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
-  - L216: 8.21 Final containers should be closed by appropriately validated methods.
+  - L352: SINGLE USE SYSTEMS (SUS)
+  - L364: GENERAL
+  - L368: ENVIRONMENTAL AND PROCESS MONITORING
 - table_caption:
   - L382: Table 5: Maximum permitted total particle concentration for monitoring.
 - table_block:
@@ -543,8 +543,8 @@
 
 - lines: 407..413
 - ancestors:
-  - L171: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
-  - L216: 8.21 Final containers should be closed by appropriately validated methods.
+  - L364: GENERAL
+  - L368: ENVIRONMENTAL AND PROCESS MONITORING
   - L406: 9.30 Action limits for viable particle contamination are shown in Table 6.
 - table_caption:
   - L407: Table 6: Maximum action limits for viable particle contamination
@@ -562,7 +562,8 @@
 
 - lines: 48..54
 - ancestors:
-  - (none)
+  - L36: BARRIER TECHNOLOGIES
+  - L42: CLEANROOM AND CLEAN AIR EQUIPMENT QUALIFICATION
 - table_caption:
   - L48: Table 1: Maximum permitted total particle concentration for classification,
 - table_block:
@@ -579,7 +580,8 @@
 
 - lines: 60..66
 - ancestors:
-  - (none)
+  - L36: BARRIER TECHNOLOGIES
+  - L42: CLEANROOM AND CLEAN AIR EQUIPMENT QUALIFICATION
 - table_caption:
   - L60: Table 2: Maximum permitted microbial contamination level during qualification
 - table_block:
@@ -596,7 +598,9 @@
 
 - lines: 142..147
 - ancestors:
+  - L110: HEATING AND COOLING AND HYDRAULIC SYSTEMS
   - L126: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
+  - L135: TERMINALLY STERILISED PRODUCTS
 - table_caption:
   - L142: Table 3: Examples of operations and grades for terminally sterilised preparation and processing operations
 - table_block:
@@ -613,6 +617,8 @@
 - lines: 153..160
 - ancestors:
   - L126: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
+  - L135: TERMINALLY STERILISED PRODUCTS
+  - L148: ASEPTIC PREPARATION AND PROCESSING
 - table_caption:
   - L153: Table 4: Examples of operations and grades for aseptic preparation and processing operations
 - table_block:
@@ -629,8 +635,9 @@
 
 - lines: 338..344
 - ancestors:
-  - L126: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
-  - L172: 8.21 Final containers should be closed by appropriately validated methods.
+  - L308: SINGLE USE SYSTEMS (SUS)
+  - L320: GENERAL
+  - L324: ENVIRONMENTAL AND PROCESS MONITORING
 - table_caption:
   - L338: Table 5: Maximum permitted total particle concentration for monitoring.
 - table_block:
@@ -647,8 +654,8 @@
 
 - lines: 363..369
 - ancestors:
-  - L126: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
-  - L172: 8.21 Final containers should be closed by appropriately validated methods.
+  - L320: GENERAL
+  - L324: ENVIRONMENTAL AND PROCESS MONITORING
   - L362: 9.30 Action limits for viable particle contamination are shown in Table 6.
 - table_caption:
   - L363: Table 6: Maximum action limits for viable particle contamination
@@ -704,9 +711,9 @@
 
 - lines: 221..226
 - ancestors:
-  - L165: ii. tank and vessel details,
-  - L166: iii. valves, filters, drains, sampling and user points,
+  - L185: HEATING AND COOLING AND HYDRAULIC SYSTEMS
   - L201: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
+  - L214: TERMINALLY STERILISED PRODUCTS
 - table_caption:
   - L221: Table 3: Examples of operations and grades for terminally sterilised preparation and processing operations
 - table_block:
@@ -722,9 +729,9 @@
 
 - lines: 232..238
 - ancestors:
-  - L165: ii. tank and vessel details,
-  - L166: iii. valves, filters, drains, sampling and user points,
   - L201: 7.12 Clothing should be chosen to limit shedding due to operators’ movement.
+  - L214: TERMINALLY STERILISED PRODUCTS
+  - L227: ASEPTIC PREPARATION AND PROCESSING
 - table_caption:
   - L232: Table 4: Examples of operations and grades for aseptic preparation and processing operations
 - table_block:
@@ -741,7 +748,7 @@
 
 - lines: 524..530
 - ancestors:
-  - L502: iv. APS (aseptically manufactured product only).
+  - L504: ENVIRONMENTAL AND PROCESS MONITORING
   - L515: i. increasing numbers of excursions from action limits or alert levels;
   - L516: ii. consecutive excursions from alert levels;
 - table_caption:

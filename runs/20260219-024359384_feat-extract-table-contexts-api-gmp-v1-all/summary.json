@@ -2,8 +2,8 @@
   "records": 34,
   "caption_missing_count": 11,
   "caption_missing_ratio": 0.3235294117647059,
-  "ancestors_missing_count": 2,
-  "ancestors_missing_ratio": 0.058823529411764705,
+  "ancestors_missing_count": 0,
+  "ancestors_missing_ratio": 0.0,
   "suspicious_ancestor_count": 0,
   "records_with_notes_count": 4
 }
