@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -179,6 +180,34 @@ def extract_from_file(path: Path) -> List[Dict[str, object]]:
     return out
 
 
+def _block_signature(rec: Dict[str, object]) -> str:
+    payload = {
+        "caption": rec.get("table_caption"),
+        "table_lines": [x.get("text") for x in (rec.get("table_lines") or [])],
+        "note_lines": [x.get("text") for x in (rec.get("note_lines") or [])],
+    }
+    raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def dedupe_records(records: List[Dict[str, object]]) -> List[Dict[str, object]]:
+    by_sig: Dict[str, Dict[str, object]] = {}
+    order: List[str] = []
+    for rec in records:
+        sig = _block_signature(rec)
+        if sig not in by_sig:
+            rec_copy = dict(rec)
+            rec_copy["source_paths"] = [rec["source_path"]]
+            by_sig[sig] = rec_copy
+            order.append(sig)
+            continue
+        existing = by_sig[sig]
+        srcs = existing.setdefault("source_paths", [])
+        if isinstance(srcs, list) and rec["source_path"] not in srcs:
+            srcs.append(rec["source_path"])
+    return [by_sig[sig] for sig in order]
+
+
 def gather_files(root: Path) -> List[Path]:
     files: List[Path] = []
     for ext in ("*.txt", "*.md"):
@@ -197,22 +226,30 @@ def main() -> int:
     all_records: List[Dict[str, object]] = []
     for f in files:
         all_records.extend(extract_from_file(f))
+    unique_records = dedupe_records(all_records)
 
     args.output_md.parent.mkdir(parents=True, exist_ok=True)
     args.output_jsonl.parent.mkdir(parents=True, exist_ok=True)
 
     with args.output_jsonl.open("w", encoding="utf-8", newline="\n") as fj:
-        for rec in all_records:
+        for rec in unique_records:
             fj.write(json.dumps(rec, ensure_ascii=False) + "\n")
 
     lines: List[str] = []
     lines.append("# Table Context Extraction")
     lines.append("")
     lines.append(f"- input_root: `{args.input_root}`")
-    lines.append(f"- extracted_blocks: **{len(all_records)}**")
+    lines.append(f"- extracted_blocks_raw: **{len(all_records)}**")
+    lines.append(f"- extracted_blocks_unique: **{len(unique_records)}**")
     lines.append("")
-    for idx, rec in enumerate(all_records, start=1):
+    for idx, rec in enumerate(unique_records, start=1):
         lines.append(f"## {idx}. `{rec['source_path']}`")
+        srcs = rec.get("source_paths") or []
+        if isinstance(srcs, list) and len(srcs) > 1:
+            lines.append("")
+            lines.append(f"- merged_sources: {len(srcs)}")
+            for s in srcs:
+                lines.append(f"  - `{s}`")
         lines.append("")
         lines.append(f"- lines: {rec['start_line']}..{rec['end_line']}")
         ancestors = rec.get("ancestors") or []
@@ -242,7 +279,8 @@ def main() -> int:
     args.output_md.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote: {args.output_md}")
     print(f"wrote: {args.output_jsonl}")
-    print(f"extracted_blocks={len(all_records)}")
+    print(f"extracted_blocks_raw={len(all_records)}")
+    print(f"extracted_blocks_unique={len(unique_records)}")
     return 0
 
 
