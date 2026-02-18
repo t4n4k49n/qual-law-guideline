@@ -1,0 +1,32 @@
+TABLE OF CONTENTS
+ANNEX 1 ... 1
+ANNEX 15 ... 212
+
+ANNEX 1
+MANUFACTURE OF STERILE MEDICINAL PRODUCTS
+1 Scope
+1.1 This annex 1 paragraph is refined.
+
+ANNEX 2B
+CUSTOM ANNEX WITHOUT REFINEMENT
+Some plain text in unmapped annex.
+
+padding line a
+padding line b
+padding line c
+padding line d
+padding line e
+padding line f
+padding line g
+padding line h
+padding line i
+padding line j
+
+ANNEX 15
+QUALIFICATION AND VALIDATION
+2. Qualification and validation principles
+2.1 Personnel should be trained.
+2.2 Documentation should be maintained.
+2.4 Validation protocols should define acceptance criteria.
+i. protocol objective
+ii. protocol acceptance criteria

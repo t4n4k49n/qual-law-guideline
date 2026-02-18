@@ -1228,11 +1228,134 @@ def _compile_skip_blocks(preprocess: Dict[str, Any]) -> List[SkipBlockRule]:
     return rules
 
 
+def _locator_line_number(locator: str) -> Optional[int]:
+    matched = re.match(r"^line:(\d+)$", locator.strip())
+    if not matched:
+        return None
+    return int(matched.group(1))
+
+
+def _node_start_line(node: Node) -> Optional[int]:
+    lines: List[int] = []
+    for span in node.source_spans or []:
+        locator = span.get("locator")
+        if not isinstance(locator, str):
+            continue
+        line_no = _locator_line_number(locator)
+        if line_no is not None:
+            lines.append(line_no)
+    if not lines:
+        return None
+    return min(lines)
+
+
+def _rewrite_subtree_nid_prefix(node: Node, old_prefix: str, new_prefix: str) -> None:
+    if node.nid == old_prefix:
+        node.nid = new_prefix
+    elif node.nid.startswith(f"{old_prefix}."):
+        node.nid = f"{new_prefix}{node.nid[len(old_prefix):]}"
+    for child in node.children:
+        _rewrite_subtree_nid_prefix(child, old_prefix, new_prefix)
+
+
+def _refine_subtrees(
+    *,
+    root: Node,
+    raw_lines: List[str],
+    line_no_offset: int,
+    input_path: Path,
+    doc_id: str,
+    parser_profile: Dict[str, Any],
+) -> None:
+    refine_cfg = (parser_profile.get("postprocess") or {}).get("refine_subtrees") or {}
+    if not bool(refine_cfg.get("enabled")):
+        return
+
+    refine_kind = str(refine_cfg.get("kind") or "annex")
+    refine_key = str(refine_cfg.get("key") or "num")
+    dispatch_by_num_raw = refine_cfg.get("dispatch_by_num") or {}
+    if not isinstance(dispatch_by_num_raw, dict) or not dispatch_by_num_raw:
+        return
+    dispatch_by_num = {
+        str(k): str(v)
+        for k, v in dispatch_by_num_raw.items()
+        if isinstance(k, str) and isinstance(v, str) and k and v
+    }
+    if not dispatch_by_num:
+        return
+    keep_unmapped = bool(refine_cfg.get("keep_unmapped", True))
+
+    absolute_last_line = line_no_offset + len(raw_lines)
+    target_indexes = [idx for idx, child in enumerate(root.children) if child.kind == refine_kind]
+    if not target_indexes:
+        return
+
+    from .profile_loader import load_parser_profile
+
+    for pos, idx in enumerate(target_indexes):
+        node = root.children[idx]
+        dispatch_value_raw = getattr(node, refine_key, None)
+        dispatch_value = str(dispatch_value_raw) if dispatch_value_raw is not None else ""
+        profile_id = dispatch_by_num.get(dispatch_value)
+        if not profile_id:
+            if keep_unmapped:
+                continue
+            continue
+
+        start_line = _node_start_line(node)
+        if start_line is None:
+            continue
+
+        if pos + 1 < len(target_indexes):
+            next_node = root.children[target_indexes[pos + 1]]
+            next_start = _node_start_line(next_node)
+            end_line = (next_start - 1) if next_start is not None else absolute_last_line
+        else:
+            end_line = absolute_last_line
+
+        start_idx = max(0, start_line - 1 - line_no_offset)
+        end_idx = min(len(raw_lines), end_line - line_no_offset)
+        if start_idx >= end_idx:
+            continue
+        slice_lines = raw_lines[start_idx:end_idx]
+        if not slice_lines:
+            continue
+
+        sub_profile = load_parser_profile(profile_id=profile_id)
+        sub_doc = parse_text_to_ir(
+            input_path=input_path,
+            doc_id=f"{doc_id}__refine_{refine_kind}_{dispatch_value}",
+            parser_profile=sub_profile,
+            lines_override=slice_lines,
+            line_no_offset=start_line - 1,
+            finalize=False,
+        )
+        sub_root = sub_doc.content
+        sub_nodes = [child for child in sub_root.children if child.kind == refine_kind]
+        if not sub_nodes:
+            continue
+        refined = sub_nodes[0]
+        if refined.nid != node.nid:
+            _rewrite_subtree_nid_prefix(refined, refined.nid, node.nid)
+
+        node.kind_raw = refined.kind_raw
+        node.num = refined.num
+        node.heading = refined.heading
+        node.text = refined.text
+        node.role = refined.role
+        node.normativity = refined.normativity
+        node.source_spans = refined.source_spans
+        node.children = refined.children
+
+
 def parse_text_to_ir(
     *,
     input_path: Path,
     doc_id: str,
     parser_profile: Dict[str, Any],
+    lines_override: Optional[List[str]] = None,
+    line_no_offset: int = 0,
+    finalize: bool = True,
 ) -> IRDocument:
     source_label = parser_profile.get("source_label") or input_path.name
     compiled_markers = _compile_markers(parser_profile)
@@ -1269,7 +1392,13 @@ def parse_text_to_ir(
     append_states: Dict[Tuple[str, str], AppendState] = {}
     skip_block_state = SkipBlockState()
 
-    lines = input_path.read_text(encoding="utf-8").splitlines()
+    lines_base = (
+        list(lines_override)
+        if lines_override is not None
+        else input_path.read_text(encoding="utf-8").splitlines()
+    )
+    raw_lines = list(lines_base)
+    lines = list(lines_base)
     lines = _join_mid_sentence_marker_refs_into_prev(
         lines,
         strip_inline_regexes=strip_inline_regexes,
@@ -1282,7 +1411,7 @@ def parse_text_to_ir(
         strip_inline_regexes=strip_inline_regexes,
         continuation_cfg=heading_continuation_cfg,
     )
-    for line_no, raw_line in enumerate(lines, start=1):
+    for line_no, raw_line in enumerate(lines, start=1 + line_no_offset):
         raw_blank = not raw_line.strip()
         cleaned_line = raw_line
         for pat in strip_inline_regexes:
@@ -1491,11 +1620,22 @@ def parse_text_to_ir(
                     current = fallback
         _append_text(current, cleaned_line, line_no, source_label, append_states)
 
-    _nest_root_chapters_under_parts(root)
-    _quality_warnings = run_text_postprocess_and_qualitycheck(root)
-    for warning in _quality_warnings:
-        LOGGER.warning("qualitycheck: %s", warning)
-    assign_document_order(root)
-    index = {"display_name_by_nid": {}}
-    _collect_display_names(root, index["display_name_by_nid"])
+    if finalize:
+        _refine_subtrees(
+            root=root,
+            raw_lines=raw_lines,
+            line_no_offset=line_no_offset,
+            input_path=input_path,
+            doc_id=doc_id,
+            parser_profile=parser_profile,
+        )
+        _nest_root_chapters_under_parts(root)
+        _quality_warnings = run_text_postprocess_and_qualitycheck(root)
+        for warning in _quality_warnings:
+            LOGGER.warning("qualitycheck: %s", warning)
+        assign_document_order(root)
+        index = {"display_name_by_nid": {}}
+        _collect_display_names(root, index["display_name_by_nid"])
+    else:
+        index = {"display_name_by_nid": {}}
     return IRDocument(doc_id=doc_id, content=root, index=index)

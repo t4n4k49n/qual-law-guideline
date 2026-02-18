@@ -1,0 +1,21 @@
+schema: qai.run_manifest.v1
+run_id: 20260218-152931213_feat-pics-annexes-refined-v2
+created_at: "2026-02-18T06:30:19Z"
+git:
+  commit: 8733f3ccfd9a732bd9caa461ae5d8aa64a15381f
+  branch: feat/pics-annexes-refined-v2
+input:
+  path: data/human-readable/pics/pe009-17_annexes_2023-08-25_en.txt
+  checksum: 2074846d2adffc316b7cf5ecd063f66dc65d3355acd6fa6db09a07d48ab6c5f7
+command:
+  argv: python -m qai_text2ir.cli --input data/human-readable/pics/pe009-17_annexes_2023-08-25_en.txt --out-dir out/20260218-152931213_feat-pics-annexes-refined-v2 --doc-id pics_pe00917_annexes_20230825_refined --title "PIC/S GMP Guide (PE 009-17) Annexes (25 August 2023) [refined]" --short-title "PIC/S Annexes refined" --jurisdiction INTL --family PICS --language en --doc-type guideline --source-url "https://picscheme.org/docview/8881" --source-format pdf --retrieved-at "2026-02-18" --pics-doc-id "PE 009-17 (Annexes)" --parser-profile src/qai_text2ir/profiles/pics_annexes_default_v2.yaml --qualitycheck --strict --emit-only all
+outputs:
+  doc_id: pics_pe00917_annexes_20230825_refined
+  files:
+    - pics_pe00917_annexes_20230825_refined.regdoc_ir.yaml
+    - pics_pe00917_annexes_20230825_refined.parser_profile.yaml
+    - pics_pe00917_annexes_20230825_refined.regdoc_profile.yaml
+    - pics_pe00917_annexes_20230825_refined.meta.yaml
+review:
+  method: strict+automated+visual
+  notes: strict qualitycheck passed with zero warnings; refine_subtrees dispatch parsed annex 1/2A/11/15 internally while keeping other annexes boundary-only; source span line locators remained aligned to full-document line numbers.
