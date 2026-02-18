@@ -1,0 +1,5 @@
+Section 1. Scope
+1.1 Requirement text.
+Note: This is a note.
+(a) Subitem text.
+備考：これは備考。

@@ -41,3 +41,20 @@ profiles:
         include_descendants_kinds: [note]
         include_descendants_max_depth: 3
 ```
+
+## 条文/本文ノードでの注書き表示例
+`subitem` や `paragraph` の子に `note` がある場合、選択時に同時表示できる。
+
+```yaml
+profiles:
+  dq_gmp_checklist:
+    context_display_policy:
+      - when_kind: subitem
+        include_ancestors_until_kind: chapter
+        include_headings: true
+        include_chapeau_text: true
+        include_descendants: true
+        include_descendants_of: selected
+        include_descendants_kinds: [note]
+        include_descendants_max_depth: 2
+```
