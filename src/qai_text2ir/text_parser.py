@@ -25,8 +25,11 @@ PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
 PAGE_NUMBER_LINE_PATTERN = re.compile(r"^\s*\d{1,3}\s*$")
 TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s{2,}\d{1,3}\s*$")
 FIGURE_TABLE_START_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\d+[:\.]", re.IGNORECASE)
-TABLE_CAPTION_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\S+[:\.]?\s+.+$", re.IGNORECASE)
-TABLE_NOTE_TRIGGER_PATTERN = re.compile(r"^(?:Note|Notes|NOTE)\b|^[*†‡•]\s+|^\([a-z0-9]+\)\s+")
+TABLE_CAPTION_PATTERN = re.compile(r"^\s*(?:Figure|Table|表)\s*\S*[:：\.]?\s+.+$", re.IGNORECASE)
+TABLE_NOTE_TRIGGER_PATTERN = re.compile(
+    r"^(?:Note|Notes|NOTE|NB|注|注記|備考|※|（注）)\b|^[*†‡•]\s+|^\([a-z0-9]+\)\s+",
+    re.IGNORECASE,
+)
 DEFAULT_NOTE_START_REGEXES = [
     r"^(?:Note|Notes|NB)\b[:：]?\s*",
     r"^(注|注記|備考|※)\s*[:：]?\s*",
@@ -314,11 +317,23 @@ def _collect_table_notes(
 ) -> Tuple[List[Tuple[int, str]], int]:
     if start_idx >= len(lines):
         return [], start_idx
-    first = _strip_inline_patterns(lines[start_idx], strip_inline_regexes).strip()
+    first_idx = start_idx
+    blanks = 0
+    while first_idx < len(lines):
+        probe = _strip_inline_patterns(lines[first_idx], strip_inline_regexes).strip()
+        if probe:
+            break
+        blanks += 1
+        if blanks > 2:
+            return [], start_idx
+        first_idx += 1
+    if first_idx >= len(lines):
+        return [], start_idx
+    first = _strip_inline_patterns(lines[first_idx], strip_inline_regexes).strip()
     if not first or not TABLE_NOTE_TRIGGER_PATTERN.match(first):
         return [], start_idx
     note_entries: List[Tuple[int, str]] = []
-    idx = start_idx
+    idx = first_idx
     while idx < len(lines):
         raw = lines[idx]
         cleaned = _strip_inline_patterns(raw, strip_inline_regexes).strip()
@@ -351,8 +366,10 @@ def _find_table_caption(
         if not candidate:
             idx -= 1
             continue
-        if TABLE_CAPTION_PATTERN.match(candidate):
-            return idx, candidate
+        candidate_plain = re.sub(r"^\*{1,2}(.*?)\*{1,2}$", r"\1", candidate).strip()
+        candidate_plain = re.sub(r"^_{1,2}(.*?)_{1,2}$", r"\1", candidate_plain).strip()
+        if TABLE_CAPTION_PATTERN.match(candidate_plain):
+            return idx, candidate_plain
         return None
     return None
 
