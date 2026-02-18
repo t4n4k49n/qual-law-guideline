@@ -1282,7 +1282,13 @@ def _refine_subtrees(
         if isinstance(k, str) and isinstance(v, str) and k and v
     }
     if not dispatch_by_num:
-        return
+        dispatch_by_num = {}
+    fallback_profile_id_raw = refine_cfg.get("fallback_profile_id")
+    fallback_profile_id = (
+        str(fallback_profile_id_raw).strip()
+        if isinstance(fallback_profile_id_raw, str) and fallback_profile_id_raw.strip()
+        else None
+    )
     keep_unmapped = bool(refine_cfg.get("keep_unmapped", True))
 
     absolute_last_line = line_no_offset + len(raw_lines)
@@ -1298,9 +1304,10 @@ def _refine_subtrees(
         dispatch_value = str(dispatch_value_raw) if dispatch_value_raw is not None else ""
         profile_id = dispatch_by_num.get(dispatch_value)
         if not profile_id:
-            if keep_unmapped:
+            if keep_unmapped and fallback_profile_id:
+                profile_id = fallback_profile_id
+            else:
                 continue
-            continue
 
         start_line = _node_start_line(node)
         if start_line is None:

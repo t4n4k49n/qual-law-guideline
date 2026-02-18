@@ -1,0 +1,92 @@
+schema: qai.parser_profile.v1
+id: pics_annex_generic_default_v1
+title: "PIC/S PE 009-17 Annex generic markers (safe baseline)"
+applies_to:
+  family: PICS
+  jurisdiction: INTL
+  defaults: false
+language: en
+source_label: "PIC/S"
+context_root_kind: annex
+structural_kinds: [annex]
+
+preprocess:
+  drop_line_regexes:
+    - '(?i)^\s*PE\s*009-17\s*\(Annexes\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$'
+    - '^\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*$'
+    - '(?i)^\s*web\s+site:\s*https?://\S+\s*$'
+  strip_inline_regexes:
+    - '(?i)(?<=\S)Annex\s+\d+[A-Z]?\s+[A-Za-z].{0,200}$'
+    - '[\x00-\x1F]'
+  merge_structural_heading_continuations:
+    enabled: true
+    kinds: [annex]
+    max_next_line_len: 220
+    max_merge_lines: 4
+    max_blank_lookahead: 2
+  drop_repeated_structural_headers:
+    enabled: true
+    kinds: [annex]
+
+marker_types:
+  - id: annex
+    kind: annex
+    kind_raw: "ANNEX"
+    match: '^\s*ANNEX\s+(?P<n>\d+[A-Z]?)\b\s*'
+    num_group: n
+  - id: section_int_dot
+    kind: section
+    kind_raw: "1."
+    match: '^(?P<n>\d{1,2})\.(?!\d)\s+'
+    num_group: n
+  - id: paragraph_decimal
+    kind: paragraph
+    kind_raw: "1.1"
+    match: '^(?P<n>\d{1,2}\.\d+)\s+'
+    num_group: n
+  - id: item_paren_alpha
+    kind: item
+    kind_raw: "(a)"
+    match: '^\((?P<n>[a-z])\)\s+'
+    num_group: n
+  - id: item_alpha_dot
+    kind: item
+    kind_raw: "a."
+    match: '^(?P<n>[a-z])\.\s+'
+    num_group: n
+  - id: item_paren_roman
+    kind: item
+    kind_raw: "(i)"
+    match: '^\((?P<n>[ivxlcdm]+)\)\s+'
+    num_group: n
+  - id: item_roman_dot
+    kind: item
+    kind_raw: "i."
+    match: '^(?P<n>[ivxlcdm]+)\.\s+'
+    num_group: n
+  - id: bullet
+    kind: subitem
+    kind_raw: "•"
+    match: '^\s*[•]\s+'
+
+structure:
+  root:
+    children: [annex]
+  annex:
+    children: [section, paragraph, item, subitem, note, history]
+  section:
+    children: [paragraph, item, subitem, note, history]
+  paragraph:
+    children: [item, subitem, note, history]
+  item:
+    children: [subitem, note, history]
+  subitem:
+    children: [note, history]
+  note:
+    children: []
+  history:
+    children: []
+
+compound_prefix:
+  enabled: false
+  max_depth: 1
