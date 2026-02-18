@@ -25,6 +25,8 @@ PLAIN_WORD_PATTERN = re.compile(r"\b[A-Za-z]{3,}\b")
 PAGE_NUMBER_LINE_PATTERN = re.compile(r"^\s*\d{1,3}\s*$")
 TOC_LIKE_HEADING_PATTERN = re.compile(r".+\s{2,}\d{1,3}\s*$")
 FIGURE_TABLE_START_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\d+[:\.]", re.IGNORECASE)
+TABLE_CAPTION_PATTERN = re.compile(r"^\s*(?:Figure|Table)\s+\S+[:\.]?\s+.+$", re.IGNORECASE)
+TABLE_NOTE_TRIGGER_PATTERN = re.compile(r"^(?:Note|Notes|NOTE)\b|^[*†‡•]\s+|^\([a-z0-9]+\)\s+")
 KEEP_HYPHEN_ALLOWLIST = {
     "time-stamped",
     "time-sequenced",
@@ -127,6 +129,9 @@ class _NodeFactory:
             "paragraph": "p",
             "item": "i",
             "subitem": "si",
+            "table": "tbl",
+            "table_header": "tblh",
+            "table_row": "tblr",
             "preamble": "pre",
         }
         self._kind_counters: Dict[Tuple[str, str], int] = defaultdict(int)
@@ -229,6 +234,122 @@ def _strip_inline_patterns(text: str, strip_inline_regexes: List[re.Pattern[str]
     for pat in strip_inline_regexes:
         cleaned = pat.sub("", cleaned)
     return cleaned
+
+
+def _is_md_table_separator(line: str) -> bool:
+    candidate = line.strip()
+    if not candidate:
+        return False
+    if "|" not in candidate:
+        return False
+    if candidate.startswith("|"):
+        candidate = candidate[1:]
+    if candidate.endswith("|"):
+        candidate = candidate[:-1]
+    cells = [cell.strip() for cell in candidate.split("|")]
+    if not cells:
+        return False
+    for cell in cells:
+        if not re.match(r"^:?-{3,}:?$", cell):
+            return False
+    return True
+
+
+def _looks_like_md_table_header(line: str) -> bool:
+    candidate = line.strip()
+    if not candidate:
+        return False
+    return candidate.count("|") >= 2 and not _is_md_table_separator(candidate)
+
+
+def _collect_md_table_block(
+    lines: List[str],
+    start_idx: int,
+    strip_inline_regexes: List[re.Pattern[str]],
+) -> Optional[Dict[str, Any]]:
+    if start_idx + 2 >= len(lines):
+        return None
+    header_line = _strip_inline_patterns(lines[start_idx], strip_inline_regexes).strip()
+    separator_line = _strip_inline_patterns(lines[start_idx + 1], strip_inline_regexes).strip()
+    if not _looks_like_md_table_header(header_line):
+        return None
+    if not _is_md_table_separator(separator_line):
+        return None
+    row_entries: List[Tuple[int, str]] = []
+    idx = start_idx + 2
+    while idx < len(lines):
+        row_line = _strip_inline_patterns(lines[idx], strip_inline_regexes).strip()
+        if not row_line:
+            break
+        if "|" not in row_line:
+            break
+        if _is_md_table_separator(row_line):
+            break
+        row_entries.append((idx, row_line))
+        idx += 1
+    if not row_entries:
+        return None
+    return {
+        "header_idx": start_idx,
+        "header_line": header_line,
+        "separator_idx": start_idx + 1,
+        "separator_line": separator_line,
+        "rows": row_entries,
+        "end_idx": idx,
+    }
+
+
+def _collect_table_notes(
+    lines: List[str],
+    start_idx: int,
+    strip_inline_regexes: List[re.Pattern[str]],
+    drop_line_regexes: List[re.Pattern[str]],
+    drop_line_exact: Set[str],
+    compiled_markers: List[Tuple[Dict[str, Any], re.Pattern[str]]],
+) -> Tuple[List[Tuple[int, str]], int]:
+    if start_idx >= len(lines):
+        return [], start_idx
+    first = _strip_inline_patterns(lines[start_idx], strip_inline_regexes).strip()
+    if not first or not TABLE_NOTE_TRIGGER_PATTERN.match(first):
+        return [], start_idx
+    note_entries: List[Tuple[int, str]] = []
+    idx = start_idx
+    while idx < len(lines):
+        raw = lines[idx]
+        cleaned = _strip_inline_patterns(raw, strip_inline_regexes).strip()
+        if not cleaned:
+            break
+        if cleaned in drop_line_exact or any(pat.match(cleaned) for pat in drop_line_regexes):
+            break
+        if _starts_with_any_marker(cleaned, compiled_markers):
+            break
+        if idx > start_idx:
+            if TABLE_NOTE_TRIGGER_PATTERN.match(cleaned):
+                pass
+            elif raw.startswith(" ") or raw.startswith("\t"):
+                pass
+            else:
+                break
+        note_entries.append((idx, cleaned))
+        idx += 1
+    return note_entries, idx
+
+
+def _find_table_caption(
+    lines: List[str],
+    header_idx: int,
+    strip_inline_regexes: List[re.Pattern[str]],
+) -> Optional[Tuple[int, str]]:
+    idx = header_idx - 1
+    while idx >= 0:
+        candidate = _strip_inline_patterns(lines[idx], strip_inline_regexes).strip()
+        if not candidate:
+            idx -= 1
+            continue
+        if TABLE_CAPTION_PATTERN.match(candidate):
+            return idx, candidate
+        return None
+    return None
 
 
 def _is_punctuation_only(value: str) -> bool:
@@ -400,6 +521,17 @@ def _merge_structural_marker_heading_lines(
             next_stripped = next_cleaned.strip()
             if not next_stripped:
                 break
+            if _looks_like_md_table_header(next_stripped):
+                break
+            if TABLE_CAPTION_PATTERN.match(next_stripped):
+                probe_idx = next_idx + 1
+                while probe_idx < len(merged) and not merged[probe_idx].strip():
+                    probe_idx += 1
+                if probe_idx + 1 < len(merged):
+                    probe_header = _strip_inline_patterns(merged[probe_idx], strip_inline_regexes).strip()
+                    probe_sep = _strip_inline_patterns(merged[probe_idx + 1], strip_inline_regexes).strip()
+                    if _looks_like_md_table_header(probe_header) and _is_md_table_separator(probe_sep):
+                        break
             if _starts_with_any_marker(next_cleaned.lstrip(), compiled_markers):
                 break
             if not _looks_like_heading_line(next_stripped):
@@ -1383,6 +1515,7 @@ def parse_text_to_ir(
     structural_kinds = set(
         parser_profile.get("structural_kinds") or ["part", "subpart", "section"]
     )
+    structural_kinds.update({"table", "table_header"})
     compound_enabled = bool(compound.get("enabled"))
     max_depth = int(compound.get("max_depth", 1))
     preprocess = parser_profile.get("preprocess") or {}
@@ -1430,7 +1563,8 @@ def parse_text_to_ir(
         strip_inline_regexes=strip_inline_regexes,
         continuation_cfg=heading_continuation_cfg,
     )
-    for line_no, raw_line in enumerate(lines, start=1 + line_no_offset):
+    for idx, raw_line in enumerate(lines):
+        line_no = idx + 1 + line_no_offset
         raw_blank = not raw_line.strip()
         cleaned_line = raw_line
         for pat in strip_inline_regexes:
@@ -1488,6 +1622,93 @@ def parse_text_to_ir(
             continue
         if any(pat.match(stripped_raw) for pat in drop_line_regexes):
             continue
+
+        table_block = _collect_md_table_block(
+            lines,
+            idx,
+            strip_inline_regexes,
+        )
+        if table_block is not None:
+            parent = current if current is not root else root
+            table_node = node_factory.create_node(
+                kind="table",
+                kind_raw="table",
+                num=None,
+                line_no=table_block["header_idx"] + 1 + line_no_offset,
+                source_label=source_label,
+                parent_nid=parent.nid,
+            )
+            caption = _find_table_caption(lines, table_block["header_idx"], strip_inline_regexes)
+            if caption is not None:
+                caption_idx, caption_text = caption
+                table_node.heading = caption_text
+                table_node.source_spans.append(
+                    {"source_label": source_label, "locator": f"line:{caption_idx + 1 + line_no_offset}"}
+                )
+            parent.children.append(table_node)
+            node_indent_by_nid[table_node.nid] = _leading_space_count(lines[table_block["header_idx"]])
+
+            header_node = node_factory.create_node(
+                kind="table_header",
+                kind_raw="table_header",
+                num=None,
+                line_no=table_block["header_idx"] + 1 + line_no_offset,
+                source_label=source_label,
+                parent_nid=table_node.nid,
+            )
+            header_node.text = f"{table_block['header_line']}\n{table_block['separator_line']}"
+            header_node.source_spans.append(
+                {"source_label": source_label, "locator": f"line:{table_block['separator_idx'] + 1 + line_no_offset}"}
+            )
+            table_node.children.append(header_node)
+            node_indent_by_nid[header_node.nid] = _leading_space_count(lines[table_block["header_idx"]])
+
+            for row_idx, row_text in table_block["rows"]:
+                row_node = node_factory.create_node(
+                    kind="table_row",
+                    kind_raw="table_row",
+                    num=None,
+                    line_no=row_idx + 1 + line_no_offset,
+                    source_label=source_label,
+                    parent_nid=header_node.nid,
+                )
+                row_node.text = row_text
+                header_node.children.append(row_node)
+                node_indent_by_nid[row_node.nid] = _leading_space_count(lines[row_idx])
+
+            notes, note_end_idx = _collect_table_notes(
+                lines,
+                table_block["end_idx"],
+                strip_inline_regexes,
+                drop_line_regexes,
+                drop_line_exact,
+                compiled_markers,
+            )
+            if notes:
+                first_note_idx = notes[0][0]
+                note_node = node_factory.create_node(
+                    kind="note",
+                    kind_raw="note",
+                    num=None,
+                    line_no=first_note_idx + 1 + line_no_offset,
+                    source_label=source_label,
+                    parent_nid=table_node.nid,
+                )
+                note_node.text = "\n\n".join(text for _, text in notes)
+                for note_idx, _ in notes[1:]:
+                    note_node.source_spans.append(
+                        {"source_label": source_label, "locator": f"line:{note_idx + 1 + line_no_offset}"}
+                    )
+                table_node.children.append(note_node)
+
+            lines[table_block["header_idx"]] = ""
+            lines[table_block["separator_idx"]] = ""
+            for row_idx, _ in table_block["rows"]:
+                lines[row_idx] = ""
+            for note_idx, _ in notes:
+                lines[note_idx] = ""
+            continue
+
         stripped_for_match = cleaned_line.lstrip()
         current_indent = _leading_space_count(cleaned_line)
 

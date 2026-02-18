@@ -58,12 +58,13 @@ def _build_regdoc_profile(doc_id: str, context_root_kind: str = "section") -> Di
         "doc_id": doc_id,
         "profiles": {
             "dq_gmp_checklist": {
-                "selectable_kinds": ["subitem", "item", "paragraph", "statement"],
+                "selectable_kinds": ["subitem", "item", "paragraph", "statement", "table_row"],
                 "grouping_policy": [
                     {"when_kind": "subitem", "group_under_kind": "item"},
                     {"when_kind": "item", "group_under_kind": "paragraph"},
                     {"when_kind": "paragraph", "group_under_kind": context_root_kind},
                     {"when_kind": "statement", "group_under_kind": context_root_kind},
+                    {"when_kind": "table_row", "group_under_kind": "table"},
                 ],
                 "context_display_policy": [
                     {
@@ -83,6 +84,16 @@ def _build_regdoc_profile(doc_id: str, context_root_kind: str = "section") -> Di
                         "include_ancestors_until_kind": context_root_kind,
                         "include_headings": True,
                         "include_chapeau_text": True,
+                    },
+                    {
+                        "when_kind": "table_row",
+                        "include_ancestors_until_kind": context_root_kind,
+                        "include_headings": True,
+                        "include_chapeau_text": True,
+                        "include_descendants": True,
+                        "include_descendants_of": "ancestors",
+                        "include_descendants_kinds": ["note"],
+                        "include_descendants_max_depth": 3,
                     },
                 ],
                 "render_templates": {},
