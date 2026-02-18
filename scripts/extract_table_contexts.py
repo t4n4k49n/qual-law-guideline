@@ -63,6 +63,24 @@ def find_prev_non_empty(lines: List[str], idx: int) -> Optional[Tuple[int, str]]
     return None
 
 
+def find_nearby_caption(lines: List[str], table_start_idx: int, max_lookback: int = 6) -> Optional[Tuple[int, str]]:
+    cur = table_start_idx - 1
+    looked = 0
+    while cur >= 0 and looked < max_lookback:
+        t = lines[cur].strip()
+        if not t:
+            cur -= 1
+            looked += 1
+            continue
+        if TABLE_CAPTION_PATTERN.match(t):
+            return cur, lines[cur]
+        if "|" in t:
+            return None
+        cur -= 1
+        looked += 1
+    return None
+
+
 def collect_table_from(lines: List[str], start_idx: int) -> Optional[Tuple[int, List[Tuple[int, str]]]]:
     # caption + md table
     if start_idx + 2 > len(lines) - 1:
@@ -111,25 +129,26 @@ def extract_from_file(path: Path) -> List[Dict[str, object]]:
     out: List[Dict[str, object]] = []
     i = 0
     while i < len(lines):
-        line = lines[i].strip()
         caption_line_no: Optional[int] = None
         caption_text: Optional[str] = None
+        table_start = i
 
+        line = lines[i].strip()
         if TABLE_CAPTION_PATTERN.match(line):
             caption_line_no = i + 1
             caption_text = lines[i]
             table_start = i + 1
-        else:
-            prev = find_prev_non_empty(lines, i)
-            if prev and TABLE_CAPTION_PATTERN.match(prev[1]):
-                caption_line_no = prev[0] + 1
-                caption_text = prev[1]
-            table_start = i
 
         table_info = collect_table_from(lines, table_start)
         if table_info is None:
             i += 1
             continue
+        if caption_text is None:
+            nearby = find_nearby_caption(lines, table_start)
+            if nearby is not None:
+                caption_idx, caption_raw = nearby
+                caption_line_no = caption_idx + 1
+                caption_text = caption_raw
         end_idx, table_lines = table_info
         after_idx, note_lines = collect_notes(lines, end_idx + 1)
         ancestor_idx_base = (caption_line_no - 1) if caption_line_no else table_start
