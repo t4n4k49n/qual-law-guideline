@@ -38,3 +38,15 @@
 ## 正式版昇格
 - まだ実施していない（PR承認後に実施）。
 - PR: https://github.com/t4n4k49n/qual-law-guideline/pull/90
+
+### 昇格実施結果（承認後）
+- 実施日: 2026-02-20
+- 既存正式版を退避:
+  - `data/normalized/ARCHIVE_jp_egov_336M50000100002_20260501_507M60000100117`
+- 新正式版を配置:
+  - `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/jp_egov_336M50000100002_20260501_507M60000100117.regdoc_ir.yaml`
+  - `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/jp_egov_336M50000100002_20260501_507M60000100117.parser_profile.yaml`
+  - `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/jp_egov_336M50000100002_20260501_507M60000100117.regdoc_profile.yaml`
+  - `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/jp_egov_336M50000100002_20260501_507M60000100117.meta.yaml`
+- 注記:
+  - 昇格反映は本コミットを含むPRで `main` 取り込みを実施する。
