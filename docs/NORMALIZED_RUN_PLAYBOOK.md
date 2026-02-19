@@ -106,6 +106,7 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 - **PR承認が確認できたら** `data/normalized/<doc_id>/` を最新成果物で置換（上書き）する
 - **承認前の `data/normalized/` 複写は厳禁**
 - 昇格実施結果は `runs/<run_id>/RUN.md` に記録し、PR本文（`runs/<run_id>/PR.md`）は承認時点の内容を後追い更新しない
+  - `RUN.md` の昇格実施結果には `promotion_commit: <sha>` を必ず記載する
 - `data/normalized/` の履歴管理はGit（commit/PR diff）で行う
 - 昇格コミットをpushしたら、**同一PRに含めて `main` 反映まで完了させる**（昇格専用の別PRは作成しない）。
 - 昇格完了条件（自動判定）:
@@ -114,4 +115,6 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
   - 条件2が偽なら「未完了」で停止（完了報告禁止）
 - 必須コマンド:
   - `.venv\Scripts\python.exe scripts/check_normalized_promotion_completion.py --promotion-commit <promotion_commit> --main-ref origin/main`
+- 自動実行:
+  - `main` への push 後、`.github/workflows/normalized-promotion-completion.yml` が起動し、変更された `runs/<run_id>/RUN.md` から `promotion_commit` を読み取って自動検証する。
 - 反映確認: `main` で `data/normalized/<doc_id>/` の更新を確認し、確認結果を `RUN.md` に追記する。
