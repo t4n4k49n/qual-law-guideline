@@ -107,8 +107,13 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 - **承認前の `data/normalized/` 複写は厳禁**
 - 昇格実施結果は `runs/<run_id>/RUN.md` に記録し、PR本文（`runs/<run_id>/PR.md`）は承認時点の内容を後追い更新しない
 - `data/normalized/` の履歴管理はGit（commit/PR diff）で行う
-- 昇格コミットをpushしたら、**必ず `main` 反映まで完了させる**
-  - 対象PRが未マージなら、そのPRに昇格コミットを含めてマージする
-  - 対象PRが既にマージ済みなら、昇格反映用の新規ブランチ/PRを作成して `main` へ取り込む
-  - 反映確認: `main` で `data/normalized/<doc_id>/` の存在を確認し、確認結果を `RUN.md` に追記する
-- 正規化RUN PR（`run/normalized-...`）は `normalized-run-gate` チェック通過までマージしない（Auto-merge設定時も同様）。
+- 昇格コミットをpushしたら、**同一PRに含めて `main` 反映まで完了させる**（昇格専用の別PRは作成しない）。
+- 昇格完了条件（自動判定）:
+  - `promotion_commit` が存在する
+  - `promotion_commit` が `origin/main` の祖先である
+  - 条件2が偽なら「未完了」で停止（完了報告禁止）
+- 必須コマンド:
+  - `git rev-parse --verify <promotion_commit>`
+  - `git fetch origin`
+  - `git merge-base --is-ancestor <promotion_commit> origin/main`
+- 反映確認: `main` で `data/normalized/<doc_id>/` の更新を確認し、確認結果を `RUN.md` に追記する。
