@@ -19,8 +19,12 @@
 ## 比較表（人間レビュー用）
 | 区分 | 内容 |
 |---|---|
-| 人間可読（祖先含む） | 別表 > （table heading: 別表） > ヘッダ: 標識 \| 大きさ \| 標識を付ける箇所 > 行: 産業標準化法... |
-| YAML断片（対象NID） | `appdx_table1.tbl1.tblh.tblr1` |
+| 選択ノード | `table_row` |
+| 対象NID | `appdx_table1.tbl1.tblh.tblr1` |
+| 祖先（人間可読） | `別表` > `table(heading=別表)` > `table_header` |
+| ヘッダ本文 | `標識 | 大きさ | 標識を付ける箇所` |
+| 行本文（要約） | `産業標準化法...放射能標識...貯蔵室の出入口又はその附近` |
+| YAML構造確認 | `appendix -> table -> table_header -> table_row` |
 
 ## 備考
 - PR本文とRUN文書では個人環境の絶対パスを避け、`%USERPROFILE%` 表記を使用。
