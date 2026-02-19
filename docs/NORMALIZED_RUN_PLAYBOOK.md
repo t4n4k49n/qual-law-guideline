@@ -103,12 +103,10 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 
 ## 7) 正式版への昇格
 
-- **PR承認が確認できたら** `data/normalized/<doc_id>/` へコピー
+- **PR承認が確認できたら** `data/normalized/<doc_id>/` を最新成果物で置換（上書き）する
 - **承認前の `data/normalized/` 複写は厳禁**
 - 昇格実施結果は `runs/<run_id>/RUN.md` に記録し、PR本文（`runs/<run_id>/PR.md`）は承認時点の内容を後追い更新しない
-- 既存版は残す（上書き禁止）
-- 既存版を退避する場合は `ARCHIVE_<doc_id>` へリネームする
-- 同名が既に存在する場合は `ARCHIVE_<doc_id>_2`, `ARCHIVE_<doc_id>_3` のように連番を付与する
+- `data/normalized/` の履歴管理はGit（commit/PR diff）で行う
 - 昇格コミットをpushしたら、**必ず `main` 反映まで完了させる**
   - 対象PRが未マージなら、そのPRに昇格コミットを含めてマージする
   - 対象PRが既にマージ済みなら、昇格反映用の新規ブランチ/PRを作成して `main` へ取り込む
