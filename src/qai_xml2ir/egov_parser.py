@@ -87,6 +87,177 @@ def find_text(elem: etree._Element, tag: str) -> Optional[str]:
     return text or None
 
 
+NOTE_CONTAINER_TAGS = {"Note", "Remarks"}
+TABLE_WRAPPER_TAGS = {"TableStruct", "Table"}
+TABLE_ROW_TAGS = {"TableHeaderRow", "TableRow"}
+TABLE_CELL_TAGS = {"TableHeaderColumn", "TableColumn"}
+TABLE_TITLE_TAGS = ("TableStructTitle", "TableTitle")
+
+
+def _extract_note_texts_from_direct_children(elem: etree._Element) -> List[str]:
+    note_texts: List[str] = []
+    for child in elem:
+        if lname(child) not in NOTE_CONTAINER_TAGS:
+            continue
+        text = text_without_rt(child).strip()
+        if text:
+            note_texts.append(text)
+    return note_texts
+
+
+def _extract_row_text(row_elem: etree._Element) -> str:
+    cells = [c for c in row_elem if lname(c) in TABLE_CELL_TAGS]
+    if not cells:
+        return text_without_rt(row_elem).strip()
+    values = [text_without_rt(cell).strip() for cell in cells]
+    return " | ".join(v for v in values if v)
+
+
+def _extract_table_payload(wrapper_elem: etree._Element) -> Tuple[Optional[str], List[str], List[str], List[str]]:
+    wrapper_tag = lname(wrapper_elem)
+    heading: Optional[str] = None
+    if wrapper_tag != "Table":
+        for title_tag in TABLE_TITLE_TAGS:
+            heading = find_text(wrapper_elem, title_tag)
+            if heading:
+                break
+
+    table_elem = wrapper_elem if wrapper_tag == "Table" else find_first(wrapper_elem, "Table")
+    if table_elem is None:
+        return heading, [], [], _extract_note_texts_from_direct_children(wrapper_elem)
+
+    header_rows: List[str] = []
+    data_rows: List[str] = []
+    for row in table_elem.iter():
+        row_tag = lname(row)
+        if row_tag not in TABLE_ROW_TAGS:
+            continue
+        row_text = _extract_row_text(row)
+        if not row_text:
+            continue
+        if row_tag == "TableHeaderRow":
+            header_rows.append(row_text)
+        else:
+            data_rows.append(row_text)
+
+    note_texts = _extract_note_texts_from_direct_children(wrapper_elem)
+    return heading, header_rows, data_rows, note_texts
+
+
+def _append_note_node(parent: Node, nid_builder: NidBuilder, note_text: str, kind_raw: str = "note") -> None:
+    note_idx = sum(1 for child in parent.children if child.kind == "note") + 1
+    parent.children.append(
+        Node(
+            nid=nid_builder.unique(f"{parent.nid}.note{note_idx}"),
+            kind="note",
+            kind_raw=kind_raw,
+            num=None,
+            ord=None,
+            heading=None,
+            text=note_text,
+            role="informative",
+            normativity=None,
+        )
+    )
+
+
+def _append_table_node(
+    parent: Node,
+    nid_builder: NidBuilder,
+    heading: Optional[str],
+    header_rows: List[str],
+    data_rows: List[str],
+    note_texts: List[str],
+) -> None:
+    table_idx = sum(1 for child in parent.children if child.kind == "table") + 1
+    table_node = Node(
+        nid=nid_builder.unique(f"{parent.nid}.tbl{table_idx}"),
+        kind="table",
+        kind_raw="table",
+        num=None,
+        ord=None,
+        heading=heading,
+        text=None,
+        role="structural",
+        normativity=None,
+    )
+
+    header_texts = list(header_rows)
+    row_texts = list(data_rows)
+    if not header_texts and row_texts:
+        header_texts.append(row_texts[0])
+        if len(row_texts) > 1:
+            row_texts = row_texts[1:]
+
+    header_node = Node(
+        nid=nid_builder.unique(f"{table_node.nid}.tblh"),
+        kind="table_header",
+        kind_raw="table_header",
+        num=None,
+        ord=None,
+        heading=None,
+        text="\n".join(header_texts) if header_texts else None,
+        role="structural",
+        normativity=None,
+    )
+    table_node.children.append(header_node)
+
+    if not row_texts and header_texts:
+        row_texts = [header_texts[0]]
+
+    for row_idx, row_text in enumerate(row_texts, start=1):
+        header_node.children.append(
+            Node(
+                nid=nid_builder.unique(f"{header_node.nid}.tblr{row_idx}"),
+                kind="table_row",
+                kind_raw="table_row",
+                num=None,
+                ord=None,
+                heading=None,
+                text=row_text,
+                role="normative",
+                normativity=None,
+            )
+        )
+
+    for note_text in note_texts:
+        _append_note_node(table_node, nid_builder, note_text)
+
+    parent.children.append(table_node)
+
+
+def _attach_structured_children(
+    parent: Node,
+    source_elem: etree._Element,
+    nid_builder: NidBuilder,
+    fallback_table_heading: Optional[str] = None,
+) -> None:
+    table_wrappers: List[etree._Element] = []
+    for child in source_elem:
+        child_tag = lname(child)
+        if child_tag in TABLE_WRAPPER_TAGS:
+            table_wrappers.append(child)
+            continue
+        if child_tag.endswith("Sentence"):
+            for grandchild in child:
+                if lname(grandchild) in TABLE_WRAPPER_TAGS:
+                    table_wrappers.append(grandchild)
+
+    for wrapper in table_wrappers:
+        heading, header_rows, data_rows, note_texts = _extract_table_payload(wrapper)
+        _append_table_node(
+            parent,
+            nid_builder,
+            heading=heading or fallback_table_heading,
+            header_rows=header_rows,
+            data_rows=data_rows,
+            note_texts=note_texts,
+        )
+
+    for note_text in _extract_note_texts_from_direct_children(source_elem):
+        _append_note_node(parent, nid_builder, note_text)
+
+
 def split_num_heading(title: Optional[str]) -> Tuple[Optional[str], Optional[str]]:
     if not title:
         return None, None
@@ -627,6 +798,7 @@ def parse_article(
                 except Exception:
                     LOGGER.exception("Failed while parsing Subitem in folded Article")
                     raise
+        _attach_structured_children(node, paragraphs[0], nid_builder)
     else:
         p_idx = 0
         appdx_idx = 0
@@ -669,6 +841,7 @@ def parse_article(
                 except Exception:
                     LOGGER.exception("Failed while parsing Appendix in Article")
                     raise
+        _attach_structured_children(node, article, nid_builder)
     return node
 
 
@@ -973,6 +1146,7 @@ def parse_top_paragraph(
             except Exception:
                 LOGGER.exception("Failed while parsing Subitem in top-level Paragraph")
                 raise
+    _attach_structured_children(node, paragraph, nid_builder)
     return node
 
 
@@ -1044,6 +1218,7 @@ def parse_paragraph(
             except Exception:
                 LOGGER.exception("Failed while parsing Subitem in Paragraph")
                 raise
+    _attach_structured_children(node, paragraph, nid_builder)
     return node
 
 
@@ -1098,6 +1273,7 @@ def parse_item(
             except Exception:
                 LOGGER.exception("Failed while parsing Subitem in Item")
                 raise
+    _attach_structured_children(node, item, nid_builder)
     return node
 
 
@@ -1166,6 +1342,7 @@ def parse_subitem(
             except Exception:
                 LOGGER.exception("Failed while parsing nested Subitem")
                 raise
+    _attach_structured_children(node, elem, nid_builder)
     return node
 
 
@@ -1234,7 +1411,7 @@ def parse_appdx(
     prefix = f"{scope_prefix}" if scope_prefix else ""
     nid = nid_builder.unique(f"{prefix}{key}{suffix}")
     text = text_without_rt(elem).strip() or None
-    return Node(
+    node = Node(
         nid=nid,
         kind="appendix",
         kind_raw=tag,
@@ -1245,6 +1422,13 @@ def parse_appdx(
         role="structural",
         normativity=None,
     )
+    _attach_structured_children(
+        node,
+        elem,
+        nid_builder,
+        fallback_table_heading=title if base_tag == "AppdxTable" else None,
+    )
+    return node
 
 
 def parse_suppl_provision(

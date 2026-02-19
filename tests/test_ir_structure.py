@@ -98,6 +98,25 @@ def write_sample_xml(path: Path) -> None:
           <ParagraphSentence>
             <Sentence>P</Sentence>
           </ParagraphSentence>
+          <TableStruct>
+            <TableStructTitle>条文内表</TableStructTitle>
+            <Table>
+              <TableHeaderRow>
+                <TableHeaderColumn><Sentence>欄1</Sentence></TableHeaderColumn>
+                <TableHeaderColumn><Sentence>欄2</Sentence></TableHeaderColumn>
+              </TableHeaderRow>
+              <TableRow>
+                <TableColumn><Sentence>A</Sentence></TableColumn>
+                <TableColumn><Sentence>B</Sentence></TableColumn>
+              </TableRow>
+              <TableRow>
+                <TableColumn><Sentence>C</Sentence></TableColumn>
+                <TableColumn><Sentence>D</Sentence></TableColumn>
+              </TableRow>
+            </Table>
+            <Remarks><Sentence>表注: 代表値</Sentence></Remarks>
+          </TableStruct>
+          <Remarks><Sentence>条文注: 運用上の留意</Sentence></Remarks>
         </Paragraph>
       </Article>
       <Article Num="4">
@@ -264,6 +283,20 @@ def test_ir_structure(tmp_path: Path) -> None:
     assert appdx_table.num == "別表第一"
     assert appdx_note.num == "別記第一"
     assert annex_appdx_table.num == "附則別表第一"
+    assert any(c.kind == "table" for c in appdx_table.children)
+
+    art1_table = next(c for c in art1.children if c.kind == "table")
+    assert art1_table.heading == "条文内表"
+    art1_header = next(c for c in art1_table.children if c.kind == "table_header")
+    assert "欄1" in (art1_header.text or "")
+    art1_rows = [n for n in art1_header.children if n.kind == "table_row"]
+    assert len(art1_rows) == 2
+    assert any("A | B" in (n.text or "") for n in art1_rows)
+    art1_table_notes = [n for n in art1_table.children if n.kind == "note"]
+    assert any("表注: 代表値" in (n.text or "") for n in art1_table_notes)
+
+    art1_notes = [n for n in art1.children if n.kind == "note"]
+    assert any("条文注: 運用上の留意" in (n.text or "") for n in art1_notes)
 
     assert all(n.num != "第九十九条" for n in articles)
     assert all(n.num != "第十三条" for n in articles)
