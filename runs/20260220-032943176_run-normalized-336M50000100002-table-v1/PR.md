@@ -3,6 +3,9 @@
 ## 目的
 - e-Gov XML `336M50000100002_20260501_507M60000100117.xml` を現行main（表対応入り parser）で再正規化し、4ファイル出力を検証する。
 
+## 対象法令URL
+- https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117
+
 ## 変更内容
 - `runs/20260220-032943176_run-normalized-336M50000100002-table-v1/RUN.md` を追加
 - `out/20260220-032943176_run-normalized-336M50000100002-table-v1/manifest.yaml` を追加
