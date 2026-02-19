@@ -26,6 +26,7 @@
   - **e-GovのURIに準拠**: `jp_egov_<law_id>_<as_of(yyyymmdd)>_<revision_id>`
   - 例: `https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117` → `jp_egov_336M50000100002_20260501_507M60000100117`
 - ブランチ名と `run_id` を決める
+- 正規化RUNのPRブランチは `run/normalized-...` 命名を使用する（CI判定キー）。
 - 使用する実行環境を固定する
   - 推奨: `.venv` を利用し、Python と依存パッケージをプロジェクト単位で固定する
   - 例: `.venv\Scripts\python.exe -m pip install -e .[dev]`
@@ -112,3 +113,4 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
   - 対象PRが未マージなら、そのPRに昇格コミットを含めてマージする
   - 対象PRが既にマージ済みなら、昇格反映用の新規ブランチ/PRを作成して `main` へ取り込む
   - 反映確認: `main` で `data/normalized/<doc_id>/` の存在を確認し、確認結果を `RUN.md` に追記する
+- 正規化RUN PR（`run/normalized-...`）は `normalized-run-gate` チェック通過までマージしない（Auto-merge設定時も同様）。
