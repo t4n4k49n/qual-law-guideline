@@ -37,3 +37,4 @@
 
 ## 正式版昇格
 - まだ実施していない（PR承認後に実施）。
+- PR: https://github.com/t4n4k49n/qual-law-guideline/pull/95
