@@ -36,5 +36,11 @@
 - 判定: 表行が `table_header` 配下に格納され、条文祖先を含む文脈表示に利用できる構造であることを確認。最終目視はPRで実施する前提。
 
 ## 正式版昇格
-- まだ実施していない（PR承認後に実施）。
+- 実施日: 2026-02-20
+- `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/` を最新成果物で上書き更新。
+- 配置ファイル:
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.regdoc_ir.yaml`
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.parser_profile.yaml`
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.regdoc_profile.yaml`
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.meta.yaml`
 - PR: https://github.com/t4n4k49n/qual-law-guideline/pull/95
