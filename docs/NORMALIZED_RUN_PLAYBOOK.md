@@ -113,7 +113,5 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
   - `promotion_commit` が `origin/main` の祖先である
   - 条件2が偽なら「未完了」で停止（完了報告禁止）
 - 必須コマンド:
-  - `git rev-parse --verify <promotion_commit>`
-  - `git fetch origin`
-  - `git merge-base --is-ancestor <promotion_commit> origin/main`
+  - `.venv\Scripts\python.exe scripts/check_normalized_promotion_completion.py --promotion-commit <promotion_commit> --main-ref origin/main`
 - 反映確認: `main` で `data/normalized/<doc_id>/` の更新を確認し、確認結果を `RUN.md` に追記する。
