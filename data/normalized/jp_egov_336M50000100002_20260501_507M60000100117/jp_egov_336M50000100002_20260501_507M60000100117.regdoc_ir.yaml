@@ -7132,10 +7132,7 @@ content:
     num: 別表
     ord: 475
     heading: null
-    text: "別表\n      \n        \n          \n            \n              標識\n            \n            \n              大きさ\n\
-      \            \n            \n              標識を付ける箇所\n            \n          \n          \n            \n          \
-      \    産業標準化法（昭和二十四年法律第百八十五号）第二十条第一項の日本産業規格による放射能標識の上部に「貯蔵室」の文字を、下部に「許可なくして立ち入りを禁ず」の文字を記入すること。\n            \n       \
-      \     \n              放射能標識は、半径一〇センチメートル以上とすること。\n            \n            \n              貯蔵室の出入口又はその附近"
+    text: "別表\n      \n        \n          \n            \n              標識\n            \n            \n              大きさ\n            \n            \n              標識を付ける箇所\n            \n          \n          \n            \n              産業標準化法（昭和二十四年法律第百八十五号）第二十条第一項の日本産業規格による放射能標識の上部に「貯蔵室」の文字を、下部に「許可なくして立ち入りを禁ず」の文字を記入すること。\n            \n            \n              放射能標識は、半径一〇センチメートル以上とすること。\n            \n            \n              貯蔵室の出入口又はその附近"
     role: structural
     normativity: null
     tags: []
@@ -7143,7 +7140,52 @@ content:
       internal: []
       external: []
     source_spans: []
-    children: []
+    children:
+    - nid: appdx_table1.tbl1
+      kind: table
+      kind_raw: table
+      num: null
+      ord: 476
+      heading: 別表
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans: []
+      children:
+      - nid: appdx_table1.tbl1.tblh
+        kind: table_header
+        kind_raw: table_header
+        num: null
+        ord: 477
+        heading: null
+        text: 標識 | 大きさ | 標識を付ける箇所
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans: []
+        children:
+        - nid: appdx_table1.tbl1.tblh.tblr1
+          kind: table_row
+          kind_raw: table_row
+          num: null
+          ord: 478
+          heading: null
+          text: 産業標準化法（昭和二十四年法律第百八十五号）第二十条第一項の日本産業規格による放射能標識の上部に「貯蔵室」の文字を、下部に「許可なくして立ち入りを禁ず」の文字を記入すること。 | 放射能標識は、半径一〇センチメートル以上とすること。 | 貯蔵室の出入口又はその附近
+          role: normative
+          normativity: null
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans: []
+          children: []
 index:
   display_name_by_nid:
     ch1: 第一章 薬局、医薬品の販売業、医療機器の販売業、貸与業及び修理業並びに再生医療等製品の販売業
@@ -7621,3 +7663,4 @@ index:
     annex42: 附　則
     annex42.p1: １
     appdx_table1: 別表
+    appdx_table1.tbl1: 別表
