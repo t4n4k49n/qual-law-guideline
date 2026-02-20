@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import re
+from statistics import median
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional, Tuple
@@ -92,6 +93,7 @@ TABLE_WRAPPER_TAGS = {"TableStruct", "Table"}
 TABLE_ROW_TAGS = {"TableHeaderRow", "TableRow"}
 TABLE_CELL_TAGS = {"TableHeaderColumn", "TableColumn"}
 TABLE_TITLE_TAGS = ("TableStructTitle", "TableTitle")
+IROHA_LEADING_CHARS = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン"
 
 
 def _extract_note_texts_from_direct_children(elem: etree._Element) -> List[str]:
@@ -105,12 +107,69 @@ def _extract_note_texts_from_direct_children(elem: etree._Element) -> List[str]:
     return note_texts
 
 
-def _extract_row_text(row_elem: etree._Element) -> str:
+def _extract_row_cells(row_elem: etree._Element) -> Tuple[List[str], bool]:
     cells = [c for c in row_elem if lname(c) in TABLE_CELL_TAGS]
+    has_header_column = any(lname(c) == "TableHeaderColumn" for c in cells)
     if not cells:
-        return text_without_rt(row_elem).strip()
+        row_text = text_without_rt(row_elem).strip()
+        return ([row_text] if row_text else []), has_header_column
     values = [text_without_rt(cell).strip() for cell in cells]
-    return " | ".join(v for v in values if v)
+    return [v for v in values if v], has_header_column
+
+
+def _is_data_like_first_cell(cell_text: str) -> bool:
+    first = cell_text.strip()
+    if not first:
+        return True
+    patterns = (
+        r"^[一二三四五六七八九十百千]+[ 　]",
+        r"^[0-9０-９]+[ 　]",
+        r"^(\([0-9]+\)|（[0-9０-９]+）)",
+        rf"^[{IROHA_LEADING_CHARS}][ 　]",
+        r"^第?[一二三四五六七八九十百千0-9０-９]+条",
+        r"^法第",
+    )
+    if any(re.match(p, first) for p in patterns):
+        return True
+    return re.search(r"^.{0,8}条", first) is not None
+
+
+def _avg_cell_len(cells: List[str]) -> float:
+    trimmed = [c.strip() for c in cells if c.strip()]
+    if not trimmed:
+        return 0.0
+    return sum(len(c) for c in trimmed) / len(trimmed)
+
+
+def _should_promote_first_data_row_to_header(data_row_cells: List[List[str]]) -> bool:
+    if len(data_row_cells) < 2:
+        return False
+
+    first_cells = data_row_cells[0]
+    if len(first_cells) < 2:
+        return False
+    if any("。" in cell for cell in first_cells):
+        return False
+    if _is_data_like_first_cell(first_cells[0]):
+        return False
+
+    first_avg = _avg_cell_len(first_cells)
+    if first_avg == 0.0 or first_avg > 20:
+        return False
+
+    sample_tail = data_row_cells[1:6]
+    tail_avgs: List[float] = []
+    for cells in sample_tail:
+        avg = _avg_cell_len(cells)
+        if avg > 0.0:
+            tail_avgs.append(avg)
+    if not tail_avgs:
+        return False
+    tail_median = float(median(tail_avgs))
+    if tail_median <= 0.0:
+        return False
+
+    return (first_avg / tail_median) <= 0.67
 
 
 def _extract_table_payload(wrapper_elem: etree._Element) -> Tuple[Optional[str], List[str], List[str], List[str]]:
@@ -128,17 +187,24 @@ def _extract_table_payload(wrapper_elem: etree._Element) -> Tuple[Optional[str],
 
     header_rows: List[str] = []
     data_rows: List[str] = []
+    data_row_cells: List[List[str]] = []
     for row in table_elem.iter():
         row_tag = lname(row)
         if row_tag not in TABLE_ROW_TAGS:
             continue
-        row_text = _extract_row_text(row)
+        cell_texts, has_header_column = _extract_row_cells(row)
+        row_text = " | ".join(cell_texts)
         if not row_text:
             continue
-        if row_tag == "TableHeaderRow":
+        if row_tag == "TableHeaderRow" or has_header_column:
             header_rows.append(row_text)
         else:
             data_rows.append(row_text)
+            data_row_cells.append(cell_texts)
+
+    if not header_rows and _should_promote_first_data_row_to_header(data_row_cells):
+        header_rows = [data_rows[0]]
+        data_rows = data_rows[1:]
 
     note_texts = _extract_note_texts_from_direct_children(wrapper_elem)
     return heading, header_rows, data_rows, note_texts
@@ -184,10 +250,6 @@ def _append_table_node(
 
     header_texts = list(header_rows)
     row_texts = list(data_rows)
-    if not header_texts and row_texts:
-        header_texts.append(row_texts[0])
-        if len(row_texts) > 1:
-            row_texts = row_texts[1:]
 
     header_node = Node(
         nid=nid_builder.unique(f"{table_node.nid}.tblh"),
@@ -201,9 +263,6 @@ def _append_table_node(
         normativity=None,
     )
     table_node.children.append(header_node)
-
-    if not row_texts and header_texts:
-        row_texts = [header_texts[0]]
 
     for row_idx, row_text in enumerate(row_texts, start=1):
         header_node.children.append(
