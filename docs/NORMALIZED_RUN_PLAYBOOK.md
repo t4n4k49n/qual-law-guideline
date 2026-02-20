@@ -1,7 +1,7 @@
 # NORMALIZED RUN PLAYBOOK
 
-正規化RUN（normalized run）を迷いなく実行するための手順書。
-目的は `runs/<run_id>/promotion_candidate/` の成果物を、正式版として `data/normalized/<doc_id>/` に昇格できる状態にすること。
+正規化RUN（normalized run）専用の最小手順。
+目的は `runs/<run_id>/promotion_candidate/` をレビューし、承認後に `data/normalized/<doc_id>/` へ確実に昇格すること。
 
 ## 0) 前提
 
@@ -9,6 +9,7 @@
 - 昇格候補の正本は `runs/<run_id>/promotion_candidate/` に置く（Git追跡対象）。
 - `out/<run_id>/` は正規化RUNでは必須ではない（必要時の補助出力）。
 - 正式版へ昇格する前に、レビューと検証の記録を残す。
+- PRは「親PR + 子PR（昇格専用）」の2段で運用する。
 
 ## 1) 実行前確認
 
@@ -69,14 +70,9 @@ xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate 
 
 ### 4-3) PRでの最終目視（人間）
 
-- PR本文に比較表を添付する
-- 比較表のルール:
-  - 最も深いitemを選ぶ
-  - 同列のitemから最も文量が短いものを抽出
-  - ヒューマンリーダブルとYAML構造を並列表記する
-  - **人間可読の経路は対象ノードの祖先をすべて含める**
-  - **章/節/条/項/号/イロハ/枝番など、`num` がある階層は省略しない**
-  - **YAML断片の `nid` から辿れる祖先数と人間可読の階層数が一致することを確認する**
+- 正規化出力が壊れていないことを主眼に確認する
+- 比較は「前回との差分説明」ではなく「今回の出力が成立しているか」の確認を優先する
+- 深い階層サンプルは1件以上提示し、祖先経路を省略しない
 
 ## 5) manifest.yaml の作成
 
@@ -88,34 +84,41 @@ xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate 
   - `tool_version`（未設定なら未設定である旨）
   - 実行環境（Python実行ファイル、主要依存バージョン）
 
-## 6) PR作成
+## 6) 親PR作成（レビューPR）
 
-- PR本文は `runs/<run_id>/PR.md` に作成する
+- 親PR本文は `runs/<run_id>/PR.md` に作成する
 - **PR.md のタイトルと表の見出しは日本語で書く**
-- PRをあげる準備として、RUN系書類（`RUN.md` / `PR.md`）を `git add` しておく
-- 変更内容、検証結果、AIレビュー結果をPR本文に記載
-- 対象e-Gov法令URLを必ず記載する
-  - 形式: `https://laws.e-gov.go.jp/law/<law_id>/<as_of_revision>`
-  - 変換例: `416M60000100179_20260501_507M60000100117` → `https://laws.e-gov.go.jp/law/416M60000100179/20260501_507M60000100117`
-- 比較表（人間レビュー用）をPRに添付
+- 親PRには以下のみ含める:
+  - `runs/<run_id>/promotion_candidate/`（4ファイル + manifest）
+  - `runs/<run_id>/RUN.md`
+  - `runs/<run_id>/PR.md`
+- 親PRでは `data/normalized/` を変更しない
+- 親PR本文に以下を必ず記載する:
+  - 対象e-Gov法令URL（`https://laws.e-gov.go.jp/law/<law_id>/<as_of_revision>`）
+  - 検証結果
+  - 深い階層サンプル（祖先省略なし）
 - PR作成前に、本文・`RUN.md`・`PR.md` から `C:\\Users\\` を検索し、0件であることを確認する
-- **GitHubでPRを作成し、リンクを共有する**
-- PR本文には昇格実施結果を書かない（昇格実施は承認後に `RUN.md` のみに記録する）
+- GitHubで親PRを作成し、リンクを共有する
+- 親PR本文には昇格実施結果を書かない
 
-## 7) 正式版への昇格
+## 7) 子PR作成（昇格専用）
 
-- **PR承認が確認できたら** `data/normalized/<doc_id>/` を最新成果物で置換（上書き）する
-- 昇格元は **必ず** `runs/<run_id>/promotion_candidate/` を使う（`out/` から直接昇格しない）
-- **承認前の `data/normalized/` 複写は厳禁**
-- 昇格実施結果は `runs/<run_id>/RUN.md` に記録し、PR本文（`runs/<run_id>/PR.md`）は承認時点の内容を後追い更新しない
-- `data/normalized/` の履歴管理はGit（commit/PR diff）で行う
-- 昇格コミットをpushしたら、**同一PRに含めて `main` 反映まで完了させる**（昇格専用の別PRは作成しない）。
-- 昇格完了条件（自動判定）:
-  - `promotion_commit` が存在する
-  - `promotion_commit` が `origin/main` の祖先である
-  - 条件2が偽なら「未完了」で停止（完了報告禁止）
+- **親PRの承認確認後にのみ** 子PRを作成する
+- 子PRの変更は昇格複写のみ:
+  - `runs/<run_id>/promotion_candidate/*` → `data/normalized/<doc_id>/`
+  - 4ファイル（`regdoc_ir` / `parser_profile` / `regdoc_profile` / `meta`）
+- 子PRに含めてよい追記:
+  - `runs/<run_id>/RUN.md` の昇格記録（commit id / 反映確認）
+- 子PRに含めないもの:
+  - パーサコード修正
+  - 追加の正規化再実行
+  - 無関係なドキュメント更新
+
+## 8) 昇格完了判定
+
+- 子PRが `main` に反映済みであることを確認する
 - 必須コマンド:
   - `git rev-parse --verify <promotion_commit>`
   - `git fetch origin`
   - `git merge-base --is-ancestor <promotion_commit> origin/main`
-- 反映確認: `main` で `data/normalized/<doc_id>/` の更新を確認し、確認結果を `RUN.md` に追記する。
+- 条件を満たさない場合は完了報告しない

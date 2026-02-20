@@ -30,22 +30,26 @@
 
 ## 運用ルール（出力と版管理）
 ### 原則
-- `out/<run_id>/` は実験・検証・途中成果の置き場（上書き禁止、タイムスタンプ推奨）
-- `data/normalized/` は正式版のみを置く（Git管理対象）
+- 正規化RUNの正本は `runs/<run_id>/promotion_candidate/` に置く（Git管理対象）
+- `out/<run_id>/` は補助出力（任意）
+- `data/normalized/` は昇格後の正式版のみを置く
 
 ### 正式版の取り扱い
-1) まず `out/<run_id>/` に出力する  
-2) 「1版として採用」と判断したものだけ `data/normalized/<doc_id>/` にコピーする  
-3) `data/normalized/` は Git の履歴で追えるようにする  
+1) まず `runs/<run_id>/promotion_candidate/` に出力する  
+2) 親PRでレビューする  
+3) 承認後、子PRで `data/normalized/<doc_id>/` に昇格する  
 
 ### 正式化の判断基準（最小）
 - スキーマ検証が通る
-- 入力元・生成コマンド・実行時のコミットハッシュを `out/<run_id>/manifest.yaml` に記録
+- 入力元・生成コマンド・実行時のコミットハッシュを `runs/<run_id>/promotion_candidate/manifest.yaml` に記録
 - 目視レビューまたはサンプル比較を通過
 
 ### コードと出力の対応づけ
 - 公式版は「どのコミットで生成されたか」を必ず記録する
 - バグが見つかった場合は新しい版を作成し、古い版は残す（上書きしない）
+
+### 手順の正本
+- 正規化RUNの実行手順は `docs/NORMALIZED_RUN_PLAYBOOK.md` を参照
 
 ---
 

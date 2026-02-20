@@ -57,6 +57,7 @@ $env:EGOV_XML_SAMPLE_1="C:\\path\\to\\sample1.xml"
 ```
 
 ## 指針ドキュメント
+- `docs/NORMALIZED_RUN_PLAYBOOK.md`（正規化RUNの運用手順・正本）
 - `docs/REFERENCE.md`
 
 ## リポジトリ構成（シンプル案）
