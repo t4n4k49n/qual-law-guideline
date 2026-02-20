@@ -46,5 +46,14 @@
 - typer: `0.24.0`
 
 ## 8. 昇格（7）
-- 状態: 未実施（PR承認待ち）
-- ルール: 承認確認後に `runs/20260220-194346803_run-normalized-336M50000100001-v6/promotion_candidate/` から `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/` へ複写し、同一PRへ追コミットする。
+- 状態: 実施済み（main直コミットで補完）
+- 昇格コミット: `2f9c6a0542f4fcb945f3479f76e22e751d1f9f2f`
+- 置換対象:
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.regdoc_ir.yaml`
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.meta.yaml`
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.parser_profile.yaml`
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/jp_egov_336M50000100001_20260501_507M60000100117.regdoc_profile.yaml`
+- 必須コマンド結果:
+  - `git rev-parse --verify 2f9c6a0542f4fcb945f3479f76e22e751d1f9f2f`: 成功
+  - `git fetch origin`: 成功
+  - `git merge-base --is-ancestor 2f9c6a0542f4fcb945f3479f76e22e751d1f9f2f origin/main`: 反映後に確認
