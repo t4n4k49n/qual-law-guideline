@@ -1,0 +1,18 @@
+deepest_item:
+  nid: art114_45_3.p1.i3
+  num: 三
+  text: 原材料
+  depth: 5
+sibling_count: 9
+sibling_shortest:
+  nid: art114_45_3.p1.i3
+  text: 原材料
+human_path:
+- 第三章 医療機器及び体外診断用医薬品の製造販売業及び製造業等
+- 第一節 医療機器及び体外診断用医薬品の製造販売業及び製造業
+- 第百十四条の四十五の三 （変更計画の確認を受けることができる場合）
+- '1'
+- 三 原材料
+yaml_path: art114_45_3.p1.i3
+path_levels_human: 5
+path_levels_yaml: 5

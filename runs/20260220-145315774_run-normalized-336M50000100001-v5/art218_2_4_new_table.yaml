@@ -1,0 +1,81 @@
+article:
+  nid: art218_2_4
+  num: 第二百十八条の二の四
+  heading: （輸入の確認を要しない場合）
+table:
+  nid: art218_2_4.p1.tbl1
+  kind: table
+  kind_raw: table
+  num: null
+  ord: 4280
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags: []
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: art218_2_4.p1.tbl1.tblh
+    kind: table_header
+    kind_raw: table_header
+    num: null
+    ord: 4281
+    heading: null
+    text: 医薬品 | 使用数量
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans: []
+    children:
+    - nid: art218_2_4.p1.tbl1.tblh.tblr1
+      kind: table_row
+      kind_raw: table_row
+      num: null
+      ord: 4282
+      heading: null
+      text: 外用剤（毒薬、劇薬、処方箋医薬品、トローチ剤、舌下錠、付着錠、ガム剤、坐剤、膣錠、膣用坐剤及びバツカル錠を除く。以下この項において同じ。）
+        | 二十四個
+      role: normative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans: []
+      children: []
+    - nid: art218_2_4.p1.tbl1.tblh.tblr2
+      kind: table_row
+      kind_raw: table_row
+      num: null
+      ord: 4283
+      heading: null
+      text: 毒薬、劇薬及び処方箋医薬品 | 用法及び用量からみて一月間の使用数量
+      role: normative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans: []
+      children: []
+    - nid: art218_2_4.p1.tbl1.tblh.tblr3
+      kind: table_row
+      kind_raw: table_row
+      num: null
+      ord: 4284
+      heading: null
+      text: 外用剤、毒薬、劇薬及び処方箋医薬品以外の医薬品 | 用法及び用量からみて二月間の使用数量
+      role: normative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans: []
+      children: []
