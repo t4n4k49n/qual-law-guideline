@@ -10,7 +10,6 @@
 ## 変更内容
 - `out/20260220-141427023_run-normalized-336M50000100001-v4/` に4ファイル + `manifest.yaml` を生成
 - 人間レビュー用に比較断片を `runs/20260220-141427023_run-normalized-336M50000100001-v4/` へ保存
-- 本PR時点では `data/normalized/` への昇格は未実施（承認後に追コミット）
 
 ## 検証結果
 - `assert_unique_nids`: pass
