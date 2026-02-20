@@ -46,5 +46,10 @@
 - typer: `0.24.0`
 
 ## 8. 昇格（子PR）
-- 状態: 未実施（親PRレビュー待ち）
-- 方針: 親PR承認後、昇格専用の子PRで `promotion_candidate -> data/normalized` を実施する。
+- 状態: 実施済み（昇格専用の子PRブランチで複写）
+- 昇格内容:
+  - `runs/20260220-201744501_run-normalized-336M50000100002-v1/promotion_candidate/jp_egov_336M50000100002_20260501_507M60000100117.regdoc_ir.yaml`
+    → `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/jp_egov_336M50000100002_20260501_507M60000100117.regdoc_ir.yaml`
+  - `runs/20260220-201744501_run-normalized-336M50000100002-v1/promotion_candidate/jp_egov_336M50000100002_20260501_507M60000100117.meta.yaml`
+    → `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/jp_egov_336M50000100002_20260501_507M60000100117.meta.yaml`
+- 注記: `parser_profile` / `regdoc_profile` は差分なし（同一内容）。
