@@ -1,0 +1,37 @@
+schema: qai.regdoc_ir.v4
+doc_id: jp_egov_336M50000100002_20260501_507M60000100117
+run_id: 20260220-201744501_run-normalized-336M50000100002-v1
+input_xml: '%USERPROFILE%\\Documents\\GitHub\\qual-law-guideline_OLD-HANDMADE\\data\\xml\\336M50000100002_20260501_507M60000100117\\336M50000100002_20260501_507M60000100117.xml'
+source_url: https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117
+command: ./.venv/Scripts/python.exe -m qai_xml2ir.cli --input %USERPROFILE%\\Documents\\GitHub\\qual-law-guideline_OLD-HANDMADE\\data\\xml\\336M50000100002_20260501_507M60000100117\\336M50000100002_20260501_507M60000100117.xml
+  --out-dir runs/20260220-201744501_run-normalized-336M50000100002-v1/promotion_candidate
+  --doc-id jp_egov_336M50000100002_20260501_507M60000100117 --retrieved-at 2026-02-20
+  --source-url https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117
+  --emit-only all
+git_commit: 984f33a16aad1065fe853484aec665bd0d70ed8c
+parser_profile:
+  id: jp_law_default_v1
+tool:
+  name: qai-xml2ir
+  version: 0.1.1
+runtime:
+  python_executable: ./.venv/Scripts/python.exe
+  dependencies:
+    lxml: 6.0.2
+    PyYAML: 6.0.3
+    typer: 0.24.0
+verification:
+  assert_unique_nids: pass
+  check_annex_article_nids:
+    collisions: 0
+    invalid_annex: 0
+  check_appendix_scoped_indices:
+    problems: 0
+  check_ord_format_and_order:
+    problems: 0
+ai_review:
+  scope:
+  - normalized output health check
+  - deepest item path consistency
+  result: pass
+  note: AIレビューは目視代替。最終確認はPRで人間が実施する。
