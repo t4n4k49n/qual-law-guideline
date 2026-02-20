@@ -1,0 +1,11 @@
+run_id: 20260220-183649508_run-normalized-335AC0000000145-v4
+doc_id: jp_egov_335AC0000000145_20260501_507AC0000000037
+deepest_item:
+  nid: art63.p1.i2
+  text: 名称
+  depth: 5
+  human_path: 第九章 医薬品等の取扱い -> 第五節 医療機器の取扱い -> 第六十三条 （直接の容器等の記載事項） -> 1 -> 二 名称
+  yaml_path: art63.p1.i2
+  depth_human: 5
+  depth_yaml: 5
+review_note: AIレビューは目視代替。最終確認はPRで人間が実施する。
