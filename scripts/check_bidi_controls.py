@@ -33,6 +33,7 @@ BIDI_RANGES: Sequence[Tuple[int, int]] = (
     (0x2066, 0x2069),
 )
 BIDI_SINGLES = {0x200E, 0x200F, 0x061C}
+ALLOWED_CONTROL_CHARS = {0x09}
 
 
 def _is_forbidden(cp: int) -> bool:
@@ -41,6 +42,8 @@ def _is_forbidden(cp: int) -> bool:
     for lo, hi in BIDI_RANGES:
         if lo <= cp <= hi:
             return True
+    if unicodedata.category(chr(cp)) == "Cc" and cp not in ALLOWED_CONTROL_CHARS:
+        return True
     return False
 
 
@@ -58,6 +61,18 @@ def _iter_tracked_files() -> Iterable[Path]:
         if ".git" in p.parts or "vendor" in p.parts:
             continue
         if p.suffix.lower() not in TEXT_SUFFIXES:
+            continue
+        yield p
+
+
+def _iter_text_files_from_args(args: Sequence[str]) -> Iterable[Path]:
+    for raw in args:
+        p = Path(raw)
+        if ".git" in p.parts or "vendor" in p.parts:
+            continue
+        if p.suffix.lower() not in TEXT_SUFFIXES:
+            continue
+        if not p.exists() or not p.is_file():
             continue
         yield p
 
@@ -88,15 +103,22 @@ def _scan_file(path: Path) -> List[Tuple[int, int, int, str]]:
 
 def main() -> int:
     total = 0
-    for path in _iter_tracked_files():
+    targets = list(_iter_text_files_from_args(sys.argv[1:]))
+    if not targets:
+        targets = list(_iter_tracked_files())
+    for path in targets:
         findings = _scan_file(path)
         for line_no, col_no, cp, name in findings:
             print(f"{path}:{line_no}:{col_no}: U+{cp:04X} {name}")
         total += len(findings)
     if total:
-        print(f"Detected {total} hidden/bidirectional control character(s).", file=sys.stderr)
+        print(
+            f"Detected {total} forbidden character(s) "
+            "(hidden/bidirectional or disallowed control).",
+            file=sys.stderr,
+        )
         return 1
-    print("No hidden/bidirectional control characters found.")
+    print("No hidden/bidirectional or disallowed control characters found.")
     return 0
 
 
