@@ -1,12 +1,13 @@
 # NORMALIZED RUN PLAYBOOK
 
 正規化RUN（normalized run）を迷いなく実行するための手順書。
-目的は `out/<run_id>/` の成果物を、正式版として `data/normalized/<doc_id>/` に昇格できる状態にすること。
+目的は `runs/<run_id>/promotion_candidate/` の成果物を、正式版として `data/normalized/<doc_id>/` に昇格できる状態にすること。
 
 ## 0) 前提
 
 - 入力はXMLのみを前提とする。
-- 生成物は `out/<run_id>/` に出力し、上書きはしない。
+- 昇格候補の正本は `runs/<run_id>/promotion_candidate/` に置く（Git追跡対象）。
+- `out/<run_id>/` は正規化RUNでは必須ではない（必要時の補助出力）。
 - 正式版へ昇格する前に、レビューと検証の記録を残す。
 
 ## 1) 実行前確認
@@ -35,10 +36,10 @@
 
 例:
 ```bash
-xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --emit-only all
+xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate --doc-id <doc_id> --emit-only all
 ```
 
-実行時に以下を `runs/<run_id>/RUN.md` または `out/<run_id>/manifest.yaml` へ記録する:
+実行時に以下を `runs/<run_id>/RUN.md` または `runs/<run_id>/promotion_candidate/manifest.yaml` へ記録する:
 - `schema`（例: `qai.regdoc_ir.v3`）
 - `parser_profile.id`（出力 `*.parser_profile.yaml` の `id`）
 - `tool_version`（取得できる場合）
@@ -79,7 +80,7 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 
 ## 5) manifest.yaml の作成
 
-- `out/<run_id>/manifest.yaml` を作成
+- `runs/<run_id>/promotion_candidate/manifest.yaml` を作成
 - 入力元・コマンド・コミットハッシュ・検証/レビュー結果を記録
 - 追加で以下も記録する:
   - `schema`
@@ -104,6 +105,7 @@ xml2ir bundle --input <path-to-xml> --out-dir out/<run_id> --doc-id <doc_id> --e
 ## 7) 正式版への昇格
 
 - **PR承認が確認できたら** `data/normalized/<doc_id>/` を最新成果物で置換（上書き）する
+- 昇格元は **必ず** `runs/<run_id>/promotion_candidate/` を使う（`out/` から直接昇格しない）
 - **承認前の `data/normalized/` 複写は厳禁**
 - 昇格実施結果は `runs/<run_id>/RUN.md` に記録し、PR本文（`runs/<run_id>/PR.md`）は承認時点の内容を後追い更新しない
 - `data/normalized/` の履歴管理はGit（commit/PR diff）で行う

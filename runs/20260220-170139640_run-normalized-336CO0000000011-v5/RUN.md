@@ -46,5 +46,16 @@
 - typer: `0.24.0`
 
 ## 8. 昇格（7）
-- 状態: 未実施（PR承認待ち）
-- ルール: 承認確認後に `data/normalized/jp_egov_336CO0000000011_20260501_507CO0000000362/` を置換し、同一PRへ追コミットする。
+- 状態: 実施済み（同一PRへ追コミット）
+- 昇格コミット: `022a744432a24f8ef20fc4c355d68c57cf3f9c6e`
+- 置換対象:
+  - `data/normalized/jp_egov_336CO0000000011_20260501_507CO0000000362/jp_egov_336CO0000000011_20260501_507CO0000000362.regdoc_ir.yaml`
+  - `data/normalized/jp_egov_336CO0000000011_20260501_507CO0000000362/jp_egov_336CO0000000011_20260501_507CO0000000362.meta.yaml`
+  - `data/normalized/jp_egov_336CO0000000011_20260501_507CO0000000362/jp_egov_336CO0000000011_20260501_507CO0000000362.parser_profile.yaml`
+  - `data/normalized/jp_egov_336CO0000000011_20260501_507CO0000000362/jp_egov_336CO0000000011_20260501_507CO0000000362.regdoc_profile.yaml`
+- 必須コマンド結果:
+  - `git rev-parse --verify 022a744432a24f8ef20fc4c355d68c57cf3f9c6e`: 成功
+  - `git fetch origin`: 成功
+  - `git merge-base --is-ancestor 022a744432a24f8ef20fc4c355d68c57cf3f9c6e origin/main`: `false`
+- 判定:
+  - `origin/main` 祖先条件は未達（main未反映）。完了報告は保留。
