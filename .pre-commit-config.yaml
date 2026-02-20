@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: require-dot-venv-python
+        name: require .venv python runtime
+        entry: python scripts/check_venv_runtime.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+      - id: enforce-venv-command-policy
+        name: enforce .venv command policy in key docs/workflow
+        entry: python scripts/check_venv_command_policy.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]

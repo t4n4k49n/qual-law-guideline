@@ -16,11 +16,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Create .venv
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv .venv
+
+      - name: Enforce .venv runtime and command policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./.venv/bin/python scripts/check_venv_runtime.py
+          ./.venv/bin/python scripts/check_venv_command_policy.py
+
       - name: Fail on hidden/bidirectional Unicode controls
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/check_bidi_controls.py
+          ./.venv/bin/python scripts/check_bidi_controls.py
 
       - name: Fail if USER_NAME appears in tracked text files
         shell: bash

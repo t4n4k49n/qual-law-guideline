@@ -53,7 +53,7 @@ xml2ir bundle --input 416M60000100179_20260501_507M60000100117.xml --out-dir out
 環境変数で実XMLを指定すると integration テストが有効になる。
 ```bash
 $env:EGOV_XML_SAMPLE_1="C:\\path\\to\\sample1.xml"
-python -m pytest -m integration
+.\.venv\Scripts\python.exe -m pytest -m integration
 ```
 
 ## 指針ドキュメント
