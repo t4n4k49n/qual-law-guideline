@@ -46,5 +46,16 @@
 - typer: `0.24.0`
 
 ## 8. 昇格（7）
-- 状態: 未実施（PR承認待ち）
-- ルール: 承認確認後に `runs/20260220-183649508_run-normalized-335AC0000000145-v4/promotion_candidate/` から `data/normalized/jp_egov_335AC0000000145_20260501_507AC0000000037/` へ複写し、同一PRへ追コミットする。
+- 状態: 実施済み（フォローアップPRで実施）
+- 昇格コミット: `dccd79ce265d509e823f527b78edbfc1144f2c8f`
+- 置換対象:
+  - `data/normalized/jp_egov_335AC0000000145_20260501_507AC0000000037/jp_egov_335AC0000000145_20260501_507AC0000000037.regdoc_ir.yaml`
+  - `data/normalized/jp_egov_335AC0000000145_20260501_507AC0000000037/jp_egov_335AC0000000145_20260501_507AC0000000037.meta.yaml`
+  - `data/normalized/jp_egov_335AC0000000145_20260501_507AC0000000037/jp_egov_335AC0000000145_20260501_507AC0000000037.parser_profile.yaml`
+  - `data/normalized/jp_egov_335AC0000000145_20260501_507AC0000000037/jp_egov_335AC0000000145_20260501_507AC0000000037.regdoc_profile.yaml`
+- 必須コマンド結果:
+  - `git rev-parse --verify dccd79ce265d509e823f527b78edbfc1144f2c8f`: 成功
+  - `git fetch origin`: 成功
+  - `git merge-base --is-ancestor dccd79ce265d509e823f527b78edbfc1144f2c8f origin/main`: `false`
+- 判定:
+  - `origin/main` 祖先条件は未達（main未反映）。完了報告は保留。
