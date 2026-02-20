@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import logging
+from importlib.metadata import PackageNotFoundError, version as pkg_version
 from datetime import date
 from pathlib import Path
 from typing import Optional
+import tomllib
 
 import typer
 
@@ -57,6 +59,24 @@ def build_default_doc_id(
         as_of_raw = _normalize_as_of_for_doc_id(as_of)
         return f"jp_egov_{law_id}_{as_of_raw}"
     return stem
+
+
+def _resolve_tool_version() -> Optional[str]:
+    try:
+        return pkg_version("qai-xml2ir")
+    except PackageNotFoundError:
+        pyproject = Path(__file__).resolve().parents[2] / "pyproject.toml"
+        if not pyproject.exists():
+            return None
+        try:
+            parsed = tomllib.loads(pyproject.read_text(encoding="utf-8"))
+        except (OSError, tomllib.TOMLDecodeError):
+            return None
+        project = parsed.get("project", {})
+        value = project.get("version")
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+        return None
 
 
 @app.command()
@@ -120,7 +140,7 @@ def bundle(
             regdoc_profile_path=regdoc_profile_path.name,
             input_path=str(input),
             input_checksum=input_checksum,
-            tool_version=None,
+            tool_version=_resolve_tool_version(),
             notes=[],
         )
         write_yaml(meta_path, meta)
