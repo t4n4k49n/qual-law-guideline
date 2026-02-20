@@ -76,10 +76,10 @@ def test_bundle_outputs(tmp_path: Path) -> None:
     meta = yaml.safe_load(meta_path.read_text(encoding="utf-8"))
 
     assert ir["doc_id"] == doc_id
-    assert ir["schema"] == "qai.regdoc_ir.v3"
+    assert ir["schema"] == "qai.regdoc_ir.v4"
     assert regdoc_profile["doc_id"] == doc_id
     assert meta["doc"]["id"] == doc_id
-    assert meta["bundle"]["ir"]["schema"] == "qai.regdoc_ir.v3"
+    assert meta["bundle"]["ir"]["schema"] == "qai.regdoc_ir.v4"
     assert meta["bundle"]["parser_profile"]["id"] == "jp_law_default_v1"
     assert isinstance(meta["generation"]["tool"]["version"], str)
     assert meta["generation"]["tool"]["version"]

@@ -25,11 +25,12 @@ def test_extract_table_payload_does_not_promote_data_row_for_headerless_table() 
 </TableStruct>
 """
     wrapper = etree.fromstring(xml.encode("utf-8"))
-    _, header_rows, data_rows, _ = _extract_table_payload(wrapper)
+    _, header_rows, data_rows, _, table_layout = _extract_table_payload(wrapper)
 
     assert header_rows == []
     assert len(data_rows) == 3
     assert data_rows[0] == "一　第一類医薬品 | 第１類医薬品"
+    assert table_layout is None
 
 
 def test_extract_table_payload_promotes_implicit_header_for_short_label_row() -> None:
@@ -52,8 +53,9 @@ def test_extract_table_payload_promotes_implicit_header_for_short_label_row() ->
 </TableStruct>
 """
     wrapper = etree.fromstring(xml.encode("utf-8"))
-    _, header_rows, data_rows, _ = _extract_table_payload(wrapper)
+    _, header_rows, data_rows, _, table_layout = _extract_table_payload(wrapper)
 
     assert header_rows == ["医薬品 | 使用数量"]
     assert len(data_rows) == 2
     assert data_rows[0].startswith("次の要件に適合する第一類医薬品 | ")
+    assert table_layout is None

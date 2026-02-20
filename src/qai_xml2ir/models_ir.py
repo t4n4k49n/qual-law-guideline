@@ -20,10 +20,11 @@ class Node:
         default_factory=lambda: {"internal": [], "external": []}
     )
     source_spans: List[Dict[str, Optional[str]]] = field(default_factory=list)
+    data: Dict[str, Any] = field(default_factory=dict)
     children: List["Node"] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
-        return {
+        payload = {
             "nid": self.nid,
             "kind": self.kind,
             "kind_raw": self.kind_raw,
@@ -38,6 +39,9 @@ class Node:
             "source_spans": list(self.source_spans),
             "children": [c.to_dict() for c in self.children],
         }
+        if self.data:
+            payload["data"] = self.data
+        return payload
 
 
 @dataclass
@@ -45,7 +49,7 @@ class IRDocument:
     doc_id: str
     content: Node
     index: Dict[str, Any] = field(default_factory=dict)
-    schema: str = "qai.regdoc_ir.v3"
+    schema: str = "qai.regdoc_ir.v4"
 
     def to_dict(self) -> Dict[str, Any]:
         return {
