@@ -50,6 +50,22 @@ jobs:
           fi
           ./.venv/bin/python scripts/check_bidi_controls.py "${files[@]}"
 
+      - name: Fail on forbidden gh pr --body and PowerShell dq-herestring usage
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -n "${GITHUB_BASE_REF:-}" ]]; then
+            git fetch origin "${GITHUB_BASE_REF}" --depth=1
+            mapfile -t files < <(git diff --name-only "origin/${GITHUB_BASE_REF}...HEAD")
+          else
+            mapfile -t files < <(git diff --name-only "HEAD~1...HEAD")
+          fi
+          if [[ "${#files[@]}" -eq 0 ]]; then
+            echo "No changed files to scan."
+            exit 0
+          fi
+          ./.venv/bin/python scripts/check_pr_body_escape_policy.py "${files[@]}"
+
       - name: Fail if USER_NAME appears in tracked text files
         shell: bash
         env:
