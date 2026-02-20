@@ -1,0 +1,14 @@
+deepest_item_nid: art8.p1.i14
+human_path: 第二章 医薬品製造業者等の製造所における製造管理及び品質管理 -> 第一節 通則 -> 第八条 （手順書等） -> 1 -> 十四
+yaml_path: art8.p1.i14
+human_path_depth: 5
+yaml_depth: 4
+verification:
+  assert_unique_nids: pass
+  check_annex_article_nids:
+    collisions: 0
+    invalid_annex: 0
+  check_appendix_scoped_indices:
+    problems: 0
+  check_ord_format_and_order:
+    problems: 0
