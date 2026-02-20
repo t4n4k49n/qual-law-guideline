@@ -13,3 +13,9 @@ repos:
         language: system
         pass_filenames: false
         stages: [pre-commit]
+      - id: forbid-hidden-and-control-chars
+        name: forbid hidden/bidirectional and disallowed control chars
+        entry: python scripts/check_bidi_controls.py
+        language: system
+        pass_filenames: true
+        stages: [pre-commit]
