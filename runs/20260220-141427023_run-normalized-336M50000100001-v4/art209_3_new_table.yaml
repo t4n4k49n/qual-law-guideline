@@ -1,0 +1,80 @@
+article:
+  nid: art209_3
+  num: 第二百九条の三
+  heading: （法第三十六条の七第一項に規定する区分ごとの表示）
+table:
+  nid: art209_3.p1.tbl1
+  kind: table
+  kind_raw: table
+  num: null
+  ord: 4133
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags: []
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: art209_3.p1.tbl1.tblh
+    kind: table_header
+    kind_raw: table_header
+    num: null
+    ord: 4134
+    heading: null
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans: []
+    children:
+    - nid: art209_3.p1.tbl1.tblh.tblr1
+      kind: table_row
+      kind_raw: table_row
+      num: null
+      ord: 4135
+      heading: null
+      text: 一　第一類医薬品 | 第１類医薬品
+      role: normative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans: []
+      children: []
+    - nid: art209_3.p1.tbl1.tblh.tblr2
+      kind: table_row
+      kind_raw: table_row
+      num: null
+      ord: 4136
+      heading: null
+      text: 二　第二類医薬品 | 第２類医薬品
+      role: normative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans: []
+      children: []
+    - nid: art209_3.p1.tbl1.tblh.tblr3
+      kind: table_row
+      kind_raw: table_row
+      num: null
+      ord: 4137
+      heading: null
+      text: 三　第三類医薬品 | 第３類医薬品
+      role: normative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans: []
+      children: []
