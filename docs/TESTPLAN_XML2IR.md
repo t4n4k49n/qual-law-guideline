@@ -34,7 +34,7 @@ $env:EGOV_XML_SAMPLE_2="C:\path\to\sample2.xml"
 ```
 1. integration テストを実行
 ```bash
-python -m pytest -m integration
+.\.venv\Scripts\python.exe -m pytest -m integration
 ```
 
 ## 合否判定基準
