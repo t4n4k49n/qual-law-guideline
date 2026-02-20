@@ -201,7 +201,7 @@ def test_ir_structure(tmp_path: Path) -> None:
     write_sample_xml(xml_path)
     parsed = parse_egov_xml(xml_path)
     ir = IRDocument(doc_id="jp_test_doc", content=parsed.root, index={})
-    assert ir.schema == "qai.regdoc_ir.v3"
+    assert ir.schema == "qai.regdoc_ir.v4"
 
     nodes = flatten(ir.content)
     assert all(n.ord is None or isinstance(n.ord, int) for n in nodes)

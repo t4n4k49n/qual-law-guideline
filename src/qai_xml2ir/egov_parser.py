@@ -5,7 +5,7 @@ import re
 from statistics import median
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from lxml import etree
 
@@ -107,14 +107,242 @@ def _extract_note_texts_from_direct_children(elem: etree._Element) -> List[str]:
     return note_texts
 
 
-def _extract_row_cells(row_elem: etree._Element) -> Tuple[List[str], bool]:
-    cells = [c for c in row_elem if lname(c) in TABLE_CELL_TAGS]
-    has_header_column = any(lname(c) == "TableHeaderColumn" for c in cells)
-    if not cells:
-        row_text = text_without_rt(row_elem).strip()
-        return ([row_text] if row_text else []), has_header_column
-    values = [text_without_rt(cell).strip() for cell in cells]
-    return [v for v in values if v], has_header_column
+def _safe_positive_int(value: Optional[str], default: int = 1) -> int:
+    if value is None:
+        return default
+    try:
+        parsed = int(value)
+    except (TypeError, ValueError):
+        return default
+    return parsed if parsed > 0 else default
+
+
+def _normalize_border(value: Optional[str]) -> str:
+    if value is None:
+        return "solid"
+    return "none" if value.strip().lower() == "none" else "solid"
+
+
+def _parse_table_rows(table_elem: etree._Element) -> List[Dict[str, Any]]:
+    rows: List[Dict[str, Any]] = []
+    for row in table_elem:
+        row_tag = lname(row)
+        if row_tag not in TABLE_ROW_TAGS:
+            continue
+        row_is_header = row_tag == "TableHeaderRow"
+        cells: List[Dict[str, Any]] = []
+        for cell in row:
+            cell_tag = lname(cell)
+            if cell_tag not in TABLE_CELL_TAGS:
+                continue
+            cell_text = text_without_rt(cell).strip()
+            cells.append(
+                {
+                    "text": cell_text,
+                    "rowspan": _safe_positive_int(cell.get("rowspan"), 1),
+                    "colspan": _safe_positive_int(cell.get("colspan"), 1),
+                    "border_top": _normalize_border(cell.get("BorderTop")),
+                    "border_bottom": _normalize_border(cell.get("BorderBottom")),
+                    "border_left": _normalize_border(cell.get("BorderLeft")),
+                    "border_right": _normalize_border(cell.get("BorderRight")),
+                    "is_header": row_is_header or cell_tag == "TableHeaderColumn",
+                }
+            )
+        if not cells:
+            row_text = text_without_rt(row).strip()
+            if row_text:
+                cells.append(
+                    {
+                        "text": row_text,
+                        "rowspan": 1,
+                        "colspan": 1,
+                        "border_top": "solid",
+                        "border_bottom": "solid",
+                        "border_left": "solid",
+                        "border_right": "solid",
+                        "is_header": row_is_header,
+                    }
+                )
+        rows.append(
+            {
+                "is_header_row": row_is_header,
+                "has_header_cell": any(c["is_header"] for c in cells),
+                "cells": cells,
+            }
+        )
+    return rows
+
+
+def _rebuild_cover_from_anchors(
+    anchors: Dict[str, Dict[str, Any]],
+    nrows: int,
+) -> Tuple[Dict[Tuple[int, int], str], int]:
+    cover: Dict[Tuple[int, int], str] = {}
+    ncols = 0
+    for anchor_id, anchor in anchors.items():
+        if anchor.get("covered"):
+            continue
+        r0 = int(anchor["r"])
+        c0 = int(anchor["c"])
+        if r0 < 0 or r0 >= nrows or c0 < 0:
+            continue
+        rowspan = max(1, min(int(anchor["rowspan"]), nrows - r0))
+        colspan = max(1, int(anchor["colspan"]))
+        anchor["rowspan"] = rowspan
+        anchor["colspan"] = colspan
+        for rr in range(r0, r0 + rowspan):
+            for cc in range(c0, c0 + colspan):
+                cover[(rr, cc)] = anchor_id
+                ncols = max(ncols, cc + 1)
+    return cover, ncols
+
+
+def _build_table_grid(
+    raw_rows: List[Dict[str, Any]],
+) -> Tuple[Dict[str, Dict[str, Any]], Dict[Tuple[int, int], str], int, int]:
+    anchors: Dict[str, Dict[str, Any]] = {}
+    cover: Dict[Tuple[int, int], str] = {}
+    nrows = len(raw_rows)
+    anchor_idx = 0
+    for r, row in enumerate(raw_rows):
+        c = 0
+        for cell in row["cells"]:
+            while (r, c) in cover:
+                c += 1
+            anchor_id = f"a{anchor_idx}"
+            anchor_idx += 1
+            rowspan = max(1, int(cell["rowspan"]))
+            colspan = max(1, int(cell["colspan"]))
+            anchors[anchor_id] = {
+                "id": anchor_id,
+                "r": r,
+                "c": c,
+                "rowspan": rowspan,
+                "colspan": colspan,
+                "text": cell["text"],
+                "is_header": bool(cell["is_header"]),
+                "border_top": cell["border_top"],
+                "border_bottom": cell["border_bottom"],
+                "border_left": cell["border_left"],
+                "border_right": cell["border_right"],
+                "span_source": "attr" if (rowspan > 1 or colspan > 1) else "none",
+                "covered": False,
+            }
+            for rr in range(r, min(nrows, r + rowspan)):
+                for cc in range(c, c + colspan):
+                    cover[(rr, cc)] = anchor_id
+            c += colspan
+    cover, ncols = _rebuild_cover_from_anchors(anchors, nrows)
+    return anchors, cover, nrows, ncols
+
+
+def _can_absorb_anchor(
+    *,
+    source_anchor_id: str,
+    target_anchor_id: str,
+    anchors: Dict[str, Dict[str, Any]],
+    cover: Dict[Tuple[int, int], str],
+) -> bool:
+    target = anchors[target_anchor_id]
+    r0 = int(target["r"])
+    c0 = int(target["c"])
+    for rr in range(r0, r0 + int(target["rowspan"])):
+        for cc in range(c0, c0 + int(target["colspan"])):
+            if cover.get((rr, cc)) != target_anchor_id:
+                return False
+            if cover.get((rr, cc)) == source_anchor_id:
+                continue
+            other = anchors.get(cover.get((rr, cc), ""))
+            if other is not None and other["text"].strip():
+                return False
+    return True
+
+
+def _infer_border_spans(
+    anchors: Dict[str, Dict[str, Any]],
+    cover: Dict[Tuple[int, int], str],
+    nrows: int,
+) -> Tuple[Dict[str, Dict[str, Any]], Dict[Tuple[int, int], str], int]:
+    changed = True
+    while changed:
+        changed = False
+        ordered_ids = sorted(
+            (aid for aid, a in anchors.items() if not a.get("covered")),
+            key=lambda aid: (int(anchors[aid]["r"]), int(anchors[aid]["c"])),
+        )
+        for anchor_id in ordered_ids:
+            anchor = anchors[anchor_id]
+            if anchor.get("covered"):
+                continue
+            if anchor["text"].strip():
+                continue
+            r = int(anchor["r"])
+            c = int(anchor["c"])
+            rowspan = int(anchor["rowspan"])
+            colspan = int(anchor["colspan"])
+
+            # implicit vertical merge from border style
+            if r > 0 and anchor["border_top"] == "none":
+                above_id = cover.get((r - 1, c))
+                if above_id and above_id != anchor_id and not anchors[above_id].get("covered"):
+                    above = anchors[above_id]
+                    if above["border_bottom"] == "none" and _can_absorb_anchor(
+                        source_anchor_id=above_id,
+                        target_anchor_id=anchor_id,
+                        anchors=anchors,
+                        cover=cover,
+                    ):
+                        needed = (r + rowspan) - int(above["r"])
+                        if needed > int(above["rowspan"]):
+                            above["rowspan"] = needed
+                            if above["span_source"] == "none":
+                                above["span_source"] = "border"
+                        anchor["covered"] = True
+                        cover, _ = _rebuild_cover_from_anchors(anchors, nrows)
+                        changed = True
+                        continue
+
+            # implicit horizontal merge from border style
+            if c > 0 and anchor["border_left"] == "none":
+                left_id = cover.get((r, c - 1))
+                if left_id and left_id != anchor_id and not anchors[left_id].get("covered"):
+                    left = anchors[left_id]
+                    if left["border_right"] == "none" and _can_absorb_anchor(
+                        source_anchor_id=left_id,
+                        target_anchor_id=anchor_id,
+                        anchors=anchors,
+                        cover=cover,
+                    ):
+                        needed = (c + colspan) - int(left["c"])
+                        if needed > int(left["colspan"]):
+                            left["colspan"] = needed
+                            if left["span_source"] == "none":
+                                left["span_source"] = "border"
+                        anchor["covered"] = True
+                        cover, _ = _rebuild_cover_from_anchors(anchors, nrows)
+                        changed = True
+                        continue
+    cover, ncols = _rebuild_cover_from_anchors(anchors, nrows)
+    return anchors, cover, ncols
+
+
+def _flatten_grid_to_rows(
+    anchors: Dict[str, Dict[str, Any]],
+    cover: Dict[Tuple[int, int], str],
+    nrows: int,
+    ncols: int,
+) -> List[List[str]]:
+    rows: List[List[str]] = []
+    for r in range(nrows):
+        row_cells: List[str] = []
+        for c in range(ncols):
+            anchor_id = cover.get((r, c))
+            text = ""
+            if anchor_id:
+                text = str(anchors[anchor_id]["text"])
+            row_cells.append(text)
+        rows.append(row_cells)
+    return rows
 
 
 def _is_data_like_first_cell(cell_text: str) -> bool:
@@ -172,7 +400,9 @@ def _should_promote_first_data_row_to_header(data_row_cells: List[List[str]]) ->
     return (first_avg / tail_median) <= 0.67
 
 
-def _extract_table_payload(wrapper_elem: etree._Element) -> Tuple[Optional[str], List[str], List[str], List[str]]:
+def _extract_table_payload(
+    wrapper_elem: etree._Element,
+) -> Tuple[Optional[str], List[str], List[str], List[str], Optional[Dict[str, Any]]]:
     wrapper_tag = lname(wrapper_elem)
     heading: Optional[str] = None
     if wrapper_tag != "Table":
@@ -183,31 +413,76 @@ def _extract_table_payload(wrapper_elem: etree._Element) -> Tuple[Optional[str],
 
     table_elem = wrapper_elem if wrapper_tag == "Table" else find_first(wrapper_elem, "Table")
     if table_elem is None:
-        return heading, [], [], _extract_note_texts_from_direct_children(wrapper_elem)
+        return heading, [], [], _extract_note_texts_from_direct_children(wrapper_elem), None
+
+    raw_rows = _parse_table_rows(table_elem)
+    anchors, cover, nrows, ncols = _build_table_grid(raw_rows)
+    anchors, cover, ncols = _infer_border_spans(anchors, cover, nrows)
+    flat_rows = _flatten_grid_to_rows(anchors, cover, nrows, ncols)
+
+    explicit_header_indices = {
+        idx
+        for idx, row in enumerate(raw_rows)
+        if row["is_header_row"] or row["has_header_cell"]
+    }
+    row_entries: List[Tuple[int, List[str], str]] = []
+    for idx, cells in enumerate(flat_rows):
+        row_text = " | ".join(cells)
+        if row_text.strip():
+            row_entries.append((idx, cells, row_text))
 
     header_rows: List[str] = []
     data_rows: List[str] = []
-    data_row_cells: List[List[str]] = []
-    for row in table_elem.iter():
-        row_tag = lname(row)
-        if row_tag not in TABLE_ROW_TAGS:
-            continue
-        cell_texts, has_header_column = _extract_row_cells(row)
-        row_text = " | ".join(cell_texts)
-        if not row_text:
-            continue
-        if row_tag == "TableHeaderRow" or has_header_column:
-            header_rows.append(row_text)
-        else:
-            data_rows.append(row_text)
-            data_row_cells.append(cell_texts)
+    header_indices_final: set[int] = set()
+    if explicit_header_indices:
+        for idx, _, row_text in row_entries:
+            if idx in explicit_header_indices:
+                header_rows.append(row_text)
+                header_indices_final.add(idx)
+            else:
+                data_rows.append(row_text)
+    else:
+        data_row_cells = [cells for _, cells, _ in row_entries]
+        data_rows = [row_text for _, _, row_text in row_entries]
+        if data_rows and _should_promote_first_data_row_to_header(data_row_cells):
+            header_rows = [data_rows[0]]
+            header_indices_final = {row_entries[0][0]}
+            data_rows = data_rows[1:]
 
-    if not header_rows and _should_promote_first_data_row_to_header(data_row_cells):
-        header_rows = [data_rows[0]]
-        data_rows = data_rows[1:]
+    has_merge = any(
+        (int(anchor["rowspan"]) > 1 or int(anchor["colspan"]) > 1)
+        for anchor in anchors.values()
+        if not anchor.get("covered")
+    )
+    table_layout: Optional[Dict[str, Any]] = None
+    if has_merge:
+        header_row_count = 0
+        while header_row_count in header_indices_final:
+            header_row_count += 1
+        table_layout = {
+            "nrows": nrows,
+            "ncols": ncols,
+            "header_row_count": header_row_count,
+            "flatten": "fill",
+            "cells": [
+                {
+                    "r": int(anchor["r"]),
+                    "c": int(anchor["c"]),
+                    "rowspan": int(anchor["rowspan"]),
+                    "colspan": int(anchor["colspan"]),
+                    "text": str(anchor["text"]),
+                    "is_header": bool(anchor["is_header"]) or int(anchor["r"]) in header_indices_final,
+                    "span_source": anchor["span_source"],
+                }
+                for anchor in sorted(
+                    (a for a in anchors.values() if not a.get("covered")),
+                    key=lambda a: (int(a["r"]), int(a["c"])),
+                )
+            ],
+        }
 
     note_texts = _extract_note_texts_from_direct_children(wrapper_elem)
-    return heading, header_rows, data_rows, note_texts
+    return heading, header_rows, data_rows, note_texts, table_layout
 
 
 def _append_note_node(parent: Node, nid_builder: NidBuilder, note_text: str, kind_raw: str = "note") -> None:
@@ -234,6 +509,7 @@ def _append_table_node(
     header_rows: List[str],
     data_rows: List[str],
     note_texts: List[str],
+    table_layout: Optional[Dict[str, Any]],
 ) -> None:
     table_idx = sum(1 for child in parent.children if child.kind == "table") + 1
     table_node = Node(
@@ -282,6 +558,9 @@ def _append_table_node(
     for note_text in note_texts:
         _append_note_node(table_node, nid_builder, note_text)
 
+    if table_layout:
+        table_node.data = {"table": table_layout}
+
     parent.children.append(table_node)
 
 
@@ -303,7 +582,7 @@ def _attach_structured_children(
                     table_wrappers.append(grandchild)
 
     for wrapper in table_wrappers:
-        heading, header_rows, data_rows, note_texts = _extract_table_payload(wrapper)
+        heading, header_rows, data_rows, note_texts, table_layout = _extract_table_payload(wrapper)
         _append_table_node(
             parent,
             nid_builder,
@@ -311,6 +590,7 @@ def _attach_structured_children(
             header_rows=header_rows,
             data_rows=data_rows,
             note_texts=note_texts,
+            table_layout=table_layout,
         )
 
     for note_text in _extract_note_texts_from_direct_children(source_elem):
