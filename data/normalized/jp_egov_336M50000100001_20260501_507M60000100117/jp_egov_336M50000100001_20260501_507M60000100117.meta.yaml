@@ -36,7 +36,7 @@ doc:
     license_note: null
 bundle:
   ir:
-    schema: qai.regdoc_ir.v3
+    schema: qai.regdoc_ir.v4
     path: jp_egov_336M50000100001_20260501_507M60000100117.regdoc_ir.yaml
   parser_profile:
     schema: qai.parser_profile.v1
@@ -46,11 +46,13 @@ bundle:
     schema: qai.regdoc_profile.v1
     path: jp_egov_336M50000100001_20260501_507M60000100117.regdoc_profile.yaml
 generation:
-  created_at: '2026-02-20T05:53:30Z'
+  created_at: '2026-02-20T10:43:51Z'
   tool:
     name: qai_xml2ir
-    version: 0.1.0
+    version: 0.1.1
   inputs:
-  - path: %USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336M50000100001_20260501_507M60000100117\336M50000100001_20260501_507M60000100117.xml
+  - path: '%USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\336M50000100001_20260501_507M60000100117\336M50000100001_20260501_507M60000100117.xml'
     checksum: b3399839be45e247797b27f224b804443c9ac76b12de2b309a7e80c609492465
   notes: []
+
+
