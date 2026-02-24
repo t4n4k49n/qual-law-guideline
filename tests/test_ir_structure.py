@@ -217,8 +217,8 @@ def test_ir_structure(tmp_path: Path) -> None:
 
     art1 = next(n for n in articles if n.num == "第一条")
     assert art1.heading == "（目的）"
-    assert art1.text is not None
-    assert all(c.kind != "paragraph" for c in art1.children)
+    assert art1.text is None
+    assert any(c.kind == "paragraph" for c in art1.children)
 
     art2 = next(n for n in articles if n.num == "第二条")
     assert any(c.kind == "paragraph" for c in art2.children)
@@ -259,7 +259,8 @@ def test_ir_structure(tmp_path: Path) -> None:
     assert subitem2.nid.endswith(".ro.pt1")
     assert "I" not in paragraph.text
     assert "S" not in paragraph.text
-    assert art1.text == "P"
+    art1_p1 = next(n for n in nodes if n.kind == "paragraph" and n.nid == "art1.p1")
+    assert art1_p1.text == "P"
 
     top_paragraph = next(n for n in nodes if n.kind == "paragraph" and n.nid.startswith("mp.p"))
     assert top_paragraph.text == "MP"
@@ -285,7 +286,7 @@ def test_ir_structure(tmp_path: Path) -> None:
     assert annex_appdx_table.num == "附則別表第一"
     assert any(c.kind == "table" for c in appdx_table.children)
 
-    art1_table = next(c for c in art1.children if c.kind == "table")
+    art1_table = next(c for c in art1_p1.children if c.kind == "table")
     assert art1_table.heading == "条文内表"
     art1_header = next(c for c in art1_table.children if c.kind == "table_header")
     assert "欄1" in (art1_header.text or "")
@@ -295,7 +296,7 @@ def test_ir_structure(tmp_path: Path) -> None:
     art1_table_notes = [n for n in art1_table.children if n.kind == "note"]
     assert any("表注: 代表値" in (n.text or "") for n in art1_table_notes)
 
-    art1_notes = [n for n in art1.children if n.kind == "note"]
+    art1_notes = [n for n in art1_p1.children if n.kind == "note"]
     assert any("条文注: 運用上の留意" in (n.text or "") for n in art1_notes)
 
     assert all(n.num != "第九十九条" for n in articles)
