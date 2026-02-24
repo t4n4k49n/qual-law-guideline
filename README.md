@@ -75,6 +75,18 @@ $env:EGOV_XML_SAMPLE_1="C:\\path\\to\\sample1.xml"
 - 注意:
   - NIDが変わる（例: `art2.i1 -> art2.p1.i1`）ため、外部保存の選択ID/参照IDは更新が必要
 
+### チェックシートNID移行（旧NID -> Paragraph付きNID）
+旧fold由来NID（例: `art12.i2.ro`）を新NID（例: `art12.p1.i2.ro`）へ移行し、`regdoc_ir.yaml` 実在検証を行う。
+```bash
+python -m qai_xml2ir.cli migrate-checksheet-nids \
+  --input checksheet_selected.yaml \
+  --ir out/jp_egov_xxx.regdoc_ir.yaml \
+  --out checksheet_selected.migrated.yaml \
+  --report checksheet_selected.migrated.report.yaml
+```
+- unresolved が残ると既定で終了コード `1`
+- `--on-unresolved warn|ignore` で緩和可能
+
 ## 指針ドキュメント
 - `docs/NORMALIZED_RUN_PLAYBOOK.md`（正規化RUNの運用手順・正本）
 - `docs/REFERENCE.md`
