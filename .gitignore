@@ -1,22 +1,17 @@
 # Data artifacts (generated)
 out/
+local_notes/
 
 # Build/test caches
-__pycache__/
 *.pyc
 .venv/
-*.egg-info/
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.cache/
 
 # OS/editor
 .DS_Store
 Thumbs.db
 
 # Node
-node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -26,7 +21,6 @@ docs/qual-law-guideline_docs_txtconcat_20260210-170306036.txt
 src/qai_xml2ir/qual-law-guideline_src_quai_xml2ir_pyconcat_20260210-170606847.txt
 .vscode/
 references/
-pipelines/
 AGENTS.md
 KNOWLEDGE.md
 TODO.md
