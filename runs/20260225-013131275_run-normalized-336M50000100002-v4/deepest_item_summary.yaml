@@ -2,6 +2,6 @@ deepest_item_nid: art8.p1.i1.i.pt1
 deepest_kind: point
 human_path: 第二章 医薬品等の製造業 -> 第一節 医薬品の製造業 -> 第八条 （特定生物由来医薬品等の医薬品製造業者等の製造所の構造設備） -> 1
   -> 一 -> イ -> （１）
-yaml_path: ch2.ch2.sec1.art8.art8.p1.art8.p1.i1.art8.p1.i1.i.art8.p1.i1.i.pt1
+yaml_path: ch2 -> ch2.sec1 -> art8 -> art8.p1 -> art8.p1.i1 -> art8.p1.i1.i -> art8.p1.i1.i.pt1
 ancestor_depth_human: 7
 ancestor_depth_yaml: 7

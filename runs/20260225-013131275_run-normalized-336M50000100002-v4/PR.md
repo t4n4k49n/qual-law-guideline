@@ -24,7 +24,7 @@
 |---|---|
 | 最深item nid | `art8.p1.i1.i.pt1` |
 | human path（numあり階層を省略しない） | 第二章 医薬品等の製造業 -> 第一節 医薬品の製造業 -> 第八条 （特定生物由来医薬品等の医薬品製造業者等の製造所の構造設備） -> 1 -> 一 -> イ -> （１） |
-| YAML path | `ch2.ch2.sec1.art8.art8.p1.art8.p1.i1.art8.p1.i1.i.art8.p1.i1.i.pt1` |
+| YAML path（ancestor nid chain） | `ch2 -> ch2.sec1 -> art8 -> art8.p1 -> art8.p1.i1 -> art8.p1.i1.i -> art8.p1.i1.i.pt1` |
 | 祖先/階層数の整合 | human path階層数=7, YAMLで辿る階層数=7（一致） |
 
 ## まとめ
