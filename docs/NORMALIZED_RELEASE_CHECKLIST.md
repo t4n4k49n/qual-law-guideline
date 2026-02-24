@@ -8,5 +8,8 @@
 - 親PR: `runs/<run_id>/promotion_candidate/` のレビューPR
 - 子PR: 承認後の昇格専用PR（`promotion_candidate -> data/normalized` 複写のみ）
 - 昇格完了判定: `promotion_commit` が `origin/main` の祖先
+- 構造健全性:
+  - `article.text` は `null`
+  - `article` 直下に `item/subitem/point` が無い
 
 詳細手順は `docs/NORMALIZED_RUN_PLAYBOOK.md` を参照。
