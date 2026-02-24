@@ -18,13 +18,18 @@
 - 1タスク=1run（runs/<run_id>/RUN.md）
 - runs と out は同名運用
 - 生成物は上書き禁止（タイムスタンプ付与）
-- 知見は KNOWLEDGE.md に昇格
+- 知見は `local_notes/KNOWLEDGE.md` に昇格（親repo直下には置かない）
 
 ## 文字化け回避（UTF-8遵守）
 - テキストは UTF-8（BOMなし）、改行はLF
 
 ## 次にやること
-- TODO.md を参照
+- `local_notes/TODO.md` を参照
+
+## ローカルノート運用（共有外）
+- TODO/KNOWLEDGEは親repo直下ではなく、`local_notes/` 配下で管理する。
+- `local_notes/` は親repoでは `.gitignore` 対象で、子repoとしてローカルGit管理する。
+- 親repoのコミット/PRには `local_notes/` の変更を含めない。
 
 ---
 
