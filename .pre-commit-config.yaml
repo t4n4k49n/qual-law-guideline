@@ -25,3 +25,15 @@ repos:
         language: system
         pass_filenames: true
         stages: [pre-commit]
+      - id: block-parent-local-notes-boundary
+        name: block parent repo commits/pushes for local_notes-managed paths
+        entry: python scripts/check_parent_local_notes_boundary.py
+        language: system
+        pass_filenames: true
+        stages: [pre-commit, pre-push]
+      - id: block-parent-root-notes-files
+        name: block parent repo root TODO/KNOWLEDGE files
+        entry: python scripts/check_parent_root_notes_absent.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit, pre-push]
