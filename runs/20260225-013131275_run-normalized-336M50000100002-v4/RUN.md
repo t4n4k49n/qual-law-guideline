@@ -34,6 +34,8 @@
 - `runs/20260225-013131275_run-normalized-336M50000100002-v4/deepest_item_summary.yaml`
 - `runs/20260225-013131275_run-normalized-336M50000100002-v4/verification_summary.yaml`
 - `runs/20260225-013131275_run-normalized-336M50000100002-v4/promotion_candidate/manifest.yaml`
+- 最深item本文（`art8.p1.i1.i.pt1`）:
+  - 天井、壁及び床の表面は、なめらかでひび割れがなく、かつ、じんあいを発生しないものであること。また、清掃が容易で、消毒を行うことができるものであること。
 
 ## 6. 正規化RUNのまとめ
 - 指定XMLから IR / parser_profile / regdoc_profile / meta を再生成し、最小検証5項目はすべてpass。
