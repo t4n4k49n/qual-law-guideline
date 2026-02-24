@@ -1,18 +1,27 @@
 from __future__ import annotations
 
+import json
 import logging
 from importlib.metadata import PackageNotFoundError, version as pkg_version
 from datetime import date
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional, Sequence
 import tomllib
 
 import typer
+import yaml
 
 from .egov_parser import collect_display_names, parse_egov_xml
 from .models_ir import IRDocument
 from .models_meta import build_meta
 from .models_profiles import build_parser_profile, build_regdoc_profile
+from .nid_migration import (
+    build_existing_nids,
+    build_report,
+    load_nids_file,
+    migrate_nids,
+    render_output_data,
+)
 from .serialize import sha256_file, write_yaml
 from .verify import (
     assert_unique_nids,
@@ -168,6 +177,138 @@ def _run_verify_or_fail(root) -> None:
 
     if errors:
         raise typer.BadParameter("verify failed: " + " | ".join(errors))
+
+
+def _discover_inputs(paths: Sequence[Path]) -> List[Path]:
+    supported = {".yaml", ".yml", ".json", ".txt", ".md"}
+    collected: List[Path] = []
+    for p in paths:
+        if p.is_file():
+            collected.append(p)
+            continue
+        if p.is_dir():
+            for child in sorted(p.rglob("*")):
+                if child.is_file() and child.suffix.lower() in supported:
+                    collected.append(child)
+            continue
+        raise typer.BadParameter(f"入力パスが存在しません: {p}")
+    # 順序維持 dedup
+    unique: List[Path] = []
+    seen = set()
+    for c in collected:
+        key = str(c.resolve())
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(c)
+    return unique
+
+
+def _default_out_path(input_path: Path) -> Path:
+    return input_path.with_name(f"{input_path.stem}.migrated{input_path.suffix}")
+
+
+def _default_report_path(out_path: Path) -> Path:
+    return out_path.with_name(f"{out_path.stem}.report.yaml")
+
+
+@app.command("migrate-checksheet-nids")
+def migrate_checksheet_nids(
+    input: List[Path] = typer.Option(..., "--input", exists=True),
+    ir: Path = typer.Option(..., "--ir", exists=True, dir_okay=False),
+    out: Optional[Path] = typer.Option(None, "--out"),
+    report: Optional[Path] = typer.Option(None, "--report"),
+    out_dir: Optional[Path] = typer.Option(None, "--out-dir"),
+    dedup: bool = typer.Option(True, "--dedup/--no-dedup"),
+    on_unresolved: str = typer.Option("error", "--on-unresolved"),
+    purpose: Optional[str] = typer.Option(None, "--purpose"),
+) -> None:
+    if on_unresolved not in {"error", "warn", "ignore"}:
+        raise typer.BadParameter("--on-unresolved must be error|warn|ignore")
+
+    inputs = _discover_inputs(input)
+    if not inputs:
+        raise typer.BadParameter("入力ファイルが見つかりません")
+
+    if len(inputs) > 1 and out is not None:
+        raise typer.BadParameter("--out は単一入力時のみ指定可能です")
+    if len(inputs) > 1 and report is not None:
+        raise typer.BadParameter("--report は単一入力時のみ指定可能です")
+
+    ir_data = yaml.safe_load(ir.read_text(encoding="utf-8"))
+    existing_nids, _kind_by_nid = build_existing_nids(ir_data)
+
+    total_files = 0
+    total_unresolved = 0
+    summary_rows: List[str] = []
+
+    for src in inputs:
+        loaded = load_nids_file(src)
+        result = migrate_nids(loaded.nids, existing_nids, dedup=dedup)
+        total_files += 1
+        total_unresolved += result.unresolved_count
+
+        if out_dir is not None:
+            target_out = out_dir / src.name
+        elif out is not None and len(inputs) == 1:
+            target_out = out
+        else:
+            target_out = _default_out_path(src)
+        target_out.parent.mkdir(parents=True, exist_ok=True)
+
+        rendered = render_output_data(loaded, result.resolved_nids)
+        target_out.write_text(rendered, encoding="utf-8", newline="\n")
+
+        if out_dir is not None:
+            target_report = out_dir / f"{src.stem}.migrated.report.yaml"
+        elif report is not None and len(inputs) == 1:
+            target_report = report
+        else:
+            target_report = _default_report_path(target_out)
+        target_report.parent.mkdir(parents=True, exist_ok=True)
+
+        report_data = build_report(
+            input_path=src,
+            ir_path=ir,
+            result=result,
+            purpose=purpose,
+        )
+        target_report.write_text(
+            yaml.safe_dump(report_data, allow_unicode=True, sort_keys=False),
+            encoding="utf-8",
+            newline="\n",
+        )
+
+        if result.unresolved_count and on_unresolved == "warn":
+            typer.secho(
+                f"[WARN] unresolved nids in {src}: {result.unresolved_count}",
+                fg=typer.colors.YELLOW,
+                err=True,
+            )
+
+        summary_rows.append(
+            json.dumps(
+                {
+                    "input": str(src),
+                    "out": str(target_out),
+                    "report": str(target_report),
+                    "changed": result.changed_count,
+                    "unchanged": result.unchanged_count,
+                    "unresolved": result.unresolved_count,
+                },
+                ensure_ascii=False,
+            )
+        )
+
+    for row in summary_rows:
+        typer.echo(row, err=True)
+    typer.echo(
+        f"migrate-checksheet-nids summary: files={total_files}, unresolved_total={total_unresolved}, on_unresolved={on_unresolved}",
+        err=True,
+    )
+
+    if total_unresolved and on_unresolved == "error":
+        raise typer.Exit(code=1)
 
 
 if __name__ == "__main__":
