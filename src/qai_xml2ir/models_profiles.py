@@ -72,14 +72,14 @@ def build_parser_profile(
 
     structure = {
         "root": {
-            "children": ["part", "chapter", "section", "article", "annex", "appendix"]
+            "children": ["part", "chapter", "section", "paragraph", "article", "annex", "appendix"]
         },
-        "part": {"children": ["chapter", "article"]},
-        "chapter": {"children": ["section", "article"]},
-        "section": {"children": ["subsection", "division", "article"]},
-        "subsection": {"children": ["division", "article"]},
-        "division": {"children": ["article"]},
-        "article": {"children": ["paragraph", "item", "subitem", "point", "table", "note"]},
+        "part": {"children": ["chapter", "article", "appendix"]},
+        "chapter": {"children": ["section", "article", "appendix"]},
+        "section": {"children": ["subsection", "division", "article", "appendix"]},
+        "subsection": {"children": ["division", "article", "appendix"]},
+        "division": {"children": ["article", "appendix"]},
+        "article": {"children": ["paragraph", "table", "note", "appendix"]},
         "paragraph": {"children": ["item", "subitem", "point", "table", "note"]},
         "item": {"children": ["subitem", "point", "table", "note"]},
         "subitem": {"children": ["point", "table", "note"]},

@@ -62,6 +62,10 @@ xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate 
   - `check_annex_article_nids`
   - `check_appendix_scoped_indices`
   - `check_ord_format_and_order`（ord存在/一意/単調増加）
+  - `check_article_paragraph_structure`
+    - `article.text` が `null` であること
+    - `article` 直下に `item/subitem/point` が無いこと
+    - `article` 直下に `paragraph` が1つ以上あること
 
 ### 4-2) AIレビュー（目視代替）
 

@@ -27,6 +27,7 @@
 | --- | --- |
 | `article.heading` | `ArticleCaption` |
 | `article.num` | `ArticleTitle` |
+| `article.text` | （常に `null`） |
 | `paragraph.num` | `ParagraphNum` |
 | `paragraph.text` | `ParagraphSentence` の連結 |
 | `item.num` | `ItemTitle` |
@@ -50,6 +51,8 @@
 - 章・節などの見出しは`Title`、条の見出しは`Caption`として自然にIRへ写像できる。
 - 号やイロハはXML上の要素階層とIRの`children`階層が一致する。
 - `SupplProvision`（附則）や`Appdx*`（別表等）もIRで独立ノードとして保持する。
+- `Article` は必ず `Paragraph` を子に持ち、`Item/Subitem/point` は `Paragraph` 配下に置かれる。
+- `ParagraphNum` が空要素でも `Paragraph@Num` から項番号を解釈し、`p1` のようなNIDを生成する。
 
 ## 差分・未保持になり得る情報
 
@@ -67,16 +70,22 @@ nid: art6
 kind: article
 num: 第六条
 heading: （一般区分の医薬品製造業者等の製造所の構造設備）
+text: null
 children:
-- nid: art6.i4
-  kind: item
-  num: 四
-  text: 製造作業を行う場所（以下「作業所」という。）は、次に定めるところに適合するものであること。
+- nid: art6.p1
+  kind: paragraph
+  num: '1'
+  text: 一般区分の医薬品製造業者等の製造所の構造設備の基準は、次のとおりとする。
   children:
-  - nid: art6.i4.i
-    kind: subitem
-    num: イ
-    text: 照明及び換気が適切であり、かつ、清潔であること。
+  - nid: art6.p1.i4
+    kind: item
+    num: 四
+    text: 製造作業を行う場所（以下「作業所」という。）は、次に定めるところに適合するものであること。
+    children:
+    - nid: art6.p1.i4.i
+      kind: subitem
+      num: イ
+      text: 照明及び換気が適切であり、かつ、清潔であること。
 ```
 
 対応するe-Gov XMLの構造は概念的に以下のようなイメージになる。

@@ -1070,12 +1070,6 @@ def parse_article(
     ord_val = None
 
     paragraphs = [c for c in article if lname(c) == "Paragraph"]
-    fold = False
-    if len(paragraphs) == 1:
-        p = paragraphs[0]
-        p_num_text = find_text(p, "ParagraphNum")
-        p_attr = p.get("Num")
-        fold = (p_num_text is None or p_num_text == "") and (p_attr in (None, "", "1"))
 
     article_key = normalized_num or str(local_segments[0])
     article_nid = nid_builder.unique(f"{scope_prefix}art{article_key}")
@@ -1091,96 +1085,48 @@ def parse_article(
         normativity="must",
     )
 
-    if fold and paragraphs:
-        text = extract_sentence_text_in(paragraphs[0], "ParagraphSentence")
-        node.text = text or None
-        if detect_definition(text):
-            node.role = "definition"
-        i_idx = 0
-        s_idx = 0
-        for child in paragraphs[0]:
-            tag = lname(child)
-            if tag == "Item":
-                i_idx += 1
-                try:
-                    node.children.append(
-                        parse_item(
-                            child,
-                            nid_builder,
-                            article_nid,
-                            local_segments=local_segments_from_num_attr_or_index(child, i_idx),
-                            parent_ord=node.ord,
-                        )
-                    )
-                except Exception:
-                    LOGGER.exception("Failed while parsing Item in folded Article")
-                    raise
-            elif is_subitem_tag(tag):
-                s_idx += 1
-                try:
-                    node.children.append(
-                        parse_subitem(
-                            child,
-                            nid_builder,
-                            article_nid,
-                            local_segments=local_segments_from_subitem1_title(
-                                find_text(child, "Subitem1Title"),
-                                s_idx,
-                            )
-                            if lname(child) == "Subitem1"
-                            else local_segments_from_title_or_index(
-                                find_text(child, f"{lname(child)}Title"), s_idx
-                            ),
-                            parent_ord=node.ord,
-                        )
-                    )
-                except Exception:
-                    LOGGER.exception("Failed while parsing Subitem in folded Article")
-                    raise
-        _attach_structured_children(node, paragraphs[0], nid_builder)
-    else:
-        p_idx = 0
-        appdx_idx = 0
-        for p in paragraphs:
-            p_idx += 1
+    p_idx = 0
+    appdx_idx = 0
+    for p in paragraphs:
+        p_idx += 1
+        try:
+            node.children.append(
+                parse_paragraph(
+                    p,
+                    nid_builder,
+                    article_nid,
+                    local_segments=local_segments_from_num_attr_or_index(p, p_idx),
+                    parent_ord=node.ord,
+                )
+            )
+        except Exception:
+            LOGGER.exception("Failed while parsing Paragraph")
+            raise
+    for child in article:
+        tag = lname(child)
+        if tag in {"ArticleTitle", "ArticleCaption", "Paragraph"}:
+            continue
+        if tag.startswith("Appdx"):
             try:
+                if should_skip(child):
+                    LOGGER.info("Skipping deleted/hidden %s under Article", tag)
+                    continue
+                appdx_idx += 1
                 node.children.append(
-                    parse_paragraph(
-                        p,
+                    parse_appendix(
+                        child,
                         nid_builder,
-                        article_nid,
-                        local_segments=local_segments_from_num_attr_or_index(p, p_idx),
+                        local_segments=local_segments_from_num_attr_or_index(
+                            child, appdx_idx
+                        ),
                         parent_ord=node.ord,
+                        scope_prefix=scope_prefix,
                     )
                 )
             except Exception:
-                LOGGER.exception("Failed while parsing Paragraph")
+                LOGGER.exception("Failed while parsing Appendix in Article")
                 raise
-        for child in article:
-            tag = lname(child)
-            if tag in {"ArticleTitle", "ArticleCaption", "Paragraph"}:
-                continue
-            if tag.startswith("Appdx"):
-                try:
-                    if should_skip(child):
-                        LOGGER.info("Skipping deleted/hidden %s under Article", tag)
-                        continue
-                    appdx_idx += 1
-                    node.children.append(
-                        parse_appendix(
-                            child,
-                            nid_builder,
-                            local_segments=local_segments_from_num_attr_or_index(
-                                child, appdx_idx
-                            ),
-                            parent_ord=node.ord,
-                            scope_prefix=scope_prefix,
-                        )
-                    )
-                except Exception:
-                    LOGGER.exception("Failed while parsing Appendix in Article")
-                    raise
-        _attach_structured_children(node, article, nid_builder)
+    _attach_structured_children(node, article, nid_builder)
     return node
 
 

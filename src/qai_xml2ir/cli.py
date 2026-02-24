@@ -16,6 +16,7 @@ from .models_profiles import build_parser_profile, build_regdoc_profile
 from .serialize import sha256_file, write_yaml
 from .verify import (
     assert_unique_nids,
+    check_article_paragraph_structure,
     check_annex_article_nids,
     check_appendix_scoped_indices,
     check_ord_format_and_order,
@@ -151,6 +152,7 @@ def _run_verify_or_fail(root) -> None:
     collisions, invalid_annex = check_annex_article_nids(root)
     appendix_problems = check_appendix_scoped_indices(root)
     ord_problems = check_ord_format_and_order(root)
+    article_paragraph_problems = check_article_paragraph_structure(root)
 
     errors = []
     if collisions:
@@ -161,6 +163,8 @@ def _run_verify_or_fail(root) -> None:
         errors.append(f"appendix index problems: {appendix_problems}")
     if ord_problems:
         errors.append(f"ord problems: {ord_problems}")
+    if article_paragraph_problems:
+        errors.append(f"article/paragraph structure problems: {article_paragraph_problems}")
 
     if errors:
         raise typer.BadParameter("verify failed: " + " | ".join(errors))

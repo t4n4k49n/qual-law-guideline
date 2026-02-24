@@ -152,6 +152,34 @@ def check_ord_format_and_order(root) -> List[str]:
     return problems
 
 
+def check_article_paragraph_structure(root) -> List[str]:
+    problems: List[str] = []
+    forbidden_kinds = {"item", "subitem", "point"}
+    for node in walk_nodes(root):
+        if _get(node, "kind") != "article":
+            continue
+        nid = _get(node, "nid") or "<unknown>"
+        text = _get(node, "text")
+        if isinstance(text, str):
+            if text.strip():
+                problems.append(f"article.text must be empty: nid={nid}")
+        elif text is not None:
+            problems.append(f"article.text must be None/empty string: nid={nid}, text={text!r}")
+
+        children = _get_children(node)
+        child_kinds = [str(_get(child, "kind") or "") for child in children]
+        if "paragraph" not in child_kinds:
+            problems.append(f"article must have paragraph child: nid={nid}")
+        bad_children = sorted(
+            {str(_get(child, "nid") or "<unknown>") for child in children if _get(child, "kind") in forbidden_kinds}
+        )
+        if bad_children:
+            problems.append(
+                f"article has forbidden direct children(item/subitem/point): nid={nid}, children={bad_children}"
+            )
+    return problems
+
+
 def verify_document(ir_doc: Dict) -> None:
     root = ir_doc.get("content")
     if root is None:
@@ -160,6 +188,7 @@ def verify_document(ir_doc: Dict) -> None:
     collisions, invalid_annex = check_annex_article_nids(root)
     appendix_problems = check_appendix_scoped_indices(root)
     ord_problems = check_ord_format_and_order(root)
+    article_paragraph_problems = check_article_paragraph_structure(root)
     errors: List[str] = []
     if collisions:
         errors.append(f"annex nid collisions: {collisions}")
@@ -169,5 +198,7 @@ def verify_document(ir_doc: Dict) -> None:
         errors.append(f"appendix index problems: {appendix_problems}")
     if ord_problems:
         errors.append(f"ord problems: {ord_problems}")
+    if article_paragraph_problems:
+        errors.append(f"article/paragraph structure problems: {article_paragraph_problems}")
     if errors:
         raise AssertionError("verify failed: " + " | ".join(errors))
