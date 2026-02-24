@@ -56,6 +56,25 @@ $env:EGOV_XML_SAMPLE_1="C:\\path\\to\\sample1.xml"
 .\.venv\Scripts\python.exe -m pytest -m integration
 ```
 
+### IR構造チェック（fold再発防止）
+`article -> paragraph -> item` 構造を満たしているかを検査する。
+```bash
+.\.venv\Scripts\python.exe tools/check_ir_structure.py data/normalized
+```
+- 問題なし: 終了コード `0`
+- 問題あり: 終了コード `1`
+- 検査内容:
+  - `article.text` が `null` であること
+  - `article` 直下に `item/subitem/point` が無いこと
+  - `article` 直下に `paragraph` があること
+
+### fold廃止後の移行方針
+- 原則は **XMLから再生成**（`out/<run_id>/` で再生成 -> レビュー -> `data/normalized` 更新）
+- 例外として、XML再取得不可時のみ救済移行スクリプトを利用可:
+  - `tools/migrate_folded_article_ir.py`
+- 注意:
+  - NIDが変わる（例: `art2.i1 -> art2.p1.i1`）ため、外部保存の選択ID/参照IDは更新が必要
+
 ## 指針ドキュメント
 - `docs/NORMALIZED_RUN_PLAYBOOK.md`（正規化RUNの運用手順・正本）
 - `docs/REFERENCE.md`
