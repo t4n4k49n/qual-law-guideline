@@ -754,6 +754,37 @@ def _render_preview(
         cells[0] = checkbox_html + cells[0].lstrip()
         return "| " + " | ".join(c.strip() for c in cells) + " |"
 
+    def _normalize_table_row_markdown(line: str) -> str | None:
+        raw = _single_line(line.replace("｜", "|"))
+        if "|" not in raw:
+            return None
+        if raw.startswith("|") and raw.endswith("|"):
+            return raw
+        parts = [part.strip() for part in raw.split("|")]
+        cells = [part for part in parts if part]
+        if len(cells) < 2:
+            return None
+        return "| " + " | ".join(cells) + " |"
+
+    def _is_md_separator_row(line: str) -> bool:
+        raw = line.strip()
+        if not (raw.startswith("|") and raw.endswith("|")):
+            return False
+        cells = [c.strip() for c in raw[1:-1].split("|")]
+        if not cells:
+            return False
+        return all(cell and set(cell) <= {"-", ":"} for cell in cells)
+
+    def _make_table_header_for_row(row_line: str) -> tuple[str, str] | None:
+        raw = row_line.strip()
+        if not (raw.startswith("|") and raw.endswith("|")):
+            return None
+        cells = [c.strip() for c in raw[1:-1].split("|")]
+        cols = max(1, len(cells))
+        header = "| " + " | ".join([f"列{i}" for i in range(1, cols + 1)]) + " |"
+        sep = "| " + " | ".join(["---"] * cols) + " |"
+        return header, sep
+
     def _render_lines_with_markdown(
         lines: List[str],
         nids: List[str],
@@ -781,6 +812,7 @@ def _render_preview(
         st.markdown("</div>", unsafe_allow_html=True)
 
     table_markdown_buffer: List[str] = []
+    table_has_separator = False
     for block in blocks:
         block_header_lines = list(block.header_lines)
         block_header_nids = list(block.header_line_nids)
@@ -791,19 +823,34 @@ def _render_preview(
         if block.kind != "table_row" and table_markdown_buffer:
             st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
             table_markdown_buffer = []
+            table_has_separator = False
 
         if block_header_lines and not block.header_omitted:
             _render_header_lines(block_header_lines, block_header_nids)
         checkbox_key = f"checksheet_item_{block.nid}"
         if block.kind == "table_row":
             for line, nid in zip(block_item_lines, block_item_nids):
-                if line.lstrip().startswith("|"):
-                    line_work = line
-                    if nid == block.nid:
-                        line_work = _add_checkbox_to_table_left_cell(line_work)
-                    table_markdown_buffer.append(_add_help_to_table_right_cell(line_work, nid))
-                else:
-                    table_markdown_buffer.append(line)
+                row_line = _normalize_table_row_markdown(line)
+                if row_line is None:
+                    if table_markdown_buffer:
+                        st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
+                        table_markdown_buffer = []
+                        table_has_separator = False
+                    st.markdown(_line_with_help(line, nid), unsafe_allow_html=True)
+                    continue
+                if _is_md_separator_row(row_line):
+                    table_has_separator = True
+                    table_markdown_buffer.append(row_line)
+                    continue
+                if not table_has_separator:
+                    header_and_sep = _make_table_header_for_row(row_line)
+                    if header_and_sep is not None:
+                        table_markdown_buffer.extend([header_and_sep[0], header_and_sep[1]])
+                        table_has_separator = True
+                line_work = row_line
+                if nid == block.nid:
+                    line_work = _add_checkbox_to_table_left_cell(line_work)
+                table_markdown_buffer.append(_add_help_to_table_right_cell(line_work, nid))
         else:
             if checkbox_key not in st.session_state:
                 st.session_state[checkbox_key] = False
