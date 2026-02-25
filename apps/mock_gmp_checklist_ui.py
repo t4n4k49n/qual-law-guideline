@@ -1058,22 +1058,95 @@ def main() -> None:
         _sync_checkbox_defaults(selectable_row_ids, draft_set)
 
         with st.form("candidate_form"):
+            st.markdown(
+                """
+                <style>
+                .candidate-list [data-testid="stElementContainer"] {
+                    margin-bottom: 2px;
+                }
+                .candidate-list div.row-widget.stCheckbox {
+                    margin: 0 !important;
+                    min-height: 0 !important;
+                    padding: 0 !important;
+                }
+                .candidate-list div[data-testid="stCheckbox"] {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    min-height: 0 !important;
+                }
+                .candidate-list .candidate-row {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+                    gap: 8px;
+                    line-height: 1.25;
+                    margin: 0;
+                }
+                .candidate-list .candidate-row-selectable {
+                    background: #f3f4f6;
+                    border-radius: 4px;
+                    padding: 2px 6px;
+                }
+                .candidate-list .candidate-label {
+                    color: #4b5563;
+                    overflow-wrap: anywhere;
+                }
+                .candidate-list .candidate-icons {
+                    white-space: nowrap;
+                    color: #4b5563;
+                    display: inline-flex;
+                    gap: 6px;
+                }
+                .candidate-list .candidate-icon {
+                    cursor: help;
+                    font-size: 0.9em;
+                    line-height: 1.1;
+                }
+                </style>
+                """,
+                unsafe_allow_html=True,
+            )
+            st.markdown("<div class='candidate-list'>", unsafe_allow_html=True)
             with st.container(height=560, border=True):
                 for nid, label, selectable, depth in rows:
-                    indent = "&nbsp;" * (depth * 4)
+                    indent_px = depth * 14
                     if selectable:
-                        checkbox_label = f"{'  ' * depth}{label}"
-                        st.checkbox(
-                            checkbox_label,
-                            key=_checkbox_key(nid),
-                            help=_human_path(index, nid),
-                        )
+                        c_check, c_text = st.columns([1, 30], vertical_alignment="top")
+                        with c_check:
+                            st.checkbox(
+                                "",
+                                key=_checkbox_key(nid),
+                                label_visibility="collapsed",
+                            )
+                        with c_text:
+                            path_tip = escape(_human_path(index, nid), quote=True)
+                            nid_tip = escape(f"nid: {nid}", quote=True)
+                            st.markdown(
+                                (
+                                    f"<div class='candidate-row candidate-row-selectable' style='margin-left:{indent_px}px;'>"
+                                    f"<span class='candidate-label'>{escape(label)}</span>"
+                                    "<span class='candidate-icons'>"
+                                    f"<span class='candidate-icon' title='{path_tip}'>?</span>"
+                                    f"<span class='candidate-icon' title='{nid_tip}'>ⓘ</span>"
+                                    "</span>"
+                                    "</div>"
+                                ),
+                                unsafe_allow_html=True,
+                            )
                     else:
-                        kind = index.by_nid[nid].kind
+                        nid_tip = escape(f"nid: {nid}", quote=True)
                         st.markdown(
-                            f"{indent}<span style='color:#6b7280;'>[{kind}] {label}</span>",
+                            (
+                                f"<div class='candidate-row' style='margin-left:{indent_px}px;'>"
+                                f"<span class='candidate-label'>{escape(label)}</span>"
+                                "<span class='candidate-icons'>"
+                                f"<span class='candidate-icon' title='{nid_tip}'>ⓘ</span>"
+                                "</span>"
+                                "</div>"
+                            ),
                             unsafe_allow_html=True,
                         )
+            st.markdown("</div>", unsafe_allow_html=True)
             apply_selection = st.form_submit_button("選択を確定")
 
         if apply_selection:
