@@ -4,12 +4,18 @@ import subprocess
 import sys
 from pathlib import Path
 
-from pr_body_guard_lib import (
-    find_marker_path,
-    is_safe_relative_path,
-    normalize_text,
-    validate_text_content,
-)
+try:
+    from pr_body_guard_lib import (
+        find_marker_path,
+        is_safe_relative_path,
+        validate_text_content,
+    )
+except ModuleNotFoundError:
+    from scripts.pr_body_guard_lib import (
+        find_marker_path,
+        is_safe_relative_path,
+        validate_text_content,
+    )
 
 
 def _extract_body_file(args: list[str]) -> str | None:

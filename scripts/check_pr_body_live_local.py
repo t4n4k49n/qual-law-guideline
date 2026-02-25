@@ -5,18 +5,28 @@ import subprocess
 import sys
 from pathlib import Path
 
-from pr_body_guard_lib import (
-    find_marker_path,
-    is_safe_relative_path,
-    normalize_text,
-    validate_text_content,
-)
+try:
+    from pr_body_guard_lib import (
+        find_marker_path,
+        is_safe_relative_path,
+        normalize_text,
+        validate_text_content,
+    )
+except ModuleNotFoundError:
+    from scripts.pr_body_guard_lib import (
+        find_marker_path,
+        is_safe_relative_path,
+        normalize_text,
+        validate_text_content,
+    )
 
 
 def _run_gh(args: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         ["gh", *args],
         text=True,
+        encoding="utf-8",
+        errors="replace",
         capture_output=True,
         check=False,
     )
@@ -32,8 +42,9 @@ def _load_current_pr() -> dict | None:
         print((proc.stderr or proc.stdout or "").strip(), file=sys.stderr)
         return {"_error": True}
 
+    raw = proc.stdout or ""
     try:
-        return json.loads(proc.stdout)
+        return json.loads(raw)
     except json.JSONDecodeError:
         print("pre-push PR body guard: invalid JSON from gh pr view", file=sys.stderr)
         return {"_error": True}
@@ -42,7 +53,6 @@ def _load_current_pr() -> dict | None:
 def main() -> int:
     pr = _load_current_pr()
     if pr is None:
-        # No PR yet for this branch: nothing to validate at pre-push stage.
         return 0
     if pr.get("_error"):
         return 1
