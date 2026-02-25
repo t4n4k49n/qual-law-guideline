@@ -1097,9 +1097,9 @@ def main() -> None:
                     gap: 8px;
                     line-height: 1.25;
                     margin: 0;
+                    border-bottom: 1px solid #e5e7eb;
                 }
                 .candidate-list .candidate-row-selectable {
-                    background: #f3f4f6;
                     border-radius: 4px;
                     padding: 2px 6px;
                 }
@@ -1124,8 +1124,9 @@ def main() -> None:
             )
             st.markdown("<div class='candidate-list'>", unsafe_allow_html=True)
             with st.container(height=560, border=True):
-                for nid, label, selectable, depth in rows:
+                for row_num, (nid, label, selectable, depth) in enumerate(rows, start=1):
                     indent_px = depth * 14
+                    row_bg = "#eef5ff" if row_num % 2 == 0 else "#ffffff"
                     if selectable:
                         c_check, c_text = st.columns([1, 30], vertical_alignment="top")
                         with c_check:
@@ -1139,7 +1140,7 @@ def main() -> None:
                             nid_tip = escape(f"nid: {nid}", quote=True)
                             st.markdown(
                                 (
-                                    f"<div class='candidate-row candidate-row-selectable' style='margin-left:{indent_px}px;'>"
+                                    f"<div class='candidate-row candidate-row-selectable' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                     f"<span class='candidate-label'>{escape(label)}</span>"
                                     "<span class='candidate-icons'>"
                                     f"<span class='candidate-icon' title='{path_tip}'>?</span>"
@@ -1153,7 +1154,7 @@ def main() -> None:
                         nid_tip = escape(f"nid: {nid}", quote=True)
                         st.markdown(
                             (
-                                f"<div class='candidate-row' style='margin-left:{indent_px}px;'>"
+                                f"<div class='candidate-row' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                 f"<span class='candidate-label'>{escape(label)}</span>"
                                 "<span class='candidate-icons'>"
                                 f"<span class='candidate-icon' title='{nid_tip}'>ⓘ</span>"
