@@ -785,6 +785,20 @@ def _render_preview(
         sep = "| " + " | ".join(["---"] * cols) + " |"
         return header, sep
 
+    def _table_group_key(nid: str) -> str:
+        node = index.by_nid.get(nid)
+        if node is None:
+            return nid
+        cur = node
+        while cur.parent_nid:
+            parent = index.by_nid.get(cur.parent_nid)
+            if parent is None:
+                break
+            if parent.kind in {"table", "table_header"}:
+                return parent.nid
+            cur = parent
+        return node.parent_nid or nid
+
     def _render_lines_with_markdown(
         lines: List[str],
         nids: List[str],
@@ -813,22 +827,51 @@ def _render_preview(
 
     table_markdown_buffer: List[str] = []
     table_has_separator = False
+    active_table_group_key: str | None = None
+    active_table_header_line: str | None = None
     for block in blocks:
         block_header_lines = list(block.header_lines)
         block_header_nids = list(block.header_line_nids)
         block_item_lines = list(block.item_lines)
         block_item_nids = list(block.item_line_nids)
 
-        # non-table block が来たら、溜めていた table markdown を確定描画する
-        if block.kind != "table_row" and table_markdown_buffer:
+        if block.kind == "table_row" and block_header_lines:
+            filtered_header_lines: List[str] = []
+            filtered_header_nids: List[str] = []
+            for line, nid in zip(block_header_lines, block_header_nids):
+                node = index.by_nid.get(nid)
+                if node is not None and node.kind == "table_header":
+                    continue
+                filtered_header_lines.append(line)
+                filtered_header_nids.append(nid)
+            block_header_lines = filtered_header_lines
+            block_header_nids = filtered_header_nids
+
+        block_group_key: str | None = None
+        if block.kind == "table_row":
+            block_group_key = _table_group_key(block.nid)
+            if active_table_group_key is not None and block_group_key != active_table_group_key:
+                if table_markdown_buffer:
+                    st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
+                    st.markdown("")  # table と table の見切り回避
+                table_markdown_buffer = []
+                table_has_separator = False
+                active_table_header_line = None
+            if active_table_group_key is None or block_group_key != active_table_group_key:
+                active_table_group_key = block_group_key
+        elif table_markdown_buffer:
+            # non-table block が来たら、溜めていた table markdown を確定描画する
             st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
             table_markdown_buffer = []
             table_has_separator = False
+            active_table_group_key = None
+            active_table_header_line = None
 
         if block_header_lines and not block.header_omitted:
             _render_header_lines(block_header_lines, block_header_nids)
         checkbox_key = f"checksheet_item_{block.nid}"
         if block.kind == "table_row":
+            normalized_rows: List[tuple[str, str]] = []
             for line, nid in zip(block_item_lines, block_item_nids):
                 row_line = _normalize_table_row_markdown(line)
                 if row_line is None:
@@ -836,20 +879,51 @@ def _render_preview(
                         st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
                         table_markdown_buffer = []
                         table_has_separator = False
+                        active_table_group_key = None
+                        active_table_header_line = None
                     st.markdown(_line_with_help(line, nid), unsafe_allow_html=True)
                     continue
-                if _is_md_separator_row(row_line):
-                    table_has_separator = True
-                    table_markdown_buffer.append(row_line)
-                    continue
+                normalized_rows.append((row_line, nid))
+            if not normalized_rows:
+                continue
+
+            separator_indexes = [
+                i for i, (row_line, _) in enumerate(normalized_rows) if _is_md_separator_row(row_line)
+            ]
+            has_explicit_separator = len(separator_indexes) > 0
+
+            if has_explicit_separator:
+                sep_idx = separator_indexes[0]
+                header_row: tuple[str, str] | None = normalized_rows[sep_idx - 1] if sep_idx > 0 else None
+                data_rows = normalized_rows[sep_idx + 1 :]
+
                 if not table_has_separator:
+                    if header_row is not None:
+                        table_markdown_buffer.append(header_row[0])
+                        active_table_header_line = header_row[0]
+                    table_markdown_buffer.append(normalized_rows[sep_idx][0])
+                    table_has_separator = True
+                elif header_row is not None and active_table_header_line and header_row[0] != active_table_header_line:
+                    if table_markdown_buffer:
+                        st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
+                        st.markdown("")
+                    table_markdown_buffer = [header_row[0], normalized_rows[sep_idx][0]]
+                    active_table_header_line = header_row[0]
+                    table_has_separator = True
+
+                for row_line, nid in data_rows:
+                    line_work = _add_checkbox_to_table_left_cell(row_line) if nid == block.nid else row_line
+                    table_markdown_buffer.append(_add_help_to_table_right_cell(line_work, nid))
+                continue
+
+            for i, (row_line, nid) in enumerate(normalized_rows):
+                if not table_has_separator and i == 0:
                     header_and_sep = _make_table_header_for_row(row_line)
                     if header_and_sep is not None:
                         table_markdown_buffer.extend([header_and_sep[0], header_and_sep[1]])
+                        active_table_header_line = header_and_sep[0]
                         table_has_separator = True
-                line_work = row_line
-                if nid == block.nid:
-                    line_work = _add_checkbox_to_table_left_cell(line_work)
+                line_work = _add_checkbox_to_table_left_cell(row_line) if nid == block.nid else row_line
                 table_markdown_buffer.append(_add_help_to_table_right_cell(line_work, nid))
         else:
             if checkbox_key not in st.session_state:
@@ -1093,7 +1167,7 @@ def main() -> None:
         )
 
     dedup_mode_label = str(st.session_state.get("dedup_mode_label_key", dedup_mode_options[0]))
-    dedup_mode = "prefix" if dedup_mode_label == "共通先祖省略" else "exact"
+    dedup_mode = "exact" if dedup_mode_label == "共通先祖省略" else "prefix"
     egov_merge_article_p1 = bool(st.session_state.get("egov_merge_article_p1_key", True))
     selectable_kinds = [str(v) for v in current.get("selectable_kinds", []) if isinstance(v, str)]
     if "selected_nids" not in st.session_state:
