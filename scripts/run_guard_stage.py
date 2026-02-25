@@ -77,6 +77,10 @@ def run_pre_push(py: str, stdin_text: str) -> int:
     )
     if rc != 0:
         return rc
+
+    rc = _run([py, "scripts/check_pr_body_live_local.py"])
+    if rc != 0:
+        return rc
     return 0
 
 
