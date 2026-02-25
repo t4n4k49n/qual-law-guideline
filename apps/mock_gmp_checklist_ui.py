@@ -400,6 +400,14 @@ def _single_line(text: str) -> str:
     return " ".join(text.strip().split())
 
 
+def _split_table_cells(text: str) -> List[str]:
+    line = _single_line(text)
+    if not line:
+        return []
+    cells = [part.strip() for part in re.split(r"\s*[|｜]\s*", line)]
+    return [cell for cell in cells if cell]
+
+
 def _row_index_label(index: DocIndex, nid: str) -> str:
     node = index.by_nid.get(nid)
     if node is None or node.kind != "table_row" or not node.parent_nid:
@@ -459,18 +467,19 @@ def _table_row_compact_label(index: DocIndex, nid: str) -> str:
     node = index.by_nid.get(nid)
     if node is None or node.kind != "table_row":
         return _build_node_label(index, nid)
-    row_cells = [c.strip() for c in _single_line(node.text or "").split("|")]
+    row_cells = _split_table_cells(node.text or "")
     parent = index.by_nid.get(node.parent_nid or "")
     header_cells: List[str] = []
     if parent and parent.kind == "table_header":
-        header_cells = [c.strip() for c in _single_line(parent.text or "").split("|")]
+        header_cells = _split_table_cells(parent.text or "")
     row_label = _row_index_label(index, nid)
     if len(row_cells) >= 2 and len(header_cells) >= 2:
-        left = row_cells[0]
-        mid = row_cells[1]
-        return f"{row_label}：{header_cells[0]}={left} / {header_cells[1]}={mid}"
+        pairs: List[str] = []
+        for header, value in zip(header_cells, row_cells):
+            pairs.append(f"{header}={value}")
+        return f"{row_label}：{' | '.join(pairs)}"
     if row_cells:
-        return f"{row_label}：{row_cells[0]}"
+        return f"{row_label}：{' | '.join(row_cells)}"
     return row_label
 
 
@@ -495,7 +504,13 @@ def _all_rows(index: DocIndex, selectable_kinds: List[str], query: str) -> List[
             continue
         label = _build_node_label(index, node.nid)
         if q:
-            searchable = f"{label} {node.nid} {node.kind}".lower()
+            searchable_parts = [label, node.nid, node.kind, _single_line(node.text or "")]
+            if node.kind == "table_row":
+                parent = index.by_nid.get(node.parent_nid or "")
+                if parent is not None:
+                    searchable_parts.append(_single_line(parent.text or ""))
+                searchable_parts.append(_single_line(node.text or "").replace("|", " ").replace("｜", " "))
+            searchable = " ".join([part for part in searchable_parts if part]).lower()
             if q not in searchable:
                 continue
         rows.append(
