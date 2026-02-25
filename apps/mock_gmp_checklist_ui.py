@@ -835,6 +835,10 @@ def main() -> None:
         st.session_state["egov_merge_article_p1_key"] = True
     if "active_demo_preset_key" not in st.session_state:
         st.session_state["active_demo_preset_key"] = ""
+    if "shortcut_preset_key" not in st.session_state:
+        st.session_state["shortcut_preset_key"] = ""
+    if st.session_state.pop("pending_clear_shortcut_preset_key", False):
+        st.session_state["shortcut_preset_key"] = ""
 
     def _queue_demo(preset_key: str) -> None:
         preset = DEMO_PRESETS[preset_key]
@@ -851,33 +855,38 @@ def main() -> None:
             st.session_state["pending_custom_profile_seed"] = str(preset["custom_profile_seed"])
         st.session_state["pending_demo_selection_key"] = preset["selection_key"]
         st.session_state["active_demo_preset_key"] = preset_key
+        st.session_state["pending_clear_shortcut_preset_key"] = True
         st.rerun()
 
-    st.caption("デモ（法令・プロファイル・選択を一括適用）")
-    active_preset = str(st.session_state.get("active_demo_preset_key", "")).strip()
+    st.subheader("モック用設定項目")
+    st.markdown("#### 表示例へのショートカット（幾つかの典型例（自動設定）をご用意しました）")
+    preset_order = [
+        ("", "（表示例を選択）"),
+        ("demo1", "表示例1：ロだけ"),
+        ("demo2", "表示例2：ロ＋ハ"),
+        ("demo3", "表示例3：表1行"),
+        ("demo4", "表示例4：表2行"),
+        ("demo5", "表示例5：3ケース確認"),
+        ("case_a", "表示例6：条→1項→号"),
+        ("case_b", "表示例7：条→1項/2項/3項"),
+        ("case_c", "表示例8：海外(Articleなし)"),
+    ]
+    preset_keys = [key for key, _ in preset_order]
+    preset_label_map = {key: label for key, label in preset_order}
 
-    def _demo_button(col, label: str, preset_key: str) -> None:
-        button_type = "primary" if active_preset == preset_key else "secondary"
-        if col.button(
-            label,
-            help=_preset_tooltip(preset_key, normalized_bundles),
-            key=f"top_preset_{preset_key}",
-            type=button_type,
-        ):
-            _queue_demo(preset_key)
+    def _format_preset_option(key: str) -> str:
+        if not key:
+            return preset_label_map[key]
+        return f"{preset_label_map[key]} | {_preset_tooltip(key, normalized_bundles)}"
 
-    demo_cols_top = st.columns(5)
-    _demo_button(demo_cols_top[0], "デモ1：ロだけ", "demo1")
-    _demo_button(demo_cols_top[1], "デモ2：ロ＋ハ", "demo2")
-    _demo_button(demo_cols_top[2], "デモ3：表1行", "demo3")
-    _demo_button(demo_cols_top[3], "デモ4：表2行", "demo4")
-    _demo_button(demo_cols_top[4], "デモ5：3ケース確認", "demo5")
-    case_cols_top = st.columns(3)
-    _demo_button(case_cols_top[0], "Case A: 条→1項→号", "case_a")
-    _demo_button(case_cols_top[1], "Case B: 条→1項/2項/3項", "case_b")
-    _demo_button(case_cols_top[2], "Case C: 海外(Articleなし)", "case_c")
-    if active_preset:
-        st.caption(f"現在のデモ適用: `{active_preset}`")
+    chosen_preset = st.selectbox(
+        "表示例（法令・プロファイル・選択を一括適用）",
+        preset_keys,
+        key="shortcut_preset_key",
+        format_func=_format_preset_option,
+    )
+    if chosen_preset:
+        _queue_demo(chosen_preset)
 
     current_source_mode = str(st.session_state.get("source_mode_key", source_options[0]))
     current_folder = str(st.session_state.get("normalized_folder_key", "")) if folder_names else ""
