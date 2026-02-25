@@ -101,7 +101,10 @@ xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate 
   - 対象e-Gov法令URL（`https://laws.e-gov.go.jp/law/<law_id>/<as_of_revision>`）
   - 検証結果
   - 深い階層サンプル（祖先省略なし）
+- 親PR本文末尾に以下コメントを必ず記載する:
+  - `<!-- PR_BODY_FILE: runs/<run_id>/PR.md -->`
 - PR作成前に、本文・`RUN.md`・`PR.md` から `C:\\Users\\` を検索し、0件であることを確認する
+- PR作成/更新は `gh pr create --body-file ...` / `gh pr edit --body-file ...` を使用する
 - GitHubで親PRを作成し、リンクを共有する
 - 親PR本文には昇格実施結果を書かない
 

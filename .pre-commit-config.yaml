@@ -37,3 +37,9 @@ repos:
         language: system
         pass_filenames: false
         stages: [pre-commit, pre-push]
+      - id: enforce-pr-body-content-policy
+        name: enforce PR body content policy on PR body files
+        entry: python scripts/check_pr_body_content.py
+        language: system
+        pass_filenames: true
+        stages: [pre-commit]
