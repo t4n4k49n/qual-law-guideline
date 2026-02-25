@@ -781,6 +781,8 @@ def _render_preview(
             return None
         cells = [c.strip() for c in raw[1:-1].split("|")]
         cols = max(1, len(cells))
+        # 法令原文にヘッダ行がない table_row 群でも Markdown 表として成立させるため、
+        # 最小限のダミーヘッダ（列1..N）を補完する。
         header = "| " + " | ".join([f"列{i}" for i in range(1, cols + 1)]) + " |"
         sep = "| " + " | ".join(["---"] * cols) + " |"
         return header, sep
@@ -853,6 +855,7 @@ def _render_preview(
             if active_table_group_key is not None and block_group_key != active_table_group_key:
                 if table_markdown_buffer:
                     st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
+                    # 表グループ切替時は 1 行空けて、隣接 table が 1 つに連結される見え方を防ぐ。
                     st.markdown("")  # table と table の見切り回避
                 table_markdown_buffer = []
                 table_has_separator = False
@@ -899,6 +902,7 @@ def _render_preview(
 
                 if not table_has_separator:
                     if header_row is not None:
+                        # 明示ヘッダ付き（header + |---|）はこの表グループで 1 回だけ採用する。
                         table_markdown_buffer.append(header_row[0])
                         active_table_header_line = header_row[0]
                     table_markdown_buffer.append(normalized_rows[sep_idx][0])
@@ -907,6 +911,7 @@ def _render_preview(
                     if table_markdown_buffer:
                         st.markdown("\n".join(table_markdown_buffer), unsafe_allow_html=True)
                         st.markdown("")
+                    # 同じ選択内に別ヘッダ表が来たら、ここで表を切って新しい表を開始する。
                     table_markdown_buffer = [header_row[0], normalized_rows[sep_idx][0]]
                     active_table_header_line = header_row[0]
                     table_has_separator = True
@@ -918,6 +923,7 @@ def _render_preview(
 
             for i, (row_line, nid) in enumerate(normalized_rows):
                 if not table_has_separator and i == 0:
+                    # 明示ヘッダが無い table_row 群はダミーヘッダを先頭に差し込む。
                     header_and_sep = _make_table_header_for_row(row_line)
                     if header_and_sep is not None:
                         table_markdown_buffer.extend([header_and_sep[0], header_and_sep[1]])
