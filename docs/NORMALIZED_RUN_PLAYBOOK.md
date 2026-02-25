@@ -32,6 +32,9 @@
 - 使用する実行環境を固定する
   - 推奨: `.venv` を利用し、Python と依存パッケージをプロジェクト単位で固定する
   - 例: `.venv\Scripts\python.exe -m pip install -e .[dev]`
+- ローカルGitフックを有効化する（必須）
+  - `./.venv/Scripts/python.exe scripts/install_git_hooks.py` を実行し、`core.hooksPath=.githooks` を設定する
+  - 失敗時はPR作成に進まず、hook有効化を修正してから再開する
 
 ## 2) 実行
 

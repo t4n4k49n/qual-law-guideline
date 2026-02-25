@@ -23,6 +23,9 @@
 ## 文字化け回避（UTF-8遵守）
 - テキストは UTF-8（BOMなし）、改行はLF
 
+## ローカルガード（必須）
+- 初回セットアップ時に ./.venv/Scripts/python.exe scripts/install_git_hooks.py を実行し、core.hooksPath=.githooks を有効化する。
+- これにより commit/push 前に、PR本文ガード・local_notes境界ガード・制御文字ガードがローカルで強制される。
 ## 次にやること
 - `local_notes/TODO.md` を参照
 

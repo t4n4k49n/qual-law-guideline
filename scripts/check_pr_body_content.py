@@ -62,8 +62,12 @@ def _scan(path: Path) -> int:
 
 
 def main() -> int:
-    targets = list(_iter_files_from_args(sys.argv[1:]))
-    if not targets:
+    raw_args = sys.argv[1:]
+    if raw_args:
+        # When explicit paths are given (hook mode), never fallback to full-repo scan.
+        targets = list(_iter_files_from_args(raw_args))
+    else:
+        # Full scan mode for explicit/manual policy checks.
         targets = list(_iter_tracked_files())
 
     total = 0
@@ -79,4 +83,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
