@@ -1143,8 +1143,8 @@ def main() -> None:
                                     f"<div class='candidate-row candidate-row-selectable' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                     f"<span class='candidate-label'>{escape(label)}</span>"
                                     "<span class='candidate-icons'>"
-                                    f"<span class='candidate-icon' title='{path_tip}'>?</span>"
-                                    f"<span class='candidate-icon' title='{nid_tip}'>ⓘ</span>"
+                                    f"<span class='candidate-icon' title='{path_tip}'>ⓘ</span>"
+                                    f"<span class='candidate-icon' title='{nid_tip}'>🆔</span>"
                                     "</span>"
                                     "</div>"
                                 ),
@@ -1157,7 +1157,7 @@ def main() -> None:
                                 f"<div class='candidate-row' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                 f"<span class='candidate-label'>{escape(label)}</span>"
                                 "<span class='candidate-icons'>"
-                                f"<span class='candidate-icon' title='{nid_tip}'>ⓘ</span>"
+                                f"<span class='candidate-icon' title='{nid_tip}'>🆔</span>"
                                 "</span>"
                                 "</div>"
                             ),
