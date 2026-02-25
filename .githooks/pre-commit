@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+
+if [ -x ./.venv/Scripts/python.exe ]; then
+  PY=./.venv/Scripts/python.exe
+elif [ -x ./.venv/bin/python ]; then
+  PY=./.venv/bin/python
+else
+  PY=python
+fi
+
+exec "$PY" scripts/run_guard_stage.py --stage pre-commit

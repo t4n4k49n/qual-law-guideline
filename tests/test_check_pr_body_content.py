@@ -47,3 +47,10 @@ def test_candidate_detects_replacement_character(tmp_path: Path) -> None:
     assert proc.returncode == 1
     assert "replacement character" in proc.stdout
 
+
+def test_non_candidate_arg_does_not_fallback_to_repo_scan(tmp_path: Path) -> None:
+    f = tmp_path / "README.md"
+    f.write_text("hello\n", encoding="utf-8", newline="\n")
+    proc = _run_check(f)
+    assert proc.returncode == 0
+    assert "No PR body content policy violations found." in proc.stdout
