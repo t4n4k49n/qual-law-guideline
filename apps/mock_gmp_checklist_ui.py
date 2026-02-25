@@ -31,6 +31,65 @@ FALLBACK_META = Path(
     "jp_egov_336M50000100002_20260501_507M60000100117.meta.yaml"
 )
 OUT_DIR = Path("out")
+DEFAULT_NORMALIZED_FOLDER = "jp_egov_336M50000100002_20260501_507M60000100117"
+
+DEMO_PRESETS: Dict[str, Dict[str, str]] = {
+    "demo1": {
+        "source_mode": "data/normalized選択",
+        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
+        "purpose_mode": "オリジナル設定",
+        "selection_key": "demo1",
+        "selection_desc": "第12条第1項 ロ",
+    },
+    "demo2": {
+        "source_mode": "data/normalized選択",
+        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
+        "purpose_mode": "オリジナル設定",
+        "selection_key": "demo2",
+        "selection_desc": "第12条第1項 ロ + ハ",
+    },
+    "demo3": {
+        "source_mode": "data/normalized選択",
+        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
+        "purpose_mode": "モック用設定",
+        "selection_key": "demo3",
+        "selection_desc": "別表（表）1行目",
+    },
+    "demo4": {
+        "source_mode": "data/normalized選択",
+        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
+        "purpose_mode": "モック用設定",
+        "selection_key": "demo4",
+        "selection_desc": "別表（表）1行目 + 2行目",
+    },
+    "demo5": {
+        "source_mode": "data/normalized選択",
+        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
+        "purpose_mode": "オリジナル設定",
+        "selection_key": "demo5",
+        "selection_desc": "3ケース確認",
+    },
+    "case_a": {
+        "source_mode": "data/normalized選択",
+        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
+        "purpose_mode": "オリジナル設定",
+        "selection_key": "case_a",
+        "selection_desc": "条→1項→号",
+    },
+    "case_b": {
+        "source_mode": "data/normalized選択",
+        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
+        "purpose_mode": "オリジナル設定",
+        "selection_key": "case_b",
+        "selection_desc": "条→1項/2項/3項",
+    },
+    "case_c": {
+        "source_mode": "海外固定(WHO LBM 3rd)",
+        "purpose_mode": "オリジナル設定",
+        "selection_key": "case_c",
+        "selection_desc": "海外（Articleなし）",
+    },
+}
 
 
 def _load_default_yaml_pair() -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None]:
@@ -117,6 +176,29 @@ def _discover_normalized_bundles() -> List[Tuple[str, Path, Path, Path | None, s
         meta_path = meta_files[0] if meta_files else None
         bundles.append((child.name, ir_path, profile_path, meta_path, _meta_title(meta_path)))
     return bundles
+
+
+def _preset_tooltip(
+    preset_key: str,
+    bundles: List[Tuple[str, Path, Path, Path | None, str | None]],
+) -> str:
+    preset = DEMO_PRESETS[preset_key]
+    source_mode = preset["source_mode"]
+    profile = preset["purpose_mode"]
+    selection = preset["selection_desc"]
+    law_name = "（未設定）"
+    if source_mode == "data/normalized選択":
+        folder = preset.get("normalized_folder", "")
+        for bundle in bundles:
+            if bundle[0] == folder:
+                law_name = bundle[4] or folder
+                break
+        if law_name == "（未設定）":
+            law_name = folder or "（未設定）"
+    elif source_mode == "海外固定(WHO LBM 3rd)":
+        law_name = "WHO LBM 3rd"
+    # Streamlit button tooltip is effectively single-line in this UI, so use explicit separators.
+    return f"法令名: {law_name} | プロファイル: {profile} | 選択: {selection}"
 
 
 def _latest_out_bundle(doc_prefix: str) -> Tuple[Path, Path, Path] | None:
@@ -450,6 +532,21 @@ def _find_demo_subitem_siblings(index: DocIndex) -> List[str]:
     return []
 
 
+def _find_demo_subitems_by_num(index: DocIndex, targets: List[str]) -> List[str]:
+    target_set = {t.strip() for t in targets}
+    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
+        if node.kind != "item":
+            continue
+        subs = [c for c in node.children if c.kind == "subitem"]
+        if not subs:
+            continue
+        by_num = {str((s.num or "")).strip(): s.nid for s in subs}
+        if not target_set.issubset(set(by_num.keys())):
+            continue
+        return [by_num[t] for t in targets]
+    return []
+
+
 def _find_demo_table_rows(index: DocIndex, count: int) -> List[str]:
     rows = [n for n in index.by_nid.values() if n.kind == "table_row"]
     rows.sort(key=lambda n: (n.ord, n.nid))
@@ -458,12 +555,18 @@ def _find_demo_table_rows(index: DocIndex, count: int) -> List[str]:
 
 def _apply_demo(index: DocIndex, name: str) -> List[str]:
     if name == "demo1":
+        ro_only = _find_demo_subitems_by_num(index, ["ロ"])
+        if ro_only:
+            return ro_only
         sub_pair = _find_demo_subitem_siblings(index)
         if sub_pair:
             return [sub_pair[0]]
         item_case = _find_demo_egov_item_case(index)
         return item_case[:1]
     if name == "demo2":
+        ro_ha = _find_demo_subitems_by_num(index, ["ロ", "ハ"])
+        if ro_ha:
+            return ro_ha
         sub_pair = _find_demo_subitem_siblings(index)
         if sub_pair:
             return sub_pair
@@ -473,6 +576,18 @@ def _apply_demo(index: DocIndex, name: str) -> List[str]:
         return _find_demo_table_rows(index, 1)
     if name == "demo4":
         return _find_demo_table_rows(index, 2)
+    return []
+
+
+def _resolve_demo_selection(index: DocIndex, selectable_kinds: List[str], key: str) -> List[str]:
+    if key in {"demo1", "demo2", "demo3", "demo4", "demo5"}:
+        return _apply_demo(index, key)
+    if key == "case_a":
+        return _find_demo_egov_item_case(index)
+    if key == "case_b":
+        return _find_demo_egov_paragraph_case(index)
+    if key == "case_c":
+        return _find_demo_non_article_case(index, selectable_kinds)
     return []
 
 
@@ -677,18 +792,68 @@ def main() -> None:
     st.set_page_config(page_title="GMPチェックシート生成UI（モック）", layout="wide")
     st.title("GMPチェックシート生成UI（モック）")
 
+    source_options = ["自動(アップロード/txtconcat/fallback)", "data/normalized選択", "海外固定(WHO LBM 3rd)"]
+    profile_options = ["オリジナル設定", "モック用設定"]
+    normalized_bundles = _discover_normalized_bundles()
+    folder_names = [b[0] for b in normalized_bundles]
+
+    if "source_mode_key" not in st.session_state:
+        st.session_state["source_mode_key"] = source_options[0]
+    if "purpose_mode_key" not in st.session_state:
+        st.session_state["purpose_mode_key"] = profile_options[0]
+    if "normalized_folder_key" not in st.session_state and folder_names:
+        st.session_state["normalized_folder_key"] = folder_names[0]
+    if "active_demo_preset_key" not in st.session_state:
+        st.session_state["active_demo_preset_key"] = ""
+
+    def _queue_demo(preset_key: str) -> None:
+        preset = DEMO_PRESETS[preset_key]
+        st.session_state["source_mode_key"] = preset["source_mode"]
+        st.session_state["purpose_mode_key"] = preset["purpose_mode"]
+        folder = preset.get("normalized_folder")
+        if folder and folder in folder_names:
+            st.session_state["normalized_folder_key"] = folder
+        st.session_state["pending_demo_selection_key"] = preset["selection_key"]
+        st.session_state["active_demo_preset_key"] = preset_key
+        st.rerun()
+
+    st.caption("デモ（法令・プロファイル・選択を一括適用）")
+    active_preset = str(st.session_state.get("active_demo_preset_key", "")).strip()
+
+    def _demo_button(col, label: str, preset_key: str) -> None:
+        button_type = "primary" if active_preset == preset_key else "secondary"
+        if col.button(
+            label,
+            help=_preset_tooltip(preset_key, normalized_bundles),
+            key=f"top_preset_{preset_key}",
+            type=button_type,
+        ):
+            _queue_demo(preset_key)
+
+    demo_cols_top = st.columns(5)
+    _demo_button(demo_cols_top[0], "デモ1：ロだけ", "demo1")
+    _demo_button(demo_cols_top[1], "デモ2：ロ＋ハ", "demo2")
+    _demo_button(demo_cols_top[2], "デモ3：表1行", "demo3")
+    _demo_button(demo_cols_top[3], "デモ4：表2行", "demo4")
+    _demo_button(demo_cols_top[4], "デモ5：3ケース確認", "demo5")
+    case_cols_top = st.columns(3)
+    _demo_button(case_cols_top[0], "Case A: 条→1項→号", "case_a")
+    _demo_button(case_cols_top[1], "Case B: 条→1項/2項/3項", "case_b")
+    _demo_button(case_cols_top[2], "Case C: 海外(Articleなし)", "case_c")
+    if active_preset:
+        st.caption(f"現在のデモ適用: `{active_preset}`")
+
     source_mode = st.radio(
         "データソース切替",
-        ["自動(アップロード/txtconcat/fallback)", "data/normalized選択", "海外固定(WHO LBM 3rd)"],
+        source_options,
         horizontal=True,
+        key="source_mode_key",
     )
     selected_normalized_folder: str | None = None
     if source_mode == "data/normalized選択":
-        normalized_bundles = _discover_normalized_bundles()
         if not normalized_bundles:
             st.error("data/normalized 配下に選択可能なフォルダが見つかりません。")
             return
-        folder_names = [b[0] for b in normalized_bundles]
         label_map = {
             b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
             for b in normalized_bundles
@@ -696,7 +861,7 @@ def main() -> None:
         selected_normalized_folder = st.selectbox(
             "フォルダ選択（ARCHIVE_* は除外）",
             folder_names,
-            index=0,
+            key="normalized_folder_key",
             format_func=lambda v: label_map.get(v, v),
         )
     uploaded = st.file_uploader("txtconcat (*.txt) を選択", type=["txt"])
@@ -712,7 +877,7 @@ def main() -> None:
     index = build_doc_index(regdoc_ir)
     is_egov_doc = str(regdoc_ir.get("doc_id") or "").startswith("jp_egov_")
     base_purpose = _purpose(regdoc_profile)
-    purpose_mode = st.radio("プロファイル切替", ["オリジナル設定", "モック用設定"], horizontal=True)
+    purpose_mode = st.radio("プロファイル切替", profile_options, horizontal=True, key="purpose_mode_key")
     current = base_purpose if purpose_mode == "オリジナル設定" else _mock_purpose(base_purpose)
 
     if "editable_purpose_yaml" not in st.session_state:
@@ -756,6 +921,14 @@ def main() -> None:
         st.session_state["selected_nids"] = []
     if "draft_selected_nids" not in st.session_state:
         st.session_state["draft_selected_nids"] = list(st.session_state["selected_nids"])
+    pending_demo_key = st.session_state.pop("pending_demo_selection_key", None)
+    if pending_demo_key:
+        demo_nids = _resolve_demo_selection(index, selectable_kinds, pending_demo_key)
+        if demo_nids:
+            st.session_state["draft_selected_nids"] = demo_nids
+            st.session_state["selected_nids"] = demo_nids
+        else:
+            st.warning("このデータセットでは指定デモを構成できません。")
 
     left, right = st.columns(2)
     with left:
@@ -770,67 +943,6 @@ def main() -> None:
         rows = _all_rows(index, selectable_kinds, query)
         selectable_row_ids = [nid for nid, _, selectable, _ in rows if selectable]
         label_by_id = {nid: label for nid, label, _, _ in rows}
-
-        demo_cols = st.columns(5)
-        if demo_cols[0].button("デモ1：ロだけ"):
-            demo_nids = _apply_demo(index, "demo1")
-            st.session_state["draft_selected_nids"] = demo_nids
-            st.session_state["selected_nids"] = demo_nids
-            _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
-        if demo_cols[1].button("デモ2：ロ＋ハ"):
-            demo_nids = _apply_demo(index, "demo2")
-            st.session_state["draft_selected_nids"] = demo_nids
-            st.session_state["selected_nids"] = demo_nids
-            _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
-        if demo_cols[4].button("デモ5：3ケース確認"):
-            if source_mode == "海外固定(WHO LBM 3rd)":
-                demo_nids = _find_demo_non_article_case(index, selectable_kinds)
-            else:
-                demo_nids = _find_demo_egov_item_case(index)
-                if not demo_nids:
-                    demo_nids = _find_demo_egov_paragraph_case(index)
-            if not demo_nids:
-                st.warning("このデータセットでは該当デモを組めません。")
-            else:
-                st.session_state["draft_selected_nids"] = demo_nids
-                st.session_state["selected_nids"] = demo_nids
-                _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
-
-        case_cols = st.columns(3)
-        if case_cols[0].button("Case A: 条→1項→号"):
-            demo_nids = _find_demo_egov_item_case(index)
-            if not demo_nids:
-                st.warning("このデータセットに Article/Paragraph/Item ケースがありません。")
-            else:
-                st.session_state["draft_selected_nids"] = demo_nids
-                st.session_state["selected_nids"] = demo_nids
-                _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
-        if case_cols[1].button("Case B: 条→1項/2項/3項"):
-            demo_nids = _find_demo_egov_paragraph_case(index)
-            if not demo_nids:
-                st.warning("このデータセットに複数Paragraphケースがありません。")
-            else:
-                st.session_state["draft_selected_nids"] = demo_nids
-                st.session_state["selected_nids"] = demo_nids
-                _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
-        if case_cols[2].button("Case C: 海外(Articleなし)"):
-            demo_nids = _find_demo_non_article_case(index, selectable_kinds)
-            if not demo_nids:
-                st.warning("このデータセットは Article を持つため海外ケースになりません。")
-            else:
-                st.session_state["draft_selected_nids"] = demo_nids
-                st.session_state["selected_nids"] = demo_nids
-                _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
-        if demo_cols[2].button("デモ3：表1行"):
-            demo_nids = _apply_demo(index, "demo3")
-            st.session_state["draft_selected_nids"] = demo_nids
-            st.session_state["selected_nids"] = demo_nids
-            _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
-        if demo_cols[3].button("デモ4：表2行"):
-            demo_nids = _apply_demo(index, "demo4")
-            st.session_state["draft_selected_nids"] = demo_nids
-            st.session_state["selected_nids"] = demo_nids
-            _sync_checkbox_defaults(selectable_row_ids, set(demo_nids), force=True)
 
         st.caption("ord順の全ノードを表示中。選択可能ノードのみチェックできます。")
         draft_set = set(st.session_state.get("draft_selected_nids", []))
