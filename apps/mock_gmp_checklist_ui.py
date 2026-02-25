@@ -1061,18 +1061,34 @@ def main() -> None:
             st.markdown(
                 """
                 <style>
-                .candidate-list [data-testid="stElementContainer"] {
+                div[class*="st-key-candidate_"][data-testid="stElementContainer"] {
                     margin-bottom: 2px;
                 }
-                .candidate-list div.row-widget.stCheckbox {
+                div[class*="st-key-candidate_"] div.row-widget.stCheckbox {
                     margin: 0 !important;
                     min-height: 0 !important;
                     padding: 0 !important;
                 }
-                .candidate-list div[data-testid="stCheckbox"] {
+                div[class*="st-key-candidate_"] div[data-testid="stCheckbox"] {
                     margin: 0 !important;
                     padding: 0 !important;
                     min-height: 0 !important;
+                }
+                div[class*="st-key-candidate_"] div[data-testid="stCheckbox"] {
+                    min-height: 0 !important;
+                    height: auto !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    line-height: 1 !important;
+                }
+                div[class*="st-key-candidate_"] div[data-testid="stCheckbox"] * {
+                    min-height: 0 !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    line-height: 1 !important;
+                }
+                div[class*="st-key-candidate_"] div.row-widget.stCheckbox {
+                    align-items: flex-start !important;
                 }
                 .candidate-list .candidate-row {
                     display: flex;
