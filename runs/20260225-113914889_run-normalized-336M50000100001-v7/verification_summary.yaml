@@ -1,0 +1,10 @@
+assert_unique_nids: pass
+check_annex_article_nids:
+  collisions: 0
+  invalid_annex: 0
+check_appendix_scoped_indices:
+  problems: 0
+check_ord_format_and_order:
+  problems: 0
+check_article_paragraph_structure:
+  problems: 0

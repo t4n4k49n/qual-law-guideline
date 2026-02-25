@@ -1,0 +1,3 @@
+schema: qai.regdoc_ir.v4
+parser_profile_id: jp_law_default_v1
+tool_version: 0.1.1
