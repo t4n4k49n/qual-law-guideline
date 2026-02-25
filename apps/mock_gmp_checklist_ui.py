@@ -35,57 +35,75 @@ DEFAULT_NORMALIZED_FOLDER = "jp_egov_336M50000100002_20260501_507M60000100117"
 
 DEMO_PRESETS: Dict[str, Dict[str, str]] = {
     "demo1": {
-        "source_mode": "data/normalized選択",
+        "source_mode": "フォルダ選択",
         "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル設定",
+        "purpose_mode": "オリジナル",
+        "dedup_mode_label": "共通先祖省略",
+        "egov_merge_article_p1": "true",
         "selection_key": "demo1",
         "selection_desc": "第12条第1項 ロ",
     },
     "demo2": {
-        "source_mode": "data/normalized選択",
+        "source_mode": "フォルダ選択",
         "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル設定",
+        "purpose_mode": "オリジナル",
+        "dedup_mode_label": "共通先祖省略",
+        "egov_merge_article_p1": "true",
         "selection_key": "demo2",
         "selection_desc": "第12条第1項 ロ + ハ",
     },
     "demo3": {
-        "source_mode": "data/normalized選択",
+        "source_mode": "フォルダ選択",
         "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "モック用設定",
+        "purpose_mode": "カスタマイズ",
+        "custom_profile_seed": "mock",
+        "dedup_mode_label": "兄弟のみ先祖省略",
+        "egov_merge_article_p1": "false",
         "selection_key": "demo3",
         "selection_desc": "別表（表）1行目",
     },
     "demo4": {
-        "source_mode": "data/normalized選択",
+        "source_mode": "フォルダ選択",
         "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "モック用設定",
+        "purpose_mode": "カスタマイズ",
+        "custom_profile_seed": "mock",
+        "dedup_mode_label": "兄弟のみ先祖省略",
+        "egov_merge_article_p1": "false",
         "selection_key": "demo4",
         "selection_desc": "別表（表）1行目 + 2行目",
     },
     "demo5": {
-        "source_mode": "data/normalized選択",
+        "source_mode": "フォルダ選択",
         "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル設定",
+        "purpose_mode": "オリジナル",
+        "dedup_mode_label": "共通先祖省略",
+        "egov_merge_article_p1": "true",
         "selection_key": "demo5",
         "selection_desc": "3ケース確認",
     },
     "case_a": {
-        "source_mode": "data/normalized選択",
+        "source_mode": "フォルダ選択",
         "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル設定",
+        "purpose_mode": "オリジナル",
+        "dedup_mode_label": "共通先祖省略",
+        "egov_merge_article_p1": "true",
         "selection_key": "case_a",
         "selection_desc": "条→1項→号",
     },
     "case_b": {
-        "source_mode": "data/normalized選択",
+        "source_mode": "フォルダ選択",
         "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル設定",
+        "purpose_mode": "オリジナル",
+        "dedup_mode_label": "共通先祖省略",
+        "egov_merge_article_p1": "true",
         "selection_key": "case_b",
         "selection_desc": "条→1項/2項/3項",
     },
     "case_c": {
         "source_mode": "海外固定(WHO LBM 3rd)",
-        "purpose_mode": "オリジナル設定",
+        "purpose_mode": "オリジナル",
+        "dedup_mode_label": "兄弟のみ先祖省略",
+        "egov_merge_article_p1": "false",
         "selection_key": "case_c",
         "selection_desc": "海外（Articleなし）",
     },
@@ -187,7 +205,7 @@ def _preset_tooltip(
     profile = preset["purpose_mode"]
     selection = preset["selection_desc"]
     law_name = "（未設定）"
-    if source_mode == "data/normalized選択":
+    if source_mode in {"data/normalized選択", "フォルダ選択"}:
         folder = preset.get("normalized_folder", "")
         for bundle in bundles:
             if bundle[0] == folder:
@@ -219,7 +237,7 @@ def _load_from_uploaded_or_local(
     source_mode: str,
     selected_normalized_folder: str | None = None,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None, str]:
-    if source_mode == "data/normalized選択":
+    if source_mode in {"data/normalized選択", "フォルダ選択"}:
         bundles = _discover_normalized_bundles()
         if not bundles:
             raise ValueError("data/normalized 配下に選択可能なフォルダが見つかりません。")
@@ -235,7 +253,7 @@ def _load_from_uploaded_or_local(
             raise ValueError("WHO LBM 3rd の out バンドルが見つかりません。")
         ir, profile, meta = _load_bundle_from_yaml_files(bundle[0], bundle[1], bundle[2])
         return ir, profile, meta, f"fixed:{bundle[0].parent.as_posix()}"
-    if uploaded is not None:
+    if source_mode in {"自動(アップロード/txtconcat/fallback)", "アップロード（4yamlのtxtconcat形式）"} and uploaded is not None:
         raw = uploaded.getvalue().decode("utf-8")
         temp = Path(".streamlit_tmp_txtconcat.txt")
         temp.write_text(raw, encoding="utf-8")
@@ -792,17 +810,29 @@ def main() -> None:
     st.set_page_config(page_title="GMPチェックシート生成UI（モック）", layout="wide")
     st.title("GMPチェックシート生成UI（モック）")
 
-    source_options = ["自動(アップロード/txtconcat/fallback)", "data/normalized選択", "海外固定(WHO LBM 3rd)"]
-    profile_options = ["オリジナル設定", "モック用設定"]
+    source_options = ["フォルダ選択", "海外固定(WHO LBM 3rd)", "アップロード（4yamlのtxtconcat形式）"]
+    profile_options = ["オリジナル", "カスタマイズ"]
+    dedup_mode_options = ["共通先祖省略", "兄弟のみ先祖省略"]
     normalized_bundles = _discover_normalized_bundles()
     folder_names = [b[0] for b in normalized_bundles]
+    label_map = {
+        b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
+        for b in normalized_bundles
+    }
 
     if "source_mode_key" not in st.session_state:
-        st.session_state["source_mode_key"] = source_options[0]
+        st.session_state["source_mode_key"] = source_options[0] if normalized_bundles else source_options[2]
     if "purpose_mode_key" not in st.session_state:
         st.session_state["purpose_mode_key"] = profile_options[0]
+    pending_purpose_mode = st.session_state.pop("pending_purpose_mode_key", None)
+    if pending_purpose_mode in profile_options:
+        st.session_state["purpose_mode_key"] = pending_purpose_mode
     if "normalized_folder_key" not in st.session_state and folder_names:
         st.session_state["normalized_folder_key"] = folder_names[0]
+    if "dedup_mode_label_key" not in st.session_state:
+        st.session_state["dedup_mode_label_key"] = dedup_mode_options[0]
+    if "egov_merge_article_p1_key" not in st.session_state:
+        st.session_state["egov_merge_article_p1_key"] = True
     if "active_demo_preset_key" not in st.session_state:
         st.session_state["active_demo_preset_key"] = ""
 
@@ -810,9 +840,15 @@ def main() -> None:
         preset = DEMO_PRESETS[preset_key]
         st.session_state["source_mode_key"] = preset["source_mode"]
         st.session_state["purpose_mode_key"] = preset["purpose_mode"]
+        st.session_state["dedup_mode_label_key"] = preset.get("dedup_mode_label", dedup_mode_options[0])
+        st.session_state["egov_merge_article_p1_key"] = str(
+            preset.get("egov_merge_article_p1", "true")
+        ).lower() == "true"
         folder = preset.get("normalized_folder")
         if folder and folder in folder_names:
             st.session_state["normalized_folder_key"] = folder
+        if preset.get("custom_profile_seed"):
+            st.session_state["pending_custom_profile_seed"] = str(preset["custom_profile_seed"])
         st.session_state["pending_demo_selection_key"] = preset["selection_key"]
         st.session_state["active_demo_preset_key"] = preset_key
         st.rerun()
@@ -843,28 +879,36 @@ def main() -> None:
     if active_preset:
         st.caption(f"現在のデモ適用: `{active_preset}`")
 
-    source_mode = st.radio(
-        "データソース切替",
-        source_options,
-        horizontal=True,
-        key="source_mode_key",
-    )
-    selected_normalized_folder: str | None = None
-    if source_mode == "data/normalized選択":
-        if not normalized_bundles:
-            st.error("data/normalized 配下に選択可能なフォルダが見つかりません。")
-            return
-        label_map = {
-            b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
-            for b in normalized_bundles
-        }
-        selected_normalized_folder = st.selectbox(
-            "フォルダ選択（ARCHIVE_* は除外）",
-            folder_names,
-            key="normalized_folder_key",
-            format_func=lambda v: label_map.get(v, v),
+    current_source_mode = str(st.session_state.get("source_mode_key", source_options[0]))
+    current_folder = str(st.session_state.get("normalized_folder_key", "")) if folder_names else ""
+    if current_source_mode == "フォルダ選択":
+        law_display_for_header = label_map.get(current_folder, current_folder or "（未選択）")
+    elif current_source_mode == "海外固定(WHO LBM 3rd)":
+        law_display_for_header = "WHO LBM 3rd"
+    else:
+        law_display_for_header = "アップロード待ち"
+
+    uploaded = None
+    with st.expander(f"法令選択：[{law_display_for_header}]", expanded=True):
+        source_mode = st.radio(
+            "データソース切替",
+            source_options,
+            horizontal=True,
+            key="source_mode_key",
         )
-    uploaded = st.file_uploader("txtconcat (*.txt) を選択", type=["txt"])
+        selected_normalized_folder: str | None = None
+        if source_mode == "フォルダ選択":
+            if not normalized_bundles:
+                st.error("data/normalized 配下に選択可能なフォルダが見つかりません。")
+                return
+            selected_normalized_folder = st.selectbox(
+                "フォルダ選択（ARCHIVE_* は除外）",
+                folder_names,
+                key="normalized_folder_key",
+                format_func=lambda v: label_map.get(v, v),
+            )
+        if source_mode == "アップロード（4yamlのtxtconcat形式）":
+            uploaded = st.file_uploader("txtconcat (*.txt) を選択", type=["txt"])
     try:
         regdoc_ir, regdoc_profile, regdoc_meta, source_label = _load_from_uploaded_or_local(
             uploaded, source_mode, selected_normalized_folder
@@ -877,46 +921,107 @@ def main() -> None:
     index = build_doc_index(regdoc_ir)
     is_egov_doc = str(regdoc_ir.get("doc_id") or "").startswith("jp_egov_")
     base_purpose = _purpose(regdoc_profile)
-    purpose_mode = st.radio("プロファイル切替", profile_options, horizontal=True, key="purpose_mode_key")
-    current = base_purpose if purpose_mode == "オリジナル設定" else _mock_purpose(base_purpose)
+    original_profile_tooltip = "参照元プロファイル: 不明"
+    if source_mode == "フォルダ選択" and selected_normalized_folder:
+        matched = next((b for b in normalized_bundles if b[0] == selected_normalized_folder), None)
+        if matched is not None:
+            original_profile_tooltip = f"参照元プロファイル: {matched[2].as_posix()}"
+    elif source_mode == "海外固定(WHO LBM 3rd)":
+        who_bundle = _latest_out_bundle("who_lbm_3rd")
+        if who_bundle is not None:
+            original_profile_tooltip = f"参照元プロファイル: {who_bundle[1].as_posix()}"
+        else:
+            original_profile_tooltip = "参照元プロファイル: WHO LBM 3rd デモ専用YAML（out未検出）"
+    elif source_mode == "アップロード（4yamlのtxtconcat形式）":
+        original_profile_tooltip = "参照元プロファイル: txtconcat由来のデモ専用YAML（実ファイル固定なし）"
 
     if "editable_purpose_yaml" not in st.session_state:
         st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
-            current, allow_unicode=True, sort_keys=False
+            base_purpose, allow_unicode=True, sort_keys=False
         )
-    if st.button("現在設定を編集欄に反映"):
+    if "applied_custom_purpose" not in st.session_state:
+        st.session_state["applied_custom_purpose"] = deepcopy(base_purpose)
+    pending_seed = st.session_state.pop("pending_custom_profile_seed", None)
+    if pending_seed == "mock":
+        seeded = _mock_purpose(base_purpose)
         st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
-            current, allow_unicode=True, sort_keys=False
+            seeded, allow_unicode=True, sort_keys=False
+        )
+        st.session_state["applied_custom_purpose"] = seeded
+
+    purpose_mode = str(st.session_state.get("purpose_mode_key", profile_options[0]))
+    with st.expander(f"プロファイル：[{purpose_mode}]", expanded=True):
+        st.radio(
+            "プロファイル切替",
+            profile_options,
+            horizontal=True,
+            key="purpose_mode_key",
+            help=original_profile_tooltip,
+        )
+        c_apply1, c_apply2 = st.columns(2)
+        with c_apply1:
+            if st.button("オリジナルのYAML設定を以下に呼出し", help=original_profile_tooltip):
+                st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
+                    base_purpose, allow_unicode=True, sort_keys=False
+                )
+        with c_apply2:
+            if st.button("以下のカスタマイズYAMLを適用"):
+                try:
+                    loaded = yaml.safe_load(st.session_state.get("editable_purpose_yaml", ""))
+                    if not isinstance(loaded, dict):
+                        raise ValueError("YAMLのトップレベルは辞書である必要があります。")
+                    st.session_state["applied_custom_purpose"] = loaded
+                    if loaded != base_purpose:
+                        st.session_state["pending_purpose_mode_key"] = "カスタマイズ"
+                        st.session_state["profile_apply_notice"] = (
+                            "success",
+                            "カスタマイズ設定を適用しました（プロファイル: カスタマイズ）。",
+                        )
+                        st.rerun()
+                    else:
+                        st.session_state["pending_purpose_mode_key"] = "オリジナル"
+                        st.session_state["profile_apply_notice"] = (
+                            "info",
+                            "適用内容はオリジナル設定と同一です（プロファイル: オリジナル）。",
+                        )
+                        st.rerun()
+                except Exception as exc:
+                    st.error(f"YAML適用に失敗しました: {exc}")
+        st.text_area(
+            "YAMLエディットボックス",
+            key="editable_purpose_yaml",
+            height=260,
+        )
+        profile_apply_notice = st.session_state.pop("profile_apply_notice", None)
+        if isinstance(profile_apply_notice, tuple) and len(profile_apply_notice) == 2:
+            level, message = profile_apply_notice
+            if level == "success":
+                st.success(str(message))
+            elif level == "info":
+                st.info(str(message))
+
+    purpose_mode = str(st.session_state.get("purpose_mode_key", profile_options[0]))
+    current = base_purpose if purpose_mode == "オリジナル" else deepcopy(
+        st.session_state.get("applied_custom_purpose", base_purpose)
+    )
+
+    dedup_mode_label = str(st.session_state.get("dedup_mode_label_key", dedup_mode_options[0]))
+    egov_merge_article_p1 = bool(st.session_state.get("egov_merge_article_p1_key", True))
+    display_mode_status = "共通省略" if dedup_mode_label == "共通先祖省略" else "兄弟省略"
+    if is_egov_doc and egov_merge_article_p1:
+        display_mode_status += "、各条第一項統合"
+    with st.expander(f"表示カスタマイズ：[{display_mode_status}]", expanded=True):
+        st.radio("文脈省略モード", dedup_mode_options, horizontal=True, key="dedup_mode_label_key")
+        st.checkbox(
+            "各条第一項の統合表示（eGovのみ）",
+            key="egov_merge_article_p1_key",
+            disabled=not is_egov_doc,
         )
 
-    edited = st.text_area(
-        "selectable_kinds / context_display_policy 編集（YAML）",
-        key="editable_purpose_yaml",
-        height=260,
-    )
-    if st.button("YAML編集を適用"):
-        try:
-            loaded = yaml.safe_load(edited)
-            if not isinstance(loaded, dict):
-                raise ValueError("YAMLのトップレベルは辞書である必要があります。")
-            current = loaded
-            st.success("編集内容を適用しました。")
-        except Exception as exc:
-            st.error(f"YAML適用に失敗しました: {exc}")
-
+    dedup_mode_label = str(st.session_state.get("dedup_mode_label_key", dedup_mode_options[0]))
+    dedup_mode = "exact" if dedup_mode_label == "共通先祖省略" else "prefix"
+    egov_merge_article_p1 = bool(st.session_state.get("egov_merge_article_p1_key", True))
     selectable_kinds = [str(v) for v in current.get("selectable_kinds", []) if isinstance(v, str)]
-    dedup_mode_label = st.radio(
-        "文脈省略モード",
-        ["完全一致省略（現行）", "ord差分省略（新）"],
-        horizontal=True,
-    )
-    dedup_mode = "exact" if dedup_mode_label.startswith("完全一致") else "prefix"
-    egov_merge_article_p1 = st.checkbox(
-        "eGov専用: 第1項(1項)を条名と統合表示（□ 第一条 本文）",
-        value=False,
-        disabled=not is_egov_doc,
-        help="通常はOFF（ノーマル表示）。ONにすると eGov 文書で第1項のみ条名と1行統合表示します。",
-    )
     if "selected_nids" not in st.session_state:
         st.session_state["selected_nids"] = []
     if "draft_selected_nids" not in st.session_state:
@@ -933,11 +1038,6 @@ def main() -> None:
     left, right = st.columns(2)
     with left:
         st.subheader("選択パネル")
-        st.caption(f"データソース: `{source_label}`")
-        st.caption("法令表示（参照のみ）")
-        with st.container(height=110, border=True):
-            for line in _law_overview_lines(regdoc_ir, regdoc_meta):
-                st.write(line)
 
         query = st.text_input("検索（nid/表示ラベル/本文）", "")
         rows = _all_rows(index, selectable_kinds, query)
