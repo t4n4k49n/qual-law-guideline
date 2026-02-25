@@ -4,6 +4,7 @@ from copy import deepcopy
 from datetime import datetime
 from html import escape
 from pathlib import Path
+import re
 from typing import Any, Dict, List, Set, Tuple
 
 import streamlit as st
@@ -16,6 +17,7 @@ from qai_mock_ui.txtconcat_loader import (
 )
 
 DEFAULT_TXTCONCAT = Path("txtconcat_20260222-040007081.txt")
+NORMALIZED_ROOT = Path("data/normalized")
 FALLBACK_IR = Path(
     "data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/"
     "jp_egov_336M50000100002_20260501_507M60000100117.regdoc_ir.yaml"
@@ -57,12 +59,64 @@ def _load_bundle_from_yaml_files(
     regdoc_profile = yaml.safe_load(profile_path.read_text(encoding="utf-8"))
     regdoc_meta: Dict[str, Any] | None = None
     if meta_path is not None and meta_path.exists():
-        parsed = yaml.safe_load(meta_path.read_text(encoding="utf-8"))
-        if isinstance(parsed, dict):
-            regdoc_meta = parsed
+        try:
+            parsed = yaml.safe_load(meta_path.read_text(encoding="utf-8"))
+            if isinstance(parsed, dict):
+                regdoc_meta = parsed
+        except yaml.YAMLError:
+            # meta は表示補助用途。壊れていてもUI利用は継続する。
+            regdoc_meta = None
     if not isinstance(regdoc_ir, dict) or not isinstance(regdoc_profile, dict):
         raise ValueError("YAMLペアの読み込みに失敗しました。")
     return regdoc_ir, regdoc_profile, regdoc_meta
+
+
+def _meta_title(meta_path: Path | None) -> str | None:
+    if meta_path is None or not meta_path.exists():
+        return None
+    raw = meta_path.read_text(encoding="utf-8")
+    try:
+        parsed = yaml.safe_load(raw)
+    except Exception:
+        # 一部の meta.yaml は generation.inputs.path の未クォート '%' で壊れる。
+        # doc.title だけは行ベースで回収してUI表示に使う。
+        m = re.search(r"^\s{2}title:\s*(.+)\s*$", raw, flags=re.MULTILINE)
+        if not m:
+            return None
+        value = m.group(1).strip()
+        if (value.startswith('"') and value.endswith('"')) or (
+            value.startswith("'") and value.endswith("'")
+        ):
+            value = value[1:-1]
+        return value or None
+    if not isinstance(parsed, dict):
+        return None
+    doc = parsed.get("doc")
+    if not isinstance(doc, dict):
+        return None
+    title = doc.get("title")
+    return str(title).strip() if isinstance(title, str) and title.strip() else None
+
+
+def _discover_normalized_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
+    if not NORMALIZED_ROOT.exists():
+        return []
+    bundles: List[Tuple[str, Path, Path, Path | None, str | None]] = []
+    for child in sorted(NORMALIZED_ROOT.iterdir(), key=lambda p: p.name):
+        if not child.is_dir():
+            continue
+        if child.name.startswith("ARCHIVE_"):
+            continue
+        ir_files = sorted(child.glob("*.regdoc_ir.yaml"))
+        profile_files = sorted(child.glob("*.regdoc_profile.yaml"))
+        meta_files = sorted(child.glob("*.meta.yaml"))
+        if not ir_files or not profile_files:
+            continue
+        ir_path = ir_files[0]
+        profile_path = profile_files[0]
+        meta_path = meta_files[0] if meta_files else None
+        bundles.append((child.name, ir_path, profile_path, meta_path, _meta_title(meta_path)))
+    return bundles
 
 
 def _latest_out_bundle(doc_prefix: str) -> Tuple[Path, Path, Path] | None:
@@ -81,10 +135,18 @@ def _latest_out_bundle(doc_prefix: str) -> Tuple[Path, Path, Path] | None:
 def _load_from_uploaded_or_local(
     uploaded,
     source_mode: str,
+    selected_normalized_folder: str | None = None,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None, str]:
-    if source_mode == "eGov固定":
-        ir, profile, meta = _load_default_yaml_pair()
-        return ir, profile, meta, "fixed:eGov(data/normalized)"
+    if source_mode == "data/normalized選択":
+        bundles = _discover_normalized_bundles()
+        if not bundles:
+            raise ValueError("data/normalized 配下に選択可能なフォルダが見つかりません。")
+        selected = selected_normalized_folder or bundles[0][0]
+        matched = next((b for b in bundles if b[0] == selected), None)
+        if matched is None:
+            raise ValueError(f"選択フォルダが見つかりません: {selected}")
+        ir, profile, meta = _load_bundle_from_yaml_files(matched[1], matched[2], matched[3])
+        return ir, profile, meta, f"normalized:{matched[0]}"
     if source_mode == "海外固定(WHO LBM 3rd)":
         bundle = _latest_out_bundle("who_lbm_3rd")
         if bundle is None:
@@ -617,12 +679,31 @@ def main() -> None:
 
     source_mode = st.radio(
         "データソース切替",
-        ["自動(アップロード/txtconcat/fallback)", "eGov固定", "海外固定(WHO LBM 3rd)"],
+        ["自動(アップロード/txtconcat/fallback)", "data/normalized選択", "海外固定(WHO LBM 3rd)"],
         horizontal=True,
     )
+    selected_normalized_folder: str | None = None
+    if source_mode == "data/normalized選択":
+        normalized_bundles = _discover_normalized_bundles()
+        if not normalized_bundles:
+            st.error("data/normalized 配下に選択可能なフォルダが見つかりません。")
+            return
+        folder_names = [b[0] for b in normalized_bundles]
+        label_map = {
+            b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
+            for b in normalized_bundles
+        }
+        selected_normalized_folder = st.selectbox(
+            "フォルダ選択（ARCHIVE_* は除外）",
+            folder_names,
+            index=0,
+            format_func=lambda v: label_map.get(v, v),
+        )
     uploaded = st.file_uploader("txtconcat (*.txt) を選択", type=["txt"])
     try:
-        regdoc_ir, regdoc_profile, regdoc_meta, source_label = _load_from_uploaded_or_local(uploaded, source_mode)
+        regdoc_ir, regdoc_profile, regdoc_meta, source_label = _load_from_uploaded_or_local(
+            uploaded, source_mode, selected_normalized_folder
+        )
     except Exception as exc:
         st.error(f"YAML抽出/パースに失敗しました: {exc}")
         return
