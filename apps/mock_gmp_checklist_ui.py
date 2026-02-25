@@ -466,11 +466,11 @@ def _table_row_compact_label(index: DocIndex, nid: str) -> str:
         header_cells = [c.strip() for c in _single_line(parent.text or "").split("|")]
     row_label = _row_index_label(index, nid)
     if len(row_cells) >= 2 and len(header_cells) >= 2:
-        left = row_cells[0][:24]
-        mid = row_cells[1][:18]
+        left = row_cells[0]
+        mid = row_cells[1]
         return f"{row_label}：{header_cells[0]}={left} / {header_cells[1]}={mid}"
     if row_cells:
-        return f"{row_label}：{row_cells[0][:46]}"
+        return f"{row_label}：{row_cells[0]}"
     return row_label
 
 
@@ -481,7 +481,7 @@ def _build_node_label(index: DocIndex, nid: str) -> str:
     display = _human_node_label(index, nid)
     text = _single_line(node.text or "")
     if text:
-        return f"{display}：{text[:110]}"
+        return f"{display}：{text}"
     return display
 
 
