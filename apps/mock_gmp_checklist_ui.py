@@ -980,6 +980,9 @@ def main() -> None:
                     if not isinstance(loaded, dict):
                         raise ValueError("YAMLのトップレベルは辞書である必要があります。")
                     st.session_state["applied_custom_purpose"] = loaded
+                    st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
+                        loaded, allow_unicode=True, sort_keys=False
+                    )
                     if loaded != base_purpose:
                         st.session_state["pending_purpose_mode_key"] = "カスタマイズ"
                         st.session_state["profile_apply_notice"] = (
