@@ -555,6 +555,14 @@ def _sync_checkbox_defaults(option_ids: List[str], draft_selected_nids: Set[str]
             st.session_state[key] = nid in draft_selected_nids
 
 
+def _clear_selection_state() -> None:
+    st.session_state["selected_nids"] = []
+    st.session_state["draft_selected_nids"] = []
+    for key in list(st.session_state.keys()):
+        if key.startswith("candidate_"):
+            del st.session_state[key]
+
+
 def _find_demo_subitem_siblings(index: DocIndex) -> List[str]:
     for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
         if node.kind != "item":
@@ -1067,6 +1075,20 @@ def main() -> None:
     except Exception as exc:
         st.error(f"YAML抽出/パースに失敗しました: {exc}")
         return
+
+    # 法令切替時に前法令の selected_nids を持ち越すと「存在しない nid」エラーになるため、
+    # ソース署名が変わったタイミングで選択状態を初期化する。
+    doc_signature = " | ".join(
+        [
+            source_mode,
+            selected_normalized_folder or "",
+            str(regdoc_ir.get("doc_id") or ""),
+        ]
+    )
+    prev_doc_signature = str(st.session_state.get("active_doc_signature", ""))
+    if prev_doc_signature and prev_doc_signature != doc_signature:
+        _clear_selection_state()
+    st.session_state["active_doc_signature"] = doc_signature
 
     regdoc_ir = _ensure_mock_nodes(regdoc_ir)
     index = build_doc_index(regdoc_ir)
