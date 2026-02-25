@@ -1046,7 +1046,7 @@ def main() -> None:
 
     left, right = st.columns(2)
     with left:
-        st.subheader("選択パネル")
+        st.subheader("チェック項目選択")
 
         query = st.text_input("検索（nid/表示ラベル/本文）", "")
         rows = _all_rows(index, selectable_kinds, query)
@@ -1089,7 +1089,7 @@ def main() -> None:
         st.caption(f"確定済み: {len(st.session_state.get('selected_nids', []))}件")
 
     with right:
-        st.subheader("チェックシートプレビュー")
+        st.subheader("チェックシート")
         _render_preview(
             index,
             current,
