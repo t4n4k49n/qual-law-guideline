@@ -41,7 +41,7 @@ examples:
 
   - id: "example4"
     display_name: "表示例4"
-    display_title: "表2行（要更新）"
+    display_title: "表2行（更新せなあかん）"
     source_mode: "フォルダ選択"
     law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
     profile:
