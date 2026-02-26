@@ -1,0 +1,114 @@
+examples:
+  - id: "example1"
+    display_name: "表示例1"
+    display_title: "1項目選択の例"
+    source_mode: "フォルダ選択"
+    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    profile:
+      mode: "original"
+    display:
+      dedup_mode_label: "共通先祖省略"
+      egov_merge_article_p1: true
+    selection_nids:
+      - "art1.p1.i10.ro"
+
+  - id: "example2"
+    display_name: "表示例2"
+    display_title: "３項目（兄弟＋従兄弟）の例"
+    source_mode: "フォルダ選択"
+    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    profile:
+      mode: "original"
+    display:
+      dedup_mode_label: "共通先祖省略"
+      egov_merge_article_p1: true
+    selection_nids:
+      - "art1.p1.i10.ro"
+      - "art1.p1.i10.ha"
+      - "art1.p1.i10_2.i"
+
+
+  - id: "example3"
+    display_name: "表示例3"
+    display_title: "表1行"
+    source_mode: "フォルダ選択"
+    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    profile:
+      mode: "custom"
+      custom_yaml_path: ""
+    display:
+      dedup_mode_label: "兄弟のみ先祖省略"
+      egov_merge_article_p1: false
+    selection_nids:
+      - "appdx_table1.tbl1.tblh.tblr1"
+
+  - id: "example4"
+    display_name: "表示例4"
+    display_title: "表2行（更新せなあかん）"
+    source_mode: "フォルダ選択"
+    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    profile:
+      mode: "custom"
+      custom_yaml_path: ""
+    display:
+      dedup_mode_label: "兄弟のみ先祖省略"
+      egov_merge_article_p1: false
+    selection_nids:
+      - "appdx_table1.tbl1.tblh.tblr1"
+
+  - id: "example5"
+    display_name: "表示例5"
+    display_title: "3ケース確認"
+    source_mode: "フォルダ選択"
+    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    profile:
+      mode: "original"
+    display:
+      dedup_mode_label: "共通先祖省略"
+      egov_merge_article_p1: true
+    selection_nids: []
+
+  - id: "example6"
+    display_name: "表示例6"
+    display_title: "条→1項→号"
+    source_mode: "フォルダ選択"
+    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    profile:
+      mode: "original"
+    display:
+      dedup_mode_label: "共通先祖省略"
+      egov_merge_article_p1: true
+    selection_nids:
+      - "art1.p1"
+      - "art1.p1.i1"
+      - "art1.p1.i2"
+
+  - id: "example7"
+    display_name: "表示例7"
+    display_title: "条→1項/2項/3項"
+    source_mode: "フォルダ選択"
+    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    profile:
+      mode: "original"
+    display:
+      dedup_mode_label: "共通先祖省略"
+      egov_merge_article_p1: true
+    selection_nids:
+      - "art1.p1"
+      - "art1.p2"
+      - "art1.p3"
+
+  - id: "example8"
+    display_name: "表示例8"
+    display_title: "海外（Articleなし）"
+    source_mode: "フォルダ選択"
+    law_folder: "out/20260218-011744140_feat-who-lbm-v4-marker-ref-join"
+    profile:
+      mode: "original"
+    display:
+      dedup_mode_label: "兄弟のみ先祖省略"
+      egov_merge_article_p1: false
+    selection_nids:
+      - "cha1.i1"
+      - "cha1.i2"
+      - "cha1.i3"

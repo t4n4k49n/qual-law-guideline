@@ -8,6 +8,7 @@ import re
 from typing import Any, Dict, List, Set, Tuple
 
 import streamlit as st
+import streamlit.components.v1 as components
 import yaml
 
 from qai_mock_ui.ir_model import DocIndex, build_doc_index
@@ -18,6 +19,7 @@ from qai_mock_ui.txtconcat_loader import (
 
 DEFAULT_TXTCONCAT = Path("txtconcat_20260222-040007081.txt")
 NORMALIZED_ROOT = Path("data/normalized")
+DISPLAY_EXAMPLES_CONFIG = Path("data/mock_ui/display_examples.yaml")
 FALLBACK_IR = Path(
     "data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/"
     "jp_egov_336M50000100002_20260501_507M60000100117.regdoc_ir.yaml"
@@ -32,82 +34,6 @@ FALLBACK_META = Path(
 )
 OUT_DIR = Path("out")
 DEFAULT_NORMALIZED_FOLDER = "jp_egov_336M50000100002_20260501_507M60000100117"
-
-DEMO_PRESETS: Dict[str, Dict[str, str]] = {
-    "demo1": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "demo1",
-        "selection_desc": "第12条第1項 ロ",
-    },
-    "demo2": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "demo2",
-        "selection_desc": "第12条第1項 ロ + ハ",
-    },
-    "demo3": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "カスタマイズ",
-        "custom_profile_seed": "mock",
-        "dedup_mode_label": "兄弟のみ先祖省略",
-        "egov_merge_article_p1": "false",
-        "selection_key": "demo3",
-        "selection_desc": "別表（表）1行目",
-    },
-    "demo4": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "カスタマイズ",
-        "custom_profile_seed": "mock",
-        "dedup_mode_label": "兄弟のみ先祖省略",
-        "egov_merge_article_p1": "false",
-        "selection_key": "demo4",
-        "selection_desc": "別表（表）1行目 + 2行目",
-    },
-    "demo5": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "demo5",
-        "selection_desc": "3ケース確認",
-    },
-    "case_a": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "case_a",
-        "selection_desc": "条→1項→号",
-    },
-    "case_b": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "case_b",
-        "selection_desc": "条→1項/2項/3項",
-    },
-    "case_c": {
-        "source_mode": "海外固定(WHO LBM 3rd)",
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "兄弟のみ先祖省略",
-        "egov_merge_article_p1": "false",
-        "selection_key": "case_c",
-        "selection_desc": "海外（Articleなし）",
-    },
-}
 
 
 def _load_default_yaml_pair() -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None]:
@@ -196,41 +122,70 @@ def _discover_normalized_bundles() -> List[Tuple[str, Path, Path, Path | None, s
     return bundles
 
 
-def _preset_tooltip(
-    preset_key: str,
+def _discover_out_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
+    if not OUT_DIR.exists():
+        return []
+    bundles: List[Tuple[str, Path, Path, Path | None, str | None]] = []
+    for child in sorted(OUT_DIR.iterdir(), key=lambda p: p.name):
+        if not child.is_dir():
+            continue
+        ir_files = sorted(child.glob("*.regdoc_ir.yaml"))
+        profile_files = sorted(child.glob("*.regdoc_profile.yaml"))
+        meta_files = sorted(child.glob("*.meta.yaml"))
+        if not ir_files or not profile_files:
+            continue
+        ir_path = ir_files[0]
+        profile_path = profile_files[0]
+        meta_path = meta_files[0] if meta_files else None
+        bundles.append((f"out/{child.name}", ir_path, profile_path, meta_path, _meta_title(meta_path)))
+    return bundles
+
+
+def _discover_selectable_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
+    merged: List[Tuple[str, Path, Path, Path | None, str | None]] = []
+    merged.extend(_discover_normalized_bundles())
+    merged.extend(_discover_out_bundles())
+    return merged
+
+
+def _load_display_examples() -> List[Dict[str, Any]]:
+    if not DISPLAY_EXAMPLES_CONFIG.exists():
+        return []
+    parsed = yaml.safe_load(DISPLAY_EXAMPLES_CONFIG.read_text(encoding="utf-8"))
+    if not isinstance(parsed, dict):
+        return []
+    raw_examples = parsed.get("examples")
+    if not isinstance(raw_examples, list):
+        return []
+    examples: List[Dict[str, Any]] = []
+    for raw in raw_examples:
+        if not isinstance(raw, dict):
+            continue
+        ex_id = str(raw.get("id", "")).strip()
+        if not ex_id:
+            continue
+        examples.append(raw)
+    return examples
+
+
+def _example_tooltip(
+    example: Dict[str, Any],
     bundles: List[Tuple[str, Path, Path, Path | None, str | None]],
 ) -> str:
-    preset = DEMO_PRESETS[preset_key]
-    source_mode = preset["source_mode"]
-    profile = preset["purpose_mode"]
-    selection = preset["selection_desc"]
+    source_mode = str(example.get("source_mode", ""))
+    profile = str(example.get("profile", {}).get("mode", "original"))
+    selection_nids = example.get("selection_nids", [])
+    selection_desc = f"{len(selection_nids)}件" if isinstance(selection_nids, list) else "未設定"
     law_name = "（未設定）"
     if source_mode in {"data/normalized選択", "フォルダ選択"}:
-        folder = preset.get("normalized_folder", "")
+        folder = str(example.get("law_folder", ""))
         for bundle in bundles:
             if bundle[0] == folder:
                 law_name = bundle[4] or folder
                 break
         if law_name == "（未設定）":
             law_name = folder or "（未設定）"
-    elif source_mode == "海外固定(WHO LBM 3rd)":
-        law_name = "WHO LBM 3rd"
-    # Streamlit button tooltip is effectively single-line in this UI, so use explicit separators.
-    return f"法令名: {law_name} | プロファイル: {profile} | 選択: {selection}"
-
-
-def _latest_out_bundle(doc_prefix: str) -> Tuple[Path, Path, Path] | None:
-    candidates = sorted(OUT_DIR.glob(f"*/*{doc_prefix}*.regdoc_ir.yaml"))
-    if not candidates:
-        return None
-    latest_ir = max(candidates, key=lambda p: p.parent.name)
-    base = latest_ir.name.replace(".regdoc_ir.yaml", "")
-    profile = latest_ir.with_name(f"{base}.regdoc_profile.yaml")
-    meta = latest_ir.with_name(f"{base}.meta.yaml")
-    if not profile.exists():
-        return None
-    return latest_ir, profile, meta
-
+    return f"法令名: {law_name} | プロファイル: {profile} | 選択: {selection_desc}"
 
 def _load_from_uploaded_or_local(
     uploaded,
@@ -238,21 +193,15 @@ def _load_from_uploaded_or_local(
     selected_normalized_folder: str | None = None,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None, str]:
     if source_mode in {"data/normalized選択", "フォルダ選択"}:
-        bundles = _discover_normalized_bundles()
+        bundles = _discover_selectable_bundles()
         if not bundles:
-            raise ValueError("data/normalized 配下に選択可能なフォルダが見つかりません。")
+            raise ValueError("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
         selected = selected_normalized_folder or bundles[0][0]
         matched = next((b for b in bundles if b[0] == selected), None)
         if matched is None:
             raise ValueError(f"選択フォルダが見つかりません: {selected}")
         ir, profile, meta = _load_bundle_from_yaml_files(matched[1], matched[2], matched[3])
         return ir, profile, meta, f"normalized:{matched[0]}"
-    if source_mode == "海外固定(WHO LBM 3rd)":
-        bundle = _latest_out_bundle("who_lbm_3rd")
-        if bundle is None:
-            raise ValueError("WHO LBM 3rd の out バンドルが見つかりません。")
-        ir, profile, meta = _load_bundle_from_yaml_files(bundle[0], bundle[1], bundle[2])
-        return ir, profile, meta, f"fixed:{bundle[0].parent.as_posix()}"
     if source_mode in {"自動(アップロード/txtconcat/fallback)", "アップロード（4yamlのtxtconcat形式）"} and uploaded is not None:
         raw = uploaded.getvalue().decode("utf-8")
         temp = Path(".streamlit_tmp_txtconcat.txt")
@@ -268,84 +217,6 @@ def _load_from_uploaded_or_local(
         return ir, profile, meta, str(DEFAULT_TXTCONCAT)
     ir, profile, meta = _load_default_yaml_pair()
     return ir, profile, meta, "fallback:data/normalized/*"
-
-
-def _ensure_mock_nodes(regdoc_ir: Dict[str, Any]) -> Dict[str, Any]:
-    data = deepcopy(regdoc_ir)
-    index = build_doc_index(data)
-    by_nid = index.by_nid
-    display = data.setdefault("index", {}).setdefault("display_name_by_nid", {})
-
-    table = by_nid.get("appdx_table1.tbl1")
-    header = by_nid.get("appdx_table1.tbl1.tblh")
-    row1 = by_nid.get("appdx_table1.tbl1.tblh.tblr1")
-    if table is not None and header is not None and row1 is not None:
-        table_raw = _find_raw_node(data["content"], table.nid)
-        header_raw = _find_raw_node(data["content"], header.nid)
-        if table_raw is not None and header_raw is not None:
-            children = table_raw.setdefault("children", [])
-            if not any(c.get("nid") == "appdx_table1.tbl1.note1" for c in children):
-                children.append(
-                    {
-                        "nid": "appdx_table1.tbl1.note1",
-                        "kind": "note",
-                        "kind_raw": "note",
-                        "num": None,
-                        "ord": row1.ord + 2.0,
-                        "heading": None,
-                        "text": "※ 表の注記（デモ用）",
-                        "role": "informative",
-                        "normativity": None,
-                        "tags": [],
-                        "refs": [],
-                        "source_spans": [],
-                        "children": [],
-                    }
-                )
-            h_children = header_raw.setdefault("children", [])
-            row_specs = [
-                ("appdx_table1.tbl1.tblh.tblr2", 1.0, "【2行目デモ】標識の補足説明 | 【2行目デモ】大きさの補足 | 【2行目デモ】設置箇所の補足"),
-                ("appdx_table1.tbl1.tblh.tblr3", 2.0, "【3行目デモ】標識の補足説明 | 【3行目デモ】大きさの補足 | 【3行目デモ】設置箇所の補足"),
-                ("appdx_table1.tbl1.tblh.tblr4", 3.0, "【4行目デモ】標識の補足説明 | 【4行目デモ】大きさの補足 | 【4行目デモ】設置箇所の補足"),
-                ("appdx_table1.tbl1.tblh.tblr5", 4.0, "【5行目デモ】標識の補足説明 | 【5行目デモ】大きさの補足 | 【5行目デモ】設置箇所の補足"),
-            ]
-            existing = {c.get("nid") for c in h_children}
-            for nid, ord_delta, text in row_specs:
-                if nid in existing:
-                    continue
-                h_children.append(
-                    {
-                        "nid": nid,
-                        "kind": "table_row",
-                        "kind_raw": "table_row",
-                        "num": None,
-                        "ord": row1.ord + ord_delta,
-                        "heading": None,
-                        "text": text,
-                        "role": "normative",
-                        "normativity": None,
-                        "tags": [],
-                        "refs": [],
-                        "source_spans": [],
-                        "children": [],
-                    }
-                )
-    display.setdefault("appdx_table1.tbl1.note1", "注記")
-    display.setdefault("appdx_table1.tbl1.tblh.tblr2", "2行目")
-    display.setdefault("appdx_table1.tbl1.tblh.tblr3", "3行目")
-    display.setdefault("appdx_table1.tbl1.tblh.tblr4", "4行目")
-    display.setdefault("appdx_table1.tbl1.tblh.tblr5", "5行目")
-    return data
-
-
-def _find_raw_node(node: Dict[str, Any], nid: str) -> Dict[str, Any] | None:
-    if node.get("nid") == nid:
-        return node
-    for child in node.get("children") or []:
-        found = _find_raw_node(child, nid)
-        if found is not None:
-            return found
-    return None
 
 
 def _purpose(profile: Dict[str, Any]) -> Dict[str, Any]:
@@ -548,6 +419,66 @@ def _checkbox_key(nid: str) -> str:
     return f"candidate_{nid}"
 
 
+def _nid_copy_icon_html(nid: str) -> str:
+    title = escape(f"nid: {nid}", quote=True)
+    data_nid = escape(nid, quote=True)
+    return (
+        "<span "
+        "role='button' "
+        "tabindex='0' "
+        "class='candidate-icon candidate-icon-btn' "
+        f"data-nid='{data_nid}' "
+        f"title='{title}' "
+        ">🆔</span>"
+    )
+
+
+def _inject_nid_copy_hook() -> None:
+    components.html(
+        """
+        <script>
+        (function () {
+          const w = window.parent;
+          if (!w || !w.document || w.__nidCopyHookInstalled) return;
+          w.__nidCopyHookInstalled = true;
+          w.document.addEventListener(
+            "click",
+            async function (event) {
+              const target = event.target;
+              if (!target) return;
+              const btn = target.closest(".candidate-icon-btn[data-nid]");
+              if (!btn) return;
+              event.preventDefault();
+              event.stopPropagation();
+              const nid = btn.getAttribute("data-nid") || "";
+              if (!nid) return;
+              try {
+                await w.navigator.clipboard.writeText(nid);
+                return;
+              } catch (e) {}
+              try {
+                const ta = w.document.createElement("textarea");
+                ta.value = nid;
+                ta.style.position = "fixed";
+                ta.style.opacity = "0";
+                ta.style.pointerEvents = "none";
+                w.document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                w.document.execCommand("copy");
+                w.document.body.removeChild(ta);
+              } catch (e) {}
+            },
+            true
+          );
+        })();
+        </script>
+        """,
+        height=0,
+        width=0,
+    )
+
+
 def _sync_checkbox_defaults(option_ids: List[str], draft_selected_nids: Set[str], *, force: bool = False) -> None:
     for nid in option_ids:
         key = _checkbox_key(nid)
@@ -555,114 +486,12 @@ def _sync_checkbox_defaults(option_ids: List[str], draft_selected_nids: Set[str]
             st.session_state[key] = nid in draft_selected_nids
 
 
-def _find_demo_subitem_siblings(index: DocIndex) -> List[str]:
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "item":
-            continue
-        subs = [c for c in node.children if c.kind == "subitem"]
-        if len(subs) >= 2:
-            return [subs[0].nid, subs[1].nid]
-    return []
-
-
-def _find_demo_subitems_by_num(index: DocIndex, targets: List[str]) -> List[str]:
-    target_set = {t.strip() for t in targets}
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "item":
-            continue
-        subs = [c for c in node.children if c.kind == "subitem"]
-        if not subs:
-            continue
-        by_num = {str((s.num or "")).strip(): s.nid for s in subs}
-        if not target_set.issubset(set(by_num.keys())):
-            continue
-        return [by_num[t] for t in targets]
-    return []
-
-
-def _find_demo_table_rows(index: DocIndex, count: int) -> List[str]:
-    rows = [n for n in index.by_nid.values() if n.kind == "table_row"]
-    rows.sort(key=lambda n: (n.ord, n.nid))
-    return [n.nid for n in rows[:count]]
-
-
-def _apply_demo(index: DocIndex, name: str) -> List[str]:
-    if name == "demo1":
-        ro_only = _find_demo_subitems_by_num(index, ["ロ"])
-        if ro_only:
-            return ro_only
-        sub_pair = _find_demo_subitem_siblings(index)
-        if sub_pair:
-            return [sub_pair[0]]
-        item_case = _find_demo_egov_item_case(index)
-        return item_case[:1]
-    if name == "demo2":
-        ro_ha = _find_demo_subitems_by_num(index, ["ロ", "ハ"])
-        if ro_ha:
-            return ro_ha
-        sub_pair = _find_demo_subitem_siblings(index)
-        if sub_pair:
-            return sub_pair
-        item_case = _find_demo_egov_item_case(index)
-        return item_case[:2]
-    if name == "demo3":
-        return _find_demo_table_rows(index, 1)
-    if name == "demo4":
-        return _find_demo_table_rows(index, 2)
-    return []
-
-
-def _resolve_demo_selection(index: DocIndex, selectable_kinds: List[str], key: str) -> List[str]:
-    if key in {"demo1", "demo2", "demo3", "demo4", "demo5"}:
-        return _apply_demo(index, key)
-    if key == "case_a":
-        return _find_demo_egov_item_case(index)
-    if key == "case_b":
-        return _find_demo_egov_paragraph_case(index)
-    if key == "case_c":
-        return _find_demo_non_article_case(index, selectable_kinds)
-    return []
-
-
-def _find_demo_egov_item_case(index: DocIndex) -> List[str]:
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "article":
-            continue
-        paras = [c for c in node.children if c.kind == "paragraph"]
-        if not paras:
-            continue
-        p1 = paras[0]
-        items = [c for c in p1.children if c.kind == "item"]
-        if not items:
-            continue
-        nids = [p1.nid, items[0].nid]
-        if len(items) > 1:
-            nids.append(items[1].nid)
-        return nids
-    return []
-
-
-def _find_demo_egov_paragraph_case(index: DocIndex) -> List[str]:
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "article":
-            continue
-        paras = [c for c in node.children if c.kind == "paragraph"]
-        if len(paras) >= 3:
-            return [paras[0].nid, paras[1].nid, paras[2].nid]
-    return []
-
-
-def _find_demo_non_article_case(index: DocIndex, selectable_kinds: List[str]) -> List[str]:
-    if any(n.kind == "article" for n in index.by_nid.values()):
-        return []
-    selectable_set = set(selectable_kinds)
-    hits: List[str] = []
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind in selectable_set:
-            hits.append(node.nid)
-        if len(hits) >= 3:
-            break
-    return hits
+def _clear_selection_state() -> None:
+    st.session_state["selected_nids"] = []
+    st.session_state["draft_selected_nids"] = []
+    for key in list(st.session_state.keys()):
+        if key.startswith("candidate_"):
+            del st.session_state[key]
 
 
 def _ts_compact() -> str:
@@ -952,18 +781,20 @@ def main() -> None:
     st.set_page_config(page_title="GMPチェックシート生成UI（モック）", layout="wide")
     st.title("GMPチェックシート生成UI（モック）")
 
-    source_options = ["フォルダ選択", "海外固定(WHO LBM 3rd)", "アップロード（4yamlのtxtconcat形式）"]
+    source_options = ["フォルダ選択", "アップロード（4yamlのtxtconcat形式）"]
     profile_options = ["オリジナル", "カスタマイズ"]
     dedup_mode_options = ["共通先祖省略", "兄弟のみ先祖省略"]
-    normalized_bundles = _discover_normalized_bundles()
-    folder_names = [b[0] for b in normalized_bundles]
+    selectable_bundles = _discover_selectable_bundles()
+    display_examples = _load_display_examples()
+    example_by_id = {str(ex.get("id")): ex for ex in display_examples}
+    folder_names = [b[0] for b in selectable_bundles]
     label_map = {
         b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
-        for b in normalized_bundles
+        for b in selectable_bundles
     }
 
     if "source_mode_key" not in st.session_state:
-        st.session_state["source_mode_key"] = source_options[0] if normalized_bundles else source_options[2]
+        st.session_state["source_mode_key"] = source_options[0] if selectable_bundles else source_options[2]
     if "purpose_mode_key" not in st.session_state:
         st.session_state["purpose_mode_key"] = profile_options[0]
     pending_purpose_mode = st.session_state.pop("pending_purpose_mode_key", None)
@@ -982,44 +813,57 @@ def main() -> None:
     if st.session_state.pop("pending_clear_shortcut_preset_key", False):
         st.session_state["shortcut_preset_key"] = ""
 
-    def _queue_demo(preset_key: str) -> None:
-        preset = DEMO_PRESETS[preset_key]
-        st.session_state["source_mode_key"] = preset["source_mode"]
-        st.session_state["purpose_mode_key"] = preset["purpose_mode"]
-        st.session_state["dedup_mode_label_key"] = preset.get("dedup_mode_label", dedup_mode_options[0])
+    def _queue_example(example_id: str) -> None:
+        ex = example_by_id.get(example_id)
+        if not isinstance(ex, dict):
+            return
+        st.session_state["source_mode_key"] = str(ex.get("source_mode", "フォルダ選択"))
+        profile = ex.get("profile") if isinstance(ex.get("profile"), dict) else {}
+        profile_mode = str(profile.get("mode", "original")).lower()
+        st.session_state["purpose_mode_key"] = "カスタマイズ" if profile_mode == "custom" else "オリジナル"
+        ex_display = ex.get("display") if isinstance(ex.get("display"), dict) else {}
+        st.session_state["dedup_mode_label_key"] = str(
+            ex_display.get("dedup_mode_label", dedup_mode_options[0])
+        )
         st.session_state["egov_merge_article_p1_key"] = str(
-            preset.get("egov_merge_article_p1", "true")
+            ex_display.get("egov_merge_article_p1", True)
         ).lower() == "true"
-        folder = preset.get("normalized_folder")
+        folder = str(ex.get("law_folder", ""))
         if folder and folder in folder_names:
             st.session_state["normalized_folder_key"] = folder
-        if preset.get("custom_profile_seed"):
-            st.session_state["pending_custom_profile_seed"] = str(preset["custom_profile_seed"])
-        st.session_state["pending_demo_selection_key"] = preset["selection_key"]
-        st.session_state["active_demo_preset_key"] = preset_key
+        if profile_mode == "custom":
+            custom_yaml_path = str(profile.get("custom_yaml_path", "")).strip()
+            if custom_yaml_path:
+                st.session_state["pending_custom_profile_path"] = custom_yaml_path
+        selection_nids = ex.get("selection_nids")
+        st.session_state["pending_demo_selection_nids"] = (
+            [str(nid) for nid in selection_nids if isinstance(nid, str)]
+            if isinstance(selection_nids, list)
+            else []
+        )
+        st.session_state["active_demo_preset_key"] = example_id
         st.session_state["pending_clear_shortcut_preset_key"] = True
         st.rerun()
 
     st.subheader("モック用設定項目")
     st.markdown("#### 表示例へのショートカット（幾つかの典型例（自動設定）をご用意しました）")
-    preset_order = [
-        ("", "（表示例を選択）"),
-        ("demo1", "表示例1：ロだけ"),
-        ("demo2", "表示例2：ロ＋ハ"),
-        ("demo3", "表示例3：表1行"),
-        ("demo4", "表示例4：表2行"),
-        ("demo5", "表示例5：3ケース確認"),
-        ("case_a", "表示例6：条→1項→号"),
-        ("case_b", "表示例7：条→1項/2項/3項"),
-        ("case_c", "表示例8：海外(Articleなし)"),
-    ]
+    preset_order = [("", "（表示例を選択）")]
+    for ex in display_examples:
+        ex_id = str(ex.get("id", "")).strip()
+        if not ex_id:
+            continue
+        display_name = str(ex.get("display_name", ex_id)).strip() or ex_id
+        display_title = str(ex.get("display_title", "")).strip()
+        label = f"{display_name}：{display_title}" if display_title else display_name
+        preset_order.append((ex_id, label))
     preset_keys = [key for key, _ in preset_order]
     preset_label_map = {key: label for key, label in preset_order}
 
     def _format_preset_option(key: str) -> str:
         if not key:
             return preset_label_map[key]
-        return f"{preset_label_map[key]} | {_preset_tooltip(key, normalized_bundles)}"
+        ex = example_by_id.get(key, {})
+        return f"{preset_label_map[key]} | {_example_tooltip(ex, selectable_bundles)}"
 
     chosen_preset = st.selectbox(
         "表示例（法令・プロファイル・選択を一括適用）",
@@ -1028,14 +872,12 @@ def main() -> None:
         format_func=_format_preset_option,
     )
     if chosen_preset:
-        _queue_demo(chosen_preset)
+        _queue_example(chosen_preset)
 
     current_source_mode = str(st.session_state.get("source_mode_key", source_options[0]))
     current_folder = str(st.session_state.get("normalized_folder_key", "")) if folder_names else ""
     if current_source_mode == "フォルダ選択":
         law_display_for_header = label_map.get(current_folder, current_folder or "（未選択）")
-    elif current_source_mode == "海外固定(WHO LBM 3rd)":
-        law_display_for_header = "WHO LBM 3rd"
     else:
         law_display_for_header = "アップロード待ち"
 
@@ -1049,11 +891,11 @@ def main() -> None:
         )
         selected_normalized_folder: str | None = None
         if source_mode == "フォルダ選択":
-            if not normalized_bundles:
-                st.error("data/normalized 配下に選択可能なフォルダが見つかりません。")
+            if not selectable_bundles:
+                st.error("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
                 return
             selected_normalized_folder = st.selectbox(
-                "フォルダ選択（ARCHIVE_* は除外）",
+                "フォルダ選択（data/normalized, out/*）",
                 folder_names,
                 key="normalized_folder_key",
                 format_func=lambda v: label_map.get(v, v),
@@ -1068,21 +910,27 @@ def main() -> None:
         st.error(f"YAML抽出/パースに失敗しました: {exc}")
         return
 
-    regdoc_ir = _ensure_mock_nodes(regdoc_ir)
+    # 法令切替時に前法令の selected_nids を持ち越すと「存在しない nid」エラーになるため、
+    # ソース署名が変わったタイミングで選択状態を初期化する。
+    doc_signature = " | ".join(
+        [
+            source_mode,
+            selected_normalized_folder or "",
+            str(regdoc_ir.get("doc_id") or ""),
+        ]
+    )
+    prev_doc_signature = str(st.session_state.get("active_doc_signature", ""))
+    if prev_doc_signature and prev_doc_signature != doc_signature:
+        _clear_selection_state()
+    st.session_state["active_doc_signature"] = doc_signature
     index = build_doc_index(regdoc_ir)
     is_egov_doc = str(regdoc_ir.get("doc_id") or "").startswith("jp_egov_")
     base_purpose = _purpose(regdoc_profile)
     original_profile_tooltip = "参照元プロファイル: 不明"
     if source_mode == "フォルダ選択" and selected_normalized_folder:
-        matched = next((b for b in normalized_bundles if b[0] == selected_normalized_folder), None)
+        matched = next((b for b in selectable_bundles if b[0] == selected_normalized_folder), None)
         if matched is not None:
             original_profile_tooltip = f"参照元プロファイル: {matched[2].as_posix()}"
-    elif source_mode == "海外固定(WHO LBM 3rd)":
-        who_bundle = _latest_out_bundle("who_lbm_3rd")
-        if who_bundle is not None:
-            original_profile_tooltip = f"参照元プロファイル: {who_bundle[1].as_posix()}"
-        else:
-            original_profile_tooltip = "参照元プロファイル: WHO LBM 3rd デモ専用YAML（out未検出）"
     elif source_mode == "アップロード（4yamlのtxtconcat形式）":
         original_profile_tooltip = "参照元プロファイル: txtconcat由来のデモ専用YAML（実ファイル固定なし）"
 
@@ -1092,6 +940,22 @@ def main() -> None:
         )
     if "applied_custom_purpose" not in st.session_state:
         st.session_state["applied_custom_purpose"] = deepcopy(base_purpose)
+    pending_custom_profile_path = str(st.session_state.pop("pending_custom_profile_path", "")).strip()
+    if pending_custom_profile_path:
+        custom_path = Path(pending_custom_profile_path)
+        if not custom_path.exists():
+            st.warning(f"表示例の custom_yaml_path が見つかりません: {pending_custom_profile_path}")
+        else:
+            try:
+                loaded_custom = yaml.safe_load(custom_path.read_text(encoding="utf-8"))
+                if not isinstance(loaded_custom, dict):
+                    raise ValueError("custom_yaml_path のYAMLトップレベルは辞書である必要があります。")
+                st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
+                    loaded_custom, allow_unicode=True, sort_keys=False
+                )
+                st.session_state["applied_custom_purpose"] = loaded_custom
+            except Exception as exc:
+                st.warning(f"表示例の custom_yaml_path 読込に失敗しました: {exc}")
     pending_seed = st.session_state.pop("pending_custom_profile_seed", None)
     if pending_seed == "mock":
         seeded = _mock_purpose(base_purpose)
@@ -1173,25 +1037,29 @@ def main() -> None:
         )
 
     dedup_mode_label = str(st.session_state.get("dedup_mode_label_key", dedup_mode_options[0]))
-    dedup_mode = "exact" if dedup_mode_label == "共通先祖省略" else "prefix"
+    dedup_mode = "prefix" if dedup_mode_label == "共通先祖省略" else "exact"
     egov_merge_article_p1 = bool(st.session_state.get("egov_merge_article_p1_key", True))
     selectable_kinds = [str(v) for v in current.get("selectable_kinds", []) if isinstance(v, str)]
     if "selected_nids" not in st.session_state:
         st.session_state["selected_nids"] = []
     if "draft_selected_nids" not in st.session_state:
         st.session_state["draft_selected_nids"] = list(st.session_state["selected_nids"])
-    pending_demo_key = st.session_state.pop("pending_demo_selection_key", None)
-    if pending_demo_key:
-        demo_nids = _resolve_demo_selection(index, selectable_kinds, pending_demo_key)
-        if demo_nids:
-            st.session_state["draft_selected_nids"] = demo_nids
-            st.session_state["selected_nids"] = demo_nids
+    pending_demo_nids_raw = st.session_state.pop("pending_demo_selection_nids", None)
+    pending_demo_nids: List[str] = []
+    if isinstance(pending_demo_nids_raw, list):
+        pending_demo_nids = [str(nid) for nid in pending_demo_nids_raw if isinstance(nid, str)]
+    if pending_demo_nids:
+        resolved = [nid for nid in pending_demo_nids if nid in index.by_nid]
+        if resolved:
+            st.session_state["draft_selected_nids"] = resolved
+            st.session_state["selected_nids"] = resolved
         else:
-            st.warning("このデータセットでは指定デモを構成できません。")
+            st.warning("表示例の selection_nids はこのデータセットに存在しません。")
 
     left, right = st.columns(2)
     with left:
         st.subheader("チェック項目選択")
+        _inject_nid_copy_hook()
 
         query = st.text_input("検索（nid/表示ラベル/本文）", "")
         rows = _all_rows(index, selectable_kinds, query)
@@ -1263,6 +1131,33 @@ def main() -> None:
                     font-size: 0.9em;
                     line-height: 1.1;
                 }
+                .candidate-list .candidate-icon-btn,
+                .candidate-list .candidate-icon-btn:hover,
+                .candidate-list .candidate-icon-btn:focus,
+                .candidate-list .candidate-icon-btn:active,
+                .candidate-list .candidate-icon-btn:focus-visible {
+                    border: 0 !important;
+                    outline: 0 !important;
+                    box-shadow: none !important;
+                    background: transparent !important;
+                    background-color: transparent !important;
+                    border-radius: 0 !important;
+                    appearance: none !important;
+                    -webkit-appearance: none !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    min-height: 0 !important;
+                    min-width: 0 !important;
+                    width: auto !important;
+                    height: auto !important;
+                    font: inherit !important;
+                    font-size: 0.9em !important;
+                    color: #4b5563 !important;
+                    line-height: 1.1 !important;
+                    cursor: copy !important;
+                    text-decoration: none !important;
+                    display: inline !important;
+                }
                 </style>
                 """,
                 unsafe_allow_html=True,
@@ -1282,27 +1177,27 @@ def main() -> None:
                             )
                         with c_text:
                             path_tip = escape(_human_path(index, nid), quote=True)
-                            nid_tip = escape(f"nid: {nid}", quote=True)
+                            nid_copy_icon = _nid_copy_icon_html(nid)
                             st.markdown(
                                 (
                                     f"<div class='candidate-row candidate-row-selectable' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                     f"<span class='candidate-label'>{escape(label)}</span>"
                                     "<span class='candidate-icons'>"
                                     f"<span class='candidate-icon' title='{path_tip}'>ⓘ</span>"
-                                    f"<span class='candidate-icon' title='{nid_tip}'>🆔</span>"
+                                    f"{nid_copy_icon}"
                                     "</span>"
                                     "</div>"
                                 ),
                                 unsafe_allow_html=True,
                             )
                     else:
-                        nid_tip = escape(f"nid: {nid}", quote=True)
+                        nid_copy_icon = _nid_copy_icon_html(nid)
                         st.markdown(
                             (
                                 f"<div class='candidate-row' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                 f"<span class='candidate-label'>{escape(label)}</span>"
                                 "<span class='candidate-icons'>"
-                                f"<span class='candidate-icon' title='{nid_tip}'>🆔</span>"
+                                f"{nid_copy_icon}"
                                 "</span>"
                                 "</div>"
                             ),
