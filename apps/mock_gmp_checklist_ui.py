@@ -18,6 +18,7 @@ from qai_mock_ui.txtconcat_loader import (
 
 DEFAULT_TXTCONCAT = Path("txtconcat_20260222-040007081.txt")
 NORMALIZED_ROOT = Path("data/normalized")
+DISPLAY_EXAMPLES_CONFIG = Path("data/mock_ui/display_examples.yaml")
 FALLBACK_IR = Path(
     "data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/"
     "jp_egov_336M50000100002_20260501_507M60000100117.regdoc_ir.yaml"
@@ -32,82 +33,6 @@ FALLBACK_META = Path(
 )
 OUT_DIR = Path("out")
 DEFAULT_NORMALIZED_FOLDER = "jp_egov_336M50000100002_20260501_507M60000100117"
-
-DEMO_PRESETS: Dict[str, Dict[str, str]] = {
-    "demo1": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "demo1",
-        "selection_desc": "第12条第1項 ロ",
-    },
-    "demo2": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "demo2",
-        "selection_desc": "第12条第1項 ロ + ハ",
-    },
-    "demo3": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "カスタマイズ",
-        "custom_profile_seed": "mock",
-        "dedup_mode_label": "兄弟のみ先祖省略",
-        "egov_merge_article_p1": "false",
-        "selection_key": "demo3",
-        "selection_desc": "別表（表）1行目",
-    },
-    "demo4": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "カスタマイズ",
-        "custom_profile_seed": "mock",
-        "dedup_mode_label": "兄弟のみ先祖省略",
-        "egov_merge_article_p1": "false",
-        "selection_key": "demo4",
-        "selection_desc": "別表（表）1行目 + 2行目",
-    },
-    "demo5": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "demo5",
-        "selection_desc": "3ケース確認",
-    },
-    "case_a": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "case_a",
-        "selection_desc": "条→1項→号",
-    },
-    "case_b": {
-        "source_mode": "フォルダ選択",
-        "normalized_folder": DEFAULT_NORMALIZED_FOLDER,
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "共通先祖省略",
-        "egov_merge_article_p1": "true",
-        "selection_key": "case_b",
-        "selection_desc": "条→1項/2項/3項",
-    },
-    "case_c": {
-        "source_mode": "海外固定(WHO LBM 3rd)",
-        "purpose_mode": "オリジナル",
-        "dedup_mode_label": "兄弟のみ先祖省略",
-        "egov_merge_article_p1": "false",
-        "selection_key": "case_c",
-        "selection_desc": "海外（Articleなし）",
-    },
-}
 
 
 def _load_default_yaml_pair() -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None]:
@@ -196,17 +121,37 @@ def _discover_normalized_bundles() -> List[Tuple[str, Path, Path, Path | None, s
     return bundles
 
 
-def _preset_tooltip(
-    preset_key: str,
+def _load_display_examples() -> List[Dict[str, Any]]:
+    if not DISPLAY_EXAMPLES_CONFIG.exists():
+        return []
+    parsed = yaml.safe_load(DISPLAY_EXAMPLES_CONFIG.read_text(encoding="utf-8"))
+    if not isinstance(parsed, dict):
+        return []
+    raw_examples = parsed.get("examples")
+    if not isinstance(raw_examples, list):
+        return []
+    examples: List[Dict[str, Any]] = []
+    for raw in raw_examples:
+        if not isinstance(raw, dict):
+            continue
+        ex_id = str(raw.get("id", "")).strip()
+        if not ex_id:
+            continue
+        examples.append(raw)
+    return examples
+
+
+def _example_tooltip(
+    example: Dict[str, Any],
     bundles: List[Tuple[str, Path, Path, Path | None, str | None]],
 ) -> str:
-    preset = DEMO_PRESETS[preset_key]
-    source_mode = preset["source_mode"]
-    profile = preset["purpose_mode"]
-    selection = preset["selection_desc"]
+    source_mode = str(example.get("source_mode", ""))
+    profile = str(example.get("profile", {}).get("mode", "original"))
+    selection_nids = example.get("selection_nids", [])
+    selection_desc = f"{len(selection_nids)}件" if isinstance(selection_nids, list) else "未設定"
     law_name = "（未設定）"
     if source_mode in {"data/normalized選択", "フォルダ選択"}:
-        folder = preset.get("normalized_folder", "")
+        folder = str(example.get("law_folder", ""))
         for bundle in bundles:
             if bundle[0] == folder:
                 law_name = bundle[4] or folder
@@ -215,8 +160,7 @@ def _preset_tooltip(
             law_name = folder or "（未設定）"
     elif source_mode == "海外固定(WHO LBM 3rd)":
         law_name = "WHO LBM 3rd"
-    # Streamlit button tooltip is effectively single-line in this UI, so use explicit separators.
-    return f"法令名: {law_name} | プロファイル: {profile} | 選択: {selection}"
+    return f"法令名: {law_name} | プロファイル: {profile} | 選択: {selection_desc}"
 
 
 def _latest_out_bundle(doc_prefix: str) -> Tuple[Path, Path, Path] | None:
@@ -956,6 +900,8 @@ def main() -> None:
     profile_options = ["オリジナル", "カスタマイズ"]
     dedup_mode_options = ["共通先祖省略", "兄弟のみ先祖省略"]
     normalized_bundles = _discover_normalized_bundles()
+    display_examples = _load_display_examples()
+    example_by_id = {str(ex.get("id")): ex for ex in display_examples}
     folder_names = [b[0] for b in normalized_bundles]
     label_map = {
         b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
@@ -982,44 +928,59 @@ def main() -> None:
     if st.session_state.pop("pending_clear_shortcut_preset_key", False):
         st.session_state["shortcut_preset_key"] = ""
 
-    def _queue_demo(preset_key: str) -> None:
-        preset = DEMO_PRESETS[preset_key]
-        st.session_state["source_mode_key"] = preset["source_mode"]
-        st.session_state["purpose_mode_key"] = preset["purpose_mode"]
-        st.session_state["dedup_mode_label_key"] = preset.get("dedup_mode_label", dedup_mode_options[0])
+    def _queue_example(example_id: str) -> None:
+        ex = example_by_id.get(example_id)
+        if not isinstance(ex, dict):
+            return
+        st.session_state["source_mode_key"] = str(ex.get("source_mode", "フォルダ選択"))
+        profile = ex.get("profile") if isinstance(ex.get("profile"), dict) else {}
+        profile_mode = str(profile.get("mode", "original")).lower()
+        st.session_state["purpose_mode_key"] = "カスタマイズ" if profile_mode == "custom" else "オリジナル"
+        ex_display = ex.get("display") if isinstance(ex.get("display"), dict) else {}
+        st.session_state["dedup_mode_label_key"] = str(
+            ex_display.get("dedup_mode_label", dedup_mode_options[0])
+        )
         st.session_state["egov_merge_article_p1_key"] = str(
-            preset.get("egov_merge_article_p1", "true")
+            ex_display.get("egov_merge_article_p1", True)
         ).lower() == "true"
-        folder = preset.get("normalized_folder")
+        folder = str(ex.get("law_folder", ""))
         if folder and folder in folder_names:
             st.session_state["normalized_folder_key"] = folder
-        if preset.get("custom_profile_seed"):
-            st.session_state["pending_custom_profile_seed"] = str(preset["custom_profile_seed"])
-        st.session_state["pending_demo_selection_key"] = preset["selection_key"]
-        st.session_state["active_demo_preset_key"] = preset_key
+        if profile_mode == "custom":
+            custom_yaml_path = str(profile.get("custom_yaml_path", "")).strip()
+            if custom_yaml_path:
+                st.session_state["pending_custom_profile_path"] = custom_yaml_path
+        selection_nids = ex.get("selection_nids")
+        st.session_state["pending_demo_selection_nids"] = (
+            [str(nid) for nid in selection_nids if isinstance(nid, str)]
+            if isinstance(selection_nids, list)
+            else []
+        )
+        fallback_key = str(ex.get("selection_resolver_key", "")).strip()
+        st.session_state["pending_demo_selection_key"] = fallback_key if fallback_key else None
+        st.session_state["active_demo_preset_key"] = example_id
         st.session_state["pending_clear_shortcut_preset_key"] = True
         st.rerun()
 
     st.subheader("モック用設定項目")
     st.markdown("#### 表示例へのショートカット（幾つかの典型例（自動設定）をご用意しました）")
-    preset_order = [
-        ("", "（表示例を選択）"),
-        ("demo1", "表示例1：ロだけ"),
-        ("demo2", "表示例2：ロ＋ハ"),
-        ("demo3", "表示例3：表1行"),
-        ("demo4", "表示例4：表2行"),
-        ("demo5", "表示例5：3ケース確認"),
-        ("case_a", "表示例6：条→1項→号"),
-        ("case_b", "表示例7：条→1項/2項/3項"),
-        ("case_c", "表示例8：海外(Articleなし)"),
-    ]
+    preset_order = [("", "（表示例を選択）")]
+    for ex in display_examples:
+        ex_id = str(ex.get("id", "")).strip()
+        if not ex_id:
+            continue
+        display_name = str(ex.get("display_name", ex_id)).strip() or ex_id
+        display_title = str(ex.get("display_title", "")).strip()
+        label = f"{display_name}：{display_title}" if display_title else display_name
+        preset_order.append((ex_id, label))
     preset_keys = [key for key, _ in preset_order]
     preset_label_map = {key: label for key, label in preset_order}
 
     def _format_preset_option(key: str) -> str:
         if not key:
             return preset_label_map[key]
-        return f"{preset_label_map[key]} | {_preset_tooltip(key, normalized_bundles)}"
+        ex = example_by_id.get(key, {})
+        return f"{preset_label_map[key]} | {_example_tooltip(ex, normalized_bundles)}"
 
     chosen_preset = st.selectbox(
         "表示例（法令・プロファイル・選択を一括適用）",
@@ -1028,7 +989,7 @@ def main() -> None:
         format_func=_format_preset_option,
     )
     if chosen_preset:
-        _queue_demo(chosen_preset)
+        _queue_example(chosen_preset)
 
     current_source_mode = str(st.session_state.get("source_mode_key", source_options[0]))
     current_folder = str(st.session_state.get("normalized_folder_key", "")) if folder_names else ""
@@ -1092,6 +1053,22 @@ def main() -> None:
         )
     if "applied_custom_purpose" not in st.session_state:
         st.session_state["applied_custom_purpose"] = deepcopy(base_purpose)
+    pending_custom_profile_path = str(st.session_state.pop("pending_custom_profile_path", "")).strip()
+    if pending_custom_profile_path:
+        custom_path = Path(pending_custom_profile_path)
+        if not custom_path.exists():
+            st.warning(f"表示例の custom_yaml_path が見つかりません: {pending_custom_profile_path}")
+        else:
+            try:
+                loaded_custom = yaml.safe_load(custom_path.read_text(encoding="utf-8"))
+                if not isinstance(loaded_custom, dict):
+                    raise ValueError("custom_yaml_path のYAMLトップレベルは辞書である必要があります。")
+                st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
+                    loaded_custom, allow_unicode=True, sort_keys=False
+                )
+                st.session_state["applied_custom_purpose"] = loaded_custom
+            except Exception as exc:
+                st.warning(f"表示例の custom_yaml_path 読込に失敗しました: {exc}")
     pending_seed = st.session_state.pop("pending_custom_profile_seed", None)
     if pending_seed == "mock":
         seeded = _mock_purpose(base_purpose)
@@ -1180,14 +1157,26 @@ def main() -> None:
         st.session_state["selected_nids"] = []
     if "draft_selected_nids" not in st.session_state:
         st.session_state["draft_selected_nids"] = list(st.session_state["selected_nids"])
-    pending_demo_key = st.session_state.pop("pending_demo_selection_key", None)
-    if pending_demo_key:
-        demo_nids = _resolve_demo_selection(index, selectable_kinds, pending_demo_key)
-        if demo_nids:
-            st.session_state["draft_selected_nids"] = demo_nids
-            st.session_state["selected_nids"] = demo_nids
+    pending_demo_nids_raw = st.session_state.pop("pending_demo_selection_nids", None)
+    pending_demo_nids: List[str] = []
+    if isinstance(pending_demo_nids_raw, list):
+        pending_demo_nids = [str(nid) for nid in pending_demo_nids_raw if isinstance(nid, str)]
+    if pending_demo_nids:
+        resolved = [nid for nid in pending_demo_nids if nid in index.by_nid]
+        if resolved:
+            st.session_state["draft_selected_nids"] = resolved
+            st.session_state["selected_nids"] = resolved
         else:
-            st.warning("このデータセットでは指定デモを構成できません。")
+            st.warning("表示例の selection_nids はこのデータセットに存在しません。")
+    else:
+        pending_demo_key = st.session_state.pop("pending_demo_selection_key", None)
+        if pending_demo_key:
+            demo_nids = _resolve_demo_selection(index, selectable_kinds, pending_demo_key)
+            if demo_nids:
+                st.session_state["draft_selected_nids"] = demo_nids
+                st.session_state["selected_nids"] = demo_nids
+            else:
+                st.warning("このデータセットでは指定デモを構成できません。")
 
     left, right = st.columns(2)
     with left:
