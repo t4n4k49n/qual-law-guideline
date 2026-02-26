@@ -8,6 +8,7 @@ import re
 from typing import Any, Dict, List, Set, Tuple
 
 import streamlit as st
+import streamlit.components.v1 as components
 import yaml
 
 from qai_mock_ui.ir_model import DocIndex, build_doc_index
@@ -418,6 +419,66 @@ def _checkbox_key(nid: str) -> str:
     return f"candidate_{nid}"
 
 
+def _nid_copy_icon_html(nid: str) -> str:
+    title = escape(f"nid: {nid}", quote=True)
+    data_nid = escape(nid, quote=True)
+    return (
+        "<span "
+        "role='button' "
+        "tabindex='0' "
+        "class='candidate-icon candidate-icon-btn' "
+        f"data-nid='{data_nid}' "
+        f"title='{title}' "
+        ">🆔</span>"
+    )
+
+
+def _inject_nid_copy_hook() -> None:
+    components.html(
+        """
+        <script>
+        (function () {
+          const w = window.parent;
+          if (!w || !w.document || w.__nidCopyHookInstalled) return;
+          w.__nidCopyHookInstalled = true;
+          w.document.addEventListener(
+            "click",
+            async function (event) {
+              const target = event.target;
+              if (!target) return;
+              const btn = target.closest(".candidate-icon-btn[data-nid]");
+              if (!btn) return;
+              event.preventDefault();
+              event.stopPropagation();
+              const nid = btn.getAttribute("data-nid") || "";
+              if (!nid) return;
+              try {
+                await w.navigator.clipboard.writeText(nid);
+                return;
+              } catch (e) {}
+              try {
+                const ta = w.document.createElement("textarea");
+                ta.value = nid;
+                ta.style.position = "fixed";
+                ta.style.opacity = "0";
+                ta.style.pointerEvents = "none";
+                w.document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                w.document.execCommand("copy");
+                w.document.body.removeChild(ta);
+              } catch (e) {}
+            },
+            true
+          );
+        })();
+        </script>
+        """,
+        height=0,
+        width=0,
+    )
+
+
 def _sync_checkbox_defaults(option_ids: List[str], draft_selected_nids: Set[str], *, force: bool = False) -> None:
     for nid in option_ids:
         key = _checkbox_key(nid)
@@ -431,116 +492,6 @@ def _clear_selection_state() -> None:
     for key in list(st.session_state.keys()):
         if key.startswith("candidate_"):
             del st.session_state[key]
-
-
-def _find_demo_subitem_siblings(index: DocIndex) -> List[str]:
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "item":
-            continue
-        subs = [c for c in node.children if c.kind == "subitem"]
-        if len(subs) >= 2:
-            return [subs[0].nid, subs[1].nid]
-    return []
-
-
-def _find_demo_subitems_by_num(index: DocIndex, targets: List[str]) -> List[str]:
-    target_set = {t.strip() for t in targets}
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "item":
-            continue
-        subs = [c for c in node.children if c.kind == "subitem"]
-        if not subs:
-            continue
-        by_num = {str((s.num or "")).strip(): s.nid for s in subs}
-        if not target_set.issubset(set(by_num.keys())):
-            continue
-        return [by_num[t] for t in targets]
-    return []
-
-
-def _find_demo_table_rows(index: DocIndex, count: int) -> List[str]:
-    rows = [n for n in index.by_nid.values() if n.kind == "table_row"]
-    rows.sort(key=lambda n: (n.ord, n.nid))
-    return [n.nid for n in rows[:count]]
-
-
-def _apply_demo(index: DocIndex, name: str) -> List[str]:
-    if name == "demo1":
-        ro_only = _find_demo_subitems_by_num(index, ["ロ"])
-        if ro_only:
-            return ro_only
-        sub_pair = _find_demo_subitem_siblings(index)
-        if sub_pair:
-            return [sub_pair[0]]
-        item_case = _find_demo_egov_item_case(index)
-        return item_case[:1]
-    if name == "demo2":
-        ro_ha = _find_demo_subitems_by_num(index, ["ロ", "ハ"])
-        if ro_ha:
-            return ro_ha
-        sub_pair = _find_demo_subitem_siblings(index)
-        if sub_pair:
-            return sub_pair
-        item_case = _find_demo_egov_item_case(index)
-        return item_case[:2]
-    if name == "demo3":
-        return _find_demo_table_rows(index, 1)
-    if name == "demo4":
-        return _find_demo_table_rows(index, 2)
-    return []
-
-
-def _resolve_demo_selection(index: DocIndex, selectable_kinds: List[str], key: str) -> List[str]:
-    if key in {"demo1", "demo2", "demo3", "demo4", "demo5"}:
-        return _apply_demo(index, key)
-    if key == "case_a":
-        return _find_demo_egov_item_case(index)
-    if key == "case_b":
-        return _find_demo_egov_paragraph_case(index)
-    if key == "case_c":
-        return _find_demo_non_article_case(index, selectable_kinds)
-    return []
-
-
-def _find_demo_egov_item_case(index: DocIndex) -> List[str]:
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "article":
-            continue
-        paras = [c for c in node.children if c.kind == "paragraph"]
-        if not paras:
-            continue
-        p1 = paras[0]
-        items = [c for c in p1.children if c.kind == "item"]
-        if not items:
-            continue
-        nids = [p1.nid, items[0].nid]
-        if len(items) > 1:
-            nids.append(items[1].nid)
-        return nids
-    return []
-
-
-def _find_demo_egov_paragraph_case(index: DocIndex) -> List[str]:
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind != "article":
-            continue
-        paras = [c for c in node.children if c.kind == "paragraph"]
-        if len(paras) >= 3:
-            return [paras[0].nid, paras[1].nid, paras[2].nid]
-    return []
-
-
-def _find_demo_non_article_case(index: DocIndex, selectable_kinds: List[str]) -> List[str]:
-    if any(n.kind == "article" for n in index.by_nid.values()):
-        return []
-    selectable_set = set(selectable_kinds)
-    hits: List[str] = []
-    for node in sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid)):
-        if node.kind in selectable_set:
-            hits.append(node.nid)
-        if len(hits) >= 3:
-            break
-    return hits
 
 
 def _ts_compact() -> str:
@@ -890,8 +841,6 @@ def main() -> None:
             if isinstance(selection_nids, list)
             else []
         )
-        fallback_key = str(ex.get("selection_resolver_key", "")).strip()
-        st.session_state["pending_demo_selection_key"] = fallback_key if fallback_key else None
         st.session_state["active_demo_preset_key"] = example_id
         st.session_state["pending_clear_shortcut_preset_key"] = True
         st.rerun()
@@ -1106,19 +1055,11 @@ def main() -> None:
             st.session_state["selected_nids"] = resolved
         else:
             st.warning("表示例の selection_nids はこのデータセットに存在しません。")
-    else:
-        pending_demo_key = st.session_state.pop("pending_demo_selection_key", None)
-        if pending_demo_key:
-            demo_nids = _resolve_demo_selection(index, selectable_kinds, pending_demo_key)
-            if demo_nids:
-                st.session_state["draft_selected_nids"] = demo_nids
-                st.session_state["selected_nids"] = demo_nids
-            else:
-                st.warning("このデータセットでは指定デモを構成できません。")
 
     left, right = st.columns(2)
     with left:
         st.subheader("チェック項目選択")
+        _inject_nid_copy_hook()
 
         query = st.text_input("検索（nid/表示ラベル/本文）", "")
         rows = _all_rows(index, selectable_kinds, query)
@@ -1190,6 +1131,33 @@ def main() -> None:
                     font-size: 0.9em;
                     line-height: 1.1;
                 }
+                .candidate-list .candidate-icon-btn,
+                .candidate-list .candidate-icon-btn:hover,
+                .candidate-list .candidate-icon-btn:focus,
+                .candidate-list .candidate-icon-btn:active,
+                .candidate-list .candidate-icon-btn:focus-visible {
+                    border: 0 !important;
+                    outline: 0 !important;
+                    box-shadow: none !important;
+                    background: transparent !important;
+                    background-color: transparent !important;
+                    border-radius: 0 !important;
+                    appearance: none !important;
+                    -webkit-appearance: none !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    min-height: 0 !important;
+                    min-width: 0 !important;
+                    width: auto !important;
+                    height: auto !important;
+                    font: inherit !important;
+                    font-size: 0.9em !important;
+                    color: #4b5563 !important;
+                    line-height: 1.1 !important;
+                    cursor: copy !important;
+                    text-decoration: none !important;
+                    display: inline !important;
+                }
                 </style>
                 """,
                 unsafe_allow_html=True,
@@ -1209,27 +1177,27 @@ def main() -> None:
                             )
                         with c_text:
                             path_tip = escape(_human_path(index, nid), quote=True)
-                            nid_tip = escape(f"nid: {nid}", quote=True)
+                            nid_copy_icon = _nid_copy_icon_html(nid)
                             st.markdown(
                                 (
                                     f"<div class='candidate-row candidate-row-selectable' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                     f"<span class='candidate-label'>{escape(label)}</span>"
                                     "<span class='candidate-icons'>"
                                     f"<span class='candidate-icon' title='{path_tip}'>ⓘ</span>"
-                                    f"<span class='candidate-icon' title='{nid_tip}'>🆔</span>"
+                                    f"{nid_copy_icon}"
                                     "</span>"
                                     "</div>"
                                 ),
                                 unsafe_allow_html=True,
                             )
                     else:
-                        nid_tip = escape(f"nid: {nid}", quote=True)
+                        nid_copy_icon = _nid_copy_icon_html(nid)
                         st.markdown(
                             (
                                 f"<div class='candidate-row' style='margin-left:{indent_px}px;background:{row_bg};'>"
                                 f"<span class='candidate-label'>{escape(label)}</span>"
                                 "<span class='candidate-icons'>"
-                                f"<span class='candidate-icon' title='{nid_tip}'>🆔</span>"
+                                f"{nid_copy_icon}"
                                 "</span>"
                                 "</div>"
                             ),
