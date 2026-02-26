@@ -121,6 +121,32 @@ def _discover_normalized_bundles() -> List[Tuple[str, Path, Path, Path | None, s
     return bundles
 
 
+def _discover_out_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
+    if not OUT_DIR.exists():
+        return []
+    bundles: List[Tuple[str, Path, Path, Path | None, str | None]] = []
+    for child in sorted(OUT_DIR.iterdir(), key=lambda p: p.name):
+        if not child.is_dir():
+            continue
+        ir_files = sorted(child.glob("*.regdoc_ir.yaml"))
+        profile_files = sorted(child.glob("*.regdoc_profile.yaml"))
+        meta_files = sorted(child.glob("*.meta.yaml"))
+        if not ir_files or not profile_files:
+            continue
+        ir_path = ir_files[0]
+        profile_path = profile_files[0]
+        meta_path = meta_files[0] if meta_files else None
+        bundles.append((f"out/{child.name}", ir_path, profile_path, meta_path, _meta_title(meta_path)))
+    return bundles
+
+
+def _discover_selectable_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
+    merged: List[Tuple[str, Path, Path, Path | None, str | None]] = []
+    merged.extend(_discover_normalized_bundles())
+    merged.extend(_discover_out_bundles())
+    return merged
+
+
 def _load_display_examples() -> List[Dict[str, Any]]:
     if not DISPLAY_EXAMPLES_CONFIG.exists():
         return []
@@ -182,9 +208,9 @@ def _load_from_uploaded_or_local(
     selected_normalized_folder: str | None = None,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None, str]:
     if source_mode in {"data/normalized選択", "フォルダ選択"}:
-        bundles = _discover_normalized_bundles()
+        bundles = _discover_selectable_bundles()
         if not bundles:
-            raise ValueError("data/normalized 配下に選択可能なフォルダが見つかりません。")
+            raise ValueError("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
         selected = selected_normalized_folder or bundles[0][0]
         matched = next((b for b in bundles if b[0] == selected), None)
         if matched is None:
@@ -829,17 +855,17 @@ def main() -> None:
     source_options = ["フォルダ選択", "海外固定(WHO LBM 3rd)", "アップロード（4yamlのtxtconcat形式）"]
     profile_options = ["オリジナル", "カスタマイズ"]
     dedup_mode_options = ["共通先祖省略", "兄弟のみ先祖省略"]
-    normalized_bundles = _discover_normalized_bundles()
+    selectable_bundles = _discover_selectable_bundles()
     display_examples = _load_display_examples()
     example_by_id = {str(ex.get("id")): ex for ex in display_examples}
-    folder_names = [b[0] for b in normalized_bundles]
+    folder_names = [b[0] for b in selectable_bundles]
     label_map = {
         b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
-        for b in normalized_bundles
+        for b in selectable_bundles
     }
 
     if "source_mode_key" not in st.session_state:
-        st.session_state["source_mode_key"] = source_options[0] if normalized_bundles else source_options[2]
+        st.session_state["source_mode_key"] = source_options[0] if selectable_bundles else source_options[2]
     if "purpose_mode_key" not in st.session_state:
         st.session_state["purpose_mode_key"] = profile_options[0]
     pending_purpose_mode = st.session_state.pop("pending_purpose_mode_key", None)
@@ -910,7 +936,7 @@ def main() -> None:
         if not key:
             return preset_label_map[key]
         ex = example_by_id.get(key, {})
-        return f"{preset_label_map[key]} | {_example_tooltip(ex, normalized_bundles)}"
+        return f"{preset_label_map[key]} | {_example_tooltip(ex, selectable_bundles)}"
 
     chosen_preset = st.selectbox(
         "表示例（法令・プロファイル・選択を一括適用）",
@@ -940,11 +966,11 @@ def main() -> None:
         )
         selected_normalized_folder: str | None = None
         if source_mode == "フォルダ選択":
-            if not normalized_bundles:
-                st.error("data/normalized 配下に選択可能なフォルダが見つかりません。")
+            if not selectable_bundles:
+                st.error("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
                 return
             selected_normalized_folder = st.selectbox(
-                "フォルダ選択（ARCHIVE_* は除外）",
+                "フォルダ選択（data/normalized, out/*）",
                 folder_names,
                 key="normalized_folder_key",
                 format_func=lambda v: label_map.get(v, v),
@@ -977,7 +1003,7 @@ def main() -> None:
     base_purpose = _purpose(regdoc_profile)
     original_profile_tooltip = "参照元プロファイル: 不明"
     if source_mode == "フォルダ選択" and selected_normalized_folder:
-        matched = next((b for b in normalized_bundles if b[0] == selected_normalized_folder), None)
+        matched = next((b for b in selectable_bundles if b[0] == selected_normalized_folder), None)
         if matched is not None:
             original_profile_tooltip = f"参照元プロファイル: {matched[2].as_posix()}"
     elif source_mode == "海外固定(WHO LBM 3rd)":
