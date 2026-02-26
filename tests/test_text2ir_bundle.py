@@ -55,6 +55,10 @@ def test_text2ir_bundle_outputs_and_structure(tmp_path: Path) -> None:
     verify_document(ir)
 
     assert parser_profile["id"] == "us_cfr_default_v2"
+    assert regdoc_profile["profiles"]["dq_gmp_checklist"]["candidate_visibility"] == {
+        "allow_rules": [],
+        "deny_rules": [],
+    }
     assert regdoc_profile["profiles"]["dq_gmp_checklist"]["context_display_policy"][0]["include_ancestors_until_kind"] == "section"
     assert meta["doc"]["identifiers"]["cfr_title"] == "21"
     assert meta["doc"]["identifiers"]["cfr_part"] == "11"

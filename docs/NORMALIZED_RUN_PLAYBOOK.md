@@ -69,6 +69,9 @@ xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate 
     - `article.text` が `null` であること
     - `article` 直下に `item/subitem/point` が無いこと
     - `article` 直下に `paragraph` が1つ以上あること
+- `regdoc_profile` の確認を実行し、結果を記録
+  - `profiles.dq_gmp_checklist.candidate_visibility` が存在すること
+  - 既定値が `allow_rules: []` / `deny_rules: []` であること（未指定方針でない場合はRUNに理由を記録）
 
 ### 4-2) AIレビュー（目視代替）
 
