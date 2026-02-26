@@ -12,6 +12,7 @@ import streamlit.components.v1 as components
 import yaml
 
 from qai_mock_ui.ir_model import DocIndex, build_doc_index
+from qai_mock_ui.candidate_visibility import build_candidate_visibility_map
 from qai_mock_ui.render import build_render_debug_trace, render_selected_nodes
 from qai_mock_ui.txtconcat_loader import (
     load_regdoc_bundle_from_txtconcat,
@@ -365,13 +366,20 @@ def _build_node_label(index: DocIndex, nid: str) -> str:
     return display
 
 
-def _all_rows(index: DocIndex, selectable_kinds: List[str], query: str) -> List[Tuple[str, str, bool, int]]:
+def _all_rows(
+    index: DocIndex,
+    selectable_kinds: List[str],
+    query: str,
+    visible_by_nid: Dict[str, bool] | None = None,
+) -> List[Tuple[str, str, bool, int]]:
     q = query.strip().lower()
     rows: List[Tuple[str, str, bool, int]] = []
     selectable_set = set(selectable_kinds)
     nodes = sorted(index.by_nid.values(), key=lambda n: (n.ord, n.nid))
     for node in nodes:
         if node.kind == "document" or node.nid == "root":
+            continue
+        if visible_by_nid is not None and not visible_by_nid.get(node.nid, True):
             continue
         label = _build_node_label(index, node.nid)
         if q:
@@ -1040,6 +1048,7 @@ def main() -> None:
     dedup_mode = "prefix" if dedup_mode_label == "共通先祖省略" else "exact"
     egov_merge_article_p1 = bool(st.session_state.get("egov_merge_article_p1_key", True))
     selectable_kinds = [str(v) for v in current.get("selectable_kinds", []) if isinstance(v, str)]
+    candidate_visible_by_nid = build_candidate_visibility_map(index, current)
     if "selected_nids" not in st.session_state:
         st.session_state["selected_nids"] = []
     if "draft_selected_nids" not in st.session_state:
@@ -1062,7 +1071,7 @@ def main() -> None:
         _inject_nid_copy_hook()
 
         query = st.text_input("検索（nid/表示ラベル/本文）", "")
-        rows = _all_rows(index, selectable_kinds, query)
+        rows = _all_rows(index, selectable_kinds, query, visible_by_nid=candidate_visible_by_nid)
         selectable_row_ids = [nid for nid, _, selectable, _ in rows if selectable]
         label_by_id = {nid: label for nid, label, _, _ in rows}
 
@@ -1232,6 +1241,11 @@ def main() -> None:
     st.subheader("設定（YAML）確認")
     st.markdown("`selectable_kinds`")
     st.code(yaml.safe_dump({"selectable_kinds": selectable_kinds}, allow_unicode=True, sort_keys=False), "yaml")
+    st.markdown("`candidate_visibility`")
+    st.code(
+        yaml.safe_dump({"candidate_visibility": current.get("candidate_visibility", {})}, allow_unicode=True, sort_keys=False),
+        "yaml",
+    )
     st.markdown("`context_display_policy`")
     st.code(
         yaml.safe_dump(
