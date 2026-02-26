@@ -1037,7 +1037,7 @@ def main() -> None:
         )
 
     dedup_mode_label = str(st.session_state.get("dedup_mode_label_key", dedup_mode_options[0]))
-    dedup_mode = "exact" if dedup_mode_label == "共通先祖省略" else "prefix"
+    dedup_mode = "prefix" if dedup_mode_label == "共通先祖省略" else "exact"
     egov_merge_article_p1 = bool(st.session_state.get("egov_merge_article_p1_key", True))
     selectable_kinds = [str(v) for v in current.get("selectable_kinds", []) if isinstance(v, str)]
     if "selected_nids" not in st.session_state:
