@@ -95,8 +95,8 @@ examples:
   - id: "example8"
     display_name: "表示例8"
     display_title: "海外（Articleなし）"
-    source_mode: "海外固定(WHO LBM 3rd)"
-    law_folder: ""
+    source_mode: "フォルダ選択"
+    law_folder: "out/20260218-011744140_feat-who-lbm-v4-marker-ref-join"
     profile:
       mode: "original"
     display:

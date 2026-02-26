@@ -184,23 +184,7 @@ def _example_tooltip(
                 break
         if law_name == "（未設定）":
             law_name = folder or "（未設定）"
-    elif source_mode == "海外固定(WHO LBM 3rd)":
-        law_name = "WHO LBM 3rd"
     return f"法令名: {law_name} | プロファイル: {profile} | 選択: {selection_desc}"
-
-
-def _latest_out_bundle(doc_prefix: str) -> Tuple[Path, Path, Path] | None:
-    candidates = sorted(OUT_DIR.glob(f"*/*{doc_prefix}*.regdoc_ir.yaml"))
-    if not candidates:
-        return None
-    latest_ir = max(candidates, key=lambda p: p.parent.name)
-    base = latest_ir.name.replace(".regdoc_ir.yaml", "")
-    profile = latest_ir.with_name(f"{base}.regdoc_profile.yaml")
-    meta = latest_ir.with_name(f"{base}.meta.yaml")
-    if not profile.exists():
-        return None
-    return latest_ir, profile, meta
-
 
 def _load_from_uploaded_or_local(
     uploaded,
@@ -217,12 +201,6 @@ def _load_from_uploaded_or_local(
             raise ValueError(f"選択フォルダが見つかりません: {selected}")
         ir, profile, meta = _load_bundle_from_yaml_files(matched[1], matched[2], matched[3])
         return ir, profile, meta, f"normalized:{matched[0]}"
-    if source_mode == "海外固定(WHO LBM 3rd)":
-        bundle = _latest_out_bundle("who_lbm_3rd")
-        if bundle is None:
-            raise ValueError("WHO LBM 3rd の out バンドルが見つかりません。")
-        ir, profile, meta = _load_bundle_from_yaml_files(bundle[0], bundle[1], bundle[2])
-        return ir, profile, meta, f"fixed:{bundle[0].parent.as_posix()}"
     if source_mode in {"自動(アップロード/txtconcat/fallback)", "アップロード（4yamlのtxtconcat形式）"} and uploaded is not None:
         raw = uploaded.getvalue().decode("utf-8")
         temp = Path(".streamlit_tmp_txtconcat.txt")
@@ -852,7 +830,7 @@ def main() -> None:
     st.set_page_config(page_title="GMPチェックシート生成UI（モック）", layout="wide")
     st.title("GMPチェックシート生成UI（モック）")
 
-    source_options = ["フォルダ選択", "海外固定(WHO LBM 3rd)", "アップロード（4yamlのtxtconcat形式）"]
+    source_options = ["フォルダ選択", "アップロード（4yamlのtxtconcat形式）"]
     profile_options = ["オリジナル", "カスタマイズ"]
     dedup_mode_options = ["共通先祖省略", "兄弟のみ先祖省略"]
     selectable_bundles = _discover_selectable_bundles()
@@ -951,8 +929,6 @@ def main() -> None:
     current_folder = str(st.session_state.get("normalized_folder_key", "")) if folder_names else ""
     if current_source_mode == "フォルダ選択":
         law_display_for_header = label_map.get(current_folder, current_folder or "（未選択）")
-    elif current_source_mode == "海外固定(WHO LBM 3rd)":
-        law_display_for_header = "WHO LBM 3rd"
     else:
         law_display_for_header = "アップロード待ち"
 
@@ -1006,12 +982,6 @@ def main() -> None:
         matched = next((b for b in selectable_bundles if b[0] == selected_normalized_folder), None)
         if matched is not None:
             original_profile_tooltip = f"参照元プロファイル: {matched[2].as_posix()}"
-    elif source_mode == "海外固定(WHO LBM 3rd)":
-        who_bundle = _latest_out_bundle("who_lbm_3rd")
-        if who_bundle is not None:
-            original_profile_tooltip = f"参照元プロファイル: {who_bundle[1].as_posix()}"
-        else:
-            original_profile_tooltip = "参照元プロファイル: WHO LBM 3rd デモ専用YAML（out未検出）"
     elif source_mode == "アップロード（4yamlのtxtconcat形式）":
         original_profile_tooltip = "参照元プロファイル: txtconcat由来のデモ専用YAML（実ファイル固定なし）"
 
