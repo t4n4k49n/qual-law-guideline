@@ -52,10 +52,37 @@
 
 | Phase | 内容 | 状態 | PR |
 |---|---|---|---|
-| 0 | 現状確認・ベースライン固定 | 完了 | TBD |
-| 1 | GOAL検証ハーネス | 未着手 | |
+| 0 | 現状確認・ベースライン固定 | 完了 | #132 |
+| 1 | GOAL検証ハーネス | 完了 | TBD |
 | 2 | 監査レポート生成 | 未着手 | |
 | 3 | 表・注記・子孫表示の実データ検証 | 未着手 | |
 | 4 | profile修正 | 未着手 | |
 | 5 | 複合入口・特別部品設計 | 未着手 | |
 | 6 | 代表文書再生成・GOAL評価 | 未着手 | |
+
+## Phase 1 実行内容
+
+追加:
+
+- `src/qai_text2ir/goal_check.py`
+- `tests/test_text2ir_goal_check.py`
+
+実装内容:
+
+- text2ir bundle directoryとdoc_idを指定し、4ファイル、IR schema、node field、nid/ord、source_spans coverage、meta、parser_profile、regdoc_profile、manifestを一括確認するGOAL検証ハーネスを追加。
+- `python -m qai_text2ir.goal_check --bundle-dir <dir> --doc-id <doc_id> --format markdown|json|yaml` で実行可能にした。
+- 機械可読サマリとMarkdownサマリを出力可能にした。
+
+テスト:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m pytest -q tests\test_text2ir_bundle.py tests\test_markdown_table_parsing.py tests\test_normal_note_descendants.py tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+結果:
+
+- `5 passed`
+- `13 passed`
+- `153 passed, 1 skipped`
