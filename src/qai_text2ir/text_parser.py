@@ -273,6 +273,15 @@ def _looks_like_md_table_header(line: str) -> bool:
     return candidate.count("|") >= 2 and not _is_md_table_separator(candidate)
 
 
+def _split_md_table_cells(line: str) -> List[str]:
+    candidate = line.strip()
+    if candidate.startswith("|"):
+        candidate = candidate[1:]
+    if candidate.endswith("|"):
+        candidate = candidate[:-1]
+    return [cell.strip() for cell in candidate.split("|")]
+
+
 def _collect_md_table_block(
     lines: List[str],
     start_idx: int,
@@ -356,6 +365,54 @@ def _collect_table_notes(
         note_entries.append((idx, cleaned))
         idx += 1
     return note_entries, idx
+
+
+PLAINTEXT_TABLE_CAPTION_PATTERN = re.compile(r"^(?:Table|表)\s*[\w.-]+[:：].+", flags=re.IGNORECASE)
+
+
+def _looks_like_plaintext_table_row(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped:
+        return False
+    if "|" in stripped:
+        return False
+    return bool(re.search(r"\S\s{2,}\S", stripped))
+
+
+def _collect_plaintext_table_block(
+    lines: List[str],
+    start_idx: int,
+    *,
+    min_rows: int,
+    max_rows: int,
+) -> Optional[Dict[str, Any]]:
+    caption = lines[start_idx].strip()
+    if not PLAINTEXT_TABLE_CAPTION_PATTERN.match(caption):
+        return None
+    rows: List[Tuple[int, str]] = []
+    idx = start_idx + 1
+    while idx < len(lines) and len(rows) < max_rows:
+        raw = lines[idx]
+        stripped = raw.strip()
+        if not stripped:
+            break
+        if PLAINTEXT_TABLE_CAPTION_PATTERN.match(stripped):
+            break
+        if _looks_like_plaintext_table_row(raw):
+            rows.append((idx, stripped))
+            idx += 1
+            continue
+        if rows:
+            break
+        return None
+    if len(rows) < min_rows:
+        return None
+    return {
+        "caption_idx": start_idx,
+        "caption": caption,
+        "rows": rows,
+        "end_idx": idx,
+    }
 
 
 def _find_table_caption(
@@ -1609,6 +1666,10 @@ def parse_text_to_ir(
     note_max_lines = int(note_max_lines_raw) if str(note_max_lines_raw).strip() else 50
     if note_max_lines <= 0:
         note_max_lines = 50
+    detect_plaintext_tables_cfg = preprocess.get("detect_plaintext_tables") or {}
+    detect_plaintext_tables_enabled = bool(detect_plaintext_tables_cfg.get("enabled"))
+    plaintext_table_min_rows = int(detect_plaintext_tables_cfg.get("min_rows") or 2)
+    plaintext_table_max_rows = int(detect_plaintext_tables_cfg.get("max_rows") or 40)
 
     root = build_root([])
     stack: List[Node] = [root]
@@ -1721,6 +1782,14 @@ def parse_text_to_ir(
                 table_node.source_spans.append(
                     {"source_label": source_label, "locator": f"line:{caption_idx + 1 + line_no_offset}"}
                 )
+            table_node.data = {
+                "format": "markdown",
+                "raw_lines": [
+                    table_block["header_line"],
+                    table_block["separator_line"],
+                    *[row_text for _, row_text in table_block["rows"]],
+                ],
+            }
             parent.children.append(table_node)
             node_indent_by_nid[table_node.nid] = _leading_space_count(lines[table_block["header_idx"]])
 
@@ -1733,6 +1802,10 @@ def parse_text_to_ir(
                 parent_nid=table_node.nid,
             )
             header_node.text = f"{table_block['header_line']}\n{table_block['separator_line']}"
+            header_node.data = {
+                "columns": _split_md_table_cells(table_block["header_line"]),
+                "separator": _split_md_table_cells(table_block["separator_line"]),
+            }
             header_node.source_spans.append(
                 {"source_label": source_label, "locator": f"line:{table_block['separator_idx'] + 1 + line_no_offset}"}
             )
@@ -1749,6 +1822,10 @@ def parse_text_to_ir(
                     parent_nid=header_node.nid,
                 )
                 row_node.text = row_text
+                row_node.data = {
+                    "cells": _split_md_table_cells(row_text),
+                    "raw_line": row_text,
+                }
                 header_node.children.append(row_node)
                 node_indent_by_nid[row_node.nid] = _leading_space_count(lines[row_idx])
                 last_attachable_node = row_node
@@ -1772,6 +1849,10 @@ def parse_text_to_ir(
                     parent_nid=table_node.nid,
                 )
                 note_node.text = "\n\n".join(text for _, text in notes)
+                note_node.data = {
+                    "note_type": "table_note",
+                    "raw_lines": [text for _, text in notes],
+                }
                 for note_idx, _ in notes[1:]:
                     note_node.source_spans.append(
                         {"source_label": source_label, "locator": f"line:{note_idx + 1 + line_no_offset}"}
@@ -1785,6 +1866,42 @@ def parse_text_to_ir(
             for note_idx, _ in notes:
                 lines[note_idx] = ""
             continue
+
+        if detect_plaintext_tables_enabled:
+            plaintext_table = _collect_plaintext_table_block(
+                lines,
+                idx,
+                min_rows=plaintext_table_min_rows,
+                max_rows=plaintext_table_max_rows,
+            )
+            if plaintext_table is not None:
+                parent = current if current is not root else root
+                possible_node = node_factory.create_node(
+                    kind="preformatted",
+                    kind_raw="possible_table",
+                    num=None,
+                    line_no=plaintext_table["caption_idx"] + 1 + line_no_offset,
+                    source_label=source_label,
+                    parent_nid=parent.nid,
+                )
+                possible_node.heading = plaintext_table["caption"]
+                possible_node.text = "\n".join(text for _, text in plaintext_table["rows"])
+                possible_node.tags.append("possible_plaintext_table_not_structured")
+                possible_node.data = {
+                    "warning": "possible_plaintext_table_not_structured",
+                    "format": "plaintext",
+                    "raw_lines": [plaintext_table["caption"], *[text for _, text in plaintext_table["rows"]]],
+                }
+                for row_idx, _ in plaintext_table["rows"]:
+                    possible_node.source_spans.append(
+                        {"source_label": source_label, "locator": f"line:{row_idx + 1 + line_no_offset}"}
+                    )
+                parent.children.append(possible_node)
+                node_indent_by_nid[possible_node.nid] = _leading_space_count(lines[plaintext_table["caption_idx"]])
+                lines[plaintext_table["caption_idx"]] = ""
+                for row_idx, _ in plaintext_table["rows"]:
+                    lines[row_idx] = ""
+                continue
 
         if extract_notes_enabled and note_start_patterns:
             notes_block, _ = _collect_note_block(

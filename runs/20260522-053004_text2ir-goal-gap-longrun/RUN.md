@@ -55,7 +55,7 @@
 | 0 | 現状確認・ベースライン固定 | 完了 | #132 |
 | 1 | GOAL検証ハーネス | 完了 | TBD |
 | 2 | 監査レポート生成 | 完了 | TBD |
-| 3 | 表・注記・子孫表示の実データ検証 | 未着手 | |
+| 3 | 表・注記・子孫表示の実データ検証 | 完了 | TBD |
 | 4 | profile修正 | 未着手 | |
 | 5 | 複合入口・特別部品設計 | 未着手 | |
 | 6 | 代表文書再生成・GOAL評価 | 未着手 | |
@@ -110,3 +110,32 @@
 
 - `7 passed`
 - `155 passed, 1 skipped`
+
+## Phase 3 実行内容
+
+追加・変更:
+
+- `tests/fixtures/text2ir/pics_annex1_table2_markdown_excerpt.txt`
+- `tests/fixtures/text2ir/pics_annex1_table2_plaintext_excerpt.txt`
+- `tests/test_table_note_real_samples.py`
+- `src/qai_text2ir/text_parser.py`
+- `runs/20260522-053004_text2ir-goal-gap-longrun/TABLE_NOTE_REAL_SAMPLE_REVIEW.md`
+
+実装内容:
+
+- Markdown table構造化時に、table/header/row/noteへ `data` payloadを付与する。
+- 表下注記を `note` として保持し、`data.note_type: table_note` を付与する。
+- profileで `preprocess.detect_plaintext_tables.enabled` を有効化した場合のみ、プレーンテキスト表らしきブロックを `preformatted` / `possible_table` として保持する。
+- 低信頼な固定幅表は無理に `table_row` 化せず、`possible_plaintext_table_not_structured` タグとsource_spansでレビュー対象にする。
+
+テスト:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_table_note_real_samples.py tests\test_markdown_table_parsing.py tests\test_normal_note_descendants.py tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+結果:
+
+- `15 passed`
+- `158 passed, 1 skipped`
