@@ -39,7 +39,13 @@ marker_types:
   - id: chapter_part
     kind: chapter
     kind_raw: "Part A"
-    match: '(?i)^\s*Part\s+(?P<n>[A-B])\s*:\s+(?P<title>.+?)\s*$'
+    match: '(?i)^\s*Part\s+(?P<n>[A-B])\s*:\s+'
+    num_group: n
+
+  - id: section_part_b_num
+    kind: section
+    kind_raw: "B1"
+    match: '^(?P<n>B\d+)\.\s+'
     num_group: n
 
   - id: section_chapter_num

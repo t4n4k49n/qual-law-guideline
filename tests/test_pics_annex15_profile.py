@@ -58,3 +58,21 @@ def test_annex15_roman_items_parsed() -> None:
     items = [n for n in nodes if n["kind"] == "item"]
     assert any(i.get("num") == "i" for i in items)
     assert any(i.get("num") == "ii" for i in items)
+
+
+def test_annex15_section_heading_continuation_is_merged() -> None:
+    input_path = Path("tests/fixtures/pics_annex15_heading_continuation_fixture.txt")
+    parser_profile = _load_profile("src/qai_text2ir/profiles/pics_annex15_default_v1.yaml")
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="pics_annex15_heading_continuation_fixture",
+        parser_profile=parser_profile,
+    )
+    nodes = _flatten(ir_doc.to_dict()["content"])
+
+    section_1 = next(n for n in nodes if n["kind"] == "section" and n.get("num") == "1")
+    assert section_1.get("heading") == "ORGANISING AND PLANNING FOR QUALIFICATION AND VALIDATION"
+    assert not (section_1.get("text") or "").startswith("VALIDATION")
+
+    section_3 = next(n for n in nodes if n["kind"] == "section" and n.get("num") == "3")
+    assert section_3.get("heading") == "QUALIFICATION STAGES FOR EQUIPMENT, FACILITIES, UTILITIES AND SYSTEMS."
