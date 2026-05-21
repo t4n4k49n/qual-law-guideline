@@ -1,0 +1,431 @@
+{
+  "run_out_dir": "out/20260522-053004_text2ir-goal-gap-longrun",
+  "document_count": 9,
+  "documents": [
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/eu_gmp_vol4_chap1_20130131",
+      "doc_id": "eu_gmp_vol4_chap1_20130131",
+      "input_path": "data\\human-readable\\eu_gmp\\vol4\\chap1_2013-01_en.txt",
+      "parser_profile": "eu_gmp_chap1_default_v2",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "eu_gmp_vol4_chap1_20130131.meta.yaml"
+        }
+      ],
+      "node_count": 72,
+      "kind_counts": {
+        "chapter": 1,
+        "document": 1,
+        "item": 50,
+        "paragraph": 13,
+        "preamble": 1,
+        "subitem": 6
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 71,
+        "non_root_nodes": 71,
+        "coverage": 1.0,
+        "total_spans": 263
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 1,
+      "refine_applied_count": 0,
+      "title": "EU GMP Vol.4 Chapter 1 Pharmaceutical Quality System"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex11_20230825",
+      "doc_id": "pics_pe00917_annex11_20230825",
+      "input_path": "data\\human-readable\\pics\\pe009-17_annex11_2023-08-25_en.txt",
+      "parser_profile": "pics_annex11_default_v1",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "pics_pe00917_annex11_20230825.meta.yaml"
+        }
+      ],
+      "node_count": 42,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 3,
+        "paragraph": 20,
+        "section": 17
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 41,
+        "non_root_nodes": 41,
+        "coverage": 1.0,
+        "total_spans": 164
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 2,
+      "refine_applied_count": 0,
+      "title": "PIC/S GMP Guide (PE 009-17) Annex 11 Computerised systems (25 August 2023)"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex15_20230825",
+      "doc_id": "pics_pe00917_annex15_20230825",
+      "input_path": "data\\human-readable\\pics\\pe009-17_annex15_2023-08-25_en.txt",
+      "parser_profile": "pics_annex15_default_v1",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "pics_pe00917_annex15_20230825.meta.yaml"
+        }
+      ],
+      "node_count": 142,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 28,
+        "paragraph": 100,
+        "section": 12
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 141,
+        "non_root_nodes": 141,
+        "coverage": 1.0,
+        "total_spans": 573
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 2,
+      "refine_applied_count": 0,
+      "title": "PIC/S GMP Guide (PE 009-17) Annex 15 Qualification and validation (25 August 2023)"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex1_20230825",
+      "doc_id": "pics_pe00917_annex1_20230825",
+      "input_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+      "parser_profile": "pics_annex1_default_v2",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "pics_pe00917_annex1_20230825.meta.yaml"
+        }
+      ],
+      "node_count": 552,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 224,
+        "paragraph": 294,
+        "section": 10,
+        "subitem": 22
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 551,
+        "non_root_nodes": 551,
+        "coverage": 1.0,
+        "total_spans": 2710
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 2,
+      "refine_applied_count": 0,
+      "title": "PIC/S GMP Guide (PE 009-17) Annex 1 Manufacture of sterile medicinal products (25 August 2023)"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex2a_20230825",
+      "doc_id": "pics_pe00917_annex2a_20230825",
+      "input_path": "data\\human-readable\\pics\\pe009-17_annex2a_2023-08-25_en.txt",
+      "parser_profile": "pics_annex2a_default_v1",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "pics_pe00917_annex2a_20230825.meta.yaml"
+        }
+      ],
+      "node_count": 204,
+      "kind_counts": {
+        "annex": 1,
+        "chapter": 2,
+        "document": 1,
+        "item": 74,
+        "paragraph": 102,
+        "section": 13,
+        "subitem": 11
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 203,
+        "non_root_nodes": 203,
+        "coverage": 1.0,
+        "total_spans": 1661
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 2,
+      "refine_applied_count": 0,
+      "title": "PIC/S GMP Guide (PE 009-17) Annex 2A Manufacture of ATMP biological medicinal substances and products for human use (25 August 2023)"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+      "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+      "input_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "parser_profile": "pics_annexes_default_v3",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "pics_pe00917_annexes_20230825_refined_v3_extends_trace.meta.yaml"
+        }
+      ],
+      "node_count": 1750,
+      "kind_counts": {
+        "annex": 19,
+        "chapter": 2,
+        "document": 1,
+        "item": 442,
+        "paragraph": 647,
+        "preamble": 1,
+        "section": 560,
+        "subitem": 78
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 1749,
+        "non_root_nodes": 1749,
+        "coverage": 1.0,
+        "total_spans": 9670
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 2,
+      "refine_applied_count": 19,
+      "title": "PIC/S PE 009-17 Annexes (25 August 2023) refined v3 extends trace"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_part1_20230825",
+      "doc_id": "pics_pe00917_part1_20230825",
+      "input_path": "data\\human-readable\\pics\\pe009-17_part1_2023-08-25_en.txt",
+      "parser_profile": "pics_part1_default_v3",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "pics_pe00917_part1_20230825.meta.yaml"
+        }
+      ],
+      "node_count": 342,
+      "kind_counts": {
+        "chapter": 9,
+        "document": 1,
+        "item": 114,
+        "paragraph": 211,
+        "preamble": 1,
+        "subitem": 6
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 341,
+        "non_root_nodes": 341,
+        "coverage": 1.0,
+        "total_spans": 1851
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 2,
+      "refine_applied_count": 0,
+      "title": "PIC/S GMP Guide (PE 009-17) Part I (25 August 2023)"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_part2_20230825",
+      "doc_id": "pics_pe00917_part2_20230825",
+      "input_path": "data\\human-readable\\pics\\pe009-17_part2_2023-08-25_en.txt",
+      "parser_profile": "pics_part2_default_v1",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "pics_pe00917_part2_20230825.meta.yaml"
+        }
+      ],
+      "node_count": 591,
+      "kind_counts": {
+        "chapter": 20,
+        "document": 1,
+        "item": 25,
+        "paragraph": 353,
+        "preamble": 1,
+        "section": 87,
+        "subitem": 104
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 590,
+        "non_root_nodes": 590,
+        "coverage": 1.0,
+        "total_spans": 1916
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 2,
+      "refine_applied_count": 0,
+      "title": "PIC/S GMP Guide (PE 009-17) Part II (25 August 2023)"
+    },
+    {
+      "doc_dir": "out/20260522-053004_text2ir-goal-gap-longrun/who_lbm_3rd_2004_9241546506",
+      "doc_id": "who_lbm_3rd_2004_9241546506",
+      "input_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+      "parser_profile": "who_lbm_3rd_default_v4",
+      "parser_profile_path": "",
+      "schema": "qai.regdoc_ir.v4",
+      "four_files": true,
+      "manifest": true,
+      "strict": true,
+      "qualitycheck_warnings": 0,
+      "goal_check": "pass",
+      "goal_errors": [],
+      "goal_warnings": [
+        {
+          "code": "meta_family_missing",
+          "message": "meta.doc.family is missing; older meta may omit it",
+          "path": "who_lbm_3rd_2004_9241546506.meta.yaml"
+        }
+      ],
+      "node_count": 829,
+      "kind_counts": {
+        "annex": 5,
+        "chapter": 22,
+        "document": 1,
+        "item": 754,
+        "part": 9,
+        "preamble": 1,
+        "subitem": 37
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 828,
+        "non_root_nodes": 828,
+        "coverage": 1.0,
+        "total_spans": 5252
+      },
+      "table_counts": {
+        "table": 0,
+        "table_header": 0,
+        "table_row": 0,
+        "note": 0,
+        "preformatted": 0
+      },
+      "profile_provenance_count": 1,
+      "refine_applied_count": 0,
+      "title": "WHO Laboratory biosafety manual, 3rd edition (2004)"
+    }
+  ],
+  "totals": {
+    "goal_pass": 9,
+    "goal_fail": 0,
+    "nodes": 4524,
+    "tables": 0,
+    "table_rows": 0,
+    "notes": 0
+  }
+}

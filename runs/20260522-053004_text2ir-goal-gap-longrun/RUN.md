@@ -57,8 +57,8 @@
 | 2 | 監査レポート生成 | 完了 | #134 |
 | 3 | 表・注記・子孫表示の実データ検証 | 完了 | #135 |
 | 4 | profile修正 | 完了 | #136 |
-| 5 | 複合入口・特別部品設計 | 完了 | TBD |
-| 6 | 代表文書再生成・GOAL評価 | 未着手 | |
+| 5 | 複合入口・特別部品設計 | 完了 | #137 |
+| 6 | 代表文書再生成・GOAL評価 | 完了 | TBD |
 
 ## Phase 1 実行内容
 
@@ -185,3 +185,32 @@
 - PIC/S PE 009-17 Annexes全体 refinedを、親入口と子profile群からなる複合入口として整理。
 - CFR Part 211 / Part 11は、現行repoに正式代表入力がないため再生成対象にせず、eCFR XML等の安定構造入力を優先する拡張入口として設計。
 - 複雑表・PDF崩れ表は共通parserへ過剰実装せず、Markdown table、単純固定幅表、複雑表の3段階に分けて境界を定義。
+
+## Phase 6 実行内容
+
+代表9文書を `out/20260522-053004_text2ir-goal-gap-longrun/<doc_id>/` へ再生成した。
+
+結果:
+
+- 9文書すべて `--qualitycheck --strict` exit 0。
+- 9文書すべて `python -m qai_text2ir.goal_check` exit 0。
+- `TEXT2IR_AUDIT_REPORT.md` / `text2ir_audit_report.json` を作成。
+- 関連テスト `17 passed`。
+- 全体テスト `160 passed, 1 skipped`。
+
+作成:
+
+- `GOAL_CHECK_RESULTS.md`
+- `goal_check_results.json`
+- `TEXT2IR_AUDIT_REPORT.md`
+- `text2ir_audit_report.json`
+- `TEST_RESULTS.md`
+- `IMPLEMENTATION_SUMMARY.md`
+- `TEXT2IR_GAP_RESOLUTION_MATRIX.md`
+- `PROMOTION_CANDIDATE_REVIEW.md`
+- `NEXT_REVIEW_REQUEST.md`
+
+補足:
+
+- CFR Part 11 / Part 211 は現行repo内に正式代表入力がないため再生成対象外。
+- Phase 7以降は今回のユーザー指定外のため、review_candidate / promotion_candidate は作成していない。

@@ -1,0 +1,919 @@
+[
+  {
+    "doc_id": "eu_gmp_vol4_chap1_20130131",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/eu_gmp_vol4_chap1_20130131",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "eu_gmp_vol4_chap1_20130131.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "eu_gmp_vol4_chap1_20130131.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "eu_gmp_vol4_chap1_20130131.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "eu_gmp_vol4_chap1_20130131.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "eu_gmp_vol4_chap1_20130131.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 72,
+      "kind_counts": {
+        "chapter": 1,
+        "document": 1,
+        "item": 50,
+        "paragraph": 13,
+        "preamble": 1,
+        "subitem": 6
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 71,
+        "non_root_nodes": 71,
+        "coverage": 1.0,
+        "total_spans": 263
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "eu_gmp_chap1_default_v2",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex11_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex11_20230825",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "pics_pe00917_annex11_20230825.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "pics_pe00917_annex11_20230825.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "pics_pe00917_annex11_20230825.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "pics_pe00917_annex11_20230825.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "pics_pe00917_annex11_20230825.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 42,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 3,
+        "paragraph": 20,
+        "section": 17
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 41,
+        "non_root_nodes": 41,
+        "coverage": 1.0,
+        "total_spans": 164
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "pics_annex11_default_v1",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex15_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex15_20230825",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "pics_pe00917_annex15_20230825.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "pics_pe00917_annex15_20230825.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "pics_pe00917_annex15_20230825.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "pics_pe00917_annex15_20230825.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "pics_pe00917_annex15_20230825.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 142,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 28,
+        "paragraph": 100,
+        "section": 12
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 141,
+        "non_root_nodes": 141,
+        "coverage": 1.0,
+        "total_spans": 573
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "pics_annex15_default_v1",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex1_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex1_20230825",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "pics_pe00917_annex1_20230825.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "pics_pe00917_annex1_20230825.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "pics_pe00917_annex1_20230825.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "pics_pe00917_annex1_20230825.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "pics_pe00917_annex1_20230825.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 552,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 224,
+        "paragraph": 294,
+        "section": 10,
+        "subitem": 22
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 551,
+        "non_root_nodes": 551,
+        "coverage": 1.0,
+        "total_spans": 2710
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "pics_annex1_default_v2",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex2a_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex2a_20230825",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "pics_pe00917_annex2a_20230825.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "pics_pe00917_annex2a_20230825.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "pics_pe00917_annex2a_20230825.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "pics_pe00917_annex2a_20230825.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "pics_pe00917_annex2a_20230825.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 204,
+      "kind_counts": {
+        "annex": 1,
+        "chapter": 2,
+        "document": 1,
+        "item": 74,
+        "paragraph": 102,
+        "section": 13,
+        "subitem": 11
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 203,
+        "non_root_nodes": 203,
+        "coverage": 1.0,
+        "total_spans": 1661
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "pics_annex2a_default_v1",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "pics_pe00917_annexes_20230825_refined_v3_extends_trace.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "pics_pe00917_annexes_20230825_refined_v3_extends_trace.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "pics_pe00917_annexes_20230825_refined_v3_extends_trace.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "pics_pe00917_annexes_20230825_refined_v3_extends_trace.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "pics_pe00917_annexes_20230825_refined_v3_extends_trace.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 1750,
+      "kind_counts": {
+        "annex": 19,
+        "chapter": 2,
+        "document": 1,
+        "item": 442,
+        "paragraph": 647,
+        "preamble": 1,
+        "section": 560,
+        "subitem": 78
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 1749,
+        "non_root_nodes": 1749,
+        "coverage": 1.0,
+        "total_spans": 9670
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": [
+            {
+              "key": "1",
+              "used_profile_id": "pics_annex1_default_v2"
+            },
+            {
+              "key": "2A",
+              "used_profile_id": "pics_annex2a_default_v1"
+            },
+            {
+              "key": "2B",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "3",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "4",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "5",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "6",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "7",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "8",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "9",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "10",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "11",
+              "used_profile_id": "pics_annex11_default_v1"
+            },
+            {
+              "key": "12",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "13",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "14",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "15",
+              "used_profile_id": "pics_annex15_default_v1"
+            },
+            {
+              "key": "16",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "17",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            },
+            {
+              "key": "19",
+              "used_profile_id": "pics_annex_generic_default_v1"
+            }
+          ]
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "pics_annexes_default_v3",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": true
+      }
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_part1_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_part1_20230825",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "pics_pe00917_part1_20230825.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "pics_pe00917_part1_20230825.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "pics_pe00917_part1_20230825.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "pics_pe00917_part1_20230825.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "pics_pe00917_part1_20230825.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 342,
+      "kind_counts": {
+        "chapter": 9,
+        "document": 1,
+        "item": 114,
+        "paragraph": 211,
+        "preamble": 1,
+        "subitem": 6
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 341,
+        "non_root_nodes": 341,
+        "coverage": 1.0,
+        "total_spans": 1851
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "pics_part1_default_v3",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_part2_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_part2_20230825",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "pics_pe00917_part2_20230825.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "pics_pe00917_part2_20230825.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "pics_pe00917_part2_20230825.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "pics_pe00917_part2_20230825.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "pics_pe00917_part2_20230825.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 591,
+      "kind_counts": {
+        "chapter": 20,
+        "document": 1,
+        "item": 25,
+        "paragraph": 353,
+        "preamble": 1,
+        "section": 87,
+        "subitem": 104
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 590,
+        "non_root_nodes": 590,
+        "coverage": 1.0,
+        "total_spans": 1916
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "pics_part2_default_v1",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  },
+  {
+    "doc_id": "who_lbm_3rd_2004_9241546506",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/who_lbm_3rd_2004_9241546506",
+    "passed": true,
+    "errors": [],
+    "warnings": [
+      {
+        "code": "meta_family_missing",
+        "message": "meta.doc.family is missing; older meta may omit it",
+        "path": "who_lbm_3rd_2004_9241546506.meta.yaml"
+      }
+    ],
+    "summary": {
+      "files": {
+        "ir": {
+          "path": "who_lbm_3rd_2004_9241546506.regdoc_ir.yaml",
+          "exists": true
+        },
+        "parser_profile": {
+          "path": "who_lbm_3rd_2004_9241546506.parser_profile.yaml",
+          "exists": true
+        },
+        "regdoc_profile": {
+          "path": "who_lbm_3rd_2004_9241546506.regdoc_profile.yaml",
+          "exists": true
+        },
+        "meta": {
+          "path": "who_lbm_3rd_2004_9241546506.meta.yaml",
+          "exists": true
+        },
+        "manifest": {
+          "path": "manifest.yaml",
+          "exists": true
+        }
+      },
+      "schema": "qai.regdoc_ir.v4",
+      "node_count": 829,
+      "kind_counts": {
+        "annex": 5,
+        "chapter": 22,
+        "document": 1,
+        "item": 754,
+        "part": 9,
+        "preamble": 1,
+        "subitem": 37
+      },
+      "source_spans": {
+        "nodes_with_source_spans": 828,
+        "non_root_nodes": 828,
+        "coverage": 1.0,
+        "total_spans": 5252
+      },
+      "verify_document": "pass",
+      "dq_gmp_checklist": {
+        "has_candidate_visibility": true,
+        "selectable_kinds": [
+          "subitem",
+          "item",
+          "paragraph",
+          "statement",
+          "table_row"
+        ],
+        "has_table_row_selectable": true,
+        "context_display_policy_count": 5,
+        "has_descendant_policy": true,
+        "has_ancestor_policy": true
+      },
+      "manifest": {
+        "schema": "qai.run_manifest.v1",
+        "has_input": true,
+        "has_command": true,
+        "has_outputs": true,
+        "has_profile_provenance": true,
+        "qualitycheck": {
+          "enabled": true,
+          "strict": true,
+          "warnings_count": 0,
+          "warnings": []
+        },
+        "refine": {
+          "kind": "annex",
+          "applied": []
+        }
+      },
+      "table_payload_nodes": 0,
+      "parser_profile": {
+        "id": "who_lbm_3rd_default_v4",
+        "schema": "qai.parser_profile.v1",
+        "extends": null,
+        "has_markers": false,
+        "has_refine_subtrees": false
+      }
+    }
+  }
+]
