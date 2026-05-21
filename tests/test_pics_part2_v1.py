@@ -37,7 +37,8 @@ def test_skip_toc_and_parse_intro() -> None:
     assert "PE 009-17 (Part II) - 1 - 25 August 2023" not in (chapters[0].get("text") or "")
 
     section_11 = next(n for n in nodes if n["kind"] == "section" and n.get("num") == "1.1")
-    assert "Objective" in (section_11.get("text") or "")
+    assert section_11.get("heading") == "Objective"
+    assert "Objective" not in ((section_11.get("text") or "").splitlines()[0] if section_11.get("text") else "")
     assert not any(
         "19.9 Documentation" in (n.get("heading") or "") for n in nodes if n.get("kind") == "chapter"
     )

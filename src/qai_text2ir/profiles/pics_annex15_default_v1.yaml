@@ -22,6 +22,9 @@ preprocess:
     max_next_line_len: 200
     max_merge_lines: 2
     max_blank_lookahead: 2
+    allow_single_word_caps: true
+    allow_next_regexes:
+      - '^[A-Z][A-Z0-9\s/&()\-]+\.\s*$'
   drop_repeated_structural_headers:
     enabled: true
     kinds: [annex]

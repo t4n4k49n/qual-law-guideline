@@ -53,10 +53,10 @@
 | Phase | 内容 | 状態 | PR |
 |---|---|---|---|
 | 0 | 現状確認・ベースライン固定 | 完了 | #132 |
-| 1 | GOAL検証ハーネス | 完了 | TBD |
-| 2 | 監査レポート生成 | 完了 | TBD |
-| 3 | 表・注記・子孫表示の実データ検証 | 完了 | TBD |
-| 4 | profile修正 | 未着手 | |
+| 1 | GOAL検証ハーネス | 完了 | #133 |
+| 2 | 監査レポート生成 | 完了 | #134 |
+| 3 | 表・注記・子孫表示の実データ検証 | 完了 | #135 |
+| 4 | profile修正 | 完了 | TBD |
 | 5 | 複合入口・特別部品設計 | 未着手 | |
 | 6 | 代表文書再生成・GOAL評価 | 未着手 | |
 
@@ -139,3 +139,37 @@
 
 - `15 passed`
 - `158 passed, 1 skipped`
+
+## Phase 4 実行内容
+
+追加・変更:
+
+- `src/qai_text2ir/text_parser.py`
+- `src/qai_text2ir/profiles/pics_annex15_default_v1.yaml`
+- `src/qai_text2ir/profiles/pics_annex11_default_v1.yaml`
+- `src/qai_text2ir/profiles/pics_annex2a_default_v1.yaml`
+- `src/qai_text2ir/profiles/pics_part2_default_v1.yaml`
+- `tests/fixtures/pics_annex15_heading_continuation_fixture.txt`
+- `tests/fixtures/pics_annex2a_part_hierarchy_fixture.txt`
+- `tests/test_pics_annex2a_profile.py`
+- `runs/20260522-053004_text2ir-goal-gap-longrun/PROFILE_FIX_REVIEW.md`
+- `runs/20260522-053004_text2ir-goal-gap-longrun/WHO_LBM_CANDIDATE_GRANULARITY_REVIEW.md`
+
+実装内容:
+
+- Annex 15の見出し継続をprofileで有効化できる汎用オプションを追加。
+- Annex 11とPart IIは `section` を `structural_kinds` に含め、見出しと本文を分離。
+- Annex 2AはB1等のsection markerを追加。
+- WHO LBM 3rdはitem粒度候補10件をレビューし、当面許容と記録。
+
+テスト:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_pics_annex15_profile.py tests\test_pics_annex11_profile.py tests\test_pics_annex2a_profile.py tests\test_pics_part2_v1.py
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+結果:
+
+- `7 passed`
+- `160 passed, 1 skipped`

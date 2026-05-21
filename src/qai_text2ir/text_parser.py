@@ -593,6 +593,12 @@ def _merge_structural_marker_heading_lines(
         max_merge_lines = 1
     if max_blank_lookahead < 0:
         max_blank_lookahead = 0
+    allow_single_word_caps = bool(continuation_cfg.get("allow_single_word_caps"))
+    allow_next_patterns = [
+        re.compile(str(p))
+        for p in (continuation_cfg.get("allow_next_regexes") or [])
+        if isinstance(p, str) and p.strip()
+    ]
     idx = 0
     while idx < len(merged) - 1:
         current = merged[idx]
@@ -656,7 +662,14 @@ def _merge_structural_marker_heading_lines(
                         break
             if _starts_with_any_marker(next_cleaned.lstrip(), compiled_markers):
                 break
-            if not _looks_like_heading_line(next_stripped):
+            force_next = any(pat.match(next_stripped) for pat in allow_next_patterns)
+            if (
+                allow_single_word_caps
+                and re.match(r"^[A-Z][A-Z0-9\s/&()\-]{1,80}\.?$", next_stripped)
+                and not re.search(r"\b(?:must|shall|should|may)\b", next_stripped, flags=re.IGNORECASE)
+            ):
+                force_next = True
+            if not force_next and not _looks_like_heading_line(next_stripped):
                 break
             should_merge = False
             if not remainder_for_rule:
@@ -664,6 +677,13 @@ def _merge_structural_marker_heading_lines(
                     should_merge = True
                 elif marker_kind in continuation_kinds and len(next_stripped) <= max_next_line_len:
                     should_merge = True
+            elif (
+                force_next
+                and continuation_enabled
+                and marker_kind in continuation_kinds
+                and len(next_stripped) <= max_next_line_len
+            ):
+                should_merge = True
             elif (
                 continuation_enabled
                 and marker_kind in continuation_kinds

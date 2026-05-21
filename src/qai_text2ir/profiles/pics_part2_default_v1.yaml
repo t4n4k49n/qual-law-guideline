@@ -9,7 +9,7 @@ applies_to:
 language: en
 source_label: "PIC/S"
 context_root_kind: chapter
-structural_kinds: [chapter]
+structural_kinds: [chapter, section]
 
 preprocess:
   skip_blocks:

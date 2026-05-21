@@ -9,7 +9,7 @@ applies_to:
 language: en
 source_label: "PIC/S"
 context_root_kind: annex
-structural_kinds: [annex]
+structural_kinds: [annex, section]
 
 preprocess:
   drop_line_regexes:
