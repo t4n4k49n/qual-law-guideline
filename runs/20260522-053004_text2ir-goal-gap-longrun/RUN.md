@@ -54,7 +54,7 @@
 |---|---|---|---|
 | 0 | 現状確認・ベースライン固定 | 完了 | #132 |
 | 1 | GOAL検証ハーネス | 完了 | TBD |
-| 2 | 監査レポート生成 | 未着手 | |
+| 2 | 監査レポート生成 | 完了 | TBD |
 | 3 | 表・注記・子孫表示の実データ検証 | 未着手 | |
 | 4 | profile修正 | 未着手 | |
 | 5 | 複合入口・特別部品設計 | 未着手 | |
@@ -86,3 +86,27 @@
 - `5 passed`
 - `13 passed`
 - `153 passed, 1 skipped`
+
+## Phase 2 実行内容
+
+追加:
+
+- `src/qai_text2ir/audit_report.py`
+- `tests/test_text2ir_audit_report.py`
+
+実装内容:
+
+- `out/<run_id>/<doc_id>/` 形式の複数bundleを横断し、doc_id、入力、parser profile、schema、4ファイル、manifest、strict、warnings、node数、kind別件数、source_spans coverage、table/note件数、profile provenance、refine適用数、GOALチェック結果を集計する監査レポート生成を追加。
+- `python -m qai_text2ir.audit_report --run-out-dir <dir> --format markdown|json|yaml --out <path>` で実行可能にした。
+
+テスト:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_text2ir_audit_report.py tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+結果:
+
+- `7 passed`
+- `155 passed, 1 skipped`
