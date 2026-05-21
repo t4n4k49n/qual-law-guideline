@@ -56,8 +56,8 @@
 | 1 | GOAL検証ハーネス | 完了 | #133 |
 | 2 | 監査レポート生成 | 完了 | #134 |
 | 3 | 表・注記・子孫表示の実データ検証 | 完了 | #135 |
-| 4 | profile修正 | 完了 | TBD |
-| 5 | 複合入口・特別部品設計 | 未着手 | |
+| 4 | profile修正 | 完了 | #136 |
+| 5 | 複合入口・特別部品設計 | 完了 | TBD |
 | 6 | 代表文書再生成・GOAL評価 | 未着手 | |
 
 ## Phase 1 実行内容
@@ -173,3 +173,15 @@
 
 - `7 passed`
 - `160 passed, 1 skipped`
+
+## Phase 5 実行内容
+
+追加:
+
+- `runs/20260522-053004_text2ir-goal-gap-longrun/EXTENSION_ENTRANCE_DESIGN.md`
+
+内容:
+
+- PIC/S PE 009-17 Annexes全体 refinedを、親入口と子profile群からなる複合入口として整理。
+- CFR Part 211 / Part 11は、現行repoに正式代表入力がないため再生成対象にせず、eCFR XML等の安定構造入力を優先する拡張入口として設計。
+- 複雑表・PDF崩れ表は共通parserへ過剰実装せず、Markdown table、単純固定幅表、複雑表の3段階に分けて境界を定義。
