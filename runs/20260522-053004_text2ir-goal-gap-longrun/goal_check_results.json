@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "eu_gmp_vol4_chap1_20130131",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\eu_gmp_vol4_chap1_20130131",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/eu_gmp_vol4_chap1_20130131",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -94,7 +94,7 @@
   },
   {
     "doc_id": "pics_pe00917_annex11_20230825",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\pics_pe00917_annex11_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex11_20230825",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -186,7 +186,7 @@
   },
   {
     "doc_id": "pics_pe00917_annex15_20230825",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\pics_pe00917_annex15_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex15_20230825",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -278,7 +278,7 @@
   },
   {
     "doc_id": "pics_pe00917_annex1_20230825",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\pics_pe00917_annex1_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex1_20230825",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -371,7 +371,7 @@
   },
   {
     "doc_id": "pics_pe00917_annex2a_20230825",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\pics_pe00917_annex2a_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annex2a_20230825",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -465,7 +465,7 @@
   },
   {
     "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_annexes_20230825_refined_v3_extends_trace",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -637,7 +637,7 @@
   },
   {
     "doc_id": "pics_pe00917_part1_20230825",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\pics_pe00917_part1_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_part1_20230825",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -730,7 +730,7 @@
   },
   {
     "doc_id": "pics_pe00917_part2_20230825",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\pics_pe00917_part2_20230825",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/pics_pe00917_part2_20230825",
     "passed": true,
     "errors": [],
     "warnings": [
@@ -824,7 +824,7 @@
   },
   {
     "doc_id": "who_lbm_3rd_2004_9241546506",
-    "bundle_dir": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\out\\20260522-053004_text2ir-goal-gap-longrun\\who_lbm_3rd_2004_9241546506",
+    "bundle_dir": "out/20260522-053004_text2ir-goal-gap-longrun/who_lbm_3rd_2004_9241546506",
     "passed": true,
     "errors": [],
     "warnings": [
