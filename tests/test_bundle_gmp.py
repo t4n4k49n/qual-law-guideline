@@ -78,6 +78,10 @@ def test_bundle_outputs(tmp_path: Path) -> None:
     assert ir["doc_id"] == doc_id
     assert ir["schema"] == "qai.regdoc_ir.v4"
     assert regdoc_profile["doc_id"] == doc_id
+    assert regdoc_profile["profiles"]["dq_gmp_checklist"]["candidate_visibility"] == {
+        "allow_rules": [],
+        "deny_rules": [],
+    }
     assert meta["doc"]["id"] == doc_id
     assert meta["bundle"]["ir"]["schema"] == "qai.regdoc_ir.v4"
     assert meta["bundle"]["parser_profile"]["id"] == "jp_law_default_v1"

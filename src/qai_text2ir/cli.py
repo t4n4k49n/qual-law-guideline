@@ -58,6 +58,10 @@ def _build_regdoc_profile(doc_id: str, context_root_kind: str = "section") -> Di
         "doc_id": doc_id,
         "profiles": {
             "dq_gmp_checklist": {
+                "candidate_visibility": {
+                    "allow_rules": [],
+                    "deny_rules": [],
+                },
                 "selectable_kinds": ["subitem", "item", "paragraph", "statement", "table_row"],
                 "grouping_policy": [
                     {"when_kind": "subitem", "group_under_kind": "item"},

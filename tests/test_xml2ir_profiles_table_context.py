@@ -15,6 +15,7 @@ def test_xml2ir_regdoc_profile_supports_table_row_and_note_descendants() -> None
     profile = build_regdoc_profile("jp_test_doc")
     checklist = profile["profiles"]["dq_gmp_checklist"]
 
+    assert checklist["candidate_visibility"] == {"allow_rules": [], "deny_rules": []}
     assert "table_row" in checklist["selectable_kinds"]
     assert {"when_kind": "table_row", "group_under_kind": "table"} in checklist["grouping_policy"]
 
@@ -24,4 +25,3 @@ def test_xml2ir_regdoc_profile_supports_table_row_and_note_descendants() -> None
     assert table_row_policy["include_descendants"] is True
     assert table_row_policy["include_descendants_of"] == "ancestors"
     assert table_row_policy["include_descendants_kinds"] == ["note"]
-

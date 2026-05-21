@@ -18,7 +18,8 @@ examples:
     source_mode: "フォルダ選択"
     law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
     profile:
-      mode: "original"
+      mode: "custom"
+      custom_yaml_path: "data/mock_ui/profiles/example2_candidate_visibility_default.yaml"
     display:
       dedup_mode_label: "共通先祖省略"
       egov_merge_article_p1: true
