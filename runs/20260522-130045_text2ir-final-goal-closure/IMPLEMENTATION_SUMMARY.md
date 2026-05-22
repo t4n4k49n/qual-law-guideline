@@ -102,3 +102,24 @@ EU GMP Chapter 1 を最初の promotion candidate として作成した。
 
 - EU GMP Chapter 1 は、表・注記の複雑性が低く、最初の正式昇格レビュー対象として妥当。
 - `data/normalized/` は変更していない。
+
+## Phase 9F
+
+CFR / 複合入口の設計をdocsへ分離した。
+
+変更点:
+
+- `docs/CFR_XML_ADAPTER_DESIGN.md` を追加。
+- `docs/TEXT2IR_COMPOSITE_ENTRY_DESIGN.md` を追加。
+- `NEXT_REVIEW_REQUEST.md` を追加。
+
+判断:
+
+- CFR Part 211はプレーンテキスト汎用parserではなく、eCFR XML adapterを優先する。
+- PIC/S Annexes refinedは複合入口review candidateとして維持し、最初のpromotion candidateにはしない。
+
+最終評価:
+
+- 代表9文書の基礎GOALとpromotion GOAL_CHECKは到達。
+- EU GMP Chapter 1 のpromotion candidateは作成済み。
+- 残る実装課題は、複雑表を安全に `table_row` 化する改善と、CFR XML adapterの別RUN実装。
