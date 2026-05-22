@@ -53,38 +53,3 @@ def test_candidate_visibility_allow_then_deny_uses_deny_precedence() -> None:
     assert visible["art1.p1"] is True
     assert visible["art1.p1.i1"] is False
     assert visible["annex1.p1"] is False
-
-
-def test_candidate_visibility_hides_reference_artifacts_even_if_kind_is_allowed() -> None:
-    regdoc_ir, regdoc_profile = _load_fixture()
-    first_child = regdoc_ir["content"]["children"][0]
-    first_child.setdefault("children", []).append(
-        {
-            "nid": "art1.p1.art1",
-            "kind": "preformatted",
-            "kind_raw": "form_artifact",
-            "num": None,
-            "ord": 1.5,
-            "heading": None,
-            "text": "Reference form artifact: hidden by default.",
-            "role": "informative",
-            "normativity": None,
-            "tags": ["form_artifact", "not_selectable"],
-            "refs": {"internal": [], "external": []},
-            "source_spans": [{"source_id": "fixture", "start_line": 1, "end_line": 3}],
-            "visibility": {
-                "default_review": "hidden",
-                "dq_gmp_checklist": "hidden",
-                "search_default": "hidden",
-            },
-            "children": [],
-        }
-    )
-
-    index = build_doc_index(regdoc_ir)
-    purpose = regdoc_profile["profiles"]["dq_gmp_checklist"]
-    purpose["candidate_visibility"] = {"allow_rules": [{"kind_in": ["paragraph", "preformatted"]}]}
-
-    visible = build_candidate_visibility_map(index, purpose)
-    assert visible["art1.p1"] is True
-    assert visible["art1.p1.art1"] is False

@@ -5,9 +5,6 @@ from typing import Dict, List
 
 import yaml
 
-from qai_mock_ui.candidate_visibility import build_candidate_visibility_map
-from qai_mock_ui.ir_model import build_doc_index
-from qai_text2ir.cli import _build_regdoc_profile
 from qai_text2ir.profile_loader import load_parser_profile
 from qai_text2ir.text_parser import parse_text_to_ir, qualitycheck_document
 from qai_xml2ir.verify import verify_document
@@ -163,60 +160,3 @@ def test_drop_repeated_running_headers_inside_chapter(tmp_path: Path) -> None:
     chapter_10_items = [n for n in nodes if n["kind"] == "item" and n.get("num") == "10"]
     assert len(chapters_10) == 1
     assert not chapter_10_items
-
-
-def test_table5_form_artifact_is_hidden_and_summarized(tmp_path: Path) -> None:
-    checkbox = "\uEC1E"
-    text = "\n".join(
-        [
-            "8. Safety checklist examples",
-            "5. Proper procedures for general laboratory safety are required. Examples of such tools are provided in Table 5.",
-            "",
-            "Table 5. Basic Laboratory - Biosafety Level 1: laboratory safety survey",
-            "Location ○ ○ ○ ○ ○",
-            "Date ○ ○ ○ ○ ○",
-            "CHECKED ITEM (ENTER DATE OF CHECK) YES NO N/A COMMENTS",
-            f"Information on sign accurate and current .............................................. {checkbox} {checkbox} {checkbox}",
-            f"Sign legible and not defaced ............. {checkbox} {checkbox} {checkbox}",
-            "",
-            "Laboratory biosecurity",
-            "Normal prose continues here.",
-        ]
-    )
-    input_path = tmp_path / "who_lbm_table5_fixture.txt"
-    input_path.write_text(text, encoding="utf-8", newline="\n")
-    parser_profile = _load_profile("src/qai_text2ir/profiles/who_lbm_3rd_default_v4.yaml")
-
-    ir_doc = parse_text_to_ir(
-        input_path=input_path,
-        doc_id="who_lbm_table5_fixture",
-        parser_profile=parser_profile,
-    )
-    ir_dict = ir_doc.to_dict()
-    verify_document(ir_dict)
-    nodes = _flatten(ir_dict["content"])
-    artifact_nodes = [
-        n for n in nodes
-        if n.get("kind_raw") == "form_artifact" or "form_artifact" in (n.get("tags") or [])
-    ]
-    visible_nodes = [
-        n for n in nodes
-        if not (n.get("kind_raw") == "form_artifact" or "not_selectable" in (n.get("tags") or []))
-    ]
-    visible_text = "\n".join((n.get("heading") or "") + "\n" + (n.get("text") or "") for n in visible_nodes)
-
-    assert artifact_nodes
-    assert "Proper procedures for general laboratory safety" in visible_text
-    assert "Laboratory biosecurity" in visible_text
-    assert "Information on sign accurate and current" not in visible_text
-    assert "Sign legible and not defaced" not in visible_text
-    assert "CHECKED ITEM" not in visible_text
-    assert f"{checkbox}" not in yaml.safe_dump(ir_dict, allow_unicode=True)
-    assert all(len(n.get("text") or "") <= 300 for n in artifact_nodes)
-    assert all("[ ] [ ] [ ]" not in (n.get("text") or "") for n in artifact_nodes)
-
-    index = build_doc_index(ir_dict)
-    purpose = _build_regdoc_profile("who_lbm_table5_fixture")["profiles"]["dq_gmp_checklist"]
-    visibility = build_candidate_visibility_map(index, purpose)
-    for artifact in artifact_nodes:
-        assert visibility[artifact["nid"]] is False

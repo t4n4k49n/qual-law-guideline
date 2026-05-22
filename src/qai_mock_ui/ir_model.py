@@ -12,10 +12,6 @@ class Node:
     ord: float
     heading: Optional[str]
     text: Optional[str]
-    kind_raw: Optional[str] = None
-    tags: List[str] = field(default_factory=list)
-    data: Dict[str, Any] = field(default_factory=dict)
-    visibility: Dict[str, Any] = field(default_factory=dict)
     children: List["Node"] = field(default_factory=list)
     parent_nid: Optional[str] = None
 
@@ -95,14 +91,10 @@ def _to_node(raw: Dict[str, Any], *, parent_nid: Optional[str], by_nid: Dict[str
     node = Node(
         nid=nid,
         kind=kind,
-        kind_raw=(str(raw.get("kind_raw")) if raw.get("kind_raw") is not None else None),
         num=(str(raw.get("num")) if raw.get("num") is not None else None),
         ord=ord_value,
         heading=raw.get("heading"),
         text=raw.get("text"),
-        tags=[str(tag) for tag in (raw.get("tags") or [])],
-        data=raw.get("data") if isinstance(raw.get("data"), dict) else {},
-        visibility=raw.get("visibility") if isinstance(raw.get("visibility"), dict) else {},
         children=[],
         parent_nid=parent_nid,
     )
