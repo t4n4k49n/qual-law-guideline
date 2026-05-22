@@ -213,4 +213,35 @@
 補足:
 
 - CFR Part 11 / Part 211 は現行repo内に正式代表入力がないため再生成対象外。
-- Phase 7以降は今回のユーザー指定外のため、review_candidate / promotion_candidate は作成していない。
+
+## Phase 7 実行内容
+
+Phase 6で再生成済みの出力から、正式昇格ではなく人間レビュー用の review candidate を作成した。`data/normalized/` へのコピーは行っていない。
+
+作成先:
+
+- `runs/20260522-053004_text2ir-goal-gap-longrun/review_candidate/eu_gmp_vol4_chap1_20130131/`
+- `runs/20260522-053004_text2ir-goal-gap-longrun/review_candidate/pics_pe00917_annex15_20230825/`
+- `runs/20260522-053004_text2ir-goal-gap-longrun/review_candidate/pics_pe00917_annex11_20230825/`
+
+各候補に含めたもの:
+
+- `<doc_id>.regdoc_ir.yaml`
+- `<doc_id>.parser_profile.yaml`
+- `<doc_id>.regdoc_profile.yaml`
+- `<doc_id>.meta.yaml`
+- `manifest.yaml`
+- `GOAL_CHECK_RESULT.md`
+- `SAMPLE_COMPARISON.md`
+- `QUALITYCHECK_RESULT.md`
+
+補足:
+
+- 複製元は `out/20260522-053004_text2ir-goal-gap-longrun/<doc_id>/`。
+- 候補化対象は、長期指示書の優先順に従い、EU GMP Chapter 1、PIC/S Annex 15、PIC/S Annex 11とした。
+- `data/normalized/` は未変更。
+
+確認:
+
+- review candidate 3文書すべて `python -m qai_text2ir.goal_check` 相当の確認でPASS。
+- 3文書とも warning は `meta_family_missing` のみ。

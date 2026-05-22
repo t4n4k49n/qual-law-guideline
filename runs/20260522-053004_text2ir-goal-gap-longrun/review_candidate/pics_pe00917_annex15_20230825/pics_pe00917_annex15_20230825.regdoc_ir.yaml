@@ -1,0 +1,3480 @@
+schema: qai.regdoc_ir.v4
+doc_id: pics_pe00917_annex15_20230825
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags: []
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: ann15
+    kind: annex
+    kind_raw: ANNEX
+    num: '15'
+    ord: 1
+    heading: QUALIFICATION AND VALIDATION
+    text: 'PRINCIPLE
+
+
+      This Annex describes the principles of qualification and validation which are applicable to the facilities, equipment, utilities and processes used for the manufacture of medicinal products and may also be used as supplementary optional guidance for active substances without introduction of additional requirements to Part II. It is a GMP requirement that manufacturers control the critical aspects of their particular operations through qualification and validation over the life cycle of the product and process. Any planned changes to the facilities, equipment, utilities and processes, which may affect the quality of the product, should be formally documented and the impact on the validated status or control strategy assessed. Computerised systems used for the manufacture of medicinal products should also be validated according to the requirements of Annex 11. The relevant concepts and guidance presented in ICH Q8, Q9, Q10 and Q11 should also be taken into account.
+
+
+      GENERAL A quality risk management approach should be applied throughout the lifecycle of a medicinal product. As part of a quality risk management system, decisions on the scope and extent of qualification and validation should be based on a justified and documented risk assessment of the facilities, equipment, utilities and processes. Retrospective validation is no longer considered an acceptable approach.
+
+
+      Data supporting qualification and/or validation studies which were obtained from sources outside of the manufacturers own programmes may be used provided that this approach has been justified and that there is adequate assurance that controls were in place throughout the acquisition of such data.'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: PIC/S
+      locator: line:1
+    - source_label: PIC/S
+      locator: line:6
+    - source_label: PIC/S
+      locator: line:8
+    - source_label: PIC/S
+      locator: line:9
+    - source_label: PIC/S
+      locator: line:10
+    - source_label: PIC/S
+      locator: line:11
+    - source_label: PIC/S
+      locator: line:12
+    - source_label: PIC/S
+      locator: line:13
+    - source_label: PIC/S
+      locator: line:14
+    - source_label: PIC/S
+      locator: line:15
+    - source_label: PIC/S
+      locator: line:16
+    - source_label: PIC/S
+      locator: line:17
+    - source_label: PIC/S
+      locator: line:18
+    - source_label: PIC/S
+      locator: line:19
+    - source_label: PIC/S
+      locator: line:20
+    - source_label: PIC/S
+      locator: line:22
+    - source_label: PIC/S
+      locator: line:23
+    - source_label: PIC/S
+      locator: line:24
+    - source_label: PIC/S
+      locator: line:25
+    - source_label: PIC/S
+      locator: line:26
+    - source_label: PIC/S
+      locator: line:27
+    - source_label: PIC/S
+      locator: line:28
+    - source_label: PIC/S
+      locator: line:30
+    - source_label: PIC/S
+      locator: line:31
+    - source_label: PIC/S
+      locator: line:32
+    - source_label: PIC/S
+      locator: line:33
+    children:
+    - nid: ann15.sec1
+      kind: section
+      kind_raw: '2.'
+      num: '1'
+      ord: 2
+      heading: ORGANISING AND PLANNING FOR QUALIFICATION AND VALIDATION
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:36
+      children:
+      - nid: ann15.sec1.p1_1
+        kind: paragraph
+        kind_raw: '1.1'
+        num: '1.1'
+        ord: 3
+        heading: null
+        text: All qualification and validation activities should be planned and take the life cycle of facilities, equipment, utilities, process and product into consideration.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:38
+        - source_label: PIC/S
+          locator: line:39
+        children: []
+      - nid: ann15.sec1.p1_2
+        kind: paragraph
+        kind_raw: '1.2'
+        num: '1.2'
+        ord: 4
+        heading: null
+        text: Qualification and validation activities should only be performed by suitably trained personnel who follow approved procedures.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:41
+        - source_label: PIC/S
+          locator: line:42
+        children: []
+      - nid: ann15.sec1.p1_3
+        kind: paragraph
+        kind_raw: '1.3'
+        num: '1.3'
+        ord: 5
+        heading: null
+        text: Qualification/validation personnel should report as defined in the pharmaceutical quality system although this may not necessarily be to a quality management or a quality assurance function. However, there should be appropriate quality oversight over the whole validation life cycle.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:44
+        - source_label: PIC/S
+          locator: line:45
+        - source_label: PIC/S
+          locator: line:46
+        - source_label: PIC/S
+          locator: line:47
+        children: []
+      - nid: ann15.sec1.p1_4
+        kind: paragraph
+        kind_raw: '1.4'
+        num: '1.4'
+        ord: 6
+        heading: null
+        text: "The key elements of the site qualification and validation programme should be\n             clearly defined and documented in a validation master plan (VMP) or equivalent\n             document."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:57
+        - source_label: PIC/S
+          locator: line:58
+        - source_label: PIC/S
+          locator: line:59
+        children: []
+      - nid: ann15.sec1.p1_5
+        kind: paragraph
+        kind_raw: '1.5'
+        num: '1.5'
+        ord: 7
+        heading: null
+        text: "The VMP or equivalent document should define the qualification/validation\n             system and include or reference information on at least the following:"
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:61
+        - source_label: PIC/S
+          locator: line:62
+        children:
+        - nid: ann15.sec1.p1_5.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 8
+          heading: null
+          text: Qualification and Validation policy;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:64
+          children: []
+        - nid: ann15.sec1.p1_5.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 9
+          heading: null
+          text: "The organisational structure including roles and responsibilities for\n               qualification and validation activities;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:65
+          - source_label: PIC/S
+            locator: line:66
+          children: []
+        - nid: ann15.sec1.p1_5.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 10
+          heading: null
+          text: "Summary of the facilities, equipment, systems, processes on site and the\n               qualification and validation status;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:67
+          - source_label: PIC/S
+            locator: line:68
+          children: []
+        - nid: ann15.sec1.p1_5.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 11
+          heading: null
+          text: Change control and deviation management for qualification and validation ;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:69
+          children: []
+        - nid: ann15.sec1.p1_5.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 12
+          heading: null
+          text: Guidance on developing acceptance criteria;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:70
+          children: []
+        - nid: ann15.sec1.p1_5.ivi
+          kind: item
+          kind_raw: vi.
+          num: vi
+          ord: 13
+          heading: null
+          text: References to existing documents;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:71
+          children: []
+        - nid: ann15.sec1.p1_5.ivii
+          kind: item
+          kind_raw: vii.
+          num: vii
+          ord: 14
+          heading: null
+          text: "The qualification and validation strategy, including requalification, where\n               applicable."
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:72
+          - source_label: PIC/S
+            locator: line:73
+          children: []
+      - nid: ann15.sec1.p1_6
+        kind: paragraph
+        kind_raw: '1.6'
+        num: '1.6'
+        ord: 15
+        heading: null
+        text: "For large and complex projects, planning takes on added importance and\n             separate validation plans may enhance clarity"
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:75
+        - source_label: PIC/S
+          locator: line:76
+        children: []
+      - nid: ann15.sec1.p1_7
+        kind: paragraph
+        kind_raw: '1.7'
+        num: '1.7'
+        ord: 16
+        heading: null
+        text: "A quality risk management approach should be used for qualification and\n             validation activities. In light of increased knowledge and understanding from any\n             changes during the project phase or during commercial production, the risk\n             assessments should be repeated, as required. The way in which risk\n             assessments are used to support qualification and validation activities should be\n             clearly documented."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:78
+        - source_label: PIC/S
+          locator: line:79
+        - source_label: PIC/S
+          locator: line:80
+        - source_label: PIC/S
+          locator: line:81
+        - source_label: PIC/S
+          locator: line:82
+        - source_label: PIC/S
+          locator: line:83
+        children: []
+      - nid: ann15.sec1.p1_8
+        kind: paragraph
+        kind_raw: '1.8'
+        num: '1.8'
+        ord: 17
+        heading: null
+        text: "Appropriate checks should be incorporated into qualification and validation work\n             to ensure the integrity of all data obtained."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:85
+        - source_label: PIC/S
+          locator: line:86
+        children: []
+    - nid: ann15.sec2
+      kind: section
+      kind_raw: '2.'
+      num: '2'
+      ord: 18
+      heading: DOCUMENTATION, INCLUDING VMP
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:89
+      children:
+      - nid: ann15.sec2.p2_1
+        kind: paragraph
+        kind_raw: '2.1'
+        num: '2.1'
+        ord: 19
+        heading: null
+        text: "Good documentation practices are important to support knowledge management\n             throughout the product lifecycle."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:90
+        - source_label: PIC/S
+          locator: line:91
+        children: []
+      - nid: ann15.sec2.p2_2
+        kind: paragraph
+        kind_raw: '2.2'
+        num: '2.2'
+        ord: 20
+        heading: null
+        text: "All documents generated during qualification and validation should be approved\n             and authorised by appropriate personnel as defined in the pharmaceutical quality\n             system."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:93
+        - source_label: PIC/S
+          locator: line:94
+        - source_label: PIC/S
+          locator: line:95
+        children: []
+      - nid: ann15.sec2.p2_3
+        kind: paragraph
+        kind_raw: '2.3'
+        num: '2.3'
+        ord: 21
+        heading: null
+        text: "The inter-relationship between documents in complex validation projects should\n             be clearly defined."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:97
+        - source_label: PIC/S
+          locator: line:98
+        children: []
+      - nid: ann15.sec2.p2_4
+        kind: paragraph
+        kind_raw: '2.4'
+        num: '2.4'
+        ord: 22
+        heading: null
+        text: "Validation protocols should be prepared which defines the critical systems,\n             attributes and parameters and the associated acceptance criteria."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:100
+        - source_label: PIC/S
+          locator: line:101
+        children: []
+      - nid: ann15.sec2.p2_5
+        kind: paragraph
+        kind_raw: '2.5'
+        num: '2.5'
+        ord: 23
+        heading: null
+        text: Qualification documents may be combined together, where appropriate, e.g. installation qualification (IQ) and operational qualification (OQ).
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:111
+        - source_label: PIC/S
+          locator: line:112
+        children: []
+      - nid: ann15.sec2.p2_6
+        kind: paragraph
+        kind_raw: '2.6'
+        num: '2.6'
+        ord: 24
+        heading: null
+        text: Where validation protocols and other documentation are supplied by a third party providing validation services, appropriate personnel at the manufacturing site should confirm suitability and compliance with internal procedures before approval. Vendor protocols may be supplemented by additional documentation/test protocols before use.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:114
+        - source_label: PIC/S
+          locator: line:115
+        - source_label: PIC/S
+          locator: line:116
+        - source_label: PIC/S
+          locator: line:117
+        - source_label: PIC/S
+          locator: line:118
+        children: []
+      - nid: ann15.sec2.p2_7
+        kind: paragraph
+        kind_raw: '2.7'
+        num: '2.7'
+        ord: 25
+        heading: null
+        text: Any significant changes to the approved protocol during execution, e.g. acceptance criteria, operating parameters etc., should be documented as a deviation and be scientifically justified.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:120
+        - source_label: PIC/S
+          locator: line:121
+        - source_label: PIC/S
+          locator: line:122
+        children: []
+      - nid: ann15.sec2.p2_8
+        kind: paragraph
+        kind_raw: '2.8'
+        num: '2.8'
+        ord: 26
+        heading: null
+        text: Results which fail to meet the pre-defined acceptance criteria should be recorded as a deviation, and be fully investigated according to local procedures. Any implications for the validation should be discussed in the report.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:124
+        - source_label: PIC/S
+          locator: line:125
+        - source_label: PIC/S
+          locator: line:126
+        children: []
+      - nid: ann15.sec2.p2_9
+        kind: paragraph
+        kind_raw: '2.9'
+        num: '2.9'
+        ord: 27
+        heading: null
+        text: The review and conclusions of the validation should be reported and the results obtained summarised against the acceptance criteria. Any subsequent changes to acceptance criteria should be scientifically justified and a final recommendation made as to the outcome of the validation.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:128
+        - source_label: PIC/S
+          locator: line:129
+        - source_label: PIC/S
+          locator: line:130
+        - source_label: PIC/S
+          locator: line:131
+        children: []
+      - nid: ann15.sec2.p2_10
+        kind: paragraph
+        kind_raw: '2.10'
+        num: '2.10'
+        ord: 28
+        heading: null
+        text: A formal release for the next stage in the qualification and validation process should be authorised by the relevant responsible personnel either as part of the validation report approval or as a separate summary document. Conditional approval to proceed to the next qualification stage can be given where certain acceptance criteria or deviations have not been fully addressed and there is a documented assessment that there is no significant impact on the next activity.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:133
+        - source_label: PIC/S
+          locator: line:134
+        - source_label: PIC/S
+          locator: line:135
+        - source_label: PIC/S
+          locator: line:136
+        - source_label: PIC/S
+          locator: line:137
+        - source_label: PIC/S
+          locator: line:138
+        children: []
+    - nid: ann15.sec3
+      kind: section
+      kind_raw: '2.'
+      num: '3'
+      ord: 29
+      heading: QUALIFICATION STAGES FOR EQUIPMENT, FACILITIES, UTILITIES AND SYSTEMS.
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:141
+      children:
+      - nid: ann15.sec3.p3_1
+        kind: paragraph
+        kind_raw: '3.1'
+        num: '3.1'
+        ord: 30
+        heading: null
+        text: 'Qualification activities should consider all stages from initial development of the user requirements specification through to the end of use of the equipment, facility, utility or system. The main stages and some suggested criteria (although this depends on individual project circumstances and may be different) which could be included in each stage are indicated below:
+
+
+          User requirements specification (URS)'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:143
+        - source_label: PIC/S
+          locator: line:144
+        - source_label: PIC/S
+          locator: line:145
+        - source_label: PIC/S
+          locator: line:146
+        - source_label: PIC/S
+          locator: line:147
+        - source_label: PIC/S
+          locator: line:149
+        children: []
+      - nid: ann15.sec3.p3_2
+        kind: paragraph
+        kind_raw: '3.2'
+        num: '3.2'
+        ord: 31
+        heading: null
+        text: 'The specification for equipment, facilities, utilities or systems should be defined in a URS and/or a functional specification. The essential elements of quality need to be built in at this stage and any GMP risks mitigated to an acceptable level. The URS should be a point of reference throughout the validation life cycle.
+
+
+          Design qualification (DQ)'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:151
+        - source_label: PIC/S
+          locator: line:152
+        - source_label: PIC/S
+          locator: line:153
+        - source_label: PIC/S
+          locator: line:154
+        - source_label: PIC/S
+          locator: line:156
+        children: []
+      - nid: ann15.sec3.p3_3
+        kind: paragraph
+        kind_raw: '3.3'
+        num: '3.3'
+        ord: 32
+        heading: null
+        text: 'The next element in the qualification of equipment, facilities, utilities, or systems is DQ where the compliance of the design with GMP should be demonstrated and documented. The requirements of the user requirements specification should be verified during the design qualification.
+
+
+          Factory acceptance testing (FAT) /Site acceptance testing (SAT)'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:158
+        - source_label: PIC/S
+          locator: line:159
+        - source_label: PIC/S
+          locator: line:160
+        - source_label: PIC/S
+          locator: line:161
+        - source_label: PIC/S
+          locator: line:171
+        children: []
+      - nid: ann15.sec3.p3_4
+        kind: paragraph
+        kind_raw: '3.4'
+        num: '3.4'
+        ord: 33
+        heading: null
+        text: "Equipment, especially if incorporating novel or complex technology, may be\n              evaluated, if applicable, at the vendor prior to delivery."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:173
+        - source_label: PIC/S
+          locator: line:174
+        children: []
+      - nid: ann15.sec3.p3_5
+        kind: paragraph
+        kind_raw: '3.5'
+        num: '3.5'
+        ord: 34
+        heading: null
+        text: "Prior to installation, equipment should be confirmed to comply with the URS/\n              functional specification at the vendor site, if applicable."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:176
+        - source_label: PIC/S
+          locator: line:177
+        children: []
+      - nid: ann15.sec3.p3_6
+        kind: paragraph
+        kind_raw: '3.6'
+        num: '3.6'
+        ord: 35
+        heading: null
+        text: "Where appropriate and justified, documentation review and some tests could be\n              performed at the FAT or other stages without the need to repeat on site at IQ/OQ\n              if it can be shown that the functionality is not affected by the transport and\n              installation."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:179
+        - source_label: PIC/S
+          locator: line:180
+        - source_label: PIC/S
+          locator: line:181
+        - source_label: PIC/S
+          locator: line:182
+        children: []
+      - nid: ann15.sec3.p3_7
+        kind: paragraph
+        kind_raw: '3.7'
+        num: '3.7'
+        ord: 36
+        heading: null
+        text: "FAT may be supplemented by the execution of a SAT following the receipt of\n              equipment at the manufacturing site.\nInstallation qualification (IQ)"
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:184
+        - source_label: PIC/S
+          locator: line:185
+        - source_label: PIC/S
+          locator: line:187
+        children: []
+      - nid: ann15.sec3.p3_8
+        kind: paragraph
+        kind_raw: '3.8'
+        num: '3.8'
+        ord: 37
+        heading: null
+        text: IQ should be performed on equipment, facilities, utilities, or systems.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:189
+        children: []
+      - nid: ann15.sec3.p3_9
+        kind: paragraph
+        kind_raw: '3.9'
+        num: '3.9'
+        ord: 38
+        heading: null
+        text: 'IQ should include, but is not limited to the following:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:191
+        children:
+        - nid: ann15.sec3.p3_9.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 39
+          heading: null
+          text: "Verification of the correct installation of components, instrumentation,\n                 equipment, pipe work and services against the engineering drawings and\n                 specifications;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:193
+          - source_label: PIC/S
+            locator: line:194
+          - source_label: PIC/S
+            locator: line:195
+          children: []
+        - nid: ann15.sec3.p3_9.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 40
+          heading: null
+          text: Verification of the correct installation against pre-defined criteria;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:196
+          children: []
+        - nid: ann15.sec3.p3_9.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 41
+          heading: null
+          text: "Collection and collation of supplier operating and working instructions and\n                 maintenance requirements;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:197
+          - source_label: PIC/S
+            locator: line:198
+          children: []
+        - nid: ann15.sec3.p3_9.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 42
+          heading: null
+          text: Calibration of instrumentation;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:199
+          children: []
+        - nid: ann15.sec3.p3_9.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 43
+          heading: null
+          text: 'Verification of the materials of construction.
+
+
+            Operational qualification (OQ)'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:200
+          - source_label: PIC/S
+            locator: line:202
+          children: []
+      - nid: ann15.sec3.p3_10
+        kind: paragraph
+        kind_raw: '3.10'
+        num: '3.10'
+        ord: 44
+        heading: null
+        text: "OQ normally follows IQ but depending on the complexity of the equipment, it may\n              be performed as a combined Installation/Operation Qualification (IOQ)."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:204
+        - source_label: PIC/S
+          locator: line:205
+        children: []
+      - nid: ann15.sec3.p3_11
+        kind: paragraph
+        kind_raw: '3.11'
+        num: '3.11'
+        ord: 45
+        heading: null
+        text: 'OQ should include but is not limited to the following:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:207
+        children:
+        - nid: ann15.sec3.p3_11.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 46
+          heading: null
+          text: "Tests that have been developed from the knowledge of processes, systems\n                 and equipment to ensure the system is operating as designed;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:209
+          - source_label: PIC/S
+            locator: line:210
+          children: []
+        - nid: ann15.sec3.p3_11.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 47
+          heading: null
+          text: "Tests to confirm upper and lower operating limits, and/or “worst case”\n                 conditions."
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:211
+          - source_label: PIC/S
+            locator: line:212
+          children: []
+      - nid: ann15.sec3.p3_12
+        kind: paragraph
+        kind_raw: '3.12'
+        num: '3.12'
+        ord: 48
+        heading: null
+        text: "The completion of a successful OQ should allow the finalisation of standard\n              operating and cleaning procedures, operator training and preventative\n              maintenance requirements.\nPerformance qualification (PQ)"
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:214
+        - source_label: PIC/S
+          locator: line:215
+        - source_label: PIC/S
+          locator: line:216
+        - source_label: PIC/S
+          locator: line:226
+        children: []
+      - nid: ann15.sec3.p3_13
+        kind: paragraph
+        kind_raw: '3.13'
+        num: '3.13'
+        ord: 49
+        heading: null
+        text: "PQ should normally follow the successful completion of IQ and OQ. However, it\n              may in some cases be appropriate to perform it in conjunction with OQ or Process\n              Validation."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:228
+        - source_label: PIC/S
+          locator: line:229
+        - source_label: PIC/S
+          locator: line:230
+        children: []
+      - nid: ann15.sec3.p3_14
+        kind: paragraph
+        kind_raw: '3.14'
+        num: '3.14'
+        ord: 50
+        heading: null
+        text: 'PQ should include, but is not limited to the following:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:232
+        children:
+        - nid: ann15.sec3.p3_14.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 51
+          heading: null
+          text: "Tests, using production materials, qualified substitutes or simulated product\n                proven to have equivalent behaviour under normal operating conditions with\n                worst case batch sizes. The frequency of sampling used to confirm process\n                control should be justified;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:234
+          - source_label: PIC/S
+            locator: line:235
+          - source_label: PIC/S
+            locator: line:236
+          - source_label: PIC/S
+            locator: line:237
+          children: []
+        - nid: ann15.sec3.p3_14.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 52
+          heading: null
+          text: "Tests should cover the operating range of the intended process, unless\n                documented evidence from the development phases confirming the\n                operational ranges is available."
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:238
+          - source_label: PIC/S
+            locator: line:239
+          - source_label: PIC/S
+            locator: line:240
+          children: []
+    - nid: ann15.sec4
+      kind: section
+      kind_raw: '2.'
+      num: '4'
+      ord: 53
+      heading: RE-QUALIFICATION
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:243
+      children:
+      - nid: ann15.sec4.p4_1
+        kind: paragraph
+        kind_raw: '4.1'
+        num: '4.1'
+        ord: 54
+        heading: null
+        text: "Equipment, facilities, utilities and systems should be evaluated at an appropriate\n              frequency to confirm that they remain in a state of control."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:244
+        - source_label: PIC/S
+          locator: line:245
+        children: []
+      - nid: ann15.sec4.p4_2
+        kind: paragraph
+        kind_raw: '4.2'
+        num: '4.2'
+        ord: 55
+        heading: null
+        text: "Where re-qualification is necessary and performed at a specific time period, the\n              period should be justified and the criteria for evaluation defined. Furthermore,\n              the possibility of small changes over time should be assessed."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:247
+        - source_label: PIC/S
+          locator: line:248
+        - source_label: PIC/S
+          locator: line:249
+        children: []
+    - nid: ann15.sec5
+      kind: section
+      kind_raw: '2.'
+      num: '5'
+      ord: 56
+      heading: PROCESS VALIDATION General
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:253
+      children:
+      - nid: ann15.sec5.p5_1
+        kind: paragraph
+        kind_raw: '5.1'
+        num: '5.1'
+        ord: 57
+        heading: null
+        text: "The requirements and principles outlined in this section are applicable to the\n              manufacture of all pharmaceutical dosage forms. They cover the initial validation\n              of new processes, subsequent validation of modified processes, site transfers\n              and ongoing process verification. It is implicit in this annex that a robust product\n              development process is in place to enable successful process validation."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:256
+        - source_label: PIC/S
+          locator: line:257
+        - source_label: PIC/S
+          locator: line:258
+        - source_label: PIC/S
+          locator: line:259
+        - source_label: PIC/S
+          locator: line:260
+        children: []
+      - nid: ann15.sec5.p5_2
+        kind: paragraph
+        kind_raw: '5.2'
+        num: '5.2'
+        ord: 58
+        heading: null
+        text: "Section 5 should be used in conjunction with relevant guidelines on Process\n              Validation1.\n5.2.1 A guideline on Process Validation is intended to provide guidance on the information and data to be provided in the regulatory submission only. However GMP requirements for process validation continue throughout the lifecycle of the process 5.2.2 This approach should be applied to link product and process development. It will ensure validation of the commercial manufacturing process and maintenance of the process in a state of control during routine commercial production.\n\n1             In the EU/EEA, see EMA/CHMP/CVMP/QWP/BWP/70278/2012"
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:262
+        - source_label: PIC/S
+          locator: line:263
+        - source_label: PIC/S
+          locator: line:265
+        - source_label: PIC/S
+          locator: line:266
+        - source_label: PIC/S
+          locator: line:267
+        - source_label: PIC/S
+          locator: line:268
+        - source_label: PIC/S
+          locator: line:269
+        - source_label: PIC/S
+          locator: line:270
+        - source_label: PIC/S
+          locator: line:271
+        - source_label: PIC/S
+          locator: line:276
+        children: []
+      - nid: ann15.sec5.p5_3
+        kind: paragraph
+        kind_raw: '5.3'
+        num: '5.3'
+        ord: 59
+        heading: null
+        text: Manufacturing processes may be developed using a traditional approach or a continuous verification approach. However, irrespective of the approach used, processes must be shown to be robust and ensure consistent product quality before any product is released to the market. Manufacturing processes using the traditional approach should undergo a prospective validation programme wherever possible prior to certification of the product. Retrospective validation is no longer an acceptable approach.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:284
+        - source_label: PIC/S
+          locator: line:285
+        - source_label: PIC/S
+          locator: line:286
+        - source_label: PIC/S
+          locator: line:287
+        - source_label: PIC/S
+          locator: line:288
+        - source_label: PIC/S
+          locator: line:289
+        - source_label: PIC/S
+          locator: line:290
+        children: []
+      - nid: ann15.sec5.p5_4
+        kind: paragraph
+        kind_raw: '5.4'
+        num: '5.4'
+        ord: 60
+        heading: null
+        text: Process validation of new products should cover all intended marketed strengths and sites of manufacture. Bracketing could be justified for new products based on extensive process knowledge from the development stage in conjunction with an appropriate ongoing verification programme.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:292
+        - source_label: PIC/S
+          locator: line:293
+        - source_label: PIC/S
+          locator: line:294
+        - source_label: PIC/S
+          locator: line:295
+        children: []
+      - nid: ann15.sec5.p5_5
+        kind: paragraph
+        kind_raw: '5.5'
+        num: '5.5'
+        ord: 61
+        heading: null
+        text: For the process validation of products, which are transferred from one site to another or within the same site, the number of validation batches could be reduced by the use of a bracketing approach. However, existing product knowledge, including the content of the previous validation, should be available. Different strengths, batch sizes and pack sizes/ container types may also use a bracketing approach if justified.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:297
+        - source_label: PIC/S
+          locator: line:298
+        - source_label: PIC/S
+          locator: line:299
+        - source_label: PIC/S
+          locator: line:300
+        - source_label: PIC/S
+          locator: line:301
+        - source_label: PIC/S
+          locator: line:302
+        children: []
+      - nid: ann15.sec5.p5_6
+        kind: paragraph
+        kind_raw: '5.6'
+        num: '5.6'
+        ord: 62
+        heading: null
+        text: For the site transfer of legacy products, the manufacturing process and controls must comply with the marketing authorisation and meet current standards for marketing authorisation for that product type. If necessary, variations to the marketing authorisation should be submitted.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:304
+        - source_label: PIC/S
+          locator: line:305
+        - source_label: PIC/S
+          locator: line:306
+        - source_label: PIC/S
+          locator: line:307
+        children: []
+      - nid: ann15.sec5.p5_7
+        kind: paragraph
+        kind_raw: '5.7'
+        num: '5.7'
+        ord: 63
+        heading: null
+        text: Process validation should establish whether all quality attributes and process parameters, which are considered important for ensuring the validated state and acceptable product quality, can be consistently met by the process. The basis by which process parameters and quality attributes were identified as being critical or non-critical should be clearly documented, taking into account the results of any risk assessment activities.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:309
+        - source_label: PIC/S
+          locator: line:310
+        - source_label: PIC/S
+          locator: line:311
+        - source_label: PIC/S
+          locator: line:312
+        - source_label: PIC/S
+          locator: line:313
+        - source_label: PIC/S
+          locator: line:314
+        children: []
+      - nid: ann15.sec5.p5_8
+        kind: paragraph
+        kind_raw: '5.8'
+        num: '5.8'
+        ord: 64
+        heading: null
+        text: Normally batches manufactured for process validation should be the same size as the intended commercial scale batches and the use of any other batch sizes should be justified or specified in other sections of the GMP guide.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:316
+        - source_label: PIC/S
+          locator: line:317
+        - source_label: PIC/S
+          locator: line:318
+        children: []
+      - nid: ann15.sec5.p5_9
+        kind: paragraph
+        kind_raw: '5.9'
+        num: '5.9'
+        ord: 65
+        heading: null
+        text: Equipment, facilities, utilities and systems used for process validation should be qualified. Test methods should be validated for their intended use.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:320
+        - source_label: PIC/S
+          locator: line:321
+        children: []
+      - nid: ann15.sec5.p5_10
+        kind: paragraph
+        kind_raw: '5.10'
+        num: '5.10'
+        ord: 66
+        heading: null
+        text: For all products irrespective of the approach used, process knowledge from development studies or other sources should be accessible to the manufacturing site, unless otherwise justified, and be the basis for validation activities.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:323
+        - source_label: PIC/S
+          locator: line:324
+        - source_label: PIC/S
+          locator: line:325
+        children: []
+      - nid: ann15.sec5.p5_11
+        kind: paragraph
+        kind_raw: '5.11'
+        num: '5.11'
+        ord: 67
+        heading: null
+        text: For process validation batches, production, development, or other site transfer personnel may be involved. Batches should only be manufactured by trained personnel in accordance with GMP using approved documentation. It is expected that production personnel are involved in the manufacture of validation batches to facilitate product understanding.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:327
+        - source_label: PIC/S
+          locator: line:328
+        - source_label: PIC/S
+          locator: line:329
+        - source_label: PIC/S
+          locator: line:330
+        - source_label: PIC/S
+          locator: line:331
+        children: []
+      - nid: ann15.sec5.p5_12
+        kind: paragraph
+        kind_raw: '5.12'
+        num: '5.12'
+        ord: 68
+        heading: null
+        text: The suppliers of critical starting and packaging materials should be qualified prior to the manufacture of validation batches; otherwise a justification based on the application of quality risk management principles should be documented.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:333
+        - source_label: PIC/S
+          locator: line:334
+        - source_label: PIC/S
+          locator: line:335
+        children: []
+      - nid: ann15.sec5.p5_13
+        kind: paragraph
+        kind_raw: '5.13'
+        num: '5.13'
+        ord: 69
+        heading: null
+        text: It is especially important that the underlying process knowledge for the design space justification (if used) and for development of any mathematical models (if used) to confirm a process control strategy should be available.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:344
+        - source_label: PIC/S
+          locator: line:345
+        - source_label: PIC/S
+          locator: line:346
+        children: []
+      - nid: ann15.sec5.p5_14
+        kind: paragraph
+        kind_raw: '5.14'
+        num: '5.14'
+        ord: 70
+        heading: null
+        text: Where validation batches are released to the market this should be pre-defined. The conditions under which they are produced should fully comply with GMP, with the validation acceptance criteria, with any continuous process verification criteria (if used) and with the marketing authorisation or clinical trial authorisation.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:348
+        - source_label: PIC/S
+          locator: line:349
+        - source_label: PIC/S
+          locator: line:350
+        - source_label: PIC/S
+          locator: line:351
+        children: []
+      - nid: ann15.sec5.p5_15
+        kind: paragraph
+        kind_raw: '5.15'
+        num: '5.15'
+        ord: 71
+        heading: null
+        text: 'For the process validation of investigational medicinal products (IMP), please refer to Annex 13.
+
+
+          Concurrent validation'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:353
+        - source_label: PIC/S
+          locator: line:354
+        - source_label: PIC/S
+          locator: line:356
+        children: []
+      - nid: ann15.sec5.p5_16
+        kind: paragraph
+        kind_raw: '5.16'
+        num: '5.16'
+        ord: 72
+        heading: null
+        text: In exceptional circumstances, where there is a strong benefit-risk ratio for the patient, it may be acceptable not to complete a validation programme before routine production starts and concurrent validation could be used. However, the decision to carry out concurrent validation must be justified, documented in the VMP for visibility and approved by authorised personnel.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:357
+        - source_label: PIC/S
+          locator: line:358
+        - source_label: PIC/S
+          locator: line:359
+        - source_label: PIC/S
+          locator: line:360
+        - source_label: PIC/S
+          locator: line:361
+        children: []
+      - nid: ann15.sec5.p5_17
+        kind: paragraph
+        kind_raw: '5.17'
+        num: '5.17'
+        ord: 73
+        heading: null
+        text: 'Where a concurrent validation approach has been adopted, there should be sufficient data to support a conclusion that any given batch of product is uniform and meets the defined acceptance criteria. The results and conclusion should be formally documented and available to the Authorised Person prior to certification of the batch.
+
+
+          Traditional process validation'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:363
+        - source_label: PIC/S
+          locator: line:364
+        - source_label: PIC/S
+          locator: line:365
+        - source_label: PIC/S
+          locator: line:366
+        - source_label: PIC/S
+          locator: line:367
+        - source_label: PIC/S
+          locator: line:369
+        children: []
+      - nid: ann15.sec5.p5_18
+        kind: paragraph
+        kind_raw: '5.18'
+        num: '5.18'
+        ord: 74
+        heading: null
+        text: In the traditional approach, a number of batches of the finished product are manufactured under routine conditions to confirm reproducibility.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:370
+        - source_label: PIC/S
+          locator: line:371
+        children: []
+      - nid: ann15.sec5.p5_19
+        kind: paragraph
+        kind_raw: '5.19'
+        num: '5.19'
+        ord: 75
+        heading: null
+        text: The number of batches manufactured and the number of samples taken should be based on quality risk management principles, allow the normal range of variation and trends to be established and provide sufficient data for evaluation. Each manufacturer must determine and justify the number of batches necessary to demonstrate a high level of assurance that the process is capable of consistently delivering quality product.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:373
+        - source_label: PIC/S
+          locator: line:374
+        - source_label: PIC/S
+          locator: line:375
+        - source_label: PIC/S
+          locator: line:376
+        - source_label: PIC/S
+          locator: line:377
+        - source_label: PIC/S
+          locator: line:378
+        children: []
+      - nid: ann15.sec5.p5_20
+        kind: paragraph
+        kind_raw: '5.20'
+        num: '5.20'
+        ord: 76
+        heading: null
+        text: Without prejudice to 5.19, it is generally considered acceptable that a minimum of three consecutive batches manufactured under routine conditions could constitute a validation of the process. An alternative number of batches may be justified taking into account whether standard methods of manufacture are used and whether similar products or processes are already used at the site. An initial validation exercise with three batches may need to be supplemented with further data obtained from subsequent batches as part of an on-going process verification exercise.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:380
+        - source_label: PIC/S
+          locator: line:381
+        - source_label: PIC/S
+          locator: line:382
+        - source_label: PIC/S
+          locator: line:383
+        - source_label: PIC/S
+          locator: line:384
+        - source_label: PIC/S
+          locator: line:385
+        - source_label: PIC/S
+          locator: line:386
+        - source_label: PIC/S
+          locator: line:387
+        children: []
+      - nid: ann15.sec5.p5_21
+        kind: paragraph
+        kind_raw: '5.21'
+        num: '5.21'
+        ord: 77
+        heading: null
+        text: A process validation protocol should be prepared which defines the critical process parameters (CPP), critical quality attributes (CQA) and the associated acceptance criteria which should be based on development data or documented process knowledge.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:389
+        - source_label: PIC/S
+          locator: line:390
+        - source_label: PIC/S
+          locator: line:391
+        - source_label: PIC/S
+          locator: line:392
+        children: []
+      - nid: ann15.sec5.p5_22
+        kind: paragraph
+        kind_raw: '5.22'
+        num: '5.22'
+        ord: 78
+        heading: null
+        text: 'Process validation protocols should include, but are not limited to the following:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:394
+        children:
+        - nid: ann15.sec5.p5_22.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 79
+          heading: null
+          text: "A short description of the process and a reference to the respective Master\n                Batch Record;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:404
+          - source_label: PIC/S
+            locator: line:405
+          children: []
+        - nid: ann15.sec5.p5_22.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 80
+          heading: null
+          text: Functions and responsibilities;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:406
+          children: []
+        - nid: ann15.sec5.p5_22.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 81
+          heading: null
+          text: Summary of the CQAs to be investigated;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:407
+          children: []
+        - nid: ann15.sec5.p5_22.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 82
+          heading: null
+          text: Summary of CPPs and their associated limits;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:408
+          children: []
+        - nid: ann15.sec5.p5_22.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 83
+          heading: null
+          text: "Summary of other (non-critical) attributes and parameters which will be\n                investigated or monitored during the validation activity, and the reasons for\n                their inclusion;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:409
+          - source_label: PIC/S
+            locator: line:410
+          - source_label: PIC/S
+            locator: line:411
+          children: []
+        - nid: ann15.sec5.p5_22.ivi
+          kind: item
+          kind_raw: vi.
+          num: vi
+          ord: 84
+          heading: null
+          text: "List    of  the     equipment/facilities to    be    used    (including\n                measuring/monitoring/recording equipment) together with the calibration\n                status;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:412
+          - source_label: PIC/S
+            locator: line:413
+          - source_label: PIC/S
+            locator: line:414
+          children: []
+        - nid: ann15.sec5.p5_22.ivii
+          kind: item
+          kind_raw: vii.
+          num: vii
+          ord: 85
+          heading: null
+          text: List of analytical methods and method validation, as appropriate;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:415
+          children: []
+        - nid: ann15.sec5.p5_22.iviii
+          kind: item
+          kind_raw: viii.
+          num: viii
+          ord: 86
+          heading: null
+          text: "Proposed in-process controls with acceptance criteria and the reason(s) why\n                each in-process control is selected;"
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:416
+          - source_label: PIC/S
+            locator: line:417
+          children: []
+        - nid: ann15.sec5.p5_22.iix
+          kind: item
+          kind_raw: ix.
+          num: ix
+          ord: 87
+          heading: null
+          text: Additional testing to be carried out, with acceptance criteria;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:418
+          children: []
+        - nid: ann15.sec5.p5_22.ix
+          kind: item
+          kind_raw: x.
+          num: x
+          ord: 88
+          heading: null
+          text: Sampling plan and the rationale behind it;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:419
+          children: []
+        - nid: ann15.sec5.p5_22.ixi
+          kind: item
+          kind_raw: xi.
+          num: xi
+          ord: 89
+          heading: null
+          text: Methods for recording and evaluating results;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:420
+          children: []
+        - nid: ann15.sec5.p5_22.ixii
+          kind: item
+          kind_raw: xii.
+          num: xii
+          ord: 90
+          heading: null
+          text: 'Process for release and certification of batches (if applicable).
+
+
+            Continuous process verification'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: PIC/S
+            locator: line:421
+          - source_label: PIC/S
+            locator: line:424
+          children: []
+      - nid: ann15.sec5.p5_23
+        kind: paragraph
+        kind_raw: '5.23'
+        num: '5.23'
+        ord: 91
+        heading: null
+        text: "For products developed by a quality by design approach, where it has been\n              scientifically established during development that the established control strategy\n              provides a high degree of assurance of product quality, then continuous process\n              verification can be used as an alternative to traditional process validation."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:426
+        - source_label: PIC/S
+          locator: line:427
+        - source_label: PIC/S
+          locator: line:428
+        - source_label: PIC/S
+          locator: line:429
+        children: []
+      - nid: ann15.sec5.p5_24
+        kind: paragraph
+        kind_raw: '5.24'
+        num: '5.24'
+        ord: 92
+        heading: null
+        text: "The method by which the process will be verified should be defined. There should\n              be a science based control strategy for the required attributes for incoming\n              materials, critical quality attributes and critical process parameters to confirm\n              product realisation. This should also include regular evaluation of the control\n              strategy. Process Analytical Technology and multivariate statistical process\n              control may be used as tools. Each manufacturer must determine and justify the\n              number of batches necessary to demonstrate a high level of assurance that the\n              process is capable of consistently delivering quality product."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:431
+        - source_label: PIC/S
+          locator: line:432
+        - source_label: PIC/S
+          locator: line:433
+        - source_label: PIC/S
+          locator: line:434
+        - source_label: PIC/S
+          locator: line:435
+        - source_label: PIC/S
+          locator: line:436
+        - source_label: PIC/S
+          locator: line:437
+        - source_label: PIC/S
+          locator: line:438
+        children: []
+      - nid: ann15.sec5.p5_25
+        kind: paragraph
+        kind_raw: '5.25'
+        num: '5.25'
+        ord: 93
+        heading: null
+        text: 'The general principles laid down in 5.1 – 5.14 above still apply.
+
+
+          Hybrid approach'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:440
+        - source_label: PIC/S
+          locator: line:443
+        children: []
+      - nid: ann15.sec5.p5_26
+        kind: paragraph
+        kind_raw: '5.26'
+        num: '5.26'
+        ord: 94
+        heading: null
+        text: "A hybrid of the traditional approach and continuous process verification could be\n              used where there is a substantial amount of product and process knowledge and\n              understanding which has been gained from manufacturing experience and\n              historical batch data."
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:445
+        - source_label: PIC/S
+          locator: line:446
+        - source_label: PIC/S
+          locator: line:447
+        - source_label: PIC/S
+          locator: line:448
+        children: []
+      - nid: ann15.sec5.p5_27
+        kind: paragraph
+        kind_raw: '5.27'
+        num: '5.27'
+        ord: 95
+        heading: null
+        text: 'This approach may also be used for any validation activities after changes or during ongoing process verification even though the product was initially validated using a traditional approach.
+
+
+          Ongoing Process Verification during Lifecycle'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:458
+        - source_label: PIC/S
+          locator: line:459
+        - source_label: PIC/S
+          locator: line:460
+        - source_label: PIC/S
+          locator: line:462
+        children: []
+      - nid: ann15.sec5.p5_28
+        kind: paragraph
+        kind_raw: '5.28'
+        num: '5.28'
+        ord: 96
+        heading: null
+        text: Paragraphs 5.28-5.32 are applicable to all three approaches to process validation mentioned above, i.e. traditional, continuous and hybrid.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:464
+        - source_label: PIC/S
+          locator: line:465
+        children: []
+      - nid: ann15.sec5.p5_29
+        kind: paragraph
+        kind_raw: '5.29'
+        num: '5.29'
+        ord: 97
+        heading: null
+        text: Manufacturers should monitor product quality to ensure that a state of control is maintained throughout the product lifecycle with the relevant process trends evaluated.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:467
+        - source_label: PIC/S
+          locator: line:468
+        - source_label: PIC/S
+          locator: line:469
+        children: []
+      - nid: ann15.sec5.p5_30
+        kind: paragraph
+        kind_raw: '5.30'
+        num: '5.30'
+        ord: 98
+        heading: null
+        text: The extent and frequency of ongoing process verification should be reviewed periodically. At any point throughout the product lifecycle, it may be appropriate to modify the requirements taking into account the current level of process understanding and process performance.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:471
+        - source_label: PIC/S
+          locator: line:472
+        - source_label: PIC/S
+          locator: line:473
+        - source_label: PIC/S
+          locator: line:474
+        children: []
+      - nid: ann15.sec5.p5_31
+        kind: paragraph
+        kind_raw: '5.31'
+        num: '5.31'
+        ord: 99
+        heading: null
+        text: Ongoing process verification should be conducted under an approved protocol or equivalent documents and a corresponding report should be prepared to document the results obtained. Statistical tools should be used, where appropriate, to support any conclusions with regard to the variability and capability of a given process and ensure a state of control.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:476
+        - source_label: PIC/S
+          locator: line:477
+        - source_label: PIC/S
+          locator: line:478
+        - source_label: PIC/S
+          locator: line:479
+        - source_label: PIC/S
+          locator: line:480
+        children: []
+      - nid: ann15.sec5.p5_32
+        kind: paragraph
+        kind_raw: '5.32'
+        num: '5.32'
+        ord: 100
+        heading: null
+        text: Ongoing process verification should be used throughout the product lifecycle to support the validated status of the product as documented in the Product Quality Review. Incremental changes over time should also be considered and the need for any additional actions, e.g. enhanced sampling, should be assessed.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:482
+        - source_label: PIC/S
+          locator: line:483
+        - source_label: PIC/S
+          locator: line:484
+        - source_label: PIC/S
+          locator: line:485
+        children: []
+    - nid: ann15.sec6
+      kind: section
+      kind_raw: '2.'
+      num: '6'
+      ord: 101
+      heading: VERIFICATION OF TRANSPORTATION
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:488
+      children:
+      - nid: ann15.sec6.p6_1
+        kind: paragraph
+        kind_raw: '6.1'
+        num: '6.1'
+        ord: 102
+        heading: null
+        text: Finished medicinal products, investigational medicinal products, bulk product and samples should be transported from manufacturing sites in accordance with the conditions defined in the marketing authorisation, the approved label, product specification file or as justified by the manufacturer.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:489
+        - source_label: PIC/S
+          locator: line:490
+        - source_label: PIC/S
+          locator: line:491
+        - source_label: PIC/S
+          locator: line:492
+        children: []
+      - nid: ann15.sec6.p6_2
+        kind: paragraph
+        kind_raw: '6.2'
+        num: '6.2'
+        ord: 103
+        heading: null
+        text: It is recognised that verification of transportation may be challenging due to the variable factors involved however, transportation routes should be clearly defined. Seasonal and other variations should also be considered during verification of transport
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:494
+        - source_label: PIC/S
+          locator: line:495
+        - source_label: PIC/S
+          locator: line:496
+        - source_label: PIC/S
+          locator: line:497
+        children: []
+      - nid: ann15.sec6.p6_3
+        kind: paragraph
+        kind_raw: '6.3'
+        num: '6.3'
+        ord: 104
+        heading: null
+        text: A risk assessment should be performed to consider the impact of variables in the transportation process other than those conditions which are continuously controlled or monitored, e.g. delays during transportation, failure of monitoring devices, topping up liquid nitrogen, product susceptibility and any other relevant factors.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:499
+        - source_label: PIC/S
+          locator: line:500
+        - source_label: PIC/S
+          locator: line:501
+        - source_label: PIC/S
+          locator: line:502
+        - source_label: PIC/S
+          locator: line:503
+        children: []
+      - nid: ann15.sec6.p6_4
+        kind: paragraph
+        kind_raw: '6.4'
+        num: '6.4'
+        ord: 105
+        heading: null
+        text: Due to the variable conditions expected during transportation, continuous monitoring and recording of any critical environmental conditions to which the product may be subjected should be performed, unless otherwise justified.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:505
+        - source_label: PIC/S
+          locator: line:506
+        - source_label: PIC/S
+          locator: line:507
+        children: []
+    - nid: ann15.sec7
+      kind: section
+      kind_raw: '2.'
+      num: '7'
+      ord: 106
+      heading: VALIDATION OF PACKAGING
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:518
+      children:
+      - nid: ann15.sec7.p7_1
+        kind: paragraph
+        kind_raw: '7.1'
+        num: '7.1'
+        ord: 107
+        heading: null
+        text: Variation in equipment processing parameters especially during primary packaging may have a significant impact on the integrity and correct functioning of the pack, e.g. blister strips, sachets and sterile components; therefore primary and secondary packaging equipment for finished and bulk products should be qualified.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:519
+        - source_label: PIC/S
+          locator: line:520
+        - source_label: PIC/S
+          locator: line:521
+        - source_label: PIC/S
+          locator: line:522
+        - source_label: PIC/S
+          locator: line:523
+        children: []
+      - nid: ann15.sec7.p7_2
+        kind: paragraph
+        kind_raw: '7.2'
+        num: '7.2'
+        ord: 108
+        heading: null
+        text: Qualification of the equipment used for primary packing should be carried out at the minimum and maximum operating ranges defined for the critical process parameters such as temperature, machine speed and sealing pressure or for any other factors.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:525
+        - source_label: PIC/S
+          locator: line:526
+        - source_label: PIC/S
+          locator: line:527
+        - source_label: PIC/S
+          locator: line:528
+        children: []
+    - nid: ann15.sec8
+      kind: section
+      kind_raw: '2.'
+      num: '8'
+      ord: 109
+      heading: QUALIFICATION OF UTILITIES
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:531
+      children:
+      - nid: ann15.sec8.p8_1
+        kind: paragraph
+        kind_raw: '8.1'
+        num: '8.1'
+        ord: 110
+        heading: null
+        text: The quality of steam, water, air, other gases etc. should be confirmed following installation using the qualification steps described in section 3 above.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:532
+        - source_label: PIC/S
+          locator: line:533
+        children: []
+      - nid: ann15.sec8.p8_2
+        kind: paragraph
+        kind_raw: '8.2'
+        num: '8.2'
+        ord: 111
+        heading: null
+        text: The period and extent of qualification should reflect any seasonal variations, if applicable, and the intended use of the utility.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:535
+        - source_label: PIC/S
+          locator: line:536
+        children: []
+      - nid: ann15.sec8.p8_3
+        kind: paragraph
+        kind_raw: '8.3'
+        num: '8.3'
+        ord: 112
+        heading: null
+        text: A risk assessment should be carried out where there may be direct contact with the product, e.g. heating, ventilation and air-conditioning (HVAC) systems, or indirect contact such as through heat exchangers to mitigate any risks of failure.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:538
+        - source_label: PIC/S
+          locator: line:539
+        - source_label: PIC/S
+          locator: line:540
+        children: []
+    - nid: ann15.sec9
+      kind: section
+      kind_raw: '2.'
+      num: '9'
+      ord: 113
+      heading: VALIDATION OF TEST METHODS
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:543
+      children:
+      - nid: ann15.sec9.p9_1
+        kind: paragraph
+        kind_raw: '9.1'
+        num: '9.1'
+        ord: 114
+        heading: null
+        text: All analytical test methods used in qualification, validation or cleaning exercises should be validated with an appropriate detection and quantification limit, where necessary, as defined in Chapter 6 of the PIC/S GMP guide Part I.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:544
+        - source_label: PIC/S
+          locator: line:545
+        - source_label: PIC/S
+          locator: line:546
+        children: []
+      - nid: ann15.sec9.p9_2
+        kind: paragraph
+        kind_raw: '9.2'
+        num: '9.2'
+        ord: 115
+        heading: null
+        text: Where microbial testing of product is carried out, the method should be validated to confirm that the product does not influence the recovery of microorganisms.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:548
+        - source_label: PIC/S
+          locator: line:549
+        children: []
+      - nid: ann15.sec9.p9_3
+        kind: paragraph
+        kind_raw: '9.3'
+        num: '9.3'
+        ord: 116
+        heading: null
+        text: Where microbial testing of surfaces in clean rooms is carried out, validation should be performed on the test method to confirm that sanitising agents do not influence the recovery of microorganisms.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:551
+        - source_label: PIC/S
+          locator: line:552
+        - source_label: PIC/S
+          locator: line:553
+        children: []
+    - nid: ann15.sec10
+      kind: section
+      kind_raw: '2.'
+      num: '10'
+      ord: 117
+      heading: CLEANING VALIDATION
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:556
+      children:
+      - nid: ann15.sec10.p10_1
+        kind: paragraph
+        kind_raw: '10.1'
+        num: '10.1'
+        ord: 118
+        heading: null
+        text: Cleaning validation should be performed in order to confirm the effectiveness of any cleaning procedure for all product contact equipment. Simulating agents may be used with appropriate scientific justification. Where similar types of equipment are grouped together, a justification of the specific equipment selected for cleaning validation is expected.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:557
+        - source_label: PIC/S
+          locator: line:558
+        - source_label: PIC/S
+          locator: line:559
+        - source_label: PIC/S
+          locator: line:560
+        - source_label: PIC/S
+          locator: line:561
+        children: []
+      - nid: ann15.sec10.p10_2
+        kind: paragraph
+        kind_raw: '10.2'
+        num: '10.2'
+        ord: 119
+        heading: null
+        text: 'A visual check for cleanliness is an important part of the acceptance criteria for cleaning validation. It is not generally acceptable for this criterion alone to be
+
+
+          used. Repeated cleaning and retesting until acceptable residue results are obtained is not considered an acceptable approach.'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:563
+        - source_label: PIC/S
+          locator: line:564
+        - source_label: PIC/S
+          locator: line:572
+        - source_label: PIC/S
+          locator: line:573
+        children: []
+      - nid: ann15.sec10.p10_3
+        kind: paragraph
+        kind_raw: '10.3'
+        num: '10.3'
+        ord: 120
+        heading: null
+        text: It is recognised that a cleaning validation programme may take some time to complete and validation with verification after each batch may be required for some products e.g. investigational medicinal products. There should be sufficient data from the verification to support a conclusion that the equipment is clean and available for further use.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:575
+        - source_label: PIC/S
+          locator: line:576
+        - source_label: PIC/S
+          locator: line:577
+        - source_label: PIC/S
+          locator: line:578
+        - source_label: PIC/S
+          locator: line:579
+        children: []
+      - nid: ann15.sec10.p10_4
+        kind: paragraph
+        kind_raw: '10.4'
+        num: '10.4'
+        ord: 121
+        heading: null
+        text: Validation should consider the level of automation in the cleaning process. Where an automatic process is used, the specified normal operating range of the utilities and equipment should be validated.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:581
+        - source_label: PIC/S
+          locator: line:582
+        - source_label: PIC/S
+          locator: line:583
+        children: []
+      - nid: ann15.sec10.p10_5
+        kind: paragraph
+        kind_raw: '10.5'
+        num: '10.5'
+        ord: 122
+        heading: null
+        text: For all cleaning processes an assessment should be performed to determine the variable factors which influence cleaning effectiveness and performance, e.g. operators, the level of detail in procedures such as rinsing times etc. If variable factors have been identified, the worst case situations should be used as the basis for cleaning validation studies.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:585
+        - source_label: PIC/S
+          locator: line:586
+        - source_label: PIC/S
+          locator: line:587
+        - source_label: PIC/S
+          locator: line:588
+        - source_label: PIC/S
+          locator: line:589
+        children: []
+      - nid: ann15.sec10.p10_6
+        kind: paragraph
+        kind_raw: '10.6'
+        num: '10.6'
+        ord: 123
+        heading: null
+        text: 'Limits for the carryover of product residues should be based on a toxicological evaluation2. The justification for the selected limits should be documented in a risk assessment which includes all the supporting references. Limits should be established for the removal of any cleaning agents used. Acceptance criteria should consider the potential cumulative effect of multiple items of equipment in the process equipment train.
+
+
+          10.6.1 Therapeutic macromolecules and peptides are known to degrade and denature when exposed to pH extremes and/or heat, and may become pharmacologically inactive. A toxicological evaluation may therefore not be applicable in these circumstances. 10.6.2 If it is not feasible to test for specific product residues, other representative parameters may be selected, e.g. total organic carbon (TOC) and conductivity.'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:591
+        - source_label: PIC/S
+          locator: line:592
+        - source_label: PIC/S
+          locator: line:593
+        - source_label: PIC/S
+          locator: line:594
+        - source_label: PIC/S
+          locator: line:595
+        - source_label: PIC/S
+          locator: line:596
+        - source_label: PIC/S
+          locator: line:598
+        - source_label: PIC/S
+          locator: line:599
+        - source_label: PIC/S
+          locator: line:600
+        - source_label: PIC/S
+          locator: line:601
+        - source_label: PIC/S
+          locator: line:602
+        - source_label: PIC/S
+          locator: line:603
+        children: []
+      - nid: ann15.sec10.p10_7
+        kind: paragraph
+        kind_raw: '10.7'
+        num: '10.7'
+        ord: 124
+        heading: null
+        text: The risk presented by microbial and endotoxin contamination should be considered during the development of cleaning validation protocols.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:605
+        - source_label: PIC/S
+          locator: line:606
+        children: []
+      - nid: ann15.sec10.p10_8
+        kind: paragraph
+        kind_raw: '10.8'
+        num: '10.8'
+        ord: 125
+        heading: null
+        text: The influence of the time between manufacture and cleaning and the time between cleaning and use should be taken into account to define dirty and clean hold times for the cleaning process.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:608
+        - source_label: PIC/S
+          locator: line:609
+        - source_label: PIC/S
+          locator: line:610
+        children: []
+      - nid: ann15.sec10.p10_9
+        kind: paragraph
+        kind_raw: '10.9'
+        num: '10.9'
+        ord: 126
+        heading: null
+        text: Where campaign manufacture is carried out, the impact on the ease of cleaning at the end of the campaign should be considered and the maximum length of a campaign (in time and/or number of batches) should be the basis for cleaning validation exercises.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:612
+        - source_label: PIC/S
+          locator: line:613
+        - source_label: PIC/S
+          locator: line:614
+        - source_label: PIC/S
+          locator: line:615
+        children: []
+      - nid: ann15.sec10.p10_10
+        kind: paragraph
+        kind_raw: '10.10'
+        num: '10.10'
+        ord: 127
+        heading: null
+        text: 'Where a worst case product approach is used as a cleaning validation model, a scientific rationale should be provided for the selection of the worst case product and the impact of new products to the site assessed. Criteria for determining the worst case may include solubility, cleanability, toxicity, and potency.
+
+
+          2         In the EU/EEA, this is the EMA Guideline on setting health based exposure limits for use in risk identification in the manufacture of different medicinal products in shared facilities'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:617
+        - source_label: PIC/S
+          locator: line:618
+        - source_label: PIC/S
+          locator: line:619
+        - source_label: PIC/S
+          locator: line:620
+        - source_label: PIC/S
+          locator: line:623
+        - source_label: PIC/S
+          locator: line:624
+        children: []
+      - nid: ann15.sec10.p10_11
+        kind: paragraph
+        kind_raw: '10.11'
+        num: '10.11'
+        ord: 128
+        heading: null
+        text: Cleaning validation protocols should specify or reference the locations to be sampled, the rationale for the selection of these locations and define the acceptance criteria.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:634
+        - source_label: PIC/S
+          locator: line:635
+        - source_label: PIC/S
+          locator: line:636
+        children: []
+      - nid: ann15.sec10.p10_12
+        kind: paragraph
+        kind_raw: '10.12'
+        num: '10.12'
+        ord: 129
+        heading: null
+        text: Sampling should be carried out by swabbing and/or rinsing or by other means depending on the production equipment. The sampling materials and method should not influence the result. Recovery should be shown to be possible from all product contact materials sampled in the equipment with all the sampling methods used.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:638
+        - source_label: PIC/S
+          locator: line:639
+        - source_label: PIC/S
+          locator: line:640
+        - source_label: PIC/S
+          locator: line:641
+        - source_label: PIC/S
+          locator: line:642
+        children: []
+      - nid: ann15.sec10.p10_13
+        kind: paragraph
+        kind_raw: '10.13'
+        num: '10.13'
+        ord: 130
+        heading: null
+        text: The cleaning procedure should be performed an appropriate number of times based on a risk assessment and meet the acceptance criteria in order to prove that the cleaning method is validated.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:644
+        - source_label: PIC/S
+          locator: line:645
+        - source_label: PIC/S
+          locator: line:646
+        children: []
+      - nid: ann15.sec10.p10_14
+        kind: paragraph
+        kind_raw: '10.14'
+        num: '10.14'
+        ord: 131
+        heading: null
+        text: Where a cleaning process is ineffective or is not appropriate for some equipment, dedicated equipment or other appropriate measures should be used for each product as indicated in chapters 3 and 5 of the PIC/S GMP Guide.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:648
+        - source_label: PIC/S
+          locator: line:649
+        - source_label: PIC/S
+          locator: line:650
+        children: []
+      - nid: ann15.sec10.p10_15
+        kind: paragraph
+        kind_raw: '10.15'
+        num: '10.15'
+        ord: 132
+        heading: null
+        text: Where manual cleaning of equipment is performed, it is especially important that the effectiveness of the manual process should be confirmed at a justified frequency.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:652
+        - source_label: PIC/S
+          locator: line:653
+        - source_label: PIC/S
+          locator: line:654
+        children: []
+    - nid: ann15.sec11
+      kind: section
+      kind_raw: '2.'
+      num: '11'
+      ord: 133
+      heading: CHANGE CONTROL
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:658
+      children:
+      - nid: ann15.sec11.p11_1
+        kind: paragraph
+        kind_raw: '11.1'
+        num: '11.1'
+        ord: 134
+        heading: null
+        text: The control of change is an important part of knowledge management and should be handled within the pharmaceutical quality system.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:659
+        - source_label: PIC/S
+          locator: line:660
+        children: []
+      - nid: ann15.sec11.p11_2
+        kind: paragraph
+        kind_raw: '11.2'
+        num: '11.2'
+        ord: 135
+        heading: null
+        text: Written procedures should be in place to describe the actions to be taken if a planned change is proposed to a starting material, product component, process, equipment, premises, product range, method of production or testing, batch size, design space or any other change during the lifecycle that may affect product quality or reproducibility.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:662
+        - source_label: PIC/S
+          locator: line:663
+        - source_label: PIC/S
+          locator: line:664
+        - source_label: PIC/S
+          locator: line:665
+        - source_label: PIC/S
+          locator: line:666
+        children: []
+      - nid: ann15.sec11.p11_3
+        kind: paragraph
+        kind_raw: '11.3'
+        num: '11.3'
+        ord: 136
+        heading: null
+        text: Where design space is used, the impact on changes to the design space should be considered against the registered design space within the marketing authorisation and the need for any regulatory actions assessed.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:668
+        - source_label: PIC/S
+          locator: line:669
+        - source_label: PIC/S
+          locator: line:670
+        children: []
+      - nid: ann15.sec11.p11_4
+        kind: paragraph
+        kind_raw: '11.4'
+        num: '11.4'
+        ord: 137
+        heading: null
+        text: Quality risk management should be used to evaluate planned changes to determine the potential impact on product quality, pharmaceutical quality systems, documentation, validation, regulatory status, calibration, maintenance and on any other system to avoid unintended consequences and to plan for any necessary process validation, verification or requalification efforts.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:672
+        - source_label: PIC/S
+          locator: line:673
+        - source_label: PIC/S
+          locator: line:674
+        - source_label: PIC/S
+          locator: line:675
+        - source_label: PIC/S
+          locator: line:676
+        children: []
+      - nid: ann15.sec11.p11_5
+        kind: paragraph
+        kind_raw: '11.5'
+        num: '11.5'
+        ord: 138
+        heading: null
+        text: Changes should be authorised and approved by the responsible persons or relevant functional personnel in accordance with the pharmaceutical quality system.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:678
+        - source_label: PIC/S
+          locator: line:679
+        - source_label: PIC/S
+          locator: line:680
+        children: []
+      - nid: ann15.sec11.p11_6
+        kind: paragraph
+        kind_raw: '11.6'
+        num: '11.6'
+        ord: 139
+        heading: null
+        text: Supporting data, e.g. copies of documents, should be reviewed to confirm that the impact of the change has been demonstrated prior to final approval.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:682
+        - source_label: PIC/S
+          locator: line:683
+        children: []
+      - nid: ann15.sec11.p11_7
+        kind: paragraph
+        kind_raw: '11.7'
+        num: '11.7'
+        ord: 140
+        heading: null
+        text: Following implementation, and where appropriate, an evaluation of the effectiveness of change should be carried out to confirm that the change has been successful.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:693
+        - source_label: PIC/S
+          locator: line:694
+        - source_label: PIC/S
+          locator: line:695
+        children: []
+    - nid: ann15.sec12
+      kind: section
+      kind_raw: '2.'
+      num: '12'
+      ord: 141
+      heading: GLOSSARY
+      text: 'Definitions of terms relating to qualification and validation which are not given in other sections of the current PIC/S Guide to GMP are given below.
+
+
+        Bracketing approach: A science and risk based validation approach such that only batches on the extremes of certain predetermined and justified design factors, e.g. strength, batch size, and/or pack size, are tested during process validation. The design assumes that validation of any intermediate levels is represented by validation of the extremes. Where a range of strengths is to be validated, bracketing could be applicable if the strengths are identical or very closely related in composition, e.g. for a tablet range made with different compression weights of a similar basic granulation, or a capsule range made by filling different plug fill weights of the same basic composition into different size capsule shells. Bracketing can be applied to different container sizes or different fills in the same container closure system. Change Control A formal system by which qualified representatives of appropriate disciplines review proposed or actual changes that might affect the validated status of facilities, systems, equipment or processes. The intent is to determine the need for action to ensure and document that the system is maintained in a validated state. Cleaning Validation Cleaning validation is documented evidence that an approved cleaning procedure will reproducibly remove the previous product or cleaning agents used in the equipment below the scientifically set maximum allowable carryover level. Cleaning verification The gathering of evidence through chemical analysis after each batch/campaign to show that the residues of the previous product or cleaning agents have been reduced below the scientifically set maximum allowable carryover level.
+
+
+        Concurrent Validation Validation carried out in exceptional circumstances, justified on the basis of significant patient benefit, where the validation protocol is executed concurrently with commercialisation of the validation batches. Continuous process verification An alternative approach to process validation in which manufacturing process performance is continuously monitored and evaluated. (ICH Q8)
+
+
+        Control Strategy: A planned set of controls, derived from current product and process understanding that ensures process performance and product quality. The controls can include parameters and attributes related to drug substance and drug product materials and components, facility and equipment operating conditions, in-process controls, finished product specifications, and the associated methods and frequency of monitoring and control. (ICH Q10) Critical process parameter (CPP) A process parameter whose variability has an impact on a critical quality attribute and therefore should be monitored or controlled to ensure the process produces the desired quality. (ICH Q8) Critical quality attribute (CQA) A physical, chemical, biological or microbiological property or characteristic that should be within an approved limit, range or distribution to ensure the desired product quality. (ICH Q8) Design qualification (DQ) The documented verification that the proposed design of the facilities, systems and equipment is suitable for the intended purpose. Design Space The multidimensional combination and interaction of input variables, e.g. material attributes, and process parameters that have been demonstrated to provide assurance of quality. Working within the design space is not considered as a change. Movement out of the design space is considered to be a change and would normally initiate a regulatory post approval change process. Design space is proposed by the applicant and is subject to regulatory assessment and approval. (ICH Q8) Installation Qualification (IQ) The documented verification that the facilities, systems and equipment, as installed or modified, comply with the approved design and the manufacturer’s recommendations. Knowledge management A systematic approach to acquire, analyse, store and disseminate information. (ICH Q10) Lifecycle All phases in the life of a product, equipment or facility from initial development or use through to discontinuation of use. Ongoing Process Verification (also known as continued process verification) Documented evidence that the process remains in a state of control during commercial manufacture. Operational Qualification (OQ) The documented verification that the facilities, systems and equipment, as installed or modified, perform as intended throughout the anticipated operating ranges.
+
+
+        Performance Qualification (PQ) The documented verification that systems and equipment can perform effectively and reproducibly based on the approved process method and product specification. Process Validation The documented evidence that the process, operated within established parameters, can perform effectively and reproducibly to produce a medicinal product meeting its predetermined specifications and quality attributes. Product realisation Achievement of a product with the quality attributes to meet the needs of patients, health care professionals and regulatory authorities and internal customer requirements. (ICH Q10) Prospective Validation Validation carried out before routine production of products intended for sale. Quality by design A systematic approach that begins with predefined objectives and emphasises product and process understanding and process control, based on sound science and quality risk management. Quality risk management A systematic process for the assessment, control, communication and review of risks to quality across the lifecycle. (ICH Q9) Simulated agents A material that closely approximates the physical and, where practical, the chemical characteristics, e.g. viscosity, particle size, pH etc., of the product under validation. State of control A condition in which the set of controls consistently provides assurance of acceptable process performance and product quality. Traditional approach A product development approach where set points and operating ranges for process parameters are defined to ensure reproducibility. User requirements Specification (URS) The set of owner, user, and engineering requirements necessary and sufficient to create a feasible design meeting the intended purpose of the system. Worst Case A condition or set of conditions encompassing upper and lower processing limits and circumstances, within standard operating procedures, which pose the greatest chance of product or process failure when compared to ideal conditions. Such conditions do not necessarily induce product or process failure.'
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:698
+      - source_label: PIC/S
+        locator: line:699
+      - source_label: PIC/S
+        locator: line:700
+      - source_label: PIC/S
+        locator: line:702
+      - source_label: PIC/S
+        locator: line:703
+      - source_label: PIC/S
+        locator: line:704
+      - source_label: PIC/S
+        locator: line:705
+      - source_label: PIC/S
+        locator: line:706
+      - source_label: PIC/S
+        locator: line:707
+      - source_label: PIC/S
+        locator: line:708
+      - source_label: PIC/S
+        locator: line:709
+      - source_label: PIC/S
+        locator: line:710
+      - source_label: PIC/S
+        locator: line:711
+      - source_label: PIC/S
+        locator: line:712
+      - source_label: PIC/S
+        locator: line:713
+      - source_label: PIC/S
+        locator: line:714
+      - source_label: PIC/S
+        locator: line:715
+      - source_label: PIC/S
+        locator: line:716
+      - source_label: PIC/S
+        locator: line:717
+      - source_label: PIC/S
+        locator: line:718
+      - source_label: PIC/S
+        locator: line:719
+      - source_label: PIC/S
+        locator: line:720
+      - source_label: PIC/S
+        locator: line:721
+      - source_label: PIC/S
+        locator: line:722
+      - source_label: PIC/S
+        locator: line:723
+      - source_label: PIC/S
+        locator: line:724
+      - source_label: PIC/S
+        locator: line:725
+      - source_label: PIC/S
+        locator: line:726
+      - source_label: PIC/S
+        locator: line:727
+      - source_label: PIC/S
+        locator: line:729
+      - source_label: PIC/S
+        locator: line:730
+      - source_label: PIC/S
+        locator: line:731
+      - source_label: PIC/S
+        locator: line:732
+      - source_label: PIC/S
+        locator: line:733
+      - source_label: PIC/S
+        locator: line:734
+      - source_label: PIC/S
+        locator: line:735
+      - source_label: PIC/S
+        locator: line:745
+      - source_label: PIC/S
+        locator: line:746
+      - source_label: PIC/S
+        locator: line:747
+      - source_label: PIC/S
+        locator: line:748
+      - source_label: PIC/S
+        locator: line:749
+      - source_label: PIC/S
+        locator: line:750
+      - source_label: PIC/S
+        locator: line:751
+      - source_label: PIC/S
+        locator: line:752
+      - source_label: PIC/S
+        locator: line:753
+      - source_label: PIC/S
+        locator: line:754
+      - source_label: PIC/S
+        locator: line:755
+      - source_label: PIC/S
+        locator: line:756
+      - source_label: PIC/S
+        locator: line:757
+      - source_label: PIC/S
+        locator: line:758
+      - source_label: PIC/S
+        locator: line:759
+      - source_label: PIC/S
+        locator: line:760
+      - source_label: PIC/S
+        locator: line:761
+      - source_label: PIC/S
+        locator: line:762
+      - source_label: PIC/S
+        locator: line:763
+      - source_label: PIC/S
+        locator: line:764
+      - source_label: PIC/S
+        locator: line:765
+      - source_label: PIC/S
+        locator: line:766
+      - source_label: PIC/S
+        locator: line:767
+      - source_label: PIC/S
+        locator: line:768
+      - source_label: PIC/S
+        locator: line:769
+      - source_label: PIC/S
+        locator: line:770
+      - source_label: PIC/S
+        locator: line:771
+      - source_label: PIC/S
+        locator: line:772
+      - source_label: PIC/S
+        locator: line:773
+      - source_label: PIC/S
+        locator: line:774
+      - source_label: PIC/S
+        locator: line:775
+      - source_label: PIC/S
+        locator: line:776
+      - source_label: PIC/S
+        locator: line:777
+      - source_label: PIC/S
+        locator: line:778
+      - source_label: PIC/S
+        locator: line:779
+      - source_label: PIC/S
+        locator: line:780
+      - source_label: PIC/S
+        locator: line:781
+      - source_label: PIC/S
+        locator: line:782
+      - source_label: PIC/S
+        locator: line:783
+      - source_label: PIC/S
+        locator: line:784
+      - source_label: PIC/S
+        locator: line:785
+      - source_label: PIC/S
+        locator: line:786
+      - source_label: PIC/S
+        locator: line:787
+      - source_label: PIC/S
+        locator: line:796
+      - source_label: PIC/S
+        locator: line:797
+      - source_label: PIC/S
+        locator: line:798
+      - source_label: PIC/S
+        locator: line:799
+      - source_label: PIC/S
+        locator: line:800
+      - source_label: PIC/S
+        locator: line:801
+      - source_label: PIC/S
+        locator: line:802
+      - source_label: PIC/S
+        locator: line:803
+      - source_label: PIC/S
+        locator: line:804
+      - source_label: PIC/S
+        locator: line:805
+      - source_label: PIC/S
+        locator: line:806
+      - source_label: PIC/S
+        locator: line:807
+      - source_label: PIC/S
+        locator: line:808
+      - source_label: PIC/S
+        locator: line:809
+      - source_label: PIC/S
+        locator: line:810
+      - source_label: PIC/S
+        locator: line:811
+      - source_label: PIC/S
+        locator: line:812
+      - source_label: PIC/S
+        locator: line:813
+      - source_label: PIC/S
+        locator: line:814
+      - source_label: PIC/S
+        locator: line:815
+      - source_label: PIC/S
+        locator: line:816
+      - source_label: PIC/S
+        locator: line:817
+      - source_label: PIC/S
+        locator: line:818
+      - source_label: PIC/S
+        locator: line:819
+      - source_label: PIC/S
+        locator: line:820
+      - source_label: PIC/S
+        locator: line:821
+      - source_label: PIC/S
+        locator: line:822
+      - source_label: PIC/S
+        locator: line:823
+      - source_label: PIC/S
+        locator: line:824
+      - source_label: PIC/S
+        locator: line:825
+      - source_label: PIC/S
+        locator: line:826
+      - source_label: PIC/S
+        locator: line:827
+      - source_label: PIC/S
+        locator: line:828
+      - source_label: PIC/S
+        locator: line:829
+      - source_label: PIC/S
+        locator: line:830
+      - source_label: PIC/S
+        locator: line:831
+      - source_label: PIC/S
+        locator: line:832
+      - source_label: PIC/S
+        locator: line:833
+      - source_label: PIC/S
+        locator: line:834
+      children: []
+index:
+  display_name_by_nid:
+    root: document
+    ann15: QUALIFICATION AND VALIDATION
+    ann15.sec1: ORGANISING AND PLANNING FOR QUALIFICATION AND VALIDATION
+    ann15.sec1.p1_1: paragraph 1.1
+    ann15.sec1.p1_2: paragraph 1.2
+    ann15.sec1.p1_3: paragraph 1.3
+    ann15.sec1.p1_4: paragraph 1.4
+    ann15.sec1.p1_5: paragraph 1.5
+    ann15.sec1.p1_5.ii: item i
+    ann15.sec1.p1_5.iii: item ii
+    ann15.sec1.p1_5.iiii: item iii
+    ann15.sec1.p1_5.iiv: item iv
+    ann15.sec1.p1_5.iv: item v
+    ann15.sec1.p1_5.ivi: item vi
+    ann15.sec1.p1_5.ivii: item vii
+    ann15.sec1.p1_6: paragraph 1.6
+    ann15.sec1.p1_7: paragraph 1.7
+    ann15.sec1.p1_8: paragraph 1.8
+    ann15.sec2: DOCUMENTATION, INCLUDING VMP
+    ann15.sec2.p2_1: paragraph 2.1
+    ann15.sec2.p2_2: paragraph 2.2
+    ann15.sec2.p2_3: paragraph 2.3
+    ann15.sec2.p2_4: paragraph 2.4
+    ann15.sec2.p2_5: paragraph 2.5
+    ann15.sec2.p2_6: paragraph 2.6
+    ann15.sec2.p2_7: paragraph 2.7
+    ann15.sec2.p2_8: paragraph 2.8
+    ann15.sec2.p2_9: paragraph 2.9
+    ann15.sec2.p2_10: paragraph 2.10
+    ann15.sec3: QUALIFICATION STAGES FOR EQUIPMENT, FACILITIES, UTILITIES AND SYSTEMS.
+    ann15.sec3.p3_1: paragraph 3.1
+    ann15.sec3.p3_2: paragraph 3.2
+    ann15.sec3.p3_3: paragraph 3.3
+    ann15.sec3.p3_4: paragraph 3.4
+    ann15.sec3.p3_5: paragraph 3.5
+    ann15.sec3.p3_6: paragraph 3.6
+    ann15.sec3.p3_7: paragraph 3.7
+    ann15.sec3.p3_8: paragraph 3.8
+    ann15.sec3.p3_9: paragraph 3.9
+    ann15.sec3.p3_9.ii: item i
+    ann15.sec3.p3_9.iii: item ii
+    ann15.sec3.p3_9.iiii: item iii
+    ann15.sec3.p3_9.iiv: item iv
+    ann15.sec3.p3_9.iv: item v
+    ann15.sec3.p3_10: paragraph 3.10
+    ann15.sec3.p3_11: paragraph 3.11
+    ann15.sec3.p3_11.ii: item i
+    ann15.sec3.p3_11.iii: item ii
+    ann15.sec3.p3_12: paragraph 3.12
+    ann15.sec3.p3_13: paragraph 3.13
+    ann15.sec3.p3_14: paragraph 3.14
+    ann15.sec3.p3_14.ii: item i
+    ann15.sec3.p3_14.iii: item ii
+    ann15.sec4: RE-QUALIFICATION
+    ann15.sec4.p4_1: paragraph 4.1
+    ann15.sec4.p4_2: paragraph 4.2
+    ann15.sec5: PROCESS VALIDATION General
+    ann15.sec5.p5_1: paragraph 5.1
+    ann15.sec5.p5_2: paragraph 5.2
+    ann15.sec5.p5_3: paragraph 5.3
+    ann15.sec5.p5_4: paragraph 5.4
+    ann15.sec5.p5_5: paragraph 5.5
+    ann15.sec5.p5_6: paragraph 5.6
+    ann15.sec5.p5_7: paragraph 5.7
+    ann15.sec5.p5_8: paragraph 5.8
+    ann15.sec5.p5_9: paragraph 5.9
+    ann15.sec5.p5_10: paragraph 5.10
+    ann15.sec5.p5_11: paragraph 5.11
+    ann15.sec5.p5_12: paragraph 5.12
+    ann15.sec5.p5_13: paragraph 5.13
+    ann15.sec5.p5_14: paragraph 5.14
+    ann15.sec5.p5_15: paragraph 5.15
+    ann15.sec5.p5_16: paragraph 5.16
+    ann15.sec5.p5_17: paragraph 5.17
+    ann15.sec5.p5_18: paragraph 5.18
+    ann15.sec5.p5_19: paragraph 5.19
+    ann15.sec5.p5_20: paragraph 5.20
+    ann15.sec5.p5_21: paragraph 5.21
+    ann15.sec5.p5_22: paragraph 5.22
+    ann15.sec5.p5_22.ii: item i
+    ann15.sec5.p5_22.iii: item ii
+    ann15.sec5.p5_22.iiii: item iii
+    ann15.sec5.p5_22.iiv: item iv
+    ann15.sec5.p5_22.iv: item v
+    ann15.sec5.p5_22.ivi: item vi
+    ann15.sec5.p5_22.ivii: item vii
+    ann15.sec5.p5_22.iviii: item viii
+    ann15.sec5.p5_22.iix: item ix
+    ann15.sec5.p5_22.ix: item x
+    ann15.sec5.p5_22.ixi: item xi
+    ann15.sec5.p5_22.ixii: item xii
+    ann15.sec5.p5_23: paragraph 5.23
+    ann15.sec5.p5_24: paragraph 5.24
+    ann15.sec5.p5_25: paragraph 5.25
+    ann15.sec5.p5_26: paragraph 5.26
+    ann15.sec5.p5_27: paragraph 5.27
+    ann15.sec5.p5_28: paragraph 5.28
+    ann15.sec5.p5_29: paragraph 5.29
+    ann15.sec5.p5_30: paragraph 5.30
+    ann15.sec5.p5_31: paragraph 5.31
+    ann15.sec5.p5_32: paragraph 5.32
+    ann15.sec6: VERIFICATION OF TRANSPORTATION
+    ann15.sec6.p6_1: paragraph 6.1
+    ann15.sec6.p6_2: paragraph 6.2
+    ann15.sec6.p6_3: paragraph 6.3
+    ann15.sec6.p6_4: paragraph 6.4
+    ann15.sec7: VALIDATION OF PACKAGING
+    ann15.sec7.p7_1: paragraph 7.1
+    ann15.sec7.p7_2: paragraph 7.2
+    ann15.sec8: QUALIFICATION OF UTILITIES
+    ann15.sec8.p8_1: paragraph 8.1
+    ann15.sec8.p8_2: paragraph 8.2
+    ann15.sec8.p8_3: paragraph 8.3
+    ann15.sec9: VALIDATION OF TEST METHODS
+    ann15.sec9.p9_1: paragraph 9.1
+    ann15.sec9.p9_2: paragraph 9.2
+    ann15.sec9.p9_3: paragraph 9.3
+    ann15.sec10: CLEANING VALIDATION
+    ann15.sec10.p10_1: paragraph 10.1
+    ann15.sec10.p10_2: paragraph 10.2
+    ann15.sec10.p10_3: paragraph 10.3
+    ann15.sec10.p10_4: paragraph 10.4
+    ann15.sec10.p10_5: paragraph 10.5
+    ann15.sec10.p10_6: paragraph 10.6
+    ann15.sec10.p10_7: paragraph 10.7
+    ann15.sec10.p10_8: paragraph 10.8
+    ann15.sec10.p10_9: paragraph 10.9
+    ann15.sec10.p10_10: paragraph 10.10
+    ann15.sec10.p10_11: paragraph 10.11
+    ann15.sec10.p10_12: paragraph 10.12
+    ann15.sec10.p10_13: paragraph 10.13
+    ann15.sec10.p10_14: paragraph 10.14
+    ann15.sec10.p10_15: paragraph 10.15
+    ann15.sec11: CHANGE CONTROL
+    ann15.sec11.p11_1: paragraph 11.1
+    ann15.sec11.p11_2: paragraph 11.2
+    ann15.sec11.p11_3: paragraph 11.3
+    ann15.sec11.p11_4: paragraph 11.4
+    ann15.sec11.p11_5: paragraph 11.5
+    ann15.sec11.p11_6: paragraph 11.6
+    ann15.sec11.p11_7: paragraph 11.7
+    ann15.sec12: GLOSSARY
