@@ -9,6 +9,13 @@ from qai_text2ir import cli
 from qai_text2ir.goal_check import check_bundle, render_markdown
 
 
+def _walk_nodes(node: dict) -> list[dict]:
+    nodes = [node]
+    for child in node.get("children") or []:
+        nodes.extend(_walk_nodes(child))
+    return nodes
+
+
 def _make_bundle(tmp_path: Path, doc_id: str = "goal_check_sample") -> Path:
     input_path = tmp_path / "sample.txt"
     input_path.write_text(
@@ -164,3 +171,44 @@ def test_goal_check_promotion_mode_requires_meta_family(tmp_path: Path) -> None:
     assert any(warning.code == "meta_family_missing" for warning in normal_result.warnings)
     assert not promotion_result.passed
     assert any(error.code == "meta_family_missing" for error in promotion_result.errors)
+
+
+def test_goal_check_flags_selectable_candidate_contamination_by_mode(tmp_path: Path) -> None:
+    doc_id = "goal_check_contamination"
+    out_dir = _make_bundle(tmp_path, doc_id)
+    ir_path = out_dir / f"{doc_id}.regdoc_ir.yaml"
+    ir = yaml.safe_load(ir_path.read_text(encoding="utf-8"))
+    first_selectable = ir["content"]["children"][0]
+    first_selectable["kind"] = "item"
+    first_selectable["role"] = "normative"
+    first_selectable["normativity"] = "must"
+    first_selectable["text"] = "Information on sign accurate and current .............................................. \uec1e \uec1e \uec1e"
+    ir_path.write_text(yaml.safe_dump(ir, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n")
+
+    normal_result = check_bundle(out_dir, doc_id)
+    promotion_result = check_bundle(out_dir, doc_id, mode="promotion")
+
+    assert normal_result.passed
+    assert any(warning.code == "selectable_candidate_contamination" for warning in normal_result.warnings)
+    assert normal_result.summary["selectable_candidate_contamination"]["severe"] == 1
+    assert not promotion_result.passed
+    assert any(error.code == "selectable_candidate_contamination" for error in promotion_result.errors)
+
+
+def test_goal_check_does_not_fail_preformatted_contamination_in_promotion(tmp_path: Path) -> None:
+    doc_id = "goal_check_preformatted_contamination"
+    out_dir = _make_bundle(tmp_path, doc_id)
+    ir_path = out_dir / f"{doc_id}.regdoc_ir.yaml"
+    ir = yaml.safe_load(ir_path.read_text(encoding="utf-8"))
+    first = ir["content"]["children"][0]
+    first["kind"] = "preformatted"
+    first["kind_raw"] = "possible_form"
+    first["role"] = "informative"
+    first["normativity"] = None
+    first["text"] = "Information on sign accurate and current .............................................. \uec1e \uec1e \uec1e"
+    ir_path.write_text(yaml.safe_dump(ir, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n")
+
+    promotion_result = check_bundle(out_dir, doc_id, mode="promotion")
+
+    assert promotion_result.passed
+    assert not any(error.code == "selectable_candidate_contamination" for error in promotion_result.errors)

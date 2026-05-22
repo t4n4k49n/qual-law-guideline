@@ -46,3 +46,47 @@ def test_figure_block_keeps_arrow_newlines(tmp_path: Path) -> None:
     nodes = _flatten(ir["content"])
     all_text = "\n".join((n.get("text") or "") for n in nodes)
     assert "\n↓\n" in all_text
+
+
+def test_fixed_width_private_use_table_text_does_not_remain_subitem(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "ANNEX 2A",
+            "MANUFACTURE OF ADVANCED THERAPY MEDICINAL",
+            "PRODUCTS FOR HUMAN USE",
+            "",
+            "SCOPE",
+            "B2.1   The scope covers advanced therapy medicinal products.",
+            "• GMP requirements       \uf0b7 A Marketing       \uf0b7 GMP requirements",
+            "  can vary from early    Authorisation Holder   can vary from early",
+            "  steps in making the    may justify these      steps in making the",
+        ]
+    )
+    input_path = tmp_path / "pics_annex2a_contamination_table.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+
+    profile = load_parser_profile(
+        path=Path("src/qai_text2ir/profiles/pics_annex2a_default_v1.yaml")
+    )
+    ir = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="pics_annex2a_contamination_table",
+        parser_profile=profile,
+    ).to_dict()
+
+    nodes = _flatten(ir["content"])
+    contaminated_subitems = [
+        node
+        for node in nodes
+        if node.get("kind") == "subitem"
+        and "\uf0b7" in (node.get("text") or "")
+    ]
+    guarded = [
+        node
+        for node in nodes
+        if node.get("kind") == "preformatted"
+        and "selectable_contamination_guard" in (node.get("tags") or [])
+    ]
+
+    assert not contaminated_subitems
+    assert guarded

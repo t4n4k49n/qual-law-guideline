@@ -160,3 +160,41 @@ def test_drop_repeated_running_headers_inside_chapter(tmp_path: Path) -> None:
     chapter_10_items = [n for n in nodes if n["kind"] == "item" and n.get("num") == "10"]
     assert len(chapters_10) == 1
     assert not chapter_10_items
+
+
+def test_form_check_rows_do_not_remain_selectable_candidates(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "8. Laboratory facilities",
+            "5. Proper procedures for general laboratory safety are in place.",
+            "• Information on sign accurate and",
+            "  current ..............................................                                               \uec1e                       \uec1e            \uec1e",
+            "• Sign legible and not defaced .............                                                            \uec1e                       \uec1e            \uec1e",
+        ]
+    )
+    input_path = tmp_path / "who_lbm_fixture_form_rows.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+    parser_profile = _load_profile("src/qai_text2ir/profiles/who_lbm_3rd_default_v4.yaml")
+
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="who_lbm_fixture_form_rows",
+        parser_profile=parser_profile,
+    )
+    nodes = _flatten(ir_doc.to_dict()["content"])
+
+    contaminated_selectable = [
+        node
+        for node in nodes
+        if node.get("kind") in {"item", "subitem", "paragraph", "statement"}
+        and "\uec1e" in (node.get("text") or "")
+    ]
+    guarded = [
+        node
+        for node in nodes
+        if node.get("kind") == "preformatted"
+        and "selectable_contamination_guard" in (node.get("tags") or [])
+    ]
+
+    assert not contaminated_selectable
+    assert guarded

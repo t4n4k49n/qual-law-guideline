@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
 
+from .contamination import NORMAL_SELECTABLE_KINDS, detect_node_contamination
 from qai_xml2ir.models_ir import IRDocument, Node, build_root
 from qai_xml2ir.nid import NidBuilder
 from qai_xml2ir.ord_key import assign_document_order
@@ -1346,9 +1347,39 @@ def qualitycheck_document(root: Node) -> List[str]:
     return warnings
 
 
+def _apply_selectable_contamination_guard(root: Node) -> None:
+    def _visit(node: Node) -> None:
+        finding = detect_node_contamination(node, selectable_kinds=NORMAL_SELECTABLE_KINDS)
+        if finding.severe:
+            original_kind = node.kind
+            original_kind_raw = node.kind_raw
+            node.kind = "preformatted"
+            if "checklist_columns" in finding.flags or "dot_leader" in finding.flags:
+                node.kind_raw = "possible_form"
+            else:
+                node.kind_raw = "possible_table"
+            node.role = "informative"
+            node.normativity = None
+            for tag in ("selectable_contamination_guard", "possible_form_or_table"):
+                if tag not in node.tags:
+                    node.tags.append(tag)
+            node.data = {
+                **(node.data or {}),
+                "warning": "selectable_candidate_contamination",
+                "original_kind": original_kind,
+                "original_kind_raw": original_kind_raw,
+                "contamination": finding.to_dict(),
+            }
+        for child in node.children:
+            _visit(child)
+
+    _visit(root)
+
+
 def run_text_postprocess_and_qualitycheck(root: Node) -> List[str]:
     hyphen_words, plain_words = _collect_word_sets(root)
     _postprocess_node_text(root, hyphen_words=hyphen_words, plain_words=plain_words)
+    _apply_selectable_contamination_guard(root)
     return qualitycheck_document(root)
 
 

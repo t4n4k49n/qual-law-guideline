@@ -1,0 +1,235 @@
+{
+  "run_id": "20260522-173239889_fix-text2ir-selectable-contamination-gate",
+  "summary": [
+    {
+      "doc_id": "eu_gmp_vol4_chap1_20130131",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 2,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "chapter": 1,
+        "document": 1,
+        "item": 50,
+        "paragraph": 13,
+        "preamble": 1,
+        "subitem": 6
+      }
+    },
+    {
+      "doc_id": "pics_pe00917_annex11_20230825",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 0,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 3,
+        "paragraph": 20,
+        "section": 17
+      }
+    },
+    {
+      "doc_id": "pics_pe00917_annex15_20230825",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 37,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 28,
+        "paragraph": 100,
+        "section": 12
+      }
+    },
+    {
+      "doc_id": "pics_pe00917_annex1_20230825",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 194,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "annex": 1,
+        "document": 1,
+        "item": 224,
+        "note": 9,
+        "paragraph": 294,
+        "preformatted": 4,
+        "section": 10,
+        "subitem": 22
+      }
+    },
+    {
+      "doc_id": "pics_pe00917_annex2a_20230825",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 42,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "annex": 1,
+        "chapter": 2,
+        "document": 1,
+        "item": 74,
+        "note": 2,
+        "paragraph": 102,
+        "preformatted": 3,
+        "section": 13,
+        "subitem": 8
+      }
+    },
+    {
+      "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 417,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "annex": 19,
+        "chapter": 2,
+        "document": 1,
+        "item": 442,
+        "note": 11,
+        "paragraph": 647,
+        "preamble": 1,
+        "preformatted": 7,
+        "section": 560,
+        "subitem": 75
+      }
+    },
+    {
+      "doc_id": "pics_pe00917_part1_20230825",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 97,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "chapter": 9,
+        "document": 1,
+        "item": 114,
+        "note": 2,
+        "paragraph": 211,
+        "preamble": 1,
+        "subitem": 6
+      }
+    },
+    {
+      "doc_id": "pics_pe00917_part2_20230825",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 92,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "chapter": 20,
+        "document": 1,
+        "item": 25,
+        "paragraph": 353,
+        "preamble": 1,
+        "section": 87,
+        "subitem": 104
+      }
+    },
+    {
+      "doc_id": "who_lbm_3rd_2004_9241546506",
+      "promotion_passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "contamination_findings": 51,
+      "severe_contamination": 0,
+      "kind_counts": {
+        "annex": 5,
+        "chapter": 22,
+        "document": 1,
+        "item": 753,
+        "note": 1,
+        "part": 9,
+        "preamble": 1,
+        "preformatted": 4,
+        "subitem": 35
+      }
+    }
+  ],
+  "critical_nodes": [
+    {
+      "doc_id": "who_lbm_3rd_2004_9241546506",
+      "nid": "cha8.i5",
+      "kind": "preformatted",
+      "kind_raw": "possible_form",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "who_lbm_3rd_2004_9241546506",
+      "nid": "cha8.i5.si1",
+      "kind": "preformatted",
+      "kind_raw": "possible_form",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "who_lbm_3rd_2004_9241546506",
+      "nid": "cha8.i5.si2",
+      "kind": "preformatted",
+      "kind_raw": "possible_form",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "pics_pe00917_annex2a_20230825",
+      "nid": "ann2a.sec2.ib.si1",
+      "kind": "preformatted",
+      "kind_raw": "possible_table",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "pics_pe00917_annex2a_20230825",
+      "nid": "ann2a.sec2.ib.si2",
+      "kind": "preformatted",
+      "kind_raw": "possible_table",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "pics_pe00917_annex2a_20230825",
+      "nid": "ann2a.sec2.ib.si3",
+      "kind": "preformatted",
+      "kind_raw": "possible_table",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+      "nid": "ann2a.sec2.ib.si1",
+      "kind": "preformatted",
+      "kind_raw": "possible_table",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+      "nid": "ann2a.sec2.ib.si2",
+      "kind": "preformatted",
+      "kind_raw": "possible_table",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    },
+    {
+      "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+      "nid": "ann2a.sec2.ib.si3",
+      "kind": "preformatted",
+      "kind_raw": "possible_table",
+      "guarded": true,
+      "warning": "selectable_candidate_contamination"
+    }
+  ]
+}

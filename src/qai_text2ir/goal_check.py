@@ -8,6 +8,7 @@ from typing import Any, Dict, Iterable, List, Optional
 import typer
 import yaml
 
+from .contamination import detect_node_contamination
 from qai_xml2ir.verify import verify_document
 
 
@@ -119,6 +120,7 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         "verify_document": "not_run",
         "dq_gmp_checklist": {},
         "manifest": {},
+        "selectable_candidate_contamination": {},
     }
 
     for key in ("ir", "parser_profile", "regdoc_profile", "meta"):
@@ -261,6 +263,27 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
     if not summary["dq_gmp_checklist"]["has_descendant_policy"]:
         warnings.append(CheckMessage("descendant_policy_missing", "context_display_policy has no include_descendants rule", paths["regdoc_profile"].name))
 
+    contamination_findings = []
+    for node in nodes:
+        finding = detect_node_contamination(node, selectable_kinds=selectable)
+        if finding.severity == "none":
+            continue
+        contamination_findings.append(finding)
+        if finding.severe:
+            message = (
+                f"selectable candidate contamination severity={finding.severity} "
+                f"score={finding.score} flags={','.join(finding.flags)} preview={finding.preview!r}"
+            )
+            if mode in {"promotion", "release"}:
+                errors.append(CheckMessage("selectable_candidate_contamination", message, finding.nid))
+            else:
+                warnings.append(CheckMessage("selectable_candidate_contamination", message, finding.nid))
+    summary["selectable_candidate_contamination"] = {
+        "findings": len(contamination_findings),
+        "severe": sum(1 for finding in contamination_findings if finding.severe),
+        "items": [finding.to_dict() for finding in contamination_findings[:50]],
+    }
+
     if manifest:
         summary["manifest"] = {
             "schema": manifest.get("schema"),
@@ -298,6 +321,7 @@ def render_markdown(result: GoalCheckResult) -> str:
         f"- Nodes: {result.summary.get('node_count')}",
         f"- Verify: {result.summary.get('verify_document')}",
         f"- Source span coverage: {result.summary.get('source_spans', {}).get('coverage')}",
+        f"- Selectable contamination severe: {result.summary.get('selectable_candidate_contamination', {}).get('severe')}",
         "",
         "## Files",
         "",
