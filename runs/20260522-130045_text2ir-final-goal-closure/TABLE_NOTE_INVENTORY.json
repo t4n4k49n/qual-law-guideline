@@ -1,0 +1,2459 @@
+[
+  {
+    "label": "EU GMP Vol.4 Chapter 1",
+    "doc_id": "eu_gmp_vol4_chap1_20130131",
+    "input": {
+      "input": "data/human-readable/eu_gmp/vol4/chap1_2013-01_en.txt",
+      "tables_detected": 0,
+      "notes_detected": 48,
+      "fixed_width_candidate_rows": 0,
+      "items": [
+        {
+          "kind": "footnote_like",
+          "line": 111,
+          "text": "(i) Product realisation is achieved by designing, planning, implementing,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 115,
+          "text": "(ii) Product and process knowledge is managed throughout all lifecycle stages;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 117,
+          "text": "(iii) Medicinal products are designed and developed in a way that takes"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 120,
+          "text": "(iv) Production and control operations are clearly specified and Good"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 123,
+          "text": "(v) Managerial responsibilities are clearly specified;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 125,
+          "text": "(vi) Arrangements are made for the manufacture, supply and use of the correct"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 129,
+          "text": "(vii) Processes are in place to assure the management of outsourced activities."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 131,
+          "text": "(viii) A state of control is established and maintained by developing and using"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 135,
+          "text": "(ix) The results of product and processes monitoring are taken into account in"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 139,
+          "text": "(x) All necessary controls on intermediate products, and any other in-process"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 142,
+          "text": "(xi) Continual improvement is facilitated through the implementation of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 146,
+          "text": "(xii) Arrangements are in place for the prospective evaluation of planned"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 150,
+          "text": "(xiii) After implementation of any change, an evaluation is undertaken to"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 154,
+          "text": "(xiv) An appropriate level of root cause analysis should be applied during the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 170,
+          "text": "(xv) Medicinal products are not sold or supplied before a Qualified Person has"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 176,
+          "text": "(xvi) Satisfactory arrangements exist to ensure, as far as possible, that the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 180,
+          "text": "(xvii) There is a process for self-inspection and/or quality audit, which"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 213,
+          "text": "(i) All manufacturing processes are clearly defined, systematically reviewed in"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 218,
+          "text": "(ii) Critical steps of manufacturing processes and significant changes to the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 221,
+          "text": "(iii) All necessary facilities for GMP are provided including:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 230,
+          "text": "(iv) Instructions and procedures are written in an instructional form in clear"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 233,
+          "text": "(v) Procedures are carried out correctly and operators are trained to do so;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 235,
+          "text": "(vi) Records are made, manually and/or by recording instruments, during"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 240,
+          "text": "(vii) Any significant deviations are fully recorded, investigated with the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 244,
+          "text": "(viii) Records of manufacture including distribution which enable the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 248,
+          "text": "(ix) The distribution of the products minimises any risk to their quality and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 251,
+          "text": "(x) A system is available to recall any batch of product, from sale or supply;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 253,
+          "text": "(xi) Complaints about products are examined, the causes of quality defects"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 269,
+          "text": "(i) Adequate facilities, trained personnel and approved procedures are"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 274,
+          "text": "(ii) Samples of starting materials, packaging materials, intermediate products,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 278,
+          "text": "(iii) Test methods are validated;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 280,
+          "text": "(iv) Records are made, manually and/or by recording instruments, which"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 284,
+          "text": "(v) The finished products contain active ingredients complying with the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 289,
+          "text": "(vi) Records are made of the results of inspection and that testing of materials,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 295,
+          "text": "(vii) No batch of product is released for sale or supply prior to certification by"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 299,
+          "text": "(viii) Sufficient reference samples of starting materials and products are"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 312,
+          "text": "(i) A review of starting materials including packaging materials used in the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 319,
+          "text": "(ii) A review of critical in-process controls and finished product results."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 321,
+          "text": "(iii) A review of all batches that failed to meet established specification(s) and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 324,
+          "text": "(iv) A review of all significant deviations or non-conformances, their related"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 328,
+          "text": "(v) A review of all changes carried out to the processes or analytical methods."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 330,
+          "text": "(vi) A review of Marketing Authorisation variations submitted, granted or"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 333,
+          "text": "(vii) A review of the results of the stability monitoring programme and any"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 336,
+          "text": "(viii) A review of all quality-related returns, complaints and recalls and the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 339,
+          "text": "(ix) A review of adequacy of any other previous product process or equipment"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 342,
+          "text": "(x) For new marketing authorisations and variations to marketing"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 345,
+          "text": "(xi) The qualification status of relevant equipment and utilities, e.g. HVAC,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 348,
+          "text": "(xii) A review of any contractual arrangements as defined in Chapter 7 to"
+        }
+      ]
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 0,
+      "preformatted": 0,
+      "possible_table": 0
+    },
+    "remaining_gap": "none"
+  },
+  {
+    "label": "PIC/S Annex 1",
+    "doc_id": "pics_pe00917_annex1_20230825",
+    "input": {
+      "input": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+      "tables_detected": 6,
+      "notes_detected": 14,
+      "fixed_width_candidate_rows": 684,
+      "items": [
+        {
+          "kind": "footnote_like",
+          "line": 99,
+          "text": "(GMP) guide. The use of appropriate technologies (e.g. Restricted Access"
+        },
+        {
+          "kind": "table_caption",
+          "line": 715,
+          "text": "Table 1: Maximum permitted total particle concentration for classification"
+        },
+        {
+          "kind": "table_caption",
+          "line": 792,
+          "text": "Table 2: Maximum permitted microbial contamination level during qualification"
+        },
+        {
+          "kind": "note",
+          "line": 806,
+          "text": "Note 1:      All methods indicated for a specific grade in the table should be used for qualifying"
+        },
+        {
+          "kind": "note",
+          "line": 811,
+          "text": "Note 2:      Limits are applied using CFU throughout the document. If different or new"
+        },
+        {
+          "kind": "note",
+          "line": 816,
+          "text": "Note 3:      For the qualification of personnel gowning, the limits given for contact plates and"
+        },
+        {
+          "kind": "note",
+          "line": 819,
+          "text": "Note 4:      Sampling methods should not pose a risk of contamination to the manufacturing"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1398,
+          "text": "Table 3: Examples of operations and grades for terminally sterilised preparation and"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1440,
+          "text": "Table 4:   Examples of operations and grades for aseptic preparation and processing"
+        },
+        {
+          "kind": "table_caption",
+          "line": 2957,
+          "text": "Table 5: Maximum permitted total particle concentration for monitoring."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2969,
+          "text": "(a)   For grade D, in operation limits are not predetermined. The manufacturer should"
+        },
+        {
+          "kind": "note",
+          "line": 2973,
+          "text": "Note 1:     The particle limits given in the table for the “at rest” state should be achieved after"
+        },
+        {
+          "kind": "note",
+          "line": 2978,
+          "text": "Note 2:     The occasional indication of macro particle counts, especially ≥ 5 µm, within"
+        },
+        {
+          "kind": "table_caption",
+          "line": 3099,
+          "text": "Table 6: Maximum action limits for viable particle contamination"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3110,
+          "text": "(a)    -   Settle plates should be exposed in grade A and B areas for the duration of operations"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3117,
+          "text": "(b)    Contact plate limits apply to equipment, room and gown surfaces within the grade A and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3121,
+          "text": "(c)    It should be noted that for grade A, any growth should result in an investigation."
+        },
+        {
+          "kind": "note",
+          "line": 3123,
+          "text": "Note 1:       It should be noted that the types of monitoring methods listed in the table above"
+        },
+        {
+          "kind": "note",
+          "line": 3129,
+          "text": "Note 2:       Limits are applied using CFU throughout the document. If different or new"
+        },
+        {
+          "kind": "note",
+          "line": 3530,
+          "text": "Note: Where the manufacturing process results in sub-batches (e.g. for"
+        }
+      ]
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 9,
+      "preformatted": 4,
+      "possible_table": 4
+    },
+    "remaining_gap": "table_rows_pending"
+  },
+  {
+    "label": "PIC/S Annex 11",
+    "doc_id": "pics_pe00917_annex11_20230825",
+    "input": {
+      "input": "data/human-readable/pics/pe009-17_annex11_2023-08-25_en.txt",
+      "tables_detected": 0,
+      "notes_detected": 0,
+      "fixed_width_candidate_rows": 46,
+      "items": []
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 0,
+      "preformatted": 0,
+      "possible_table": 0
+    },
+    "remaining_gap": "none"
+  },
+  {
+    "label": "PIC/S Annex 15",
+    "doc_id": "pics_pe00917_annex15_20230825",
+    "input": {
+      "input": "data/human-readable/pics/pe009-17_annex15_2023-08-25_en.txt",
+      "tables_detected": 0,
+      "notes_detected": 0,
+      "fixed_width_candidate_rows": 164,
+      "items": []
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 0,
+      "preformatted": 0,
+      "possible_table": 0
+    },
+    "remaining_gap": "none"
+  },
+  {
+    "label": "PIC/S Annex 2A",
+    "doc_id": "pics_pe00917_annex2a_20230825",
+    "input": {
+      "input": "data/human-readable/pics/pe009-17_annex2a_2023-08-25_en.txt",
+      "tables_detected": 3,
+      "notes_detected": 75,
+      "fixed_width_candidate_rows": 269,
+      "items": [
+        {
+          "kind": "footnote_like",
+          "line": 70,
+          "text": "(a) Tissues and cells used as starting materials of ATMPs may be subject to"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 74,
+          "text": "(b) For blood or blood components used as starting materials for ATMPs,"
+        },
+        {
+          "kind": "table_caption",
+          "line": 94,
+          "text": "Table 1 gives examples of where this annex applies. It should be noted that this"
+        },
+        {
+          "kind": "table_caption",
+          "line": 95,
+          "text": "table is illustrative only and is not meant to describe the precise scope. It should"
+        },
+        {
+          "kind": "table_caption",
+          "line": 113,
+          "text": "Table 1. Illustrative guide to manufacturing activities within the scope of Annex 2A"
+        },
+        {
+          "kind": "note",
+          "line": 354,
+          "text": "Note: Where the term Marketing Authorisation Holder (MAH) is used, unless"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 452,
+          "text": "(a) The use of more than one closed isolator (or other closed systems) in the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 457,
+          "text": "(b) When more than one isolator is used to process different viral vectors within"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 463,
+          "text": "(c) The possibility of using more than one biosafety cabinet (BSC) in the same"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 471,
+          "text": "(d) The use of multiple closed systems in the same area is permitted, in the case"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 585,
+          "text": "(a) The use of technologies as e.g. processing inside single use sterile"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 601,
+          "text": "(b) If the closed system can be shown to remain integral throughout the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 843,
+          "text": "(a) vectors used and the risk of occurrence of replication competent virus"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 848,
+          "text": "(b) facility/equipment design and use,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 850,
+          "text": "(c) personnel and material flow,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 852,
+          "text": "(d) microbiological and other adventitious agent controls,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 854,
+          "text": "(e) characteristics of the starting materials/active substance and raw materials,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 856,
+          "text": "(f) process characteristics,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 858,
+          "text": "(g) clean room conditions,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 860,
+          "text": "(h) cleaning processes, and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 862,
+          "text": "(i) analytical capabilities relative to the relevant limits established from the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 918,
+          "text": "(a) segregated premises,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 920,
+          "text": "(b) dedicating the entire manufacturing facility or a self-contained production"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 924,
+          "text": "(c) adequate cleaning procedures:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 939,
+          "text": "(d) use of “closed systems” for processing and for material or product transfer"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 942,
+          "text": "(e) use of air locks and pressure cascade to confine potential airborne"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 945,
+          "text": "(f) utilisation of single use systems,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 947,
+          "text": "(g) other suitable organisational measures, such as the:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 978,
+          "text": "(a) ATMPs manufactured for exploratory, early phase clinical trials (phase I and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 986,
+          "text": "(b) For all aseptic processes, aseptic process simulations should be performed"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 996,
+          "text": "(c) If the ATMP is not produced on a routine basis (i.e. over a year), the aseptic"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1003,
+          "text": "(d) The use of surrogate material during process validation may be acceptable"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1021,
+          "text": "(e) Where possible, consideration should be given to complementing the use of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1092,
+          "text": "(a) The MAH should define what constitutes ATMP active substances, starting"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1099,
+          "text": "(b) Establish the Quality Target Product Profile (QTPP) and define the Critical"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1103,
+          "text": "(c) For each material used, identify the risks presented to the quality, safety and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1126,
+          "text": "(d) With respect to the use and function of each material, consider the following:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1163,
+          "text": "(e) Document the risk profile as low, medium, or high based on the above"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1168,
+          "text": "(f) Once the PRP and the appropriate GMP have been defined, ongoing risk"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1184,
+          "text": "(g) Incorporate the PRP into the CTA or MA as applicable."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1186,
+          "text": "(h) The QTPP, once approved in the production process by the Competent"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1260,
+          "text": "(a)   The procurement, donation and testing of blood, cells and tissues is"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1265,
+          "text": "(b)   For cell therapies, the maintenance of the aseptic processing from time of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1269,
+          "text": "(c)   Where such human cells or tissues are imported, they must meet"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1274,
+          "text": "(d)   There may be some instances where processing of blood, tissues and cells"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1280,
+          "text": "(e)   Blood, tissue and cells are released by the Responsible Person (RP) in the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1292,
+          "text": "(f)   A technical agreement clearly defining the responsibilities should be in"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1296,
+          "text": "(g)   The transport of blood, tissues and cells to the manufacturing site must be"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1301,
+          "text": "(h)   Continuation of traceability requirements started at tissue establishments"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1495,
+          "text": "(OOS) results). In line with PIC/S GMP Guide Part I Sections 1.4 (xv), 2.6. and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1521,
+          "text": "(a) Batch manufacturing records and documentation provided to the treating"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1525,
+          "text": "(b) When responding to a treating physician’s request, the MAH should provide"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1530,
+          "text": "(c) The Authorised Person (or delegate) should report the supply of the product"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1559,
+          "text": "(a) A suitable control strategy must be in place, built on enhanced understanding"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1563,
+          "text": "(b) The procedure for batch certification should provide an exact and detailed"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1567,
+          "text": "(c) The procedure for batch certification and release of short shelf life ATMP"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1583,
+          "text": "(d) Increased reliance on process validation should be considered as supporting"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1587,
+          "text": "(e) A continuous assessment of the effectiveness of the pharmaceutical quality"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1628,
+          "text": "(a) A \"responsible site\", should be identified. The responsible site is responsible"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1663,
+          "text": "(b) The Authorised Person should have ultimate responsibility for the batch"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1702,
+          "text": "(a) there is a rationale and a justification in the quality system;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1704,
+          "text": "(b) the contract giver takes responsibility to ensure that the contract acceptor"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1716,
+          "text": "(c) that proportionate qualifications/validations as appropriate are conducted"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1732,
+          "text": "(a) a single batch product (e.g. autologous ATMP where the entire batch has"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1735,
+          "text": "(b) products where patient treatment interruption presents a higher risk than"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1848,
+          "text": "(a)   Traceability requirements must be maintained. (refer to Section 4.3 to 4.8)"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1849,
+          "text": "(b)   There should be a clear batch definition, from cell source to final product"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1851,
+          "text": "(c)   For products that utilise non-biological means to deliver the gene, their"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1853,
+          "text": "(d)   Although the vector used for the manipulation of the cell will not be part of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1885,
+          "text": "(a) The ATMP manufacturer should follow national requirements and apply QRM"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1892,
+          "text": "(b) Sufficient quality standards should be applied for the manufacture of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1899,
+          "text": "(c) Relevant provisions in Annex 1 are also applicable. The manufacturer should"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1961,
+          "text": "(a) Gene therapy medicinal product (GTMP):"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1981,
+          "text": "(b) Somatic cell therapy medicinal product:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2006,
+          "text": "(c) Tissue engineered product:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2036,
+          "text": "(d) Combined ATMPs:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2048,
+          "text": "(e) A product that is classified or determined to be an ATMP by the PIC/S"
+        },
+        {
+          "kind": "note",
+          "line": 2086,
+          "text": "Note: For expanded clarity beyond the definition in the PIC/S GMP Guide, the Authorised"
+        }
+      ]
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 2,
+      "preformatted": 0,
+      "possible_table": 0
+    },
+    "remaining_gap": "none"
+  },
+  {
+    "label": "PIC/S Annexes refined",
+    "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+    "input": {
+      "input": "data/human-readable/pics/pe009-17_annexes_2023-08-25_en.txt",
+      "tables_detected": 17,
+      "notes_detected": 132,
+      "fixed_width_candidate_rows": 2726,
+      "items": [
+        {
+          "kind": "table_caption",
+          "line": 39,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 99,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 159,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 219,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 279,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 339,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 501,
+          "text": "(GMP) guide. The use of appropriate technologies (e.g. Restricted Access"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1117,
+          "text": "Table 1: Maximum permitted total particle concentration for classification"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1194,
+          "text": "Table 2: Maximum permitted microbial contamination level during qualification"
+        },
+        {
+          "kind": "note",
+          "line": 1208,
+          "text": "Note 1:      All methods indicated for a specific grade in the table should be used for qualifying"
+        },
+        {
+          "kind": "note",
+          "line": 1213,
+          "text": "Note 2:      Limits are applied using CFU throughout the document. If different or new"
+        },
+        {
+          "kind": "note",
+          "line": 1218,
+          "text": "Note 3:      For the qualification of personnel gowning, the limits given for contact plates and"
+        },
+        {
+          "kind": "note",
+          "line": 1221,
+          "text": "Note 4:      Sampling methods should not pose a risk of contamination to the manufacturing"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1800,
+          "text": "Table 3: Examples of operations and grades for terminally sterilised preparation and"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1842,
+          "text": "Table 4:   Examples of operations and grades for aseptic preparation and processing"
+        },
+        {
+          "kind": "table_caption",
+          "line": 3359,
+          "text": "Table 5: Maximum permitted total particle concentration for monitoring."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3371,
+          "text": "(a)   For grade D, in operation limits are not predetermined. The manufacturer should"
+        },
+        {
+          "kind": "note",
+          "line": 3375,
+          "text": "Note 1:     The particle limits given in the table for the “at rest” state should be achieved after"
+        },
+        {
+          "kind": "note",
+          "line": 3380,
+          "text": "Note 2:     The occasional indication of macro particle counts, especially ≥ 5 µm, within"
+        },
+        {
+          "kind": "table_caption",
+          "line": 3501,
+          "text": "Table 6: Maximum action limits for viable particle contamination"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3512,
+          "text": "(a)    -   Settle plates should be exposed in grade A and B areas for the duration of operations"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3519,
+          "text": "(b)    Contact plate limits apply to equipment, room and gown surfaces within the grade A and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3523,
+          "text": "(c)    It should be noted that for grade A, any growth should result in an investigation."
+        },
+        {
+          "kind": "note",
+          "line": 3525,
+          "text": "Note 1:       It should be noted that the types of monitoring methods listed in the table above"
+        },
+        {
+          "kind": "note",
+          "line": 3531,
+          "text": "Note 2:       Limits are applied using CFU throughout the document. If different or new"
+        },
+        {
+          "kind": "note",
+          "line": 3932,
+          "text": "Note: Where the manufacturing process results in sub-batches (e.g. for"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4418,
+          "text": "(a) Tissues and cells used as starting materials of ATMPs may be subject to"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4422,
+          "text": "(b) For blood or blood components used as starting materials for ATMPs,"
+        },
+        {
+          "kind": "table_caption",
+          "line": 4442,
+          "text": "Table 1 gives examples of where this annex applies. It should be noted that this"
+        },
+        {
+          "kind": "table_caption",
+          "line": 4443,
+          "text": "table is illustrative only and is not meant to describe the precise scope. It should"
+        },
+        {
+          "kind": "table_caption",
+          "line": 4461,
+          "text": "Table 1. Illustrative guide to manufacturing activities within the scope of Annex 2A"
+        },
+        {
+          "kind": "note",
+          "line": 4702,
+          "text": "Note: Where the term Marketing Authorisation Holder (MAH) is used, unless"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4800,
+          "text": "(a) The use of more than one closed isolator (or other closed systems) in the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4805,
+          "text": "(b) When more than one isolator is used to process different viral vectors within"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4811,
+          "text": "(c) The possibility of using more than one biosafety cabinet (BSC) in the same"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4819,
+          "text": "(d) The use of multiple closed systems in the same area is permitted, in the case"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4933,
+          "text": "(a) The use of technologies as e.g. processing inside single use sterile"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 4949,
+          "text": "(b) If the closed system can be shown to remain integral throughout the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5191,
+          "text": "(a) vectors used and the risk of occurrence of replication competent virus"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5196,
+          "text": "(b) facility/equipment design and use,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5198,
+          "text": "(c) personnel and material flow,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5200,
+          "text": "(d) microbiological and other adventitious agent controls,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5202,
+          "text": "(e) characteristics of the starting materials/active substance and raw materials,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5204,
+          "text": "(f) process characteristics,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5206,
+          "text": "(g) clean room conditions,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5208,
+          "text": "(h) cleaning processes, and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5210,
+          "text": "(i) analytical capabilities relative to the relevant limits established from the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5266,
+          "text": "(a) segregated premises,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5268,
+          "text": "(b) dedicating the entire manufacturing facility or a self-contained production"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5272,
+          "text": "(c) adequate cleaning procedures:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5287,
+          "text": "(d) use of “closed systems” for processing and for material or product transfer"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5290,
+          "text": "(e) use of air locks and pressure cascade to confine potential airborne"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5293,
+          "text": "(f) utilisation of single use systems,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5295,
+          "text": "(g) other suitable organisational measures, such as the:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5326,
+          "text": "(a) ATMPs manufactured for exploratory, early phase clinical trials (phase I and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5334,
+          "text": "(b) For all aseptic processes, aseptic process simulations should be performed"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5344,
+          "text": "(c) If the ATMP is not produced on a routine basis (i.e. over a year), the aseptic"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5351,
+          "text": "(d) The use of surrogate material during process validation may be acceptable"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5369,
+          "text": "(e) Where possible, consideration should be given to complementing the use of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5440,
+          "text": "(a) The MAH should define what constitutes ATMP active substances, starting"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5447,
+          "text": "(b) Establish the Quality Target Product Profile (QTPP) and define the Critical"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5451,
+          "text": "(c) For each material used, identify the risks presented to the quality, safety and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5474,
+          "text": "(d) With respect to the use and function of each material, consider the following:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5511,
+          "text": "(e) Document the risk profile as low, medium, or high based on the above"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5516,
+          "text": "(f) Once the PRP and the appropriate GMP have been defined, ongoing risk"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5532,
+          "text": "(g) Incorporate the PRP into the CTA or MA as applicable."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5534,
+          "text": "(h) The QTPP, once approved in the production process by the Competent"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5608,
+          "text": "(a)   The procurement, donation and testing of blood, cells and tissues is"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5613,
+          "text": "(b)   For cell therapies, the maintenance of the aseptic processing from time of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5617,
+          "text": "(c)   Where such human cells or tissues are imported, they must meet"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5622,
+          "text": "(d)   There may be some instances where processing of blood, tissues and cells"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5628,
+          "text": "(e)   Blood, tissue and cells are released by the Responsible Person (RP) in the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5640,
+          "text": "(f)   A technical agreement clearly defining the responsibilities should be in"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5644,
+          "text": "(g)   The transport of blood, tissues and cells to the manufacturing site must be"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5649,
+          "text": "(h)   Continuation of traceability requirements started at tissue establishments"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5843,
+          "text": "(OOS) results). In line with PIC/S GMP Guide Part I Sections 1.4 (xv), 2.6. and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5869,
+          "text": "(a) Batch manufacturing records and documentation provided to the treating"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5873,
+          "text": "(b) When responding to a treating physician’s request, the MAH should provide"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5878,
+          "text": "(c) The Authorised Person (or delegate) should report the supply of the product"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5907,
+          "text": "(a) A suitable control strategy must be in place, built on enhanced understanding"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5911,
+          "text": "(b) The procedure for batch certification should provide an exact and detailed"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5915,
+          "text": "(c) The procedure for batch certification and release of short shelf life ATMP"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5931,
+          "text": "(d) Increased reliance on process validation should be considered as supporting"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5935,
+          "text": "(e) A continuous assessment of the effectiveness of the pharmaceutical quality"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5976,
+          "text": "(a) A \"responsible site\", should be identified. The responsible site is responsible"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6011,
+          "text": "(b) The Authorised Person should have ultimate responsibility for the batch"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6050,
+          "text": "(a) there is a rationale and a justification in the quality system;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6052,
+          "text": "(b) the contract giver takes responsibility to ensure that the contract acceptor"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6064,
+          "text": "(c) that proportionate qualifications/validations as appropriate are conducted"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6080,
+          "text": "(a) a single batch product (e.g. autologous ATMP where the entire batch has"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6083,
+          "text": "(b) products where patient treatment interruption presents a higher risk than"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6196,
+          "text": "(a)   Traceability requirements must be maintained. (refer to Section 4.3 to 4.8)"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6197,
+          "text": "(b)   There should be a clear batch definition, from cell source to final product"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6199,
+          "text": "(c)   For products that utilise non-biological means to deliver the gene, their"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6201,
+          "text": "(d)   Although the vector used for the manipulation of the cell will not be part of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6233,
+          "text": "(a) The ATMP manufacturer should follow national requirements and apply QRM"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6240,
+          "text": "(b) Sufficient quality standards should be applied for the manufacture of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6247,
+          "text": "(c) Relevant provisions in Annex 1 are also applicable. The manufacturer should"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6309,
+          "text": "(a) Gene therapy medicinal product (GTMP):"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6329,
+          "text": "(b) Somatic cell therapy medicinal product:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6354,
+          "text": "(c) Tissue engineered product:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6384,
+          "text": "(d) Combined ATMPs:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6396,
+          "text": "(e) A product that is classified or determined to be an ATMP by the PIC/S"
+        },
+        {
+          "kind": "note",
+          "line": 6434,
+          "text": "Note: For expanded clarity beyond the definition in the PIC/S GMP Guide, the Authorised"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6745,
+          "text": "(a)     Tissue and cells used as starting materials for medicinal products,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6752,
+          "text": "(b)     Blood or blood components used as starting materials for medicinal"
+        },
+        {
+          "kind": "table_caption",
+          "line": 6763,
+          "text": "Table 1. Illustrative guide to manufacturing activities within the scope of Annex 2B"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6994,
+          "text": "(a)     Knowledge of key characteristics of all cells, organisms and any"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6997,
+          "text": "(b)     Where production is characterised by multiple small batches from different"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7002,
+          "text": "(c)     Live organisms and spores are prevented from entering non-related areas"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7006,
+          "text": "(d)     Control measures to remove the organisms and spores before the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7011,
+          "text": "(e)     Environmental monitoring, specific for the micro-organism being"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7018,
+          "text": "(f)     Products, equipment, ancillary equipment (e.g. for calibration and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7023,
+          "text": "(g)     Campaign based manufacturing."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7110,
+          "text": "(a)   Live groups, herds, flocks: examples include polio vaccine (monkeys),"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7114,
+          "text": "(b)   Animal materials derived post-mortem and from establishments such as"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7278,
+          "text": "(a)    Their procurement, donation and testing is regulated in some countries18."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7282,
+          "text": "(b)    Where such human cells or tissues are imported, they must meet"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7286,
+          "text": "(c)    There may be some instances where processing of cells and tissues used"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7289,
+          "text": "(d)    Tissue and cells are released by the Responsible Person (RP) in the tissue"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7300,
+          "text": "(e)    The transport of human tissues and cells to the manufacturing site must be"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7304,
+          "text": "(f)    Continuation of traceability requirements started at tissue establishments"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7307,
+          "text": "(g)    A technical agreement should be in place between the responsible parties"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7575,
+          "text": "(a)    Assessment by designated person(s) of batch processing records, results"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7580,
+          "text": "(b)    Assessment of the final analytical tests and other information available for"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 8949,
+          "text": "(a) the requirements regarding starting materials for active substances (Part II,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 8962,
+          "text": "(b) the requirements regarding on-going stability studies (Part II, Chapter 11.5),"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 8967,
+          "text": "(c) the requirements regarding reserve/retention samples (Part II, Chapter 11.7)"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 8976,
+          "text": "(a) transfers and deliveries of active substance gases in bulk should comply with"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 8980,
+          "text": "(b) filling of active substance gases into cylinders or into mobile cryogenic"
+        },
+        {
+          "kind": "note",
+          "line": 9183,
+          "text": "Note: See specific arrangements in section 42 for filling of tanks retained by"
+        },
+        {
+          "kind": "note",
+          "line": 9298,
+          "text": "Note: For compressed gases a maximum theoretical impurity of 500 ppm v/v"
+        },
+        {
+          "kind": "table_caption",
+          "line": 9560,
+          "text": "Table illustrating the application of Good Practices to the manufacture of"
+        },
+        {
+          "kind": "note",
+          "line": 9795,
+          "text": "Note: Sampling is dealt with in Chapter 6 of the Guide to GMP, items 6.11 to"
+        },
+        {
+          "kind": "note",
+          "line": 9889,
+          "text": "Note: The manufacture of liquids, creams and ointments must be done in"
+        },
+        {
+          "kind": "note",
+          "line": 9964,
+          "text": "Note: The manufacture of metered dose aerosols must be done in accordance with"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 10330,
+          "text": "(i)    Batch mode: the products is arranged at fixed locations around the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 10334,
+          "text": "(ii)   Continuous mode: an automatic system conveys the products into the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 13270,
+          "text": "(MA) and with Good Manufacturing Practice (GMP)."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 13908,
+          "text": "(i)     Real time measurement and control of relevant in-process material"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 13911,
+          "text": "(ii)    The valid combination of relevant assessed material attributes and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 13922,
+          "text": "(iii)   The combined process measurements (process parameters and material"
+        },
+        {
+          "kind": "note",
+          "line": 14401,
+          "text": "Note: This section is only applicable if the national legislation deals with parallel"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 14439,
+          "text": "(MAH) is responsible for such delegation and for the provision of all necessary"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 14791,
+          "text": "(acceptable) level. This (specified) acceptable level will depend on many"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 15282,
+          "text": "(i) Control Charts, for example:"
+        },
+        {
+          "kind": "note",
+          "line": 15566,
+          "text": "Note: To complete certain stages of manufacture, it may be necessary to divide"
+        },
+        {
+          "kind": "note",
+          "line": 15635,
+          "text": "Note: The different degrees of environmental control are defined in the"
+        },
+        {
+          "kind": "note",
+          "line": 15771,
+          "text": "Note: Sterile filling would not normally be regarded as part of packaging, the"
+        }
+      ]
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 11,
+      "preformatted": 4,
+      "possible_table": 4
+    },
+    "remaining_gap": "table_rows_pending"
+  },
+  {
+    "label": "PIC/S Part I",
+    "doc_id": "pics_pe00917_part1_20230825",
+    "input": {
+      "input": "data/human-readable/pics/pe009-17_part1_2023-08-25_en.txt",
+      "tables_detected": 2,
+      "notes_detected": 117,
+      "fixed_width_candidate_rows": 381,
+      "items": [
+        {
+          "kind": "table_caption",
+          "line": 39,
+          "text": "TABLE OF CONTENT"
+        },
+        {
+          "kind": "table_caption",
+          "line": 84,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 203,
+          "text": "(i)     Product realisation is achieved by designing, planning, implementing,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 207,
+          "text": "(ii)    Product and process knowledge is managed throughout all lifecycle stages;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 209,
+          "text": "(iii)   Medicinal products are designed and developed in a way that takes account"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 212,
+          "text": "(iv)    Production and control operations are clearly specified and Good"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 215,
+          "text": "(v)     Managerial responsibilities are clearly specified;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 217,
+          "text": "(vi)    Arrangements are made for the manufacture, supply and use of the correct"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 221,
+          "text": "(vii) Processes are in place to assure the management of outsourced activities;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 223,
+          "text": "(viii) A state of control is established and maintained by developing and using"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 227,
+          "text": "(ix)    The results of product and processes monitoring are taken into account in"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 231,
+          "text": "(x)     All necessary controls on intermediate products, and any other in-process"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 234,
+          "text": "(xi)    Continual improvement is facilitated through the implementation of quality"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 238,
+          "text": "(xii) Arrangements are in place for the prospective evaluation of planned"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 242,
+          "text": "(xiii) After implementation of any change, an evaluation is undertaken to confirm"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 253,
+          "text": "(xiv) An appropriate level of root cause analysis should be applied during the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 263,
+          "text": "(CAPAs) should be identified and taken in response to investigations. The"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 267,
+          "text": "(xv) Medicinal products are not sold or supplied before an Authorised Person"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 273,
+          "text": "(xvi) Satisfactory arrangements exist to ensure, as far as possible, that the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 277,
+          "text": "(xvii) There is a process for self-inspection and/or quality audit, which regularly"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 316,
+          "text": "(i)     All manufacturing processes are clearly defined, systematically reviewed in"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 321,
+          "text": "(ii)    Critical steps of manufacturing processes and significant changes to the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 324,
+          "text": "(iii)   All necessary facilities for GMP are provided including:"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 334,
+          "text": "(iv)    Instructions and procedures are written in an instructional form in clear and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 337,
+          "text": "(v)     Procedures are carried out correctly and operators are trained to do so;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 339,
+          "text": "(vi)    Records are made, manually and/or by recording instruments, during"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 344,
+          "text": "(vii) Any significant deviations are fully recorded, investigated with the objective"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 348,
+          "text": "(viii) Records of manufacture including distribution which enable the complete"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 352,
+          "text": "(ix)    The distribution of the products minimises any risk to their quality and takes"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 355,
+          "text": "(x)     A system is available to recall any batch of product, from sale or supply;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 365,
+          "text": "(xi)    Complaints about products are examined, the causes of quality defects"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 378,
+          "text": "(i)     Adequate facilities, trained personnel and approved procedures are"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 383,
+          "text": "(ii)    Samples of starting materials, packaging materials, intermediate products,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 387,
+          "text": "(iii)   Test methods are validated;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 389,
+          "text": "(iv)    Records are made, manually and/or by recording instruments, which"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 394,
+          "text": "(v)     The finished products contain active ingredients complying with the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 399,
+          "text": "(vi)    Records are made of the results of inspection and that testing of materials,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 405,
+          "text": "(vii) No batch of product is released for sale or supply prior to certification by an"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 409,
+          "text": "(viii) Sufficient reference samples of starting materials and products are retained"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 430,
+          "text": "(i)     A review of starting materials including packaging materials used in the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 434,
+          "text": "(ii)    A review of critical in-process controls and finished product results;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 436,
+          "text": "(iii)   A review of all batches that failed to meet established specification(s) and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 439,
+          "text": "(iv)    A review of all significant deviations or non-conformances, their related"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 443,
+          "text": "(v)     A review of all changes carried out to the processes or analytical methods;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 445,
+          "text": "(vi)    A review of Marketing Authorisation variations submitted, granted or"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 448,
+          "text": "(vii) A review of the results of the stability monitoring programme and any"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 451,
+          "text": "(viii) A review of all quality-related returns, complaints and recalls and the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 454,
+          "text": "(ix)    A review of adequacy of any other previous product process or equipment"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 457,
+          "text": "(x)     For new Marketing Authorisations and variations               to   Marketing"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 460,
+          "text": "(xi)    The qualification status of relevant equipment and utilities, e.g. HVAC,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 463,
+          "text": "(xii) A review of any contractual arrangements as defined in Chapter 7 to ensure"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 498,
+          "text": "(i)    The evaluation of the risk to quality is based on scientific knowledge,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 502,
+          "text": "(ii)   The level of effort, formality and documentation of the Quality Risk"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 599,
+          "text": "(i)     To ensure that products are produced and stored according to the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 602,
+          "text": "(ii)    To approve the instructions relating to production operations and to ensure"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 605,
+          "text": "(iii)   To ensure that the production records are evaluated and signed by an"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 608,
+          "text": "(iv)    To ensure the qualification and maintenance of his department, premises"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 611,
+          "text": "(v)     To ensure that the appropriate validations are done;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 613,
+          "text": "(vi)    To ensure that the required initial and continuing training of his department"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 626,
+          "text": "(i)     To approve or reject, as he/she sees fit, starting materials, packaging"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 629,
+          "text": "(ii)    To ensure that all necessary testing is carried out and the associated"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 632,
+          "text": "(iii)   To approve specifications, sampling instructions, test methods and other"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 635,
+          "text": "(iv)    To approve and monitor any contract analysts;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 637,
+          "text": "(v)     To ensure the qualification and maintenance of his/her department,"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 640,
+          "text": "(vi)    To ensure that the appropriate validations are done;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 642,
+          "text": "(vii) To ensure that the required initial and continuing training of his department"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 653,
+          "text": "(i)     The authorisation of written procedures and other documents, including"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 656,
+          "text": "(ii)    The monitoring and control of the manufacturing environment;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 658,
+          "text": "(iii)   Plant hygiene;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 660,
+          "text": "(iv)    Process validation;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 662,
+          "text": "(v)     Training;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 664,
+          "text": "(vi)    The approval and monitoring of suppliers of materials;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 666,
+          "text": "(vii) The approval and monitoring of contract manufacturers and providers of"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 669,
+          "text": "(viii) The designation and monitoring of storage conditions for materials and"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 672,
+          "text": "(ix)    The retention of records;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 674,
+          "text": "(x)     The monitoring of compliance with the requirements of Good Manufacturing"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 684,
+          "text": "(xi)   The inspection, investigation, and taking of samples, in order to monitor"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 687,
+          "text": "(xii) Participation in management reviews of process performance, product"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 691,
+          "text": "(xiii) Ensuring that a timely and effective communication and escalation process"
+        },
+        {
+          "kind": "note",
+          "line": 1390,
+          "text": "Note: Where a validated process is continuously monitored and controlled, then"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2203,
+          "text": "(i)     Specifications;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2205,
+          "text": "(ii)    Procedures describing sampling, testing, records (including                test"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2208,
+          "text": "(iii)   Procedures for and records of the calibration/qualification of instruments"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2211,
+          "text": "(iv)    A procedure for the investigation of Out of Specification and Out of Trend"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2214,
+          "text": "(v)     Testing reports and/or certificates of analysis;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2216,
+          "text": "(vi)    Data from environmental (air, water and other utilities) monitoring, where"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2219,
+          "text": "(vii) Validation records of test methods, where applicable."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2245,
+          "text": "(i)     The method of sampling;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2247,
+          "text": "(ii)    The equipment to be used;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2249,
+          "text": "(iii)   The amount of the sample to be taken;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2251,
+          "text": "(iv)    Instructions for any required sub-division of the sample;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2253,
+          "text": "(v)     The type and condition of the sample container to be used;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2255,
+          "text": "(vi)    The identification of containers sampled;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2257,
+          "text": "(vii) Any special precautions to be observed, especially with regard to the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2260,
+          "text": "(viii) The storage conditions;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2262,
+          "text": "(ix)    Instructions for the cleaning and storage of sampling equipment."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2300,
+          "text": "(i)     Name of the material or product and, where applicable, dosage form;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2302,
+          "text": "(ii)    Batch number and, where appropriate, the manufacturer and/or supplier;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2304,
+          "text": "(iii)   References to the relevant specifications and testing procedures;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2306,
+          "text": "(iv)    Test results, including observations and calculations, and reference to any"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2309,
+          "text": "(v)     Dates of testing;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2311,
+          "text": "(vi)    Initials of the persons who performed the testing;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2313,
+          "text": "(vii) Initials of the persons who verified the testing and the calculations, where"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2316,
+          "text": "(viii) A clear statement of approval or rejection (or other status decision) and the"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2319,
+          "text": "(ix)    Reference to the equipment used."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2408,
+          "text": "(i)     Number of batch(es) per strength and different batch sizes, if applicable;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2410,
+          "text": "(ii)    Relevant physical, chemical, microbiological and biological test methods;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2412,
+          "text": "(iii)   Acceptance criteria;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2421,
+          "text": "(iv)   Reference to test methods;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2423,
+          "text": "(v)    Description of the container closure system(s);"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2425,
+          "text": "(vi)   Testing intervals (time points);"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2427,
+          "text": "(vii) Description of the conditions of storage (standardised ICH/VICH conditions"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2430,
+          "text": "(viii) Other applicable parameters specific to the medicinal product."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2496,
+          "text": "(i)     Identification of the testing to be performed and the relevant test method(s)"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2499,
+          "text": "(ii)    Identification of the additional training requirements;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2501,
+          "text": "(iii)   Identification of standards and samples to be tested;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2503,
+          "text": "(iv)    Identification of any special transport and storage conditions of test items;"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 2505,
+          "text": "(v)     The acceptance criteria which should be based upon the current validation"
+        },
+        {
+          "kind": "note",
+          "line": 2540,
+          "text": "Note: This Chapter deals with the responsibilities of manufacturers towards the"
+        }
+      ]
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 2,
+      "preformatted": 0,
+      "possible_table": 0
+    },
+    "remaining_gap": "none"
+  },
+  {
+    "label": "PIC/S Part II",
+    "doc_id": "pics_pe00917_part2_20230825",
+    "input": {
+      "input": "data/human-readable/pics/pe009-17_part2_2023-08-25_en.txt",
+      "tables_detected": 6,
+      "notes_detected": 4,
+      "fixed_width_candidate_rows": 610,
+      "items": [
+        {
+          "kind": "table_caption",
+          "line": 43,
+          "text": "TABLE OF CONTENTS"
+        },
+        {
+          "kind": "table_caption",
+          "line": 85,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 134,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 184,
+          "text": "Table of contents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 311,
+          "text": "Table 1. It does not imply that all steps shown should be completed. The stringency of"
+        },
+        {
+          "kind": "table_caption",
+          "line": 328,
+          "text": "Table 1:    Application of this Guide to API Manufacturing"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1961,
+          "text": "(1)    Critical quality attributes and critical process parameters have been"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1964,
+          "text": "(2)    Appropriate in-process acceptance criteria and controls have been"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1967,
+          "text": "(3)    There have not been significant process/product failures attributable to"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 1971,
+          "text": "(4)    Impurity profiles have been established for the existing API."
+        }
+      ]
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 0,
+      "preformatted": 0,
+      "possible_table": 0
+    },
+    "remaining_gap": "none"
+  },
+  {
+    "label": "WHO LBM 3rd",
+    "doc_id": "who_lbm_3rd_2004_9241546506",
+    "input": {
+      "input": "data/human-readable/who/WHO_LBM_3rd.txt",
+      "tables_detected": 21,
+      "notes_detected": 9,
+      "fixed_width_candidate_rows": 1392,
+      "items": [
+        {
+          "kind": "table_caption",
+          "line": 325,
+          "text": "Table 1. Classification of infective microorganisms by risk group"
+        },
+        {
+          "kind": "table_caption",
+          "line": 363,
+          "text": "Table 2. Relation of risk groups to biosafety levels, practices and equipment"
+        },
+        {
+          "kind": "table_caption",
+          "line": 424,
+          "text": "Table 3 summarizes the facility requirements at the four biosafety levels."
+        },
+        {
+          "kind": "table_caption",
+          "line": 427,
+          "text": "Table 3. Summary of biosafety level requirements"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1398,
+          "text": "Table 4. Animal facility containment levels: summary of practices and safety"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1796,
+          "text": "Table 5. Basic Laboratory – Biosafety Level 1: laboratory safety survey"
+        },
+        {
+          "kind": "table_caption",
+          "line": 1978,
+          "text": "Table 6. Basic laboratory – Biosafety Level 2: laboratory safety survey."
+        },
+        {
+          "kind": "table_caption",
+          "line": 2102,
+          "text": "Table 7. Containment laboratory – Biosafety Level 3: laboratory safety survey."
+        },
+        {
+          "kind": "note",
+          "line": 2289,
+          "text": "Note. Horizontal and vertical outflow cabinets (“clean-air work stations”) are not"
+        },
+        {
+          "kind": "table_caption",
+          "line": 2304,
+          "text": "Table 8. Selection of a biological safety cabinet (BSC), by type of protection needed"
+        },
+        {
+          "kind": "table_caption",
+          "line": 2496,
+          "text": "Table 9. Differences between Class I, II and III biological safety cabinets (BSCs)"
+        },
+        {
+          "kind": "table_caption",
+          "line": 2776,
+          "text": "Table 10 provides a checklist of safety equipment designed to eliminate or reduce"
+        },
+        {
+          "kind": "table_caption",
+          "line": 2808,
+          "text": "Table 10. Biosafety equipment"
+        },
+        {
+          "kind": "table_caption",
+          "line": 2972,
+          "text": "Table 11. Personal protective equipment"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3418,
+          "text": "(BSE) in cattle; and other transmissible encephalopathies of deer, elk and mink."
+        },
+        {
+          "kind": "footnote_like",
+          "line": 3488,
+          "text": "(26) and (27)."
+        },
+        {
+          "kind": "table_caption",
+          "line": 3756,
+          "text": "Table 12. Recommended dilutions of chlorine-releasing compounds"
+        },
+        {
+          "kind": "table_caption",
+          "line": 4607,
+          "text": "Table 13. General rules for chemical incompatibilities"
+        },
+        {
+          "kind": "table_caption",
+          "line": 4678,
+          "text": "Table 14. Storage of compressed and liquefied gases"
+        },
+        {
+          "kind": "table_caption",
+          "line": 4753,
+          "text": "Table 15. Types and uses of fire extinguishers"
+        },
+        {
+          "kind": "table_caption",
+          "line": 5703,
+          "text": "Table A4-1 lists equipment and operations that may create hazards and suggests how"
+        },
+        {
+          "kind": "table_caption",
+          "line": 5707,
+          "text": "Table A4-1. Equipment and operations that may create hazards"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 5813,
+          "text": "(lyophilizers)     contact contamination      throughout."
+        },
+        {
+          "kind": "table_caption",
+          "line": 5843,
+          "text": "Table A4-2. Common causes of equipment-related accidents"
+        },
+        {
+          "kind": "table_caption",
+          "line": 5893,
+          "text": "Table A5-1. Chemicals: hazards and precautions"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6376,
+          "text": "(Quicksilver)     b.p. 357 °C;                Repeated exposure          toxic fumes in a fire.    cupboard or well-           ammonia, azides and         ment trays to"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 6950,
+          "text": "(HEPA) filters                                      transgenic and knock-out 102–103"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7190,
+          "text": "(IATA) 94                                     medical surveillance see health and medical"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7192,
+          "text": "(ICAO) 94                                     mercury 157"
+        },
+        {
+          "kind": "footnote_like",
+          "line": 7353,
+          "text": "(UNCETDG) 94                             water baths 143"
+        }
+      ]
+    },
+    "output": {
+      "table": 0,
+      "table_header": 0,
+      "table_row": 0,
+      "note": 1,
+      "preformatted": 1,
+      "possible_table": 1
+    },
+    "remaining_gap": "table_rows_pending"
+  }
+]

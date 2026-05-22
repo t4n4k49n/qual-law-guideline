@@ -89,3 +89,88 @@ Validation:
 Result:
 
 - `12 passed`
+
+## Phase 9D
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9d`
+
+Implemented:
+
+- 代表9文書を現行profileで再生成した。
+- 各文書の `goal_check_result.json` と `GOAL_CHECK_RESULT.md` を `out/20260522-130045_text2ir-final-goal-closure/<doc_id>/` に作成した。
+- `qai_text2ir.audit_report` に promotion GOAL_CHECK、`meta.doc.family`、`possible_table`、残GAP分類を追加した。
+- 代表9文書の監査結果を `TEXT2IR_AUDIT_REPORT.md/json` に作成した。
+- 入力側の表・注記候補数と出力側の保持状況を `TABLE_NOTE_INVENTORY.md/json` に作成した。
+- 代表9文書の最終GAP状態を `TEXT2IR_FINAL_GAP_STATUS.md` にまとめた。
+
+Validation:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_text2ir_audit_report.py tests\test_text2ir_goal_check.py
+```
+
+Result:
+
+- `10 passed`
+
+Audit result:
+
+- normal GOAL_CHECK: `9/9 pass`
+- promotion GOAL_CHECK: `9/9 pass`
+- `meta.doc.family`: `9/9 present`
+- remaining_gap: `none=6`, `table_rows_pending=3`
+
+## Phase 9E
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9e`
+
+Implemented:
+
+- EU GMP Chapter 1 を最初の promotion candidate として作成した。
+- `out/20260522-130045_text2ir-final-goal-closure/eu_gmp_vol4_chap1_20130131/` から4ファイル、manifest、GOAL_CHECK結果を複製した。
+- promotion candidate上で `goal_check --mode promotion` を再実行した。
+- `SAMPLE_COMPARISON.md` に5件の確認サンプルを作成した。
+- `PROMOTION_CANDIDATE_REVIEW.md` をcandidate配下とRUN直下に作成した。
+- `manifest.yaml` のコマンド表記から個人環境絶対パスを除去した。
+
+Validation:
+
+```powershell
+.\.venv\Scripts\python.exe -m qai_text2ir.goal_check --bundle-dir runs\20260522-130045_text2ir-final-goal-closure\promotion_candidate\eu_gmp_vol4_chap1_20130131 --doc-id eu_gmp_vol4_chap1_20130131 --mode promotion --format markdown --out runs\20260522-130045_text2ir-final-goal-closure\promotion_candidate\eu_gmp_vol4_chap1_20130131\GOAL_CHECK_RESULT.md
+```
+
+Result:
+
+- promotion GOAL_CHECK: `PASS`
+- `data/normalized/`: unchanged
+
+## Phase 9F
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9f`
+
+Implemented:
+
+- `docs/CFR_XML_ADAPTER_DESIGN.md` を作成した。
+- `docs/TEXT2IR_COMPOSITE_ENTRY_DESIGN.md` を作成した。
+- `NEXT_REVIEW_REQUEST.md` を作成した。
+- CFR Part 11 / Part 211 は汎用text2ir本体に押し込まず、eCFR XML adapterを次RUN候補にした。
+- PIC/S Annexes refined は複合入口review candidateとして扱い、最初のpromotion candidateにはしない方針を明記した。
+
+Validation:
+
+```powershell
+rg -n "<personal absolute path pattern>" runs/20260522-130045_text2ir-final-goal-closure docs/CFR_XML_ADAPTER_DESIGN.md docs/TEXT2IR_COMPOSITE_ENTRY_DESIGN.md
+git diff --name-only -- data/normalized
+```
+
+Result:
+
+- no personal absolute path detected
+- `data/normalized/`: unchanged
+- full pytest: `167 passed, 1 skipped`

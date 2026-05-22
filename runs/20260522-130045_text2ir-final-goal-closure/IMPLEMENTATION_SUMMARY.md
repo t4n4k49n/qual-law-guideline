@@ -53,3 +53,73 @@ profile課題をサンプル比較で確認した。
 検証:
 
 - profile関連テスト: `12 passed`
+
+## Phase 9D
+
+代表9文書を再生成し、正式候補前の監査を実施した。
+
+変更点:
+
+- `qai_text2ir.audit_report` を拡張し、promotion GOAL_CHECK、`meta.doc.family`、`possible_table`、残GAP分類を出力。
+- 代表9文書の再生成結果を `out/20260522-130045_text2ir-final-goal-closure/<doc_id>/` に作成。
+- 監査結果を `TEXT2IR_AUDIT_REPORT.md/json` に出力。
+- 入力側の表・注記候補と出力側の保持状況を `TABLE_NOTE_INVENTORY.md/json` に整理。
+- 最終GAP状態を `TEXT2IR_FINAL_GAP_STATUS.md` に整理。
+
+検証:
+
+- audit/goal check関連テスト: `10 passed`
+
+結果:
+
+- 代表9文書 normal GOAL_CHECK: `9/9 pass`
+- 代表9文書 promotion GOAL_CHECK: `9/9 pass`
+- `meta.doc.family`: `9/9 present`
+- 残GAP: `none=6`, `table_rows_pending=3`
+
+判断:
+
+- 正式候補に必要な共通GOALは満たした。
+- 複雑な表は黙殺せず `possible_table` として保持しており、`table_row` への安全な分解は後続改善扱い。
+
+## Phase 9E
+
+EU GMP Chapter 1 を最初の promotion candidate として作成した。
+
+変更点:
+
+- `runs/20260522-130045_text2ir-final-goal-closure/promotion_candidate/eu_gmp_vol4_chap1_20130131/` に候補一式を配置。
+- 4ファイル、manifest、GOAL_CHECK結果を含めた。
+- candidate配下でpromotion GOAL_CHECKを再実行。
+- `SAMPLE_COMPARISON.md` に5件の粒度確認を記録。
+- `PROMOTION_CANDIDATE_REVIEW.md` を作成。
+
+検証:
+
+- promotion GOAL_CHECK: `PASS`
+
+判断:
+
+- EU GMP Chapter 1 は、表・注記の複雑性が低く、最初の正式昇格レビュー対象として妥当。
+- `data/normalized/` は変更していない。
+
+## Phase 9F
+
+CFR / 複合入口の設計をdocsへ分離した。
+
+変更点:
+
+- `docs/CFR_XML_ADAPTER_DESIGN.md` を追加。
+- `docs/TEXT2IR_COMPOSITE_ENTRY_DESIGN.md` を追加。
+- `NEXT_REVIEW_REQUEST.md` を追加。
+
+判断:
+
+- CFR Part 211はプレーンテキスト汎用parserではなく、eCFR XML adapterを優先する。
+- PIC/S Annexes refinedは複合入口review candidateとして維持し、最初のpromotion candidateにはしない。
+
+最終評価:
+
+- 代表9文書の基礎GOALとpromotion GOAL_CHECKは到達。
+- EU GMP Chapter 1 のpromotion candidateは作成済み。
+- 残る実装課題は、複雑表を安全に `table_row` 化する改善と、CFR XML adapterの別RUN実装。

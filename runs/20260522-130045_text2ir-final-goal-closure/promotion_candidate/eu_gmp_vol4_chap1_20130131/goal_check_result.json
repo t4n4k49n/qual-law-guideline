@@ -1,0 +1,87 @@
+{
+  "doc_id": "eu_gmp_vol4_chap1_20130131",
+  "bundle_dir": "runs\\20260522-130045_text2ir-final-goal-closure\\promotion_candidate\\eu_gmp_vol4_chap1_20130131",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "files": {
+      "ir": {
+        "path": "eu_gmp_vol4_chap1_20130131.regdoc_ir.yaml",
+        "exists": true
+      },
+      "parser_profile": {
+        "path": "eu_gmp_vol4_chap1_20130131.parser_profile.yaml",
+        "exists": true
+      },
+      "regdoc_profile": {
+        "path": "eu_gmp_vol4_chap1_20130131.regdoc_profile.yaml",
+        "exists": true
+      },
+      "meta": {
+        "path": "eu_gmp_vol4_chap1_20130131.meta.yaml",
+        "exists": true
+      },
+      "manifest": {
+        "path": "manifest.yaml",
+        "exists": true
+      }
+    },
+    "schema": "qai.regdoc_ir.v4",
+    "node_count": 72,
+    "kind_counts": {
+      "chapter": 1,
+      "document": 1,
+      "item": 50,
+      "paragraph": 13,
+      "preamble": 1,
+      "subitem": 6
+    },
+    "source_spans": {
+      "nodes_with_source_spans": 71,
+      "non_root_nodes": 71,
+      "coverage": 1.0,
+      "total_spans": 263
+    },
+    "verify_document": "pass",
+    "dq_gmp_checklist": {
+      "has_candidate_visibility": true,
+      "selectable_kinds": [
+        "subitem",
+        "item",
+        "paragraph",
+        "statement",
+        "table_row"
+      ],
+      "has_table_row_selectable": true,
+      "context_display_policy_count": 5,
+      "has_descendant_policy": true,
+      "has_ancestor_policy": true
+    },
+    "manifest": {
+      "schema": "qai.run_manifest.v1",
+      "has_input": true,
+      "has_command": true,
+      "has_outputs": true,
+      "has_profile_provenance": true,
+      "qualitycheck": {
+        "enabled": true,
+        "strict": true,
+        "warnings_count": 0,
+        "warnings": []
+      },
+      "refine": {
+        "kind": "annex",
+        "applied": []
+      }
+    },
+    "table_payload_nodes": 0,
+    "parser_profile": {
+      "id": "eu_gmp_chap1_default_v2",
+      "schema": "qai.parser_profile.v1",
+      "extends": null,
+      "has_markers": true,
+      "has_refine_subtrees": false
+    }
+  }
+}
