@@ -245,3 +245,30 @@ Phase 6で再生成済みの出力から、正式昇格ではなく人間レビ�
 
 - review candidate 3文書すべて `python -m qai_text2ir.goal_check` 相当の確認でPASS。
 - 3文書とも warning は `meta_family_missing` のみ。
+
+## Phase 8 実行内容
+
+長期指示書の最終成果物を確認し、Phase 0-8の完了状態へ報告書を更新した。
+
+必須成果物:
+
+- `RUN.md`
+- `BASELINE.md`
+- `IMPLEMENTATION_SUMMARY.md`
+- `TEST_RESULTS.md`
+- `GOAL_CHECK_RESULTS.md`
+- `TEXT2IR_AUDIT_REPORT.md`
+- `TABLE_NOTE_REAL_SAMPLE_REVIEW.md`
+- `PROFILE_FIX_REVIEW.md`
+- `WHO_LBM_CANDIDATE_GRANULARITY_REVIEW.md`
+- `EXTENSION_ENTRANCE_DESIGN.md`
+- `TEXT2IR_GAP_RESOLUTION_MATRIX.md`
+- `PROMOTION_CANDIDATE_REVIEW.md`
+- `NEXT_REVIEW_REQUEST.md`
+
+確認:
+
+- 上記13ファイルはすべて存在。
+- review candidate 3文書はGOAL_CHECK pass。
+- 全体テストは `160 passed, 1 skipped`。
+- `data/normalized/` は未変更。

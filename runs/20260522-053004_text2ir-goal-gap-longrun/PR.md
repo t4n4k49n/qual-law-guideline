@@ -1,22 +1,22 @@
 ## まとめ
 
-text2ir正規化GOAL到達に向けた長期RUNのPhase 7として、最初の正式化候補群を review candidate にまとめます。EU GMP Chapter 1を最優先候補とし、Annex 15 / Annex 11も同じ形式で人間レビューへ出せる状態にします。
+text2ir正規化GOAL到達に向けた長期RUNのPhase 8として、最終成果物の存在確認、review candidateのGOAL_CHECK再確認、最終テスト結果の記録を行います。Phase 0-8を完了状態として、人間レビューに渡せる状態にします。
 
 ## 変更内容
 
-- EU GMP Vol.4 Chapter 1の review candidate を作成
-- PIC/S PE 009-17 Annex 15の review candidate を作成
-- PIC/S Annex 11の review candidate を作成
-- 各候補に4ファイル、manifest、GOAL_CHECK_RESULT、SAMPLE_COMPARISON、QUALITYCHECK_RESULTを同梱
-- `PROMOTION_CANDIDATE_REVIEW.md` と `RUN.md` をPhase 7実施済みに更新
+- 最終成果物13ファイルの存在を確認
+- review candidate 3文書のGOAL_CHECK再確認結果を記録
+- 全体 pytest の最終結果を記録
+- `IMPLEMENTATION_SUMMARY.md` をPhase 0-8完了状態に更新
+- `RUN.md` / `TEST_RESULTS.md` をPhase 8実施済みに更新
 - `data/normalized/` は未変更
 
 ## 確認
 
-- 候補3文書: Phase 6時点で strict exit 0
-- 候補3文書: Phase 6時点で GOAL_CHECK pass
 - review candidate 3文書: GOAL_CHECK pass
+- `.\.venv\Scripts\python.exe -m pytest -q`
+- 結果: `160 passed, 1 skipped`
 - `data/normalized/` に変更なし
-- 追加はレビュー用複製と報告書のみ
+- 追加は最終報告書更新のみ
 
 <!-- PR_BODY_FILE: runs/20260522-053004_text2ir-goal-gap-longrun/PR.md -->
