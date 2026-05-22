@@ -68,3 +68,24 @@ Result:
 - related tests: `20 passed`
 - Annex 1 smoke regeneration: strict exit 0
 - Annex 1 smoke observed counts: `preformatted=4`, `note=9`
+
+## Phase 9C
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9c`
+
+Implemented:
+
+- profile課題のサンプル比較レポート `PROFILE_SAMPLE_COMPARISON.md` を作成。
+- Annex 15 / Annex 11 / Annex 2A / Part II / WHO LBM 3rd の代表課題を確認。
+
+Validation:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_pics_annex15_profile.py tests\test_pics_annex11_profile.py tests\test_pics_annex2a_profile.py tests\test_pics_part2_v1.py tests\test_text2ir_who_lbm_3rd.py
+```
+
+Result:
+
+- `12 passed`

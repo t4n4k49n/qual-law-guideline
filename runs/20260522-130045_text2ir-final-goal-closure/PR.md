@@ -1,30 +1,23 @@
 ## まとめ
 
-text2irの最終GOAL到達に向けて、表・注記の本番入力適用を進めます。安全な固定幅表は構造化し、不安定な表は `possible_table` として保持することで、表・注記を黙殺しない状態にします。
+text2irの最終GOAL到達に向けて、前回RUNでprofile課題として扱った項目をサンプル比較で閉じます。修正済みの前提にせず、Annex 15 / Annex 11 / Annex 2A / Part II / WHO LBM 3rdを確認対象として記録します。
 
 ## 変更内容
 
-- `qai_text2ir.table_note_inventory` を追加
-- 固定幅表のcaption検出を拡張
-- 安全な固定幅表を `table/table_header/table_row` 化
-- 不安定な固定幅表を `preformatted possible_table` として保持
-- table直後のnoteを保持
-- 表・注記を持つ代表profileで検出を有効化
-- skip block処理の行index上書きバグを修正
-- 関連fixture/testを追加・更新
+- `PROFILE_SAMPLE_COMPARISON.md` を追加
+- Annex 15の見出し継続を確認
+- Annex 11のsection heading/text分離を確認
+- Annex 2AのPart A/B/B1階層を確認
+- Part IIのsection heading/text分離を確認
+- WHO LBM 3rdのitem粒度許容判断を記録
 
 ## 確認
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q tests\test_table_note_real_samples.py tests\test_table_note_inventory.py tests\test_markdown_table_parsing.py tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m pytest -q tests\test_pics_annex15_profile.py tests\test_pics_annex11_profile.py tests\test_pics_annex2a_profile.py tests\test_pics_part2_v1.py tests\test_text2ir_who_lbm_3rd.py
 ```
 
-結果: `20 passed`
-
-PIC/S Annex 1 full input smoke regeneration:
-
-- strict exit 0
-- observed: `preformatted=4`, `note=9`
+結果: `12 passed`
 
 `data/normalized/` は変更していません。
 
