@@ -114,3 +114,7 @@ structure:
 compound_prefix:
   enabled: false
   max_depth: 1
+
+special_parsers:
+  who_lbm_chap8_survey:
+    enabled: true
