@@ -164,3 +164,43 @@ def test_goal_check_promotion_mode_requires_meta_family(tmp_path: Path) -> None:
     assert any(warning.code == "meta_family_missing" for warning in normal_result.warnings)
     assert not promotion_result.passed
     assert any(error.code == "meta_family_missing" for error in promotion_result.errors)
+
+
+def test_goal_check_promotion_fails_default_visible_form_leakage(tmp_path: Path) -> None:
+    doc_id = "goal_check_visible_form_leak"
+    out_dir = _make_bundle(tmp_path, doc_id)
+    ir_path = out_dir / f"{doc_id}.regdoc_ir.yaml"
+    ir = yaml.safe_load(ir_path.read_text(encoding="utf-8"))
+    target = ir["content"]["children"][0]
+    target["text"] = "Information on sign accurate and current | [ ] [ ] [ ]"
+    ir_path.write_text(yaml.safe_dump(ir, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n")
+
+    result = check_bundle(out_dir, doc_id, mode="promotion")
+
+    assert not result.passed
+    assert any(error.code == "default_visible_form_artifact_leakage" for error in result.errors)
+    assert result.summary["artifact_visibility"]["default_visible_form_leakage_count"] >= 1
+
+
+def test_goal_check_promotion_fails_long_form_artifact_text(tmp_path: Path) -> None:
+    doc_id = "goal_check_long_artifact"
+    out_dir = _make_bundle(tmp_path, doc_id)
+    ir_path = out_dir / f"{doc_id}.regdoc_ir.yaml"
+    ir = yaml.safe_load(ir_path.read_text(encoding="utf-8"))
+    target = ir["content"]["children"][0]
+    artifact = deepcopy(target)
+    artifact["nid"] = "art1.form1"
+    artifact["kind"] = "preformatted"
+    artifact["kind_raw"] = "form_artifact"
+    artifact["tags"] = ["form_artifact", "not_selectable", "reference_only"]
+    artifact["visibility"] = {"default_review": "hidden", "dq_gmp_checklist": "hidden"}
+    artifact["text"] = "Reference form artifact. " + ("x" * 310)
+    artifact["children"] = []
+    ir["content"]["children"].append(artifact)
+    ir_path.write_text(yaml.safe_dump(ir, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n")
+
+    result = check_bundle(out_dir, doc_id, mode="promotion")
+
+    assert not result.passed
+    assert any(error.code == "form_artifact_text_too_long" for error in result.errors)
+    assert result.summary["artifact_visibility"]["long_form_artifact_text_count"] == 1

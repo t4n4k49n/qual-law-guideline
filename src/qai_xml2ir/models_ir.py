@@ -21,6 +21,7 @@ class Node:
     )
     source_spans: List[Dict[str, Optional[str]]] = field(default_factory=list)
     data: Dict[str, Any] = field(default_factory=dict)
+    visibility: Dict[str, Any] = field(default_factory=dict)
     children: List["Node"] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,6 +42,8 @@ class Node:
         }
         if self.data:
             payload["data"] = self.data
+        if self.visibility:
+            payload["visibility"] = self.visibility
         return payload
 
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
@@ -9,6 +10,11 @@ import typer
 import yaml
 
 from qai_xml2ir.verify import verify_document
+
+from qai_mock_ui.artifact_visibility import is_default_visible_raw
+
+from .artifact_classifier import visible_form_leakage
+from .glyph_sanitizer import PRIVATE_USE_RE, pua_codepoints
 
 
 EXPECTED_IR_SCHEMA = "qai.regdoc_ir.v4"
@@ -32,6 +38,8 @@ REQUIRED_CHECKLIST_KEYS = [
     "grouping_policy",
     "context_display_policy",
 ]
+STRICT_MODES = {"promotion", "release"}
+REPLACEMENT_CHAR = "\uFFFD"
 
 app = typer.Typer(add_completion=False)
 
@@ -93,6 +101,21 @@ def _count_kinds(root: Dict[str, Any]) -> Dict[str, int]:
     return dict(sorted(counts.items()))
 
 
+def _walk_strings(value: Any, path: str = "$") -> Iterable[tuple[str, str]]:
+    if isinstance(value, str):
+        yield path, value
+    elif isinstance(value, list):
+        for idx, item in enumerate(value):
+            yield from _walk_strings(item, f"{path}[{idx}]")
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            yield from _walk_strings(item, f"{path}.{key}")
+
+
+def _preview(text: str, limit: int = 120) -> str:
+    return re.sub(r"\s+", " ", text).strip()[:limit]
+
+
 def _required_paths(bundle_dir: Path, doc_id: str) -> Dict[str, Path]:
     return {
         "ir": bundle_dir / f"{doc_id}.regdoc_ir.yaml",
@@ -119,6 +142,17 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         "verify_document": "not_run",
         "dq_gmp_checklist": {},
         "manifest": {},
+        "glyph_artifacts": {
+            "literal_pua_count": 0,
+            "pua_codepoints": [],
+            "replacement_char_count": 0,
+        },
+        "artifact_visibility": {
+            "default_visible_form_leakage_count": 0,
+            "form_artifact_count": 0,
+            "long_form_artifact_text_count": 0,
+            "artifact_selectable_count": 0,
+        },
     }
 
     for key in ("ir", "parser_profile", "regdoc_profile", "meta"):
@@ -161,6 +195,34 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         nodes = list(_walk_nodes(root))
         summary["node_count"] = len(nodes)
         summary["kind_counts"] = _count_kinds(root)
+        pua_hits = []
+        replacement_hits = []
+        for path, text in _walk_strings(ir):
+            if PRIVATE_USE_RE.search(text):
+                pua_hits.append((path, pua_codepoints(text), _preview(text)))
+            if REPLACEMENT_CHAR in text:
+                replacement_hits.append((path, _preview(text)))
+        summary["glyph_artifacts"] = {
+            "literal_pua_count": len(pua_hits),
+            "pua_codepoints": sorted({cp for _, cps, _ in pua_hits for cp in cps}),
+            "replacement_char_count": len(replacement_hits),
+            "sample_pua_hits": [
+                {"path": path, "codepoints": cps, "preview": preview}
+                for path, cps, preview in pua_hits[:20]
+            ],
+            "sample_replacement_hits": [
+                {"path": path, "preview": preview}
+                for path, preview in replacement_hits[:20]
+            ],
+        }
+        if pua_hits:
+            target = errors if mode in STRICT_MODES else warnings
+            for path, cps, preview in pua_hits[:20]:
+                target.append(CheckMessage("literal_private_use_glyph", f"literal PUA remains {cps}: {preview}", path))
+        if replacement_hits:
+            target = errors if mode in STRICT_MODES else warnings
+            for path, preview in replacement_hits[:20]:
+                target.append(CheckMessage("replacement_character_remains", f"replacement character remains: {preview}", path))
         try:
             verify_document(ir)
             summary["verify_document"] = "pass"
@@ -172,8 +234,26 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
     source_nodes = 0
     source_total = 0
     table_payload_nodes = 0
+    visible_leaks: List[Dict[str, str]] = []
+    long_artifact_texts: List[Dict[str, str]] = []
+    form_artifact_count = 0
     for node in nodes:
         nid = str(node.get("nid") or "")
+        tags = [str(tag) for tag in (node.get("tags") or [])]
+        kind_raw = str(node.get("kind_raw") or "")
+        is_form_artifact = kind_raw == "form_artifact" or "form_artifact" in tags
+        if is_form_artifact:
+            form_artifact_count += 1
+            text = str(node.get("text") or "")
+            if len(text) > 300:
+                long_artifact_texts.append({"nid": nid, "length": str(len(text)), "preview": _preview(text)})
+            if visible_form_leakage(text):
+                visible_leaks.append({"nid": nid, "field": "text", "preview": _preview(text)})
+        if is_default_visible_raw(node):
+            for field in ("heading", "text"):
+                value = str(node.get(field) or "")
+                if visible_form_leakage(value):
+                    visible_leaks.append({"nid": nid, "field": field, "preview": _preview(value)})
         if nid != "root":
             missing = [field for field in REQUIRED_NODE_FIELDS if field not in node]
             if missing:
@@ -204,6 +284,14 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         "total_spans": source_total,
     }
     summary["table_payload_nodes"] = table_payload_nodes
+    summary["artifact_visibility"] = {
+        "default_visible_form_leakage_count": len(visible_leaks),
+        "form_artifact_count": form_artifact_count,
+        "long_form_artifact_text_count": len(long_artifact_texts),
+        "artifact_selectable_count": 0,
+        "sample_default_visible_form_leakage": visible_leaks[:20],
+        "sample_long_form_artifact_text": long_artifact_texts[:20],
+    }
 
     doc_meta = meta.get("doc") or {}
     bundle_meta = meta.get("bundle") or {}
@@ -260,6 +348,20 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         warnings.append(CheckMessage("table_row_not_selectable", "dq_gmp_checklist.selectable_kinds does not include table_row", paths["regdoc_profile"].name))
     if not summary["dq_gmp_checklist"]["has_descendant_policy"]:
         warnings.append(CheckMessage("descendant_policy_missing", "context_display_policy has no include_descendants rule", paths["regdoc_profile"].name))
+    artifact_selectable = sorted({"preformatted", "form_artifact", "artifact"} & {str(v) for v in selectable})
+    summary["artifact_visibility"]["artifact_selectable_count"] = len(artifact_selectable)
+    if artifact_selectable:
+        errors.append(CheckMessage("artifact_kind_selectable", f"artifact kinds must not be selectable: {', '.join(artifact_selectable)}", paths["regdoc_profile"].name))
+    if mode in STRICT_MODES:
+        for finding in visible_leaks[:20]:
+            errors.append(CheckMessage("default_visible_form_artifact_leakage", f"{finding['field']} leaks form artifact: {finding['preview']}", finding["nid"]))
+        for finding in long_artifact_texts[:20]:
+            errors.append(CheckMessage("form_artifact_text_too_long", f"form_artifact.text length={finding['length']}: {finding['preview']}", finding["nid"]))
+    else:
+        for finding in visible_leaks[:20]:
+            warnings.append(CheckMessage("default_visible_form_artifact_leakage", f"{finding['field']} leaks form artifact: {finding['preview']}", finding["nid"]))
+        for finding in long_artifact_texts[:20]:
+            warnings.append(CheckMessage("form_artifact_text_too_long", f"form_artifact.text length={finding['length']}: {finding['preview']}", finding["nid"]))
 
     if manifest:
         summary["manifest"] = {

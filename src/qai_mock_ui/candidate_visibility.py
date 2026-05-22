@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any, Dict, List, Sequence, Tuple
 
 from qai_mock_ui.ir_model import DocIndex, Node
+from qai_mock_ui.artifact_visibility import is_default_visible_node
 
 
 Rule = Dict[str, Any]
@@ -39,6 +40,8 @@ def _is_node_visible(
 ) -> bool:
     if allow_rules and not any(_rule_matches(index, node, rule) for rule in allow_rules):
         return False
+    if not is_default_visible_node(node):
+        return False
     if any(_rule_matches(index, node, rule) for rule in deny_rules):
         return False
     return True
@@ -53,6 +56,26 @@ def _rule_matches(index: DocIndex, node: Node, rule: Rule) -> bool:
         known = True
         if node.kind != kind:
             return False
+
+    kind_raw = rule.get("kind_raw")
+    if isinstance(kind_raw, str) and kind_raw:
+        known = True
+        if node.kind_raw != kind_raw:
+            return False
+
+    tag = rule.get("tag")
+    if isinstance(tag, str) and tag:
+        known = True
+        if tag not in node.tags:
+            return False
+
+    tag_in = rule.get("tag_in")
+    if isinstance(tag_in, list):
+        tags = {str(v) for v in tag_in if isinstance(v, str) and v}
+        if tags:
+            known = True
+            if not (set(node.tags) & tags):
+                return False
 
     kind_in = rule.get("kind_in")
     if isinstance(kind_in, list):

@@ -11,6 +11,15 @@ from qai_xml2ir.models_ir import IRDocument, Node, build_root
 from qai_xml2ir.nid import NidBuilder
 from qai_xml2ir.ord_key import assign_document_order
 
+from .artifact_classifier import (
+    artifact_text_summary,
+    looks_like_form_artifact,
+    split_form_artifact_tail,
+    split_prose_and_form_artifact,
+    summarize_form_artifact,
+)
+from .glyph_sanitizer import normalize_marker_glyph, sanitize_payload, sanitize_visible_text
+
 LOGGER = logging.getLogger(__name__)
 
 GAP_WARN_MAX_BY_FAMILY = {
@@ -1266,6 +1275,88 @@ def _postprocess_node_text(
     _visit(root)
 
 
+def _artifact_child_nid(parent: Node) -> str:
+    existing = {child.nid for child in parent.children}
+    i = 1
+    while True:
+        nid = f"{parent.nid}.art{i}"
+        if nid not in existing:
+            return nid
+        i += 1
+
+
+def _apply_reference_artifact(node: Node, raw_artifact_text: str, *, separated_from: Optional[str] = None) -> None:
+    artifact_summary = summarize_form_artifact(raw_artifact_text)
+    node.kind = "preformatted"
+    node.kind_raw = "form_artifact"
+    node.role = "informative"
+    node.normativity = None
+    node.text = artifact_text_summary(raw_artifact_text)
+    for tag in ("form_artifact", "not_selectable", "reference_only", "sanitized_layout_artifact"):
+        if tag not in node.tags:
+            node.tags.append(tag)
+    node.visibility = {
+        "default_review": "hidden",
+        "dq_gmp_checklist": "hidden",
+        "search_default": "hidden",
+    }
+    node.data["artifact_kind"] = "form_artifact"
+    node.data["artifact_summary"] = {
+        key: value for key, value in artifact_summary.items() if key != "raw_text_escaped"
+    }
+    node.data["raw_text_policy"] = "not_rendered_by_default"
+    node.data["raw_text_escaped"] = artifact_summary["raw_text_escaped"]
+    if separated_from:
+        node.data["separated_from"] = separated_from
+
+
+def _separate_reference_artifacts(root: Node) -> None:
+    def _visit(node: Node) -> None:
+        for child in list(node.children):
+            _visit(child)
+
+        if node.kind == "document":
+            node.data = sanitize_payload(node.data)
+            return
+
+        raw_text = node.text or ""
+        split = split_prose_and_form_artifact(raw_text)
+        if split is not None:
+            prose, artifact_with_tail = split
+            artifact, tail = split_form_artifact_tail(artifact_with_tail)
+            visible_text = prose if not tail else f"{prose}\n\n{tail}"
+            node.text = sanitize_visible_text(visible_text)
+            artifact_node = Node(
+                nid=_artifact_child_nid(node),
+                kind="preformatted",
+                kind_raw="form_artifact",
+                num=None,
+                ord=None,
+                heading=None,
+                text=None,
+                role="informative",
+                normativity=None,
+                source_spans=list(node.source_spans),
+            )
+            _apply_reference_artifact(artifact_node, artifact, separated_from=node.nid)
+            node.children.append(artifact_node)
+        elif looks_like_form_artifact(raw_text) and node.kind not in {"table", "table_header", "table_row", "note"}:
+            _apply_reference_artifact(node, raw_text)
+
+        context = "artifact" if node.kind_raw == "form_artifact" or "form_artifact" in node.tags else "prose"
+        if node.heading:
+            node.heading = sanitize_visible_text(node.heading, context=context)
+        if node.text:
+            node.text = sanitize_visible_text(node.text, context=context)
+        if node.kind_raw:
+            node.kind_raw = sanitize_visible_text(node.kind_raw, context=context)
+        node.tags = [sanitize_visible_text(tag, context=context) for tag in node.tags]
+        node.refs = sanitize_payload(node.refs, context=context)
+        node.data = sanitize_payload(node.data, context=context)
+
+    _visit(root)
+
+
 def _qualitycheck_structure(parent: Node, warnings: List[str]) -> None:
     sibling_counts: Dict[Tuple[str, str], int] = defaultdict(int)
     for child in parent.children:
@@ -1767,6 +1858,7 @@ def parse_text_to_ir(
         cleaned_line = raw_line
         for pat in strip_inline_regexes:
             cleaned_line = pat.sub("", cleaned_line)
+        cleaned_line = normalize_marker_glyph(cleaned_line)
         stripped_raw = cleaned_line.strip()
         if skip_block_state.active and skip_block_state.rule_index is not None:
             active_rule = skip_block_rules[skip_block_state.rule_index]
@@ -2267,6 +2359,7 @@ def parse_text_to_ir(
         )
         _nest_root_chapters_under_parts(root)
         _quality_warnings = run_text_postprocess_and_qualitycheck(root)
+        _separate_reference_artifacts(root)
         for warning in _quality_warnings:
             LOGGER.warning("qualitycheck: %s", warning)
         assign_document_order(root)
