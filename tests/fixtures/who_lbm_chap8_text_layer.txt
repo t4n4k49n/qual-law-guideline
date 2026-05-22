@@ -1,0 +1,295 @@
+LABORATORY BIOSAFETY MANUAL
+Table 5. Basic Laboratory – Biosafety Level 1: laboratory safety survey
+Location Date
+Person in charge of laboratory
+CHECKED ITEM (ENTER DATE OF CHECK) YES NO N/A COMMENTS
+Laboratory
+Proper signage: ultraviolet light, laser,
+radioactive material, etc. ........................ \x01\x01\x01
+Appropriate biosafety guidelines available
+and followed ........................................... \x01\x01\x01
+Laboratory equipment properly labelled
+(biohazardous, radioactive, toxic, etc.) .. \x01\x01\x01
+Laboratory design
+Designed for easy cleaning ......................... \x01\x01\x01
+Room ultraviolet lights on interlock switch \x01\x01\x01
+All shelves secured ..................................... \x01\x01\x01
+Bench-tops waterproof and resistant to
+acids, alkali, organic solvents and heat . \x01\x01\x01
+Adequate illumination provided .................. \x01\x01\x01
+Adequate storage space available and
+appropriately used ................................. \x01\x01\x01
+Gas cylinders
+All cylinders secured ................................... \x01\x01\x01
+Caps on reserve cylinders ........................... \x01\x01\x01
+Asphyxiating and hazardous gases only in
+ventilated rooms .................................... \x01\x01\x01
+Excess or empty cylinders present ............. \x01\x01\x01
+Chemicals
+Flammables stored in flammable storage
+cabinet .................................................... \x01\x01\x01
+Peroxide formers double-dated (received
+and opened) ........................................... \x01\x01\x01
+Chemicals properly segregated................... \x01\x01\x01
+Hazardous chemicals stored above eye
+level ........................................................ \x01\x01\x01
+Chemicals stored on the floor ..................... \x01\x01\x01
+Chemical containers left open ..................... \x01\x01\x01
+All solutions properly labelled ..................... \x01\x01\x01
+Mercury thermometers in use .................... \x01\x01\x01
+Refrigerators/freezers/cold rooms
+Food for human consumption present ....... \x01\x01\x01
+Flammables in explosion-proof/-safe units \x01\x01\x01
+Labelled externally if containing
+carcinogens, radioactivity and/or
+biohazards .............................................. \x01\x01\x01
+Cold-room has emergency release ............. \x01\x01\x01
+○○○○○○○ ○○○○○○○○○○○○○○○○○○○○○
+○○○○○○○○○○○ ○○○○○○○○○○○○ ○○○○○○○○○○○○
+Biosafety Level:
+Attach the appropriate
+Biosafety Level Survey
+Form
+• 39 •
+CHECKED ITEM (ENTER DATE OF CHECK) YES NO N/A COMMENTS
+Electrical equipment
+Extension cords present ............................. \x01\x01\x01
+Outlets earthed/grounded and with
+proper polarity ....................................... \x01\x01\x01
+Connections by sinks, under showers,
+etc. ......................................................... \x01\x01\x01
+Equipment with frayed or damaged
+wiring ..................................................... \x01\x01\x01
+Overloaded outlets or electrical strips ........ \x01\x01\x01
+Power strips mounted off the floor............. \x01\x01\x01
+Proper fuses in conduits ............................. \x01\x01\x01
+Electrical outlets near water sources meet
+local codes ............................................. \x01\x01\x01
+Earths/grounds present on electrical cords \x01\x01\x01
+Portable space heaters ................................ \x01\x01\x01
+Personal protective equipment
+Eyewash available in laboratory .................. \x01\x01\x01
+Safety shower available .............................. \x01\x01\x01
+Personal protective equipment available
+(gloves, gowns, goggles, etc.) ............... \x01\x01\x01
+Occupants properly attired ......................... \x01\x01\x01
+Laboratory coats, gowns, smocks, gloves
+and other personal protective clothing
+not worn outside the laboratory ............. \x01\x01\x01
+Personal protective equipment available
+for cryogenic storage ............................. \x01\x01\x01
+Waste management
+Evidence of improper waste disposal ......... \x01\x01\x01
+Wastes segregated in proper containers .... \x01\x01\x01
+Chemical waste containers tagged, labelled,
+dated and kept closed ............................ \x01\x01\x01
+Chemical waste containers appropriately
+handled and stored ................................ \x01\x01\x01
+Sharps containers used and disposed of
+properly .................................................. \x01\x01\x01
+No trash on floor ......................................... \x01\x01\x01
+Waste disposal procedures posted in
+laboratory ............................................... \x01\x01\x01
+Occupational health and safety programmes available
+Hazard communication ............................... \x01\x01\x01
+Respiratory protection ................................ \x01\x01\x01
+Hearing conservation .................................. \x01\x01\x01
+Formaldehyde monitoring ........................... \x01\x01\x01
+Ethylene oxide monitoring .......................... \x01\x01\x01
+Anaesthetic gas monitoring ........................ \x01\x01\x01
+8. GUIDELINES FOR LABORATORY/FACILITY CERTIFICATION
+• 40 •
+LABORATORY BIOSAFETY MANUAL
+CHECKED ITEM (ENTER DATE OF CHECK) YES NO N/A COMMENTS
+General engineering controls
+Laboratory airflow is negative to general
+occupancy, corridor and office areas ..... \x01\x01\x01
+Cup sinks or drains acting as vents ............ \x01\x01\x01
+Sink available for hand-washing ................. \x01\x01\x01
+Exposed machine parts (pulleys, gears) ..... \x01\x01\x01
+Vacuum line has filters and traps on
+laboratory benches ................................ \x01\x01\x01
+Backflow hazards to water supply .............. \x01\x01\x01
+Distilled water systems in good condition .. \x01\x01\x01
+Active and effective arthropod and rodent
+control programme ................................ \x01\x01\x01
+General practices and procedures
+Food for human consumption stored
+outside the laboratory ............................ \x01\x01\x01
+Microwave oven(s) clearly labelled “No
+Food Preparation, Laboratory Use Only” \x01\x01\x01
+Eating, drinking, smoking and/or applying
+of cosmetics occurring in the laboratory \x01\x01\x01
+Pressurized glass containers taped or
+shielded (i.e. vacuum traps) .................. \x01\x01\x01
+Mouth pipetting prohibited ......................... \x01\x01\x01
+Mechanical pipetting devices available
+and used ................................................. \x01\x01\x01
+Protective laboratory clothing stored
+separately from street clothing .............. \x01\x01\x01
+General laboratory housekeeping
+Glass containers stored on the floor........... \x01\x01\x01
+Trip hazards evident .................................... \x01\x01\x01
+Clean absorbent pads on work surfaces ..... \x01\x01\x01
+Broken glassware handled by mechanical
+means (brush and dustpan, tongs, etc.) \x01\x01\x01
+Fire protection
+Sprinkler heads free and unobstructed ....... \x01\x01\x01
+Open penetrations in walls, ceiling, floor, etc. \x01\x01\x01
+Wiring or tubing through door openings .... \x01\x01\x01
+Minimum passage width of 1 m in laboratory \x01\x01\x01
+Storage observed on ductwork or light fixtures \x01\x01\x01
+Excess combustibles stored in laboratory .. \x01\x01\x01
+Heated constant temperature baths
+Equipped with low water level and
+overheat shutoff ..................................... \x01\x01\x01
+Constructed of noncombustible materials .. \x01\x01\x01
+Safety surveyor’s signature: ○○○○○ ○○○○○ Date survey completed: ○○○○○○○
+• 41 •
+Table 6. Basic laboratory – Biosafety Level 2: laboratory safety survey.
+This form is used in conjunction with the Biosafety Level 1 laboratory safety
+survey form
+Location Date
+Person in charge of laboratory
+CHECKED ITEM (ENTER DATE OF CHECK) YES NO N/A COMMENTS
+Biological safety cabinet (BSC) Date:
+Certification within last year ....................... \x01\x01\x01
+BSC surface wiped down with appropriate . Location:
+disinfectant at beginning and end of
+each procedure ...................................... \x01\x01\x01 Brand:
+Front grill and exhaust filter unobstructed.. \x01\x01\x01
+Open flames used inside cabinet ................ \x01\x01\x01 Type:
+Vacuum lines have in-line filters and
+disinfectant traps in use ......................... \x01\x01\x01 Serial no.:
+BSC compromised by room air or location \x01\x01\x01
+BSC used when there is potential for
+creating aerosols .................................... \x01\x01\x01
+Laboratory
+Access limited and restricted to authorized
+personnel ............................................... \x01\x01\x01
+Entry limited to personnel advised of all
+potential hazards .................................... \x01\x01\x01
+Biohazard sign posted on laboratory door
+as appropriate ........................................ \x01\x01\x01
+• Information on sign accurate and
+current .............................................. \x01\x01\x01
+• Sign legible and not defaced ............. \x01\x01\x01
+All doors closed .......................................... \x01\x01\x01
+Decontamination
+Decontaminant specific to the organism(s)
+in use ...................................................... \x01\x01\x01
+All spills and accidents involving infectious
+materials reported to the laboratory
+supervisor .............................................. \x01\x01\x01
+Appropriate decontaminant used during
+spill clean-ups ........................................ \x01\x01\x01
+Work surfaces decontaminated before and
+after each procedure, daily and after
+spills ....................................................... \x01\x01\x01
+Handling of contaminated waste
+Infectious waste containers properly used .... \x01\x01\x01
+Containers not overfilled ............................. \x01\x01\x01
+Containers properly labelled and closed ..... \x01\x01\x01
+Culture stocks and other regulated waste
+properly decontaminated before disposal \x01\x01\x01
+8. GUIDELINES FOR LABORATORY/FACILITY CERTIFICATION
+○○○○○ ○○○○○○○○○○○○○○○○○○○○○○○
+○○○○○○○○○○○ ○○○○○○○○○○○○ ○ ○○○○○○○○○○○
+• 42 •
+LABORATORY BIOSAFETY MANUAL
+CHECKED ITEM (ENTER DATE OF CHECK) YES NO N/A COMMENTS
+Materials decontaminated outside the
+laboratory transported in closed,
+durable, leakproof containers according
+to local rules and regulations ................. \x01\x01\x01
+Mixed waste biologically decontaminated
+prior to disposal as chemical or
+radiological waste .................................. \x01\x01\x01
+Personal protection
+Laboratory personnel reminded of
+appropriate immunizations/tests for
+agents handled ....................................... \x01\x01\x01
+Appropriate medical services contacted for
+medical evaluations, surveillance and
+treatment of occupational exposures ..... \x01\x01\x01
+Gloves worn when handling infectious
+material or contaminated equipment ..... \x01\x01\x01
+Face protection provided when working
+outside the BSC with infectious material \x01\x01\x01
+Hands washed after removing gloves, after
+working with infectious agents, before
+leaving the laboratory ............................ \x01\x01\x01
+Antimicrobial agent available for immediate
+first aid ................................................... \x01\x01\x01
+Practices
+BSC used when potential for creating
+infectious aerosols/splashes exists ....... \x01\x01\x01
+Biosafety manual prepared and adopted .... \x01\x01\x01
+Personnel read, review and follow the
+instructions on practices and procedures,
+including safety or operations manual
+(required for all personnel annually)...... \x01\x01\x01
+Procedures performed so as to minimize
+aerosols/splashes .................................. \x01\x01\x01
+Needle-locking syringes/single-use needlesyringe units used with infectious agents \x01\x01\x01
+Centrifuge cups and rotors opened only in
+a BSC...................................................... \x01\x01\x01
+Infectious specimens transported outside
+a BSC in approved containers following
+approved transport regulations .............. \x01\x01\x01
+Facility
+Hand-washing sink available near
+laboratory exit ........................................ \x01\x01\x01
+Safety surveyor’s signature: Date survey completed: ○○○○○ ○○○○○ ○○○○○○○
+• 43 •
+Table 7. Containment laboratory – Biosafety Level 3: laboratory safety survey.
+This form is used in conjunction with the Bioafety Level 1 and Biosafety
+Level 2 laboratory safety survey forms
+Location Date
+Person in charge of laboratory
+CHECKED ITEM (ENTER DATE OF CHECK) YES NO N/A COMMENTS
+Facility
+Laboratory separated from unrestricted
+traffic flow in building ............................ \x01\x01\x01
+Access to laboratory through an anteroom
+with self-closing doors .......................... \x01\x01\x01
+All penetrations in laboratory sealed or
+sealable for decontamination ................. \x01\x01\x01
+Room exhaust air single-pass and
+exhausted away from occupied areas .... \x01\x01\x01
+Controlled ventilation system to monitor
+directional airflow available .................... \x01\x01\x01
+Personal protection
+Closed-front gowns worn in laboratory ...... \x01\x01\x01
+Protective laboratory clothing worn only in
+laboratory areas ..................................... \x01\x01\x01
+Hand-washing sink foot, elbow or
+automatically controlled ......................... \x01\x01\x01
+Hand protection
+Double gloves worn when handling infectious
+material, potentially contaminated
+equipment and work surfaces ................ \x01\x01\x01
+Respiratory protection
+Respiratory protection worn by all personnel
+in the laboratory when aerosols are not
+safely contained in a BSC....................... \x01\x01\x01
+Practices
+Mucous membrane protection provided
+when working with infectious material
+outside a BSC ......................................... \x01\x01\x01
+Personnel advised of special hazards
+associated with the agent(s) .................. \x01\x01\x01
+Personnel required to read and follow all
+instructions on practices and procedures,
+including safety or operations manual ... \x01\x01\x01
+Personnel receive annual updates/additional
+training for procedural changes ............. \x01\x01\x01
+All contaminated waste autoclaved prior to
+disposal .................................................. \x01\x01\x01
+Safety surveyor’s signature: Date survey completed:
+8. GUIDELINES FOR LABORATORY/FACILITY CERTIFICATION
+○○○○○ ○○○○○○○○○○○○○○○○○○○○○○○
+○○○○○○○○○○○ ○○○○○○○○○○○○ ○ ○○○○○○○○○○○
+○○○○○ ○○○○○ ○○○○○○○
+PART II
+Laboratory biosecurity

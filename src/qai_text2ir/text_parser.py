@@ -11,6 +11,8 @@ from qai_xml2ir.models_ir import IRDocument, Node, build_root
 from qai_xml2ir.nid import NidBuilder
 from qai_xml2ir.ord_key import assign_document_order
 
+from .who_lbm_chap8_survey import build_table_nodes, parse_chap8_survey_tables
+
 LOGGER = logging.getLogger(__name__)
 
 GAP_WARN_MAX_BY_FAMILY = {
@@ -1401,6 +1403,16 @@ def _find_last_in_stack(stack: List[Node], kind: str) -> Optional[Node]:
     return None
 
 
+def _find_child_by_kind_num(root: Node, kind: str, num: str) -> Optional[Node]:
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if node.kind == kind and node.num == num:
+            return node
+        stack.extend(reversed(node.children))
+    return None
+
+
 def _norm(value: str) -> str:
     lowered = value.lower().strip()
     lowered = re.sub(r"[\(\)\[\]\{\}:;,.]", " ", lowered)
@@ -1731,6 +1743,9 @@ def parse_text_to_ir(
     detect_plaintext_tables_enabled = bool(detect_plaintext_tables_cfg.get("enabled"))
     plaintext_table_min_rows = int(detect_plaintext_tables_cfg.get("min_rows") or 2)
     plaintext_table_max_rows = int(detect_plaintext_tables_cfg.get("max_rows") or 40)
+    special_parsers = parser_profile.get("special_parsers") or {}
+    who_lbm_chap8_cfg = special_parsers.get("who_lbm_chap8_survey") or {}
+    who_lbm_chap8_enabled = bool(who_lbm_chap8_cfg.get("enabled")) and doc_id == "who_lbm_3rd_2004_9241546506"
 
     root = build_root([])
     stack: List[Node] = [root]
@@ -1761,6 +1776,13 @@ def parse_text_to_ir(
         strip_inline_regexes=strip_inline_regexes,
         continuation_cfg=heading_continuation_cfg,
     )
+    who_lbm_chap8_tables = []
+    if who_lbm_chap8_enabled:
+        survey_result = parse_chap8_survey_tables(lines, line_no_offset=line_no_offset)
+        who_lbm_chap8_tables = survey_result.tables
+        for consumed_idx in survey_result.consumed_line_indexes:
+            if 0 <= consumed_idx < len(lines):
+                lines[consumed_idx] = ""
     for idx, raw_line in enumerate(lines):
         line_no = idx + 1 + line_no_offset
         raw_blank = not raw_line.strip()
@@ -2266,6 +2288,17 @@ def parse_text_to_ir(
             profiles_dir_override=profiles_dir_override,
         )
         _nest_root_chapters_under_parts(root)
+        if who_lbm_chap8_tables:
+            chapter8 = _find_child_by_kind_num(root, "chapter", "8")
+            if chapter8 is not None:
+                chapter8.children.extend(
+                    build_table_nodes(
+                        tables=who_lbm_chap8_tables,
+                        node_factory=node_factory,
+                        parent_nid=chapter8.nid,
+                        source_label=source_label,
+                    )
+                )
         _quality_warnings = run_text_postprocess_and_qualitycheck(root)
         for warning in _quality_warnings:
             LOGGER.warning("qualitycheck: %s", warning)
