@@ -1,30 +1,22 @@
 ## まとめ
 
-text2irの代表9文書を再生成し、通常GOAL_CHECKとpromotion GOAL_CHECKの両方で正式候補前の監査を実施しました。文書ファミリ、4ファイル構成、manifest、source_spans、表・注記の保持状況を同じ観点で一覧化し、残る論点を「複雑な表の安全な行分解」に限定しました。
+EU GMP Chapter 1 を text2ir の最初の promotion candidate として作成しました。代表9文書の監査結果を前提に、構造ギャップが少なくレビューしやすい文書から正式昇格運用へ橋渡しできる状態にしています。
 
 ## 変更内容
 
-- `qai_text2ir.audit_report` を拡張
-- 代表9文書を再生成し、各文書のGOAL_CHECK結果を作成
-- `TEXT2IR_AUDIT_REPORT.md/json` を追加
-- `TABLE_NOTE_INVENTORY.md/json` を追加
-- `TEXT2IR_FINAL_GAP_STATUS.md` を追加
-- Phase 9DのRUN記録を更新
+- EU GMP Chapter 1 の promotion candidate 一式を追加
+- candidate配下でpromotion GOAL_CHECKを再実行
+- `SAMPLE_COMPARISON.md` に5件の粒度確認を追加
+- `PROMOTION_CANDIDATE_REVIEW.md` を追加
+- Phase 9EのRUN記録を更新
 
 ## 確認
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q tests\test_text2ir_audit_report.py tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m qai_text2ir.goal_check --bundle-dir runs\20260522-130045_text2ir-final-goal-closure\promotion_candidate\eu_gmp_vol4_chap1_20130131 --doc-id eu_gmp_vol4_chap1_20130131 --mode promotion --format markdown --out runs\20260522-130045_text2ir-final-goal-closure\promotion_candidate\eu_gmp_vol4_chap1_20130131\GOAL_CHECK_RESULT.md
 ```
 
-結果: `10 passed`
-
-代表9文書:
-
-- normal GOAL_CHECK: `9/9 pass`
-- promotion GOAL_CHECK: `9/9 pass`
-- `meta.doc.family`: `9/9 present`
-- 残GAP: `none=6`, `table_rows_pending=3`
+結果: `PASS`
 
 `data/normalized/` は変更していません。
 
