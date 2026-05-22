@@ -154,6 +154,8 @@ promotion gate だけでなく、可能なら `text_parser.py` 側にも通常�
 
 最低限追加する。
 
+ここに列挙するテストは、実装が意図通り動くことを確認するための手段である。後述の `Acceptance Criteria` はテスト配下の項目ではなく、再生成・監査・目視確認まで含めた最終合格基準である。
+
 - `tests/test_text2ir_goal_check.py`
   - selectable node に private-use + dot leader があると promotion mode で fail する。
   - normal mode では warning として観測できる。
@@ -181,6 +183,8 @@ promotion gate だけでなく、可能なら `text_parser.py` 側にも通常�
 ## Acceptance Criteria
 
 次の条件を満たして初めて「問題解消」と言える。
+
+これは `Required Tests` の子項目ではない。テスト追加だけでなく、代表文書の再生成、contamination audit、必要な目視確認を終えた後に判定する最終条件である。
 
 1. WHO LBM 3rd の severe contamination が 0。
 2. PIC/S Annex 2A の severe contamination が 0。
