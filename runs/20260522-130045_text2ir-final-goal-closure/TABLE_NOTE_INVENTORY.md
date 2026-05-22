@@ -1,35 +1,20 @@
-# TABLE_NOTE_INVENTORY
+# TABLE NOTE INVENTORY
 
-## Phase 9B Summary
+代表9文書の入力テキスト側の表・注記候補と、text2ir出力側の表・注記保持状況を比較した。
 
-入力側のTable/Note候補を棚卸しする `qai_text2ir.table_note_inventory` を追加した。
+| 文書 | input table captions | input notes | input fixed-width rows | output table | output table_row | output note | output possible_table | remaining_gap |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| EU GMP Vol.4 Chapter 1 | 0 | 48 | 0 | 0 | 0 | 0 | 0 | none |
+| PIC/S Annex 1 | 6 | 14 | 684 | 0 | 0 | 9 | 4 | table_rows_pending |
+| PIC/S Annex 11 | 0 | 0 | 46 | 0 | 0 | 0 | 0 | none |
+| PIC/S Annex 15 | 0 | 0 | 164 | 0 | 0 | 0 | 0 | none |
+| PIC/S Annex 2A | 3 | 75 | 269 | 0 | 0 | 2 | 0 | none |
+| PIC/S Annexes refined | 17 | 132 | 2726 | 0 | 0 | 11 | 4 | table_rows_pending |
+| PIC/S Part I | 2 | 117 | 381 | 0 | 0 | 2 | 0 | none |
+| PIC/S Part II | 6 | 4 | 610 | 0 | 0 | 0 | 0 | none |
+| WHO LBM 3rd | 21 | 9 | 1392 | 0 | 0 | 1 | 1 | table_rows_pending |
 
-実装方針:
+## Notes
 
-- `Table 1:` / `Table 1.` / `Table 1 Maximum...` を table caption 候補として検出。
-- `Note 1:` / `Note:` / `(a)` 等を note / footnote-like 候補として検出。
-- Markdown tableは既存仕様を維持。
-- 固定幅表は安全に列数が揃う場合のみ `table/table_header/table_row` 化。
-- 不安定な固定幅表は `preformatted` + `kind_raw=possible_table` + `possible_plaintext_table_not_structured` として保持。
-- 表下注記は可能な範囲で `note` として保持。
-
-## Real Input Smoke
-
-PIC/S Annex 1 full input smoke:
-
-- input: `data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt`
-- output: `out/20260522-130045_text2ir-final-goal-closure/phase9b_smoke_annex1_v3/`
-- result: strict exit 0
-- observed IR counts: `preformatted=4`, `note=9`
-
-この時点では、Annex 1の複雑なPDF由来固定幅表は安全な `table_row` 化ではなく、`possible_table` として保持している。これは「黙殺しない」ことを優先する判断である。
-
-## Tests
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest -q tests\test_table_note_real_samples.py tests\test_table_note_inventory.py tests\test_markdown_table_parsing.py tests\test_text2ir_goal_check.py
-```
-
-Result:
-
-- `20 passed`
+- `possible_table` は、表候補として黙殺せず保持したが、列揃いが安全でないため `table_row` へ分解していないもの。
+- input側の検出は候補数であり、PDF由来テキストの崩れや脚注風の箇条書きを含むため、正本上の表数・注記数と完全一致するものではない。

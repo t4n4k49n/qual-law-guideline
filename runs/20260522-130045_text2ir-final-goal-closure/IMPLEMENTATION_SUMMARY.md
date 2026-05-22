@@ -53,3 +53,31 @@ profile課題をサンプル比較で確認した。
 検証:
 
 - profile関連テスト: `12 passed`
+
+## Phase 9D
+
+代表9文書を再生成し、正式候補前の監査を実施した。
+
+変更点:
+
+- `qai_text2ir.audit_report` を拡張し、promotion GOAL_CHECK、`meta.doc.family`、`possible_table`、残GAP分類を出力。
+- 代表9文書の再生成結果を `out/20260522-130045_text2ir-final-goal-closure/<doc_id>/` に作成。
+- 監査結果を `TEXT2IR_AUDIT_REPORT.md/json` に出力。
+- 入力側の表・注記候補と出力側の保持状況を `TABLE_NOTE_INVENTORY.md/json` に整理。
+- 最終GAP状態を `TEXT2IR_FINAL_GAP_STATUS.md` に整理。
+
+検証:
+
+- audit/goal check関連テスト: `10 passed`
+
+結果:
+
+- 代表9文書 normal GOAL_CHECK: `9/9 pass`
+- 代表9文書 promotion GOAL_CHECK: `9/9 pass`
+- `meta.doc.family`: `9/9 present`
+- 残GAP: `none=6`, `table_rows_pending=3`
+
+判断:
+
+- 正式候補に必要な共通GOALは満たした。
+- 複雑な表は黙殺せず `possible_table` として保持しており、`table_row` への安全な分解は後続改善扱い。
