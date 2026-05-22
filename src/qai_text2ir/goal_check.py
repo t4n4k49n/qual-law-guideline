@@ -103,7 +103,9 @@ def _required_paths(bundle_dir: Path, doc_id: str) -> Dict[str, Path]:
     }
 
 
-def check_bundle(bundle_dir: Path, doc_id: str) -> GoalCheckResult:
+def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> GoalCheckResult:
+    if mode not in {"normal", "promotion", "release"}:
+        raise ValueError("mode must be one of: normal, promotion, release")
     bundle_dir = Path(bundle_dir)
     paths = _required_paths(bundle_dir, doc_id)
     errors: List[CheckMessage] = []
@@ -209,8 +211,12 @@ def check_bundle(bundle_dir: Path, doc_id: str) -> GoalCheckResult:
     for field_name in ("id", "title", "jurisdiction", "language"):
         if not doc_meta.get(field_name):
             warnings.append(CheckMessage("meta_field_missing", f"meta.doc.{field_name} is missing", paths["meta"].name))
-    if "family" not in doc_meta:
-        warnings.append(CheckMessage("meta_family_missing", "meta.doc.family is missing; older meta may omit it", paths["meta"].name))
+    if "family" not in doc_meta or not doc_meta.get("family"):
+        message = "meta.doc.family is missing; older meta may omit it"
+        if mode in {"promotion", "release"}:
+            errors.append(CheckMessage("meta_family_missing", message, paths["meta"].name))
+        else:
+            warnings.append(CheckMessage("meta_family_missing", message, paths["meta"].name))
     if not doc_meta.get("sources"):
         warnings.append(CheckMessage("meta_sources_missing", "meta.doc.sources is missing or empty", paths["meta"].name))
     if not bundle_meta:
@@ -224,7 +230,7 @@ def check_bundle(bundle_dir: Path, doc_id: str) -> GoalCheckResult:
         "id": parser_profile.get("id"),
         "schema": parser_profile.get("schema"),
         "extends": parser_profile.get("extends"),
-        "has_markers": bool(parser_profile.get("markers")),
+        "has_markers": bool(parser_profile.get("marker_types") or parser_profile.get("markers")),
         "has_refine_subtrees": bool(((parser_profile.get("postprocess") or {}).get("refine_subtrees") or {})),
     }
     if not parser_profile.get("id"):
@@ -335,10 +341,11 @@ def render_markdown(result: GoalCheckResult) -> str:
 def main(
     bundle_dir: Path = typer.Option(..., "--bundle-dir", exists=True, file_okay=False, dir_okay=True),
     doc_id: str = typer.Option(..., "--doc-id"),
+    mode: str = typer.Option("normal", "--mode", help="normal, promotion, or release"),
     format: str = typer.Option("markdown", "--format"),
     out: Optional[Path] = typer.Option(None, "--out"),
 ) -> None:
-    result = check_bundle(bundle_dir=bundle_dir, doc_id=doc_id)
+    result = check_bundle(bundle_dir=bundle_dir, doc_id=doc_id, mode=mode)
     if format == "json":
         rendered = json.dumps(result.to_dict(), ensure_ascii=False, indent=2)
     elif format == "yaml":
