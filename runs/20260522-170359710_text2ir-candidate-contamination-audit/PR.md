@@ -12,6 +12,7 @@ WHO LBM 3rd で見つかった `.............   ` のような入力由
 - WHO LBM 3rd の既知問題を含め、最新 text2ir 候補・review UI コピー・promotion candidate を横断スキャン
 - 検出結果を Markdown / JSON / TSV に保存
 - 個別profile修正を主軸にしないため、根本原因と対応ポリシーを `ROOT_CAUSE_AND_POLICY.md` に明記
+- 次ブランチで実装へ入れるよう、実装対象・テスト・合格基準を `IMPLEMENTATION_HANDOFF.md` に明記
 - コード、profile、テスト、`data/normalized/` は変更なし
 
 ## 監査結果
@@ -32,6 +33,7 @@ WHO LBM 3rd で見つかった `.............   ` のような入力由
 
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/TEXT2IR_CANDIDATE_CONTAMINATION_AUDIT.md`
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/ROOT_CAUSE_AND_POLICY.md`
+- `runs/20260522-170359710_text2ir-candidate-contamination-audit/IMPLEMENTATION_HANDOFF.md`
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/candidate_contamination_findings.tsv`
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/candidate_contamination_audit.json`
 
