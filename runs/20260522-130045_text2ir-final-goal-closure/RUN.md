@@ -121,3 +121,29 @@ Audit result:
 - promotion GOAL_CHECK: `9/9 pass`
 - `meta.doc.family`: `9/9 present`
 - remaining_gap: `none=6`, `table_rows_pending=3`
+
+## Phase 9E
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9e`
+
+Implemented:
+
+- EU GMP Chapter 1 を最初の promotion candidate として作成した。
+- `out/20260522-130045_text2ir-final-goal-closure/eu_gmp_vol4_chap1_20130131/` から4ファイル、manifest、GOAL_CHECK結果を複製した。
+- promotion candidate上で `goal_check --mode promotion` を再実行した。
+- `SAMPLE_COMPARISON.md` に5件の確認サンプルを作成した。
+- `PROMOTION_CANDIDATE_REVIEW.md` をcandidate配下とRUN直下に作成した。
+- `manifest.yaml` のコマンド表記から個人環境絶対パスを除去した。
+
+Validation:
+
+```powershell
+.\.venv\Scripts\python.exe -m qai_text2ir.goal_check --bundle-dir runs\20260522-130045_text2ir-final-goal-closure\promotion_candidate\eu_gmp_vol4_chap1_20130131 --doc-id eu_gmp_vol4_chap1_20130131 --mode promotion --format markdown --out runs\20260522-130045_text2ir-final-goal-closure\promotion_candidate\eu_gmp_vol4_chap1_20130131\GOAL_CHECK_RESULT.md
+```
+
+Result:
+
+- promotion GOAL_CHECK: `PASS`
+- `data/normalized/`: unchanged

@@ -81,3 +81,24 @@ profile課題をサンプル比較で確認した。
 
 - 正式候補に必要な共通GOALは満たした。
 - 複雑な表は黙殺せず `possible_table` として保持しており、`table_row` への安全な分解は後続改善扱い。
+
+## Phase 9E
+
+EU GMP Chapter 1 を最初の promotion candidate として作成した。
+
+変更点:
+
+- `runs/20260522-130045_text2ir-final-goal-closure/promotion_candidate/eu_gmp_vol4_chap1_20130131/` に候補一式を配置。
+- 4ファイル、manifest、GOAL_CHECK結果を含めた。
+- candidate配下でpromotion GOAL_CHECKを再実行。
+- `SAMPLE_COMPARISON.md` に5件の粒度確認を記録。
+- `PROMOTION_CANDIDATE_REVIEW.md` を作成。
+
+検証:
+
+- promotion GOAL_CHECK: `PASS`
+
+判断:
+
+- EU GMP Chapter 1 は、表・注記の複雑性が低く、最初の正式昇格レビュー対象として妥当。
+- `data/normalized/` は変更していない。
