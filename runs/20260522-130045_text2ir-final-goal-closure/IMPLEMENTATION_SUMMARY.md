@@ -37,3 +37,19 @@
 
 - related tests: `20 passed`
 - Annex 1 full input smoke: strict exit 0、`preformatted=4`、`note=9`
+
+## Phase 9C
+
+profile課題をサンプル比較で確認した。
+
+確認結果:
+
+- Annex 15: 見出し継続は解消。
+- Annex 11: section heading/text分離は解消。
+- Annex 2A: Part A/B/B1階層は解消。
+- Part II: section heading/text分離は解消。
+- WHO LBM 3rd: item粒度を当面DQ候補として許容。
+
+検証:
+
+- profile関連テスト: `12 passed`
