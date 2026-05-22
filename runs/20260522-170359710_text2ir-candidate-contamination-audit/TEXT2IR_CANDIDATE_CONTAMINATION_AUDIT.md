@@ -94,10 +94,41 @@ WHO LBM 3rd の `cha8.i5`, `cha8.i5.si1`, `cha8.i5.si2` 付近で、ドットリ
 - PIC/S Annex 1 / Annexes refined は表本文がparagraphに吸収されている箇所があり、WHOほどではないが確認対象。
 - 本問題は「入力文字の有無」ではなく、「選択可能候補として出すべきでない固定幅表/フォーム行を候補へ混ぜるか」の問題として扱うべき。
 
-## Recommended Next Actions
+## Root Cause Model
 
-1. WHO LBM profileで Table 5-7 のsurvey form範囲を `preformatted kind_raw=possible_table` に隔離する。
-2. PIC/S Annex 2A の表状三列比較部分を通常subitemではなく `preformatted possible_table` へ隔離する。
-3. text2ir共通側で、私用領域文字・長いドットリーダー・YES/NO/N/A列を含むbullet行を通常 `item/subitem` にしないガードを検討する。
-4. `goal_check --mode promotion` に「選択可能ノード内のPDF抽出記号/チェック欄混入」をwarning/error化する追加検査を検討する。
-5. WHO LBM 3rd / PIC/S Annex 2A は修正後に再生成・再監査する。
+今回の問題は、WHO LBM 3rd の特定表だけの問題ではない。PDF由来テキストに含まれる表・フォーム・チェック欄・固定幅レイアウト崩れを、text2ir が通常の `item` / `subitem` 候補と十分に区別できていないことが本質である。
+
+原因は三層に分ける。
+
+1. 入力層: PDF抽出テキストに、私用領域文字、ドットリーダー、チェック欄、固定幅列、表キャプション等が残る。
+2. 解析層: それらが箇条書き・インデント・連続行として見えるため、通常の階層ノードへ取り込まれる。
+3. 検査層: 既存の strict / qualitycheck は構造成立を主に見ており、selectable candidate として人に出してよい内容かまでは十分に止めていない。
+
+したがって、文書固有の範囲指定だけで閉じるべきではない。WHO LBM 3rd と PIC/S Annex 2A は、個別修正対象ではなく、共通汚染モデルを検証する代表症例として扱う。
+
+## Policy for Remediation
+
+対応方針の主軸は profile 個別調整ではなく、text2ir 共通側の候補汚染対策に置く。
+
+1. text2ir 共通側で、selectable candidate に混入してはいけない表・フォーム・固定幅崩れの兆候を検出する。
+2. 検出対象は、私用領域文字、長いドットリーダー、`YES` / `NO` / `N/A` / `COMMENTS` 等のチェック欄、長い固定幅空白、表キャプションと表行の混在とする。
+3. それらを通常の `item` / `subitem` として扱わず、非選択の表候補・フォーム候補・preformatted系ノードへ逃がす、または少なくとも promotion gate で止める。
+4. profile は、共通検出で拾える汚染を文書ごとに隠すためではなく、共通分類後に残る文書固有の境界調整に限定する。
+5. WHO LBM 3rd と PIC/S Annex 2A は、共通対策の回帰fixtureとして再生成・再監査する。
+
+## What This Report Does Not Conclude
+
+- WHO LBM 3rd の Table 5-7 だけを profile で塞げばよい、とは結論しない。
+- PIC/S Annex 2A の該当行だけを個別に除外すればよい、とは結論しない。
+- `` や `` という文字が入力に存在すること自体を問題の本体とは見なさない。
+- strict 成功をもって、selectable candidate 品質が十分とは見なさない。
+
+## Corrective Direction
+
+次に進めるべき実装は、文書別パッチではなく、以下の共通対策である。
+
+1. selectable candidate contamination checker を実装する。
+2. checker を `goal_check --mode promotion` または同等の正式昇格前ゲートに組み込む。
+3. text2ir の通常ノード化処理で、表・フォーム・固定幅崩れの疑いが強い行を通常 `item` / `subitem` にしない共通ガードを追加する。
+4. WHO LBM 3rd と PIC/S Annex 2A を回帰対象として、修正後に同じ監査を再実行する。
+5. profile調整が必要な場合は、共通対策で説明できない境界問題に限って追加する。

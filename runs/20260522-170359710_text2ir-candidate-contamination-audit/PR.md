@@ -11,6 +11,7 @@ WHO LBM 3rd で見つかった `.............   ` のような入力由
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/` に監査RUNを追加
 - WHO LBM 3rd の既知問題を含め、最新 text2ir 候補・review UI コピー・promotion candidate を横断スキャン
 - 検出結果を Markdown / JSON / TSV に保存
+- 個別profile修正を主軸にしないため、根本原因と対応ポリシーを `ROOT_CAUSE_AND_POLICY.md` に明記
 - コード、profile、テスト、`data/normalized/` は変更なし
 
 ## 監査結果
@@ -30,9 +31,10 @@ WHO LBM 3rd で見つかった `.............   ` のような入力由
 ## 確認
 
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/TEXT2IR_CANDIDATE_CONTAMINATION_AUDIT.md`
+- `runs/20260522-170359710_text2ir-candidate-contamination-audit/ROOT_CAUSE_AND_POLICY.md`
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/candidate_contamination_findings.tsv`
 - `runs/20260522-170359710_text2ir-candidate-contamination-audit/candidate_contamination_audit.json`
 
 ## 補足
 
-今回の監査はコード修正ではなく、正式昇格前に潰すべき候補汚染の棚卸しです。次の実装では WHO LBM 3rd と PIC/S Annex 2A を優先し、表・チェックリスト・固定幅断片を `preformatted` / `possible_table` 等へ逃がす profile 修正または共通 guard の追加を検討します。
+今回の監査はコード修正ではなく、正式昇格前に潰すべき候補汚染の棚卸しです。対応方針の主軸は、WHO LBM 3rd や PIC/S Annex 2A の個別profile修正ではなく、text2ir共通側で「selectable candidate に出してはいけない表・フォーム・固定幅崩れ」を検出し、通常 `item` / `subitem` 化を抑止し、promotion gate で止めることです。WHO LBM 3rd と PIC/S Annex 2A は個別パッチ対象ではなく、この共通対策の代表症例・回帰対象として扱います。
