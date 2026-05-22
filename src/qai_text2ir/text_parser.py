@@ -367,7 +367,10 @@ def _collect_table_notes(
     return note_entries, idx
 
 
-PLAINTEXT_TABLE_CAPTION_PATTERN = re.compile(r"^(?:Table|表)\s*[\w.-]+[:：].+", flags=re.IGNORECASE)
+PLAINTEXT_TABLE_CAPTION_PATTERN = re.compile(
+    r"^(?:Table)\s+[\dA-Za-z][\w.-]*\s*[:：\.]?\s+\S.*$|^表\s*[\d０-９一二三四五六七八九十]+[^\n]*$",
+    flags=re.IGNORECASE,
+)
 
 
 def _looks_like_plaintext_table_row(line: str) -> bool:
@@ -377,6 +380,36 @@ def _looks_like_plaintext_table_row(line: str) -> bool:
     if "|" in stripped:
         return False
     return bool(re.search(r"\S\s{2,}\S", stripped))
+
+
+def _split_fixed_width_cells(line: str) -> List[str]:
+    return [cell.strip() for cell in re.split(r"\s{2,}", line.strip()) if cell.strip()]
+
+
+def _structure_fixed_width_table(
+    rows: List[Tuple[int, str]],
+    *,
+    min_data_rows: int = 1,
+) -> Optional[Dict[str, Any]]:
+    if len(rows) < min_data_rows + 1:
+        return None
+    header_cells = _split_fixed_width_cells(rows[0][1])
+    if len(header_cells) < 2:
+        return None
+    data_rows: List[Dict[str, Any]] = []
+    for row_idx, row_text in rows[1:]:
+        cells = _split_fixed_width_cells(row_text)
+        if len(cells) != len(header_cells):
+            return None
+        data_rows.append({"line_idx": row_idx, "raw_line": row_text, "cells": cells})
+    if len(data_rows) < min_data_rows:
+        return None
+    return {
+        "columns": header_cells,
+        "header_line_idx": rows[0][0],
+        "header_line": rows[0][1],
+        "rows": data_rows,
+    }
 
 
 def _collect_plaintext_table_block(
@@ -391,6 +424,10 @@ def _collect_plaintext_table_block(
         return None
     rows: List[Tuple[int, str]] = []
     idx = start_idx + 1
+    skipped_initial_blanks = 0
+    while idx < len(lines) and not lines[idx].strip() and skipped_initial_blanks < 3:
+        idx += 1
+        skipped_initial_blanks += 1
     while idx < len(lines) and len(rows) < max_rows:
         raw = lines[idx]
         stripped = raw.strip()
@@ -650,6 +687,10 @@ def _merge_structural_marker_heading_lines(
             if not next_stripped:
                 break
             if _looks_like_md_table_header(next_stripped):
+                break
+            if PLAINTEXT_TABLE_CAPTION_PATTERN.match(next_stripped):
+                break
+            if TABLE_NOTE_TRIGGER_PATTERN.match(next_stripped):
                 break
             if TABLE_CAPTION_PATTERN.match(next_stripped):
                 probe_idx = next_idx + 1
@@ -1751,11 +1792,11 @@ def parse_text_to_ir(
             else:
                 continue
         if not skip_block_state.active and skip_block_rules:
-            for idx, rule in enumerate(skip_block_rules):
+            for rule_idx, rule in enumerate(skip_block_rules):
                 if not rule.start_pattern.match(stripped_raw):
                     continue
                 skip_block_state.active = True
-                skip_block_state.rule_index = idx
+                skip_block_state.rule_index = rule_idx
                 skip_block_state.seen_lines = 0
                 skip_block_state.start_line = line_no
                 if not rule.include_start:
@@ -1765,6 +1806,14 @@ def parse_text_to_ir(
                 active_rule = skip_block_rules[skip_block_state.rule_index]
                 if not active_rule.include_start:
                     continue
+        pre_detected_plaintext_table = None
+        if detect_plaintext_tables_enabled and stripped_raw:
+            pre_detected_plaintext_table = _collect_plaintext_table_block(
+                lines,
+                idx,
+                min_rows=plaintext_table_min_rows,
+                max_rows=plaintext_table_max_rows,
+            )
         if not stripped_raw:
             if raw_blank and current is not root:
                 _mark_pending_break(current, field="text", states=append_states)
@@ -1773,11 +1822,12 @@ def parse_text_to_ir(
             stripped_raw,
             stack,
             repeated_header_kinds,
-        ):
+        ) and pre_detected_plaintext_table is None:
             continue
         if stripped_raw in drop_line_exact:
-            continue
-        if any(pat.match(stripped_raw) for pat in drop_line_regexes):
+            if pre_detected_plaintext_table is None:
+                continue
+        if any(pat.match(stripped_raw) for pat in drop_line_regexes) and pre_detected_plaintext_table is None:
             continue
 
         table_block = _collect_md_table_block(
@@ -1888,7 +1938,7 @@ def parse_text_to_ir(
             continue
 
         if detect_plaintext_tables_enabled:
-            plaintext_table = _collect_plaintext_table_block(
+            plaintext_table = pre_detected_plaintext_table or _collect_plaintext_table_block(
                 lines,
                 idx,
                 min_rows=plaintext_table_min_rows,
@@ -1896,31 +1946,129 @@ def parse_text_to_ir(
             )
             if plaintext_table is not None:
                 parent = current if current is not root else root
-                possible_node = node_factory.create_node(
-                    kind="preformatted",
-                    kind_raw="possible_table",
-                    num=None,
-                    line_no=plaintext_table["caption_idx"] + 1 + line_no_offset,
-                    source_label=source_label,
-                    parent_nid=parent.nid,
+                structured_table = _structure_fixed_width_table(plaintext_table["rows"])
+                notes, _ = _collect_table_notes(
+                    lines,
+                    plaintext_table["end_idx"],
+                    strip_inline_regexes,
+                    drop_line_regexes,
+                    drop_line_exact,
+                    compiled_markers,
                 )
-                possible_node.heading = plaintext_table["caption"]
-                possible_node.text = "\n".join(text for _, text in plaintext_table["rows"])
-                possible_node.tags.append("possible_plaintext_table_not_structured")
-                possible_node.data = {
-                    "warning": "possible_plaintext_table_not_structured",
-                    "format": "plaintext",
-                    "raw_lines": [plaintext_table["caption"], *[text for _, text in plaintext_table["rows"]]],
-                }
-                for row_idx, _ in plaintext_table["rows"]:
-                    possible_node.source_spans.append(
-                        {"source_label": source_label, "locator": f"line:{row_idx + 1 + line_no_offset}"}
+                if structured_table is not None:
+                    table_node = node_factory.create_node(
+                        kind="table",
+                        kind_raw="table",
+                        num=None,
+                        line_no=plaintext_table["caption_idx"] + 1 + line_no_offset,
+                        source_label=source_label,
+                        parent_nid=parent.nid,
                     )
-                parent.children.append(possible_node)
-                node_indent_by_nid[possible_node.nid] = _leading_space_count(lines[plaintext_table["caption_idx"]])
+                    table_node.heading = plaintext_table["caption"]
+                    table_node.data = {
+                        "format": "fixed_width",
+                        "parser_confidence": "conservative",
+                        "raw_lines": [plaintext_table["caption"], *[text for _, text in plaintext_table["rows"]]],
+                    }
+                    parent.children.append(table_node)
+                    node_indent_by_nid[table_node.nid] = _leading_space_count(lines[plaintext_table["caption_idx"]])
+
+                    header_node = node_factory.create_node(
+                        kind="table_header",
+                        kind_raw="table_header",
+                        num=None,
+                        line_no=structured_table["header_line_idx"] + 1 + line_no_offset,
+                        source_label=source_label,
+                        parent_nid=table_node.nid,
+                    )
+                    header_node.text = structured_table["header_line"]
+                    header_node.data = {
+                        "columns": structured_table["columns"],
+                        "raw_line": structured_table["header_line"],
+                    }
+                    table_node.children.append(header_node)
+                    node_indent_by_nid[header_node.nid] = _leading_space_count(lines[structured_table["header_line_idx"]])
+
+                    for row in structured_table["rows"]:
+                        row_node = node_factory.create_node(
+                            kind="table_row",
+                            kind_raw="table_row",
+                            num=None,
+                            line_no=row["line_idx"] + 1 + line_no_offset,
+                            source_label=source_label,
+                            parent_nid=header_node.nid,
+                        )
+                        row_node.text = row["raw_line"]
+                        row_node.data = {
+                            "cells": row["cells"],
+                            "raw_line": row["raw_line"],
+                        }
+                        header_node.children.append(row_node)
+                        node_indent_by_nid[row_node.nid] = _leading_space_count(lines[row["line_idx"]])
+                        last_attachable_node = row_node
+
+                    if notes:
+                        note_node = node_factory.create_node(
+                            kind="note",
+                            kind_raw="note",
+                            num=None,
+                            line_no=notes[0][0] + 1 + line_no_offset,
+                            source_label=source_label,
+                            parent_nid=table_node.nid,
+                        )
+                        note_node.text = "\n\n".join(text for _, text in notes)
+                        note_node.data = {
+                            "note_type": "table_note",
+                            "raw_lines": [text for _, text in notes],
+                        }
+                        for note_idx, _ in notes[1:]:
+                            note_node.source_spans.append(
+                                {"source_label": source_label, "locator": f"line:{note_idx + 1 + line_no_offset}"}
+                            )
+                        table_node.children.append(note_node)
+                else:
+                    possible_node = node_factory.create_node(
+                        kind="preformatted",
+                        kind_raw="possible_table",
+                        num=None,
+                        line_no=plaintext_table["caption_idx"] + 1 + line_no_offset,
+                        source_label=source_label,
+                        parent_nid=parent.nid,
+                    )
+                    possible_node.heading = plaintext_table["caption"]
+                    possible_node.text = "\n".join(text for _, text in plaintext_table["rows"])
+                    possible_node.tags.append("possible_plaintext_table_not_structured")
+                    possible_node.data = {
+                        "warning": "possible_plaintext_table_not_structured",
+                        "format": "plaintext",
+                        "raw_lines": [plaintext_table["caption"], *[text for _, text in plaintext_table["rows"]]],
+                    }
+                    for row_idx, _ in plaintext_table["rows"]:
+                        possible_node.source_spans.append(
+                            {"source_label": source_label, "locator": f"line:{row_idx + 1 + line_no_offset}"}
+                        )
+                    if notes:
+                        note_node = node_factory.create_node(
+                            kind="note",
+                            kind_raw="note",
+                            num=None,
+                            line_no=notes[0][0] + 1 + line_no_offset,
+                            source_label=source_label,
+                            parent_nid=possible_node.nid,
+                        )
+                        note_node.text = "\n\n".join(text for _, text in notes)
+                        note_node.data = {
+                            "note_type": "possible_table_note",
+                            "raw_lines": [text for _, text in notes],
+                        }
+                        possible_node.children.append(note_node)
+                    parent.children.append(possible_node)
+                    node_indent_by_nid[possible_node.nid] = _leading_space_count(lines[plaintext_table["caption_idx"]])
                 lines[plaintext_table["caption_idx"]] = ""
                 for row_idx, _ in plaintext_table["rows"]:
                     lines[row_idx] = ""
+                for note_idx, _ in notes:
+                    lines[note_idx] = ""
                 continue
 
         if extract_notes_enabled and note_start_patterns:

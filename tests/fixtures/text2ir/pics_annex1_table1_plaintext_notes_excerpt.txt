@@ -1,0 +1,9 @@
+Section 5. Cleanroom and clean air equipment qualification
+
+Table 1 Maximum permitted total particle concentration for classification
+Grade  At rest  In operation
+A      3520     3520
+B      352000   352000
+
+Note 1: Particle limits apply to the completed installation.
+Note 2: The table is used during classification.

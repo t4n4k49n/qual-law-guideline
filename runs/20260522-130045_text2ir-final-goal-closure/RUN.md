@@ -39,3 +39,32 @@ Validation:
 Result:
 
 - `8 passed`
+
+## Phase 9B
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9b`
+
+Implemented:
+
+- `qai_text2ir.table_note_inventory` を追加。
+- 固定幅表のcaption検出を `Table 1 Maximum...` 形式にも対応。
+- 安全に列数が揃う固定幅表は `table/table_header/table_row` 化。
+- 不安定な固定幅表は `preformatted` / `kind_raw=possible_table` / `possible_plaintext_table_not_structured` として保持。
+- table直後のnoteを `note` として保持。
+- 表・注記を持つ代表profileで `detect_plaintext_tables` / `extract_notes` を有効化。
+- skip block処理内の内側ループが外側行indexを上書きしていた不具合を修正。
+
+Validation:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_table_note_real_samples.py tests\test_table_note_inventory.py tests\test_markdown_table_parsing.py tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m qai_text2ir.cli --input data\human-readable\pics\pe009-17_annex1_2023-08-25_en.txt --out-dir out\20260522-130045_text2ir-final-goal-closure\phase9b_smoke_annex1_v3 --doc-id phase9b_smoke_annex1 --title "Phase9B Annex1 Smoke" --short-title "Annex1 Smoke" --doc-type guideline --source-format pdf --retrieved-at 2026-02-18 --jurisdiction INTL --language en --family PICS --parser-profile src\qai_text2ir\profiles\pics_annex1_default_v2.yaml --qualitycheck --strict --write-manifest --overwrite-manifest --emit-only all
+```
+
+Result:
+
+- related tests: `20 passed`
+- Annex 1 smoke regeneration: strict exit 0
+- Annex 1 smoke observed counts: `preformatted=4`, `note=9`

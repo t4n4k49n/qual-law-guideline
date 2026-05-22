@@ -18,3 +18,22 @@
 未実施:
 
 - Phase 9B以降の表・注記反映、再生成、promotion candidate作成は後続フェーズで実施する。
+
+## Phase 9B
+
+表・注記の本番入力適用に着手した。
+
+変更点:
+
+- `qai_text2ir.table_note_inventory` を追加。
+- 固定幅表のcaption検出を拡張。
+- 安全な固定幅表は `table/table_header/table_row` 化。
+- 不安定な固定幅表は `preformatted possible_table` として保持。
+- table直後のnoteを保持。
+- Annex 1 / WHO LBM / Annex 2A / Part II / Part I / Annexes refined profileで表・注記検出を有効化。
+- skip block処理の行index上書きバグを修正。
+
+検証:
+
+- related tests: `20 passed`
+- Annex 1 full input smoke: strict exit 0、`preformatted=4`、`note=9`
