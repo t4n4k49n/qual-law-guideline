@@ -164,3 +164,31 @@ def test_goal_check_promotion_mode_requires_meta_family(tmp_path: Path) -> None:
     assert any(warning.code == "meta_family_missing" for warning in normal_result.warnings)
     assert not promotion_result.passed
     assert any(error.code == "meta_family_missing" for error in promotion_result.errors)
+
+
+def test_goal_check_promotion_fails_on_literal_private_use_glyph(tmp_path: Path) -> None:
+    doc_id = "goal_check_pua"
+    out_dir = _make_bundle(tmp_path, doc_id)
+    ir_path = out_dir / f"{doc_id}.regdoc_ir.yaml"
+    ir = yaml.safe_load(ir_path.read_text(encoding="utf-8"))
+    ir["content"]["children"][0]["text"] = "Leaked glyph \uec1e"
+    ir_path.write_text(yaml.safe_dump(ir, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n")
+
+    result = check_bundle(out_dir, doc_id, mode="promotion")
+
+    assert not result.passed
+    assert any(error.code == "literal_private_use_glyph" for error in result.errors)
+
+
+def test_goal_check_promotion_fails_on_visible_form_artifact(tmp_path: Path) -> None:
+    doc_id = "goal_check_form"
+    out_dir = _make_bundle(tmp_path, doc_id)
+    ir_path = out_dir / f"{doc_id}.regdoc_ir.yaml"
+    ir = yaml.safe_load(ir_path.read_text(encoding="utf-8"))
+    ir["content"]["children"][0]["text"] = "Information on sign current ............. [ ] [ ] [ ] YES NO N/A COMMENTS"
+    ir_path.write_text(yaml.safe_dump(ir, sort_keys=False, allow_unicode=True), encoding="utf-8", newline="\n")
+
+    result = check_bundle(out_dir, doc_id, mode="promotion")
+
+    assert not result.passed
+    assert any(error.code == "severe_form_artifact_visible" for error in result.errors)

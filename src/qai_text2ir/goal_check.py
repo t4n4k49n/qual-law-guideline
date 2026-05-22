@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
@@ -9,6 +10,9 @@ import typer
 import yaml
 
 from qai_xml2ir.verify import verify_document
+
+from .artifact_classifier import has_dot_leader, looks_like_form_artifact
+from .glyph_sanitizer import PRIVATE_USE_RE, pua_codepoints
 
 
 EXPECTED_IR_SCHEMA = "qai.regdoc_ir.v4"
@@ -32,6 +36,8 @@ REQUIRED_CHECKLIST_KEYS = [
     "grouping_policy",
     "context_display_policy",
 ]
+STRICT_ARTIFACT_MODES = {"promotion", "release"}
+REPLACEMENT_CHAR = "\uFFFD"
 
 app = typer.Typer(add_completion=False)
 
@@ -93,6 +99,22 @@ def _count_kinds(root: Dict[str, Any]) -> Dict[str, int]:
     return dict(sorted(counts.items()))
 
 
+def _walk_strings(value: Any, path: str = "$") -> Iterable[tuple[str, str]]:
+    if isinstance(value, str):
+        yield path, value
+    elif isinstance(value, list):
+        for idx, item in enumerate(value):
+            yield from _walk_strings(item, f"{path}[{idx}]")
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            yield from _walk_strings(item, f"{path}.{key}")
+
+
+def _preview(text: str, limit: int = 100) -> str:
+    compact = re.sub(r"\s+", " ", text).strip()
+    return compact[:limit]
+
+
 def _required_paths(bundle_dir: Path, doc_id: str) -> Dict[str, Path]:
     return {
         "ir": bundle_dir / f"{doc_id}.regdoc_ir.yaml",
@@ -119,6 +141,18 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         "verify_document": "not_run",
         "dq_gmp_checklist": {},
         "manifest": {},
+        "glyph_artifacts": {
+            "literal_pua_count": 0,
+            "pua_codepoints": [],
+            "replacement_char_count": 0,
+        },
+        "layout_artifacts": {
+            "severe_visible_artifacts": 0,
+            "form_artifacts": 0,
+            "sanitized_artifacts": 0,
+            "dot_leader_hits": 0,
+            "selectable_contamination_guard_hits": 0,
+        },
     }
 
     for key in ("ir", "parser_profile", "regdoc_profile", "meta"):
@@ -161,6 +195,39 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         nodes = list(_walk_nodes(root))
         summary["node_count"] = len(nodes)
         summary["kind_counts"] = _count_kinds(root)
+        pua_hits: List[tuple[str, str, str]] = []
+        replacement_hits: List[tuple[str, str, str]] = []
+        for path, text in _walk_strings(ir):
+            if PRIVATE_USE_RE.search(text):
+                pua_hits.append((path, ",".join(pua_codepoints(text)), _preview(text)))
+            if REPLACEMENT_CHAR in text:
+                replacement_hits.append((path, REPLACEMENT_CHAR, _preview(text)))
+        summary["glyph_artifacts"] = {
+            "literal_pua_count": len(pua_hits),
+            "pua_codepoints": sorted({cp for _, cps, _ in pua_hits for cp in cps.split(",") if cp}),
+            "replacement_char_count": len(replacement_hits),
+            "sample_pua_hits": [
+                {"path": path, "codepoints": cps, "preview": preview}
+                for path, cps, preview in pua_hits[:20]
+            ],
+            "sample_replacement_hits": [
+                {"path": path, "preview": preview} for path, _, preview in replacement_hits[:20]
+            ],
+        }
+        if pua_hits:
+            target = errors if mode in STRICT_ARTIFACT_MODES else warnings
+            for path, cps, preview in pua_hits[:20]:
+                target.append(
+                    CheckMessage(
+                        "literal_private_use_glyph",
+                        f"literal Private Use Area glyph remains ({cps}): {preview}",
+                        path,
+                    )
+                )
+        if replacement_hits:
+            target = errors if mode in STRICT_ARTIFACT_MODES else warnings
+            for path, _, preview in replacement_hits[:20]:
+                target.append(CheckMessage("replacement_character_remains", f"replacement character remains: {preview}", path))
         try:
             verify_document(ir)
             summary["verify_document"] = "pass"
@@ -172,8 +239,16 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
     source_nodes = 0
     source_total = 0
     table_payload_nodes = 0
+    visible_artifact_findings: List[Dict[str, str]] = []
+    sanitized_artifacts = 0
+    form_artifacts = 0
+    dot_leader_hits = 0
+    contamination_guard_hits = 0
     for node in nodes:
         nid = str(node.get("nid") or "")
+        kind = str(node.get("kind") or "")
+        kind_raw = str(node.get("kind_raw") or "")
+        tags = [str(tag) for tag in (node.get("tags") or [])]
         if nid != "root":
             missing = [field for field in REQUIRED_NODE_FIELDS if field not in node]
             if missing:
@@ -184,10 +259,31 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
                 source_total += len(spans)
             elif node.get("kind") not in {"document"}:
                 warnings.append(CheckMessage("missing_source_spans", f"node has no source_spans: {nid}", nid))
-        if node.get("kind") in {"table", "table_header", "table_row"} and node.get("data"):
+        if kind in {"table", "table_header", "table_row"} and node.get("data"):
             table_payload_nodes += 1
-        if node.get("kind") in {"table", "table_header", "table_row"} and "data" not in node:
+        if kind in {"table", "table_header", "table_row"} and "data" not in node:
             warnings.append(CheckMessage("table_data_missing", "table node has no data payload", nid))
+        if kind_raw == "form_artifact" or "form_artifact" in tags:
+            form_artifacts += 1
+            if "sanitized_layout_artifact" in tags:
+                sanitized_artifacts += 1
+        if "selectable_contamination_guard" in tags or kind_raw in {"possible_form", "selectable_contamination"}:
+            contamination_guard_hits += 1
+        for field in ("heading", "text"):
+            value = str(node.get(field) or "")
+            if not value:
+                continue
+            if has_dot_leader(value):
+                dot_leader_hits += 1
+            if kind not in {"preformatted", "table", "table_header", "table_row", "note"} and looks_like_form_artifact(value):
+                visible_artifact_findings.append(
+                    {
+                        "nid": nid,
+                        "kind": kind,
+                        "field": field,
+                        "preview": _preview(value),
+                    }
+                )
 
     if missing_fields:
         for nid, fields in sorted(missing_fields.items())[:20]:
@@ -204,6 +300,14 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         "total_spans": source_total,
     }
     summary["table_payload_nodes"] = table_payload_nodes
+    summary["layout_artifacts"] = {
+        "severe_visible_artifacts": len(visible_artifact_findings),
+        "form_artifacts": form_artifacts,
+        "sanitized_artifacts": sanitized_artifacts,
+        "dot_leader_hits": dot_leader_hits,
+        "selectable_contamination_guard_hits": contamination_guard_hits,
+        "sample_visible_artifacts": visible_artifact_findings[:20],
+    }
 
     doc_meta = meta.get("doc") or {}
     bundle_meta = meta.get("bundle") or {}
@@ -260,6 +364,41 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         warnings.append(CheckMessage("table_row_not_selectable", "dq_gmp_checklist.selectable_kinds does not include table_row", paths["regdoc_profile"].name))
     if not summary["dq_gmp_checklist"]["has_descendant_policy"]:
         warnings.append(CheckMessage("descendant_policy_missing", "context_display_policy has no include_descendants rule", paths["regdoc_profile"].name))
+    forbidden_selectable = sorted({"preformatted", "form_artifact"} & set(str(item) for item in selectable))
+    if forbidden_selectable:
+        errors.append(
+            CheckMessage(
+                "artifact_kind_selectable",
+                f"dq_gmp_checklist.selectable_kinds must not include artifact kinds: {', '.join(forbidden_selectable)}",
+                paths["regdoc_profile"].name,
+            )
+        )
+    artifact_target = errors if mode in STRICT_ARTIFACT_MODES else warnings
+    if contamination_guard_hits:
+        artifact_target.append(
+            CheckMessage(
+                "selectable_contamination_guard_remains",
+                f"selectable contamination guard residue remains in {contamination_guard_hits} nodes",
+                paths["ir"].name,
+            )
+        )
+    if visible_artifact_findings:
+        for finding in visible_artifact_findings[:20]:
+            artifact_target.append(
+                CheckMessage(
+                    "severe_form_artifact_visible",
+                    f"{finding['kind']}.{finding['field']} still looks like visible form artifact: {finding['preview']}",
+                    finding["nid"],
+                )
+            )
+    if dot_leader_hits and mode in STRICT_ARTIFACT_MODES:
+        errors.append(
+            CheckMessage(
+                "dot_leader_artifact_remains",
+                f"dot leader artifact remains in {dot_leader_hits} readable fields",
+                paths["ir"].name,
+            )
+        )
 
     if manifest:
         summary["manifest"] = {

@@ -1,0 +1,182 @@
+[
+  {
+    "doc_id": "eu_gmp_vol4_chap1_20130131",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex11_20230825",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex15_20230825",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex1_20230825",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annex2a_20230825",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_part1_20230825",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "pics_pe00917_part2_20230825",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 0,
+      "sanitized_artifacts": 0,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  },
+  {
+    "doc_id": "who_lbm_3rd_2004_9241546506",
+    "passed": true,
+    "errors": [],
+    "glyph": {
+      "literal_pua_count": 0,
+      "pua_codepoints": [],
+      "replacement_char_count": 0,
+      "sample_pua_hits": [],
+      "sample_replacement_hits": []
+    },
+    "layout": {
+      "severe_visible_artifacts": 0,
+      "form_artifacts": 6,
+      "sanitized_artifacts": 6,
+      "dot_leader_hits": 0,
+      "selectable_contamination_guard_hits": 0,
+      "sample_visible_artifacts": []
+    }
+  }
+]
