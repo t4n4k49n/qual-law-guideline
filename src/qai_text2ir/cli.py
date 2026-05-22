@@ -52,6 +52,16 @@ def _infer_source_label(parser_profile: Dict[str, Any]) -> str:
     return "text"
 
 
+def _infer_meta_family(explicit_family: Optional[str], parser_profile: Dict[str, Any], source_label: str) -> str:
+    if isinstance(explicit_family, str) and explicit_family.strip():
+        return explicit_family.strip()
+    applies_to = parser_profile.get("applies_to") or {}
+    profile_family = applies_to.get("family")
+    if isinstance(profile_family, str) and profile_family.strip():
+        return profile_family.strip()
+    return source_label
+
+
 def _build_regdoc_profile(doc_id: str, context_root_kind: str = "section") -> Dict[str, Any]:
     return {
         "schema": "qai.regdoc_profile.v1",
@@ -212,6 +222,7 @@ def _build_text_meta(
     retrieved_at: Optional[str],
     jurisdiction: str,
     language: str,
+    family: str,
     source_label: str,
     eu_volume: Optional[str],
     pics_doc_id: Optional[str],
@@ -248,6 +259,7 @@ def _build_text_meta(
     )
     meta["doc"]["jurisdiction"] = jurisdiction
     meta["doc"]["language"] = language
+    meta["doc"]["family"] = family
     identifiers = meta["doc"].setdefault("identifiers", {})
     if cfr_title:
         identifiers["cfr_title"] = cfr_title
@@ -378,6 +390,7 @@ def bundle(
     resolved_jurisdiction = jurisdiction or applies_to.get("jurisdiction") or "US"
     resolved_language = language or _infer_default_language(resolved_jurisdiction, parser_profile)
     source_label = _infer_source_label(parser_profile)
+    resolved_meta_family = _infer_meta_family(family, parser_profile, source_label)
     ir_doc = parse_text_to_ir(
         input_path=input,
         doc_id=resolved_doc_id,
@@ -427,6 +440,7 @@ def bundle(
             retrieved_at=retrieved_at,
             jurisdiction=resolved_jurisdiction,
             language=resolved_language,
+            family=resolved_meta_family,
             source_label=source_label,
             eu_volume=eu_volume,
             pics_doc_id=pics_doc_id,
