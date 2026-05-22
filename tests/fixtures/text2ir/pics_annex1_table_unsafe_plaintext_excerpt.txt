@@ -1,0 +1,9 @@
+Section 5. Cleanroom and clean air equipment qualification
+
+Table 4: Example of a low confidence fixed-width table
+Grade  Limit  Observation
+A      < 1    Acceptable
+B      10
+C      100   Requires review   Extra field
+
+The next paragraph should remain normal prose.

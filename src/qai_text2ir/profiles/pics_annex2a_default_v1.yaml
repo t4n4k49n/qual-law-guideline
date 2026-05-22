@@ -23,6 +23,14 @@ preprocess:
   drop_repeated_structural_headers:
     enabled: true
     kinds: [annex]
+  detect_plaintext_tables:
+    enabled: true
+    min_rows: 2
+    max_rows: 80
+    mode: conservative
+  extract_notes:
+    enabled: true
+    max_lines: 40
 
 marker_types:
   - id: annex
@@ -87,17 +95,25 @@ structure:
   root:
     children: [annex]
   annex:
-    children: [section, chapter, paragraph, item, subitem, note, history]
+    children: [section, chapter, paragraph, item, subitem, table, preformatted, note, history]
   chapter:
-    children: [section, paragraph, item, subitem, note, history]
+    children: [section, paragraph, item, subitem, table, preformatted, note, history]
   section:
-    children: [paragraph, item, subitem, note, history]
+    children: [paragraph, item, subitem, table, preformatted, note, history]
   paragraph:
     children: [item, subitem, note, history]
   item:
     children: [subitem, note, history]
   subitem:
     children: [note, history]
+  table:
+    children: [table_header, note]
+  table_header:
+    children: [table_row]
+  table_row:
+    children: []
+  preformatted:
+    children: [note]
   note:
     children: []
   history:

@@ -122,7 +122,7 @@ def test_pics_annex1_table_row_context_includes_header_and_table_note() -> None:
     assert "note" in resolved_kinds
 
 
-def test_pics_annex1_plaintext_table_excerpt_is_not_silently_flattened() -> None:
+def test_pics_annex1_plaintext_table_excerpt_is_structured_when_safe() -> None:
     ir_doc = parse_text_to_ir(
         input_path=Path("tests/fixtures/text2ir/pics_annex1_table2_plaintext_excerpt.txt"),
         doc_id="pics_annex1_table2_plaintext_excerpt",
@@ -132,9 +132,52 @@ def test_pics_annex1_plaintext_table_excerpt_is_not_silently_flattened() -> None
     verify_document(ir)
 
     nodes = _flatten(ir["content"])
+    table = next(n for n in nodes if n.get("kind") == "table")
+    assert table.get("data", {}).get("format") == "fixed_width"
+    header = next(n for n in table.get("children", []) if n.get("kind") == "table_header")
+    rows = [n for n in header.get("children", []) if n.get("kind") == "table_row"]
+    assert header.get("data", {}).get("columns") == [
+        "Grade",
+        "Air sample cfu/m3",
+        "Settle plates cfu/4 hours",
+        "Contact plates cfu/plate",
+    ]
+    assert len(rows) == 4
+    assert rows[0].get("data", {}).get("cells") == ["A", "< 1", "< 1", "< 1"]
+    assert rows[0].get("source_spans")
+
+
+def test_plaintext_table_excerpt_falls_back_to_possible_table_when_unsafe() -> None:
+    ir_doc = parse_text_to_ir(
+        input_path=Path("tests/fixtures/text2ir/pics_annex1_table_unsafe_plaintext_excerpt.txt"),
+        doc_id="pics_annex1_table_unsafe_plaintext_excerpt",
+        parser_profile=_profile(detect_plaintext_tables=True),
+    )
+    ir = ir_doc.to_dict()
+    verify_document(ir)
+
+    nodes = _flatten(ir["content"])
     possible_table = next(n for n in nodes if "possible_plaintext_table_not_structured" in (n.get("tags") or []))
     assert possible_table.get("kind") == "preformatted"
     assert possible_table.get("kind_raw") == "possible_table"
-    assert "Table 2" in (possible_table.get("heading") or "")
+    assert "Table 4" in (possible_table.get("heading") or "")
     assert possible_table.get("source_spans")
     assert possible_table.get("data", {}).get("warning") == "possible_plaintext_table_not_structured"
+
+
+def test_plaintext_table_notes_attach_to_structured_table() -> None:
+    ir_doc = parse_text_to_ir(
+        input_path=Path("tests/fixtures/text2ir/pics_annex1_table1_plaintext_notes_excerpt.txt"),
+        doc_id="pics_annex1_table1_plaintext_notes_excerpt",
+        parser_profile=_profile(detect_plaintext_tables=True),
+    )
+    ir = ir_doc.to_dict()
+    verify_document(ir)
+
+    nodes = _flatten(ir["content"])
+    table = next(n for n in nodes if n.get("kind") == "table")
+    notes = [n for n in table.get("children", []) if n.get("kind") == "note"]
+    assert notes
+    assert notes[0].get("data", {}).get("note_type") == "table_note"
+    assert "Note 1:" in (notes[0].get("text") or "")
+    assert notes[0].get("source_spans")

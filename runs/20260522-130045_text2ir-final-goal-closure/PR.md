@@ -1,23 +1,30 @@
 ## まとめ
 
-text2irの正式候補化に向けて、`meta.doc.family` の欠落を解消し、promotion/release向けのGOAL_CHECKを追加します。これにより、通常確認では後方互換を保ちつつ、正式候補レビューではfamily欠落を明確に失敗扱いできます。
+text2irの最終GOAL到達に向けて、表・注記の本番入力適用を進めます。安全な固定幅表は構造化し、不安定な表は `possible_table` として保持することで、表・注記を黙殺しない状態にします。
 
 ## 変更内容
 
-- `qai_text2ir.cli` で `meta.doc.family` を出力
-- family解決順を `--family`、profile、source label の順に整理
-- `qai_text2ir.goal_check` に `--mode normal|promotion|release` を追加
-- promotion/release modeでは `meta.doc.family` 欠落をerror化
-- `has_markers` 判定を `marker_types` 対応に修正
-- 関連テストを追加
+- `qai_text2ir.table_note_inventory` を追加
+- 固定幅表のcaption検出を拡張
+- 安全な固定幅表を `table/table_header/table_row` 化
+- 不安定な固定幅表を `preformatted possible_table` として保持
+- table直後のnoteを保持
+- 表・注記を持つ代表profileで検出を有効化
+- skip block処理の行index上書きバグを修正
+- 関連fixture/testを追加・更新
 
 ## 確認
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -q tests\test_text2ir_goal_check.py
+.\.venv\Scripts\python.exe -m pytest -q tests\test_table_note_real_samples.py tests\test_table_note_inventory.py tests\test_markdown_table_parsing.py tests\test_text2ir_goal_check.py
 ```
 
-結果: `8 passed`
+結果: `20 passed`
+
+PIC/S Annex 1 full input smoke regeneration:
+
+- strict exit 0
+- observed: `preformatted=4`, `note=9`
 
 `data/normalized/` は変更していません。
 

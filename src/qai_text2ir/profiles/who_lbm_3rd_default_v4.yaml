@@ -45,6 +45,14 @@ preprocess:
     max_ref_line_len: 40
     prev_must_not_end_regex: '[.!?]\s*$'
     prev_prefer_endwords: ["in", "to", "of", "see", "as", "with", "for", "from", "by", "at", "on"]
+  detect_plaintext_tables:
+    enabled: true
+    min_rows: 2
+    max_rows: 80
+    mode: conservative
+  extract_notes:
+    enabled: true
+    max_lines: 40
 
 marker_types:
   - id: part_roman
@@ -81,15 +89,23 @@ structure:
   root:
     children: [part, chapter, annex]
   part:
-    children: [chapter, item, subitem, note, history]
+    children: [chapter, item, subitem, table, preformatted, note, history]
   chapter:
-    children: [item, subitem, note, history]
+    children: [item, subitem, table, preformatted, note, history]
   annex:
-    children: [item, subitem, note, history]
+    children: [item, subitem, table, preformatted, note, history]
   item:
     children: [subitem, note, history]
   subitem:
     children: [note, history]
+  table:
+    children: [table_header, note]
+  table_header:
+    children: [table_row]
+  table_row:
+    children: []
+  preformatted:
+    children: [note]
   note:
     children: []
   history:
