@@ -147,3 +147,30 @@ Result:
 
 - promotion GOAL_CHECK: `PASS`
 - `data/normalized/`: unchanged
+
+## Phase 9F
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9f`
+
+Implemented:
+
+- `docs/CFR_XML_ADAPTER_DESIGN.md` を作成した。
+- `docs/TEXT2IR_COMPOSITE_ENTRY_DESIGN.md` を作成した。
+- `NEXT_REVIEW_REQUEST.md` を作成した。
+- CFR Part 11 / Part 211 は汎用text2ir本体に押し込まず、eCFR XML adapterを次RUN候補にした。
+- PIC/S Annexes refined は複合入口review candidateとして扱い、最初のpromotion candidateにはしない方針を明記した。
+
+Validation:
+
+```powershell
+rg -n "<personal absolute path pattern>" runs/20260522-130045_text2ir-final-goal-closure docs/CFR_XML_ADAPTER_DESIGN.md docs/TEXT2IR_COMPOSITE_ENTRY_DESIGN.md
+git diff --name-only -- data/normalized
+```
+
+Result:
+
+- no personal absolute path detected
+- `data/normalized/`: unchanged
+- full pytest: `167 passed, 1 skipped`
