@@ -89,3 +89,35 @@ Validation:
 Result:
 
 - `12 passed`
+
+## Phase 9D
+
+Branch:
+
+- `feature/text2ir-final-goal-closure-phase9d`
+
+Implemented:
+
+- 代表9文書を現行profileで再生成した。
+- 各文書の `goal_check_result.json` と `GOAL_CHECK_RESULT.md` を `out/20260522-130045_text2ir-final-goal-closure/<doc_id>/` に作成した。
+- `qai_text2ir.audit_report` に promotion GOAL_CHECK、`meta.doc.family`、`possible_table`、残GAP分類を追加した。
+- 代表9文書の監査結果を `TEXT2IR_AUDIT_REPORT.md/json` に作成した。
+- 入力側の表・注記候補数と出力側の保持状況を `TABLE_NOTE_INVENTORY.md/json` に作成した。
+- 代表9文書の最終GAP状態を `TEXT2IR_FINAL_GAP_STATUS.md` にまとめた。
+
+Validation:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_text2ir_audit_report.py tests\test_text2ir_goal_check.py
+```
+
+Result:
+
+- `10 passed`
+
+Audit result:
+
+- normal GOAL_CHECK: `9/9 pass`
+- promotion GOAL_CHECK: `9/9 pass`
+- `meta.doc.family`: `9/9 present`
+- remaining_gap: `none=6`, `table_rows_pending=3`

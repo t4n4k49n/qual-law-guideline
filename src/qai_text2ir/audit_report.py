@@ -34,6 +34,24 @@ def _kind_counts(root: Dict[str, Any]) -> Dict[str, int]:
     return dict(sorted(counts.items()))
 
 
+def _count_possible_tables(root: Dict[str, Any]) -> int:
+    count = 0
+    for node in _walk_nodes(root):
+        if node.get("kind") != "preformatted":
+            continue
+        if node.get("kind_raw") == "possible_table" or "possible_plaintext_table_not_structured" in (node.get("tags") or []):
+            count += 1
+    return count
+
+
+def _remaining_gap(*, counts: Dict[str, int], possible_tables: int, normal_goal: str, promotion_goal: str) -> str:
+    if normal_goal != "pass" or promotion_goal != "pass":
+        return "goal_check"
+    if counts.get("table_row", 0) == 0 and possible_tables > 0:
+        return "table_rows_pending"
+    return "none"
+
+
 def _guess_doc_id(doc_dir: Path) -> Optional[str]:
     matches = sorted(doc_dir.glob("*.regdoc_ir.yaml"))
     if len(matches) != 1:
@@ -75,9 +93,14 @@ def collect_bundle_summary(doc_dir: Path) -> Dict[str, Any]:
     meta = _load_yaml(meta_path) if meta_path.exists() else {}
     manifest = _load_yaml(manifest_path) if manifest_path.exists() else {}
     goal = check_bundle(doc_dir, doc_id)
+    promotion_goal = check_bundle(doc_dir, doc_id, mode="promotion")
     provenance = ((manifest.get("parser_profile") or {}).get("provenance") or [])
     refine = manifest.get("refine") or {}
     qualitycheck = manifest.get("qualitycheck") or {}
+    doc_meta = meta.get("doc") or {}
+    possible_tables = _count_possible_tables(root) if isinstance(root, dict) else 0
+    normal_goal_status = "pass" if goal.passed else "fail"
+    promotion_goal_status = "pass" if promotion_goal.passed else "fail"
 
     return {
         "doc_dir": doc_dir.as_posix(),
@@ -93,9 +116,12 @@ def collect_bundle_summary(doc_dir: Path) -> Dict[str, Any]:
         "manifest": manifest_path.exists(),
         "strict": qualitycheck.get("strict"),
         "qualitycheck_warnings": qualitycheck.get("warnings_count"),
-        "goal_check": "pass" if goal.passed else "fail",
+        "goal_check": normal_goal_status,
+        "promotion_goal_check": promotion_goal_status,
         "goal_errors": [e.to_dict() for e in goal.errors],
         "goal_warnings": [w.to_dict() for w in goal.warnings],
+        "promotion_goal_errors": [e.to_dict() for e in promotion_goal.errors],
+        "promotion_goal_warnings": [w.to_dict() for w in promotion_goal.warnings],
         "node_count": node_count,
         "kind_counts": counts,
         "source_spans": {
@@ -110,10 +136,18 @@ def collect_bundle_summary(doc_dir: Path) -> Dict[str, Any]:
             "table_row": counts.get("table_row", 0),
             "note": counts.get("note", 0),
             "preformatted": counts.get("preformatted", 0),
+            "possible_table": possible_tables,
         },
+        "meta_family": doc_meta.get("family"),
         "profile_provenance_count": len(provenance),
         "refine_applied_count": len(refine.get("applied") or []),
-        "title": ((meta.get("doc") or {}).get("title") or ""),
+        "title": (doc_meta.get("title") or ""),
+        "remaining_gap": _remaining_gap(
+            counts=counts,
+            possible_tables=possible_tables,
+            normal_goal=normal_goal_status,
+            promotion_goal=promotion_goal_status,
+        ),
     }
 
 
@@ -131,6 +165,7 @@ def collect_run_summary(run_out_dir: Path) -> Dict[str, Any]:
             "tables": sum(int((d.get("table_counts") or {}).get("table") or 0) for d in documents),
             "table_rows": sum(int((d.get("table_counts") or {}).get("table_row") or 0) for d in documents),
             "notes": sum(int((d.get("table_counts") or {}).get("note") or 0) for d in documents),
+            "possible_tables": sum(int((d.get("table_counts") or {}).get("possible_table") or 0) for d in documents),
         },
     }
 
@@ -146,17 +181,19 @@ def render_markdown(summary: Dict[str, Any]) -> str:
         "",
         "## Documents",
         "",
-        "| doc_id | goal | schema | 4files | manifest | strict | warnings | nodes | source coverage | table | row | note | profile | refine |",
-        "|---|---|---|---|---|---|---:|---:|---:|---:|---:|---:|---|---:|",
+        "| doc_id | goal | promotion | schema | family | 4files | manifest | strict | warnings | nodes | source coverage | table | row | note | possible_table | profile | refine | remaining_gap |",
+        "|---|---|---|---|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|---:|---|",
     ]
     for doc in summary.get("documents") or []:
         table_counts = doc.get("table_counts") or {}
         source = doc.get("source_spans") or {}
         lines.append(
-            "| {doc_id} | {goal} | {schema} | {four} | {manifest} | {strict} | {warnings} | {nodes} | {coverage} | {table} | {row} | {note} | {profile} | {refine} |".format(
+            "| {doc_id} | {goal} | {promotion} | {schema} | {family} | {four} | {manifest} | {strict} | {warnings} | {nodes} | {coverage} | {table} | {row} | {note} | {possible} | {profile} | {refine} | {gap} |".format(
                 doc_id=doc.get("doc_id"),
                 goal=doc.get("goal_check"),
+                promotion=doc.get("promotion_goal_check"),
                 schema=doc.get("schema"),
+                family=doc.get("meta_family"),
                 four=doc.get("four_files"),
                 manifest=doc.get("manifest"),
                 strict=doc.get("strict"),
@@ -166,8 +203,10 @@ def render_markdown(summary: Dict[str, Any]) -> str:
                 table=table_counts.get("table"),
                 row=table_counts.get("table_row"),
                 note=table_counts.get("note"),
+                possible=table_counts.get("possible_table"),
                 profile=doc.get("parser_profile"),
                 refine=doc.get("refine_applied_count"),
+                gap=doc.get("remaining_gap"),
             )
         )
     lines += ["", "## GOAL Issues", ""]

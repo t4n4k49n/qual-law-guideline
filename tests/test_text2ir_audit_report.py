@@ -41,6 +41,9 @@ def test_audit_report_collects_multiple_bundles(tmp_path: Path) -> None:
     assert all(doc["four_files"] for doc in summary["documents"])
     assert all(doc["manifest"] for doc in summary["documents"])
     assert all(doc["source_spans"]["coverage"] > 0 for doc in summary["documents"])
+    assert all(doc["meta_family"] == "TEST" for doc in summary["documents"])
+    assert all(doc["promotion_goal_check"] == "pass" for doc in summary["documents"])
+    assert all(doc["remaining_gap"] == "none" for doc in summary["documents"])
 
 
 def test_audit_report_renders_markdown(tmp_path: Path) -> None:
@@ -51,4 +54,4 @@ def test_audit_report_renders_markdown(tmp_path: Path) -> None:
     markdown = render_markdown(collect_run_summary(run_dir))
 
     assert "# TEXT2IR AUDIT REPORT" in markdown
-    assert "| doc_a | pass |" in markdown
+    assert "| doc_a | pass | pass |" in markdown
