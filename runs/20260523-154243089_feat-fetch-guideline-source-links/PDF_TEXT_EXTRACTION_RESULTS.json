@@ -1,0 +1,151 @@
+{
+  "run_id": "20260523-154243089_feat-fetch-guideline-source-links",
+  "command": "pdftotext -layout -nopgbrk -enc UTF-8 <pdf> <txt>",
+  "converted_at": "2026-05-23T15:42:58",
+  "converted": [
+    {
+      "group": "PMDA",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\api_gmp_guideline\\000156438.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\api_gmp_guideline\\source_texts\\000156438.txt",
+      "txt_repo_path": "data/human-readable/pmda/api_gmp_guideline/source_texts/000156438.txt",
+      "pdf_bytes": 142194,
+      "txt_bytes": 150346,
+      "non_ws_chars": 46410,
+      "lines": 2710,
+      "sample": "                                 医薬発第１２００号 /                                  平成１３年１１月２日"
+    },
+    {
+      "group": "PMDA",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\aseptic_processing_guideline\\000206144.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\aseptic_processing_guideline\\source_texts\\000206144.txt",
+      "txt_repo_path": "data/human-readable/pmda/aseptic_processing_guideline/source_texts/000206144.txt",
+      "pdf_bytes": 1090304,
+      "txt_bytes": 266566,
+      "non_ws_chars": 86329,
+      "lines": 3511,
+      "sample": "                                 事    務    連    絡 /                                  平 成 23 年 4 月 20 日"
+    },
+    {
+      "group": "NIID",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\niid\\pathogen_safety_management\\Kanrikitei3_20240401.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\niid\\pathogen_safety_management\\source_texts\\Kanrikitei3_20240401.txt",
+      "txt_repo_path": "data/human-readable/niid/pathogen_safety_management/source_texts/Kanrikitei3_20240401.txt",
+      "pdf_bytes": 824130,
+      "txt_bytes": 99845,
+      "non_ws_chars": 27403,
+      "lines": 1518,
+      "sample": " 国立感染症研究所 / 病原体等安全管理規程"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-03_chapter_2.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-03_chapter_2.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-03_chapter_2.txt",
+      "pdf_bytes": 58838,
+      "txt_bytes": 15126,
+      "non_ws_chars": 11293,
+      "lines": 283,
+      "sample": "                                                                                               Ref. Ares(2014)968076 - 28/03/2014 /                                 EUROPEAN COMMISSION"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-08_gmp_chap8.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_chap8.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_chap8.txt",
+      "pdf_bytes": 272118,
+      "txt_bytes": 17844,
+      "non_ws_chars": 13490,
+      "lines": 265,
+      "sample": "                         EUROPEAN COMMISSION /                          HEALTH AND CONSUMERS DIRECTORATE-GENERAL"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-08_gmp_part1.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_part1.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_part1.txt",
+      "pdf_bytes": 628673,
+      "txt_bytes": 132243,
+      "non_ws_chars": 104940,
+      "lines": 2309,
+      "sample": "                                 EUROPEAN COMMISSION /                                  HEALTH AND CONSUMERS DIRECTORATE-GENERAL"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-11_vol4_chapter_6.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-11_vol4_chapter_6.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-11_vol4_chapter_6.txt",
+      "pdf_bytes": 45086,
+      "txt_bytes": 20015,
+      "non_ws_chars": 14996,
+      "lines": 298,
+      "sample": "                                                                                Ref. Ares(2014)968036 - 28/03/2014 /                         EUROPEAN COMMISSION"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\cap9_en.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\cap9_en.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\cap9_en.txt",
+      "pdf_bytes": 10314,
+      "txt_bytes": 1195,
+      "non_ws_chars": 863,
+      "lines": 27,
+      "sample": " CHAPTER 9 SELF INSPECTION / Principle"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\chapter_3.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_3.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_3.txt",
+      "pdf_bytes": 174661,
+      "txt_bytes": 13668,
+      "non_ws_chars": 10134,
+      "lines": 269,
+      "sample": "                                                                                          Ref. Ares(2015)283695 - 23/01/2015 / PT CHAPTER 5 PRODUCTION"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\chapter_5.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_5.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_5.txt",
+      "pdf_bytes": 292130,
+      "txt_bytes": 32659,
+      "non_ws_chars": 24551,
+      "lines": 572,
+      "sample": "                                                                                             Ref. Ares(2015)283689 - 23/01/2015 / CHAPTER 5 PRODUCTION"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\chapter4_01-2011_en.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter4_01-2011_en.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter4_01-2011_en.txt",
+      "pdf_bytes": 33311,
+      "txt_bytes": 22129,
+      "non_ws_chars": 17402,
+      "lines": 389,
+      "sample": "                  EUROPEAN COMMISSION /                   HEALTH AND CONSUMERS DIRECTORATE-GENERAL"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\vol4-chap1_2013-01_en.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap1_2013-01_en.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap1_2013-01_en.txt",
+      "pdf_bytes": 65843,
+      "txt_bytes": 19824,
+      "non_ws_chars": 14836,
+      "lines": 389,
+      "sample": "                           EUROPEAN COMMISSION /                            HEALTH AND CONSUMERS DIRECTORATE-GENERAL"
+    },
+    {
+      "group": "EU_GMP",
+      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\vol4-chap7_2012-06_en.pdf",
+      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap7_2012-06_en.txt",
+      "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap7_2012-06_en.txt",
+      "pdf_bytes": 21114,
+      "txt_bytes": 8460,
+      "non_ws_chars": 6457,
+      "lines": 156,
+      "sample": "                                                                              Ref. Ares(2012)778531 - 28/06/2012 /                  EUROPEAN COMMISSION"
+    }
+  ]
+}
+
