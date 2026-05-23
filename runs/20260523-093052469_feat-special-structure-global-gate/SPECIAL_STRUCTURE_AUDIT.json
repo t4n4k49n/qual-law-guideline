@@ -1,0 +1,944 @@
+{
+  "run_out_dir": "out/20260523-093052469_feat-special-structure-global-gate/bundles",
+  "mode": "normal",
+  "document_count": 4,
+  "documents": [
+    {
+      "doc_id": "pics_annex1",
+      "bundle_dir": "out/20260523-093052469_feat-special-structure-global-gate/bundles/pics_annex1",
+      "source_path": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+      "source_tables": 6,
+      "source_figures": 0,
+      "source_checklist_headers": 0,
+      "fixed_width_table_candidate_blocks": 7,
+      "generated_counts": {
+        "table_header": 0,
+        "note": 9,
+        "table_row": 0,
+        "table": 0,
+        "preformatted": 4,
+        "figure": 0
+      },
+      "generated_tables": 0,
+      "generated_rows": 0,
+      "generated_figures": 0,
+      "suspicious_nodes": [
+        {
+          "nid": "ann1.sec4.p4_27",
+          "kind": "paragraph",
+          "kind_raw": "4.27",
+          "tags": [],
+          "line_range": "711-734",
+          "trigger": "fixed_width_block_in_ordinary_text",
+          "text_sample": "For cleanroom classification, the total of particles equal to or greater than 0.5 and 5 µm should be measured. This measurement should be performed both at rest and in simulated operations in accordance with the limits specified in Table 1.",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann1.sec4.p4_27.pre1",
+          "kind": "preformatted",
+          "kind_raw": "possible_table",
+          "tags": [
+            "possible_plaintext_table_not_structured"
+          ],
+          "line_range": "715-718",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "text_sample": "Table 1: Maximum permitted total particle concentration for classification",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann1.sec4.p4_31.pre1",
+          "kind": "preformatted",
+          "kind_raw": "possible_table",
+          "tags": [
+            "possible_plaintext_table_not_structured"
+          ],
+          "line_range": "792-800",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "text_sample": "Table 2: Maximum permitted microbial contamination level during qualification",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann1.sec8.p8_6",
+          "kind": "paragraph",
+          "kind_raw": "8.6",
+          "tags": [],
+          "line_range": "1395-1407",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Examples of operations to be carried out in the various grades are given in Table 3.",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann1.sec8.p8_10",
+          "kind": "paragraph",
+          "kind_raw": "8.10",
+          "tags": [],
+          "line_range": "1437-1468",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Examples of operations to be carried out in the various environmental grades are given in Table 4.",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann1.sec9.p9_15.pre1",
+          "kind": "preformatted",
+          "kind_raw": "possible_table",
+          "tags": [
+            "possible_plaintext_table_not_structured"
+          ],
+          "line_range": "2957-2965",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "text_sample": "Table 5: Maximum permitted total particle concentration for monitoring.",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann1.sec9.p9_30",
+          "kind": "paragraph",
+          "kind_raw": "9.30",
+          "tags": [],
+          "line_range": "3097-3121",
+          "trigger": "fixed_width_block_in_ordinary_text",
+          "text_sample": "Action limits for viable particle contamination are shown in Table 6.",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann1.sec9.p9_30.pre1",
+          "kind": "preformatted",
+          "kind_raw": "possible_table",
+          "tags": [
+            "possible_plaintext_table_not_structured"
+          ],
+          "line_range": "3099-3103",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "text_sample": "Table 6: Maximum action limits for viable particle contamination",
+          "recommended_resolution": "targeted_parser"
+        }
+      ],
+      "unresolved_special_blocks": [
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "711-734",
+          "trigger": "fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "ann1.sec4.p4_27",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "For cleanroom classification, the total of particles equal to or greater than 0.5 and 5 µm should be measured. This measurement should be performed both at rest and in simulated operations in accordance with the limits specified in Table 1."
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "715-718",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "generated_node_nid": "ann1.sec4.p4_27.pre1",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 1: Maximum permitted total particle concentration for classification"
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "792-800",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "generated_node_nid": "ann1.sec4.p4_31.pre1",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 2: Maximum permitted microbial contamination level during qualification"
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "1395-1407",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "ann1.sec8.p8_6",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Examples of operations to be carried out in the various grades are given in Table 3."
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "1437-1468",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "ann1.sec8.p8_10",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Examples of operations to be carried out in the various environmental grades are given in Table 4."
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "2957-2965",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "generated_node_nid": "ann1.sec9.p9_15.pre1",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 5: Maximum permitted total particle concentration for monitoring."
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "3097-3121",
+          "trigger": "fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "ann1.sec9.p9_30",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Action limits for viable particle contamination are shown in Table 6."
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "3099-3103",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "generated_node_nid": "ann1.sec9.p9_30.pre1",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 6: Maximum action limits for viable particle contamination"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "715",
+          "trigger": "Table 1: Maximum permitted total particle concentration for classification",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 1: Maximum permitted total particle concentration for classification"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "792",
+          "trigger": "Table 2: Maximum permitted microbial contamination level during qualification",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 2: Maximum permitted microbial contamination level during qualification"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "1398",
+          "trigger": "Table 3: Examples of operations and grades for terminally sterilised preparation and",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 3: Examples of operations and grades for terminally sterilised preparation and"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "1440",
+          "trigger": "Table 4:   Examples of operations and grades for aseptic preparation and processing",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 4:   Examples of operations and grades for aseptic preparation and processing"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "2957",
+          "trigger": "Table 5: Maximum permitted total particle concentration for monitoring.",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 5: Maximum permitted total particle concentration for monitoring."
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt",
+          "line_range": "3099",
+          "trigger": "Table 6: Maximum action limits for viable particle contamination",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 6: Maximum action limits for viable particle contamination"
+        }
+      ],
+      "unresolved_count": 14,
+      "status": "warn"
+    },
+    {
+      "doc_id": "pics_annex2a",
+      "bundle_dir": "out/20260523-093052469_feat-special-structure-global-gate/bundles/pics_annex2a",
+      "source_path": "data/human-readable/pics/pe009-17_annex2a_2023-08-25_en.txt",
+      "source_tables": 1,
+      "source_figures": 2,
+      "source_checklist_headers": 0,
+      "fixed_width_table_candidate_blocks": 5,
+      "generated_counts": {
+        "table_header": 0,
+        "note": 2,
+        "table_row": 0,
+        "table": 0,
+        "preformatted": 0,
+        "figure": 0
+      },
+      "generated_tables": 0,
+      "generated_rows": 0,
+      "generated_figures": 0,
+      "suspicious_nodes": [
+        {
+          "nid": "ann2a.sec2.ib",
+          "kind": "item",
+          "kind_raw": "(b)",
+          "tags": [],
+          "line_range": "74-217",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "For blood or blood components used as starting materials for ATMPs, national legislation may provide the technical requirements for the selection of donors and the collection and testing of blood and blood components.",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann2a.sec2.ib.si1",
+          "kind": "subitem",
+          "kind_raw": "",
+          "tags": [],
+          "line_range": "220-231",
+          "trigger": "fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "text_sample": "GMP requirements            A Marketing                  GMP requirements            A MAH may justify",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann2a.sec2.ib.si2",
+          "kind": "subitem",
+          "kind_raw": "",
+          "tags": [],
+          "line_range": "232-269",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "text_sample": "Refer to Section 5.23        apply as appropriate         Refer to Section 5.23        manufacture.",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann2a.sec2.ib.si3",
+          "kind": "subitem",
+          "kind_raw": "",
+          "tags": [],
+          "line_range": "272-281",
+          "trigger": "fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "text_sample": "GMP requirements can            GMP requirements applied        The application of this",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "ann2a.sec2.ib.si4",
+          "kind": "subitem",
+          "kind_raw": "",
+          "tags": [],
+          "line_range": "282-286",
+          "trigger": "fixed_width_block_in_ordinary_text",
+          "text_sample": "Refer to Section 5.23 for        determining the                  Part II along with",
+          "recommended_resolution": "targeted_parser"
+        }
+      ],
+      "unresolved_special_blocks": [
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "74-217",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "ann2a.sec2.ib",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "For blood or blood components used as starting materials for ATMPs, national legislation may provide the technical requirements for the selection of donors and the collection and testing of blood and blood components."
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "220-231",
+          "trigger": "fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "generated_node_nid": "ann2a.sec2.ib.si1",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "GMP requirements            A Marketing                  GMP requirements            A MAH may justify"
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "232-269",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "generated_node_nid": "ann2a.sec2.ib.si2",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Refer to Section 5.23        apply as appropriate         Refer to Section 5.23        manufacture."
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "272-281",
+          "trigger": "fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "generated_node_nid": "ann2a.sec2.ib.si3",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "GMP requirements can            GMP requirements applied        The application of this"
+        },
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "282-286",
+          "trigger": "fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "ann2a.sec2.ib.si4",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Refer to Section 5.23 for        determining the                  Part II along with"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "113",
+          "trigger": "Table 1. Illustrative guide to manufacturing activities within the scope of Annex 2A",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 1. Illustrative guide to manufacturing activities within the scope of Annex 2A"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "188",
+          "trigger": "Figure 1: Example of gene therapy mRNA                     Figure 2: Example of in vivo viral vector gene",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 1: Example of gene therapy mRNA                     Figure 2: Example of in vivo viral vector gene"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_annex2a_2023-08-25_en.txt",
+          "line_range": "247",
+          "trigger": "Figure 3: Example of autologous CAR-T therapy ATMP manufacturing",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 3: Example of autologous CAR-T therapy ATMP manufacturing"
+        }
+      ],
+      "unresolved_count": 8,
+      "status": "warn"
+    },
+    {
+      "doc_id": "pics_part2",
+      "bundle_dir": "out/20260523-093052469_feat-special-structure-global-gate/bundles/pics_part2",
+      "source_path": "data/human-readable/pics/pe009-17_part2_2023-08-25_en.txt",
+      "source_tables": 2,
+      "source_figures": 0,
+      "source_checklist_headers": 0,
+      "fixed_width_table_candidate_blocks": 7,
+      "generated_counts": {
+        "table_header": 0,
+        "note": 0,
+        "table_row": 0,
+        "table": 0,
+        "preformatted": 0,
+        "figure": 0
+      },
+      "generated_tables": 0,
+      "generated_rows": 0,
+      "generated_figures": 0,
+      "suspicious_nodes": [
+        {
+          "nid": "cha1.sec1_2",
+          "kind": "section",
+          "kind_raw": "1.1",
+          "tags": [],
+          "line_range": "256-377",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Scope",
+          "recommended_resolution": "targeted_parser"
+        }
+      ],
+      "unresolved_special_blocks": [
+        {
+          "source_path": "data\\human-readable\\pics\\pe009-17_part2_2023-08-25_en.txt",
+          "line_range": "256-377",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha1.sec1_2",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Scope"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_part2_2023-08-25_en.txt",
+          "line_range": "311",
+          "trigger": "Table 1. It does not imply that all steps shown should be completed. The stringency of",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 1. It does not imply that all steps shown should be completed. The stringency of"
+        },
+        {
+          "source_path": "data/human-readable/pics/pe009-17_part2_2023-08-25_en.txt",
+          "line_range": "328",
+          "trigger": "Table 1:    Application of this Guide to API Manufacturing",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 1:    Application of this Guide to API Manufacturing"
+        }
+      ],
+      "unresolved_count": 3,
+      "status": "warn"
+    },
+    {
+      "doc_id": "who_lbm_3rd",
+      "bundle_dir": "out/20260523-093052469_feat-special-structure-global-gate/bundles/who_lbm_3rd",
+      "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+      "source_tables": 18,
+      "source_figures": 12,
+      "source_checklist_headers": 6,
+      "fixed_width_table_candidate_blocks": 130,
+      "generated_counts": {
+        "table_header": 0,
+        "note": 1,
+        "table_row": 0,
+        "table": 0,
+        "preformatted": 1,
+        "figure": 0
+      },
+      "generated_tables": 0,
+      "generated_rows": 0,
+      "generated_figures": 0,
+      "suspicious_nodes": [
+        {
+          "nid": "cha1",
+          "kind": "chapter",
+          "kind_raw": "1.",
+          "tags": [],
+          "line_range": "315-462",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "General principles",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha1.pre1",
+          "kind": "preformatted",
+          "kind_raw": "possible_table",
+          "tags": [
+            "possible_plaintext_table_not_structured"
+          ],
+          "line_range": "363-365",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "text_sample": "Table 2. Relation of risk groups to biosafety levels, practices and equipment",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha3",
+          "kind": "chapter",
+          "kind_raw": "1.",
+          "tags": [],
+          "line_range": "555-1022",
+          "trigger": "form_control_in_ordinary_text",
+          "text_sample": "Basic laboratories – Biosafety Levels 1 and 2",
+          "recommended_resolution": "profile_rule"
+        },
+        {
+          "nid": "cha6",
+          "kind": "chapter",
+          "kind_raw": "1.",
+          "tags": [],
+          "line_range": "1383-1422",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Laboratory animal facilities",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha8.i5",
+          "kind": "item",
+          "kind_raw": "5.",
+          "tags": [],
+          "line_range": "1742-2159",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, checklist_header_in_ordinary_text, fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "text_sample": "Proper procedures for general laboratory safety, including physical, electrical and chemical safety are in place. Laboratory certification differs from laboratory commissioning activities (Chapter 7) in several important ways. Laboratory ce",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha8.i5.si1",
+          "kind": "subitem",
+          "kind_raw": "•",
+          "tags": [],
+          "line_range": "2013-2014",
+          "trigger": "form_control_in_ordinary_text",
+          "text_sample": "Information on sign accurate and",
+          "recommended_resolution": "profile_rule"
+        },
+        {
+          "nid": "cha8.i5.si2",
+          "kind": "subitem",
+          "kind_raw": "•",
+          "tags": [],
+          "line_range": "2015-2015",
+          "trigger": "form_control_in_ordinary_text",
+          "text_sample": "Sign legible and not defaced .............                                                                                               ",
+          "recommended_resolution": "profile_rule"
+        },
+        {
+          "nid": "cha10",
+          "kind": "chapter",
+          "kind_raw": "1.",
+          "tags": [],
+          "line_range": "2259-2756",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Biological safety cabinets",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha11",
+          "kind": "chapter",
+          "kind_raw": "1.",
+          "tags": [],
+          "line_range": "2763-3055",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Safety equipment",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha14",
+          "kind": "chapter",
+          "kind_raw": "1.",
+          "tags": [],
+          "line_range": "3662-4091",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Disinfection and sterilization",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha14.i4",
+          "kind": "item",
+          "kind_raw": "4.",
+          "tags": [],
+          "line_range": "4095-4171",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "25 min holding time at 115 °C. Examples of different autoclaves include the following. Gravity displacement autoclaves. Figure 10 shows the general construction of a gravitydisplacement autoclave. Steam enters the chamber under pressure and",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha17",
+          "kind": "chapter",
+          "kind_raw": "1.",
+          "tags": [],
+          "line_range": "4563-4702",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Hazardous chemicals",
+          "recommended_resolution": "targeted_parser"
+        },
+        {
+          "nid": "cha18.i11",
+          "kind": "item",
+          "kind_raw": "11.",
+          "tags": [],
+          "line_range": "4738-4797",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "text_sample": "Improper or inadequate ventilation. Fire-fighting equipment should be placed near room doors and at strategic points in corridors and hallways. This equipment may include hoses, buckets (of water or sand) and a fire extinguisher. Fire extin",
+          "recommended_resolution": "targeted_parser"
+        }
+      ],
+      "unresolved_special_blocks": [
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "315-462",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha1",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "General principles"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "363-365",
+          "trigger": "possible_plaintext_table_not_structured, possible_table",
+          "generated_node_nid": "cha1.pre1",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 2. Relation of risk groups to biosafety levels, practices and equipment"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "555-1022",
+          "trigger": "form_control_in_ordinary_text",
+          "generated_node_nid": "cha3",
+          "recommended_resolution": "profile_rule",
+          "text_sample": "Basic laboratories – Biosafety Levels 1 and 2"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "1383-1422",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha6",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Laboratory animal facilities"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "1742-2159",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, checklist_header_in_ordinary_text, fixed_width_block_in_ordinary_text, form_control_in_ordinary_text",
+          "generated_node_nid": "cha8.i5",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Proper procedures for general laboratory safety, including physical, electrical and chemical safety are in place. Laboratory certification differs from laboratory commissioning activities (Chapter 7) in several important ways. Laboratory ce"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "2013-2014",
+          "trigger": "form_control_in_ordinary_text",
+          "generated_node_nid": "cha8.i5.si1",
+          "recommended_resolution": "profile_rule",
+          "text_sample": "Information on sign accurate and"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "2015-2015",
+          "trigger": "form_control_in_ordinary_text",
+          "generated_node_nid": "cha8.i5.si2",
+          "recommended_resolution": "profile_rule",
+          "text_sample": "Sign legible and not defaced .............                                                                                               "
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "2259-2756",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha10",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Biological safety cabinets"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "2763-3055",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha11",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Safety equipment"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "3662-4091",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha14",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Disinfection and sterilization"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "4095-4171",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha14.i4",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "25 min holding time at 115 °C. Examples of different autoclaves include the following. Gravity displacement autoclaves. Figure 10 shows the general construction of a gravitydisplacement autoclave. Steam enters the chamber under pressure and"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "4563-4702",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha17",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Hazardous chemicals"
+        },
+        {
+          "source_path": "data\\human-readable\\who\\WHO_LBM_3rd.txt",
+          "line_range": "4738-4797",
+          "trigger": "caption_with_fixed_width_in_ordinary_text, fixed_width_block_in_ordinary_text",
+          "generated_node_nid": "cha18.i11",
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Improper or inadequate ventilation. Fire-fighting equipment should be placed near room doors and at strategic points in corridors and hallways. This equipment may include hoses, buckets (of water or sand) and a fire extinguisher. Fire extin"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "325",
+          "trigger": "Table 1. Classification of infective microorganisms by risk group",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 1. Classification of infective microorganisms by risk group"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "363",
+          "trigger": "Table 2. Relation of risk groups to biosafety levels, practices and equipment",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 2. Relation of risk groups to biosafety levels, practices and equipment"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "427",
+          "trigger": "Table 3. Summary of biosafety level requirements",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 3. Summary of biosafety level requirements"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "1398",
+          "trigger": "Table 4. Animal facility containment levels: summary of practices and safety",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 4. Animal facility containment levels: summary of practices and safety"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "1796",
+          "trigger": "Table 5. Basic Laboratory – Biosafety Level 1: laboratory safety survey",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 5. Basic Laboratory – Biosafety Level 1: laboratory safety survey"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "1978",
+          "trigger": "Table 6. Basic laboratory – Biosafety Level 2: laboratory safety survey.",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 6. Basic laboratory – Biosafety Level 2: laboratory safety survey."
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2102",
+          "trigger": "Table 7. Containment laboratory – Biosafety Level 3: laboratory safety survey.",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 7. Containment laboratory – Biosafety Level 3: laboratory safety survey."
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2304",
+          "trigger": "Table 8. Selection of a biological safety cabinet (BSC), by type of protection needed",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 8. Selection of a biological safety cabinet (BSC), by type of protection needed"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2496",
+          "trigger": "Table 9. Differences between Class I, II and III biological safety cabinets (BSCs)",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 9. Differences between Class I, II and III biological safety cabinets (BSCs)"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2808",
+          "trigger": "Table 10. Biosafety equipment",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 10. Biosafety equipment"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2972",
+          "trigger": "Table 11. Personal protective equipment",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 11. Personal protective equipment"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "3756",
+          "trigger": "Table 12. Recommended dilutions of chlorine-releasing compounds",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 12. Recommended dilutions of chlorine-releasing compounds"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "4607",
+          "trigger": "Table 13. General rules for chemical incompatibilities",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 13. General rules for chemical incompatibilities"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "4678",
+          "trigger": "Table 14. Storage of compressed and liquefied gases",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 14. Storage of compressed and liquefied gases"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "4753",
+          "trigger": "Table 15. Types and uses of fire extinguishers",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table 15. Types and uses of fire extinguishers"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "5707",
+          "trigger": "Table A4-1. Equipment and operations that may create hazards",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table A4-1. Equipment and operations that may create hazards"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "5843",
+          "trigger": "Table A4-2. Common causes of equipment-related accidents",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table A4-2. Common causes of equipment-related accidents"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "5893",
+          "trigger": "Table A5-1. Chemicals: hazards and precautions",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Table A5-1. Chemicals: hazards and precautions"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "600",
+          "trigger": "Figure 1. Biohazard warning sign for laboratory doors",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 1. Biohazard warning sign for laboratory doors"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "745",
+          "trigger": "Figure 2. A typical Biosafety Level 1 laboratory",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 2. A typical Biosafety Level 1 laboratory"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "823",
+          "trigger": "Figure 3. A typical Biosafety Level 2 laboratory",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 3. A typical Biosafety Level 2 laboratory"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "1171",
+          "trigger": "Figure 4. A typical Biosafety Level 3 laboratory",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 4. A typical Biosafety Level 3 laboratory"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "1238",
+          "trigger": "Figure 5. Suggested format for medical contact card",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 5. Suggested format for medical contact card"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2350",
+          "trigger": "Figure 6. Schematic diagram of a Class I biological safety cabinet.",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 6. Schematic diagram of a Class I biological safety cabinet."
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2432",
+          "trigger": "Figure 7. Schematic representation of a Class IIA1 biological safety cabinet.",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 7. Schematic representation of a Class IIA1 biological safety cabinet."
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2489",
+          "trigger": "Figure 8. Schematic diagram of a Class IIB1 biological safety cabinet.",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 8. Schematic diagram of a Class IIB1 biological safety cabinet."
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "2566",
+          "trigger": "Figure 9. Schematic representation of a Class III biological safety cabinet (glove box).",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 9. Schematic representation of a Class III biological safety cabinet (glove box)."
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "4143",
+          "trigger": "Figure 10. Gravity displacement autoclave",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 10. Gravity displacement autoclave"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "4345",
+          "trigger": "Figure 11. Examples of triple packaging systems",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 11. Examples of triple packaging systems"
+        },
+        {
+          "source_path": "data/human-readable/who/WHO_LBM_3rd.txt",
+          "line_range": "4901",
+          "trigger": "Figure 12. International radiation",
+          "generated_node_nid": null,
+          "recommended_resolution": "targeted_parser",
+          "text_sample": "Figure 12. International radiation"
+        }
+      ],
+      "unresolved_count": 43,
+      "status": "warn"
+    }
+  ],
+  "totals": {
+    "source_tables": 27,
+    "source_figures": 14,
+    "generated_tables": 0,
+    "generated_rows": 0,
+    "generated_figures": 0,
+    "unresolved_special_blocks": 68
+  },
+  "status": "warn"
+}
