@@ -1,0 +1,24 @@
+{
+  "doc_id": "pics_pe00917_part2_20230825",
+  "bundle_dir": "out/20260523-115057430_feat-pics-part2-table1/after_part2",
+  "source_path": "data/human-readable/pics/pe009-17_part2_2023-08-25_en.txt",
+  "source_tables": 2,
+  "source_figures": 0,
+  "source_checklist_headers": 0,
+  "fixed_width_table_candidate_blocks": 7,
+  "generated_counts": {
+    "table_header": 1,
+    "note": 1,
+    "figure": 0,
+    "table_row": 7,
+    "preformatted": 0,
+    "table": 1
+  },
+  "generated_tables": 1,
+  "generated_rows": 7,
+  "generated_figures": 0,
+  "suspicious_nodes": [],
+  "unresolved_special_blocks": [],
+  "unresolved_count": 0,
+  "status": "pass"
+}

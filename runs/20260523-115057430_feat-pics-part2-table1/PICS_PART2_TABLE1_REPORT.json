@@ -1,0 +1,88 @@
+{
+  "doc_id": "pics_pe00917_part2_20230825",
+  "table_count": 1,
+  "row_count": 7,
+  "note_count": 1,
+  "before": {
+    "nid": "cha1.sec1_2",
+    "kind": "section",
+    "heading": "Scope",
+    "text_sample": "...s GMP Guide does not apply to steps prior to the introduction of the defined \"API Starting Material\".\n                                                                                     Introduction\nTable 1:    Application of this Guide to API Manufacturing\n\nType of\n                            Application of this Guide to steps (shown in grey) used in this type of\nManufacturing\n                                                        manufacturing\n  Chemical           Production of      Introduction of   Production of     Isolation and   Physical\n  Manufacturing      the API            the API           Intermediate(s)   purification    processing,\n                     Starting           Starting                                            and packaging\n                     Material           Material into\n                                        process\n  API derived        Collection of      Cutting,          Introduction of   Isolation and   Physical\n  from animal        organ, fluid,...",
+    "tags": []
+  },
+  "after": {
+    "nid": "cha1.sec1_2.tbl1",
+    "heading": "Table 1: Application of this Guide to API Manufacturing",
+    "columns": [
+      "Type of Manufacturing",
+      "Step 1",
+      "Step 2",
+      "Step 3",
+      "Step 4",
+      "Step 5"
+    ],
+    "rows": [
+      [
+        "Chemical Manufacturing",
+        "Production of the API Starting Material",
+        "Introduction of the API Starting Material into process",
+        "Production of Intermediate(s)",
+        "Isolation and purification",
+        "Physical processing, and packaging"
+      ],
+      [
+        "API derived from animal sources",
+        "Collection of organ, fluid, or tissue",
+        "Cutting, mixing, and/or initial processing",
+        "Introduction of the API Starting Material into process",
+        "Isolation and purification",
+        "Physical processing, and packaging"
+      ],
+      [
+        "API extracted from plant sources",
+        "Collection of plant",
+        "Cutting and initial extraction(s)",
+        "Introduction of the API Starting Material into process",
+        "Isolation and purification",
+        "Physical processing, and packaging"
+      ],
+      [
+        "Herbal extracts used as API",
+        "Collection of plants",
+        "Cutting and initial extraction",
+        "",
+        "Further extraction",
+        "Physical processing, and packaging"
+      ],
+      [
+        "API consisting of comminuted or powdered herbs",
+        "Collection of plants and/or cultivation and harvesting",
+        "Cutting/comminuting",
+        "",
+        "",
+        "Physical processing, and packaging"
+      ],
+      [
+        "Biotechnology: fermentation / cell culture",
+        "Establishment of master cell bank and working cell bank",
+        "Maintenance of working cell bank",
+        "Cell culture and/or fermentation",
+        "Isolation and purification",
+        "Physical processing, and packaging"
+      ],
+      [
+        "Classical Fermentation to produce an API",
+        "Establishment of cell bank",
+        "Maintenance of the cell bank",
+        "Introduction of the cells into fermentation",
+        "Isolation and purification",
+        "Physical processing, and packaging"
+      ]
+    ],
+    "notes": [
+      "Increasing GMP requirements"
+    ],
+    "shading_reconstructed": false,
+    "note": "Grey shading in the source PDF may not be recoverable from text layer."
+  }
+}

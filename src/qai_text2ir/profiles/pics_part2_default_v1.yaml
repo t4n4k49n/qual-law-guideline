@@ -37,6 +37,8 @@ preprocess:
     min_rows: 2
     max_rows: 80
     mode: conservative
+  pics_part2_table1:
+    enabled: true
   extract_notes:
     enabled: true
     max_lines: 40
@@ -75,9 +77,9 @@ structure:
   section:
     children: [paragraph, item, subitem, table, preformatted, note, history]
   paragraph:
-    children: [item, subitem, note, history]
+    children: [item, subitem, table, note, history]
   item:
-    children: [subitem, note, history]
+    children: [subitem, table, note, history]
   subitem:
     children: [note, history]
   table:
