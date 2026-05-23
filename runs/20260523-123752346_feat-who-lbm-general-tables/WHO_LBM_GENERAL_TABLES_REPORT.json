@@ -1,0 +1,36 @@
+{
+  "doc_id": "who_lbm_3rd_2004_9241546506",
+  "source": "data/human-readable/who/WHO_LBM_3rd.txt",
+  "output_bundle": "out/20260523-123752346_feat-who-lbm-general-tables/after_who_lbm_v3",
+  "promotion_gate": "pass",
+  "general_tables": {
+    "parser": "who_lbm_general_tables",
+    "tables": ["1", "2", "3", "4", "8", "9", "10", "11", "12", "13", "14", "15"],
+    "status": "structured"
+  },
+  "chapter8_survey_tables": {
+    "parser": "who_lbm_chap8_survey",
+    "tables": ["5", "6", "7"],
+    "status": "preserved"
+  },
+  "figures": {
+    "parser": "who_lbm_general_tables",
+    "figures": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+    "status": "structured"
+  },
+  "audit": {
+    "source_tables": 18,
+    "source_figures": 12,
+    "source_checklist_headers": 6,
+    "generated_tables": 15,
+    "generated_rows": 210,
+    "generated_figures": 12,
+    "generated_preformatted": 0,
+    "unresolved_special_blocks": 0,
+    "status": "pass"
+  },
+  "verification": {
+    "pytest_who_general_chap8_audit": "18 passed",
+    "goal_check_promotion": "pass"
+  }
+}
