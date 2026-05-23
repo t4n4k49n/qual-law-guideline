@@ -1,0 +1,150 @@
+{
+  "doc_id": "pics_pe00917_annex1_20230825",
+  "after_ir": "out/20260523-101731707_feat-pics-annex1-tables/pics_pe00917_annex1_20230825_after/pics_pe00917_annex1_20230825.regdoc_ir.yaml",
+  "before_ir": "out/20260523-093052469_feat-special-structure-global-gate/bundles/pics_annex1/pics_annex1.regdoc_ir.yaml",
+  "counts": {
+    "tables": 6,
+    "table_rows": 35,
+    "notes": 15
+  },
+  "tables": [
+    {
+      "table_no": "1",
+      "heading": "Table 1: Maximum permitted total particle concentration for classification",
+      "rows": 4,
+      "notes": 2,
+      "before": {
+        "nid": "ann1.sec4.p4_27.pre1",
+        "kind": "preformatted",
+        "kind_raw": "possible_table",
+        "sample": "Table 1: Maximum permitted total particle concentration for classification\nMaximum limits for total particle       Maximum limits for total particle\nGrade                ≥ 0.5 µm/m3                               ≥ 5 µm/m3"
+      },
+      "after": {
+        "nid": "ann1.sec4.p4_27.tbl1",
+        "kind": "table",
+        "heading": "Table 1: Maximum permitted total particle concentration for classification",
+        "row_samples": [
+          "A | 3 520 | 3 520 | Not specified (a) | Not specified (a)",
+          "B | 3 520 | 352 000 | Not specified (a) | 2 930",
+          "C | 352 000 | 3 520 000 | 2 930 | 29 300"
+        ],
+        "note_count": 2
+      }
+    },
+    {
+      "table_no": "2",
+      "heading": "Table 2: Maximum permitted microbial contamination level during qualification",
+      "rows": 4,
+      "notes": 5,
+      "before": {
+        "nid": "ann1.sec4.p4_31.pre1",
+        "kind": "preformatted",
+        "kind_raw": "possible_table",
+        "sample": "Table 2: Maximum permitted microbial contamination level during qualification\nSettle plates          Contact plates\nGrade            Air sample                    (diameter 90 mm)           (diameter 55\nCFU/m3                        CFU/4 hours (a)          mm) CFU/plate\nA                                           No growth\nB                     10                            5                         5\nC                    100                           50                        25\nD             "
+      },
+      "after": {
+        "nid": "ann1.sec4.p4_31.tbl2",
+        "kind": "table",
+        "heading": "Table 2: Maximum permitted microbial contamination level during qualification",
+        "row_samples": [
+          "A | No growth | No growth | No growth",
+          "B | 10 | 5 | 5",
+          "C | 100 | 50 | 25"
+        ],
+        "note_count": 5
+      }
+    },
+    {
+      "table_no": "3",
+      "heading": "Table 3: Examples of operations and grades for terminally sterilised preparation and processing operations",
+      "rows": 4,
+      "notes": 0,
+      "before": {
+        "nid": "ann1.sec8.p8_6",
+        "kind": "paragraph",
+        "kind_raw": "8.6",
+        "sample": "Examples of operations to be carried out in the various grades are given in Table 3.\n\nTable 3: Examples of operations and grades for terminally sterilised preparation and processing operations\n      Grade A    -     Filling of products, when unusually at risk.\n      Grade C    -     Preparation of solutions, when unusually at risk.\n                 -     Filling of products.\n      Grade D    -     Preparation of solutions and components for subsequent filling.\nASEPTIC PREPARATION AND PROCESSING"
+      },
+      "after": {
+        "nid": "ann1.sec8.tbl3",
+        "kind": "table",
+        "heading": "Table 3: Examples of operations and grades for terminally sterilised preparation and processing operations",
+        "row_samples": [
+          "Grade A | Filling of products, when unusually at risk.",
+          "Grade C | Preparation of solutions, when unusually at risk.",
+          "Grade C | Filling of products."
+        ],
+        "note_count": 0
+      }
+    },
+    {
+      "table_no": "4",
+      "heading": "Table 4: Examples of operations and grades for aseptic preparation and processing operations",
+      "rows": 15,
+      "notes": 0,
+      "before": {
+        "nid": "ann1.sec8.p8_10",
+        "kind": "paragraph",
+        "kind_raw": "8.10",
+        "sample": "Examples of operations to be carried out in the various environmental grades are given in Table 4.\n\nTable 4:   Examples of operations and grades for aseptic preparation and processing operations\n            -   Aseptic assembly of filling equipment.\n            -   Connections made under aseptic conditions (where sterilised product contact\n                surfaces are exposed) that are post the final sterilising grade filter. These\n                connections should be sterilised by steam-in-pla"
+      },
+      "after": {
+        "nid": "ann1.sec8.tbl4",
+        "kind": "table",
+        "heading": "Table 4: Examples of operations and grades for aseptic preparation and processing operations",
+        "row_samples": [
+          "Grade A | Aseptic assembly of filling equipment.",
+          "Grade A | Connections made under aseptic conditions (where sterilised product contact surfaces are exposed) that are post the final sterilising grade filter. These connections should be sterilised by steam-in-place whenever possible.",
+          "Grade A | Aseptic compounding and mixing."
+        ],
+        "note_count": 0
+      }
+    },
+    {
+      "table_no": "5",
+      "heading": "Table 5: Maximum permitted total particle concentration for monitoring.",
+      "rows": 4,
+      "notes": 3,
+      "before": {
+        "nid": "ann1.sec9.p9_15.pre1",
+        "kind": "preformatted",
+        "kind_raw": "possible_table",
+        "sample": "Table 5: Maximum permitted total particle concentration for monitoring.\nMaximum limits for total particle          Maximum limits for total particle\nGrade                  ≥ 0.5 μm/m3                                  ≥ 5 μm/m3\nat rest          in operation             at rest           in operation\nA              3 520                3 520                  29                    29\nB              3 520               352 000                 29                  2 930\nC             352 000          "
+      },
+      "after": {
+        "nid": "ann1.sec9.p9_15.tbl5",
+        "kind": "table",
+        "heading": "Table 5: Maximum permitted total particle concentration for monitoring.",
+        "row_samples": [
+          "A | 3 520 | 3 520 | 29 | 29",
+          "B | 3 520 | 352 000 | 29 | 2 930",
+          "C | 352 000 | 3 520 000 | 2 930 | 29 300"
+        ],
+        "note_count": 3
+      }
+    },
+    {
+      "table_no": "6",
+      "heading": "Table 6: Maximum action limits for viable particle contamination",
+      "rows": 4,
+      "notes": 5,
+      "before": {
+        "nid": "ann1.sec9.p9_30.pre1",
+        "kind": "preformatted",
+        "kind_raw": "possible_table",
+        "sample": "Table 6: Maximum action limits for viable particle contamination\nSettle plates           Contact plates         Glove print,\nGrade          Air sample        (diam. 90 mm)           (diam. 55mm),     Including 5 fingers on\nCFU /m3           CFU /4 hours(a)         CFU / plate(b)         both hands"
+      },
+      "after": {
+        "nid": "ann1.sec9.p9_30.tbl6",
+        "kind": "table",
+        "heading": "Table 6: Maximum action limits for viable particle contamination",
+        "row_samples": [
+          "A | No growth (c) | No growth (c) | No growth (c) | No growth (c)",
+          "B | 10 | 5 | 5 | 5",
+          "C | 100 | 50 | 25 | -"
+        ],
+        "note_count": 5
+      }
+    }
+  ]
+}

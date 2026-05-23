@@ -36,6 +36,8 @@ preprocess:
     min_rows: 2
     max_rows: 80
     mode: conservative
+  pics_annex1_tables:
+    enabled: true
   extract_notes:
     enabled: true
     max_lines: 40
