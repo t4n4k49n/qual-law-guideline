@@ -8,7 +8,7 @@ applies_to:
 language: en
 source_label: "WHO LBM"
 context_root_kind: chapter
-structural_kinds: ["part", "chapter", "annex"]
+structural_kinds: ["part", "chapter", "annex", "figure"]
 
 preprocess:
   skip_blocks:
@@ -50,6 +50,8 @@ preprocess:
     min_rows: 2
     max_rows: 80
     mode: conservative
+  who_lbm_general_tables:
+    enabled: true
   extract_notes:
     enabled: true
     max_lines: 40
@@ -89,11 +91,11 @@ structure:
   root:
     children: [part, chapter, annex]
   part:
-    children: [chapter, item, subitem, table, preformatted, note, history]
+    children: [chapter, item, subitem, table, figure, preformatted, note, history]
   chapter:
-    children: [item, subitem, table, preformatted, note, history]
+    children: [item, subitem, table, figure, preformatted, note, history]
   annex:
-    children: [item, subitem, table, preformatted, note, history]
+    children: [item, subitem, table, figure, preformatted, note, history]
   item:
     children: [subitem, note, history]
   subitem:
@@ -103,6 +105,8 @@ structure:
   table_header:
     children: [table_row]
   table_row:
+    children: []
+  figure:
     children: []
   preformatted:
     children: [note]

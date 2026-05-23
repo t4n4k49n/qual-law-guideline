@@ -174,11 +174,18 @@ def audit_ir(ir: Dict[str, Any]) -> Dict[str, Any]:
     counts = {kind: 0 for kind in SPECIAL_COUNT_KINDS}
     suspicious_nodes: List[Dict[str, Any]] = []
     generated_caption_keys = {"table": set(), "figure": set()}
+    generated_checklist_tables = 0
 
     for node in nodes:
         kind = str(node.get("kind") or "")
         if kind in counts:
             counts[kind] += 1
+        data = node.get("data") or {}
+        heading = str(node.get("heading") or "")
+        if kind == "table" and (
+            data.get("parser") == "who_lbm_chap8_survey" or "laboratory safety survey" in heading.lower()
+        ):
+            generated_checklist_tables += 1
         text = _node_text(node)
         for match in TABLE_CAPTION_RE.finditer(text):
             if kind == "table":
@@ -222,6 +229,7 @@ def audit_ir(ir: Dict[str, Any]) -> Dict[str, Any]:
             "table": sorted(generated_caption_keys["table"]),
             "figure": sorted(generated_caption_keys["figure"]),
         },
+        "generated_checklist_tables": generated_checklist_tables,
         "suspicious_nodes": suspicious_nodes,
     }
 
@@ -289,6 +297,8 @@ def audit_bundle(bundle_dir: Path, doc_id: Optional[str] = None, *, mode: str = 
                 }
             )
     for header in source.get("checklist_headers") or []:
+        if ir_audit.get("generated_checklist_tables"):
+            continue
         if not any("checklist" in str(item.get("trigger") or "") for item in unresolved):
             unresolved.append(
                 {

@@ -15,6 +15,7 @@ from .pics_annex2a_structures import normalize_pics_annex2a_structures
 from .pics_annex1_tables import normalize_pics_annex1_tables
 from .pics_part2_table1 import normalize_pics_part2_table1
 from .who_lbm_chap8_survey import build_table_nodes, parse_chap8_survey_tables
+from .who_lbm_general_tables import normalize_who_lbm_general_tables
 
 LOGGER = logging.getLogger(__name__)
 
@@ -1769,6 +1770,10 @@ def parse_text_to_ir(
     pics_annex2a_structures_enabled = bool(pics_annex2a_structures_cfg.get("enabled"))
     pics_part2_table1_cfg = preprocess.get("pics_part2_table1") or {}
     pics_part2_table1_enabled = bool(pics_part2_table1_cfg.get("enabled"))
+    who_lbm_general_tables_cfg = preprocess.get("who_lbm_general_tables") or {}
+    who_lbm_general_tables_enabled = (
+        bool(who_lbm_general_tables_cfg.get("enabled")) and doc_id == "who_lbm_3rd_2004_9241546506"
+    )
     special_parsers = parser_profile.get("special_parsers") or {}
     who_lbm_chap8_cfg = special_parsers.get("who_lbm_chap8_survey") or {}
     who_lbm_chap8_enabled = bool(who_lbm_chap8_cfg.get("enabled")) and doc_id == "who_lbm_3rd_2004_9241546506"
@@ -2337,6 +2342,10 @@ def parse_text_to_ir(
             applied_part2_table1 = normalize_pics_part2_table1(root, raw_lines, source_label=source_label)
             if applied_part2_table1.get("applied") and "postprocess=pics_part2_table1" not in root.tags:
                 root.tags.append("postprocess=pics_part2_table1")
+        if who_lbm_general_tables_enabled:
+            applied_who_general = normalize_who_lbm_general_tables(root, raw_lines, source_label=source_label)
+            if applied_who_general.get("applied") and "postprocess=who_lbm_general_tables" not in root.tags:
+                root.tags.append("postprocess=who_lbm_general_tables")
         _quality_warnings = run_text_postprocess_and_qualitycheck(root)
         for warning in _quality_warnings:
             LOGGER.warning("qualitycheck: %s", warning)
