@@ -4,66 +4,6 @@
   "ecfr_version_date": "2025-10-27",
   "fetched": [
     {
-      "doc": "薬機法",
-      "group": "egov",
-      "source_url": "https://laws.e-gov.go.jp/api/1/lawdata/335AC0000000145",
-      "stored_path": "data/human-readable/egov/source_xml/335AC0000000145.xml",
-      "status_code": 200,
-      "content_type": [
-        "text/xml; charset=UTF-8"
-      ],
-      "bytes": 1581078,
-      "first_line": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    },
-    {
-      "doc": "薬機法施行令",
-      "group": "egov",
-      "source_url": "https://laws.e-gov.go.jp/api/1/lawdata/336CO0000000011",
-      "stored_path": "data/human-readable/egov/source_xml/336CO0000000011.xml",
-      "status_code": 200,
-      "content_type": [
-        "text/xml; charset=UTF-8"
-      ],
-      "bytes": 787459,
-      "first_line": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    },
-    {
-      "doc": "薬機法施行規則",
-      "group": "egov",
-      "source_url": "https://laws.e-gov.go.jp/api/1/lawdata/336M50000100001",
-      "stored_path": "data/human-readable/egov/source_xml/336M50000100001.xml",
-      "status_code": 200,
-      "content_type": [
-        "text/xml; charset=UTF-8"
-      ],
-      "bytes": 43978336,
-      "first_line": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    },
-    {
-      "doc": "GMP省令",
-      "group": "egov",
-      "source_url": "https://laws.e-gov.go.jp/api/1/lawdata/416M60000100179",
-      "stored_path": "data/human-readable/egov/source_xml/416M60000100179.xml",
-      "status_code": 200,
-      "content_type": [
-        "text/xml; charset=UTF-8"
-      ],
-      "bytes": 246610,
-      "first_line": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    },
-    {
-      "doc": "薬局等構造設備規則",
-      "group": "egov",
-      "source_url": "https://laws.e-gov.go.jp/api/1/lawdata/336M50000100002",
-      "stored_path": "data/human-readable/egov/source_xml/336M50000100002.xml",
-      "status_code": 200,
-      "content_type": [
-        "text/xml; charset=UTF-8"
-      ],
-      "bytes": 227812,
-      "first_line": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    },
-    {
       "doc": "FDA 21 CFR Part 11",
       "group": "ecfr",
       "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2025-10-27/title-21.xml?part=11",
@@ -88,7 +28,15 @@
       "first_line": "<?xml version=\"1.0\"?>"
     }
   ],
+  "excluded_from_additional_fetch": [
+    "薬機法",
+    "薬機法施行令",
+    "薬機法施行規則",
+    "GMP省令",
+    "薬局等構造設備規則"
+  ],
   "not_found_xml_in_this_pass": [
+    "e-Gov 5件: 既存処理がXMLベースのため、今回の追加取得対象から除外した。",
     "EU GMP Volume 4 / Annexes: official PDF/HTML publication was found previously, but no authoritative XML endpoint was confirmed in this pass.",
     "PIC/S PE 009 bundled PDFs: no authoritative XML endpoint was confirmed in this pass.",
     "WHO LBM: no authoritative XML endpoint was confirmed in this pass.",

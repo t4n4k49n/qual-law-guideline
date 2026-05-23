@@ -6,7 +6,7 @@
 
 ## 実施内容
 
-- e-Gov 法令API v1 から、国内法令5件のXMLを取得した。
+- e-Gov 5件は既存処理がXMLベースであり、追加取得対象から除外した。
 - eCFR Versioner API から、21 CFR Part 11 / Part 211 のXMLを取得した。
 - eCFR は `versions/title-21.json` で 2026-05-23 時点の最新 content version を確認し、`2025-10-27` 版を使用した。
 - 取得結果の機械可読ログを `XML_FETCHED_SOURCES.json` として保存した。
@@ -15,11 +15,6 @@
 
 | 文書 | 保存先 |
 |---|---|
-| 薬機法 | `data/human-readable/egov/source_xml/335AC0000000145.xml` |
-| 薬機法施行令 | `data/human-readable/egov/source_xml/336CO0000000011.xml` |
-| 薬機法施行規則 | `data/human-readable/egov/source_xml/336M50000100001.xml` |
-| GMP省令 | `data/human-readable/egov/source_xml/416M60000100179.xml` |
-| 薬局等構造設備規則 | `data/human-readable/egov/source_xml/336M50000100002.xml` |
 | FDA 21 CFR Part 11 | `data/human-readable/cfr/source_xml/title21_part11_2025-10-27.xml` |
 | FDA 21 CFR Part 211 | `data/human-readable/cfr/source_xml/title21_part211_2025-10-27.xml` |
 
