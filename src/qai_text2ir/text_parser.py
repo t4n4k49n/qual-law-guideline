@@ -13,6 +13,7 @@ from qai_xml2ir.ord_key import assign_document_order
 
 from .pics_annex2a_structures import normalize_pics_annex2a_structures
 from .pics_annex1_tables import normalize_pics_annex1_tables
+from .pics_annexes_bundle_specials import normalize_pics_annexes_bundle_specials
 from .pics_part2_table1 import normalize_pics_part2_table1
 from .who_lbm_chap8_survey import build_table_nodes, parse_chap8_survey_tables
 from .who_lbm_general_tables import normalize_who_lbm_general_tables
@@ -1768,6 +1769,8 @@ def parse_text_to_ir(
     pics_annex1_tables_enabled = bool(pics_annex1_tables_cfg.get("enabled"))
     pics_annex2a_structures_cfg = preprocess.get("pics_annex2a_structures") or {}
     pics_annex2a_structures_enabled = bool(pics_annex2a_structures_cfg.get("enabled"))
+    pics_annexes_bundle_specials_cfg = preprocess.get("pics_annexes_bundle_specials") or {}
+    pics_annexes_bundle_specials_enabled = bool(pics_annexes_bundle_specials_cfg.get("enabled"))
     pics_part2_table1_cfg = preprocess.get("pics_part2_table1") or {}
     pics_part2_table1_enabled = bool(pics_part2_table1_cfg.get("enabled"))
     who_lbm_general_tables_cfg = preprocess.get("who_lbm_general_tables") or {}
@@ -2338,6 +2341,10 @@ def parse_text_to_ir(
             applied_structures = normalize_pics_annex2a_structures(root, raw_lines, source_label=source_label)
             if applied_structures.get("applied") and "postprocess=pics_annex2a_structures" not in root.tags:
                 root.tags.append("postprocess=pics_annex2a_structures")
+        if pics_annexes_bundle_specials_enabled:
+            applied_bundle_specials = normalize_pics_annexes_bundle_specials(root, raw_lines, source_label=source_label)
+            if applied_bundle_specials.get("applied") and "postprocess=pics_annexes_bundle_specials" not in root.tags:
+                root.tags.append("postprocess=pics_annexes_bundle_specials")
         if pics_part2_table1_enabled:
             applied_part2_table1 = normalize_pics_part2_table1(root, raw_lines, source_label=source_label)
             if applied_part2_table1.get("applied") and "postprocess=pics_part2_table1" not in root.tags:

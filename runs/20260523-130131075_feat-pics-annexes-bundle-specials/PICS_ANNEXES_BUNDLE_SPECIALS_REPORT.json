@@ -1,0 +1,53 @@
+{
+  "run_id": "20260523-130131075_feat-pics-annexes-bundle-specials",
+  "doc_id": "pics_pe00917_annexes_20230825_refined_v3_extends_trace",
+  "branch": "feat/pics-annexes-bundle-specials",
+  "source": "data/human-readable/pics/pe009-17_annexes_2023-08-25_en.txt",
+  "before_bundle": "out/20260523-130131075_feat-pics-annexes-bundle-specials/before_pics_annexes",
+  "after_bundle": "out/20260523-130131075_feat-pics-annexes-bundle-specials/after_pics_annexes_v3",
+  "reused_parsers": [
+    "pics_annex1_tables",
+    "pics_annex2a_table1",
+    "pics_annex2a_flow_figures"
+  ],
+  "new_parser": "pics_annexes_bundle_specials",
+  "newly_structured_targets": [
+    {
+      "target": "Annex 2B Table 1",
+      "kind": "table",
+      "rows": 7,
+      "notes": 7,
+      "shading_reconstructed": false
+    },
+    {
+      "target": "Annex 20 Figure 1",
+      "kind": "figure",
+      "role": "informative",
+      "steps": 13
+    }
+  ],
+  "after_metrics": {
+    "verify_document": "pass",
+    "source_span_coverage": 1.0,
+    "annexes": 20,
+    "tables": 8,
+    "table_rows": 48,
+    "figures": 4,
+    "notes": 27
+  },
+  "promotion_goal_check": {
+    "status": "fail",
+    "reason": "8 unresolved special-structure candidates remain outside this prompt target scope",
+    "target_structures_unresolved": false
+  },
+  "deferred_candidates": [
+    {"node": "ann3.sec3.si4", "trigger": "fixed_width_block_in_ordinary_text", "recommended_resolution": "targeted_parser"},
+    {"node": "ann7.sec16", "trigger": "form_control_in_ordinary_text", "recommended_resolution": "profile_rule"},
+    {"node": "ann14.sec10", "trigger": "fixed_width_block_in_ordinary_text", "recommended_resolution": "targeted_parser"},
+    {"node": "ann14.sec2_2.p2_5", "trigger": "fixed_width_block_in_ordinary_text", "recommended_resolution": "targeted_parser"},
+    {"node": "ann14.sec1_3", "trigger": "fixed_width_block_in_ordinary_text", "recommended_resolution": "targeted_parser"},
+    {"node": "ann14.sec2_3", "trigger": "fixed_width_block_in_ordinary_text", "recommended_resolution": "targeted_parser"},
+    {"node": "ann19.sec10.p10_3", "trigger": "form_control_in_ordinary_text", "recommended_resolution": "profile_rule"},
+    {"node": "ann20.sec7_2.ii.si14", "trigger": "form_control_in_ordinary_text", "recommended_resolution": "profile_rule"}
+  ]
+}
