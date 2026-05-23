@@ -9,7 +9,7 @@ applies_to:
 language: en
 source_label: "PIC/S"
 context_root_kind: annex
-structural_kinds: [annex]
+structural_kinds: [annex, figure]
 
 preprocess:
   skip_blocks:
@@ -38,6 +38,8 @@ preprocess:
     min_rows: 2
     max_rows: 80
     mode: conservative
+  pics_annexes_bundle_specials:
+    enabled: true
   extract_notes:
     enabled: true
     max_lines: 40
@@ -46,19 +48,21 @@ marker_types:
   - id: annex
     kind: annex
     kind_raw: "ANNEX"
-    match: '(?i)^\s*ANNEX\s+(?P<n>\d+[A-Z]?)\b(?:\s+|$)'
+    match: '(?i)^\s*ANNEX\s+(?P<n>\d+[A-Z]?)\b\*?(?:\s+|$)'
     num_group: n
 
 structure:
   root:
     children: [annex]
   annex:
-    children: [table, preformatted, note, history]
+    children: [table, figure, preformatted, note, history]
   table:
     children: [table_header, note]
   table_header:
     children: [table_row]
   table_row:
+    children: []
+  figure:
     children: []
   preformatted:
     children: [note]
