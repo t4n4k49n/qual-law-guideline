@@ -11,6 +11,7 @@ from qai_xml2ir.models_ir import IRDocument, Node, build_root
 from qai_xml2ir.nid import NidBuilder
 from qai_xml2ir.ord_key import assign_document_order
 
+from .pics_annex2a_structures import normalize_pics_annex2a_structures
 from .pics_annex1_tables import normalize_pics_annex1_tables
 from .who_lbm_chap8_survey import build_table_nodes, parse_chap8_survey_tables
 
@@ -1680,6 +1681,14 @@ def _refine_subtrees(
                 source_label=sub_profile.get("source_label") or input_path.name,
                 line_no_offset=start_line - 1,
             )
+        sub_pics_annex2a_cfg = sub_preprocess.get("pics_annex2a_structures") or {}
+        if bool(sub_pics_annex2a_cfg.get("enabled")):
+            normalize_pics_annex2a_structures(
+                sub_root,
+                slice_lines,
+                source_label=sub_profile.get("source_label") or input_path.name,
+                line_no_offset=start_line - 1,
+            )
         sub_nodes = [child for child in sub_root.children if child.kind == refine_kind]
         if not sub_nodes:
             continue
@@ -1755,6 +1764,8 @@ def parse_text_to_ir(
     plaintext_table_max_rows = int(detect_plaintext_tables_cfg.get("max_rows") or 40)
     pics_annex1_tables_cfg = preprocess.get("pics_annex1_tables") or {}
     pics_annex1_tables_enabled = bool(pics_annex1_tables_cfg.get("enabled"))
+    pics_annex2a_structures_cfg = preprocess.get("pics_annex2a_structures") or {}
+    pics_annex2a_structures_enabled = bool(pics_annex2a_structures_cfg.get("enabled"))
     special_parsers = parser_profile.get("special_parsers") or {}
     who_lbm_chap8_cfg = special_parsers.get("who_lbm_chap8_survey") or {}
     who_lbm_chap8_enabled = bool(who_lbm_chap8_cfg.get("enabled")) and doc_id == "who_lbm_3rd_2004_9241546506"
@@ -2315,6 +2326,10 @@ def parse_text_to_ir(
             applied_tables = normalize_pics_annex1_tables(root, raw_lines, source_label=source_label)
             if applied_tables and "postprocess=pics_annex1_tables" not in root.tags:
                 root.tags.append("postprocess=pics_annex1_tables")
+        if pics_annex2a_structures_enabled:
+            applied_structures = normalize_pics_annex2a_structures(root, raw_lines, source_label=source_label)
+            if applied_structures.get("applied") and "postprocess=pics_annex2a_structures" not in root.tags:
+                root.tags.append("postprocess=pics_annex2a_structures")
         _quality_warnings = run_text_postprocess_and_qualitycheck(root)
         for warning in _quality_warnings:
             LOGGER.warning("qualitycheck: %s", warning)

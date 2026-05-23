@@ -28,6 +28,8 @@ preprocess:
     min_rows: 2
     max_rows: 80
     mode: conservative
+  pics_annex2a_structures:
+    enabled: true
   extract_notes:
     enabled: true
     max_lines: 40
@@ -95,22 +97,24 @@ structure:
   root:
     children: [annex]
   annex:
-    children: [section, chapter, paragraph, item, subitem, table, preformatted, note, history]
+    children: [section, chapter, paragraph, item, subitem, table, figure, preformatted, note, history]
   chapter:
-    children: [section, paragraph, item, subitem, table, preformatted, note, history]
+    children: [section, paragraph, item, subitem, table, figure, preformatted, note, history]
   section:
-    children: [paragraph, item, subitem, table, preformatted, note, history]
+    children: [paragraph, item, subitem, table, figure, preformatted, note, history]
   paragraph:
-    children: [item, subitem, note, history]
+    children: [item, subitem, table, figure, note, history]
   item:
-    children: [subitem, note, history]
+    children: [subitem, table, figure, note, history]
   subitem:
-    children: [note, history]
+    children: [figure, note, history]
   table:
     children: [table_header, note]
   table_header:
     children: [table_row]
   table_row:
+    children: []
+  figure:
     children: []
   preformatted:
     children: [note]

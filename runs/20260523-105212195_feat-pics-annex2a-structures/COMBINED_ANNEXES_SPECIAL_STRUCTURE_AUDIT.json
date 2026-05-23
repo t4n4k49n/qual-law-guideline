@@ -1,0 +1,260 @@
+{
+  "doc_id": "pics_pe00917_annexes_20230825",
+  "bundle_dir": "out/20260523-105212195_feat-pics-annex2a-structures/after_annexes_v2",
+  "source_path": "data/human-readable/pics/pe009-17_annexes_2023-08-25_en.txt",
+  "source_tables": 8,
+  "source_figures": 3,
+  "source_checklist_headers": 0,
+  "fixed_width_table_candidate_blocks": 30,
+  "generated_counts": {
+    "table_header": 7,
+    "note": 20,
+    "preformatted": 0,
+    "table": 7,
+    "table_row": 41,
+    "figure": 3
+  },
+  "generated_tables": 7,
+  "generated_rows": 41,
+  "generated_figures": 3,
+  "suspicious_nodes": [
+    {
+      "nid": "ann2b.sec1",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "6771-6775",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Animal or        Heparins, insulin, Collection of plant, Cutting, mixing, and Isolation and         Formulation,",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann2b.sec2",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "6777-6780",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Virus or         Viral or bacterial Establishment &      Cell culture and/or   Inactivation when     Formulation,",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann2b.sec3",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "6782-6798",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Biotechnology Recombinant           Establishment &      Cell culture and /or Isolation,            Formulation,",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann2b.sec4",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "6802-6804",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Animal          Recombinant          Master and         Collection, cutting, Isolation, purification Formulation,",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann2b.sec5",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "6806-6812",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Plant sources: Recombinant           Master and         Growing,                  Initial extraction,   Formulation,",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann2b.sec7",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "6818-6928",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Human           Products from        Donation,              Initial processing,   Cell isolation,        Formulation,",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann3.sec3.si4",
+      "kind": "subitem",
+      "kind_raw": "",
+      "tags": [],
+      "line_range": "7910-7922",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Radionuclide Generators",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann7.sec16",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "9765-9779",
+      "trigger": "form_control_in_ordinary_text",
+      "text_sample": "The identity and quality of herbal substances, herbal preparations and herbal medicinal products should be determined in accordance with the relevant current national or international guidance on quality and specifications of herbal medicin",
+      "recommended_resolution": "profile_rule"
+    },
+    {
+      "nid": "ann14.sec10",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "11636-11738",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "Disposal of waste",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann14.sec2_2.p2_5",
+      "kind": "paragraph",
+      "kind_raw": "2.5",
+      "tags": [],
+      "line_range": "11814-11860",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "All subsequent steps after collection and testing (e.g. processing (including separation), freezing, storage and transport to the manufacturer) must therefore be done in accordance with the principles and guidelines of Good Manufacturing Pr",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann14.sec1_3",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "12255-12297",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "for collection and testing of blood and blood components:",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann14.sec2_3",
+      "kind": "section",
+      "kind_raw": "1.",
+      "tags": [],
+      "line_range": "12307-12383",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "text_sample": "for collection and regulatory submission of data/information for plasma for fractionation:",
+      "recommended_resolution": "targeted_parser"
+    },
+    {
+      "nid": "ann19.sec10.p10_3",
+      "kind": "paragraph",
+      "kind_raw": "10.3",
+      "tags": [],
+      "line_range": "14445-14459",
+      "trigger": "form_control_in_ordinary_text",
+      "text_sample": "[…] *",
+      "recommended_resolution": "profile_rule"
+    }
+  ],
+  "unresolved_special_blocks": [
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "6771-6775",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann2b.sec1",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Animal or        Heparins, insulin, Collection of plant, Cutting, mixing, and Isolation and         Formulation,"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "6777-6780",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann2b.sec2",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Virus or         Viral or bacterial Establishment &      Cell culture and/or   Inactivation when     Formulation,"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "6782-6798",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann2b.sec3",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Biotechnology Recombinant           Establishment &      Cell culture and /or Isolation,            Formulation,"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "6802-6804",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann2b.sec4",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Animal          Recombinant          Master and         Collection, cutting, Isolation, purification Formulation,"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "6806-6812",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann2b.sec5",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Plant sources: Recombinant           Master and         Growing,                  Initial extraction,   Formulation,"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "6818-6928",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann2b.sec7",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Human           Products from        Donation,              Initial processing,   Cell isolation,        Formulation,"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "7910-7922",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann3.sec3.si4",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Radionuclide Generators"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "9765-9779",
+      "trigger": "form_control_in_ordinary_text",
+      "generated_node_nid": "ann7.sec16",
+      "recommended_resolution": "profile_rule",
+      "text_sample": "The identity and quality of herbal substances, herbal preparations and herbal medicinal products should be determined in accordance with the relevant current national or international guidance on quality and specifications of herbal medicin"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "11636-11738",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann14.sec10",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "Disposal of waste"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "11814-11860",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann14.sec2_2.p2_5",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "All subsequent steps after collection and testing (e.g. processing (including separation), freezing, storage and transport to the manufacturer) must therefore be done in accordance with the principles and guidelines of Good Manufacturing Pr"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "12255-12297",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann14.sec1_3",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "for collection and testing of blood and blood components:"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "12307-12383",
+      "trigger": "fixed_width_block_in_ordinary_text",
+      "generated_node_nid": "ann14.sec2_3",
+      "recommended_resolution": "targeted_parser",
+      "text_sample": "for collection and regulatory submission of data/information for plasma for fractionation:"
+    },
+    {
+      "source_path": "data\\human-readable\\pics\\pe009-17_annexes_2023-08-25_en.txt",
+      "line_range": "14445-14459",
+      "trigger": "form_control_in_ordinary_text",
+      "generated_node_nid": "ann19.sec10.p10_3",
+      "recommended_resolution": "profile_rule",
+      "text_sample": "[…] *"
+    }
+  ],
+  "unresolved_count": 13,
+  "status": "warn"
+}
