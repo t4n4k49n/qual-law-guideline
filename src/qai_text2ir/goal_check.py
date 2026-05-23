@@ -9,6 +9,7 @@ import typer
 import yaml
 
 from qai_xml2ir.verify import verify_document
+from .special_structure_audit import audit_bundle
 
 
 EXPECTED_IR_SCHEMA = "qai.regdoc_ir.v4"
@@ -273,6 +274,24 @@ def check_bundle(bundle_dir: Path, doc_id: str, *, mode: str = "normal") -> Goal
         }
         if not summary["manifest"]["has_profile_provenance"]:
             warnings.append(CheckMessage("manifest_profile_provenance_missing", "manifest parser_profile.provenance is missing", paths["manifest"].name))
+
+    special_audit = audit_bundle(bundle_dir, doc_id, mode=mode)
+    summary["special_structure_audit"] = {
+        "status": special_audit.get("status"),
+        "source_tables": special_audit.get("source_tables"),
+        "source_figures": special_audit.get("source_figures"),
+        "generated_tables": special_audit.get("generated_tables"),
+        "generated_rows": special_audit.get("generated_rows"),
+        "generated_figures": special_audit.get("generated_figures"),
+        "unresolved_count": special_audit.get("unresolved_count"),
+    }
+    unresolved_count = int(special_audit.get("unresolved_count") or 0)
+    if unresolved_count:
+        message = f"{unresolved_count} unresolved special structure block(s) remain"
+        if mode in {"promotion", "release"}:
+            errors.append(CheckMessage("special_structure_unresolved", message, paths["ir"].name))
+        else:
+            warnings.append(CheckMessage("special_structure_unresolved", message, paths["ir"].name))
 
     return GoalCheckResult(
         doc_id=doc_id,
