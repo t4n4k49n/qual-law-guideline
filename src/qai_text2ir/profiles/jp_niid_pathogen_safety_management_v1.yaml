@@ -1,0 +1,36 @@
+schema: qai.parser_profile.v1
+id: jp_niid_pathogen_safety_management_v1
+extends: jp_guideline_default_v1
+title: NIID pathogen safety management regulation markers
+applies_to:
+  family: JP_GUIDELINE
+  jurisdiction: JP
+language: ja
+source_label: NIID pathogen safety management regulation
+context_root_kind: chapter
+
+preprocess:
+  skip_blocks:
+    - start_regex: '^国立感染症研究所$'
+      end_regex: '^第１章\s+総\s+則$'
+      include_start: false
+      include_end: true
+      max_lines: 250
+    - start_regex: '^別表１$'
+      skip_to_eof: true
+      include_start: false
+  drop_line_regexes:
+    - '^国立感染症研究所病原体等安全管理規程$'
+    - '^（[^）]{1,30}）$'
+
+marker_types:
+  - id: item_paren_digit
+    kind: subitem
+    kind_raw: "(1)"
+    match: '^[\(（](?P<n>[0-9０-９]+)[\)）]\s*'
+    num_group: n
+  - id: legal_paragraph_digit
+    kind: item
+    kind_raw: "2"
+    match: '^(?P<n>[0-9０-９]{1,2})\s+'
+    num_group: n
