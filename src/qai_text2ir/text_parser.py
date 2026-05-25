@@ -16,6 +16,7 @@ from .pics_annex1_tables import normalize_pics_annex1_tables
 from .pics_annexes_bundle_specials import normalize_pics_annexes_bundle_specials
 from .pics_part2_table1 import normalize_pics_part2_table1
 from .api_gmp_table1 import normalize_api_gmp_table1
+from .aseptic_processing_tables import normalize_aseptic_processing_tables
 from .who_lbm_chap8_survey import build_table_nodes, parse_chap8_survey_tables
 from .who_lbm_general_tables import normalize_who_lbm_general_tables
 
@@ -1819,6 +1820,8 @@ def parse_text_to_ir(
     pics_part2_table1_enabled = bool(pics_part2_table1_cfg.get("enabled"))
     api_gmp_table1_cfg = preprocess.get("api_gmp_table1") or {}
     api_gmp_table1_enabled = bool(api_gmp_table1_cfg.get("enabled"))
+    aseptic_processing_tables_cfg = preprocess.get("aseptic_processing_tables") or {}
+    aseptic_processing_tables_enabled = bool(aseptic_processing_tables_cfg.get("enabled"))
     who_lbm_general_tables_cfg = preprocess.get("who_lbm_general_tables") or {}
     who_lbm_general_tables_enabled = (
         bool(who_lbm_general_tables_cfg.get("enabled")) and doc_id == "who_lbm_3rd_2004_9241546506"
@@ -2401,6 +2404,10 @@ def parse_text_to_ir(
             applied_api_gmp_table1 = normalize_api_gmp_table1(root, raw_lines, source_label=source_label)
             if applied_api_gmp_table1.get("applied") and "postprocess=api_gmp_table1" not in root.tags:
                 root.tags.append("postprocess=api_gmp_table1")
+        if aseptic_processing_tables_enabled:
+            applied_aseptic_tables = normalize_aseptic_processing_tables(root, raw_lines, source_label=source_label)
+            if applied_aseptic_tables.get("applied") and "postprocess=aseptic_processing_tables" not in root.tags:
+                root.tags.append("postprocess=aseptic_processing_tables")
         if who_lbm_general_tables_enabled:
             applied_who_general = normalize_who_lbm_general_tables(root, raw_lines, source_label=source_label)
             if applied_who_general.get("applied") and "postprocess=who_lbm_general_tables" not in root.tags:

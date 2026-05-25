@@ -10,6 +10,8 @@ source_label: PMDA aseptic processing guideline
 context_root_kind: chapter
 
 preprocess:
+  aseptic_processing_tables:
+    enabled: true
   skip_blocks:
     - start_regex: '^事\s*務\s*連\s*絡$'
       end_regex: '^１[．.]\s*序論\s*$'
