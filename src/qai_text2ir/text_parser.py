@@ -2415,7 +2415,14 @@ def parse_text_to_ir(
             if applied_aseptic_tables.get("applied") and "postprocess=aseptic_processing_tables" not in root.tags:
                 root.tags.append("postprocess=aseptic_processing_tables")
         if mhlw_csv_annexes_enabled:
-            applied_csv_annexes = normalize_mhlw_csv_annexes(root, raw_lines, source_label=source_label)
+            annex2_html_path_raw = mhlw_csv_annexes_cfg.get("annex2_html_path")
+            annex2_html_path = Path(str(annex2_html_path_raw)) if annex2_html_path_raw else None
+            applied_csv_annexes = normalize_mhlw_csv_annexes(
+                root,
+                raw_lines,
+                source_label=source_label,
+                annex2_html_path=annex2_html_path,
+            )
             if applied_csv_annexes.get("applied") and "postprocess=mhlw_csv_annexes" not in root.tags:
                 root.tags.append("postprocess=mhlw_csv_annexes")
         if niid_annex_tables_enabled:

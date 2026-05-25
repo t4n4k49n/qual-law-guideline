@@ -12,6 +12,7 @@ from lxml import html
 from qai_xml2ir.models_ir import Node
 
 from .html_extract import extract_mhlw_t_doc_lines
+from .mhlw_csv_annex2_tables import normalize_mhlw_csv_annex2_tables
 
 
 PARSER_ID = "mhlw_csv_annex_adapter"
@@ -163,7 +164,13 @@ def extract_mhlw_csv_annexes_from_html(
     return list(annexes.values())
 
 
-def normalize_mhlw_csv_annexes(root: Node, raw_lines: List[str], *, source_label: str) -> Dict[str, Any]:
+def normalize_mhlw_csv_annexes(
+    root: Node,
+    raw_lines: List[str],
+    *,
+    source_label: str,
+    annex2_html_path: Optional[Path] = None,
+) -> Dict[str, Any]:
     annexes = extract_mhlw_csv_annexes_from_lines(raw_lines)
     if not annexes:
         return {"applied": False}
@@ -175,8 +182,19 @@ def normalize_mhlw_csv_annexes(root: Node, raw_lines: List[str], *, source_label
     for annex in annexes:
         if ("annex", annex.num) not in existing:
             root.children.append(_make_annex_node(annex, source_label=source_label))
+    annex2_table_result: Dict[str, Any] = {"applied": False}
+    if annex2_html_path is not None and annex2_html_path.exists():
+        for child in root.children:
+            if child.kind == "annex" and child.num == "別紙2":
+                annex2_table_result = normalize_mhlw_csv_annex2_tables(
+                    child,
+                    page2_html_path=annex2_html_path,
+                    source_label=source_label,
+                )
+                break
     return {
         "applied": True,
+        "annex2_tables": annex2_table_result,
         "annexes": [
             {
                 "num": annex.num,
