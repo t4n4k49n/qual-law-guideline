@@ -18,6 +18,7 @@ from .pics_part2_table1 import normalize_pics_part2_table1
 from .api_gmp_table1 import normalize_api_gmp_table1
 from .aseptic_processing_tables import normalize_aseptic_processing_tables
 from .mhlw_csv_annexes import normalize_mhlw_csv_annexes
+from .niid_annex_tables import normalize_niid_annex_tables
 from .who_lbm_chap8_survey import build_table_nodes, parse_chap8_survey_tables
 from .who_lbm_general_tables import normalize_who_lbm_general_tables
 
@@ -1825,6 +1826,8 @@ def parse_text_to_ir(
     aseptic_processing_tables_enabled = bool(aseptic_processing_tables_cfg.get("enabled"))
     mhlw_csv_annexes_cfg = preprocess.get("mhlw_csv_annexes") or {}
     mhlw_csv_annexes_enabled = bool(mhlw_csv_annexes_cfg.get("enabled"))
+    niid_annex_tables_cfg = preprocess.get("niid_annex_tables") or {}
+    niid_annex_tables_enabled = bool(niid_annex_tables_cfg.get("enabled"))
     who_lbm_general_tables_cfg = preprocess.get("who_lbm_general_tables") or {}
     who_lbm_general_tables_enabled = (
         bool(who_lbm_general_tables_cfg.get("enabled")) and doc_id == "who_lbm_3rd_2004_9241546506"
@@ -2415,6 +2418,10 @@ def parse_text_to_ir(
             applied_csv_annexes = normalize_mhlw_csv_annexes(root, raw_lines, source_label=source_label)
             if applied_csv_annexes.get("applied") and "postprocess=mhlw_csv_annexes" not in root.tags:
                 root.tags.append("postprocess=mhlw_csv_annexes")
+        if niid_annex_tables_enabled:
+            applied_niid_annex_tables = normalize_niid_annex_tables(root, source_label=source_label)
+            if applied_niid_annex_tables.get("applied") and "postprocess=niid_annex_tables" not in root.tags:
+                root.tags.append("postprocess=niid_annex_tables")
         if who_lbm_general_tables_enabled:
             applied_who_general = normalize_who_lbm_general_tables(root, raw_lines, source_label=source_label)
             if applied_who_general.get("applied") and "postprocess=who_lbm_general_tables" not in root.tags:
