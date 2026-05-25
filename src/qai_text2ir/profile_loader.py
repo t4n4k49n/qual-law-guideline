@@ -112,6 +112,8 @@ def _default_profile_path(*, family: str, profiles_dir: Path) -> Path:
         if not profile_path.exists():
             profile_path = profiles_dir / "who_lbm_3rd_default_v1.yaml"
         return profile_path
+    if family == "JP_GUIDELINE":
+        return profiles_dir / "jp_guideline_default_v1.yaml"
     return profiles_dir / "us_cfr_default_v1.yaml"
 
 
