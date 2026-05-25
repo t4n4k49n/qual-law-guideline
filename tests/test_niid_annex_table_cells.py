@@ -44,3 +44,21 @@ def test_niid_annex_cell_reconstruction_v1_keeps_raw_rows_and_splits_safe_rows()
     ]
     assert fuhyo4_rows[3].data["cells"] == ["して、                             件として、"]
     assert fuhyo4_rows[3].data["cell_reconstruction"] == "deferred"
+
+
+def test_niid_annex_readiness_decisions_cover_all_annexes() -> None:
+    profile = load_parser_profile(path=PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_annex_trial",
+        parser_profile=profile,
+    )
+    annexes = [node for node in ir_doc.content.children if node.kind == "annex"]
+    decisions = {annex.num: annex.data.get("normalization_readiness", {}) for annex in annexes}
+
+    assert len(decisions) == 16
+    assert all(decision.get("status") == "ready_for_readiness_review" for decision in decisions.values())
+    assert decisions["付表2"]["decision"] == "promotion_candidate_as_raw_table"
+    assert decisions["付表3"]["decision"] == "promotion_candidate_as_partial_cell_table"
+    assert decisions["別表4"]["decision"] == "promotion_candidate_as_raw_annex_text"
+    assert decisions["別表2"]["promotion_mode"] == "annex_text"

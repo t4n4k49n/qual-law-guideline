@@ -1,4 +1,4 @@
-# GOAL CHECK: jp_niid_pathogen_safety_management_cell_reconstruction_v1
+# GOAL CHECK: jp_niid_pathogen_safety_management_readiness_v1
 
 Status: **PASS**
 
@@ -14,10 +14,10 @@ Status: **PASS**
 
 | File | Exists |
 |---|---|
-| `jp_niid_pathogen_safety_management_cell_reconstruction_v1.regdoc_ir.yaml` | True |
-| `jp_niid_pathogen_safety_management_cell_reconstruction_v1.parser_profile.yaml` | True |
-| `jp_niid_pathogen_safety_management_cell_reconstruction_v1.regdoc_profile.yaml` | True |
-| `jp_niid_pathogen_safety_management_cell_reconstruction_v1.meta.yaml` | True |
+| `jp_niid_pathogen_safety_management_readiness_v1.regdoc_ir.yaml` | True |
+| `jp_niid_pathogen_safety_management_readiness_v1.parser_profile.yaml` | True |
+| `jp_niid_pathogen_safety_management_readiness_v1.regdoc_profile.yaml` | True |
+| `jp_niid_pathogen_safety_management_readiness_v1.meta.yaml` | True |
 | `manifest.yaml` | True |
 
 ## Kind Counts

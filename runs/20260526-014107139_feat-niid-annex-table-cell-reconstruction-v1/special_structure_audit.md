@@ -6,7 +6,7 @@
 
 | doc_id | source_tables | source_figures | generated_tables | generated_rows | generated_figures | unresolved_special_blocks | status |
 |---|---:|---:|---:|---:|---:|---:|---|
-| jp_niid_pathogen_safety_management_cell_reconstruction_v1 | 0 | 0 | 5 | 136 | 0 | 0 | pass |
+| jp_niid_pathogen_safety_management_readiness_v1 | 0 | 0 | 5 | 136 | 0 | 0 | pass |
 
 ## Unresolved Blocks
 

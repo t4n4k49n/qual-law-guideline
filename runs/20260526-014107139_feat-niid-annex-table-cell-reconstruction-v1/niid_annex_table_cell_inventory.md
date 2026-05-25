@@ -1,12 +1,12 @@
 # NIID annex table cell reconstruction inventory
 
-| annex | rows | reconstructed | deferred | status |
+| annex | rows | reconstructed | deferred | readiness |
 | --- | ---: | ---: | ---: | --- |
-| 付表2 | 28 | 0 | 28 | partial |
-| 付表3 | 21 | 15 | 6 | partial |
-| 付表4 | 24 | 5 | 19 | partial |
-| 別表7 | 30 | 11 | 19 | partial |
-| 別表10 | 33 | 10 | 23 | partial |
+| 付表2 | 28 | 0 | 28 | promotion_candidate_as_raw_table |
+| 付表3 | 21 | 15 | 6 | promotion_candidate_as_partial_cell_table |
+| 付表4 | 24 | 5 | 19 | promotion_candidate_as_partial_cell_table |
+| 別表7 | 30 | 11 | 19 | promotion_candidate_as_partial_cell_table |
+| 別表10 | 33 | 10 | 23 | promotion_candidate_as_partial_cell_table |
 
 ## Columns
 

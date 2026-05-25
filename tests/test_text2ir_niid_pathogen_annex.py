@@ -84,6 +84,8 @@ def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() 
     assert len(tables) == 5
     assert by_num["付表2"].text.startswith("実験手技及び安全機器との関連性")
     assert by_num["付表3"].text is None
+    assert by_num["付表2"].data["normalization_readiness"]["decision"] == "promotion_candidate_as_raw_table"
+    assert by_num["別表4"].data["normalization_readiness"]["decision"] == "promotion_candidate_as_raw_annex_text"
 
     fuhyo3_table = next(table for table in tables if table.data["annex_num"] == "付表3")
     betsu7_table = next(table for table in tables if table.data["annex_num"] == "別表7")
@@ -93,6 +95,7 @@ def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() 
     betsu10_rows = [row for row in betsu10_table.children[0].children if row.kind == "table_row"]
 
     assert fuhyo3_table.data["column_reconstruction"] == "raw_rows_with_column_schema"
+    assert fuhyo3_table.data["normalization_readiness"]["decision"] == "promotion_candidate_as_partial_cell_table"
     assert fuhyo3_table.data["reconstructed_columns"] == ["criterion", "bsl1", "bsl2", "bsl3", "bsl4"]
     assert fuhyo3_rows[0].text == "ＢＳＬ"
     assert fuhyo3_rows[-1].text.startswith("＊１ 施設内の通常の人の流れ")

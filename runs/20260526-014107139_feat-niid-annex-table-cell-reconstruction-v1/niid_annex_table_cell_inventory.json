@@ -12,7 +12,13 @@
       "laboratory_practice_operation",
       "safety_equipment"
     ],
-    "status": "partial"
+    "status": "partial",
+    "readiness": {
+      "decision": "promotion_candidate_as_raw_table",
+      "promotion_mode": "table_raw_rows_with_column_schema",
+      "reason": "multi-line wrapped cells cannot be safely split in v1, but the full table is preserved with source spans",
+      "status": "ready_for_readiness_review"
+    }
   },
   {
     "annex_num": "付表3",
@@ -27,7 +33,13 @@
       "bsl3",
       "bsl4"
     ],
-    "status": "partial"
+    "status": "partial",
+    "readiness": {
+      "decision": "promotion_candidate_as_partial_cell_table",
+      "promotion_mode": "table_rows_with_partial_cells",
+      "reason": "safe fixed-width rows are cell-split; remaining note/header rows are preserved raw",
+      "status": "ready_for_readiness_review"
+    }
   },
   {
     "annex_num": "付表4",
@@ -41,7 +53,13 @@
       "safety_equipment",
       "facility_criteria"
     ],
-    "status": "partial"
+    "status": "partial",
+    "readiness": {
+      "decision": "promotion_candidate_as_partial_cell_table",
+      "promotion_mode": "table_rows_with_partial_cells",
+      "reason": "ABSL start rows are cell-split; wrapped continuation rows are preserved raw",
+      "status": "ready_for_readiness_review"
+    }
   },
   {
     "annex_num": "別表7",
@@ -56,7 +74,13 @@
       "pathogen_type_2",
       "pathogen_type_3"
     ],
-    "status": "partial"
+    "status": "partial",
+    "readiness": {
+      "decision": "promotion_candidate_as_partial_cell_table",
+      "promotion_mode": "table_rows_with_partial_cells",
+      "reason": "safe fixed-width rows are cell-split; wrapped record rows remain raw",
+      "status": "ready_for_readiness_review"
+    }
   },
   {
     "annex_num": "別表10",
@@ -69,6 +93,12 @@
       "specific_content",
       "regulation_reference"
     ],
-    "status": "partial"
+    "status": "partial",
+    "readiness": {
+      "decision": "promotion_candidate_as_partial_cell_table",
+      "promotion_mode": "table_rows_with_partial_cells",
+      "reason": "safe comparison rows are cell-split; wrapped rows remain raw",
+      "status": "ready_for_readiness_review"
+    }
   }
 ]

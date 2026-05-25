@@ -34,6 +34,88 @@ TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
         "source_format": "fixed_width_comparison_table",
     },
 }
+READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
+    "別表1": {
+        "decision": "promotion_candidate_as_annex_text",
+        "promotion_mode": "annex_text",
+        "reason": "narrative reference text; table reconstruction is not applicable",
+    },
+    "付表1-1": {
+        "decision": "promotion_candidate_as_annex_text",
+        "promotion_mode": "annex_text",
+        "reason": "risk group description text; table reconstruction is not applicable",
+    },
+    "付表1-2": {
+        "decision": "promotion_candidate_as_numbered_annex_text",
+        "promotion_mode": "annex_text_with_existing_subitems",
+        "reason": "numbered assessment items are preserved as annex text/subitems; no table reconstruction needed",
+    },
+    "付表1-3": {
+        "decision": "promotion_candidate_as_numbered_annex_text",
+        "promotion_mode": "annex_text_with_existing_subitems",
+        "reason": "animal experiment risk assessment items are preserved as annex text/subitems; no table reconstruction needed",
+    },
+    "付表2": {
+        "decision": "promotion_candidate_as_raw_table",
+        "promotion_mode": "table_raw_rows_with_column_schema",
+        "reason": "multi-line wrapped cells cannot be safely split in v1, but the full table is preserved with source spans",
+    },
+    "付表3": {
+        "decision": "promotion_candidate_as_partial_cell_table",
+        "promotion_mode": "table_rows_with_partial_cells",
+        "reason": "safe fixed-width rows are cell-split; remaining note/header rows are preserved raw",
+    },
+    "付表4": {
+        "decision": "promotion_candidate_as_partial_cell_table",
+        "promotion_mode": "table_rows_with_partial_cells",
+        "reason": "ABSL start rows are cell-split; wrapped continuation rows are preserved raw",
+    },
+    "別表2": {
+        "decision": "promotion_candidate_as_sectioned_annex_text",
+        "promotion_mode": "annex_text",
+        "reason": "BSL criteria are section-style text, not a column reconstruction target",
+    },
+    "別表3": {
+        "decision": "promotion_candidate_as_sectioned_annex_text",
+        "promotion_mode": "annex_text",
+        "reason": "ABSL criteria are section-style text, not a column reconstruction target",
+    },
+    "別表4": {
+        "decision": "promotion_candidate_as_raw_annex_text",
+        "promotion_mode": "annex_text_raw_hold",
+        "reason": "complex wide matrix is fully preserved as annex text; cell reconstruction is not required for readiness",
+    },
+    "別表5": {
+        "decision": "promotion_candidate_as_raw_annex_text",
+        "promotion_mode": "annex_text_raw_hold",
+        "reason": "complex wide matrix is fully preserved as annex text; cell reconstruction is not required for readiness",
+    },
+    "別表6": {
+        "decision": "promotion_candidate_as_numbered_annex_text",
+        "promotion_mode": "annex_text",
+        "reason": "numbered operational requirements are preserved as annex text; not a table target",
+    },
+    "別表7": {
+        "decision": "promotion_candidate_as_partial_cell_table",
+        "promotion_mode": "table_rows_with_partial_cells",
+        "reason": "safe fixed-width rows are cell-split; wrapped record rows remain raw",
+    },
+    "別表8": {
+        "decision": "promotion_candidate_as_raw_annex_text",
+        "promotion_mode": "annex_text_raw_hold",
+        "reason": "embedded item table is fully preserved as annex text; cell reconstruction is not required for readiness",
+    },
+    "別表9": {
+        "decision": "promotion_candidate_as_numbered_annex_text",
+        "promotion_mode": "annex_text",
+        "reason": "disaster response requirements are preserved as numbered annex text; not a table target",
+    },
+    "別表10": {
+        "decision": "promotion_candidate_as_partial_cell_table",
+        "promotion_mode": "table_rows_with_partial_cells",
+        "reason": "safe comparison rows are cell-split; wrapped rows remain raw",
+    },
+}
 
 
 def _split_fixed_width_cells(line: str) -> List[str]:
@@ -223,6 +305,22 @@ def _normalize_annex_table(annex: Node, *, source_label: str) -> Optional[Dict[s
     return {"annex_num": annex.num, "rows": len(table_lines), "columns": list(config["columns"])}
 
 
+def _apply_readiness_decision(annex: Node) -> None:
+    if annex.num not in READINESS_BY_NUM:
+        return
+    decision = READINESS_BY_NUM[str(annex.num)]
+    annex.data["normalization_readiness"] = {
+        **decision,
+        "status": "ready_for_readiness_review",
+    }
+    for child in annex.children:
+        if child.kind == "table" and child.data.get("parser") == PARSER_ID:
+            child.data["normalization_readiness"] = {
+                **decision,
+                "status": "ready_for_readiness_review",
+            }
+
+
 def normalize_niid_annex_tables(root: Node, *, source_label: str) -> Dict[str, Any]:
     applied: List[Dict[str, Any]] = []
     for _parent, node in _walk(root):
@@ -231,4 +329,5 @@ def normalize_niid_annex_tables(root: Node, *, source_label: str) -> Dict[str, A
         result = _normalize_annex_table(node, source_label=source_label)
         if result is not None:
             applied.append(result)
+        _apply_readiness_decision(node)
     return {"applied": bool(applied), "tables": applied}
