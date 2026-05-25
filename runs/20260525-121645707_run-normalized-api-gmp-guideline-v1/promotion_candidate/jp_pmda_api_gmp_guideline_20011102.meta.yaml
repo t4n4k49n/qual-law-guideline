@@ -1,0 +1,52 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: jp_pmda_api_gmp_guideline_20011102
+  title: 原薬GMPのガイドライン
+  short_title: 原薬GMPガイドライン
+  jurisdiction: JP
+  doc_type: guideline
+  language: ja
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: null
+    e_gov_revision_id: null
+    law_number: null
+  version:
+    as_of: null
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://www.pmda.go.jp/files/000156438.pdf
+    format: txt
+    retrieved_at: '2026-05-23'
+    checksum: null
+    label: PMDA API GMP guideline
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+  family: JP_GUIDELINE
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v4
+    path: jp_pmda_api_gmp_guideline_20011102.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: jp_pmda_api_gmp_guideline_v1
+    path: jp_pmda_api_gmp_guideline_20011102.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: jp_pmda_api_gmp_guideline_20011102.regdoc_profile.yaml
+generation:
+  created_at: '2026-05-25T03:46:11Z'
+  tool:
+    name: qai_text2ir
+    version: null
+  inputs:
+  - path: runs\20260525-121645707_run-normalized-api-gmp-guideline-v1\input\000156438_table1_markdown.txt
+    checksum: 539693036a0f9ffc9c0b0f5788a3a39c7680c7a6a81d03afcf0e784eea8df0f6
+  notes: []

@@ -1,0 +1,39 @@
+schema: qai.parser_profile.v1
+id: jp_pmda_api_gmp_guideline_v1
+extends: jp_guideline_default_v1
+title: PMDA API GMP guideline markers
+applies_to:
+  family: JP_GUIDELINE
+  jurisdiction: JP
+language: ja
+source_label: PMDA API GMP guideline
+context_root_kind: chapter
+
+preprocess:
+  detect_plaintext_tables:
+    enabled: true
+    min_rows: 2
+    max_rows: 80
+  skip_blocks:
+    - start_regex: '^医薬発第[0-9０-９]+号$'
+      end_regex: '^1[．.]\s+序文\s*$'
+      include_start: false
+      include_end: true
+      max_lines: 300
+
+marker_types:
+  - id: chapter_jp
+    kind: chapter
+    kind_raw: "第1章"
+    match: '^第(?P<n>[0-9０-９]+(?:の[0-9０-９]+)?)章(?:\s+|$)'
+    num_group: n
+  - id: chapter_decimal
+    kind: chapter
+    kind_raw: "1."
+    match: '^(?P<n>[0-9０-９]{1,2})[．.](?![0-9０-９])\s*'
+    num_group: n
+  - id: chapter_number_space
+    kind: chapter
+    kind_raw: "1"
+    match: '^(?P<n>[0-9０-９]{1,2})\s+(?=\S)'
+    num_group: n
