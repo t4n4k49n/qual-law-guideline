@@ -19,7 +19,7 @@
 | 6 原薬GMPガイドライン | 表1に `reconstructed_records` を付与 | recordの確定、正式table_row化判断、PDF視覚情報の扱い |
 | 7 無菌操作法指針 | 表1/2/3に `reconstructed_records` を付与 | 複数段ヘッダ、注記対応、候補粒度判断 |
 | 8 病原体等安全管理規程 | 5表を `table` / `table_row` 化し、列候補を付与 | セル単位復元、複雑表レビュー、番号/節構造化判断 |
-| 9 CSVガイドライン | 別紙2を公式page2 HTMLから `table` / `table_row` 化 | 記号値・脚注の意味分解、カテゴリ単位record統合、別紙1 OCR/転記 |
+| 9 CSVガイドライン | 別紙2を公式page2 HTMLから `table` / `table_row` 化し、semantic record候補を付与 | 別紙1画像のfigure source化、正規化RUN readiness |
 
 ## 次期開発の原則
 
@@ -164,6 +164,13 @@
 - OCRを使う場合の再現手順、手入力の場合のレビュー方法を決める。
 - IR上でfigure扱い、説明ノード、表/フロー構造のどれにするか方針を決める。
 
+方針:
+
+- OCRだけで正本化しない。
+- 公式画像をlocal sourceとしてGit管理対象にし、まずIR上では `figure` として保持する。
+- OCRは補助入力に留め、フロー構造の分解は視覚レビューまたは手入力転記に基づく別RUNで扱う。
+- 詳細は `docs/MHLW_CSV_ANNEX1_OCR_PLAN.md` に記録する。
+
 ### Q. 正規化RUN readiness判定
 
 ブランチ案: `docs/normalized-run-readiness-6-9`
@@ -180,13 +187,13 @@
 
 ## 推奨する次PR
 
-次の実装PRは `feat/table-record-review-6-7` を推奨する。
+次の実装PRは `docs/normalized-run-readiness-6-9` を推奨する。
 
 理由:
 
-- 6/7は既に `reconstructed_records` があり、追加ソース取得なしでレビューに入れる。
-- 正規化RUNへ進む前に、raw row候補とrecord候補のどちらをDQ選択肢にするか判断が必要。
-- 8と9はまだ表ごとの追加判断が多く、先に6/7のrecord昇格方針を固めると後続の判断基準になる。
+- KからPまでの通常開発・方針決定が一通り終わる。
+- 正式な正規化RUNへ進める文書と、追加RUNへ送る対象を分ける段階に入る。
+- NIID視覚レビュー復元RUNやCSV別紙1 figure source化は、readiness判定で正規化RUN前の追加作業として明示できる。
 
 ## 正規化完成度の見通し
 
@@ -197,6 +204,6 @@
 - PDF視覚情報が必要な6表1。
 - NIIDの複雑横長表 `別表4`, `別表5`, `別表8`。
 - NIIDのセル結合・複数行セルを含む `付表2`, `付表4`, `別表7`, `別表10`。
-- CSV `別紙1` の画像由来フロー。
+- CSV `別紙1` の画像由来フロー。ただしOCRだけで正本化せず、まずfigure sourceとして保持する方針。
 
 正式昇格は、この計画の最後に readiness を確認してから、正規化RUNとして実施する。
