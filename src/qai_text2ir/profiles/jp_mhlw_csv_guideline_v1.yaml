@@ -1,0 +1,27 @@
+schema: qai.parser_profile.v1
+id: jp_mhlw_csv_guideline_v1
+extends: jp_guideline_default_v1
+title: MHLW CSV guideline markers
+applies_to:
+  family: JP_GUIDELINE
+  jurisdiction: JP
+language: ja
+source_label: MHLW CSV guideline
+context_root_kind: chapter
+
+preprocess:
+  skip_blocks:
+    - start_regex: '^○医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドラインについて$'
+      end_regex: '^1[．.]\s*総則\s*$'
+      include_start: false
+      include_end: true
+      max_lines: 80
+  drop_line_regexes:
+    - '^医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン$'
+
+marker_types:
+  - id: chapter_decimal
+    kind: chapter
+    kind_raw: "1."
+    match: '^(?P<n>[0-9０-９]{1,2})[．.](?![0-9０-９])\s*'
+    num_group: n
