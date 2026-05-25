@@ -5,8 +5,8 @@
   "converted": [
     {
       "group": "PMDA",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\api_gmp_guideline\\000156438.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\api_gmp_guideline\\source_texts\\000156438.txt",
+      "pdf_path": "data/human-readable/pmda/api_gmp_guideline/000156438.pdf",
+      "txt_path": "data/human-readable/pmda/api_gmp_guideline/source_texts/000156438.txt",
       "txt_repo_path": "data/human-readable/pmda/api_gmp_guideline/source_texts/000156438.txt",
       "pdf_bytes": 142194,
       "txt_bytes": 150346,
@@ -16,8 +16,8 @@
     },
     {
       "group": "PMDA",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\aseptic_processing_guideline\\000206144.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\pmda\\aseptic_processing_guideline\\source_texts\\000206144.txt",
+      "pdf_path": "data/human-readable/pmda/aseptic_processing_guideline/000206144.pdf",
+      "txt_path": "data/human-readable/pmda/aseptic_processing_guideline/source_texts/000206144.txt",
       "txt_repo_path": "data/human-readable/pmda/aseptic_processing_guideline/source_texts/000206144.txt",
       "pdf_bytes": 1090304,
       "txt_bytes": 266566,
@@ -27,8 +27,8 @@
     },
     {
       "group": "NIID",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\niid\\pathogen_safety_management\\Kanrikitei3_20240401.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\niid\\pathogen_safety_management\\source_texts\\Kanrikitei3_20240401.txt",
+      "pdf_path": "data/human-readable/niid/pathogen_safety_management/Kanrikitei3_20240401.pdf",
+      "txt_path": "data/human-readable/niid/pathogen_safety_management/source_texts/Kanrikitei3_20240401.txt",
       "txt_repo_path": "data/human-readable/niid/pathogen_safety_management/source_texts/Kanrikitei3_20240401.txt",
       "pdf_bytes": 824130,
       "txt_bytes": 99845,
@@ -38,8 +38,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-03_chapter_2.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-03_chapter_2.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-03_chapter_2.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/2014-03_chapter_2.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-03_chapter_2.txt",
       "pdf_bytes": 58838,
       "txt_bytes": 15126,
@@ -49,8 +49,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-08_gmp_chap8.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_chap8.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-08_gmp_chap8.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/2014-08_gmp_chap8.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_chap8.txt",
       "pdf_bytes": 272118,
       "txt_bytes": 17844,
@@ -60,8 +60,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-08_gmp_part1.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_part1.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-08_gmp_part1.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/2014-08_gmp_part1.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-08_gmp_part1.txt",
       "pdf_bytes": 628673,
       "txt_bytes": 132243,
@@ -71,8 +71,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\2014-11_vol4_chapter_6.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-11_vol4_chapter_6.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-11_vol4_chapter_6.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/2014-11_vol4_chapter_6.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\2014-11_vol4_chapter_6.txt",
       "pdf_bytes": 45086,
       "txt_bytes": 20015,
@@ -82,8 +82,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\cap9_en.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\cap9_en.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/cap9_en.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/cap9_en.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\cap9_en.txt",
       "pdf_bytes": 10314,
       "txt_bytes": 1195,
@@ -93,8 +93,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\chapter_3.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_3.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/chapter_3.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/chapter_3.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_3.txt",
       "pdf_bytes": 174661,
       "txt_bytes": 13668,
@@ -104,8 +104,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\chapter_5.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_5.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/chapter_5.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/chapter_5.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter_5.txt",
       "pdf_bytes": 292130,
       "txt_bytes": 32659,
@@ -115,8 +115,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\chapter4_01-2011_en.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter4_01-2011_en.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/chapter4_01-2011_en.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/chapter4_01-2011_en.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\chapter4_01-2011_en.txt",
       "pdf_bytes": 33311,
       "txt_bytes": 22129,
@@ -126,8 +126,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\vol4-chap1_2013-01_en.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap1_2013-01_en.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/vol4-chap1_2013-01_en.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/vol4-chap1_2013-01_en.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap1_2013-01_en.txt",
       "pdf_bytes": 65843,
       "txt_bytes": 19824,
@@ -137,8 +137,8 @@
     },
     {
       "group": "EU_GMP",
-      "pdf_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_pdfs\\vol4-chap7_2012-06_en.pdf",
-      "txt_path": "C:\\Users\\ryoki\\Documents\\GitHub\\qual-law-guideline\\data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap7_2012-06_en.txt",
+      "pdf_path": "data/human-readable/eu_gmp/vol4/source_pdfs/vol4-chap7_2012-06_en.pdf",
+      "txt_path": "data/human-readable/eu_gmp/vol4/source_texts/vol4-chap7_2012-06_en.txt",
       "txt_repo_path": "data\\human-readable\\eu_gmp\\vol4\\source_texts\\vol4-chap7_2012-06_en.txt",
       "pdf_bytes": 21114,
       "txt_bytes": 8460,
@@ -148,4 +148,3 @@
     }
   ]
 }
-
