@@ -185,6 +185,12 @@
 - 親PRでレビューすべき `promotion_candidate` の対象を定義する。
 - 子PRで `data/normalized/` へ昇格する範囲を、文書単位で分ける。
 
+判定結果:
+
+- 詳細は `docs/NORMALIZED_RUN_READINESS_6_9.md` に記録する。
+- 元計画KからQは、このreadiness判定で完了とする。
+- 次に視覚処理へ入る場合は、`NIID付表/別表 視覚レビュー復元RUN` を開始する。
+
 ## 推奨する次PR
 
 次の実装PRは `docs/normalized-run-readiness-6-9` を推奨する。
@@ -206,4 +212,4 @@
 - NIIDのセル結合・複数行セルを含む `付表2`, `付表4`, `別表7`, `別表10`。
 - CSV `別紙1` の画像由来フロー。ただしOCRだけで正本化せず、まずfigure sourceとして保持する方針。
 
-正式昇格は、この計画の最後に readiness を確認してから、正規化RUNとして実施する。
+正式昇格は、`docs/NORMALIZED_RUN_READINESS_6_9.md` の判定を踏まえて、文書単位の正規化RUNとして実施する。
