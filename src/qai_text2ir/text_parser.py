@@ -75,6 +75,32 @@ HEADING_CONTINUATION_ENDWORDS = {
     "with",
 }
 HEADING_CONTINUATION_BLOCK_WORDS = {"must", "shall", "should", "may"}
+FULLWIDTH_NUM_TRANS = str.maketrans(
+    "０１２３４５６７８９．。－",
+    "0123456789..-",
+)
+CIRCLED_DIGIT_MAP = {
+    "①": "1",
+    "②": "2",
+    "③": "3",
+    "④": "4",
+    "⑤": "5",
+    "⑥": "6",
+    "⑦": "7",
+    "⑧": "8",
+    "⑨": "9",
+    "⑩": "10",
+    "⑪": "11",
+    "⑫": "12",
+    "⑬": "13",
+    "⑭": "14",
+    "⑮": "15",
+    "⑯": "16",
+    "⑰": "17",
+    "⑱": "18",
+    "⑲": "19",
+    "⑳": "20",
+}
 
 
 @dataclass
@@ -777,15 +803,28 @@ def _extract_num(marker: Dict[str, Any], match: re.Match[str]) -> Optional[str]:
     if isinstance(num_group, str):
         selected = groups.get(num_group)
         if selected:
-            return selected
+            return _normalize_marker_num(selected)
     direct = groups.get("num")
     if direct:
-        return direct
+        return _normalize_marker_num(direct)
     for key in groups:
         value = groups.get(key)
         if value:
-            return value
+            return _normalize_marker_num(value)
     return None
+
+
+def _normalize_marker_num(value: Optional[str]) -> Optional[str]:
+    if value is None:
+        return None
+    normalized = value.strip().translate(FULLWIDTH_NUM_TRANS)
+    for circled, replacement in CIRCLED_DIGIT_MAP.items():
+        normalized = normalized.replace(circled, replacement)
+    normalized = normalized.replace("条", "")
+    normalized = normalized.replace("の", "_")
+    normalized = re.sub(r"\s+", "", normalized)
+    normalized = re.sub(r"_+", "_", normalized)
+    return normalized or None
 
 
 def _structure_children(parent_kind: str, structure: Dict[str, Any]) -> List[str]:

@@ -16,8 +16,19 @@ from qai_xml2ir.verify import verify_document
 
 from .profile_loader import load_parser_profile_with_provenance
 from .text_parser import parse_text_to_ir, qualitycheck_document
+from .html_extract import extract_mhlw_t_doc_lines, write_lines
 
 app = typer.Typer(add_completion=False)
+
+
+@app.command("extract-mhlw-html")
+def extract_mhlw_html(
+    input: Path = typer.Option(..., "--input", exists=True, dir_okay=False),
+    output: Path = typer.Option(..., "--output", dir_okay=False),
+) -> None:
+    lines = extract_mhlw_t_doc_lines(input)
+    write_lines(output, lines)
+    typer.echo(f"wrote {len(lines)} lines: {output}")
 
 
 def _read_yaml(path: Path) -> Dict[str, Any]:
