@@ -59,6 +59,11 @@
 - 候補抽出では対象外範囲が除外される。
 - 除外理由をprofileまたはRUNに記録できる。
 
+実装メモ:
+
+- `src/qai_text2ir/candidate_visibility_profiles/` に文書別profileを置く。
+- `text2ir bundle` では `--candidate-visibility-profile-id` または `--candidate-visibility-profile` で適用する。
+
 ### 2. 8b 別表・付表保持adapter
 
 目的:
