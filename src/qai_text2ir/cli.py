@@ -15,6 +15,10 @@ from qai_xml2ir.serialize import sha256_file, write_yaml
 from qai_xml2ir.verify import verify_document
 
 from .profile_loader import load_parser_profile_with_provenance
+from .candidate_visibility_profiles import (
+    apply_candidate_visibility_profile,
+    load_candidate_visibility_profile,
+)
 from .text_parser import parse_text_to_ir, qualitycheck_document
 from .html_extract import extract_mhlw_t_doc_lines, write_lines
 
@@ -329,6 +333,8 @@ def bundle(
     parser_profile_path: Optional[Path] = typer.Option(None, "--parser-profile", exists=True, dir_okay=False),
     parser_profile_id: Optional[str] = typer.Option(None, "--parser-profile-id"),
     regdoc_profile_path: Optional[Path] = typer.Option(None, "--regdoc-profile", exists=True, dir_okay=False),
+    candidate_visibility_profile_path: Optional[Path] = typer.Option(None, "--candidate-visibility-profile", exists=True, dir_okay=False),
+    candidate_visibility_profile_id: Optional[str] = typer.Option(None, "--candidate-visibility-profile-id"),
     context_root_kind: Optional[str] = typer.Option(None, "--context-root-kind"),
     jurisdiction: Optional[str] = typer.Option(None, "--jurisdiction"),
     language: Optional[str] = typer.Option(None, "--language"),
@@ -369,6 +375,10 @@ def bundle(
         parser_profile_id = None
     if not isinstance(regdoc_profile_path, Path):
         regdoc_profile_path = None
+    if not isinstance(candidate_visibility_profile_path, Path):
+        candidate_visibility_profile_path = None
+    if not isinstance(candidate_visibility_profile_id, str):
+        candidate_visibility_profile_id = None
     if not isinstance(context_root_kind, str):
         context_root_kind = None
     if not isinstance(jurisdiction, str):
@@ -382,6 +392,8 @@ def bundle(
         raise typer.BadParameter(
             "--emit-only must be one of: all|meta|parser_profile|regdoc_ir|regdoc_profile"
         )
+    if candidate_visibility_profile_path is not None and candidate_visibility_profile_id is not None:
+        raise typer.BadParameter("provide only one of --candidate-visibility-profile or --candidate-visibility-profile-id")
 
     resolved_doc_id = doc_id or input.stem
     resolved_title = title or resolved_doc_id
@@ -425,6 +437,12 @@ def bundle(
             "section" if resolved_jurisdiction == "US" else "chapter"
         )
         regdoc_profile = _build_regdoc_profile(resolved_doc_id, context_root_kind=resolved_context_root_kind)
+    if candidate_visibility_profile_path is not None or candidate_visibility_profile_id is not None:
+        visibility_profile = load_candidate_visibility_profile(
+            profile_id=candidate_visibility_profile_id,
+            path=candidate_visibility_profile_path,
+        )
+        regdoc_profile = apply_candidate_visibility_profile(regdoc_profile, visibility_profile)
 
     stem = resolved_doc_id
     ir_path = out_dir / f"{stem}.regdoc_ir.yaml"

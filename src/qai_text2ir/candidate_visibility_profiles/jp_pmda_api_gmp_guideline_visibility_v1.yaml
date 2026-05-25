@@ -1,0 +1,14 @@
+schema: qai.candidate_visibility_profile.v1
+id: jp_pmda_api_gmp_guideline_visibility_v1
+title: API GMP guideline candidate visibility
+applies_to:
+  parser_profile_id: jp_pmda_api_gmp_guideline_v1
+  doc_id: jp_pmda_api_gmp_guideline_20011102
+
+candidate_visibility:
+  allow_rules: []
+  deny_rules:
+    - nid_prefix: cha20
+      reason: 用語集は候補表示から除外する
+    - nid_prefix: cha1.p1_3.tbl1
+      reason: 表1は個別adapter整備後に候補扱いを再判断する

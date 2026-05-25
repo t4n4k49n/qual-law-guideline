@@ -15,6 +15,8 @@
   - `deny_rules` (`list[dict]`): 一致ノードを非表示（`deny` 優先）
 - `selectable_kinds`: 左候補一覧でチェック可能な kind を制御
 
+文書別の候補表示制御は `src/qai_text2ir/candidate_visibility_profiles/` に置き、`text2ir bundle` の `--candidate-visibility-profile-id` または `--candidate-visibility-profile` で適用できる。
+
 ### 表示文脈
 - `grouping_policy`
 - `context_display_policy`

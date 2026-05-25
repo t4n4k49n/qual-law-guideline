@@ -1,0 +1,16 @@
+schema: qai.candidate_visibility_profile.v1
+id: jp_mhlw_csv_guideline_visibility_v1
+title: MHLW CSV guideline candidate visibility
+applies_to:
+  parser_profile_id: jp_mhlw_csv_guideline_v1
+  doc_id: jp_mhlw_csv_guideline_20101021
+
+candidate_visibility:
+  allow_rules: []
+  deny_rules:
+    - nid_prefix: cha1.p1_1
+      reason: 1.1は対象外OK範囲として候補表示から除外する
+    - nid_prefix: cha1.p1_2
+      reason: 1.2は対象外OK範囲として候補表示から除外する
+    - nid_prefix: cha10
+      reason: 用語集は候補表示から除外する
