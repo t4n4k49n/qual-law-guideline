@@ -16,6 +16,8 @@ preprocess:
     enabled: true
     min_rows: 2
     max_rows: 80
+  api_gmp_table1:
+    enabled: true
   skip_blocks:
     - start_regex: '^医薬発第[0-9０-９]+号$'
       end_regex: '^1[．.]\s+序文\s*$'
