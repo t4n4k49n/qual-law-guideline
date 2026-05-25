@@ -1,0 +1,46 @@
+{
+  "run_id": "20260523-141913450_feat-fetch-guideline-source-links",
+  "retrieved_at": "2026-05-23T14:19:53",
+  "ecfr_version_date": "2025-10-27",
+  "fetched": [
+    {
+      "doc": "FDA 21 CFR Part 11",
+      "group": "ecfr",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2025-10-27/title-21.xml?part=11",
+      "stored_path": "data/human-readable/cfr/source_xml/title21_part11_2025-10-27.xml",
+      "status_code": 200,
+      "content_type": [
+        "application/xml; charset=utf-8"
+      ],
+      "bytes": 20441,
+      "first_line": "<?xml version=\"1.0\"?>"
+    },
+    {
+      "doc": "FDA 21 CFR Part 211",
+      "group": "ecfr",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2025-10-27/title-21.xml?part=211",
+      "stored_path": "data/human-readable/cfr/source_xml/title21_part211_2025-10-27.xml",
+      "status_code": 200,
+      "content_type": [
+        "application/xml; charset=utf-8"
+      ],
+      "bytes": 99507,
+      "first_line": "<?xml version=\"1.0\"?>"
+    }
+  ],
+  "excluded_from_additional_fetch": [
+    "薬機法",
+    "薬機法施行令",
+    "薬機法施行規則",
+    "GMP省令",
+    "薬局等構造設備規則"
+  ],
+  "not_found_xml_in_this_pass": [
+    "e-Gov 5件: 既存処理がXMLベースのため、今回の追加取得対象から除外した。",
+    "EU GMP Volume 4 / Annexes: official PDF/HTML publication was found previously, but no authoritative XML endpoint was confirmed in this pass.",
+    "PIC/S PE 009 bundled PDFs: no authoritative XML endpoint was confirmed in this pass.",
+    "WHO LBM: no authoritative XML endpoint was confirmed in this pass.",
+    "PMDA PDFs: no authoritative XML endpoint was confirmed in this pass.",
+    "NIID PDF and MHLW CSV HTML: no authoritative XML endpoint was confirmed in this pass."
+  ]
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "url": "https://www.pmda.go.jp/files/000156438.pdf",
+    "path": "data/human-readable/pmda/api_gmp_guideline/000156438.pdf",
+    "bytes": 142194,
+    "status": "ok"
+  },
+  {
+    "url": "https://www.pmda.go.jp/files/000206144.pdf",
+    "path": "data/human-readable/pmda/aseptic_processing_guideline/000206144.pdf",
+    "bytes": 1090304,
+    "status": "ok"
+  },
+  {
+    "url": "https://www.niid.jihs.go.jp/images/biosafe/kanrikitei3/Kanrikitei3_20240401.pdf",
+    "path": "data/human-readable/niid/pathogen_safety_management/Kanrikitei3_20240401.pdf",
+    "bytes": 824130,
+    "status": "ok"
+  },
+  {
+    "url": "https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=1",
+    "path": "data/human-readable/mhlw/csv_guideline/00tb6573.html",
+    "bytes": 100037,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en?filename=vol4-chap1_2013-01_en.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/vol4-chap1_2013-01_en.pdf",
+    "bytes": 65843,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/11f4f8e6-a6e9-4897-afe3-f21e1dc56cb8_en?filename=2014-03_chapter_2.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-03_chapter_2.pdf",
+    "bytes": 58838,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/18d76565-137b-41d2-a602-794527f708c1_en?filename=chapter_3.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/chapter_3.pdf",
+    "bytes": 174661,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/104b3eb8-81a7-4858-9419-cb06562adb66_en?filename=chapter4_01-2011_en.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/chapter4_01-2011_en.pdf",
+    "bytes": 33311,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/4a1fdb4f-6f6f-49c4-b264-8056e5bbe078_en?filename=chapter_5.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/chapter_5.pdf",
+    "bytes": 292130,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/c74c8720-27bf-4252-808f-d65a206a90bb_en?filename=2014-11_vol4_chapter_6.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-11_vol4_chapter_6.pdf",
+    "bytes": 45086,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/58b5106a-cf6f-4352-9dca-1caf5d27d97e_en?filename=vol4-chap7_2012-06_en.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/vol4-chap7_2012-06_en.pdf",
+    "bytes": 21114,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/b1eb2292-cb0d-4e3f-aea9-e3fe79faf6e3_en?filename=2014-08_gmp_chap8.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-08_gmp_chap8.pdf",
+    "bytes": 272118,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/07195808-d02e-4d7a-b8f4-f84a83278b62_en?filename=cap9_en.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/cap9_en.pdf",
+    "bytes": 10314,
+    "status": "ok"
+  },
+  {
+    "url": "https://health.ec.europa.eu/document/download/bd537ccf-9271-4230-bca1-2d8cb655fd83_en?filename=2014-08_gmp_part1.pdf",
+    "path": "data/human-readable/eu_gmp/vol4/source_pdfs/2014-08_gmp_part1.pdf",
+    "bytes": 628673,
+    "status": "ok"
+  },
+  {
+    "url": "https://www.govinfo.gov/link/cfr/21/11?link-type=pdf&year=mostrecent",
+    "path": "data/human-readable/cfr/source_pdfs/title21_part11_mostrecent.pdf",
+    "bytes": 207091,
+    "status": "ok"
+  },
+  {
+    "url": "https://www.govinfo.gov/link/cfr/21/211?link-type=pdf&year=mostrecent",
+    "path": "data/human-readable/cfr/source_pdfs/title21_part211_mostrecent.pdf",
+    "bytes": 279886,
+    "status": "ok"
+  },
+  {
+    "url": "https://picscheme.org/docview/6606",
+    "path": "data/human-readable/pics/source_docs/pe009-17_part1_docview_6606.pdf",
+    "bytes": 537698,
+    "status": "ok"
+  },
+  {
+    "url": "https://picscheme.org/docview/6607",
+    "path": "data/human-readable/pics/source_docs/pe009-17_part2_docview_6607.pdf",
+    "bytes": 579954,
+    "status": "ok"
+  },
+  {
+    "url": "https://picscheme.org/docview/8881",
+    "path": "data/human-readable/pics/source_docs/pe009-17_annexes_docview_8881.pdf",
+    "bytes": 2368402,
+    "status": "ok"
+  },
+  {
+    "url": "https://iris.who.int/server/api/core/bitstreams/9e97e6c8-0955-46a9-b638-b4d0c9acbcd7/content",
+    "path": "data/human-readable/who/source_pdfs/WHO_LBM_3rd_9241546506.pdf",
+    "bytes": 863629,
+    "status": "ok"
+  },
+  {
+    "url": "https://laws.e-gov.go.jp/law/335AC0000000145/20260501_507AC0000000037",
+    "path": "data/human-readable/egov/source_pages/335AC0000000145_20260501_507AC0000000037.html",
+    "bytes": 800,
+    "status": "ok"
+  },
+  {
+    "url": "https://laws.e-gov.go.jp/law/336CO0000000011/20260501_507CO0000000362",
+    "path": "data/human-readable/egov/source_pages/336CO0000000011_20260501_507CO0000000362.html",
+    "bytes": 800,
+    "status": "ok"
+  },
+  {
+    "url": "https://laws.e-gov.go.jp/law/336M50000100001/20260501_507M60000100117",
+    "path": "data/human-readable/egov/source_pages/336M50000100001_20260501_507M60000100117.html",
+    "bytes": 800,
+    "status": "ok"
+  },
+  {
+    "url": "https://laws.e-gov.go.jp/law/416M60000100179/20260501_507M60000100117",
+    "path": "data/human-readable/egov/source_pages/416M60000100179_20260501_507M60000100117.html",
+    "bytes": 800,
+    "status": "ok"
+  },
+  {
+    "url": "https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117",
+    "path": "data/human-readable/egov/source_pages/336M50000100002_20260501_507M60000100117.html",
+    "bytes": 800,
+    "status": "ok"
+  }
+]
