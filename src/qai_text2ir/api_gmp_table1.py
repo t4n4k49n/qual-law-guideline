@@ -103,6 +103,18 @@ RECONSTRUCTED_RECORDS = [
         ],
     },
 ]
+RECORD_REVIEW = {
+    "status": "reviewed_candidate",
+    "candidate_granularity": "reconstructed_record",
+    "table_row_promotion": "deferred",
+    "table_row_promotion_reason": (
+        "raw rows contain visual layout and multi-line cells; keep stable raw table_rows until normalized run readiness"
+    ),
+    "note_handling": "directional_note_kept_as_non_data_raw_row",
+    "visual_information": "PDF gray-area layout not represented in text source",
+    "reviewed_records": 7,
+    "deferred_raw_rows": [1, 2, 26],
+}
 
 
 @dataclass
@@ -217,7 +229,10 @@ def _apply_column_reconstruction_prototype(table_node: Node) -> None:
     table_node.data["column_reconstruction"] = "prototype"
     table_node.data["column_reconstruction_status"] = "partial"
     table_node.data["reconstructed_columns"] = RECONSTRUCTED_COLUMNS
-    table_node.data["reconstructed_records"] = RECONSTRUCTED_RECORDS
+    table_node.data["reconstructed_records"] = [
+        {**record, "review_status": "reviewed_candidate", "promotion_status": "deferred"} for record in RECONSTRUCTED_RECORDS
+    ]
+    table_node.data["record_review"] = RECORD_REVIEW
     table_node.data["non_data_raw_rows"] = [
         {"raw_row_num": 1, "reason": "header_line"},
         {"raw_row_num": 2, "reason": "visual_annotation"},
