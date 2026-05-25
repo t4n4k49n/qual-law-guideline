@@ -1,0 +1,1024 @@
+[
+  {
+    "table_no": "1",
+    "heading": "カテゴリ分類表",
+    "table_id": "e000000542",
+    "columns": [
+      "category_no",
+      "category_name",
+      "content",
+      "content_detail",
+      "development_plan",
+      "system_assessment",
+      "system_registry",
+      "urs",
+      "fs",
+      "ds",
+      "supplier_audit",
+      "acceptance_test",
+      "validation_plan_report",
+      "dq",
+      "iq",
+      "oq",
+      "pq",
+      "sop",
+      "document_control",
+      "remarks"
+    ],
+    "rows": [
+      [
+        "カテゴリ",
+        "カテゴリ",
+        "内容",
+        "内容",
+        "開発計画書",
+        "システムアセスメント",
+        "システム台帳登録",
+        "要求仕様書(URS)",
+        "機能仕様書(FS)",
+        "設計仕様書(DS)",
+        "供給者監査",
+        "受入試験",
+        "バリデーション計画書・報告書",
+        "設計時適格性評価(DQ)",
+        "据付時適格性評価(IQ)",
+        "運転時適格性評価(OQ)",
+        "性能適格性評価(PQ)",
+        "標準操作手順書",
+        "文書管理",
+        "備考"
+      ],
+      [
+        "1",
+        "基盤ソフト",
+        "・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア",
+        "・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア",
+        "○1",
+        "○1",
+        "○1",
+        "○1",
+        "○1",
+        "○1",
+        "―",
+        "○1",
+        "○1",
+        "―",
+        "◎2",
+        "○1",
+        "○1",
+        "○1",
+        "○1",
+        "1 アプリケーションに含めて作成、実施(単独で作成する必要はない)2 インストールの確認、バージョン・製造番号等の記録"
+      ],
+      [
+        "2",
+        "",
+        "このカテゴリは設定しない",
+        "このカテゴリは設定しない",
+        "―",
+        "―",
+        "―",
+        "―",
+        "―",
+        "―",
+        "",
+        "―",
+        "―",
+        "―",
+        "―",
+        "―",
+        "―",
+        "―",
+        "―",
+        "GAMP5との整合性を考慮し使用しない"
+      ],
+      [
+        "3",
+        "構成設定していないソフトウェア",
+        "商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる)",
+        "製造設備、分析機器、製造支援設備等に搭載されるシステム",
+        "◎",
+        "◎",
+        "◎",
+        "◎3",
+        "△",
+        "―",
+        "△",
+        "―",
+        "◎3",
+        "―",
+        "◎2",
+        "△",
+        "◎3",
+        "◎3",
+        "◎",
+        "3 設備に合わせて仕様の設定及び機能の検証を行うことで差し支えない。単純なシステムに関しては校正で代用することも可"
+      ],
+      [
+        "3",
+        "",
+        "商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる)",
+        "単独のコンピュータシステム",
+        "◎",
+        "◎",
+        "◎",
+        "◎",
+        "―",
+        "―",
+        "△",
+        "―",
+        "◎",
+        "―",
+        "◎2",
+        "―",
+        "◎",
+        "◎",
+        "◎",
+        ""
+      ],
+      [
+        "4",
+        "構成設定したソフトウェア",
+        "ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする",
+        "ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする",
+        "◎",
+        "◎",
+        "◎",
+        "◎",
+        "○",
+        "○",
+        "○",
+        "○",
+        "◎",
+        "△",
+        "◎",
+        "○",
+        "◎",
+        "◎",
+        "◎",
+        "設計仕様、システム構築に関する文書は供給者が管理してもよい"
+      ],
+      [
+        "5",
+        "カスタムソフトウェア",
+        "業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)",
+        "業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)",
+        "◎",
+        "◎",
+        "◎",
+        "◎",
+        "◎4",
+        "◎4",
+        "◎4",
+        "○",
+        "◎",
+        "◎4",
+        "◎",
+        "◎",
+        "◎",
+        "◎",
+        "◎",
+        "4 単純な機能で、URSのみでシステム設計が可能な場合作成(実施)しなくてもよい"
+      ]
+    ],
+    "source_format": "mhlw_page2_html_table",
+    "semantic_records": [
+      {
+        "record_id": "csv_annex2.category1",
+        "raw_row_nums": [
+          2
+        ],
+        "category_no": "1",
+        "category_name": "基盤ソフト",
+        "content": "・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア",
+        "variants": [
+          {
+            "raw_row_num": 2,
+            "content_detail": "・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア",
+            "semantic_values": {
+              "development_plan": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "system_assessment": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "system_registry": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "urs": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "fs": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "ds": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "supplier_audit": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "acceptance_test": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "validation_plan_report": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "dq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "iq": {
+                "raw": "◎2",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "2"
+                ]
+              },
+              "oq": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "pq": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "sop": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              },
+              "document_control": {
+                "raw": "○1",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": [
+                  "1"
+                ]
+              }
+            },
+            "remarks": "1 アプリケーションに含めて作成、実施(単独で作成する必要はない)2 インストールの確認、バージョン・製造番号等の記録"
+          }
+        ],
+        "footnote_refs": [
+          "1",
+          "2"
+        ],
+        "review_status": "reviewed_candidate",
+        "promotion_status": "deferred"
+      },
+      {
+        "record_id": "csv_annex2.category2",
+        "raw_row_nums": [
+          3
+        ],
+        "category_no": "2",
+        "category_name": "",
+        "content": "このカテゴリは設定しない",
+        "variants": [
+          {
+            "raw_row_num": 3,
+            "content_detail": "このカテゴリは設定しない",
+            "semantic_values": {
+              "development_plan": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "system_assessment": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "system_registry": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "urs": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "fs": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "ds": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "supplier_audit": {
+                "raw": "",
+                "symbol": "",
+                "status": "blank",
+                "meaning": "",
+                "footnote_refs": [],
+                "semantic_warning": "blank_semantic_value"
+              },
+              "acceptance_test": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "validation_plan_report": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "dq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "iq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "oq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "pq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "sop": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "document_control": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              }
+            },
+            "remarks": "GAMP5との整合性を考慮し使用しない"
+          }
+        ],
+        "footnote_refs": [],
+        "review_status": "reviewed_candidate",
+        "promotion_status": "deferred",
+        "semantic_warnings": [
+          {
+            "raw_row_num": 3,
+            "warning": "blank_semantic_value"
+          },
+          {
+            "raw_row_num": 3,
+            "warning": "blank_category_name_preserved"
+          }
+        ]
+      },
+      {
+        "record_id": "csv_annex2.category3",
+        "raw_row_nums": [
+          4,
+          5
+        ],
+        "category_no": "3",
+        "category_name": "構成設定していないソフトウェア",
+        "content": "商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる)",
+        "variants": [
+          {
+            "raw_row_num": 4,
+            "content_detail": "製造設備、分析機器、製造支援設備等に搭載されるシステム",
+            "semantic_values": {
+              "development_plan": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_assessment": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_registry": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "urs": {
+                "raw": "◎3",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "3"
+                ]
+              },
+              "fs": {
+                "raw": "△",
+                "symbol": "△",
+                "status": "conditional_omittable",
+                "meaning": "システムアセスメントの結果による(基本的には省略)",
+                "footnote_refs": []
+              },
+              "ds": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "supplier_audit": {
+                "raw": "△",
+                "symbol": "△",
+                "status": "conditional_omittable",
+                "meaning": "システムアセスメントの結果による(基本的には省略)",
+                "footnote_refs": []
+              },
+              "acceptance_test": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "validation_plan_report": {
+                "raw": "◎3",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "3"
+                ]
+              },
+              "dq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "iq": {
+                "raw": "◎2",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "2"
+                ]
+              },
+              "oq": {
+                "raw": "△",
+                "symbol": "△",
+                "status": "conditional_omittable",
+                "meaning": "システムアセスメントの結果による(基本的には省略)",
+                "footnote_refs": []
+              },
+              "pq": {
+                "raw": "◎3",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "3"
+                ]
+              },
+              "sop": {
+                "raw": "◎3",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "3"
+                ]
+              },
+              "document_control": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              }
+            },
+            "remarks": "3 設備に合わせて仕様の設定及び機能の検証を行うことで差し支えない。単純なシステムに関しては校正で代用することも可"
+          },
+          {
+            "raw_row_num": 5,
+            "content_detail": "単独のコンピュータシステム",
+            "semantic_values": {
+              "development_plan": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_assessment": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_registry": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "urs": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "fs": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "ds": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "supplier_audit": {
+                "raw": "△",
+                "symbol": "△",
+                "status": "conditional_omittable",
+                "meaning": "システムアセスメントの結果による(基本的には省略)",
+                "footnote_refs": []
+              },
+              "acceptance_test": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "validation_plan_report": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "dq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "iq": {
+                "raw": "◎2",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "2"
+                ]
+              },
+              "oq": {
+                "raw": "―",
+                "symbol": "―",
+                "status": "omittable",
+                "meaning": "省略可能",
+                "footnote_refs": []
+              },
+              "pq": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "sop": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "document_control": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              }
+            },
+            "remarks": ""
+          }
+        ],
+        "footnote_refs": [
+          "2",
+          "3"
+        ],
+        "review_status": "reviewed_candidate",
+        "promotion_status": "deferred"
+      },
+      {
+        "record_id": "csv_annex2.category4",
+        "raw_row_nums": [
+          6
+        ],
+        "category_no": "4",
+        "category_name": "構成設定したソフトウェア",
+        "content": "ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする",
+        "variants": [
+          {
+            "raw_row_num": 6,
+            "content_detail": "ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする",
+            "semantic_values": {
+              "development_plan": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_assessment": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_registry": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "urs": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "fs": {
+                "raw": "○",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": []
+              },
+              "ds": {
+                "raw": "○",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": []
+              },
+              "supplier_audit": {
+                "raw": "○",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": []
+              },
+              "acceptance_test": {
+                "raw": "○",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": []
+              },
+              "validation_plan_report": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "dq": {
+                "raw": "△",
+                "symbol": "△",
+                "status": "conditional_omittable",
+                "meaning": "システムアセスメントの結果による(基本的には省略)",
+                "footnote_refs": []
+              },
+              "iq": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "oq": {
+                "raw": "○",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": []
+              },
+              "pq": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "sop": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "document_control": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              }
+            },
+            "remarks": "設計仕様、システム構築に関する文書は供給者が管理してもよい"
+          }
+        ],
+        "footnote_refs": [],
+        "review_status": "reviewed_candidate",
+        "promotion_status": "deferred"
+      },
+      {
+        "record_id": "csv_annex2.category5",
+        "raw_row_nums": [
+          7
+        ],
+        "category_no": "5",
+        "category_name": "カスタムソフトウェア",
+        "content": "業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)",
+        "variants": [
+          {
+            "raw_row_num": 7,
+            "content_detail": "業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)",
+            "semantic_values": {
+              "development_plan": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_assessment": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "system_registry": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "urs": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "fs": {
+                "raw": "◎4",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "4"
+                ]
+              },
+              "ds": {
+                "raw": "◎4",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "4"
+                ]
+              },
+              "supplier_audit": {
+                "raw": "◎4",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "4"
+                ]
+              },
+              "acceptance_test": {
+                "raw": "○",
+                "symbol": "○",
+                "status": "conditional_required",
+                "meaning": "システムアセスメントの結果による(基本的には必要)",
+                "footnote_refs": []
+              },
+              "validation_plan_report": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "dq": {
+                "raw": "◎4",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": [
+                  "4"
+                ]
+              },
+              "iq": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "oq": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "pq": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "sop": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              },
+              "document_control": {
+                "raw": "◎",
+                "symbol": "◎",
+                "status": "required",
+                "meaning": "必須",
+                "footnote_refs": []
+              }
+            },
+            "remarks": "4 単純な機能で、URSのみでシステム設計が可能な場合作成(実施)しなくてもよい"
+          }
+        ],
+        "footnote_refs": [
+          "4"
+        ],
+        "review_status": "reviewed_candidate",
+        "promotion_status": "deferred"
+      }
+    ]
+  },
+  {
+    "table_no": "2",
+    "heading": "本ガイドラインの対象外",
+    "table_id": "e000000845",
+    "columns": [
+      "excluded_item",
+      "description"
+    ],
+    "rows": [
+      [
+        "本ガイドラインの対象外",
+        "・電卓、電子時計、表示のみの電磁はかり等、商業ベースで販売されている汎用の機器・製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用されない市販のワープロソフト、表計算ソフト等で、社会一般で広く利用されているパッケージソフトウェア及びPC。なお、それらソフトにより製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用する場合は、本ガイドラインの対象とせず、バージョン番号、PCの機種番号、製造番号の記録等をシステム台帳登録することで良い。"
+      ]
+    ],
+    "source_format": "mhlw_page2_html_table",
+    "semantic_records": [
+      {
+        "record_id": "csv_annex2.excluded.r1",
+        "raw_row_nums": [
+          1
+        ],
+        "excluded_item": "本ガイドラインの対象外",
+        "description": "・電卓、電子時計、表示のみの電磁はかり等、商業ベースで販売されている汎用の機器・製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用されない市販のワープロソフト、表計算ソフト等で、社会一般で広く利用されているパッケージソフトウェア及びPC。なお、それらソフトにより製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用する場合は、本ガイドラインの対象とせず、バージョン番号、PCの機種番号、製造番号の記録等をシステム台帳登録することで良い。",
+        "review_status": "reviewed_candidate",
+        "promotion_status": "deferred"
+      }
+    ]
+  }
+]

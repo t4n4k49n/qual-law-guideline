@@ -113,13 +113,28 @@ def test_csv_annex2_page2_tables_are_attached_under_annex2(tmp_path: Path) -> No
     assert [table.heading for table in tables] == ["カテゴリ分類表", "本ガイドラインの対象外"]
     assert tables[0].data["column_reconstruction"] == "html_table_cells_with_column_schema"
     assert tables[0].data["reconstructed_columns"][:4] == ["category_no", "category_name", "content", "content_detail"]
+    assert tables[0].data["semantic_reconstruction"] == "csv_annex2_semantic_records_v1"
+    assert tables[0].data["semantic_record_count"] == 5
+    assert tables[0].data["record_review"]["candidate_granularity"] == "semantic_record"
+    assert tables[0].data["semantic_value_legend"]["◎"]["status"] == "required"
+    assert tables[1].data["semantic_record_count"] == 1
     main_rows = [row for row in tables[0].children[0].children if row.kind == "table_row"]
     excluded_rows = [row for row in tables[1].children[0].children if row.kind == "table_row"]
+    by_category = {record["category_no"]: record for record in tables[0].data["semantic_records"]}
 
     assert len(main_rows) == 7
     assert main_rows[1].data["cells"][0] == "1"
     assert main_rows[1].data["cells"][1] == "基盤ソフト"
+    assert main_rows[0].data["semantic_reconstruction_warning"] == "non_data_row_not_semantic_record"
+    assert main_rows[1].data["semantic_record_id"] == "csv_annex2.category1"
+    assert main_rows[3].data["semantic_record_id"] == "csv_annex2.category3"
+    assert main_rows[4].data["semantic_record_id"] == "csv_annex2.category3"
     assert main_rows[4].data["cells"][3] == "単独のコンピュータシステム"
+    assert by_category["3"]["raw_row_nums"] == [4, 5]
+    assert by_category["3"]["variants"][0]["semantic_values"]["urs"]["footnote_refs"] == ["3"]
+    assert by_category["5"]["variants"][0]["semantic_values"]["fs"]["status"] == "required"
+    assert by_category["5"]["variants"][0]["semantic_values"]["fs"]["footnote_refs"] == ["4"]
     assert len(excluded_rows) == 1
     assert excluded_rows[0].data["cells"][0] == "本ガイドラインの対象外"
+    assert excluded_rows[0].data["semantic_record_id"] == "csv_annex2.excluded.r1"
     assert not qualitycheck_document(ir_doc.content)
