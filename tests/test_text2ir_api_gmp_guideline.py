@@ -71,10 +71,31 @@ def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() ->
     assert "postprocess=api_gmp_table1" in ir_doc.content.tags
     assert table_1.heading == "表１：原薬生産に対する本ガイドラインの適用"
     assert table_1.data["parser"] == "api_gmp_table1_adapter"
-    assert table_1.data["column_reconstruction"] is False
+    assert table_1.data["column_reconstruction"] == "prototype"
+    assert table_1.data["column_reconstruction_status"] == "partial"
+    assert table_1.data["reconstructed_columns"] == [
+        "production_type",
+        "early_stage_1",
+        "early_stage_2",
+        "middle_stage",
+        "late_stage",
+        "final_stage",
+    ]
+    assert len(table_1.data["reconstructed_records"]) == 7
+    assert table_1.data["reconstructed_records"][0]["cells"] == [
+        "化学的合成による原薬",
+        "原薬出発物質の製造",
+        "原薬出発物質の工程への導入",
+        "中間体の製造",
+        "分離及び精製",
+        "物理的加工処理及び包装",
+    ]
     assert header.text == "raw_line"
+    assert header.data["columns"] == ["raw_line"]
     assert len(rows) == 26
     assert rows[0].text == "生産形態                  形態ごとの生産工程の事例"
+    assert rows[2].data["column_reconstruction_record_id"] == "api_gmp_table1.r1"
+    assert rows[25].data["column_reconstruction_warning"] == "non_data_row_not_cell_reconstructed"
     assert rows[-1].text == "ＧＭＰ要求事項の増大"
     assert "表１：原薬生産に対する本ガイドラインの適用" not in (section_1_3.text or "")
     assert not qualitycheck_document(ir_doc.content)

@@ -9,6 +9,100 @@ from qai_xml2ir.models_ir import Node
 
 CAPTION_RE = re.compile(r"^\s*表１：原薬生産に対する本ガイドラインの適用\s*$")
 NEXT_CHAPTER_RE = re.compile(r"^\s*2[．.]\s+品質マネージメント\s*$")
+RECONSTRUCTED_COLUMNS = [
+    "production_type",
+    "early_stage_1",
+    "early_stage_2",
+    "middle_stage",
+    "late_stage",
+    "final_stage",
+]
+RECONSTRUCTED_RECORDS = [
+    {
+        "record_id": "api_gmp_table1.r1",
+        "raw_row_nums": [3, 4, 5],
+        "cells": [
+            "化学的合成による原薬",
+            "原薬出発物質の製造",
+            "原薬出発物質の工程への導入",
+            "中間体の製造",
+            "分離及び精製",
+            "物理的加工処理及び包装",
+        ],
+    },
+    {
+        "record_id": "api_gmp_table1.r2",
+        "raw_row_nums": [6, 7, 8],
+        "cells": [
+            "動物由来の原薬",
+            "器官、液体又は組織の収集",
+            "細断、混合、及び初期加工処理",
+            "原薬出発物質の工程への導入",
+            "分離及び精製",
+            "物理的加工処理及び包装",
+        ],
+    },
+    {
+        "record_id": "api_gmp_table1.r3",
+        "raw_row_nums": [9, 10, 11],
+        "cells": [
+            "植物から抽出する原薬",
+            "植物の収集",
+            "細断及び初期抽出",
+            "原薬出発物質の工程への導入",
+            "分離及び精製",
+            "物理的加工処理及び包装",
+        ],
+    },
+    {
+        "record_id": "api_gmp_table1.r4",
+        "raw_row_nums": [12, 13, 14],
+        "cells": [
+            "原薬として使用する生薬抽出物",
+            "植物の収集",
+            "細断及び初期抽出",
+            "",
+            "再抽出",
+            "物理的加工処理及び包装",
+        ],
+    },
+    {
+        "record_id": "api_gmp_table1.r5",
+        "raw_row_nums": [15, 16, 17],
+        "cells": [
+            "粉砕又は粉末化した生薬で構成する原薬",
+            "植物の収集又は栽培及び収穫",
+            "細断／粉砕",
+            "",
+            "",
+            "物理的加工処理及び包装",
+        ],
+    },
+    {
+        "record_id": "api_gmp_table1.r6",
+        "raw_row_nums": [18, 19, 20, 21, 22],
+        "cells": [
+            "バイオテクノロジー（発酵・細胞培養）を応用した原薬",
+            "マスターセルバンク及びワーキングセルバンクの確立",
+            "ワーキングセルバンクの維持管理",
+            "細胞培養又は発酵",
+            "分離及び精製",
+            "物理的加工処理及び包装",
+        ],
+    },
+    {
+        "record_id": "api_gmp_table1.r7",
+        "raw_row_nums": [23, 24, 25],
+        "cells": [
+            "クラシカル発酵を応用した原薬",
+            "セルバンクの確立",
+            "セルバンクの維持管理",
+            "セルの発酵工程への導入",
+            "分離及び精製",
+            "物理的加工処理及び包装",
+        ],
+    },
+]
 
 
 @dataclass
@@ -115,7 +209,37 @@ def _table_node(table: ApiGmpTable1, *, parent_nid: str, source_label: str, line
                 data={"cells": [line], "raw_line": line},
             )
         )
+    _apply_column_reconstruction_prototype(node)
     return node
+
+
+def _apply_column_reconstruction_prototype(table_node: Node) -> None:
+    table_node.data["column_reconstruction"] = "prototype"
+    table_node.data["column_reconstruction_status"] = "partial"
+    table_node.data["reconstructed_columns"] = RECONSTRUCTED_COLUMNS
+    table_node.data["reconstructed_records"] = RECONSTRUCTED_RECORDS
+    table_node.data["non_data_raw_rows"] = [
+        {"raw_row_num": 1, "reason": "header_line"},
+        {"raw_row_num": 2, "reason": "visual_annotation"},
+        {"raw_row_num": 26, "reason": "directional_note_without_cells"},
+    ]
+    row_to_record = {
+        row_no: record["record_id"]
+        for record in RECONSTRUCTED_RECORDS
+        for row_no in record["raw_row_nums"]
+    }
+    for header in table_node.children:
+        if header.kind != "table_header":
+            continue
+        header.data["reconstructed_columns"] = RECONSTRUCTED_COLUMNS
+        for row in header.children:
+            if row.kind != "table_row":
+                continue
+            row_no = int(row.num or 0)
+            if row_no in row_to_record:
+                row.data["column_reconstruction_record_id"] = row_to_record[row_no]
+            else:
+                row.data["column_reconstruction_warning"] = "non_data_row_not_cell_reconstructed"
 
 
 def _walk_with_parent(node: Node, parent: Optional[Node] = None) -> Iterable[Tuple[Optional[Node], Node]]:
