@@ -1,0 +1,30 @@
+[
+  {
+    "num": "別紙1",
+    "heading": "コンピュータ化システムのライフサイクルモデル",
+    "current_source_format": "html_image_reference",
+    "current_extractable_text": false,
+    "current_source_note": "HTML本文には画像リンク表示のみが残るため、内容テキスト化には画像取得/OCRが必要",
+    "source_candidate": "mhlw_image_endpoint",
+    "candidate_url": "https://www.mhlw.go.jp/web/t_img?img=6676058",
+    "source_status": "reachable_http_200",
+    "table_body_available": false,
+    "ocr_required": true,
+    "recovery_action": "download_image_then_ocr_or_manual_transcription",
+    "reason": "local_page1_html_points_to_image_only; textual content is not available in HTML"
+  },
+  {
+    "num": "別紙2",
+    "heading": "カテゴリ分類表と対応例",
+    "current_source_format": "html_table_title_only",
+    "current_extractable_text": false,
+    "current_source_note": "HTML本文抽出範囲には表題行のみが残り、表本体行が確認できない",
+    "source_candidate": "mhlw_official_page2_html",
+    "candidate_url": "https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=2",
+    "source_status": "official_page2_contains_table_body",
+    "table_body_available": true,
+    "ocr_required": false,
+    "recovery_action": "fetch_official_page2_and_parse_html_table",
+    "reason": "local_page1_html_has_annex2_title_only; official page2 is the candidate for the table body"
+  }
+]
