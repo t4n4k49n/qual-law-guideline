@@ -80,6 +80,9 @@ def test_aseptic_processing_table_adapter_separates_known_table_candidates() -> 
     assert table1.data["column_reconstruction_status"] == "partial"
     assert table2.data["column_reconstruction_status"] == "partial"
     assert table3.data["column_reconstruction_status"] == "partial"
+    assert table1.data["record_review"]["candidate_granularity"] == "reconstructed_record"
+    assert table2.data["record_review"]["table_row_promotion"] == "deferred"
+    assert table3.data["record_review"]["note_handling"] == "table notes kept as note nodes; note-to-cell links deferred"
     assert table1.data["reconstructed_columns"] == [
         "area",
         "cleanliness_level",
@@ -109,6 +112,8 @@ def test_aseptic_processing_table_adapter_separates_known_table_candidates() -> 
     assert len(table1.data["reconstructed_records"]) == 4
     assert len(table2.data["reconstructed_records"]) == 4
     assert len(table3.data["reconstructed_records"]) == 4
+    assert table1.data["reconstructed_records"][0]["review_status"] == "reviewed_candidate"
+    assert table2.data["reconstructed_records"][2]["promotion_status"] == "deferred"
     assert table1.data["reconstructed_records"][0]["cells"] == [
         "重要区域",
         "グレード A (ISO 5)",

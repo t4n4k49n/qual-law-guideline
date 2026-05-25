@@ -82,6 +82,11 @@ def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() ->
         "final_stage",
     ]
     assert len(table_1.data["reconstructed_records"]) == 7
+    assert table_1.data["record_review"]["candidate_granularity"] == "reconstructed_record"
+    assert table_1.data["record_review"]["table_row_promotion"] == "deferred"
+    assert table_1.data["record_review"]["deferred_raw_rows"] == [1, 2, 26]
+    assert table_1.data["reconstructed_records"][0]["review_status"] == "reviewed_candidate"
+    assert table_1.data["reconstructed_records"][0]["promotion_status"] == "deferred"
     assert table_1.data["reconstructed_records"][0]["cells"] == [
         "化学的合成による原薬",
         "原薬出発物質の製造",

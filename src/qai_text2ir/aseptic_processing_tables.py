@@ -138,6 +138,35 @@ NON_DATA_ROWS_BY_TABLE = {
         {"raw_row_num": 3, "reason": "header_line"},
     ],
 }
+RECORD_REVIEW_BY_TABLE = {
+    "1": {
+        "status": "reviewed_candidate",
+        "candidate_granularity": "reconstructed_record",
+        "table_row_promotion": "deferred",
+        "table_row_promotion_reason": "multi-level headers and note references need review before replacing raw table_rows",
+        "note_handling": "table notes kept as note nodes; note-to-cell links deferred",
+        "reviewed_records": 4,
+        "deferred_raw_rows": [1, 2, 3, 4, 5, 7, 8],
+    },
+    "2": {
+        "status": "reviewed_candidate",
+        "candidate_granularity": "reconstructed_record",
+        "table_row_promotion": "deferred",
+        "table_row_promotion_reason": "C/D condition rows are reconstructed but candidate display granularity still needs confirmation",
+        "note_handling": "no separate note node in source table range",
+        "reviewed_records": 4,
+        "deferred_raw_rows": [1, 2, 3],
+    },
+    "3": {
+        "status": "reviewed_candidate",
+        "candidate_granularity": "reconstructed_record",
+        "table_row_promotion": "deferred",
+        "table_row_promotion_reason": "table notes are preserved but exact note-to-cell references are not fixed",
+        "note_handling": "table notes kept as note nodes; note-to-cell links deferred",
+        "reviewed_records": 4,
+        "deferred_raw_rows": [1, 2, 3],
+    },
+}
 
 
 @dataclass
@@ -297,8 +326,11 @@ def _apply_column_reconstruction_prototype(table_node: Node, table_no: str) -> N
     table_node.data["column_reconstruction"] = "prototype"
     table_node.data["column_reconstruction_status"] = "partial"
     table_node.data["reconstructed_columns"] = columns
-    table_node.data["reconstructed_records"] = records
+    table_node.data["reconstructed_records"] = [
+        {**record, "review_status": "reviewed_candidate", "promotion_status": "deferred"} for record in records
+    ]
     table_node.data["non_data_raw_rows"] = NON_DATA_ROWS_BY_TABLE.get(table_no, [])
+    table_node.data["record_review"] = RECORD_REVIEW_BY_TABLE.get(table_no, {})
     row_to_record = {
         row_no: record["record_id"]
         for record in records
