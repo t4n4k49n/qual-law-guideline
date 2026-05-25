@@ -1,0 +1,26 @@
+[
+  {
+    "num": "別紙1",
+    "heading": "コンピュータ化システムのライフサイクルモデル",
+    "source_format": "html_image_reference",
+    "extractable_text": false,
+    "line_no": 399,
+    "label": "画像1 (36KB)",
+    "href": "t_img?img=6676058",
+    "resolved_url": "https://www.mhlw.go.jp/web/t_img?img=6676058",
+    "table_rows_found": null,
+    "deferred_reason": "HTML本文には画像リンク表示のみが残るため、内容テキスト化には画像取得/OCRが必要"
+  },
+  {
+    "num": "別紙2",
+    "heading": "カテゴリ分類表と対応例",
+    "source_format": "html_table_title_only",
+    "extractable_text": false,
+    "line_no": 401,
+    "label": null,
+    "href": null,
+    "resolved_url": null,
+    "table_rows_found": 0,
+    "deferred_reason": "HTML本文抽出範囲には表題行のみが残り、表本体行が確認できない"
+  }
+]

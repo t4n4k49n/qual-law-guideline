@@ -67,3 +67,29 @@ def test_csv_profile_preserves_expected_nested_items(tmp_path: Path) -> None:
     assert by_kind_num[("chapter", "3")].heading == "コンピュータ化システムの開発、検証及び運用管理に関する文書の作成"
     assert any(node.kind == "item" and node.num == "7" for node in nodes)
     assert any(node.kind == "subitem" and node.num == "1" for node in nodes)
+
+
+def test_csv_annex_adapter_separates_visible_annex_placeholders(tmp_path: Path) -> None:
+    input_path = tmp_path / "00tb6573.extracted.txt"
+    input_path.write_text("\n".join(extract_mhlw_t_doc_lines(SOURCE_HTML)) + "\n", encoding="utf-8", newline="\n")
+    profile = load_parser_profile(path=PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="jp_mhlw_csv_guideline_trial",
+        parser_profile=profile,
+    )
+    nodes = list(_walk(ir_doc.content))
+    by_nid = {node.nid: node for node in nodes}
+    annexes = [node for node in ir_doc.content.children if node.kind == "annex"]
+
+    assert "postprocess=mhlw_csv_annexes" in ir_doc.content.tags
+    assert [annex.num for annex in annexes] == ["別紙1", "別紙2"]
+    assert annexes[0].heading == "コンピュータ化システムのライフサイクルモデル"
+    assert annexes[0].text == "画像1 (36KB)"
+    assert annexes[0].data["source_format"] == "html_image_reference"
+    assert annexes[0].data["extractable_text"] is False
+    assert annexes[1].heading == "カテゴリ分類表と対応例"
+    assert annexes[1].data["source_format"] == "html_table_title_only"
+    assert annexes[1].data["table_rows_found"] == 0
+    assert "別紙1" not in (by_nid["cha10"].text or "")
+    assert not qualitycheck_document(ir_doc.content)

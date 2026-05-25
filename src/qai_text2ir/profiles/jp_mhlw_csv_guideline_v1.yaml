@@ -10,6 +10,8 @@ source_label: MHLW CSV guideline
 context_root_kind: chapter
 
 preprocess:
+  mhlw_csv_annexes:
+    enabled: true
   skip_blocks:
     - start_regex: '^○医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドラインについて$'
       end_regex: '^1[．.]\s*総則\s*$'
