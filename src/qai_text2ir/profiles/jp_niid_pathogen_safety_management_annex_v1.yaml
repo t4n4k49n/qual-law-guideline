@@ -1,0 +1,98 @@
+schema: qai.parser_profile.v1
+id: jp_niid_pathogen_safety_management_annex_v1
+extends: jp_guideline_default_v1
+title: NIID pathogen safety management regulation annex markers
+applies_to:
+  family: JP_GUIDELINE
+  jurisdiction: JP
+language: ja
+source_label: NIID pathogen safety management regulation annexes
+context_root_kind: annex
+structural_kinds: [annex]
+
+preprocess:
+  skip_blocks:
+    - start_regex: '^国立感染症研究所$'
+      end_regex: '^目\s*次$'
+      include_start: false
+      include_end: true
+      max_lines: 120
+    - start_regex: '^第１章\s+総則\s*\.'
+      end_regex: '^第１章\s+総\s+則.*$'
+      include_start: false
+      include_end: true
+      max_lines: 200
+    - start_regex: '^第１章\s+総\s+則.*$'
+      end_regex: '^別表１(?:\s|$)'
+      include_start: false
+      include_end: true
+      max_lines: 800
+  drop_line_regexes:
+    - '^国立感染症研究所病原体等安全管理規程$'
+    - '^（[^）]{1,30}）$'
+
+marker_types:
+  - id: annex_betsuhyo
+    kind: annex
+    kind_raw: "別表1"
+    match: '^(?P<n>別表[0-9０-９]+)\s*'
+    num_group: n
+  - id: annex_fuhyo
+    kind: annex
+    kind_raw: "付表1"
+    match: '^(?P<n>付表[0-9０-９]+(?:[－\-―ー][0-9０-９]+)?)\s*'
+    num_group: n
+  - id: chapter_decimal
+    kind: chapter
+    kind_raw: "1."
+    match: 'a^'
+    num_group: n
+  - id: section_decimal
+    kind: paragraph
+    kind_raw: "1.1"
+    match: 'a^'
+    num_group: n
+  - id: item_paren_digit
+    kind: subitem
+    kind_raw: "(1)"
+    match: 'a^'
+    num_group: n
+  - id: item_circled_digit
+    kind: subitem
+    kind_raw: "①"
+    match: 'a^'
+    num_group: n
+  - id: item_digit_dot
+    kind: item
+    kind_raw: "1."
+    match: 'a^'
+    num_group: n
+  - id: legal_paragraph_digit
+    kind: item
+    kind_raw: "2"
+    match: 'a^'
+    num_group: n
+
+structure:
+  root:
+    children: [annex, paragraph, item, subitem, table, preformatted, note, history]
+  annex:
+    children: [paragraph, item, subitem, table, preformatted, note, history]
+  paragraph:
+    children: [item, subitem, table, preformatted, note, history]
+  item:
+    children: [subitem, note, history]
+  subitem:
+    children: [note, history]
+  table:
+    children: [table_header, note]
+  table_header:
+    children: [table_row]
+  table_row:
+    children: []
+  preformatted:
+    children: [note]
+  note:
+    children: []
+  history:
+    children: []
