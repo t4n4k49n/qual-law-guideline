@@ -148,10 +148,11 @@ class AttachCandidate:
 @dataclass
 class SkipBlockRule:
     start_pattern: re.Pattern[str]
-    end_pattern: re.Pattern[str]
+    end_pattern: Optional[re.Pattern[str]]
     include_start: bool
     include_end: bool
     max_lines: int
+    skip_to_eof: bool = False
 
 
 @dataclass
@@ -1579,8 +1580,10 @@ def _compile_skip_blocks(preprocess: Dict[str, Any]) -> List[SkipBlockRule]:
         end_regex = raw.get("end_regex")
         if not isinstance(start_regex, str) or not start_regex:
             continue
-        if not isinstance(end_regex, str) or not end_regex:
+        skip_to_eof = bool(raw.get("skip_to_eof", False))
+        if (not isinstance(end_regex, str) or not end_regex) and not skip_to_eof:
             continue
+        end_pattern = re.compile(end_regex) if isinstance(end_regex, str) and end_regex else None
         include_start = bool(raw.get("include_start", False))
         include_end = bool(raw.get("include_end", True))
         max_lines_raw = raw.get("max_lines", 2000)
@@ -1590,10 +1593,11 @@ def _compile_skip_blocks(preprocess: Dict[str, Any]) -> List[SkipBlockRule]:
         rules.append(
             SkipBlockRule(
                 start_pattern=re.compile(start_regex),
-                end_pattern=re.compile(end_regex),
+                end_pattern=end_pattern,
                 include_start=include_start,
                 include_end=include_end,
                 max_lines=max_lines,
+                skip_to_eof=skip_to_eof,
             )
         )
     return rules
@@ -1866,19 +1870,21 @@ def parse_text_to_ir(
         if skip_block_state.active and skip_block_state.rule_index is not None:
             active_rule = skip_block_rules[skip_block_state.rule_index]
             skip_block_state.seen_lines += 1
-            if active_rule.end_pattern.match(stripped_raw):
+            if active_rule.end_pattern is not None and active_rule.end_pattern.match(stripped_raw):
                 skip_block_state.active = False
                 skip_block_state.rule_index = None
                 skip_block_state.seen_lines = 0
                 skip_block_state.start_line = 0
                 if not active_rule.include_end:
                     continue
+            elif active_rule.skip_to_eof:
+                continue
             elif skip_block_state.seen_lines > active_rule.max_lines:
                 LOGGER.warning(
                     "skip_blocks end not found within max_lines=%s start_line=%s end_regex=%r",
                     active_rule.max_lines,
                     skip_block_state.start_line,
-                    active_rule.end_pattern.pattern,
+                    active_rule.end_pattern.pattern if active_rule.end_pattern is not None else "",
                 )
                 skip_block_state.active = False
                 skip_block_state.rule_index = None
