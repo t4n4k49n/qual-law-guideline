@@ -84,6 +84,8 @@ def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() 
     assert len(tables) == 5
     assert by_num["付表2"].text.startswith("実験手技及び安全機器との関連性")
     assert by_num["付表3"].text is None
+    assert by_num["付表2"].data["normalization_readiness"]["decision"] == "promotion_candidate_as_raw_table"
+    assert by_num["別表4"].data["normalization_readiness"]["decision"] == "promotion_candidate_as_raw_annex_text"
 
     fuhyo3_table = next(table for table in tables if table.data["annex_num"] == "付表3")
     betsu7_table = next(table for table in tables if table.data["annex_num"] == "別表7")
@@ -93,6 +95,7 @@ def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() 
     betsu10_rows = [row for row in betsu10_table.children[0].children if row.kind == "table_row"]
 
     assert fuhyo3_table.data["column_reconstruction"] == "raw_rows_with_column_schema"
+    assert fuhyo3_table.data["normalization_readiness"]["decision"] == "promotion_candidate_as_partial_cell_table"
     assert fuhyo3_table.data["reconstructed_columns"] == ["criterion", "bsl1", "bsl2", "bsl3", "bsl4"]
     assert fuhyo3_rows[0].text == "ＢＳＬ"
     assert fuhyo3_rows[-1].text.startswith("＊１ 施設内の通常の人の流れ")
@@ -105,5 +108,21 @@ def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() 
     ]
     assert len(betsu7_rows) == 30
     assert len(betsu10_rows) == 33
-    assert all(row.data["column_reconstruction_warning"] == "raw_row_only_cell_reconstruction_pending" for row in fuhyo3_rows)
+    assert fuhyo3_table.data["cell_reconstruction"] == "fixed_width_cells_v1"
+    assert fuhyo3_table.data["cell_reconstruction_status"] == "partial"
+    assert fuhyo3_table.data["cell_reconstructed_rows"] == 15
+    assert fuhyo3_table.data["cell_deferred_rows"] == 6
+    assert fuhyo3_rows[2].data["cells"] == ["実験室の独立性*1", "不要", "不要", "必要", "必要"]
+    assert fuhyo3_rows[2].data["cell_reconstruction"] == "fixed_width_cells_v1"
+    assert fuhyo3_rows[0].data["cell_reconstruction"] == "deferred"
+    assert fuhyo3_rows[0].data["column_reconstruction_warning"] == "fixed_width_cell_split_deferred"
+    assert betsu7_table.data["cell_reconstructed_rows"] == 11
+    assert betsu7_rows[4].data["cells"] == [
+        "病原体等の受入れ又は払出しの日時",
+        "事業所ごとに記帳（同上）",
+        "年月日・時刻",
+        "年月日",
+        "年月日",
+    ]
+    assert betsu10_table.data["cell_reconstructed_rows"] == 10
     assert not qualitycheck_document(ir_doc.content)

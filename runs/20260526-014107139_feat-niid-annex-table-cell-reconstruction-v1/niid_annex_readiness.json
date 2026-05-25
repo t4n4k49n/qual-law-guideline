@@ -1,0 +1,178 @@
+[
+  {
+    "num": "別表1",
+    "heading": "病原体等の取扱いにおいては、病原体等のリスク群分類（付表１－１）を基準として、付表１－",
+    "decision": "promotion_candidate_as_annex_text",
+    "promotion_mode": "annex_text",
+    "reason": "narrative reference text; table reconstruction is not applicable",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "付表1-1",
+    "heading": "病原体等のリスク群による分類",
+    "decision": "promotion_candidate_as_annex_text",
+    "promotion_mode": "annex_text",
+    "reason": "risk group description text; table reconstruction is not applicable",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "付表1-2",
+    "heading": "リスク評価項目",
+    "decision": "promotion_candidate_as_numbered_annex_text",
+    "promotion_mode": "annex_text_with_existing_subitems",
+    "reason": "numbered assessment items are preserved as annex text/subitems; no table reconstruction needed",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "付表1-3",
+    "heading": "動物実験におけるリスク評価項目",
+    "decision": "promotion_candidate_as_numbered_annex_text",
+    "promotion_mode": "annex_text_with_existing_subitems",
+    "reason": "animal experiment risk assessment items are preserved as annex text/subitems; no table reconstruction needed",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "付表2",
+    "heading": "病原体等のリスク群分類と、実験室のＢＳＬ分類、実験室使用目的、",
+    "decision": "promotion_candidate_as_raw_table",
+    "promotion_mode": "table_raw_rows_with_column_schema",
+    "reason": "multi-line wrapped cells cannot be safely split in v1, but the full table is preserved with source spans",
+    "has_table": true,
+    "rows": 28,
+    "cell_reconstructed_rows": 0,
+    "cell_deferred_rows": 28
+  },
+  {
+    "num": "付表3",
+    "heading": "ＢＳＬ実験室の安全設備基準",
+    "decision": "promotion_candidate_as_partial_cell_table",
+    "promotion_mode": "table_rows_with_partial_cells",
+    "reason": "safe fixed-width rows are cell-split; remaining note/header rows are preserved raw",
+    "has_table": true,
+    "rows": 21,
+    "cell_reconstructed_rows": 15,
+    "cell_deferred_rows": 6
+  },
+  {
+    "num": "付表4",
+    "heading": "病原体等取扱動物実験施設のＡＢＳＬ分類、実験手技、安全機器",
+    "decision": "promotion_candidate_as_partial_cell_table",
+    "promotion_mode": "table_rows_with_partial_cells",
+    "reason": "ABSL start rows are cell-split; wrapped continuation rows are preserved raw",
+    "has_table": true,
+    "rows": 24,
+    "cell_reconstructed_rows": 5,
+    "cell_deferred_rows": 19
+  },
+  {
+    "num": "別表2",
+    "heading": "病原体等取扱実験室の安全設備及び運営基準",
+    "decision": "promotion_candidate_as_sectioned_annex_text",
+    "promotion_mode": "annex_text",
+    "reason": "BSL criteria are section-style text, not a column reconstruction target",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "別表3",
+    "heading": "病原体等取扱動物実験施設の安全設備及び運営基準",
+    "decision": "promotion_candidate_as_sectioned_annex_text",
+    "promotion_mode": "annex_text",
+    "reason": "ABSL criteria are section-style text, not a column reconstruction target",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "別表4",
+    "heading": "国立感染症研究所における施設の位置、構造及び設備の技術上の基準一覧",
+    "decision": "promotion_candidate_as_raw_annex_text",
+    "promotion_mode": "annex_text_raw_hold",
+    "reason": "complex wide matrix is fully preserved as annex text; cell reconstruction is not required for readiness",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "別表5",
+    "heading": "国立感染症研究所における特定病原体等の保管等の技術上の基準一覧",
+    "decision": "promotion_candidate_as_raw_annex_text",
+    "promotion_mode": "annex_text_raw_hold",
+    "reason": "complex wide matrix is fully preserved as annex text; cell reconstruction is not required for readiness",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "別表6",
+    "heading": "病原体等安全管理区域運営規則作成基準",
+    "decision": "promotion_candidate_as_numbered_annex_text",
+    "promotion_mode": "annex_text",
+    "reason": "numbered operational requirements are preserved as annex text; not a table target",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "別表7",
+    "heading": "記帳事項に関する一覧（法第５６条の２３関係）",
+    "decision": "promotion_candidate_as_partial_cell_table",
+    "promotion_mode": "table_rows_with_partial_cells",
+    "reason": "safe fixed-width rows are cell-split; wrapped record rows remain raw",
+    "has_table": true,
+    "rows": 30,
+    "cell_reconstructed_rows": 11,
+    "cell_deferred_rows": 19
+  },
+  {
+    "num": "別表8",
+    "heading": "特定病原体等の取扱いに必要な教育訓練（法第５６条の２１関係）",
+    "decision": "promotion_candidate_as_raw_annex_text",
+    "promotion_mode": "annex_text_raw_hold",
+    "reason": "embedded item table is fully preserved as annex text; cell reconstruction is not required for readiness",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "別表9",
+    "heading": "災害時の対応内容（法第５６条の２９関係）",
+    "decision": "promotion_candidate_as_numbered_annex_text",
+    "promotion_mode": "annex_text",
+    "reason": "disaster response requirements are preserved as numbered annex text; not a table target",
+    "has_table": false,
+    "rows": null,
+    "cell_reconstructed_rows": null,
+    "cell_deferred_rows": null
+  },
+  {
+    "num": "別表10",
+    "heading": "感染症発生予防規程対照表（法第５６条の１８関係）",
+    "decision": "promotion_candidate_as_partial_cell_table",
+    "promotion_mode": "table_rows_with_partial_cells",
+    "reason": "safe comparison rows are cell-split; wrapped rows remain raw",
+    "has_table": true,
+    "rows": 33,
+    "cell_reconstructed_rows": 10,
+    "cell_deferred_rows": 23
+  }
+]
