@@ -29,6 +29,7 @@ def test_jp_profile_normalizes_fullwidth_markers_and_hierarchy(tmp_path: Path) -
             "①　詳細要件",
             "第９条の２ 見出し",
             "条文形式の本文です。",
+            "Ａ１ 参考情報",
         ]
     )
     input_path = tmp_path / "jp_guideline.txt"
@@ -46,6 +47,7 @@ def test_jp_profile_normalizes_fullwidth_markers_and_hierarchy(tmp_path: Path) -
     article_like = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "9_2")
 
     assert chapter_1.get("heading") == "序文"
+    assert any(n["kind"] == "chapter" and n.get("num") == "A1" for n in nodes)
     assert paragraph_13["nid"].startswith(chapter_1["nid"])
     assert item_1["nid"].startswith(paragraph_13["nid"])
     assert subitem_1["nid"].startswith(item_1["nid"])

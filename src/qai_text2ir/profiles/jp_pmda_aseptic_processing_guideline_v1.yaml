@@ -1,0 +1,28 @@
+schema: qai.parser_profile.v1
+id: jp_pmda_aseptic_processing_guideline_v1
+extends: jp_guideline_default_v1
+title: PMDA aseptic processing guideline markers
+applies_to:
+  family: JP_GUIDELINE
+  jurisdiction: JP
+language: ja
+source_label: PMDA aseptic processing guideline
+context_root_kind: chapter
+
+preprocess:
+  skip_blocks:
+    - start_regex: '^事\s*務\s*連\s*絡$'
+      end_regex: '^１[．.]\s*序論\s*$'
+      include_start: false
+      include_end: true
+      max_lines: 400
+  drop_line_regexes:
+    - '^無菌操作法による無菌医薬品の製造に関する指針$'
+    - '^【参考情報】$'
+
+marker_types:
+  - id: chapter_decimal
+    kind: chapter
+    kind_raw: "1."
+    match: '^(?P<n>[0-9０-９]{1,2})[．.](?![0-9０-９])\s*'
+    num_group: n

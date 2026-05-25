@@ -10,6 +10,8 @@ source_label: PMDA API GMP guideline
 context_root_kind: chapter
 
 preprocess:
+  drop_line_regexes:
+    - '^原薬ＧＭＰのガイドライン$'
   detect_plaintext_tables:
     enabled: true
     min_rows: 2
