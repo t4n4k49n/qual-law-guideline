@@ -36,6 +36,41 @@ TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
 }
 
 
+def _split_fixed_width_cells(line: str) -> List[str]:
+    return [cell.strip() for cell in re.split(r"\s{2,}", line.strip()) if cell.strip()]
+
+
+def _apply_cell_reconstruction_v1(table: Node, columns: List[str]) -> Dict[str, int]:
+    reconstructed = 0
+    deferred = 0
+    for header in table.children:
+        if header.kind != "table_header":
+            continue
+        header.data["cell_reconstruction"] = "fixed_width_cells_v1"
+        header.data["columns"] = columns
+        for row in header.children:
+            if row.kind != "table_row":
+                continue
+            raw_line = str(row.data.get("raw_line") or row.text or "")
+            cells = _split_fixed_width_cells(raw_line)
+            if len(cells) == len(columns):
+                row.data["cells"] = cells
+                row.data["columns"] = columns
+                row.data["cell_reconstruction"] = "fixed_width_cells_v1"
+                row.data.pop("column_reconstruction_warning", None)
+                reconstructed += 1
+            else:
+                row.data["cell_reconstruction"] = "deferred"
+                row.data["column_reconstruction_warning"] = "fixed_width_cell_split_deferred"
+                row.data["cell_reconstruction_deferred_reason"] = f"split_count={len(cells)} expected={len(columns)}"
+                deferred += 1
+    table.data["cell_reconstruction"] = "fixed_width_cells_v1"
+    table.data["cell_reconstruction_status"] = "partial"
+    table.data["cell_reconstructed_rows"] = reconstructed
+    table.data["cell_deferred_rows"] = deferred
+    return {"reconstructed": reconstructed, "deferred": deferred}
+
+
 def _line_span(source_label: str, fallback_line_no: int) -> Dict[str, str]:
     return {"source_label": source_label, "locator": f"line:{fallback_line_no}"}
 
@@ -155,6 +190,7 @@ def _table_node(
                 },
             )
         )
+    _apply_cell_reconstruction_v1(table, columns)
     return table
 
 

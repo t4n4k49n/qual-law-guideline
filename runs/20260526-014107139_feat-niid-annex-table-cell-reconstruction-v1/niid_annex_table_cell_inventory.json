@@ -1,0 +1,74 @@
+[
+  {
+    "annex_num": "付表2",
+    "heading": "病原体等のリスク群分類と、実験室のＢＳＬ分類、実験室使用目的、",
+    "rows": 28,
+    "cell_reconstructed_rows": 0,
+    "cell_deferred_rows": 28,
+    "columns": [
+      "risk_group",
+      "laboratory_bsl",
+      "laboratory_purpose",
+      "laboratory_practice_operation",
+      "safety_equipment"
+    ],
+    "status": "partial"
+  },
+  {
+    "annex_num": "付表3",
+    "heading": "ＢＳＬ実験室の安全設備基準",
+    "rows": 21,
+    "cell_reconstructed_rows": 15,
+    "cell_deferred_rows": 6,
+    "columns": [
+      "criterion",
+      "bsl1",
+      "bsl2",
+      "bsl3",
+      "bsl4"
+    ],
+    "status": "partial"
+  },
+  {
+    "annex_num": "付表4",
+    "heading": "病原体等取扱動物実験施設のＡＢＳＬ分類、実験手技、安全機器",
+    "rows": 24,
+    "cell_reconstructed_rows": 5,
+    "cell_deferred_rows": 19,
+    "columns": [
+      "absl",
+      "laboratory_practice",
+      "safety_equipment",
+      "facility_criteria"
+    ],
+    "status": "partial"
+  },
+  {
+    "annex_num": "別表7",
+    "heading": "記帳事項に関する一覧（法第５６条の２３関係）",
+    "rows": 30,
+    "cell_reconstructed_rows": 11,
+    "cell_deferred_rows": 19,
+    "columns": [
+      "ordinance_item",
+      "record_content",
+      "pathogen_type_1",
+      "pathogen_type_2",
+      "pathogen_type_3"
+    ],
+    "status": "partial"
+  },
+  {
+    "annex_num": "別表10",
+    "heading": "感染症発生予防規程対照表（法第５６条の１８関係）",
+    "rows": 33,
+    "cell_reconstructed_rows": 10,
+    "cell_deferred_rows": 23,
+    "columns": [
+      "ordinance_item",
+      "specific_content",
+      "regulation_reference"
+    ],
+    "status": "partial"
+  }
+]

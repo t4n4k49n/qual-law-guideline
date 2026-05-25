@@ -105,5 +105,21 @@ def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() 
     ]
     assert len(betsu7_rows) == 30
     assert len(betsu10_rows) == 33
-    assert all(row.data["column_reconstruction_warning"] == "raw_row_only_cell_reconstruction_pending" for row in fuhyo3_rows)
+    assert fuhyo3_table.data["cell_reconstruction"] == "fixed_width_cells_v1"
+    assert fuhyo3_table.data["cell_reconstruction_status"] == "partial"
+    assert fuhyo3_table.data["cell_reconstructed_rows"] == 15
+    assert fuhyo3_table.data["cell_deferred_rows"] == 6
+    assert fuhyo3_rows[2].data["cells"] == ["実験室の独立性*1", "不要", "不要", "必要", "必要"]
+    assert fuhyo3_rows[2].data["cell_reconstruction"] == "fixed_width_cells_v1"
+    assert fuhyo3_rows[0].data["cell_reconstruction"] == "deferred"
+    assert fuhyo3_rows[0].data["column_reconstruction_warning"] == "fixed_width_cell_split_deferred"
+    assert betsu7_table.data["cell_reconstructed_rows"] == 11
+    assert betsu7_rows[4].data["cells"] == [
+        "病原体等の受入れ又は払出しの日時",
+        "事業所ごとに記帳（同上）",
+        "年月日・時刻",
+        "年月日",
+        "年月日",
+    ]
+    assert betsu10_table.data["cell_reconstructed_rows"] == 10
     assert not qualitycheck_document(ir_doc.content)
