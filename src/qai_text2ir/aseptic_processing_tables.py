@@ -33,6 +33,111 @@ TABLE_SPECS = [
         "heading": "表 3 環境微生物の許容基準(作業時) 注）1",
     },
 ]
+RECONSTRUCTED_COLUMNS_BY_TABLE = {
+    "1": [
+        "area",
+        "cleanliness_level",
+        "non_operational_0_5um",
+        "non_operational_5_0um",
+        "operational_0_5um",
+        "operational_5_0um",
+    ],
+    "2": [
+        "grade",
+        "area_condition",
+        "airborne_particles",
+        "airborne_microorganisms",
+        "surface_attached_equipment_walls",
+        "surface_attached_gloves_garment",
+    ],
+    "3": [
+        "grade",
+        "airborne_microorganisms_cfu_m3",
+        "settle_plate_cfu_plate",
+        "contact_plate_cfu_24_30cm2",
+        "gloves_cfu_5_fingers",
+    ],
+}
+RECONSTRUCTED_RECORDS_BY_TABLE = {
+    "1": [
+        {
+            "record_id": "aseptic_table1.r1",
+            "raw_row_nums": [6],
+            "cells": ["重要区域", "グレード A (ISO 5)", "3,520", "20", "3,520", "20"],
+        },
+        {
+            "record_id": "aseptic_table1.r2",
+            "raw_row_nums": [9],
+            "cells": ["直接支援区域", "グレード B (ISO 7)", "3,520", "29", "352,000", "2,900"],
+        },
+        {
+            "record_id": "aseptic_table1.r3",
+            "raw_row_nums": [10],
+            "cells": ["その他の支援区域", "グレード C (ISO 8)", "352,000", "2,900", "3,520,000", "29,000"],
+        },
+        {
+            "record_id": "aseptic_table1.r4",
+            "raw_row_nums": [11, 12, 13, 14],
+            "cells": [
+                "その他の支援区域",
+                "グレード D",
+                "3,520,000",
+                "29,000",
+                "作業形態による注2）",
+                "作業形態による注2）",
+            ],
+        },
+    ],
+    "2": [
+        {
+            "record_id": "aseptic_table2.r1",
+            "raw_row_nums": [4],
+            "cells": ["A", "", "作業中", "作業シフトごと", "作業終了後", "作業終了後"],
+        },
+        {
+            "record_id": "aseptic_table2.r2",
+            "raw_row_nums": [5],
+            "cells": ["B", "", "作業中", "作業シフトごと", "作業終了後", "作業終了後"],
+        },
+        {
+            "record_id": "aseptic_table2.r3",
+            "raw_row_nums": [6, 7, 8],
+            "cells": ["C，D", "製品や容器が環境に曝露される区域", "月1回", "週2回", "週2回", "----"],
+        },
+        {
+            "record_id": "aseptic_table2.r4",
+            "raw_row_nums": [9],
+            "cells": ["C，D", "その他の区域", "月1回", "週1回", "週1回", "----"],
+        },
+    ],
+    "3": [
+        {"record_id": "aseptic_table3.r1", "raw_row_nums": [4], "cells": ["A", "＜1", "＜1", "＜1", "＜1"]},
+        {"record_id": "aseptic_table3.r2", "raw_row_nums": [5], "cells": ["B", "10", "5", "5", "5"]},
+        {"record_id": "aseptic_table3.r3", "raw_row_nums": [6], "cells": ["C", "100", "50", "25", "----"]},
+        {"record_id": "aseptic_table3.r4", "raw_row_nums": [7], "cells": ["D", "200", "100", "50", "----"]},
+    ],
+}
+NON_DATA_ROWS_BY_TABLE = {
+    "1": [
+        {"raw_row_num": 1, "reason": "header_line"},
+        {"raw_row_num": 2, "reason": "header_line"},
+        {"raw_row_num": 3, "reason": "header_line"},
+        {"raw_row_num": 4, "reason": "header_line"},
+        {"raw_row_num": 5, "reason": "header_line"},
+        {"raw_row_num": 7, "reason": "wrapped_area_label"},
+        {"raw_row_num": 8, "reason": "wrapped_area_label"},
+    ],
+    "2": [
+        {"raw_row_num": 1, "reason": "header_line"},
+        {"raw_row_num": 2, "reason": "header_line"},
+        {"raw_row_num": 3, "reason": "header_line"},
+    ],
+    "3": [
+        {"raw_row_num": 1, "reason": "header_line"},
+        {"raw_row_num": 2, "reason": "header_line"},
+        {"raw_row_num": 3, "reason": "header_line"},
+    ],
+}
 
 
 @dataclass
@@ -180,7 +285,37 @@ def _table_node(table: RawTable, *, parent_nid: str, source_label: str, line_no_
                 data={"note_type": "table_note", "table_no": table.table_no},
             )
         )
+    _apply_column_reconstruction_prototype(node, table.table_no)
     return node
+
+
+def _apply_column_reconstruction_prototype(table_node: Node, table_no: str) -> None:
+    columns = RECONSTRUCTED_COLUMNS_BY_TABLE.get(table_no)
+    records = RECONSTRUCTED_RECORDS_BY_TABLE.get(table_no, [])
+    if not columns:
+        return
+    table_node.data["column_reconstruction"] = "prototype"
+    table_node.data["column_reconstruction_status"] = "partial"
+    table_node.data["reconstructed_columns"] = columns
+    table_node.data["reconstructed_records"] = records
+    table_node.data["non_data_raw_rows"] = NON_DATA_ROWS_BY_TABLE.get(table_no, [])
+    row_to_record = {
+        row_no: record["record_id"]
+        for record in records
+        for row_no in record["raw_row_nums"]
+    }
+    for header in table_node.children:
+        if header.kind != "table_header":
+            continue
+        header.data["reconstructed_columns"] = columns
+        for row in header.children:
+            if row.kind != "table_row":
+                continue
+            row_no = int(row.num or 0)
+            if row_no in row_to_record:
+                row.data["column_reconstruction_record_id"] = row_to_record[row_no]
+            else:
+                row.data["column_reconstruction_warning"] = "non_data_row_not_cell_reconstructed"
 
 
 def _walk_with_parent(node: Node, parent: Optional[Node] = None) -> Iterable[Tuple[Optional[Node], Node]]:

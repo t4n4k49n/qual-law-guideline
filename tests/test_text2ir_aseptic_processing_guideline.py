@@ -74,15 +74,65 @@ def test_aseptic_processing_table_adapter_separates_known_table_candidates() -> 
     assert table1.heading == "表１ 清浄区域の分類"
     assert table2.heading == "表２ 微生物管理に係る環境モニタリングの頻度"
     assert table3.heading == "表 3 環境微生物の許容基準(作業時) 注）1"
-    assert table1.data["column_reconstruction"] is False
-    assert table2.data["column_reconstruction"] is False
-    assert table3.data["column_reconstruction"] is False
+    assert table1.data["column_reconstruction"] == "prototype"
+    assert table2.data["column_reconstruction"] == "prototype"
+    assert table3.data["column_reconstruction"] == "prototype"
+    assert table1.data["column_reconstruction_status"] == "partial"
+    assert table2.data["column_reconstruction_status"] == "partial"
+    assert table3.data["column_reconstruction_status"] == "partial"
+    assert table1.data["reconstructed_columns"] == [
+        "area",
+        "cleanliness_level",
+        "non_operational_0_5um",
+        "non_operational_5_0um",
+        "operational_0_5um",
+        "operational_5_0um",
+    ]
+    assert table2.data["reconstructed_columns"] == [
+        "grade",
+        "area_condition",
+        "airborne_particles",
+        "airborne_microorganisms",
+        "surface_attached_equipment_walls",
+        "surface_attached_gloves_garment",
+    ]
+    assert table3.data["reconstructed_columns"] == [
+        "grade",
+        "airborne_microorganisms_cfu_m3",
+        "settle_plate_cfu_plate",
+        "contact_plate_cfu_24_30cm2",
+        "gloves_cfu_5_fingers",
+    ]
     assert len(table1_rows) == 14
     assert len(table2_rows) == 9
     assert len(table3_rows) == 7
+    assert len(table1.data["reconstructed_records"]) == 4
+    assert len(table2.data["reconstructed_records"]) == 4
+    assert len(table3.data["reconstructed_records"]) == 4
+    assert table1.data["reconstructed_records"][0]["cells"] == [
+        "重要区域",
+        "グレード A (ISO 5)",
+        "3,520",
+        "20",
+        "3,520",
+        "20",
+    ]
+    assert table2.data["reconstructed_records"][2]["cells"] == [
+        "C，D",
+        "製品や容器が環境に曝露される区域",
+        "月1回",
+        "週2回",
+        "週2回",
+        "----",
+    ]
+    assert table3.data["reconstructed_records"][-1]["cells"] == ["D", "200", "100", "50", "----"]
     assert table1_rows[0].text == "最大許容微粒子数（個／m3）"
+    assert table1_rows[5].data["column_reconstruction_record_id"] == "aseptic_table1.r1"
+    assert table1_rows[0].data["column_reconstruction_warning"] == "non_data_row_not_cell_reconstructed"
     assert table2_rows[-1].text == "その他の区域        月1回      週1回         週1回            ----"
+    assert table2_rows[-1].data["column_reconstruction_record_id"] == "aseptic_table2.r4"
     assert table3_rows[-1].text == "D        200                100              50       ----"
+    assert table3_rows[-1].data["column_reconstruction_record_id"] == "aseptic_table3.r4"
     assert "表１ 清浄区域の分類" not in (by_nid["cha7.p7_1"].text or "")
     assert "表２ 微生物管理に係る環境モニタリングの頻度" not in (by_nid["cha11.p11_3"].text or "")
     assert "cha11.p11_3.pre1" not in by_nid
