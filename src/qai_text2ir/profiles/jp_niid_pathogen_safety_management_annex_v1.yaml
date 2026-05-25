@@ -11,6 +11,8 @@ context_root_kind: annex
 structural_kinds: [annex]
 
 preprocess:
+  niid_annex_tables:
+    enabled: true
   skip_blocks:
     - start_regex: '^国立感染症研究所$'
       end_regex: '^目\s*次$'

@@ -66,3 +66,44 @@ def test_niid_annex_profile_preserves_annex_text_without_body_chapters() -> None
     assert annex_by_num["別表1"].heading.startswith("病原体等の取扱いにおいては")
     assert "における該当部分" in all_text
     assert "特定病原体等の取扱いに必要な教育訓練" in all_text
+
+
+def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() -> None:
+    profile = load_parser_profile(path=PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_annex_trial",
+        parser_profile=profile,
+    )
+    nodes = list(_walk(ir_doc.content))
+    by_num = {node.num: node for node in ir_doc.content.children if node.kind == "annex"}
+    tables = [node for node in nodes if node.kind == "table" and node.data.get("parser") == "niid_annex_table_adapter"]
+
+    assert "postprocess=niid_annex_tables" in ir_doc.content.tags
+    assert [table.data["annex_num"] for table in tables] == ["付表2", "付表3", "付表4", "別表7", "別表10"]
+    assert len(tables) == 5
+    assert by_num["付表2"].text.startswith("実験手技及び安全機器との関連性")
+    assert by_num["付表3"].text is None
+
+    fuhyo3_table = next(table for table in tables if table.data["annex_num"] == "付表3")
+    betsu7_table = next(table for table in tables if table.data["annex_num"] == "別表7")
+    betsu10_table = next(table for table in tables if table.data["annex_num"] == "別表10")
+    fuhyo3_rows = [row for row in fuhyo3_table.children[0].children if row.kind == "table_row"]
+    betsu7_rows = [row for row in betsu7_table.children[0].children if row.kind == "table_row"]
+    betsu10_rows = [row for row in betsu10_table.children[0].children if row.kind == "table_row"]
+
+    assert fuhyo3_table.data["column_reconstruction"] == "raw_rows_with_column_schema"
+    assert fuhyo3_table.data["reconstructed_columns"] == ["criterion", "bsl1", "bsl2", "bsl3", "bsl4"]
+    assert fuhyo3_rows[0].text == "ＢＳＬ"
+    assert fuhyo3_rows[-1].text.startswith("＊１ 施設内の通常の人の流れ")
+    assert betsu7_table.data["reconstructed_columns"] == [
+        "ordinance_item",
+        "record_content",
+        "pathogen_type_1",
+        "pathogen_type_2",
+        "pathogen_type_3",
+    ]
+    assert len(betsu7_rows) == 30
+    assert len(betsu10_rows) == 33
+    assert all(row.data["column_reconstruction_warning"] == "raw_row_only_cell_reconstruction_pending" for row in fuhyo3_rows)
+    assert not qualitycheck_document(ir_doc.content)
