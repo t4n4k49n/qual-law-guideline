@@ -76,8 +76,8 @@ HEADING_CONTINUATION_ENDWORDS = {
 }
 HEADING_CONTINUATION_BLOCK_WORDS = {"must", "shall", "should", "may"}
 FULLWIDTH_NUM_TRANS = str.maketrans(
-    "０１２３４５６７８９．。－",
-    "0123456789..-",
+    "０１２３４５６７８９．。－ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ",
+    "0123456789..-ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
 )
 CIRCLED_DIGIT_MAP = {
     "①": "1",

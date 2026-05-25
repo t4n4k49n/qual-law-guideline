@@ -17,10 +17,6 @@ preprocess:
     - '^\s*[-－]?\d{1,4}[-－]?\s*$'
     - '^目\s*次$'
     - '^目次$'
-    - '^原薬ＧＭＰのガイドライン$'
-    - '^無菌操作法による無菌医薬品の製造に関する指針$'
-    - '^国立感染症研究所$'
-    - '^病原体等安全管理規程$'
     - '^頁$'
     - '^別添$'
   strip_inline_regexes:
@@ -61,6 +57,16 @@ marker_types:
     kind: paragraph
     kind_raw: "1.1"
     match: '^(?P<n>[0-9０-９]{1,2}[．.][0-9０-９]{1,2}(?:[．.][0-9０-９]{1,2})?)\s*'
+    num_group: n
+  - id: appendix_chapter
+    kind: chapter
+    kind_raw: "A1"
+    match: '^(?P<n>[AＡ][0-9０-９]+)\s+'
+    num_group: n
+  - id: appendix_section
+    kind: paragraph
+    kind_raw: "A1.1"
+    match: '^(?P<n>[AＡ][0-9０-９]+[．.][0-9０-９]+(?:[．.][0-9０-９]+)?)\s*'
     num_group: n
   - id: item_paren_digit
     kind: item
