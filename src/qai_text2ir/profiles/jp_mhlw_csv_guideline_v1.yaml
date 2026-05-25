@@ -12,6 +12,7 @@ context_root_kind: chapter
 preprocess:
   mhlw_csv_annexes:
     enabled: true
+    annex2_html_path: data/human-readable/mhlw/csv_guideline/00tb6573_page2.html
   skip_blocks:
     - start_regex: '^○医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドラインについて$'
       end_regex: '^1[．.]\s*総則\s*$'

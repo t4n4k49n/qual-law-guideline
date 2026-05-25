@@ -89,7 +89,37 @@ def test_csv_annex_adapter_separates_visible_annex_placeholders(tmp_path: Path) 
     assert annexes[0].data["source_format"] == "html_image_reference"
     assert annexes[0].data["extractable_text"] is False
     assert annexes[1].heading == "カテゴリ分類表と対応例"
-    assert annexes[1].data["source_format"] == "html_table_title_only"
-    assert annexes[1].data["table_rows_found"] == 0
+    assert annexes[1].data["source_format"] == "html_page1_placeholder_and_page2_tables"
+    assert annexes[1].data["table_rows_found"] == 8
+    assert annexes[1].data["annex2_table_adapter"] == "mhlw_csv_annex2_table_adapter"
     assert "別紙1" not in (by_nid["cha10"].text or "")
+    assert not qualitycheck_document(ir_doc.content)
+
+
+def test_csv_annex2_page2_tables_are_attached_under_annex2(tmp_path: Path) -> None:
+    input_path = tmp_path / "00tb6573.extracted.txt"
+    input_path.write_text("\n".join(extract_mhlw_t_doc_lines(SOURCE_HTML)) + "\n", encoding="utf-8", newline="\n")
+    profile = load_parser_profile(path=PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="jp_mhlw_csv_guideline_trial",
+        parser_profile=profile,
+    )
+    nodes = list(_walk(ir_doc.content))
+    annex2 = next(node for node in ir_doc.content.children if node.kind == "annex" and node.num == "別紙2")
+    tables = [node for node in nodes if node.kind == "table" and node.data.get("parser") == "mhlw_csv_annex2_table_adapter"]
+
+    assert [table.num for table in annex2.children if table.kind == "table"] == ["1", "2"]
+    assert [table.heading for table in tables] == ["カテゴリ分類表", "本ガイドラインの対象外"]
+    assert tables[0].data["column_reconstruction"] == "html_table_cells_with_column_schema"
+    assert tables[0].data["reconstructed_columns"][:4] == ["category_no", "category_name", "content", "content_detail"]
+    main_rows = [row for row in tables[0].children[0].children if row.kind == "table_row"]
+    excluded_rows = [row for row in tables[1].children[0].children if row.kind == "table_row"]
+
+    assert len(main_rows) == 7
+    assert main_rows[1].data["cells"][0] == "1"
+    assert main_rows[1].data["cells"][1] == "基盤ソフト"
+    assert main_rows[4].data["cells"][3] == "単独のコンピュータシステム"
+    assert len(excluded_rows) == 1
+    assert excluded_rows[0].data["cells"][0] == "本ガイドラインの対象外"
     assert not qualitycheck_document(ir_doc.content)
