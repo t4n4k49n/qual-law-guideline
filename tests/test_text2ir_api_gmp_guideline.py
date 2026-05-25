@@ -53,3 +53,28 @@ def test_api_gmp_profile_keeps_deep_sections_under_chapters() -> None:
     assert by_num[("paragraph", "3.1")].text == "従業員の適格性"
     assert by_num[("paragraph", "3.10")].text.startswith("中間体・原薬の生産を実施し監督するため")
     assert by_num[("paragraph", "3.2")].text == "従業員の衛生"
+
+
+def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() -> None:
+    profile = load_parser_profile(path=PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_pmda_api_gmp_guideline_20011102",
+        parser_profile=profile,
+    )
+    nodes = list(_flatten(ir_doc.content))
+    section_1_3 = next(node for node in nodes if node.kind == "paragraph" and node.num == "1.3")
+    table_1 = next(child for child in section_1_3.children if child.kind == "table" and child.num == "1")
+    header = next(child for child in table_1.children if child.kind == "table_header")
+    rows = [child for child in header.children if child.kind == "table_row"]
+
+    assert "postprocess=api_gmp_table1" in ir_doc.content.tags
+    assert table_1.heading == "表１：原薬生産に対する本ガイドラインの適用"
+    assert table_1.data["parser"] == "api_gmp_table1_adapter"
+    assert table_1.data["column_reconstruction"] is False
+    assert header.text == "raw_line"
+    assert len(rows) == 26
+    assert rows[0].text == "生産形態                  形態ごとの生産工程の事例"
+    assert rows[-1].text == "ＧＭＰ要求事項の増大"
+    assert "表１：原薬生産に対する本ガイドラインの適用" not in (section_1_3.text or "")
+    assert not qualitycheck_document(ir_doc.content)
