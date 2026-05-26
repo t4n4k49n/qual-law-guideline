@@ -1,0 +1,141 @@
+{
+  "run_id": "20260526-112428711_feat-niid-visual-table-review-v2",
+  "source_pdf": "data/human-readable/niid/pathogen_safety_management/Kanrikitei3_20240401.pdf",
+  "source_pages": [
+    {
+      "pdf_page": 24,
+      "annex": "付表2",
+      "image_path": "runs/20260526-112428711_feat-niid-visual-table-review-v2/source_pages/p024_fuhyo2.png",
+      "status": "visual_reconstructed"
+    },
+    {
+      "pdf_page": 34,
+      "annex": "別表7",
+      "image_path": "runs/20260526-112428711_feat-niid-visual-table-review-v2/source_pages/p034_betsu7.png",
+      "status": "visual_reconstructed"
+    },
+    {
+      "pdf_page": 37,
+      "annex": "別表10",
+      "image_path": "runs/20260526-112428711_feat-niid-visual-table-review-v2/source_pages/p037_betsu10.png",
+      "status": "visual_reconstructed"
+    }
+  ],
+  "tables": [
+    {
+      "annex": "付表2",
+      "title": "病原体等のリスク群分類と、実験室のBSL分類、実験室使用目的、実験手技及び安全機器との関連性",
+      "pdf_page": 24,
+      "image_path": "runs/20260526-112428711_feat-niid-visual-table-review-v2/source_pages/p024_fuhyo2.png",
+      "columns": ["risk_group", "laboratory_bsl", "laboratory_purpose", "laboratory_practice_operation", "safety_equipment"],
+      "visual_features": [
+        "the table has five columns and four records",
+        "records correspond to risk groups 1 through 4",
+        "abbreviations at the bottom of the page are preserved as notes"
+      ],
+      "records": [
+        {
+          "record_id": "fuhyo2.r1",
+          "risk_group": "1",
+          "laboratory_bsl": "基本実験室－BSL1",
+          "laboratory_purpose": "教育、研究",
+          "laboratory_practice_operation": "GMT",
+          "safety_equipment": "特になし（開放型実験台）"
+        },
+        {
+          "record_id": "fuhyo2.r2",
+          "risk_group": "2",
+          "laboratory_bsl": "基本実験室－BSL2",
+          "laboratory_purpose": "一般診断検査、研究",
+          "laboratory_practice_operation": "GMT、PPE、バイオハザード標識表示",
+          "safety_equipment": "病原体の取扱いはBSCで行う"
+        },
+        {
+          "record_id": "fuhyo2.r3",
+          "risk_group": "3",
+          "laboratory_bsl": "封じ込め実験室－BSL3",
+          "laboratory_purpose": "特殊診断検査、研究",
+          "laboratory_practice_operation": "上記BSL2の各項目、専用PPE、立入りの厳重制限、一方向性の気流",
+          "safety_equipment": "病原体の取扱いの全操作をBSCあるいは、その他の一次封じ込め装置を用いて行う"
+        },
+        {
+          "record_id": "fuhyo2.r4",
+          "risk_group": "4",
+          "laboratory_bsl": "高度封じ込め実験室－BSL4",
+          "laboratory_purpose": "高度特殊診断検査",
+          "laboratory_practice_operation": "上記BSL3の各項目、エアロックを通っての入室、退出時シャワー、専用廃棄物処理",
+          "safety_equipment": "クラスIII BSCまたは、陽圧スーツとクラスII BSCに加え、両面オートクレーブ、給排気はフィルターろ過"
+        }
+      ],
+      "notes": [
+        {"note_id": "fuhyo2.n1", "mark": "BSC", "text": "生物学用安全キャビネット"},
+        {"note_id": "fuhyo2.n2", "mark": "GMT", "text": "標準微生物学実験手技"},
+        {"note_id": "fuhyo2.n3", "mark": "PPE", "text": "個人用曝露防止器具"}
+      ]
+    },
+    {
+      "annex": "別表7",
+      "title": "記帳事項に関する一覧（法第56条の23関係）",
+      "pdf_page": 34,
+      "image_path": "runs/20260526-112428711_feat-niid-visual-table-review-v2/source_pages/p034_betsu7.png",
+      "columns": ["category", "ordinance_item", "record_content", "pathogen_type_1", "pathogen_type_2", "pathogen_type_3"],
+      "visual_features": [
+        "leftmost category cells are row-spanned visual group labels",
+        "wrapped text within a ruled row is merged into one record",
+        "pathogen type columns keep the visible value or recording granularity"
+      ],
+      "records": [
+        {"record_id": "betsu7.r1", "category": "病原体等", "ordinance_item": "受入れ又は払出しに係る病原体等の種類（毒素にあっては、その種類及び量）", "record_content": "事業所ごとに受入れ元、払出し先等を記帳（実験室が複数ある場合にはそれら実験室ごとに記帳）", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r2", "category": "病原体等", "ordinance_item": "病原体等の受入れ又は払出しの日時", "record_content": "事業所ごとに記帳（同上）", "pathogen_type_1": "年月日・時刻", "pathogen_type_2": "年月日", "pathogen_type_3": "年月日"},
+        {"record_id": "betsu7.r3", "category": "病原体等", "ordinance_item": "病原体等の保管の方法及び場所", "record_content": "受入れした病原体等の保管形態及び保管場所を記帳（同上）、使用ごとの保管庫の施錠状況も記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r4", "category": "病原体等", "ordinance_item": "使用に係る病原体等の種類", "record_content": "実験室での使用ごとに、その使用者が記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r5", "category": "病原体等", "ordinance_item": "病原体等の使用に係る日時", "record_content": "病原体等を使用した時刻を記帳", "pathogen_type_1": "年月日・時刻", "pathogen_type_2": "－", "pathogen_type_3": "－"},
+        {"record_id": "betsu7.r6", "category": "病原体等", "ordinance_item": "滅菌等に係る病原体等の種類", "record_content": "実験室ごとに滅菌・無害化した病原体等を記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r7", "category": "病原体等", "ordinance_item": "病原体等の滅菌等の日時", "record_content": "滅菌・無害化の日時を記帳", "pathogen_type_1": "年月日・時刻", "pathogen_type_2": "年月日", "pathogen_type_3": "年月日"},
+        {"record_id": "betsu7.r8", "category": "病原体等", "ordinance_item": "病原体等の滅菌等の方法及び場所", "record_content": "滅菌・無害化の条件等を記帳（委託等の場合にはその場所も記帳）", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r9", "category": "ヒト", "ordinance_item": "実験室に立入り又は退出に係る者の氏名", "record_content": "実験室ごとに記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r10", "category": "ヒト", "ordinance_item": "実験室への立入り又は退出の日時", "record_content": "実験室ごとに記帳", "pathogen_type_1": "年月日・時刻", "pathogen_type_2": "年月日", "pathogen_type_3": "年月日"},
+        {"record_id": "betsu7.r11", "category": "ヒト", "ordinance_item": "実験室への立入りの目的", "record_content": "病原体等を使用の有無を含め目的を記帳", "pathogen_type_1": "有", "pathogen_type_2": "－", "pathogen_type_3": "－"},
+        {"record_id": "betsu7.r12", "category": "ヒト", "ordinance_item": "病原体等の受入れ又は払出しする者の氏名", "record_content": "病原体等を受入れ、払出しした者の氏名を記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r13", "category": "ヒト", "ordinance_item": "病原体等の使用に従事する者の氏名", "record_content": "実験室で病原体等を使用した者の氏名を記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r14", "category": "ヒト", "ordinance_item": "病原体等の滅菌等に従事する者の氏名", "record_content": "病原体等を滅菌・無害化した者の氏名を記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r15", "category": "施設", "ordinance_item": "病原体等取扱施設の点検等の実施日時", "record_content": "事業所ごとに記帳", "pathogen_type_1": "年月日", "pathogen_type_2": "年月日", "pathogen_type_3": "年月日"},
+        {"record_id": "betsu7.r16", "category": "施設", "ordinance_item": "点検を行った者の氏名", "record_content": "事業所ごとに記帳（実験室ごとに担当者が分かれる場合には、実験室ごとの者の氏名を記帳）", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r17", "category": "施設", "ordinance_item": "点検の内容、結果及びこれに伴う措置内容", "record_content": "措置を伴う項目については具体的に記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "有"},
+        {"record_id": "betsu7.r18", "category": "教育", "ordinance_item": "教育訓練の実施年月日、対象者及び内容等", "record_content": "教育訓練ごとに記帳", "pathogen_type_1": "有", "pathogen_type_2": "有", "pathogen_type_3": "－"}
+      ]
+    },
+    {
+      "annex": "別表10",
+      "title": "感染症発生予防規程対照表（法第56条の18関係）",
+      "pdf_page": 37,
+      "image_path": "runs/20260526-112428711_feat-niid-visual-table-review-v2/source_pages/p037_betsu10.png",
+      "columns": ["category", "ordinance_item", "specific_content", "regulation_reference"],
+      "visual_features": [
+        "leftmost category cells are row-spanned visual group labels",
+        "the third content column is regulation_reference",
+        "article references are preserved as semicolon-separated cell text when multiple groups appear in one cell"
+      ],
+      "records": [
+        {"record_id": "betsu10.r1", "category": "組織及び職務", "ordinance_item": "病原体等取扱主任者その他の病原体等の取扱い及び管理に従事する者に関する職務及び組織に関すること。", "specific_content": "病原体等安全管理委員会（仮称）の設置を含む事業所全体の組織体制、委員会の運営等。（委員会の構成・運営は別途事業所ごとに規定。）予防規程の制定・改廃等、立入り検査等への立ち会い、従事者等への教育訓練、所持者に対する意見具申など、病原体等取扱主任者の職務の規定。", "regulation_reference": "特定病原体等保持者：第3条；病原体等取扱主任者：第4条；組織体制と運営等：第7条から第14条、第23条；予防規程の制定・改廃等：第1条、第42条；その他：第40条、41条その他"},
+        {"record_id": "betsu10.r2", "category": "管理区域", "ordinance_item": "病原体等の取扱いに従事する者であって、管理区域に立入るものの制限に関すること。", "specific_content": "管理区域、実験室等へのヒトの立入り制限。", "regulation_reference": "第15条2項"},
+        {"record_id": "betsu10.r3", "category": "管理区域", "ordinance_item": "管理区域の設定並びに管理区域の内部において感染症の発生を予防し、及びそのまん延を防止するために講ずる措置に関すること。", "specific_content": "管理区域の設定、管理区域内の遵守事項等。", "regulation_reference": "第5条、第6条、第12条、第13条、第14条、第22条"},
+        {"record_id": "betsu10.r4", "category": "施設の維持管理", "ordinance_item": "一種病原体等取扱施設又は二種病原体等取扱施設の維持及び管理に関すること。", "specific_content": "定期的な点検、必要な措置等。点検結果の記録（→記帳）。", "regulation_reference": "第14条（3）、（4）"},
+        {"record_id": "betsu10.r5", "category": "病原体等の取扱い等", "ordinance_item": "病原体等の使用、保管、運搬及び滅菌譲渡に関すること。", "specific_content": "病原体等の使用、保管、滅菌等の基準の遵守事項・手続等。保管状況（施錠、鍵の管理等を含む）の確認等。事業所内の運搬の規定。", "regulation_reference": "第18条から第22条、第24条3項"},
+        {"record_id": "betsu10.r6", "category": "病原体等の取扱い等", "ordinance_item": "病原体等の受入れ、払出し及び移動の制限に関すること。", "specific_content": "病原体等のみだりな移動の制限、受入れ・払出しの手続等。", "regulation_reference": "第20条"},
+        {"record_id": "betsu10.r7", "category": "教育訓練", "ordinance_item": "病原体等による感染症の発生を予防し、並びにそのまん延を防止するために必要な教育及び訓練に関すること。", "specific_content": "教育訓練の対象者及びその内容等。（実施要領は別途事業所ごとに規定。）", "regulation_reference": "第27条"},
+        {"record_id": "betsu10.r8", "category": "健康管理等", "ordinance_item": "病原体等に曝露した者又は曝露したおそれのある者に対する保健上の必要な措置に関すること。", "specific_content": "病原体等取扱者の定期的な健康診断。病原体等に曝露した場合の必要な措置等。", "regulation_reference": "第23条(2)、第28条、第33条から第39条"},
+        {"record_id": "betsu10.r9", "category": "記帳等", "ordinance_item": "法第56条の23に規定による記帳及び保存に関すること。", "specific_content": "病原体等の管理、ヒトの立入り等に係る記帳。保存方法。", "regulation_reference": "第25条"},
+        {"record_id": "betsu10.r10", "category": "情報管理", "ordinance_item": "病原体等の取扱いに係る情報の管理に関すること。", "specific_content": "病原体等の取扱いに係る情報へのアクセス制限等。", "regulation_reference": "第26条"},
+        {"record_id": "betsu10.r11", "category": "事故等対応", "ordinance_item": "病原体等の盗取、所在不明その他の事故が生じたときの措置に関すること。", "specific_content": "連絡体制、警察官等への届出の手続等。", "regulation_reference": "第29条"},
+        {"record_id": "betsu10.r12", "category": "応急措置", "ordinance_item": "災害時の応急措置に関すること。", "specific_content": "災害発生時の連絡・通報体制、汚染拡大の防止、関係者以外の立入り禁止等の応急措置等。届出の手続等。", "regulation_reference": "第30条、第31条"},
+        {"record_id": "betsu10.r13", "category": "その他", "ordinance_item": "その他病原体等による感染症の発生の予防及びまん延の防止に関し必要な事項。", "specific_content": "その他必要な事項。", "regulation_reference": "その他"}
+      ]
+    }
+  ],
+  "completion_status": {
+    "visual_review_targets_completed": ["付表2", "付表3", "付表4", "別表7", "別表10"],
+    "remaining_visual_review_targets": [],
+    "note": "This is not a formal normalized run and does not promote files to data/normalized."
+  }
+}
