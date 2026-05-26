@@ -5,6 +5,8 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from qai_xml2ir.models_ir import Node
 
+from .niid_visual_reviewed_tables import VISUAL_REVIEW_PARSER, VISUAL_REVIEWED_TABLES
+
 
 PARSER_ID = "niid_annex_table_adapter"
 TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
@@ -15,7 +17,8 @@ TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
     },
     "付表3": {
         "start_contains": "ＢＳＬ",
-        "columns": ["criterion", "bsl1", "bsl2", "bsl3", "bsl4"],
+        "columns": ["criterion", "parent_criterion", "bsl1", "bsl2", "bsl3", "bsl4"],
+        "fixed_width_columns": ["criterion", "bsl1", "bsl2", "bsl3", "bsl4"],
         "source_format": "fixed_width_matrix",
     },
     "付表4": {
@@ -25,14 +28,23 @@ TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
     },
     "別表7": {
         "start_contains": "省令での記載項目",
-        "columns": ["ordinance_item", "record_content", "pathogen_type_1", "pathogen_type_2", "pathogen_type_3"],
+        "columns": ["category", "ordinance_item", "record_content", "pathogen_type_1", "pathogen_type_2", "pathogen_type_3"],
+        "fixed_width_columns": ["ordinance_item", "record_content", "pathogen_type_1", "pathogen_type_2", "pathogen_type_3"],
         "source_format": "fixed_width_matrix",
     },
     "別表10": {
         "start_contains": "省令での記載項目",
-        "columns": ["ordinance_item", "specific_content", "regulation_reference"],
+        "columns": ["category", "ordinance_item", "specific_content", "regulation_reference"],
+        "fixed_width_columns": ["ordinance_item", "specific_content", "regulation_reference"],
         "source_format": "fixed_width_comparison_table",
     },
+}
+DISPLAY_COLUMNS_BY_NUM: Dict[str, List[str]] = {
+    "付表2": ["病原体等のリスク群", "実験室のBSL", "実験室の使用目的", "実験手技及び運用", "実験室の安全機器"],
+    "付表3": ["criterion", "parent", "BSL1", "BSL2", "BSL3", "BSL4"],
+    "付表4": ["ABSL", "実験手技", "安全機器", "設備基準"],
+    "別表7": ["category", "省令での記載項目", "記帳の内容", "1種病原体等", "2種病原体等", "3種病原体等"],
+    "別表10": ["category", "省令での記載項目", "具体的内容", "国立感染症研究所病原体等安全管理規程における該当部分"],
 }
 READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
     "別表1": {
@@ -56,19 +68,19 @@ READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
         "reason": "animal experiment risk assessment items are preserved as annex text/subitems; no table reconstruction needed",
     },
     "付表2": {
-        "decision": "promotion_candidate_as_raw_table",
-        "promotion_mode": "table_raw_rows_with_column_schema",
-        "reason": "multi-line wrapped cells cannot be safely split in v1, but the full table is preserved with source spans",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF image visual review restored wrapped cells into reviewed table records",
     },
     "付表3": {
-        "decision": "promotion_candidate_as_partial_cell_table",
-        "promotion_mode": "table_rows_with_partial_cells",
-        "reason": "safe fixed-width rows are cell-split; remaining note/header rows are preserved raw",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF image visual review restored BSL header, parent criteria, and footnote-bearing values",
     },
     "付表4": {
-        "decision": "promotion_candidate_as_partial_cell_table",
-        "promotion_mode": "table_rows_with_partial_cells",
-        "reason": "ABSL start rows are cell-split; wrapped continuation rows are preserved raw",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF image visual review restored ABSL rows and multi-line cells into reviewed records",
     },
     "別表2": {
         "decision": "promotion_candidate_as_sectioned_annex_text",
@@ -96,9 +108,9 @@ READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
         "reason": "numbered operational requirements are preserved as annex text; not a table target",
     },
     "別表7": {
-        "decision": "promotion_candidate_as_partial_cell_table",
-        "promotion_mode": "table_rows_with_partial_cells",
-        "reason": "safe fixed-width rows are cell-split; wrapped record rows remain raw",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF image visual review restored row-spanned categories and wrapped cells into reviewed records",
     },
     "別表8": {
         "decision": "promotion_candidate_as_raw_annex_text",
@@ -111,9 +123,9 @@ READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
         "reason": "disaster response requirements are preserved as numbered annex text; not a table target",
     },
     "別表10": {
-        "decision": "promotion_candidate_as_partial_cell_table",
-        "promotion_mode": "table_rows_with_partial_cells",
-        "reason": "safe comparison rows are cell-split; wrapped rows remain raw",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF image visual review restored row-spanned categories and comparison cells into reviewed records",
     },
 }
 
@@ -151,6 +163,87 @@ def _apply_cell_reconstruction_v1(table: Node, columns: List[str]) -> Dict[str, 
     table.data["cell_reconstructed_rows"] = reconstructed
     table.data["cell_deferred_rows"] = deferred
     return {"reconstructed": reconstructed, "deferred": deferred}
+
+
+def _apply_visual_reviewed_records(table: Node, annex_num: str, source_span: Dict[str, Any]) -> bool:
+    reviewed = VISUAL_REVIEWED_TABLES.get(annex_num)
+    if not reviewed:
+        return False
+    columns = list(reviewed["columns"])
+    records = list(reviewed["records"])
+    original_headers = table.children
+    table.data["raw_table_audit"] = {
+        "source_format": table.data.get("source_format"),
+        "raw_lines": table.data.get("raw_lines", []),
+        "fixed_width_cell_reconstructed_rows": table.data.get("cell_reconstructed_rows", 0),
+        "fixed_width_cell_deferred_rows": table.data.get("cell_deferred_rows", 0),
+    }
+    table.data["table_adapter"] = PARSER_ID
+    table.data["visual_review_parser"] = VISUAL_REVIEW_PARSER
+    table.data["column_reconstruction"] = "visual_reviewed_cells"
+    table.data["column_reconstruction_status"] = "complete"
+    table.data["cell_reconstruction"] = "visual_reviewed_cells"
+    table.data["cell_reconstruction_status"] = "complete"
+    table.data["cell_reconstructed_rows"] = len(records)
+    table.data["cell_deferred_rows"] = 0
+    table.data["reconstructed_columns"] = columns
+    table.data["visual_review_source_runs"] = [
+        "runs/20260526-100829653_feat-niid-visual-table-review-v1/visual_reconstruction.json",
+        "runs/20260526-112428711_feat-niid-visual-table-review-v2/visual_reconstruction.json",
+    ]
+    header = _make_node(
+        nid=f"{table.nid}.tblh_visual",
+        kind="table_header",
+        kind_raw="table_header",
+        num=None,
+        heading=None,
+        text=" | ".join(DISPLAY_COLUMNS_BY_NUM.get(annex_num, columns)),
+        source_span=source_span,
+        role="structural",
+        data={
+            "columns": columns,
+            "display_columns": DISPLAY_COLUMNS_BY_NUM.get(annex_num, columns),
+            "reconstructed_columns": columns,
+            "cell_reconstruction": "visual_reviewed_cells",
+            "supersedes_headers": [child.nid for child in original_headers],
+        },
+    )
+    for row_no, record in enumerate(records, start=1):
+        cells = [str(record.get(column, "")) for column in columns]
+        header.children.append(
+            _make_node(
+                nid=f"{header.nid}.tblr{row_no}",
+                kind="table_row",
+                kind_raw="table_row",
+                num=str(row_no),
+                heading=None,
+                text=" | ".join(cells),
+                source_span=source_span,
+                data={
+                    "cells": cells,
+                    "columns": columns,
+                    "record": {column: record.get(column, "") for column in columns},
+                    "cell_reconstruction": "visual_reviewed_cells",
+                    "visual_reviewed": True,
+                },
+            )
+        )
+    for note_no, note in enumerate(reviewed.get("notes", []), start=1):
+        table.children.append(
+            _make_node(
+                nid=f"{table.nid}.note{note_no}",
+                kind="note",
+                kind_raw="note",
+                num=str(note_no),
+                heading=str(note.get("mark", "")),
+                text=str(note.get("text", "")),
+                source_span=source_span,
+                role="informative",
+                data={"visual_reviewed": True},
+            )
+        )
+    table.children = [header, *[child for child in table.children if child.kind == "note"]]
+    return True
 
 
 def _line_span(source_label: str, fallback_line_no: int) -> Dict[str, str]:
@@ -272,7 +365,8 @@ def _table_node(
                 },
             )
         )
-    _apply_cell_reconstruction_v1(table, columns)
+    _apply_cell_reconstruction_v1(table, list(TABLE_CONFIGS[str(annex.num)].get("fixed_width_columns", columns)))
+    _apply_visual_reviewed_records(table, str(annex.num), first_span)
     return table
 
 
