@@ -1,0 +1,124 @@
+{
+  "run_id": "20260526-100829653_feat-niid-visual-table-review-v1",
+  "source_pdf": "data/human-readable/niid/pathogen_safety_management/Kanrikitei3_20240401.pdf",
+  "source_pages": [
+    {
+      "pdf_page": 24,
+      "annex": "付表2",
+      "image_path": "runs/20260526-100829653_feat-niid-visual-table-review-v1/source_pages/p024_fuhyo2.png",
+      "status": "source_image_preserved_for_next_visual_review"
+    },
+    {
+      "pdf_page": 25,
+      "annex": "付表3",
+      "image_path": "runs/20260526-100829653_feat-niid-visual-table-review-v1/source_pages/p025_fuhyo3.png",
+      "status": "visual_reconstructed"
+    },
+    {
+      "pdf_page": 26,
+      "annex": "付表4",
+      "image_path": "runs/20260526-100829653_feat-niid-visual-table-review-v1/source_pages/p026_fuhyo4.png",
+      "status": "visual_reconstructed"
+    },
+    {
+      "pdf_page": 34,
+      "annex": "別表7",
+      "image_path": "runs/20260526-100829653_feat-niid-visual-table-review-v1/source_pages/p034_betsu7.png",
+      "status": "source_image_preserved_for_next_visual_review"
+    },
+    {
+      "pdf_page": 37,
+      "annex": "別表10",
+      "image_path": "runs/20260526-100829653_feat-niid-visual-table-review-v1/source_pages/p037_betsu10.png",
+      "status": "source_image_preserved_for_next_visual_review"
+    }
+  ],
+  "tables": [
+    {
+      "annex": "付表3",
+      "title": "BSL実験室の安全設備基準",
+      "pdf_page": 25,
+      "image_path": "runs/20260526-100829653_feat-niid-visual-table-review-v1/source_pages/p025_fuhyo3.png",
+      "columns": ["criterion", "bsl1", "bsl2", "bsl3", "bsl4"],
+      "visual_features": [
+        "top header BSL spans the four level columns",
+        "換気 is a parent label for three subcriteria inside one left-side grouped area",
+        "オートクレーブ is a parent label for three subcriteria inside one left-side grouped area",
+        "footnote marks are part of criterion/value text and preserved"
+      ],
+      "records": [
+        {"record_id": "fuhyo3.r1", "criterion": "実験室の独立性*1", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r2", "criterion": "汚染除去時の実験室気密性", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r3", "criterion": "内側への気流", "parent_criterion": "換気", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r4", "criterion": "制御換気系", "parent_criterion": "換気", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r5", "criterion": "排気のHEPAろ過", "parent_criterion": "換気", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r6", "criterion": "入口部二重ドア(インターロック*2)", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r7", "criterion": "エアロック*3", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "不要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r8", "criterion": "エアロック＋シャワー", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "不要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r9", "criterion": "前室*4", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要*5"},
+        {"record_id": "fuhyo3.r10", "criterion": "排水処理*6", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r11", "criterion": "管理区域内", "parent_criterion": "オートクレーブ", "bsl1": "不要", "bsl2": "必要", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r12", "criterion": "実験室内", "parent_criterion": "オートクレーブ", "bsl1": "不要", "bsl2": "望ましい", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r13", "criterion": "両面オートクレーブ", "parent_criterion": "オートクレーブ", "bsl1": "不要", "bsl2": "不要", "bsl3": "望ましい", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r14", "criterion": "生物学用安全キャビネット", "parent_criterion": "", "bsl1": "不要", "bsl2": "必要*7", "bsl3": "必要", "bsl4": "必要"},
+        {"record_id": "fuhyo3.r15", "criterion": "作業従事者の安全監視機能*8", "parent_criterion": "", "bsl1": "不要", "bsl2": "不要", "bsl3": "必要", "bsl4": "必要"}
+      ],
+      "notes": [
+        {"note_id": "fuhyo3.n1", "mark": "*1", "text": "施設内の通常の人の流れからの実質的、機能的隔離。"},
+        {"note_id": "fuhyo3.n2", "mark": "*2", "text": "二重ドアで構成される部屋は前室に相当する。なお、インターロックドアとは同時に２枚の扉が開放されないような機構を有するドアのことをいう。"},
+        {"note_id": "fuhyo3.n3", "mark": "*3", "text": "エアロックとは気圧を保つために設ける機構のこと。通常は複数の扉を設け、インターロックドアとなっている。"},
+        {"note_id": "fuhyo3.n4", "mark": "*4", "text": "実験室につながる隣室。"},
+        {"note_id": "fuhyo3.n5", "mark": "*5", "text": "BSL4実験室の前室は、入口部二重ドア、エアロック、エアロック＋シャワーが相当する。"},
+        {"note_id": "fuhyo3.n6", "mark": "*6", "text": "一般排水処理とは異なる消毒滅菌処理のことをいう。"},
+        {"note_id": "fuhyo3.n7", "mark": "*7", "text": "エアロゾル発生のおそれがある場合は、生物学用安全キャビネットが必要。"},
+        {"note_id": "fuhyo3.n8", "mark": "*8", "text": "たとえば、観察用窓、監視カメラ、インターフォン、双方向性モニター設備など。"}
+      ]
+    },
+    {
+      "annex": "付表4",
+      "title": "病原体等取扱動物実験施設のABSL分類、実験手技、安全機器及び設備基準",
+      "pdf_page": 26,
+      "image_path": "runs/20260526-100829653_feat-niid-visual-table-review-v1/source_pages/p026_fuhyo4.png",
+      "columns": ["absl", "laboratory_practice", "safety_equipment", "facility_criteria"],
+      "visual_features": [
+        "each ABSL row contains multi-line cells",
+        "row height rather than text-line breaks defines one record",
+        "BSC abbreviation note is outside the table and preserved as note"
+      ],
+      "records": [
+        {
+          "record_id": "fuhyo4.r1",
+          "absl": "1",
+          "laboratory_practice": "通常の動物実験の条件として、標準動物実験手技、標準微生物実験手技、立入り制限、専用服を要する。",
+          "safety_equipment": "特になし。",
+          "facility_criteria": "通常の動物実験施設の条件として、動物実験施設の独立性、立入り者の管理・記録、動物逸走防止対策、昆虫・野鼠等の侵入防止、室内、飼育装置など洗浄・消毒可能な仕様を要する。"
+        },
+        {
+          "record_id": "fuhyo4.r2",
+          "absl": "2",
+          "laboratory_practice": "ABSL1の要件に加え、防護服、国際バイオハザード標識表示、糞尿・ケージ等の滅菌処理、移動用密閉容器を要する。",
+          "safety_equipment": "エアロゾル発生の恐れがある場合は陰圧飼育装置及びBSC、動物実験施設内にオートクレーブ。",
+          "facility_criteria": "ABSL1の要件に加え、立入り者の制限、動物安全管理区域からの動物逸走防止対策を要する。"
+        },
+        {
+          "record_id": "fuhyo4.r3",
+          "absl": "3",
+          "laboratory_practice": "ABSL2の要件に加え、専用防護服及び履物、二重以上の気密容器による移動を要する。",
+          "safety_equipment": "全操作BSC使用。飼育は動物飼育用BSC、グローブボックス、またはアイソレーションラックを使用、動物安全管理区域内にオートクレーブ。",
+          "facility_criteria": "ABSL2の要件に加え、立入り者の厳重制限、出入口インターロック、前室の設置、気流の一方向性、排気のHEPAろ過、作業者の安全監視機能を要する。"
+        },
+        {
+          "record_id": "fuhyo4.r4",
+          "absl": "4",
+          "laboratory_practice": "ABSL3の要件、及びその他はBSL4に準じる。",
+          "safety_equipment": "ABSL3の要件、及びその他はBSL4に準じる。",
+          "facility_criteria": "ABSL3の要件、及びその他はBSL4に準じる。"
+        }
+      ],
+      "notes": [
+        {"note_id": "fuhyo4.n1", "mark": "BSC", "text": "生物学用安全キャビネット"}
+      ]
+    }
+  ],
+  "next_visual_targets": ["付表2", "別表7", "別表10"]
+}
