@@ -15,7 +15,7 @@
 - doc_id: `eu_gmp_vol4_chap1_20130131`
 - title: `EU GMP Vol.4 Chapter 1 Pharmaceutical Quality System`
 - input: `data/human-readable/eu_gmp/vol4/chap1_2013-01_en.txt`
-- source_url: `https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en`
+- source_url: [EU GMP Vol.4 Chapter 1 PDF](https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en)
 - retrieved_at: `2026-02-18`
 - parser_profile: `eu_gmp_chap1_default_v2`
 - family: `EU_GMP`

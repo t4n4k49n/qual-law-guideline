@@ -9,7 +9,7 @@ EU GMP Vol.4 Chapter 1を、正規化RUNのレビュー対象として `promotio
 | doc_id | `eu_gmp_vol4_chap1_20130131` |
 | 文書 | `EU GMP Vol.4 Chapter 1 Pharmaceutical Quality System` |
 | 入力 | `data/human-readable/eu_gmp/vol4/chap1_2013-01_en.txt` |
-| source_url | `https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en` |
+| source_url | [EU GMP Vol.4 Chapter 1 PDF](https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en) |
 | parser_profile | `eu_gmp_chap1_default_v2` |
 | family | `EU_GMP` |
 
