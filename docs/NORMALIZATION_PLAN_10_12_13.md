@@ -33,6 +33,26 @@
 - 表・注記・possible_tableの扱い。
 - selectable粒度。WHOはitem粒度の人間レビューが残る。
 
+## 現行main再生成後の判断
+
+`runs/20260527-105034029_docs-readiness-10-12-13-rerun/` で Phase A/B を実施した。詳細なreadiness表は `runs/20260527-105034029_docs-readiness-10-12-13-rerun/READINESS_10_12_13.md` を正とする。
+
+再生成結果:
+
+- 単体8文書は `qualitycheck --strict`、GOAL、promotion GOAL がすべてpass。
+- 旧成果で出ていた `meta_family_missing` は、現行CLIで `--family` を付けることで解消した。
+- 実文書本体でも table/note が出るようになっており、PIC/S Annex 1、Annex 2A、Part II、WHO LBM 3rd は表・注記レビューを正式候補化前に挟む。
+- PIC/S Annexes refined は `page-number-only line remains` により strict fail したため、正式化初手から外す。
+
+再生成後の優先順位:
+
+1. EU GMP Chapter 1: 最初の正規化RUN候補。warningなし、表・注記なし、レビュー負荷が小さい。
+2. PIC/S Annex 11: PIC/S単体Annexの最初の候補。warningなし、表・注記なし。
+3. PIC/S Annex 1: 技術的にはready。表・注記のSAMPLE_COMPARISON後に候補化する。
+4. WHO LBM 3rd: 技術的にはready。対象章範囲とcandidate visibilityの判断を先に固定する。
+5. PIC/S Annex 2A / Part II / Part I / Annex 15: ready later。Annex単体の運用型が固まってから順次扱う。
+6. PIC/S Annexes refined: not ready。横断検索・参考候補として維持し、単体Annex正式化後に修正・再評価する。
+
 ## 過去記録から使うべき知見
 
 ### 使う
@@ -40,13 +60,13 @@
 - `runs/20260522-053004_text2ir-goal-gap-longrun/GOAL_CHECK_RESULTS.md`
   - 代表9文書はGOAL_CHECK pass。
   - ただし旧成果ではGOAL warningとして `meta_family_missing` が出ていた。
-  - 現行CLIで再生成してこのwarningを再評価する。
+  - 現行CLIで再生成した結果、`--family` 指定によりこのwarningは解消した。
 - `runs/20260522-053004_text2ir-goal-gap-longrun/TEXT2IR_AUDIT_REPORT.md`
   - 9文書のschema、4files、manifest、strict、source coverage、node数を横断集計済み。
   - 正規化RUN候補にも同じ監査を流用する。
 - `runs/20260522-053004_text2ir-goal-gap-longrun/TEXT2IR_GAP_RESOLUTION_MATRIX.md`
   - EU/PIC/S/WHOで解消済み・保留中の課題が整理済み。
-  - 表・注記の実文書全体での構造化状況は再確認が必要。
+  - 表・注記の実文書全体での構造化状況は再確認済み。正式候補化では文書別にSAMPLE_COMPARISONで確認する。
 - `runs/20260522-053004_text2ir-goal-gap-longrun/EXTENSION_ENTRANCE_DESIGN.md`
   - PIC/S Annexes refinedは複合入口として扱い、共通parserへ押し込まない。
   - CFR XML入口は11番用の別課題として分ける。
@@ -76,7 +96,7 @@
 - Chapter単位で正式化するか、Part I bundleとして正式化するかを決める。
 - Part IIはPart I章群と別docとして扱う。
 - 表・注記・possible_tableの有無を章ごとに監査する。
-- 旧GOAL成果の `meta_family_missing` を現行CLI再生成で解消または再評価する。
+- Chapter 1以外でも現行CLIの `--family EU_GMP` を付け、meta familyを明示する。
 
 ### 方針
 
@@ -84,10 +104,12 @@ EU GMPはTXTベースで進める。XML側へ切り替える材料は現時点�
 
 推奨順:
 
-1. Chapter 1を現行CLIで再生成し、promotion candidate化する。
+1. Chapter 1を正規化RUNでpromotion candidate化する。
 2. Chapter 2から9を同一手順で再生成し、章単位のreadinessを出す。
 3. Part IIを別docとして再生成する。
 4. Part I全体bundleが必要かを最後に判断する。
+
+Chapter 1は現行main再生成でstrict / GOAL / promotion GOALがpassし、warningなし、table/noteなし。最初の正規化RUNに進める。
 
 ## 12 PIC/S
 
@@ -105,7 +127,8 @@ EU GMPはTXTベースで進める。XML側へ切り替える材料は現時点�
 - Annex単体でpromotion candidateを作れるものから進める。
 - 表・注記・possible_tableをAnnexごとに確認する。
 - 複合入口を使う場合は、dispatch/fallback履歴と子profile provenanceのレビュー負荷を明示する。
-- 旧GOAL成果の `meta_family_missing` を現行CLI再生成で解消または再評価する。
+- 現行CLIでは `--family PICS` を付け、meta familyを明示する。
+- Annexes refinedは現行mainでstrict failしているため、page-number-only line除去後に再評価する。
 
 ### 方針
 
@@ -118,7 +141,12 @@ PIC/SはTXTベースで進める。既存profileとテスト資産が最も使�
 3. Annex 2A
 4. Part II
 5. Part I
-6. Annexes refinedは横断検索・参考候補として維持し、正式化は最後に判断する。
+6. Annex 15
+7. Annexes refinedは横断検索・参考候補として維持し、正式化は最後に判断する。
+
+Annex 11は現行main再生成でstrict / GOAL / promotion GOALがpassし、warningなし、table/noteなし。PIC/Sの最初の正規化RUN候補とする。
+
+Annex 1、Annex 2A、Part IIはreadyだが、表・注記またはfigureを含むため、promotion candidate化前にSAMPLE_COMPARISONで確認する。Part Iは範囲が広いため、Annex単体の運用型を先に固める。
 
 ## 13 WHO LBM 3rd
 
@@ -138,7 +166,7 @@ PIC/SはTXTベースで進める。既存profileとテスト資産が最も使�
 - item粒度が実利用で細かすぎないか確認する。
 - 章単位に分けるか、1文書bundleで保持するか決める。
 - general tables / chapter 8 survey parserの成果を正式候補へ含めるか判断する。
-- 旧GOAL成果の `meta_family_missing` を現行CLI再生成で解消または再評価する。
+- 現行CLIでは `--family WHO_LBM` を付け、meta familyを明示する。
 
 ### 方針
 
@@ -150,6 +178,8 @@ WHOはTXTベースで進める。技術課題より、対象範囲と表示粒�
 2. 全体保持 + candidate visibility絞り込み案と比較する。
 3. 代表章でSAMPLE_COMPARISONを作り、人間レビューで粒度を確認する。
 4. 問題なければpromotion candidate化する。
+
+現行main再生成ではstrict / GOAL / promotion GOALがpassし、warningなし。ただし table 15、row 210、note 14 があり、対象範囲とcandidate visibilityの判断が未決のため、EU GMP Chapter 1やPIC/S Annex 11より前には出さない。
 
 ## 共通実行計画
 
@@ -163,6 +193,12 @@ WHOはTXTベースで進める。技術課題より、対象範囲と表示粒�
 - `qualitycheck --strict` を再確認。
 - `goal_check` と `audit_report` を再作成。
 
+実施済み:
+
+- run: `runs/20260527-105034029_docs-readiness-10-12-13-rerun/`
+- 単体8文書はpass。
+- PIC/S Annexes refinedはstrict fail。
+
 ### Phase B: 文書別readiness表を作る
 
 各文書について、次を一覧化する。
@@ -175,6 +211,8 @@ WHOはTXTベースで進める。技術課題より、対象範囲と表示粒�
 - promotion candidateに進めるか。
 - 追加reviewが必要な点。
 
+実施済み。詳細は `runs/20260527-105034029_docs-readiness-10-12-13-rerun/READINESS_10_12_13.md` を参照する。
+
 ### Phase C: promotion candidate化
 
 最初の候補は、説明負荷が小さい単体文書から作る。
@@ -183,8 +221,8 @@ WHOはTXTベースで進める。技術課題より、対象範囲と表示粒�
 
 1. EU GMP Chapter 1
 2. PIC/S Annex 11
-3. PIC/S Annex 1
-4. WHO LBM 3rd対象章案
+3. PIC/S Annex 1（表・注記レビュー後）
+4. WHO LBM 3rd対象章案（対象範囲とcandidate visibility判断後）
 
 ### Phase D: 正式昇格
 
