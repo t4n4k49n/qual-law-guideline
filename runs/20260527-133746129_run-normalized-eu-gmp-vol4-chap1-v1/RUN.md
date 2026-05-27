@@ -113,3 +113,46 @@
 
 - 親PR段階のため、`data/normalized/` への複写は未実施。
 - 子PRは親PR承認後にのみ作成する。
+
+## 昇格実施
+
+- 親PR: https://github.com/t4n4k49n/qual-law-guideline/pull/188
+- 親PR merge commit: `afa3763`
+- 昇格先: `data/normalized/eu_gmp_vol4_chap1_20130131/`
+- 昇格元: `runs/20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1/promotion_candidate/`
+- 昇格対象:
+  - `eu_gmp_vol4_chap1_20130131.regdoc_ir.yaml`
+  - `eu_gmp_vol4_chap1_20130131.parser_profile.yaml`
+  - `eu_gmp_vol4_chap1_20130131.regdoc_profile.yaml`
+  - `eu_gmp_vol4_chap1_20130131.meta.yaml`
+- `manifest.yaml` は正規化RUN記録であり、`data/normalized/` へは複写しない。
+
+昇格前確認:
+
+- 4ファイルのSHA-256が `promotion_candidate/` と `data/normalized/` で一致することを確認した。
+- 子PRではパーサコード修正、追加の正規化再実行、無関係なドキュメント更新を含めない。
+
+昇格先検証:
+
+```powershell
+.\.venv\Scripts\python.exe -m qai_text2ir.goal_check `
+  --bundle-dir data/normalized/eu_gmp_vol4_chap1_20130131 `
+  --doc-id eu_gmp_vol4_chap1_20130131 `
+  --mode promotion `
+  --format markdown
+```
+
+結果:
+
+- status: PASS
+- schema: `qai.regdoc_ir.v4`
+- nodes: 72
+- verify: pass
+- source span coverage: 1.0
+- errors: none
+- warning: `missing_manifest`
+  - `manifest.yaml` はRUN記録であり、子PRの昇格複写対象4ファイルから除外するため想定どおり。
+
+追加確認:
+
+- `.\.venv\Scripts\python.exe -m pytest tests/test_extract_ir_sample.py -q`: PASS（3 passed）
