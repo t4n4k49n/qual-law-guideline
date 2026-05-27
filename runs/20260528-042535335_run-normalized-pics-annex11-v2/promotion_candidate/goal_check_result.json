@@ -1,0 +1,95 @@
+{
+  "doc_id": "pics_pe00917_annex11_20230825",
+  "bundle_dir": "runs\\20260528-042535335_run-normalized-pics-annex11-v2\\promotion_candidate",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "files": {
+      "ir": {
+        "path": "pics_pe00917_annex11_20230825.regdoc_ir.yaml",
+        "exists": true
+      },
+      "parser_profile": {
+        "path": "pics_pe00917_annex11_20230825.parser_profile.yaml",
+        "exists": true
+      },
+      "regdoc_profile": {
+        "path": "pics_pe00917_annex11_20230825.regdoc_profile.yaml",
+        "exists": true
+      },
+      "meta": {
+        "path": "pics_pe00917_annex11_20230825.meta.yaml",
+        "exists": true
+      },
+      "manifest": {
+        "path": "manifest.yaml",
+        "exists": true
+      }
+    },
+    "schema": "qai.regdoc_ir.v4",
+    "node_count": 42,
+    "kind_counts": {
+      "annex": 1,
+      "document": 1,
+      "item": 3,
+      "paragraph": 20,
+      "section": 17
+    },
+    "source_spans": {
+      "nodes_with_source_spans": 41,
+      "non_root_nodes": 41,
+      "coverage": 1.0,
+      "total_spans": 164
+    },
+    "verify_document": "pass",
+    "dq_gmp_checklist": {
+      "has_candidate_visibility": true,
+      "selectable_kinds": [
+        "subitem",
+        "item",
+        "paragraph",
+        "statement",
+        "table_row"
+      ],
+      "has_table_row_selectable": true,
+      "context_display_policy_count": 5,
+      "has_descendant_policy": true,
+      "has_ancestor_policy": true
+    },
+    "manifest": {
+      "schema": "qai.run_manifest.v1",
+      "has_input": true,
+      "has_command": true,
+      "has_outputs": true,
+      "has_profile_provenance": true,
+      "qualitycheck": {
+        "enabled": true,
+        "strict": true,
+        "warnings_count": 0,
+        "warnings": []
+      },
+      "refine": {
+        "kind": "annex",
+        "applied": []
+      }
+    },
+    "table_payload_nodes": 0,
+    "parser_profile": {
+      "id": "pics_annex11_default_v1",
+      "schema": "qai.parser_profile.v1",
+      "extends": null,
+      "has_markers": true,
+      "has_refine_subtrees": false
+    },
+    "special_structure_audit": {
+      "status": "pass",
+      "source_tables": 0,
+      "source_figures": 0,
+      "generated_tables": 0,
+      "generated_rows": 0,
+      "generated_figures": 0,
+      "unresolved_count": 0
+    }
+  }
+}
