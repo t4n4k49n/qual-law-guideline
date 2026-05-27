@@ -5,4 +5,7 @@ COMPUTERISED SYSTEMS
 4.1 The validation documentation and reports should cover:
 a. a description of the system;
 b. acceptance criteria and test records;
+14. Electronic Signature
+Electronic records may be signed electronically. Electronic signatures are expected to:
+c. include the time and date that they were applied.
 textending.Annex 11 Computerised systems

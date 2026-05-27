@@ -40,7 +40,11 @@ def test_annex11_profile_header_footer_strip_and_structure() -> None:
 
     section_4 = next(n for n in nodes if n["kind"] == "section" and n.get("num") == "4")
     assert section_4.get("heading") == "Validation"
+    assert section_4.get("kind_raw") == "4."
     assert "Validation" not in ((section_4.get("text") or "").splitlines()[0] if section_4.get("text") else "")
+    section_14 = next(n for n in nodes if n["kind"] == "section" and n.get("num") == "14")
+    assert section_14.get("heading") == "Electronic Signature"
+    assert section_14.get("kind_raw") == "14."
     paragraph_41 = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "4.1")
     assert "validation documentation" in (paragraph_41.get("text") or "")
     items = [n for n in nodes if n["kind"] == "item"]
