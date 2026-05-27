@@ -1,0 +1,40 @@
+schema: qai.run_manifest.v1
+run_id: promotion_candidate
+created_at: '2026-05-27T19:25:50Z'
+git:
+  commit: a8bb316cc6e38e775a6177f336774c12985dcc10
+  branch: run/normalized-pics-annex11-v2
+input:
+  path: data\human-readable\pics\pe009-17_annex11_2023-08-25_en.txt
+  checksum: 42de399ed3749989044ab88bdf50278b835cb7bfd4e19be084384aba8b9080ed
+command:
+  argv: '.\.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input data/human-readable/pics/pe009-17_annex11_2023-08-25_en.txt --out-dir runs/20260528-042535335_run-normalized-pics-annex11-v2/promotion_candidate --doc-id pics_pe00917_annex11_20230825 --title "PIC/S GMP Guide (PE 009-17) Annex 11 Computerised systems (25 August 2023)" --short-title "PIC/S PE009-17 Annex 11" --doc-type guideline --source-url https://picscheme.org/docview/8881 --source-format pdf --retrieved-at 2026-02-18 --parser-profile src/qai_text2ir/profiles/pics_annex11_default_v1.yaml --jurisdiction INTL --language en --family PICS --pics-doc-id "PE 009-17 (Annexes)" --strict --write-manifest --overwrite-manifest'
+outputs:
+  doc_id: pics_pe00917_annex11_20230825
+  files:
+  - pics_pe00917_annex11_20230825.regdoc_ir.yaml
+  - pics_pe00917_annex11_20230825.parser_profile.yaml
+  - pics_pe00917_annex11_20230825.regdoc_profile.yaml
+  - pics_pe00917_annex11_20230825.meta.yaml
+parser_profile:
+  id: pics_annex11_default_v1
+  resolved_sha256: e4e791b9c5870bc16ac8481806aff3d6a492ae4a8de57b2d2ed30365fda21949
+  provenance:
+  - profile_id: pics_pe00917_common_v1
+    internal_id: pics_pe00917_common_v1
+    path: src\qai_text2ir\profiles\pics_pe00917_common_v1.yaml
+    sha256: f91f09715fd311c12961281b663059d71354456dd8112b96d7c4f20308c2a6c1
+    extends: ''
+  - profile_id: pics_annex11_default_v1
+    internal_id: pics_annex11_default_v1
+    path: src\qai_text2ir\profiles\pics_annex11_default_v1.yaml
+    sha256: ef19c2b79999f4e879c7c8cec8c6b7a86c3cbc6977e6749f224cdb91f3486fab
+    extends: pics_pe00917_common_v1
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []
