@@ -57,6 +57,7 @@
 - `runs/20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1/promotion_candidate/eu_gmp_vol4_chap1_20130131.regdoc_profile.yaml`
 - `runs/20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1/promotion_candidate/eu_gmp_vol4_chap1_20130131.meta.yaml`
 - `runs/20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1/promotion_candidate/manifest.yaml`
+- `runs/20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1/SAMPLE_EXTRACT.md`
 
 ## 実行環境
 
@@ -92,7 +93,7 @@
 
 人の最終確認はPRで行う前提。今回の機械確認とサンプル確認では、Chapter 1の章、段落、箇条が祖先関係を保って出力されている。
 
-深い階層サンプル:
+深い階層サンプル（`SAMPLE_EXTRACT.md` としてIR YAMLから抽出）:
 
 - `root` / `document`
 - `cha1` / `chapter` / `Chapter` / heading: `Pharmaceutical Quality System`

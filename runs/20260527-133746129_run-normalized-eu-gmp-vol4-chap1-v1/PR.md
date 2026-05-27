@@ -17,6 +17,7 @@ EU GMP Vol.4 Chapter 1を、正規化RUNのレビュー対象として `promotio
 
 - `runs/20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1/promotion_candidate/` に4ファイルbundleとmanifestを追加
 - promotion GOAL結果を `GOAL_CHECK_RESULT.md` / `goal_check_result.json` として追加
+- 深い階層サンプルのIR抽出結果を `SAMPLE_EXTRACT.md` として追加
 - RUN記録を追加
 - `data/normalized/` は変更なし
 
@@ -37,7 +38,7 @@ EU GMP Vol.4 Chapter 1を、正規化RUNのレビュー対象として `promotio
 
 ## 深い階層サンプル
 
-祖先経路を省略せずに確認したサンプル:
+祖先経路を省略せずに確認したサンプル。表は `SAMPLE_EXTRACT.md` と同じIR抽出結果:
 
 | 階層 | nid | kind | kind_raw | text / heading |
 |---:|---|---|---|---|
