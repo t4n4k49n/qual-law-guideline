@@ -122,3 +122,42 @@
 
 - 親PR段階のため、`data/normalized/` への複写は未実施。
 - 子PRは親PR承認後にのみ作成する。
+
+## 昇格実施
+
+- 親PR: https://github.com/t4n4k49n/qual-law-guideline/pull/192
+- 親PR merge commit: `f43ec9d`
+- 昇格先: `data/normalized/pics_pe00917_annex11_20230825/`
+- 昇格元: `runs/20260528-042535335_run-normalized-pics-annex11-v2/promotion_candidate/`
+- 昇格対象:
+  - `pics_pe00917_annex11_20230825.regdoc_ir.yaml`
+  - `pics_pe00917_annex11_20230825.parser_profile.yaml`
+  - `pics_pe00917_annex11_20230825.regdoc_profile.yaml`
+  - `pics_pe00917_annex11_20230825.meta.yaml`
+- `manifest.yaml` は正規化RUN記録であり、`data/normalized/` へは複写しない。
+
+昇格前確認:
+
+- 4ファイルのSHA-256が `promotion_candidate/` と `data/normalized/` で一致することを確認した。
+- 子PRではパーサコード修正、追加の正規化再実行、無関係なドキュメント更新を含めない。
+
+昇格先検証:
+
+```powershell
+.\.venv\Scripts\python.exe -m qai_text2ir.goal_check `
+  --bundle-dir data/normalized/pics_pe00917_annex11_20230825 `
+  --doc-id pics_pe00917_annex11_20230825 `
+  --mode promotion `
+  --format markdown
+```
+
+結果:
+
+- status: PASS
+- schema: `qai.regdoc_ir.v4`
+- nodes: 42
+- verify: pass
+- source span coverage: 1.0
+- errors: none
+- warning: `missing_manifest`
+  - `manifest.yaml` はRUN記録であり、子PRの昇格複写対象4ファイルから除外するため想定どおり。

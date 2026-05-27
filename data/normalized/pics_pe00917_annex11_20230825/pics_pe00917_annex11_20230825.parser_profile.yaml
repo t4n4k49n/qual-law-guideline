@@ -1,0 +1,95 @@
+schema: qai.parser_profile.v1
+id: pics_annex11_default_v1
+title: PIC/S PE 009-17 Annex 11 (Computerised systems) markers
+applies_to:
+  family: PICS
+  jurisdiction: INTL
+  defaults: false
+language: en
+source_label: PIC/S
+preprocess:
+  drop_line_regexes:
+  - (?i)^\s*PE\s*009-17\s*\(Annexes\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$
+  - ^\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*$
+  - (?i)^\s*web\s+site:\s*https?://\S+\s*$
+  - (?i)^PE\s*009-17\s*\(Annexes\)\s*-[0-9ivxlcdm]+\s*-\s*25\s+August\s+2023\s*$
+  - ^Annex\s+11\s+Computerised\s+systems\s*$
+  strip_inline_regexes:
+  - (?i)(?<=\S)\s+PE\s*009-17\s*\(Annexes\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$
+  - (?i)(?<=\S)Annex\s+\d+[A-Z]?\s+[A-Za-z].{0,200}$
+  - '[\x00-\x1F]'
+  - (?i)(?<=\S)Annex\s+11\s+Computerised\s+systems\s*$
+  drop_repeated_structural_headers:
+    enabled: true
+    kinds:
+    - annex
+  merge_structural_heading_continuations:
+    enabled: true
+    kinds:
+    - annex
+    max_next_line_len: 200
+    max_merge_lines: 2
+    max_blank_lookahead: 2
+context_root_kind: annex
+structural_kinds:
+- annex
+- section
+marker_types:
+- id: annex
+  kind: annex
+  kind_raw: ANNEX
+  match: (?i)^ANNEX\s+(?P<n>11)\b\s*
+  num_group: n
+- id: section_int_dot
+  kind: section
+  kind_raw: '4.'
+  match: ^(?P<n>\d+)\.\s+
+  num_group: n
+- id: paragraph_decimal
+  kind: paragraph
+  kind_raw: '4.1'
+  match: ^(?P<n>\d+\.\d+)\s+
+  num_group: n
+- id: item_letter
+  kind: item
+  kind_raw: a.
+  match: ^(?P<n>[a-z])\.\s+
+  num_group: n
+- id: bullet
+  kind: subitem
+  kind_raw: •
+  match: ^[•]\s+
+structure:
+  root:
+    children:
+    - annex
+  annex:
+    children:
+    - section
+    - paragraph
+    - item
+    - subitem
+    - note
+  section:
+    children:
+    - paragraph
+    - item
+    - subitem
+    - note
+  paragraph:
+    children:
+    - item
+    - subitem
+    - note
+  item:
+    children:
+    - subitem
+    - note
+  subitem:
+    children:
+    - note
+  note:
+    children: []
+compound_prefix:
+  enabled: false
+  max_depth: 1
