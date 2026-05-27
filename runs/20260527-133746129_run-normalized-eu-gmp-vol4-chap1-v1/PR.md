@@ -44,12 +44,13 @@ EU GMP Vol.4 Chapter 1を、正規化RUNのレビュー対象として `promotio
 | 1 | `root` | `document` |  |  |
 | 2 | `cha1` | `chapter` | `Chapter` | `Pharmaceutical Quality System` |
 | 3 | `cha1.p1_8` | `paragraph` | `1.8` |  |
-| 4 | `cha1.p1_8.iiii` | `item` | `(iv)` | `All necessary facilities for GMP are provided including:` |
+| 4 | `cha1.p1_8.iiii` | `item` | `(iii)` | `All necessary facilities for GMP are provided including:` |
 | 5 | `cha1.p1_8.iiii.si3` | `subitem` | `•` | `Suitable equipment and services;` |
 
 ## レビュー観点
 
 - Chapter 1の章、段落、箇条、サブ箇条が祖先関係を保っていること
+- `cha1.p1_8.iiii` は `item` prefix `i` + `num: iii` のNIDであり、`kind_raw` は `(iii)` として保持されていること
 - `dq_gmp_checklist.candidate_visibility` が `allow_rules: []` / `deny_rules: []` であること
 - `meta.doc.family` が `EU_GMP` として出力されていること
 - 親PRでは `data/normalized/` が変更されていないこと

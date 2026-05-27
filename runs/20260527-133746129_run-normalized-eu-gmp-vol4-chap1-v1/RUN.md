@@ -97,12 +97,13 @@
 - `root` / `document`
 - `cha1` / `chapter` / `Chapter` / heading: `Pharmaceutical Quality System`
 - `cha1.p1_8` / `paragraph` / `1.8`
-- `cha1.p1_8.iiii` / `item` / `(iv)` / text: `All necessary facilities for GMP are provided including:`
+- `cha1.p1_8.iiii` / `item` / `(iii)` / text: `All necessary facilities for GMP are provided including:`
 - `cha1.p1_8.iiii.si3` / `subitem` / `•` / text: `Suitable equipment and services;`
 
 評価:
 
 - 祖先経路は `document -> chapter -> paragraph -> item -> subitem` として保持されている。
+- `cha1.p1_8.iiii` は `item` のprefix `i` と `num: iii` を連結したNIDであり、`kind_raw` は `(iii)` として保持されている。
 - `source_spans` coverageは1.0。
 - 表・注記はこの文書では0件で、readiness判断と一致した。
 - `meta.doc.family` は `EU_GMP` として出力され、旧warningの `meta_family_missing` は発生していない。
