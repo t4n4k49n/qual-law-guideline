@@ -1413,7 +1413,7 @@ def _find_latest_non_note_stack_index(stack: List[Node]) -> Optional[int]:
 
 
 def _resolved_kind_raw(marker: MarkerMatch) -> Optional[str]:
-    if marker.kind in {"paragraph", "item", "subitem"}:
+    if marker.kind in {"section", "paragraph", "item", "subitem"}:
         return marker.raw_token or marker.kind_raw
     return marker.kind_raw or marker.raw_token
 
