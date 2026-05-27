@@ -1,0 +1,41 @@
+schema: qai.run_manifest.v1
+run_id: 20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1
+created_at: '2026-05-27T04:38:18Z'
+git:
+  commit: 4d4c404aea0ca27bcb05cb854a1eca8282c0e45a
+  branch: run/normalized-eu-gmp-vol4-chap1-v1
+input:
+  path: data\human-readable\eu_gmp\vol4\chap1_2013-01_en.txt
+  checksum: c7062690a0431465173d3d25db4467a23fb65af7848c80f9edab9dbc5c4911f3
+command:
+  argv: .\.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input data/human-readable/eu_gmp/vol4/chap1_2013-01_en.txt --out-dir runs/20260527-133746129_run-normalized-eu-gmp-vol4-chap1-v1/promotion_candidate --doc-id eu_gmp_vol4_chap1_20130131 --title "EU GMP Vol.4 Chapter 1 Pharmaceutical Quality System" --short-title "EU GMP Ch1 PQS" --doc-type guideline --source-url https://health.ec.europa.eu/document/download/e458c423-f564-4171-b344-030a461c567f_en --source-format pdf --retrieved-at 2026-02-18 --parser-profile-id eu_gmp_chap1_default_v2 --jurisdiction EU --language en --family EU_GMP --eu-volume 4 --strict
+outputs:
+  doc_id: eu_gmp_vol4_chap1_20130131
+  files:
+  - eu_gmp_vol4_chap1_20130131.regdoc_ir.yaml
+  - eu_gmp_vol4_chap1_20130131.parser_profile.yaml
+  - eu_gmp_vol4_chap1_20130131.regdoc_profile.yaml
+  - eu_gmp_vol4_chap1_20130131.meta.yaml
+parser_profile:
+  id: eu_gmp_chap1_default_v2
+  resolved_sha256: c1da2cc51600173bec641560996b7b2ae0171973cea4ece79052e05f8eb15ff9
+  provenance:
+  - profile_id: eu_gmp_chap1_default_v2
+    internal_id: eu_gmp_chap1_default_v2
+    path: src\qai_text2ir\profiles\eu_gmp_chap1_default_v2.yaml
+    sha256: d93258c872e18baa86af3d2c9e3cf835d17ad4cbede017f11fdffb40bb0cd4f2
+    extends: ''
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []
+execution_environment:
+  python: .\.venv\Scripts\python.exe
+  dependencies:
+    lxml: 6.0.2
+    PyYAML: 6.0.3
+    typer: 0.24.0
