@@ -76,6 +76,7 @@ xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate 
 ### 4-2) AIレビュー（目視代替）
 
 - IRからサンプル断片を抽出し、AIに評価させる
+- 深い階層サンプルは `tools/extract_ir_sample.py` でIRから抽出し、`runs/<run_id>/SAMPLE_EXTRACT.md` に保存する
 - 出力は RUN に貼り付け、**人の最終確認はPRで行う前提**と明記する
 
 ### 4-3) PRでの最終目視（人間）
@@ -102,6 +103,7 @@ xml2ir bundle --input <path-to-xml> --out-dir runs/<run_id>/promotion_candidate 
   - `runs/<run_id>/promotion_candidate/`（4ファイル + manifest）
   - `runs/<run_id>/RUN.md`
   - `runs/<run_id>/PR.md`
+  - `runs/<run_id>/SAMPLE_EXTRACT.md` など、IRから抽出したレビュー用アーティファクト
 - 親PRでは `data/normalized/` を変更しない
 - 親PR本文に以下を必ず記載する:
   - 対象e-Gov法令URL（`https://laws.e-gov.go.jp/law/<law_id>/<as_of_revision>`）
