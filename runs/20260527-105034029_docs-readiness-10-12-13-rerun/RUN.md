@@ -27,6 +27,7 @@
 - PIC/S Annexes refined は strict fail として記録した。
 - `TEXT2IR_AUDIT_REPORT.md` と `text2ir_audit_report.json` を `runs/` にコピーした。
 - `READINESS_10_12_13.md` を作成した。
+- readiness結果を `docs/NORMALIZATION_PLAN_10_12_13.md` に反映した。
 
 ## Outputs
 
@@ -34,6 +35,7 @@
 - `runs/20260527-105034029_docs-readiness-10-12-13-rerun/TEXT2IR_AUDIT_REPORT.md`
 - `runs/20260527-105034029_docs-readiness-10-12-13-rerun/text2ir_audit_report.json`
 - `runs/20260527-105034029_docs-readiness-10-12-13-rerun/READINESS_10_12_13.md`
+- `docs/NORMALIZATION_PLAN_10_12_13.md`
 
 ## Results
 
