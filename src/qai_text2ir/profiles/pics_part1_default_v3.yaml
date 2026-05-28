@@ -20,6 +20,7 @@ preprocess:
       max_lines: 2000
   drop_line_regexes:
     - '(?i)^\s*PE\s*009-17\s*\(Part\s+I\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$'
+    - '^\s*Chapter\s+\d{1,2}\s+[A-Za-z].*$'
     - '(?i)^(?!CHAPTER\b)[A-Z][A-Z\s/&\-]{3,80}\s+\d{1,3}\s*$'
   strip_inline_regexes:
     - '(?i)(?<=\S)Chapter\s+\d{1,2}\s+[A-Za-z][A-Za-z\s/&\-]{0,80}$'

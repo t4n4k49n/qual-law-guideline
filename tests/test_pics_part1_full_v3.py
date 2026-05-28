@@ -62,3 +62,51 @@ def test_bullet_char_detected() -> None:
 def test_profile_loader_defaults_to_pics_v3() -> None:
     profile = load_parser_profile(family="PICS")
     assert profile["id"] == "pics_part1_default_v3"
+
+
+def test_chapter_transition_note_attaches_to_new_chapter(tmp_path: Path) -> None:
+    input_path = tmp_path / "part1_chapter_transition_note.txt"
+    input_path.write_text(
+        "\n".join(
+            [
+                "CHAPTER 6",
+                "QUALITY CONTROL",
+                "",
+                "6.41   Where appropriate, specific requirements described in other guidelines should be",
+                "       addressed for the transfer of particular testing methods.",
+                "",
+                " PE 009-17 (Part I)                         - 44 -                          25 August 2023",
+                "                                                       Chapter 7     Outsourced activities",
+                "",
+                "CHAPTER 7",
+                "",
+                "                      OUTSOURCED ACTIVITIES",
+                "",
+                "PRINCIPLE",
+                "       Any activity covered by the GMP Guide that is outsourced should be appropriately",
+                "       defined, agreed and controlled.",
+                "",
+                "       Note: This Chapter deals with the responsibilities of manufacturers towards the",
+                "       Competent Regulatory Authorities.",
+                "",
+                "GENERAL",
+                "7.1    There should be a written contract covering the outsourced activities.",
+            ]
+        ),
+        encoding="utf-8",
+        newline="\n",
+    )
+    parser_profile = _load_profile("src/qai_text2ir/profiles/pics_part1_default_v3.yaml")
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="pics_part1_chapter_transition_note",
+        parser_profile=parser_profile,
+    )
+    root = ir_doc.to_dict()["content"]
+    nodes = _flatten(root)
+    by_nid = {node["nid"]: node for node in nodes}
+
+    assert "Chapter 7     Outsourced activities" not in (by_nid["cha6.p6_41"].get("text") or "")
+    assert not by_nid["cha6.p6_41"].get("children")
+    assert by_nid["cha7"]["children"][0]["kind"] == "note"
+    assert by_nid["cha7"]["children"][0]["nid"] == "cha7.not1"
