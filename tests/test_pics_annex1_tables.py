@@ -120,6 +120,19 @@ def test_annex1_tables_do_not_leave_forbidden_plaintext_or_embedded_captions() -
             assert "Table 4:" not in text
 
 
+def test_annex1_tables_do_not_embed_running_footers() -> None:
+    ir = _ir()
+    nodes = _flatten(ir["content"])
+
+    for node in nodes:
+        if node.get("kind") in {"table", "table_row", "note"}:
+            assert "PE 009-17" not in (node.get("text") or "")
+            data = node.get("data") or {}
+            assert "PE 009-17" not in "\n".join(str(line) for line in data.get("raw_lines") or [])
+            assert "PE 009-17" not in "\n".join(str(cell) for cell in data.get("cells") or [])
+            assert "PE 009-17" not in "\n".join(str(op) for op in data.get("operations") or [])
+
+
 def test_annex1_tables_promotion_gate_passes(tmp_path: Path) -> None:
     from qai_text2ir import cli
 

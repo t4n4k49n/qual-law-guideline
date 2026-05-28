@@ -9,7 +9,7 @@ from qai_xml2ir.models_ir import Node
 
 CAPTION_RE = re.compile(r"^\s*Table\s+(?P<num>[1-6])\s*[:.]\s*(?P<title>.*\S)\s*$", re.IGNORECASE)
 PARA_RE = re.compile(r"^\s*\d{1,2}\.\d+\s+")
-PAGE_RE = re.compile(r"^\s*PE\s+009-17\s+\(Annexes\)\b")
+PAGE_RE = re.compile(r"^\s*PE\s+009-17\s+\(Annexes\)(?:\s|$)")
 ANNEX_HEADER_RE = re.compile(r"^\s*Annex\s+1\s+Manufacture\s+of\s+sterile\s+medicinal\s+products\s*$", re.IGNORECASE)
 NOTE_START_RE = re.compile(r"^\s*(?:\([a-c]\)|[a-c]\)|Note\s+\d+\s*:)", re.IGNORECASE)
 GRADE_RE = re.compile(r"^\s*(?:Grade\s+)?([ABCD])\b")
@@ -131,6 +131,14 @@ def _collect_notes(lines: List[str], start_idx: int, stop_idx: int) -> List[Dict
     return notes
 
 
+def _clean_raw_lines(lines: List[str]) -> List[str]:
+    return [
+        line
+        for line in lines
+        if line.strip() and not PAGE_RE.match(line.strip()) and not ANNEX_HEADER_RE.match(line.strip())
+    ]
+
+
 def _next_stop_idx(lines: List[str], start_idx: int) -> int:
     idx = start_idx
     while idx < len(lines):
@@ -222,7 +230,7 @@ def _numeric_table(table_no: str, caption: str, caption_idx: int, lines: List[st
         columns=columns,
         rows=rows,
         notes=notes,
-        raw_lines=lines[caption_idx:end_idx],
+        raw_lines=_clean_raw_lines(lines[caption_idx:end_idx]),
     )
 
 
@@ -281,7 +289,7 @@ def _operation_rows(table_no: str, caption: str, caption_idx: int, lines: List[s
         columns=columns,
         rows=rows,
         notes=[],
-        raw_lines=lines[caption_idx:stop_idx],
+        raw_lines=_clean_raw_lines(lines[caption_idx:stop_idx]),
     )
 
 
