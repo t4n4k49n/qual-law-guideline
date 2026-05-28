@@ -674,6 +674,11 @@ def _merge_structural_marker_heading_lines(
         for p in (continuation_cfg.get("allow_next_regexes") or [])
         if isinstance(p, str) and p.strip()
     ]
+    deny_next_patterns = [
+        re.compile(str(p))
+        for p in (continuation_cfg.get("deny_next_regexes") or [])
+        if isinstance(p, str) and p.strip()
+    ]
     idx = 0
     while idx < len(merged) - 1:
         current = merged[idx]
@@ -740,6 +745,8 @@ def _merge_structural_marker_heading_lines(
                     if _looks_like_md_table_header(probe_header) and _is_md_table_separator(probe_sep):
                         break
             if _starts_with_any_marker(next_cleaned.lstrip(), compiled_markers):
+                break
+            if any(pat.match(next_stripped) for pat in deny_next_patterns):
                 break
             force_next = any(pat.match(next_stripped) for pat in allow_next_patterns)
             if (

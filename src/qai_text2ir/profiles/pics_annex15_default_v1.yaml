@@ -25,6 +25,8 @@ preprocess:
     allow_single_word_caps: true
     allow_next_regexes:
       - '^[A-Z][A-Z0-9\s/&()\-]+\.\s*$'
+    deny_next_regexes:
+      - '^[A-Z][a-z]+$'
   drop_repeated_structural_headers:
     enabled: true
     kinds: [annex]
