@@ -88,10 +88,10 @@ def _find_structures(lines: List[str]) -> Optional[Annex2AStructures]:
 
 TABLE_COLUMNS = [
     "Example product / product class",
-    "Manufacturing step 1",
-    "Manufacturing step 2",
-    "Manufacturing step 3",
-    "Manufacturing step 4",
+    "Application of this Annex (see note 1) manufacturing step 1",
+    "Application of this Annex (see note 1) manufacturing step 2",
+    "Application of this Annex (see note 1) manufacturing step 3",
+    "Application of this Annex (see note 1) manufacturing step 4",
 ]
 
 TABLE_ROWS = [
