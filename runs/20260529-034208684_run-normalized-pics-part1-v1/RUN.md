@@ -70,8 +70,8 @@ Create the formal promotion candidate for PIC/S PE 009-17 Part I after the table
 ## Deep Sample
 
 - Sample file: `runs/20260529-034208684_run-normalized-pics-part1-v1/SAMPLE_EXTRACT.md`
-- Target nid: `cha7.not1`
-- Reason: verifies the corrected Chapter 7 note attachment in the promotion candidate.
+- Target nid: `cha1.p1_8.iiii.si5`
+- Reason: one of the deepest nodes in the promotion candidate (`document > chapter > paragraph > item > subitem`).
 
 ## AI Review Note
 
