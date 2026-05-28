@@ -76,3 +76,18 @@ def test_annex15_section_heading_continuation_is_merged() -> None:
 
     section_3 = next(n for n in nodes if n["kind"] == "section" and n.get("num") == "3")
     assert section_3.get("heading") == "QUALIFICATION STAGES FOR EQUIPMENT, FACILITIES, UTILITIES AND SYSTEMS."
+
+
+def test_annex15_title_case_subheading_is_not_merged_into_section_heading() -> None:
+    input_path = Path("tests/fixtures/pics_annex15_heading_continuation_fixture.txt")
+    parser_profile = _load_profile("src/qai_text2ir/profiles/pics_annex15_default_v1.yaml")
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="pics_annex15_heading_continuation_fixture",
+        parser_profile=parser_profile,
+    )
+    nodes = _flatten(ir_doc.to_dict()["content"])
+
+    section_5 = next(n for n in nodes if n["kind"] == "section" and n.get("num") == "5")
+    assert section_5.get("heading") == "PROCESS VALIDATION"
+    assert (section_5.get("text") or "").startswith("General")

@@ -6,3 +6,6 @@ VALIDATION
 3. QUALIFICATION STAGES FOR EQUIPMENT, FACILITIES,
 UTILITIES AND SYSTEMS.
 3.1 Qualification activities should consider all relevant systems.
+5. PROCESS VALIDATION
+General
+5.1 The requirements and principles outlined in this section are applicable.

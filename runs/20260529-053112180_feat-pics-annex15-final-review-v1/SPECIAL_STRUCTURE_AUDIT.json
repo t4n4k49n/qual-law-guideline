@@ -1,0 +1,24 @@
+{
+  "doc_id": "pics_pe00917_annex15_20230825",
+  "bundle_dir": "out/20260529-053112180_feat-pics-annex15-final-review-v1/pics_pe00917_annex15_20230825_after_heading_fix",
+  "source_path": "data/human-readable/pics/pe009-17_annex15_2023-08-25_en.txt",
+  "source_tables": 0,
+  "source_figures": 0,
+  "source_checklist_headers": 0,
+  "fixed_width_table_candidate_blocks": 0,
+  "generated_counts": {
+    "table_header": 0,
+    "note": 0,
+    "figure": 0,
+    "table": 0,
+    "preformatted": 0,
+    "table_row": 0
+  },
+  "generated_tables": 0,
+  "generated_rows": 0,
+  "generated_figures": 0,
+  "suspicious_nodes": [],
+  "unresolved_special_blocks": [],
+  "unresolved_count": 0,
+  "status": "pass"
+}
