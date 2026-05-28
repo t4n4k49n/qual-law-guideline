@@ -1,0 +1,138 @@
+schema: qai.parser_profile.v1
+id: pics_annex1_default_v2
+title: PIC/S PE 009-17 Annex 1 (Sterile medicinal products) markers
+applies_to:
+  family: PICS
+  jurisdiction: INTL
+  defaults: false
+language: en
+source_label: PIC/S
+preprocess:
+  drop_line_regexes:
+  - (?i)^\s*PE\s*009-17\s*\(Annexes\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$
+  - ^\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*$
+  - (?i)^\s*web\s+site:\s*https?://\S+\s*$
+  - ^\s*Annex\s+1\s+Manufacture\s+of\s+sterile\s+medicinal\s+products\s*$
+  strip_inline_regexes:
+  - (?i)(?<=\S)\s+PE\s*009-17\s*\(Annexes\)\s*-\s*(?:\d{1,3}|[ivxlcdm]+)\s*-\s*25\s+August\s+2023\s*$
+  - (?i)(?<=\S)Annex\s+\d+[A-Z]?\s+[A-Za-z].{0,200}$
+  - '[\x00-\x1F]'
+  - (?i)(?<=\S)Annex\s+1\s+Manufacture\s+of\s+sterile\s+medicinal\s+products\s*$
+  drop_repeated_structural_headers:
+    enabled: true
+    kinds:
+    - annex
+  merge_structural_heading_continuations:
+    enabled: true
+    kinds:
+    - annex
+    max_next_line_len: 200
+    max_merge_lines: 2
+    max_blank_lookahead: 2
+  skip_blocks:
+  - start_regex: (?i)^\s*Document\s+map\s*$
+    end_regex: ^\s*1\s+Scope\b
+    include_start: false
+    include_end: true
+    max_lines: 300
+  detect_plaintext_tables:
+    enabled: true
+    min_rows: 2
+    max_rows: 80
+    mode: conservative
+  pics_annex1_tables:
+    enabled: true
+  extract_notes:
+    enabled: true
+    max_lines: 40
+context_root_kind: annex
+structural_kinds:
+- annex
+- section
+marker_types:
+- id: annex
+  kind: annex
+  kind_raw: ANNEX
+  match: (?i)^\s*ANNEX\s+(?P<n>1)\b\s*
+  num_group: n
+- id: section_int_title
+  kind: section
+  kind_raw: '1'
+  match: ^(?P<n>\d{1,2})\s+(?=[A-Z])(?!.*\.\s*$)(?=.{1,100}$)
+  num_group: n
+- id: paragraph_decimal
+  kind: paragraph
+  kind_raw: '3.1'
+  match: ^(?P<n>\d{1,2}\.\d+)\s+
+  num_group: n
+- id: item_roman_dot
+  kind: item
+  kind_raw: i.
+  match: ^(?P<n>[ivxlcdm]+)\.\s+
+  num_group: n
+- id: item_alpha_dot
+  kind: item
+  kind_raw: a.
+  match: ^(?P<n>[a-z])\.\s+
+  num_group: n
+- id: bullet
+  kind: subitem
+  kind_raw: •
+  match: ^\s*[•]\s+
+structure:
+  root:
+    children:
+    - annex
+  annex:
+    children:
+    - section
+    - paragraph
+    - item
+    - subitem
+    - table
+    - preformatted
+    - note
+    - history
+  section:
+    children:
+    - paragraph
+    - item
+    - subitem
+    - table
+    - preformatted
+    - note
+    - history
+  paragraph:
+    children:
+    - item
+    - subitem
+    - note
+    - history
+  item:
+    children:
+    - subitem
+    - note
+    - history
+  subitem:
+    children:
+    - note
+    - history
+  table:
+    children:
+    - table_header
+    - note
+  table_header:
+    children:
+    - table_row
+  table_row:
+    children: []
+  preformatted:
+    children:
+    - note
+  note:
+    children: []
+  history:
+    children: []
+compound_prefix:
+  enabled: false
+  max_depth: 1
