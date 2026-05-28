@@ -42,9 +42,12 @@ def test_annex1_table_1_grade_a_to_d_are_structured() -> None:
     table = _tables(_ir())["1"]
     rows = _rows(table)
 
+    assert table["data"]["cell_reconstruction_status"] == "complete"
+    assert table["data"]["header_groups"][0]["columns"] == [1, 2]
     assert [row["data"]["grade"] for row in rows] == ["A", "B", "C", "D"]
     assert rows[0]["data"]["cells"] == ["A", "3 520", "3 520", "Not specified (a)", "Not specified (a)"]
     assert rows[3]["data"]["cells"][2] == "Not predetermined (b)"
+    assert rows[3]["data"]["wrapped_cells"] == [2, 4]
     assert any("µm/m3" in column for column in table["children"][0]["data"]["columns"])
 
 
@@ -56,6 +59,8 @@ def test_annex1_table_2_grade_a_to_d_and_notes_are_structured() -> None:
 
     assert [row["data"]["grade"] for row in rows] == ["A", "B", "C", "D"]
     assert rows[0]["data"]["cells"] == ["A", "No growth", "No growth", "No growth"]
+    assert rows[0]["data"]["expanded_merged_cells"] == [1, 2, 3]
+    assert table["data"]["merged_cells"][0]["type"] == "column_span"
     assert "Note 1:" in note_text
     assert "Note 2:" in note_text
     assert "Note 3:" in note_text
@@ -68,6 +73,8 @@ def test_annex1_table_3_grade_operations_are_structured() -> None:
 
     assert [row["data"]["grade"] for row in rows] == ["A", "C", "C", "D"]
     assert "Filling of products" in rows[0]["data"]["operations"][0]
+    assert rows[1]["data"]["rowspan_group"] == "Grade C"
+    assert rows[2]["data"]["rowspan_group"] == "Grade C"
     assert "subsequent filling" in rows[-1]["data"]["operations"][0]
 
 
@@ -76,10 +83,11 @@ def test_annex1_table_4_grade_operations_are_structured() -> None:
     rows = _rows(table)
     grades = [row["data"]["grade"] for row in rows]
 
-    assert grades.count("A") >= 8
-    assert "B" in grades
-    assert "C" in grades
-    assert "D" in grades
+    assert grades == ["A"] * 8 + ["B"] * 2 + ["C"] + ["D"] * 4
+    assert rows[8]["data"]["operations"][0] == "Background support for grade A (when not in an isolator)."
+    assert rows[8]["data"]["rowspan_group"] == "Grade B"
+    assert rows[11]["data"]["operations"][0] == "Cleaning of equipment."
+    assert rows[11]["data"]["rowspan_group"] == "Grade D"
     assert any("lyophilizer" in row["data"]["operations"][0] for row in rows)
 
 
@@ -90,6 +98,7 @@ def test_annex1_table_5_grade_a_to_d_are_structured() -> None:
     assert [row["data"]["grade"] for row in rows] == ["A", "B", "C", "D"]
     assert rows[0]["data"]["cells"] == ["A", "3 520", "3 520", "29", "29"]
     assert rows[3]["data"]["cells"][2] == "Not predetermined (a)"
+    assert rows[3]["data"]["wrapped_cells"] == [2, 4]
     assert any("μm/m3" in column for column in table["children"][0]["data"]["columns"])
 
 
@@ -101,6 +110,8 @@ def test_annex1_table_6_grade_a_to_d_and_notes_are_structured() -> None:
 
     assert [row["data"]["grade"] for row in rows] == ["A", "B", "C", "D"]
     assert rows[0]["data"]["cells"][1:] == ["No growth (c)", "No growth (c)", "No growth (c)", "No growth (c)"]
+    assert rows[0]["data"]["expanded_merged_cells"] == [1, 2, 3, 4]
+    assert table["data"]["merged_cells"][0]["type"] == "column_span"
     assert "(a)" in note_text
     assert "(b)" in note_text
     assert "(c)" in note_text

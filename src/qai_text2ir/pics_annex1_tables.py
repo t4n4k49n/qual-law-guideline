@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
@@ -25,6 +26,156 @@ class Annex1Table:
     rows: List[Dict[str, Any]]
     notes: List[Dict[str, Any]]
     raw_lines: List[str]
+
+
+VISUAL_REVIEW_SOURCE_RUN = "runs/20260528-160046554_feat-pics-annex1-table-visual-review-v1/visual_reconstruction.json"
+VISUAL_REVIEW_PARSER = "pics_annex1_visual_review_v1"
+
+_PARTICLE_HEADER_GROUPS = [
+    {
+        "label": "Maximum limits for total particle >= 0.5 um/m3",
+        "columns": [1, 2],
+        "subcolumns": ["at rest", "in operation"],
+    },
+    {
+        "label": "Maximum limits for total particle >= 5 um/m3",
+        "columns": [3, 4],
+        "subcolumns": ["at rest", "in operation"],
+    },
+]
+
+VISUAL_REVIEW_BY_TABLE: Dict[str, Dict[str, Any]] = {
+    "1": {
+        "source_pages": ["source_pages/annex1_tables_p19_20-020.png"],
+        "cell_reconstruction": "visual_reviewed_cells",
+        "cell_reconstruction_status": "complete",
+        "header_groups": _PARTICLE_HEADER_GROUPS,
+        "merged_cells": [
+            {"type": "column_span", "row": "header", "columns": [1, 2], "expanded": False},
+            {"type": "column_span", "row": "header", "columns": [3, 4], "expanded": False},
+        ],
+        "visual_features": [
+            "Two-tier particle-size headers span the at-rest and in-operation subcolumns.",
+            "Grade D has wrapped cell text for both in-operation limits; each wrapped cell is one logical value.",
+        ],
+        "row_review": [
+            {"record_id": "t1.r1", "visual_row": "A", "status": "checked"},
+            {"record_id": "t1.r2", "visual_row": "B", "status": "checked"},
+            {"record_id": "t1.r3", "visual_row": "C", "status": "checked"},
+            {"record_id": "t1.r4", "visual_row": "D", "status": "checked", "wrapped_cells": [2, 4]},
+        ],
+    },
+    "2": {
+        "source_pages": ["source_pages/annex1_tables_p21-021.png"],
+        "cell_reconstruction": "visual_reviewed_cells",
+        "cell_reconstruction_status": "complete",
+        "merged_cells": [
+            {
+                "type": "column_span",
+                "row": "A",
+                "columns": [1, 2, 3],
+                "text": "No growth",
+                "expanded": True,
+            }
+        ],
+        "visual_features": [
+            "Grade A has one horizontally merged No growth cell across all three monitoring-method columns.",
+        ],
+        "row_review": [
+            {"record_id": "t2.r1", "visual_row": "A", "status": "checked", "expanded_merged_cells": [1, 2, 3]},
+            {"record_id": "t2.r2", "visual_row": "B", "status": "checked"},
+            {"record_id": "t2.r3", "visual_row": "C", "status": "checked"},
+            {"record_id": "t2.r4", "visual_row": "D", "status": "checked"},
+        ],
+    },
+    "3": {
+        "source_pages": ["source_pages/annex1_tables_p30_31-031.png"],
+        "cell_reconstruction": "visual_reviewed_cells",
+        "cell_reconstruction_status": "complete",
+        "merged_cells": [
+            {"type": "row_span", "column": 0, "rows": [2, 3], "text": "Grade C", "expanded": True}
+        ],
+        "visual_features": [
+            "Grade C spans two operation rows and is expanded into two logical records.",
+        ],
+        "row_review": [
+            {"record_id": "t3.r1", "visual_row": "Grade A/1", "status": "checked"},
+            {"record_id": "t3.r2", "visual_row": "Grade C/1", "status": "checked", "rowspan_group": "Grade C"},
+            {"record_id": "t3.r3", "visual_row": "Grade C/2", "status": "checked", "rowspan_group": "Grade C"},
+            {"record_id": "t3.r4", "visual_row": "Grade D/1", "status": "checked"},
+        ],
+    },
+    "4": {
+        "source_pages": ["source_pages/annex1_tables_p32-032.png"],
+        "cell_reconstruction": "visual_reviewed_cells",
+        "cell_reconstruction_status": "complete",
+        "merged_cells": [
+            {"type": "row_span", "column": 0, "rows": list(range(1, 9)), "text": "Grade A", "expanded": True},
+            {"type": "row_span", "column": 0, "rows": [9, 10], "text": "Grade B", "expanded": True},
+            {"type": "row_span", "column": 0, "rows": [12, 13, 14, 15], "text": "Grade D", "expanded": True},
+        ],
+        "visual_features": [
+            "Grade labels are vertically centered in merged cells; text extraction places some labels mid-group.",
+            "The Grade B and Grade D first operations must be assigned from the visual row-span, not from the extracted label line.",
+        ],
+        "row_review": [
+            *[
+                {"record_id": f"t4.r{i}", "visual_row": f"Grade A/{i}", "status": "checked", "rowspan_group": "Grade A"}
+                for i in range(1, 9)
+            ],
+            {"record_id": "t4.r9", "visual_row": "Grade B/1", "status": "checked", "rowspan_group": "Grade B"},
+            {"record_id": "t4.r10", "visual_row": "Grade B/2", "status": "checked", "rowspan_group": "Grade B"},
+            {"record_id": "t4.r11", "visual_row": "Grade C/1", "status": "checked"},
+            *[
+                {"record_id": f"t4.r{i}", "visual_row": f"Grade D/{i - 11}", "status": "checked", "rowspan_group": "Grade D"}
+                for i in range(12, 16)
+            ],
+        ],
+    },
+    "5": {
+        "source_pages": ["source_pages/annex1_tables_p56_59-058.png"],
+        "cell_reconstruction": "visual_reviewed_cells",
+        "cell_reconstruction_status": "complete",
+        "header_groups": _PARTICLE_HEADER_GROUPS,
+        "merged_cells": [
+            {"type": "column_span", "row": "header", "columns": [1, 2], "expanded": False},
+            {"type": "column_span", "row": "header", "columns": [3, 4], "expanded": False},
+        ],
+        "visual_features": [
+            "Two-tier particle-size headers span the at-rest and in-operation subcolumns.",
+            "Grade D has wrapped cell text for both in-operation limits; each wrapped cell is one logical value.",
+        ],
+        "row_review": [
+            {"record_id": "t5.r1", "visual_row": "A", "status": "checked"},
+            {"record_id": "t5.r2", "visual_row": "B", "status": "checked"},
+            {"record_id": "t5.r3", "visual_row": "C", "status": "checked"},
+            {"record_id": "t5.r4", "visual_row": "D", "status": "checked", "wrapped_cells": [2, 4]},
+        ],
+    },
+    "6": {
+        "source_pages": ["source_pages/annex1_tables_p60-060.png"],
+        "cell_reconstruction": "visual_reviewed_cells",
+        "cell_reconstruction_status": "complete",
+        "merged_cells": [
+            {
+                "type": "column_span",
+                "row": "A",
+                "columns": [1, 2, 3, 4],
+                "text": "No growth (c)",
+                "expanded": True,
+            }
+        ],
+        "visual_features": [
+            "Grade A has one horizontally merged No growth(c) cell across all four monitoring-method columns.",
+        ],
+        "row_review": [
+            {"record_id": "t6.r1", "visual_row": "A", "status": "checked", "expanded_merged_cells": [1, 2, 3, 4]},
+            {"record_id": "t6.r2", "visual_row": "B", "status": "checked"},
+            {"record_id": "t6.r3", "visual_row": "C", "status": "checked"},
+            {"record_id": "t6.r4", "visual_row": "D", "status": "checked"},
+        ],
+    },
+}
 
 
 def _clean(text: str) -> str:
@@ -281,6 +432,14 @@ def _operation_rows(table_no: str, caption: str, caption_idx: int, lines: List[s
             current_op = f"{current_op} {stripped}"
     flush()
 
+    if table_no == "4" and len(rows) == 15:
+        # The Grade labels are vertically centered in row-spanned cells in the PDF.
+        # Text extraction places Grade B/D labels after the first operation(s).
+        visual_grades = ["A"] * 8 + ["B"] * 2 + ["C"] + ["D"] * 4
+        for row, visual_grade in zip(rows, visual_grades):
+            row["grade"] = visual_grade
+            row["cells"][0] = f"Grade {visual_grade}"
+
     return Annex1Table(
         table_no=table_no,
         caption=caption,
@@ -320,6 +479,7 @@ def parse_pics_annex1_tables(lines: List[str]) -> List[Annex1Table]:
 
 def _table_node(table: Annex1Table, *, parent_nid: str, source_label: str) -> Node:
     table_nid = f"{parent_nid}.tbl{table.table_no}" if parent_nid != "root" else f"tbl{table.table_no}"
+    visual_review = deepcopy(VISUAL_REVIEW_BY_TABLE.get(table.table_no, {}))
     node = _make_node(
         nid=table_nid,
         kind="table",
@@ -334,6 +494,9 @@ def _table_node(table: Annex1Table, *, parent_nid: str, source_label: str) -> No
             "table_no": table.table_no,
             "source_format": "fixed_width",
             "raw_lines": table.raw_lines,
+            "visual_review_parser": VISUAL_REVIEW_PARSER,
+            "visual_review_source_runs": [VISUAL_REVIEW_SOURCE_RUN],
+            **visual_review,
         },
     )
     header = _make_node(
@@ -348,8 +511,10 @@ def _table_node(table: Annex1Table, *, parent_nid: str, source_label: str) -> No
         data={"columns": table.columns},
     )
     node.children.append(header)
+    row_review = visual_review.get("row_review") or []
     for row_no, row in enumerate(table.rows, start=1):
         cells = row["cells"]
+        visual_row = deepcopy(row_review[row_no - 1]) if row_no <= len(row_review) else {}
         row_node = _make_node(
             nid=f"{header.nid}.tblr{row_no}",
             kind="table_row",
@@ -362,6 +527,11 @@ def _table_node(table: Annex1Table, *, parent_nid: str, source_label: str) -> No
             data={
                 "cells": cells,
                 "grade": row.get("grade"),
+                "visual_review_parser": VISUAL_REVIEW_PARSER,
+                "visual_review_source_run": VISUAL_REVIEW_SOURCE_RUN,
+                "cell_reconstruction": visual_review.get("cell_reconstruction", "visual_reviewed_cells"),
+                "cell_reconstruction_status": visual_review.get("cell_reconstruction_status", "complete"),
+                **visual_row,
                 **({"operations": row["operations"]} if row.get("operations") else {}),
             },
         )
