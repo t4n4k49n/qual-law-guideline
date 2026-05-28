@@ -41,6 +41,22 @@ def _rows(table: Dict[str, Any]) -> List[Dict[str, Any]]:
     return [child for child in header.get("children", []) if child.get("kind") == "table_row"]
 
 
+def test_annex2a_table1_header_preserves_spanning_parent_header() -> None:
+    table = _table1(_ir())
+    header = next(child for child in table.get("children", []) if child.get("kind") == "table_header")
+    columns = header["data"]["columns"]
+
+    assert columns == [
+        "Example product / product class",
+        "Application of this Annex (see note 1) manufacturing step 1",
+        "Application of this Annex (see note 1) manufacturing step 2",
+        "Application of this Annex (see note 1) manufacturing step 3",
+        "Application of this Annex (see note 1) manufacturing step 4",
+    ]
+    assert header["text"] == " | ".join(columns)
+    assert len(columns) == len(set(columns))
+
+
 def test_annex2a_table1_product_classes_and_notes_are_structured() -> None:
     table = _table1(_ir())
     rows = _rows(table)
