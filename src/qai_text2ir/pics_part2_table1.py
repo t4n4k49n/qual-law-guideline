@@ -20,11 +20,11 @@ class Part2Table1:
 
 COLUMNS = [
     "Type of Manufacturing",
-    "Step 1",
-    "Step 2",
-    "Step 3",
-    "Step 4",
-    "Step 5",
+    "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 1",
+    "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 2",
+    "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 3",
+    "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 4",
+    "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 5",
 ]
 
 ROWS = [
@@ -77,7 +77,7 @@ ROWS = [
         "Physical processing, and packaging",
     ],
     [
-        "Classical Fermentation to produce an API",
+        "“Classical” Fermentation to produce an API",
         "Establishment of cell bank",
         "Maintenance of the cell bank",
         "Introduction of the cells into fermentation",
