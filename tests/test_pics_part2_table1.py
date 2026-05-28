@@ -43,6 +43,23 @@ def _rows(table: Dict[str, Any]) -> List[Dict[str, Any]]:
     return [child for child in header.get("children", []) if child.get("kind") == "table_row"]
 
 
+def test_part2_table1_header_preserves_spanning_parent_header() -> None:
+    table = _table1(_ir())
+    header = next(child for child in table.get("children", []) if child.get("kind") == "table_header")
+    columns = header["data"]["columns"]
+
+    assert columns == [
+        "Type of Manufacturing",
+        "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 1",
+        "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 2",
+        "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 3",
+        "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 4",
+        "Application of this Guide to steps (shown in grey) used in this type of manufacturing step 5",
+    ]
+    assert header["text"] == " | ".join(columns)
+    assert len(columns) == len(set(columns))
+
+
 def test_part2_table1_rows_are_structured() -> None:
     table = _table1(_ir())
     rows = _rows(table)
@@ -55,7 +72,7 @@ def test_part2_table1_rows_are_structured() -> None:
         "Herbal extracts used as API",
         "API consisting of comminuted or powdered herbs",
         "Biotechnology: fermentation / cell culture",
-        "Classical Fermentation to produce an API",
+        "“Classical” Fermentation to produce an API",
     ]
     assert table["data"]["shading_reconstructed"] is False
 
