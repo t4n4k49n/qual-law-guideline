@@ -70,3 +70,16 @@
 ## 昇格
 
 この親PRでは `data/normalized/` は変更しない。承認後、子PRで `promotion_candidate` から `data/normalized/pics_pe00917_annex1_20230825/` へ複写する。
+
+## 昇格準備
+
+- 親PR: #199 merged
+- 昇格専用ブランチ: `promote/pics-annex1-v3`
+- 昇格元: `runs/20260528-182258295_run-normalized-pics-annex1-v3/promotion_candidate/`
+- 昇格先: `data/normalized/pics_pe00917_annex1_20230825/`
+- 複写対象: 4ファイルのみ
+  - `pics_pe00917_annex1_20230825.regdoc_ir.yaml`
+  - `pics_pe00917_annex1_20230825.parser_profile.yaml`
+  - `pics_pe00917_annex1_20230825.regdoc_profile.yaml`
+  - `pics_pe00917_annex1_20230825.meta.yaml`
+- 複写後SHA-256: 昇格元と昇格先の4ファイルがすべて一致
