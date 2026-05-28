@@ -1,0 +1,1050 @@
+schema: qai.regdoc_ir.v4
+doc_id: pics_pe00917_annex11_20230825
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags: []
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: ann11
+    kind: annex
+    kind_raw: ANNEX
+    num: '11'
+    ord: 1
+    heading: COMPUTERISED SYSTEMS
+    text: 'PRINCIPLE This annex applies to all forms of computerised systems used as part of a GMP regulated activities. A computerised system is a set of software and hardware components which together fulfil certain functionalities.
+
+
+      The application should be validated; IT infrastructure should be qualified.
+
+
+      Where a computerised system replaces a manual operation, there should be no resultant decrease in product quality, process control or quality assurance. There should be no increase in the overall risk of the process.
+
+
+      GENERAL'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: PIC/S
+      locator: line:1
+    - source_label: PIC/S
+      locator: line:6
+    - source_label: PIC/S
+      locator: line:7
+    - source_label: PIC/S
+      locator: line:8
+    - source_label: PIC/S
+      locator: line:9
+    - source_label: PIC/S
+      locator: line:11
+    - source_label: PIC/S
+      locator: line:13
+    - source_label: PIC/S
+      locator: line:14
+    - source_label: PIC/S
+      locator: line:15
+    - source_label: PIC/S
+      locator: line:19
+    children:
+    - nid: ann11.sec1
+      kind: section
+      kind_raw: '4.'
+      num: '1'
+      ord: 2
+      heading: Risk Management
+      text: Risk management should be applied throughout the lifecycle of the computerised system taking into account patient safety, data integrity and product quality. As part of a risk management system, decisions on the extent of validation and data integrity controls should be based on a justified and documented risk assessment of the computerised system.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:21
+      - source_label: PIC/S
+        locator: line:23
+      - source_label: PIC/S
+        locator: line:24
+      - source_label: PIC/S
+        locator: line:25
+      - source_label: PIC/S
+        locator: line:26
+      - source_label: PIC/S
+        locator: line:27
+      children: []
+    - nid: ann11.sec2
+      kind: section
+      kind_raw: '4.'
+      num: '2'
+      ord: 3
+      heading: Personnel
+      text: There should be close cooperation between all relevant personnel such as Process Owner, System Owner, Authorised Persons and IT. All personnel should have appropriate qualifications, level of access and defined responsibilities to carry out their assigned duties.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:29
+      - source_label: PIC/S
+        locator: line:31
+      - source_label: PIC/S
+        locator: line:32
+      - source_label: PIC/S
+        locator: line:33
+      - source_label: PIC/S
+        locator: line:34
+      children: []
+    - nid: ann11.sec3
+      kind: section
+      kind_raw: '4.'
+      num: '3'
+      ord: 4
+      heading: Suppliers and Service Providers
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:36
+      children:
+      - nid: ann11.sec3.p3_1
+        kind: paragraph
+        kind_raw: '3.1'
+        num: '3.1'
+        ord: 5
+        heading: null
+        text: When third parties (e.g. suppliers, service providers) are used e.g. to provide, install, configure, integrate, validate, maintain (e.g. via remote access), modify or retain a computerised system or related service or for data processing, formal agreements must exist between the manufacturer and any third parties, and these agreements should include clear statements of the responsibilities of the third party. IT-departments should be considered analogous.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:38
+        - source_label: PIC/S
+          locator: line:39
+        - source_label: PIC/S
+          locator: line:40
+        - source_label: PIC/S
+          locator: line:41
+        - source_label: PIC/S
+          locator: line:42
+        - source_label: PIC/S
+          locator: line:43
+        children: []
+      - nid: ann11.sec3.p3_2
+        kind: paragraph
+        kind_raw: '3.2'
+        num: '3.2'
+        ord: 6
+        heading: null
+        text: The competence and reliability of a supplier are key factors when selecting a product or service provider. The need for an audit should be based on a risk assessment.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:44
+        - source_label: PIC/S
+          locator: line:45
+        - source_label: PIC/S
+          locator: line:46
+        children: []
+      - nid: ann11.sec3.p3_3
+        kind: paragraph
+        kind_raw: '3.3'
+        num: '3.3'
+        ord: 7
+        heading: null
+        text: Documentation supplied with commercial off-the-shelf products should be reviewed by regulated users to check that user requirements are fulfilled.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:48
+        - source_label: PIC/S
+          locator: line:49
+        children: []
+      - nid: ann11.sec3.p3_4
+        kind: paragraph
+        kind_raw: '3.4'
+        num: '3.4'
+        ord: 8
+        heading: null
+        text: 'Quality system and audit information relating to suppliers or developers of software and implemented systems should be made available to inspectors on request.
+
+
+          PROJECT PHASE'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:58
+        - source_label: PIC/S
+          locator: line:59
+        - source_label: PIC/S
+          locator: line:60
+        - source_label: PIC/S
+          locator: line:63
+        children: []
+    - nid: ann11.sec4
+      kind: section
+      kind_raw: '4.'
+      num: '4'
+      ord: 9
+      heading: Validation
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:64
+      children:
+      - nid: ann11.sec4.p4_1
+        kind: paragraph
+        kind_raw: '4.1'
+        num: '4.1'
+        ord: 10
+        heading: null
+        text: The validation documentation and reports should cover the relevant steps of the life cycle. Manufacturers should be able to justify their standards, protocols, acceptance criteria, procedures and records based on their risk assessment.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:66
+        - source_label: PIC/S
+          locator: line:67
+        - source_label: PIC/S
+          locator: line:68
+        children: []
+      - nid: ann11.sec4.p4_2
+        kind: paragraph
+        kind_raw: '4.2'
+        num: '4.2'
+        ord: 11
+        heading: null
+        text: Validation documentation should include change control records (if applicable) and reports on any deviations observed during the validation process.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:70
+        - source_label: PIC/S
+          locator: line:71
+        children: []
+      - nid: ann11.sec4.p4_3
+        kind: paragraph
+        kind_raw: '4.3'
+        num: '4.3'
+        ord: 12
+        heading: null
+        text: 'An up to date listing of all relevant systems and their GMP functionality (inventory) should be available.
+
+
+          For critical systems an up-to-date system description detailing the physical and logical arrangements, data flows and interfaces with other systems or processes, any hardware and software pre-requisites, and security measures should be available.'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:73
+        - source_label: PIC/S
+          locator: line:74
+        - source_label: PIC/S
+          locator: line:76
+        - source_label: PIC/S
+          locator: line:77
+        - source_label: PIC/S
+          locator: line:78
+        - source_label: PIC/S
+          locator: line:79
+        children: []
+      - nid: ann11.sec4.p4_4
+        kind: paragraph
+        kind_raw: '4.4'
+        num: '4.4'
+        ord: 13
+        heading: null
+        text: User Requirements Specifications should describe the required functions of the computerised system and be based on documented risk assessment and GMP impact. User requirements should be traceable throughout the life-cycle.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:81
+        - source_label: PIC/S
+          locator: line:82
+        - source_label: PIC/S
+          locator: line:83
+        children: []
+      - nid: ann11.sec4.p4_5
+        kind: paragraph
+        kind_raw: '4.5'
+        num: '4.5'
+        ord: 14
+        heading: null
+        text: The regulated user should take all reasonable steps to ensure that the system has been developed in accordance with an appropriate quality management system. The supplier should be assessed appropriately.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:85
+        - source_label: PIC/S
+          locator: line:86
+        - source_label: PIC/S
+          locator: line:87
+        children: []
+      - nid: ann11.sec4.p4_6
+        kind: paragraph
+        kind_raw: '4.6'
+        num: '4.6'
+        ord: 15
+        heading: null
+        text: For the validation of bespoke or customised computerised systems there should be a process in place that ensures the formal assessment and reporting of quality and performance measures for all the life-cycle stages of the system.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:89
+        - source_label: PIC/S
+          locator: line:90
+        - source_label: PIC/S
+          locator: line:91
+        children: []
+      - nid: ann11.sec4.p4_7
+        kind: paragraph
+        kind_raw: '4.7'
+        num: '4.7'
+        ord: 16
+        heading: null
+        text: Evidence of appropriate test methods and test scenarios should be demonstrated. Particularly, system (process) parameter limits, data limits and error handling should be considered. Automated testing tools and test environments should have documented assessments for their adequacy.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:93
+        - source_label: PIC/S
+          locator: line:94
+        - source_label: PIC/S
+          locator: line:95
+        - source_label: PIC/S
+          locator: line:96
+        children: []
+      - nid: ann11.sec4.p4_8
+        kind: paragraph
+        kind_raw: '4.8'
+        num: '4.8'
+        ord: 17
+        heading: null
+        text: 'If data are transferred to another data format or system, validation should include checks that data are not altered in value and/or meaning during this migration process.
+
+
+          OPERATIONAL PHASE'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:98
+        - source_label: PIC/S
+          locator: line:99
+        - source_label: PIC/S
+          locator: line:100
+        - source_label: PIC/S
+          locator: line:110
+        children: []
+    - nid: ann11.sec5
+      kind: section
+      kind_raw: '4.'
+      num: '5'
+      ord: 18
+      heading: Data
+      text: Computerised systems exchanging data electronically with other systems should include appropriate built-in checks for the correct and secure entry and processing of data, in order to minimize the risks.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:112
+      - source_label: PIC/S
+        locator: line:114
+      - source_label: PIC/S
+        locator: line:115
+      - source_label: PIC/S
+        locator: line:116
+      children: []
+    - nid: ann11.sec6
+      kind: section
+      kind_raw: '4.'
+      num: '6'
+      ord: 19
+      heading: Accuracy Checks
+      text: For critical data entered manually, there should be an additional check on the accuracy of the data. This check may be done by a second operator or by validated electronic means. The criticality and the potential consequences of erroneous or incorrectly entered data to a system should be covered by risk management.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:118
+      - source_label: PIC/S
+        locator: line:120
+      - source_label: PIC/S
+        locator: line:121
+      - source_label: PIC/S
+        locator: line:122
+      - source_label: PIC/S
+        locator: line:123
+      - source_label: PIC/S
+        locator: line:124
+      children: []
+    - nid: ann11.sec7
+      kind: section
+      kind_raw: '4.'
+      num: '7'
+      ord: 20
+      heading: Data Storage
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:126
+      children:
+      - nid: ann11.sec7.p7_1
+        kind: paragraph
+        kind_raw: '7.1'
+        num: '7.1'
+        ord: 21
+        heading: null
+        text: Data should be secured by both physical and electronic means against damage. Stored data should be checked for accessibility, readability and accuracy. Access to data should be ensured throughout the retention period.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:128
+        - source_label: PIC/S
+          locator: line:129
+        - source_label: PIC/S
+          locator: line:130
+        children: []
+      - nid: ann11.sec7.p7_2
+        kind: paragraph
+        kind_raw: '7.2'
+        num: '7.2'
+        ord: 22
+        heading: null
+        text: Regular back-ups of all relevant data should be done. Integrity and accuracy of backup data and the ability to restore the data should be checked during validation and monitored periodically.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:132
+        - source_label: PIC/S
+          locator: line:133
+        - source_label: PIC/S
+          locator: line:134
+        children: []
+    - nid: ann11.sec8
+      kind: section
+      kind_raw: '4.'
+      num: '8'
+      ord: 23
+      heading: Printouts
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:136
+      children:
+      - nid: ann11.sec8.p8_1
+        kind: paragraph
+        kind_raw: '8.1'
+        num: '8.1'
+        ord: 24
+        heading: null
+        text: It should be possible to obtain clear printed copies of electronically stored data.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:138
+        children: []
+      - nid: ann11.sec8.p8_2
+        kind: paragraph
+        kind_raw: '8.2'
+        num: '8.2'
+        ord: 25
+        heading: null
+        text: For records supporting batch release it should be possible to generate printouts indicating if any of the data has been changed since the original entry.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:140
+        - source_label: PIC/S
+          locator: line:141
+        children: []
+    - nid: ann11.sec9
+      kind: section
+      kind_raw: '4.'
+      num: '9'
+      ord: 26
+      heading: Audit Trails
+      text: Consideration should be given, based on a risk assessment, to building into the system the creation of a record of all GMP-relevant changes and deletions (a system generated "audit trail"). For change or deletion of GMP-relevant data the reason should be documented. Audit trails need to be available and convertible to a generally intelligible form and regularly reviewed.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:143
+      - source_label: PIC/S
+        locator: line:145
+      - source_label: PIC/S
+        locator: line:146
+      - source_label: PIC/S
+        locator: line:147
+      - source_label: PIC/S
+        locator: line:148
+      - source_label: PIC/S
+        locator: line:149
+      children: []
+    - nid: ann11.sec10
+      kind: section
+      kind_raw: '4.'
+      num: '10'
+      ord: 27
+      heading: Change and Configuration Management
+      text: Any changes to a computerised system including system configurations should only be made in a controlled manner in accordance with a defined procedure.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:151
+      - source_label: PIC/S
+        locator: line:153
+      - source_label: PIC/S
+        locator: line:154
+      children: []
+    - nid: ann11.sec11
+      kind: section
+      kind_raw: '4.'
+      num: '11'
+      ord: 28
+      heading: Periodic Evaluation
+      text: 'Computerised systems should be periodically evaluated to confirm that they remain in a valid state and are compliant with GMP. Such evaluations should include, where appropriate, the current range of functionality, deviation records,
+
+
+        incidents, problems, upgrade history, performance, reliability, security and validation status reports.'
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:156
+      - source_label: PIC/S
+        locator: line:158
+      - source_label: PIC/S
+        locator: line:159
+      - source_label: PIC/S
+        locator: line:160
+      - source_label: PIC/S
+        locator: line:170
+      - source_label: PIC/S
+        locator: line:171
+      children: []
+    - nid: ann11.sec12
+      kind: section
+      kind_raw: '4.'
+      num: '12'
+      ord: 29
+      heading: Security
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:173
+      children:
+      - nid: ann11.sec12.p12_1
+        kind: paragraph
+        kind_raw: '12.1'
+        num: '12.1'
+        ord: 30
+        heading: null
+        text: Physical and/or logical controls should be in place to restrict access to computerised system to authorised persons. Suitable methods of preventing unauthorised entry to the system may include the use of keys, pass cards, personal codes with passwords, biometrics, restricted access to computer equipment and data storage areas.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:175
+        - source_label: PIC/S
+          locator: line:176
+        - source_label: PIC/S
+          locator: line:177
+        - source_label: PIC/S
+          locator: line:178
+        - source_label: PIC/S
+          locator: line:179
+        children: []
+      - nid: ann11.sec12.p12_2
+        kind: paragraph
+        kind_raw: '12.2'
+        num: '12.2'
+        ord: 31
+        heading: null
+        text: The extent of security controls depends on the criticality of the computerised system.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:181
+        - source_label: PIC/S
+          locator: line:182
+        children: []
+      - nid: ann11.sec12.p12_3
+        kind: paragraph
+        kind_raw: '12.3'
+        num: '12.3'
+        ord: 32
+        heading: null
+        text: Creation, change, and cancellation of access authorisations should be recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:184
+        children: []
+      - nid: ann11.sec12.p12_4
+        kind: paragraph
+        kind_raw: '12.4'
+        num: '12.4'
+        ord: 33
+        heading: null
+        text: Management systems for data and for documents should be designed to record the identity of operators entering, changing, confirming or deleting data including date and time.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:186
+        - source_label: PIC/S
+          locator: line:187
+        - source_label: PIC/S
+          locator: line:188
+        children: []
+    - nid: ann11.sec13
+      kind: section
+      kind_raw: '4.'
+      num: '13'
+      ord: 34
+      heading: Incident Management
+      text: All incidents, not only system failures and data errors, should be reported and assessed. The root cause of a critical incident should be identified and should form the basis of corrective and preventive actions.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:190
+      - source_label: PIC/S
+        locator: line:192
+      - source_label: PIC/S
+        locator: line:193
+      - source_label: PIC/S
+        locator: line:194
+      children: []
+    - nid: ann11.sec14
+      kind: section
+      kind_raw: '4.'
+      num: '14'
+      ord: 35
+      heading: Electronic Signature
+      text: 'Electronic records may be signed electronically. Electronic signatures are expected to:'
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:196
+      - source_label: PIC/S
+        locator: line:198
+      - source_label: PIC/S
+        locator: line:199
+      children:
+      - nid: ann11.sec14.ia
+        kind: item
+        kind_raw: a.
+        num: a
+        ord: 36
+        heading: null
+        text: have the same impact as hand-written signatures within the boundaries of the company,
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:201
+        - source_label: PIC/S
+          locator: line:202
+        children: []
+      - nid: ann11.sec14.ib
+        kind: item
+        kind_raw: b.
+        num: b
+        ord: 37
+        heading: null
+        text: be permanently linked to their respective record,
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:203
+        children: []
+      - nid: ann11.sec14.ic
+        kind: item
+        kind_raw: c.
+        num: c
+        ord: 38
+        heading: null
+        text: include the time and date that they were applied.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: PIC/S
+          locator: line:204
+        children: []
+    - nid: ann11.sec15
+      kind: section
+      kind_raw: '4.'
+      num: '15'
+      ord: 39
+      heading: Batch release
+      text: When a computerised system is used for recording certification and batch release, the system should allow only Authorised Persons to certify the release of the batches and it should clearly identify and record the person releasing or certifying the batches. This should be performed using an electronic signature.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:206
+      - source_label: PIC/S
+        locator: line:208
+      - source_label: PIC/S
+        locator: line:209
+      - source_label: PIC/S
+        locator: line:210
+      - source_label: PIC/S
+        locator: line:211
+      children: []
+    - nid: ann11.sec16
+      kind: section
+      kind_raw: '4.'
+      num: '16'
+      ord: 40
+      heading: Business Continuity
+      text: For the availability of computerised systems supporting critical processes, provisions should be made to ensure continuity of support for those processes in the event of a system breakdown (e.g. a manual or alternative system). The time required to bring the alternative arrangements into use should be based on risk and appropriate for a particular system and the business process it supports. These arrangements should be adequately documented and tested.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:213
+      - source_label: PIC/S
+        locator: line:215
+      - source_label: PIC/S
+        locator: line:216
+      - source_label: PIC/S
+        locator: line:217
+      - source_label: PIC/S
+        locator: line:218
+      - source_label: PIC/S
+        locator: line:219
+      - source_label: PIC/S
+        locator: line:220
+      children: []
+    - nid: ann11.sec17
+      kind: section
+      kind_raw: '4.'
+      num: '17'
+      ord: 41
+      heading: Archiving
+      text: 'Data may be archived. This data should be checked for accessibility, readability and integrity. If relevant changes are to be made to the system (e.g. computer equipment or programs), then the ability to retrieve the data should be ensured and tested.
+
+
+        GLOSSARY Application Software installed on a defined platform/hardware providing specific functionality.
+
+
+        Bespoke/Customised computerised system A computerised system individually designed to suit a specific business process.
+
+
+        Commercial off-the-shelf software Software commercially available, whose fitness for use is demonstrated by a broad spectrum of users.
+
+
+        IT Infrastructure The hardware and software such as networking software and operation systems, which makes it possible for the application to function.
+
+
+        Life cycle All phases in the life of the system from initial requirements until retirement including design, specification, programming, testing, installation, operation, and maintenance.
+
+
+        Process owner The person responsible for the business process.
+
+
+        System owner The person responsible for the availability, and maintenance of a computerised system and for the security of the data residing on that system.
+
+
+        Third Party Parties not directly managed by the holder of the manufacturing and/or import authorisation.'
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: PIC/S
+        locator: line:230
+      - source_label: PIC/S
+        locator: line:232
+      - source_label: PIC/S
+        locator: line:233
+      - source_label: PIC/S
+        locator: line:234
+      - source_label: PIC/S
+        locator: line:235
+      - source_label: PIC/S
+        locator: line:239
+      - source_label: PIC/S
+        locator: line:240
+      - source_label: PIC/S
+        locator: line:241
+      - source_label: PIC/S
+        locator: line:243
+      - source_label: PIC/S
+        locator: line:244
+      - source_label: PIC/S
+        locator: line:246
+      - source_label: PIC/S
+        locator: line:247
+      - source_label: PIC/S
+        locator: line:248
+      - source_label: PIC/S
+        locator: line:250
+      - source_label: PIC/S
+        locator: line:251
+      - source_label: PIC/S
+        locator: line:252
+      - source_label: PIC/S
+        locator: line:254
+      - source_label: PIC/S
+        locator: line:255
+      - source_label: PIC/S
+        locator: line:256
+      - source_label: PIC/S
+        locator: line:258
+      - source_label: PIC/S
+        locator: line:259
+      - source_label: PIC/S
+        locator: line:261
+      - source_label: PIC/S
+        locator: line:262
+      - source_label: PIC/S
+        locator: line:263
+      - source_label: PIC/S
+        locator: line:265
+      - source_label: PIC/S
+        locator: line:266
+      - source_label: PIC/S
+        locator: line:267
+      children: []
+index:
+  display_name_by_nid:
+    root: document
+    ann11: COMPUTERISED SYSTEMS
+    ann11.sec1: Risk Management
+    ann11.sec2: Personnel
+    ann11.sec3: Suppliers and Service Providers
+    ann11.sec3.p3_1: paragraph 3.1
+    ann11.sec3.p3_2: paragraph 3.2
+    ann11.sec3.p3_3: paragraph 3.3
+    ann11.sec3.p3_4: paragraph 3.4
+    ann11.sec4: Validation
+    ann11.sec4.p4_1: paragraph 4.1
+    ann11.sec4.p4_2: paragraph 4.2
+    ann11.sec4.p4_3: paragraph 4.3
+    ann11.sec4.p4_4: paragraph 4.4
+    ann11.sec4.p4_5: paragraph 4.5
+    ann11.sec4.p4_6: paragraph 4.6
+    ann11.sec4.p4_7: paragraph 4.7
+    ann11.sec4.p4_8: paragraph 4.8
+    ann11.sec5: Data
+    ann11.sec6: Accuracy Checks
+    ann11.sec7: Data Storage
+    ann11.sec7.p7_1: paragraph 7.1
+    ann11.sec7.p7_2: paragraph 7.2
+    ann11.sec8: Printouts
+    ann11.sec8.p8_1: paragraph 8.1
+    ann11.sec8.p8_2: paragraph 8.2
+    ann11.sec9: Audit Trails
+    ann11.sec10: Change and Configuration Management
+    ann11.sec11: Periodic Evaluation
+    ann11.sec12: Security
+    ann11.sec12.p12_1: paragraph 12.1
+    ann11.sec12.p12_2: paragraph 12.2
+    ann11.sec12.p12_3: paragraph 12.3
+    ann11.sec12.p12_4: paragraph 12.4
+    ann11.sec13: Incident Management
+    ann11.sec14: Electronic Signature
+    ann11.sec14.ia: item a
+    ann11.sec14.ib: item b
+    ann11.sec14.ic: item c
+    ann11.sec15: Batch release
+    ann11.sec16: Business Continuity
+    ann11.sec17: Archiving
