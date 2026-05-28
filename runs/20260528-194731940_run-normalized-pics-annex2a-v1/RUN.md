@@ -80,3 +80,16 @@ Create the formal promotion candidate for PIC/S PE 009-17 Annex 2A after the tab
 This parent PR changes only the run promotion candidate and review artifacts. It does not copy files to `data/normalized/`.
 
 After this parent PR is approved and merged, create a child promotion PR that copies the four candidate files from `promotion_candidate/` to `data/normalized/pics_pe00917_annex2a_20230825/`.
+
+## Promotion Preparation
+
+- Parent PR: `#202`
+- Parent merge commit: `614228eb08d96d2cd0c09b03f59025ce17b3fde6`
+- Promotion branch: `promote/pics-annex2a-v1`
+- Destination: `data/normalized/pics_pe00917_annex2a_20230825/`
+- Copied files:
+  - `pics_pe00917_annex2a_20230825.regdoc_ir.yaml`
+  - `pics_pe00917_annex2a_20230825.parser_profile.yaml`
+  - `pics_pe00917_annex2a_20230825.regdoc_profile.yaml`
+  - `pics_pe00917_annex2a_20230825.meta.yaml`
+- SHA-256 match between `promotion_candidate/` and `data/normalized/`: confirmed.
