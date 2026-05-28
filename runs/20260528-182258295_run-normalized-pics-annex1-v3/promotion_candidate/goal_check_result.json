@@ -1,0 +1,100 @@
+{
+  "doc_id": "pics_pe00917_annex1_20230825",
+  "bundle_dir": "runs\\20260528-182258295_run-normalized-pics-annex1-v3\\promotion_candidate",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "files": {
+      "ir": {
+        "path": "pics_pe00917_annex1_20230825.regdoc_ir.yaml",
+        "exists": true
+      },
+      "parser_profile": {
+        "path": "pics_pe00917_annex1_20230825.parser_profile.yaml",
+        "exists": true
+      },
+      "regdoc_profile": {
+        "path": "pics_pe00917_annex1_20230825.regdoc_profile.yaml",
+        "exists": true
+      },
+      "meta": {
+        "path": "pics_pe00917_annex1_20230825.meta.yaml",
+        "exists": true
+      },
+      "manifest": {
+        "path": "manifest.yaml",
+        "exists": true
+      }
+    },
+    "schema": "qai.regdoc_ir.v4",
+    "node_count": 615,
+    "kind_counts": {
+      "annex": 1,
+      "document": 1,
+      "item": 224,
+      "note": 16,
+      "paragraph": 294,
+      "section": 10,
+      "subitem": 22,
+      "table": 6,
+      "table_header": 6,
+      "table_row": 35
+    },
+    "source_spans": {
+      "nodes_with_source_spans": 614,
+      "non_root_nodes": 614,
+      "coverage": 1.0,
+      "total_spans": 2679
+    },
+    "verify_document": "pass",
+    "dq_gmp_checklist": {
+      "has_candidate_visibility": true,
+      "selectable_kinds": [
+        "subitem",
+        "item",
+        "paragraph",
+        "statement",
+        "table_row"
+      ],
+      "has_table_row_selectable": true,
+      "context_display_policy_count": 5,
+      "has_descendant_policy": true,
+      "has_ancestor_policy": true
+    },
+    "manifest": {
+      "schema": "qai.run_manifest.v1",
+      "has_input": true,
+      "has_command": true,
+      "has_outputs": true,
+      "has_profile_provenance": true,
+      "qualitycheck": {
+        "enabled": true,
+        "strict": true,
+        "warnings_count": 0,
+        "warnings": []
+      },
+      "refine": {
+        "kind": "annex",
+        "applied": []
+      }
+    },
+    "table_payload_nodes": 47,
+    "parser_profile": {
+      "id": "pics_annex1_default_v2",
+      "schema": "qai.parser_profile.v1",
+      "extends": null,
+      "has_markers": true,
+      "has_refine_subtrees": false
+    },
+    "special_structure_audit": {
+      "status": "pass",
+      "source_tables": 6,
+      "source_figures": 0,
+      "generated_tables": 6,
+      "generated_rows": 35,
+      "generated_figures": 0,
+      "unresolved_count": 0
+    }
+  }
+}
