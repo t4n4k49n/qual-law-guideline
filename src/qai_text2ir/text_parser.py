@@ -2196,7 +2196,10 @@ def parse_text_to_ir(
                 max_lines=note_max_lines,
             )
             if notes_block:
-                attach_parent = last_attachable_node or (current if current is not root else root)
+                if last_attachable_node is not None and any(node is last_attachable_node for node in stack):
+                    attach_parent = last_attachable_node
+                else:
+                    attach_parent = current if current is not root else root
                 note_node = node_factory.create_node(
                     kind="note",
                     kind_raw="note",
