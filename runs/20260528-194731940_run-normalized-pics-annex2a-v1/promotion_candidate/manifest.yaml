@@ -1,0 +1,47 @@
+schema: qai.run_manifest.v1
+run_id: 20260528-194731940_run-normalized-pics-annex2a-v1
+created_at: '2026-05-28T10:48:03Z'
+git:
+  commit: 6fe539e636df2ac4955f9ba81520deac765132ad
+  branch: run/normalized-pics-annex2a-v1
+input:
+  path: data\human-readable\pics\pe009-17_annex2a_2023-08-25_en.txt
+  checksum: c03a5cc077684f904c13efc969aa05f638dc6d45e941dfc2b2047d470f41d583
+command:
+  argv: '.\.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input data/human-readable/pics/pe009-17_annex2a_2023-08-25_en.txt --out-dir runs/20260528-194731940_run-normalized-pics-annex2a-v1/promotion_candidate --doc-id pics_pe00917_annex2a_20230825 --title ''PIC/S GMP Guide (PE 009-17) Annex 2A Manufacture of ATMP biological medicinal substances and products for human use (25 August 2023)'' --short-title ''PIC/S PE009-17 Annex 2A'' --doc-type guideline --source-url https://picscheme.org/docview/8881 --source-format pdf --retrieved-at 2026-02-18 --parser-profile src/qai_text2ir/profiles/pics_annex2a_default_v1.yaml --jurisdiction INTL --language en --family PICS --pics-doc-id ''PE 009-17 (Annexes)'' --strict --write-manifest --overwrite-manifest'
+outputs:
+  doc_id: pics_pe00917_annex2a_20230825
+  files:
+  - pics_pe00917_annex2a_20230825.regdoc_ir.yaml
+  - pics_pe00917_annex2a_20230825.parser_profile.yaml
+  - pics_pe00917_annex2a_20230825.regdoc_profile.yaml
+  - pics_pe00917_annex2a_20230825.meta.yaml
+parser_profile:
+  id: pics_annex2a_default_v1
+  resolved_sha256: 69072036eb5ed797d2f6caa371cc2a0bbd4add6f238d1ad52efa971943ce5518
+  provenance:
+  - profile_id: pics_pe00917_common_v1
+    internal_id: pics_pe00917_common_v1
+    path: src\qai_text2ir\profiles\pics_pe00917_common_v1.yaml
+    sha256: f91f09715fd311c12961281b663059d71354456dd8112b96d7c4f20308c2a6c1
+    extends: ''
+  - profile_id: pics_annex2a_default_v1
+    internal_id: pics_annex2a_default_v1
+    path: src\qai_text2ir\profiles\pics_annex2a_default_v1.yaml
+    sha256: ccd079c4177ed0ca1ba8ff1814ae7d98e380d89c4abb5bc9d753d13393c72072
+    extends: pics_pe00917_common_v1
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []
+environment:
+  python: Python 3.11.6
+  executable: .\.venv\Scripts\python.exe
+  packages:
+    PyYAML: 6.0.3
+    typer: 0.24.0
+    lxml: 6.0.2
