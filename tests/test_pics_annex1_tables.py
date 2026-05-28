@@ -41,14 +41,24 @@ def _rows(table: Dict[str, Any]) -> List[Dict[str, Any]]:
 def test_annex1_table_1_grade_a_to_d_are_structured() -> None:
     table = _tables(_ir())["1"]
     rows = _rows(table)
+    header = table["children"][0]
+    columns = header["data"]["columns"]
 
     assert table["data"]["cell_reconstruction_status"] == "complete"
     assert table["data"]["header_groups"][0]["columns"] == [1, 2]
+    assert columns == [
+        "Grade",
+        "Maximum limits for total particle >= 0.5 µm/m3 at rest",
+        "Maximum limits for total particle >= 0.5 µm/m3 in operation",
+        "Maximum limits for total particle >= 5 µm/m3 at rest",
+        "Maximum limits for total particle >= 5 µm/m3 in operation",
+    ]
+    assert header["text"] == " | ".join(columns)
     assert [row["data"]["grade"] for row in rows] == ["A", "B", "C", "D"]
     assert rows[0]["data"]["cells"] == ["A", "3 520", "3 520", "Not specified (a)", "Not specified (a)"]
     assert rows[3]["data"]["cells"][2] == "Not predetermined (b)"
     assert rows[3]["data"]["wrapped_cells"] == [2, 4]
-    assert any("µm/m3" in column for column in table["children"][0]["data"]["columns"])
+    assert len(set(columns)) == len(columns)
 
 
 def test_annex1_table_2_grade_a_to_d_and_notes_are_structured() -> None:
@@ -94,12 +104,22 @@ def test_annex1_table_4_grade_operations_are_structured() -> None:
 def test_annex1_table_5_grade_a_to_d_are_structured() -> None:
     table = _tables(_ir())["5"]
     rows = _rows(table)
+    header = table["children"][0]
+    columns = header["data"]["columns"]
 
+    assert columns == [
+        "Grade",
+        "Maximum limits for total particle >= 0.5 μm/m3 at rest",
+        "Maximum limits for total particle >= 0.5 μm/m3 in operation",
+        "Maximum limits for total particle >= 5 μm/m3 at rest",
+        "Maximum limits for total particle >= 5 μm/m3 in operation",
+    ]
+    assert header["text"] == " | ".join(columns)
     assert [row["data"]["grade"] for row in rows] == ["A", "B", "C", "D"]
     assert rows[0]["data"]["cells"] == ["A", "3 520", "3 520", "29", "29"]
     assert rows[3]["data"]["cells"][2] == "Not predetermined (a)"
     assert rows[3]["data"]["wrapped_cells"] == [2, 4]
-    assert any("μm/m3" in column for column in table["children"][0]["data"]["columns"])
+    assert len(set(columns)) == len(columns)
 
 
 def test_annex1_table_6_grade_a_to_d_and_notes_are_structured() -> None:

@@ -316,10 +316,10 @@ def _numeric_table(table_no: str, caption: str, caption_idx: int, lines: List[st
         suffix = "(b)" if table_no == "1" else "(a)"
         columns = [
             "Grade",
-            f">= 0.5 {unit} at rest",
-            f">= 0.5 {unit} in operation",
-            f">= 5 {unit} at rest",
-            f">= 5 {unit} in operation",
+            f"Maximum limits for total particle >= 0.5 {unit} at rest",
+            f"Maximum limits for total particle >= 0.5 {unit} in operation",
+            f"Maximum limits for total particle >= 5 {unit} at rest",
+            f"Maximum limits for total particle >= 5 {unit} in operation",
         ]
         table_1_rows = [
             ["A", "3 520", "3 520", "Not specified (a)", "Not specified (a)"],
