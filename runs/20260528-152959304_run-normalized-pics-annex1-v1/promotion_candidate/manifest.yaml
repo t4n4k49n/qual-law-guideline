@@ -1,0 +1,40 @@
+schema: qai.run_manifest.v1
+run_id: promotion_candidate
+created_at: '2026-05-28T06:30:52Z'
+git:
+  commit: ec63e7522b1b866fe62fb12719a3525fae07fb05
+  branch: run/normalized-pics-annex1-v1
+input:
+  path: data\human-readable\pics\pe009-17_annex1_2023-08-25_en.txt
+  checksum: 7fb95e8be5001233fd5adb1b79b03e5d4475ca03f31c45653fb3ac0a75e8fd52
+command:
+  argv: '.\.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input data/human-readable/pics/pe009-17_annex1_2023-08-25_en.txt --out-dir runs/20260528-152959304_run-normalized-pics-annex1-v1/promotion_candidate --doc-id pics_pe00917_annex1_20230825 --title ''PIC/S GMP Guide (PE 009-17) Annex 1 Manufacture of sterile medicinal products (25 August 2023)'' --short-title ''PIC/S PE009-17 Annex 1'' --doc-type guideline --source-url https://picscheme.org/docview/8881 --source-format pdf --retrieved-at 2026-02-18 --parser-profile src/qai_text2ir/profiles/pics_annex1_default_v2.yaml --jurisdiction INTL --language en --family PICS --pics-doc-id ''PE 009-17 (Annexes)'' --strict --write-manifest --overwrite-manifest'
+outputs:
+  doc_id: pics_pe00917_annex1_20230825
+  files:
+  - pics_pe00917_annex1_20230825.regdoc_ir.yaml
+  - pics_pe00917_annex1_20230825.parser_profile.yaml
+  - pics_pe00917_annex1_20230825.regdoc_profile.yaml
+  - pics_pe00917_annex1_20230825.meta.yaml
+parser_profile:
+  id: pics_annex1_default_v2
+  resolved_sha256: ae7f11e56c2b4a9d75321013e22cf29208a24ca51c85584a2c84be0fc9d208f8
+  provenance:
+  - profile_id: pics_pe00917_common_v1
+    internal_id: pics_pe00917_common_v1
+    path: src\qai_text2ir\profiles\pics_pe00917_common_v1.yaml
+    sha256: f91f09715fd311c12961281b663059d71354456dd8112b96d7c4f20308c2a6c1
+    extends: ''
+  - profile_id: pics_annex1_default_v2
+    internal_id: pics_annex1_default_v2
+    path: src\qai_text2ir\profiles\pics_annex1_default_v2.yaml
+    sha256: 9caf1fff8f4e771b119dc919010acbf970b01c0c4ebda1b4179159a71748dc9d
+    extends: pics_pe00917_common_v1
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []
