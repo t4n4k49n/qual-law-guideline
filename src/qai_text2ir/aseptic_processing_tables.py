@@ -13,7 +13,7 @@ TABLE_SPECS = [
         "caption_re": re.compile(r"^\s*表１\s+清浄区域の分類\s*$"),
         "end_re": re.compile(r"^\s*注\s*1）"),
         "parent_nid": "cha7.sec7_1",
-        "strip_re": re.compile(r"\n?\s*表１\s+清浄区域の分類.*$", flags=re.DOTALL),
+        "strip_re": re.compile(r"\n?\s*表１\s*清浄区域の分類.*$", flags=re.DOTALL),
         "heading": "表１ 清浄区域の分類",
     },
     {
@@ -21,7 +21,7 @@ TABLE_SPECS = [
         "caption_re": re.compile(r"^\s*表２\s+微生物管理に係る環境モニタリングの頻度\s*$"),
         "end_re": re.compile(r"^\s*表\s*3\s+環境微生物の許容基準"),
         "parent_nid": "cha11.sec11_3",
-        "strip_re": re.compile(r"\n?\s*表２\s+微生物管理に係る環境モニタリングの頻度.*$", flags=re.DOTALL),
+        "strip_re": re.compile(r"\n?\s*表２\s*微生物管理に係る環境モニタリングの頻度.*$", flags=re.DOTALL),
         "heading": "表２ 微生物管理に係る環境モニタリングの頻度",
     },
     {
