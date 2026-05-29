@@ -1,0 +1,40 @@
+schema: qai.run_manifest.v1
+run_id: promotion_candidate
+created_at: '2026-05-29T02:42:33Z'
+git:
+  commit: d9610c8122016732ae2bfa3148b9207482e7524f
+  branch: run/normalized-api-gmp-guideline-v3
+input:
+  path: data\human-readable\pmda\api_gmp_guideline\source_texts\000156438.txt
+  checksum: e8daff2f66106a00b10daf3e67c96470e982510afe0b36dc73ffb2237d4dc9d2
+command:
+  argv: '''src\qai_text2ir\cli.py'' bundle --input data/human-readable/pmda/api_gmp_guideline/source_texts/000156438.txt --out-dir runs/20260529-114214346_run-normalized-api-gmp-guideline-v3/promotion_candidate --doc-id jp_pmda_api_gmp_guideline_20011102 --title ''原薬GMPのガイドライン'' --short-title ''原薬GMPガイドライン'' --doc-type guideline --source-url https://www.pmda.go.jp/files/000156438.pdf --source-format pdf --retrieved-at 2026-02-18 --parser-profile src/qai_text2ir/profiles/jp_pmda_api_gmp_guideline_v1.yaml --jurisdiction JP --language ja --family JP_GUIDELINE --strict --write-manifest --overwrite-manifest'
+outputs:
+  doc_id: jp_pmda_api_gmp_guideline_20011102
+  files:
+  - jp_pmda_api_gmp_guideline_20011102.regdoc_ir.yaml
+  - jp_pmda_api_gmp_guideline_20011102.parser_profile.yaml
+  - jp_pmda_api_gmp_guideline_20011102.regdoc_profile.yaml
+  - jp_pmda_api_gmp_guideline_20011102.meta.yaml
+parser_profile:
+  id: jp_pmda_api_gmp_guideline_v1
+  resolved_sha256: 26b8e373f682799d28d8922fbd47c305dca9a2afe931a41832ed920152c9a6de
+  provenance:
+  - profile_id: jp_guideline_default_v1
+    internal_id: jp_guideline_default_v1
+    path: src\qai_text2ir\profiles\jp_guideline_default_v1.yaml
+    sha256: ca5708eae61661d6ac29be0dca5b420a03b87ba8ca4ec64a39960dc0ad38a8ce
+    extends: ''
+  - profile_id: jp_pmda_api_gmp_guideline_v1
+    internal_id: jp_pmda_api_gmp_guideline_v1
+    path: src\qai_text2ir\profiles\jp_pmda_api_gmp_guideline_v1.yaml
+    sha256: b4e662b460609c346c938a556237130f5b14661cfda943f5a472671788ca8181
+    extends: jp_guideline_default_v1
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []
