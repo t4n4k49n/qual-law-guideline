@@ -6,12 +6,10 @@
 
 ### 2章 用語定義
 
-PDFでは `2.1`、`2.2` などが独立した定義項目であるため、chapter 2 直下の section として確認した。
-
 | nid | kind | heading | text starts with |
 |---|---|---|---|
 | `cha2.sec2_1` | section | アイソレータ(isolator) | 環境及び職員の直接介入から |
-| `cha2.sec2_2` | section | アクセス制限バリアシステム（RABS: Restricted Access Barrier System） | グローブを備えた |
+| `cha2.sec2_2` | section | アクセス制限バリアシステム（RABS:Restricted Access Barrier System） | グローブを備えた |
 
 確認結果:
 - `2.1` / `2.2` は chapter text に畳み込まれていない。
@@ -19,16 +17,16 @@ PDFでは `2.1`、`2.2` などが独立した定義項目であるため、chapt
 
 ### 3.1 品質システム一般要求事項
 
-PDFでは `1） 全般`、`2） 適用範囲` などが独立した番号付き項目であるため、section 3.1 直下の item として確認した。
-
 | nid | kind | kind_raw | text starts with |
 |---|---|---|---|
 | `cha3.sec3_1.i1` | item | `1）` | 全般 |
 | `cha3.sec3_1.i2` | item | `2）` | 適用範囲 |
+| `cha3.sec3_1.i7` | item | `7）` | 予測的バリデーション及び工程管理の定期照査 |
 
 確認結果:
 - `cha3.sec3_1.text` には `1） 全般` 以降を畳み込んでいない。
-- `SAMPLE_EXTRACT.md` で `root -> cha3 -> cha3.sec3_1 -> cha3.sec3_1.i1` の祖先経路を確認した。
+- `cha3.sec3_1.i7` は `設計・運用`、`工程管理プログラム` に正規化済み。
+- `SAMPLE_EXTRACT.md` で `root -> cha3 -> cha3.sec3_1 -> cha3.sec3_1.i7` の祖先経路を確認した。
 
 ### 15.4 OCR 揺れ
 
@@ -37,6 +35,15 @@ source text の `1５. ４ 保守・管理` は `cha15.sec15_4` として確認�
 確認結果:
 - `cha15.sec15_4.heading` は `保守・管理`。
 - 誤った `cha15.sec15_3.i15` は生成されていない。
+
+### 本文空白正規化
+
+確認結果:
+- `設計・運 用` / `設計・運\n\n用` は残っていない。
+- `プロ グラム` は残っていない。
+- `デッド レグ` は `デッドレグ` に正規化済み。
+- `枝管 内径` は `枝管内径` に正規化済み。
+- ASCII 英数字間の空白は維持している。
 
 ## Table Review
 

@@ -46,6 +46,8 @@ preprocess:
   extract_notes:
     enabled: true
     max_lines: 40
+  normalize_japanese_text:
+    enabled: true
   aseptic_processing_tables:
     enabled: true
 marker_types:
