@@ -50,9 +50,29 @@ def test_api_gmp_profile_keeps_deep_sections_under_chapters() -> None:
     by_num = {(node.kind, node.num): node for node in nodes}
 
     assert by_num[("chapter", "3")].heading == "従業員"
-    assert by_num[("paragraph", "3.1")].text == "従業員の適格性"
+    assert by_num[("section", "3.1")].heading == "従業員の適格性"
+    assert by_num[("section", "3.1")].text is None
     assert by_num[("paragraph", "3.10")].text.startswith("中間体・原薬の生産を実施し監督するため")
-    assert by_num[("paragraph", "3.2")].text == "従業員の衛生"
+    assert by_num[("paragraph", "3.10")].nid.startswith(by_num[("section", "3.1")].nid)
+    assert by_num[("section", "3.2")].heading == "従業員の衛生"
+
+
+def test_api_gmp_section_heading_with_chapeau_keeps_text_and_table_context() -> None:
+    profile = load_parser_profile(path=PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_pmda_api_gmp_guideline_20011102",
+        parser_profile=profile,
+    )
+    nodes = list(_flatten(ir_doc.content))
+    by_num = {(node.kind, node.num): node for node in nodes}
+
+    section_1_3 = by_num[("section", "1.3")]
+    assert section_1_3.heading == "適用範囲"
+    assert section_1_3.text.startswith("本ガイドラインは、ヒト用医薬品に使用する原薬に適用する。")
+
+    table_1 = next(child for child in section_1_3.children if child.kind == "table" and child.num == "1")
+    assert table_1.heading == "表１：原薬生産に対する本ガイドラインの適用"
 
 
 def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() -> None:
@@ -63,7 +83,7 @@ def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() ->
         parser_profile=profile,
     )
     nodes = list(_flatten(ir_doc.content))
-    section_1_3 = next(node for node in nodes if node.kind == "paragraph" and node.num == "1.3")
+    section_1_3 = next(node for node in nodes if node.kind == "section" and node.num == "1.3")
     table_1 = next(child for child in section_1_3.children if child.kind == "table" and child.num == "1")
     header = next(child for child in table_1.children if child.kind == "table_header")
     rows = [child for child in header.children if child.kind == "table_row"]

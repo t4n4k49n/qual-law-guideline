@@ -296,7 +296,7 @@ def normalize_api_gmp_table1(
 
     target: Optional[Node] = None
     for _parent, node in _walk_with_parent(root):
-        if node.kind in {"chapter", "paragraph", "item", "subitem"} and "表１：原薬生産に対する本ガイドラインの適用" in (
+        if node.kind in {"chapter", "section", "paragraph", "item", "subitem"} and "表１：原薬生産に対する本ガイドラインの適用" in (
             node.text or ""
         ):
             target = node
