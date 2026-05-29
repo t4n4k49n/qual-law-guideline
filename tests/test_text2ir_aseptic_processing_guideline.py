@@ -51,15 +51,24 @@ def test_aseptic_profile_keeps_main_and_reference_sections_separate() -> None:
     assert by_kind_num[("chapter", "3")].heading == "品質システム"
     assert by_nid["cha2.sec2_1"].heading == "アイソレータ(isolator)"
     assert by_nid["cha2.sec2_1"].text.startswith("環境及び職員の直接介入から")
-    assert by_nid["cha2.sec2_2"].heading == "アクセス制限バリアシステム（RABS: Restricted Access Barrier System）"
+    assert by_nid["cha2.sec2_2"].heading == "アクセス制限バリアシステム（RABS:Restricted Access Barrier System）"
     assert by_nid["cha2.sec2_2"].text.startswith("グローブを備えた")
     assert by_kind_num[("section", "3.1")].heading == "品質システム一般要求事項"
     assert by_nid["cha3.sec3_1"].text is None
     assert by_nid["cha3.sec3_1.i1"].heading is None
     assert by_nid["cha3.sec3_1.i1"].text.startswith("全般")
     assert by_nid["cha3.sec3_1.i2"].text.startswith("適用範囲")
+    assert "設計・運\n\n用" not in by_nid["cha3.sec3_1.i7"].text
+    assert "設計・運用" in by_nid["cha3.sec3_1.i7"].text
+    assert "プロ グラム" not in by_nid["cha3.sec3_1.i7"].text
+    assert "プログラム" in by_nid["cha3.sec3_1.i7"].text
     assert by_nid["cha15.sec15_4"].heading == "保守・管理"
     assert "cha15.sec15_3.i15" not in by_nid
+    all_text = "\n".join(str(node.text or "") for node in nodes)
+    assert "デッド レグ" not in all_text
+    assert "デッドレグ" in all_text
+    assert "枝管 内径" not in all_text
+    assert "枝管内径" in all_text
     assert by_kind_num[("chapter", "A1")].heading == "細胞培養／発酵により製造する原薬"
     assert by_kind_num[("paragraph", "A1.1")].text.startswith("一般要件")
 
@@ -83,7 +92,7 @@ def test_aseptic_processing_table_adapter_separates_known_table_candidates() -> 
 
     assert "postprocess=aseptic_processing_tables" in ir_doc.content.tags
     assert by_nid["cha7.sec7_1"].heading == "清浄度レベルによる作業所の分類"
-    assert by_nid["cha7.sec7_1.p7_1_1"].text.startswith("重要区域（グレード A）")
+    assert by_nid["cha7.sec7_1.p7_1_1"].text.startswith("重要区域（グレードA）")
     assert by_nid["cha11.sec11_3"].heading == "環境モニタリング判定基準例"
     assert [child.nid for child in by_nid["cha7.sec7_1"].children][:2] == [
         "cha7.sec7_1.tbl1",

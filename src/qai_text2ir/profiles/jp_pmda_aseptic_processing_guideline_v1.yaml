@@ -11,6 +11,8 @@ context_root_kind: chapter
 structural_kinds: [chapter, section]
 
 preprocess:
+  normalize_japanese_text:
+    enabled: true
   aseptic_processing_tables:
     enabled: true
   skip_blocks:
