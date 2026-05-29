@@ -80,3 +80,18 @@ The sample was extracted from the IR by parsing the YAML and preserving the ance
 This parent PR changes only the run promotion candidate and review artifacts. It does not copy files to `data/normalized/`.
 
 After this parent PR is approved and merged, create a child promotion PR that copies the four candidate files from `promotion_candidate/` to `data/normalized/pics_pe00917_annex15_20230825/`.
+
+## Promotion Preparation
+
+- Parent PR: `#211`
+- Parent merge commit: `c886c32258a4c7046e57316b858b08cf5585699b`
+- Promotion branch: `promote/pics-annex15-v1`
+- Destination: `data/normalized/pics_pe00917_annex15_20230825/`
+- Copied files:
+  - `pics_pe00917_annex15_20230825.regdoc_ir.yaml`
+  - `pics_pe00917_annex15_20230825.parser_profile.yaml`
+  - `pics_pe00917_annex15_20230825.regdoc_profile.yaml`
+  - `pics_pe00917_annex15_20230825.meta.yaml`
+- SHA-256 match between `promotion_candidate/` and `data/normalized/`: confirmed.
+- Promotion goal check on `data/normalized/pics_pe00917_annex15_20230825/`: pass. `manifest.yaml` is not copied to `data/normalized/` by design.
+- IR structure check on `data/normalized/pics_pe00917_annex15_20230825/`: pass.
