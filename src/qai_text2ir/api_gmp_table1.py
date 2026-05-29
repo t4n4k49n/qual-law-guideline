@@ -11,14 +11,23 @@ CAPTION_RE = re.compile(r"^\s*表１：原薬生産に対する本ガイドラ�
 NEXT_CHAPTER_RE = re.compile(r"^\s*2[．.]\s+品質マネージメント\s*$")
 RECONSTRUCTED_COLUMNS = [
     "production_type",
-    "api_starting_material_manufacture",
-    "api_starting_material_introduction_or_preliminary_processing",
-    "intermediate_manufacture_or_equivalent",
-    "isolation_and_purification_or_further_extraction",
-    "physical_processing_and_packaging",
+    "process_example_step_1",
+    "process_example_step_2",
+    "process_example_step_3",
+    "process_example_step_4",
+    "process_example_step_5",
 ]
+SPANNING_PROCESS_HEADER = "形態ごとの生産工程の事例"
 RECONSTRUCTED_COLUMN_LABELS = [
     "生産形態",
+    f"{SPANNING_PROCESS_HEADER} STEP 1",
+    f"{SPANNING_PROCESS_HEADER} STEP 2",
+    f"{SPANNING_PROCESS_HEADER} STEP 3",
+    f"{SPANNING_PROCESS_HEADER} STEP 4",
+    f"{SPANNING_PROCESS_HEADER} STEP 5",
+]
+RECONSTRUCTED_STAGE_LABELS = [
+    None,
     "原薬出発物質の製造",
     "原薬出発物質の工程への導入又は初期加工処理",
     "中間体の製造又は同等工程",
@@ -212,6 +221,17 @@ def _table_node(table: ApiGmpTable1, *, parent_nid: str, source_label: str, line
             "column_reconstruction_status": "complete_for_table1",
             "columns": RECONSTRUCTED_COLUMNS,
             "column_labels": RECONSTRUCTED_COLUMN_LABELS,
+            "header_structure": {
+                "spanning_headers": [
+                    {
+                        "label": SPANNING_PROCESS_HEADER,
+                        "columns": RECONSTRUCTED_COLUMNS[1:],
+                        "column_range": [1, 5],
+                    }
+                ],
+                "leaf_stage_labels": RECONSTRUCTED_STAGE_LABELS,
+                "flattening_rule": "repeat spanning header into STEP 1..5 column labels and keep PDF leaf labels as stage_labels",
+            },
             "raw_lines": table.raw_lines,
             "record_review": RECORD_REVIEW,
             "visual_notes": [
@@ -245,7 +265,18 @@ def _table_node(table: ApiGmpTable1, *, parent_nid: str, source_label: str, line
         source_label=source_label,
         line_idx=table.caption_idx + line_no_offset,
         role="structural",
-        data={"columns": RECONSTRUCTED_COLUMNS, "column_labels": RECONSTRUCTED_COLUMN_LABELS},
+        data={
+            "columns": RECONSTRUCTED_COLUMNS,
+            "column_labels": RECONSTRUCTED_COLUMN_LABELS,
+            "stage_labels": RECONSTRUCTED_STAGE_LABELS,
+            "spanning_headers": [
+                {
+                    "label": SPANNING_PROCESS_HEADER,
+                    "columns": RECONSTRUCTED_COLUMNS[1:],
+                    "column_range": [1, 5],
+                }
+            ],
+        },
     )
     node.children.append(header)
     first_data_line_idx = table.raw_line_indexes[2] if len(table.raw_line_indexes) > 2 else table.caption_idx
@@ -271,6 +302,7 @@ def _table_node(table: ApiGmpTable1, *, parent_nid: str, source_label: str, line
                     "cells": cells,
                     "columns": RECONSTRUCTED_COLUMNS,
                     "column_labels": RECONSTRUCTED_COLUMN_LABELS,
+                    "stage_labels": RECONSTRUCTED_STAGE_LABELS,
                     "raw_row_nums": raw_row_nums,
                     "raw_lines": raw_lines,
                     "guideline_applicable": guideline_applicable,
