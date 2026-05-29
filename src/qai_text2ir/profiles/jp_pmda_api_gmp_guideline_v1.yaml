@@ -8,6 +8,7 @@ applies_to:
 language: ja
 source_label: PMDA API GMP guideline
 context_root_kind: chapter
+structural_kinds: [chapter, section]
 
 preprocess:
   drop_line_regexes:
@@ -41,3 +42,39 @@ marker_types:
     kind_raw: "1"
     match: '^(?P<n>[0-9０-９]{1,2})\s+(?=\S)'
     num_group: n
+  - id: section_decimal
+    kind: section
+    kind_raw: "1.1"
+    match: '^(?P<n>[0-9０-９]{1,2}[．.][0-9０-９])(?![0-9０-９])\s*'
+    num_group: n
+  - id: paragraph_two_digits
+    kind: paragraph
+    kind_raw: "2.10"
+    match: '^(?P<n>[0-9０-９]{1,2}[．.][0-9０-９]{2})\s*'
+    num_group: n
+
+structure:
+  root:
+    children: [chapter]
+  chapter:
+    children: [section, paragraph, item, subitem, table, preformatted, note, history]
+  section:
+    children: [paragraph, item, subitem, table, preformatted, note, history]
+  paragraph:
+    children: [item, subitem, table, preformatted, note, history]
+  item:
+    children: [subitem, note, history]
+  subitem:
+    children: [note, history]
+  table:
+    children: [table_header, note]
+  table_header:
+    children: [table_row]
+  table_row:
+    children: []
+  preformatted:
+    children: [note]
+  note:
+    children: []
+  history:
+    children: []
