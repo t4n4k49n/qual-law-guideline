@@ -12,7 +12,7 @@ TABLE_SPECS = [
         "table_no": "1",
         "caption_re": re.compile(r"^\s*表１\s+清浄区域の分類\s*$"),
         "end_re": re.compile(r"^\s*注\s*1）"),
-        "parent_nid": "cha7.p7_1",
+        "parent_nid": "cha7.sec7_1",
         "strip_re": re.compile(r"\n?\s*表１\s+清浄区域の分類.*$", flags=re.DOTALL),
         "heading": "表１ 清浄区域の分類",
     },
@@ -20,7 +20,7 @@ TABLE_SPECS = [
         "table_no": "2",
         "caption_re": re.compile(r"^\s*表２\s+微生物管理に係る環境モニタリングの頻度\s*$"),
         "end_re": re.compile(r"^\s*表\s*3\s+環境微生物の許容基準"),
-        "parent_nid": "cha11.p11_3",
+        "parent_nid": "cha11.sec11_3",
         "strip_re": re.compile(r"\n?\s*表２\s+微生物管理に係る環境モニタリングの頻度.*$", flags=re.DOTALL),
         "heading": "表２ 微生物管理に係る環境モニタリングの頻度",
     },
@@ -28,14 +28,15 @@ TABLE_SPECS = [
         "table_no": "3",
         "caption_re": re.compile(r"^\s*表\s*3\s+環境微生物の許容基準\(作業時\)\s*注）1\s*$"),
         "end_re": re.compile(r"^\s*注）1\s+"),
-        "parent_nid": "cha11.p11_3",
-        "remove_child_nid": "cha11.p11_3.pre1",
+        "parent_nid": "cha11.sec11_3",
+        "remove_child_nid": "cha11.sec11_3.pre1",
         "heading": "表 3 環境微生物の許容基準(作業時) 注）1",
     },
 ]
 RECONSTRUCTED_COLUMNS_BY_TABLE = {
     "1": [
-        "area",
+        "area_group",
+        "area_name",
         "cleanliness_level",
         "non_operational_0_5um",
         "non_operational_5_0um",
@@ -58,28 +59,109 @@ RECONSTRUCTED_COLUMNS_BY_TABLE = {
         "gloves_cfu_5_fingers",
     ],
 }
+RECONSTRUCTED_COLUMN_LABELS_BY_TABLE = {
+    "1": [
+        "名称 区分",
+        "名称 区域",
+        "空気の清浄度レベル注1）",
+        "最大許容微粒子数（個／m3） 非作業時 ≧0.5μm",
+        "最大許容微粒子数（個／m3） 非作業時 ≧5.0μm",
+        "最大許容微粒子数（個／m3） 作業時 ≧0.5μm",
+        "最大許容微粒子数（個／m3） 作業時 ≧5.0μm",
+    ],
+    "2": [
+        "グレード",
+        "区域",
+        "空中浮遊微粒子",
+        "空中微生物",
+        "表面付着微生物 装置，壁など",
+        "表面付着微生物 手袋，作業衣",
+    ],
+    "3": [
+        "グレード",
+        "空中微生物 浮遊菌 (CFU/m3)",
+        "空中微生物 落下菌注）2 (CFU/plate)",
+        "表面付着微生物 コンタクトプレート (CFU/24～30cm2)",
+        "表面付着微生物 手袋 (CFU/5指)",
+    ],
+}
+HEADER_STRUCTURE_BY_TABLE = {
+    "1": {
+        "spanning_headers": [
+            {"label": "名称", "columns": ["area_group", "area_name"], "column_range": [0, 1]},
+            {
+                "label": "最大許容微粒子数（個／m3）",
+                "columns": [
+                    "non_operational_0_5um",
+                    "non_operational_5_0um",
+                    "operational_0_5um",
+                    "operational_5_0um",
+                ],
+                "column_range": [3, 6],
+            },
+            {
+                "label": "非作業時",
+                "columns": ["non_operational_0_5um", "non_operational_5_0um"],
+                "column_range": [3, 4],
+            },
+            {
+                "label": "作業時",
+                "columns": ["operational_0_5um", "operational_5_0um"],
+                "column_range": [5, 6],
+            },
+        ],
+        "leaf_labels": ["区分", "区域", "清浄度レベル注1）", "≧0.5μm", "≧5.0μm", "≧0.5μm", "≧5.0μm"],
+    },
+    "2": {
+        "spanning_headers": [
+            {
+                "label": "表面付着微生物",
+                "columns": ["surface_attached_equipment_walls", "surface_attached_gloves_garment"],
+                "column_range": [4, 5],
+            }
+        ],
+        "leaf_labels": ["グレード", "区域", "空中浮遊微粒子", "空中微生物", "装置，壁など", "手袋，作業衣"],
+    },
+    "3": {
+        "spanning_headers": [
+            {
+                "label": "空中微生物",
+                "columns": ["airborne_microorganisms_cfu_m3", "settle_plate_cfu_plate"],
+                "column_range": [1, 2],
+            },
+            {
+                "label": "表面付着微生物",
+                "columns": ["contact_plate_cfu_24_30cm2", "gloves_cfu_5_fingers"],
+                "column_range": [3, 4],
+            },
+        ],
+        "leaf_labels": ["グレード", "浮遊菌", "落下菌注）2", "コンタクトプレート", "手袋"],
+        "unit_labels": [None, "(CFU/m3)", "(CFU/plate)", "(CFU/24～30cm2)", "(CFU/5指)"],
+    },
+}
 RECONSTRUCTED_RECORDS_BY_TABLE = {
     "1": [
         {
             "record_id": "aseptic_table1.r1",
             "raw_row_nums": [6],
-            "cells": ["重要区域", "グレード A (ISO 5)", "3,520", "20", "3,520", "20"],
+            "cells": ["無菌操作区域", "重要区域", "グレード A (ISO 5)", "3,520", "20", "3,520", "20"],
         },
         {
             "record_id": "aseptic_table1.r2",
             "raw_row_nums": [9],
-            "cells": ["直接支援区域", "グレード B (ISO 7)", "3,520", "29", "352,000", "2,900"],
+            "cells": ["無菌操作区域", "直接支援区域", "グレード B (ISO 7)", "3,520", "29", "352,000", "2,900"],
         },
         {
             "record_id": "aseptic_table1.r3",
             "raw_row_nums": [10],
-            "cells": ["その他の支援区域", "グレード C (ISO 8)", "352,000", "2,900", "3,520,000", "29,000"],
+            "cells": ["その他の支援区域", "", "グレード C (ISO 8)", "352,000", "2,900", "3,520,000", "29,000"],
         },
         {
             "record_id": "aseptic_table1.r4",
             "raw_row_nums": [11, 12, 13, 14],
             "cells": [
                 "その他の支援区域",
+                "",
                 "グレード D",
                 "3,520,000",
                 "29,000",
@@ -141,27 +223,27 @@ NON_DATA_ROWS_BY_TABLE = {
 RECORD_REVIEW_BY_TABLE = {
     "1": {
         "status": "reviewed_candidate",
-        "candidate_granularity": "reconstructed_record",
-        "table_row_promotion": "deferred",
-        "table_row_promotion_reason": "multi-level headers and note references need review before replacing raw table_rows",
+        "candidate_granularity": "visual_reconstructed_table_row",
+        "table_row_promotion": "promoted",
+        "table_row_promotion_reason": "PDF visual review restored merged headers and four data rows",
         "note_handling": "table notes kept as note nodes; note-to-cell links deferred",
         "reviewed_records": 4,
         "deferred_raw_rows": [1, 2, 3, 4, 5, 7, 8],
     },
     "2": {
         "status": "reviewed_candidate",
-        "candidate_granularity": "reconstructed_record",
-        "table_row_promotion": "deferred",
-        "table_row_promotion_reason": "C/D condition rows are reconstructed but candidate display granularity still needs confirmation",
+        "candidate_granularity": "visual_reconstructed_table_row",
+        "table_row_promotion": "promoted",
+        "table_row_promotion_reason": "PDF visual review restored merged C/D condition rows",
         "note_handling": "no separate note node in source table range",
         "reviewed_records": 4,
         "deferred_raw_rows": [1, 2, 3],
     },
     "3": {
         "status": "reviewed_candidate",
-        "candidate_granularity": "reconstructed_record",
-        "table_row_promotion": "deferred",
-        "table_row_promotion_reason": "table notes are preserved but exact note-to-cell references are not fixed",
+        "candidate_granularity": "visual_reconstructed_table_row",
+        "table_row_promotion": "promoted",
+        "table_row_promotion_reason": "PDF visual review restored merged microbial header rows",
         "note_handling": "table notes kept as note nodes; note-to-cell links deferred",
         "reviewed_records": 4,
         "deferred_raw_rows": [1, 2, 3],
@@ -254,6 +336,9 @@ def _find_table(lines: List[str], spec: Dict[str, Any]) -> Optional[RawTable]:
 
 def _table_node(table: RawTable, *, parent_nid: str, source_label: str, line_no_offset: int) -> Node:
     table_nid = f"{parent_nid}.tbl{table.table_no}"
+    columns = RECONSTRUCTED_COLUMNS_BY_TABLE.get(table.table_no, ["raw_line"])
+    column_labels = RECONSTRUCTED_COLUMN_LABELS_BY_TABLE.get(table.table_no, ["raw_line"])
+    header_structure = HEADER_STRUCTURE_BY_TABLE.get(table.table_no, {})
     node = _make_node(
         nid=table_nid,
         kind="table",
@@ -267,9 +352,15 @@ def _table_node(table: RawTable, *, parent_nid: str, source_label: str, line_no_
         data={
             "parser": "aseptic_processing_table_adapter",
             "table_no": table.table_no,
-            "source_format": "ragged_fixed_width_text",
-            "column_reconstruction": False,
+            "source_format": "pdf_visual_review_plus_ragged_text",
+            "column_reconstruction": "visual_reviewed",
+            "column_reconstruction_status": "complete_for_reviewed_tables",
+            "columns": columns,
+            "column_labels": column_labels,
+            "header_structure": header_structure,
             "raw_lines": table.raw_lines,
+            "non_data_raw_rows": NON_DATA_ROWS_BY_TABLE.get(table.table_no, []),
+            "record_review": RECORD_REVIEW_BY_TABLE.get(table.table_no, {}),
         },
     )
     header = _make_node(
@@ -278,14 +369,20 @@ def _table_node(table: RawTable, *, parent_nid: str, source_label: str, line_no_
         kind_raw="table_header",
         num=None,
         heading=None,
-        text="raw_line",
+        text=" | ".join(column_labels),
         source_label=source_label,
         line_idx=table.caption_idx + line_no_offset,
         role="structural",
-        data={"columns": ["raw_line"]},
+        data={"columns": columns, "column_labels": column_labels, "header_structure": header_structure},
     )
     node.children.append(header)
-    for row_no, (line, line_idx) in enumerate(zip(table.raw_lines, table.raw_line_indexes), start=1):
+    records = RECONSTRUCTED_RECORDS_BY_TABLE.get(table.table_no, [])
+    for row_no, record in enumerate(records, start=1):
+        raw_row_nums = list(record["raw_row_nums"])
+        raw_lines = [table.raw_lines[i - 1] for i in raw_row_nums if 0 <= i - 1 < len(table.raw_lines)]
+        raw_indexes = [table.raw_line_indexes[i - 1] for i in raw_row_nums if 0 <= i - 1 < len(table.raw_line_indexes)]
+        line_idx = raw_indexes[0] if raw_indexes else table.caption_idx
+        cells = list(record["cells"])
         header.children.append(
             _make_node(
                 nid=f"{header.nid}.tblr{row_no}",
@@ -293,10 +390,19 @@ def _table_node(table: RawTable, *, parent_nid: str, source_label: str, line_no_
                 kind_raw="table_row",
                 num=str(row_no),
                 heading=None,
-                text=line,
+                text=" | ".join(cells),
                 source_label=source_label,
                 line_idx=line_idx + line_no_offset,
-                data={"cells": [line], "raw_line": line},
+                data={
+                    "record_id": record["record_id"],
+                    "cells": cells,
+                    "columns": columns,
+                    "column_labels": column_labels,
+                    "raw_row_nums": raw_row_nums,
+                    "raw_lines": raw_lines,
+                    "visual_review_status": "reviewed_candidate",
+                    "source_basis": "PDF visual table and source text table lines",
+                },
             )
         )
     for note_no, (line, line_idx) in enumerate(zip(table.note_lines, table.note_line_indexes), start=1):
@@ -314,7 +420,6 @@ def _table_node(table: RawTable, *, parent_nid: str, source_label: str, line_no_
                 data={"note_type": "table_note", "table_no": table.table_no},
             )
         )
-    _apply_column_reconstruction_prototype(node, table.table_no)
     return node
 
 
@@ -367,6 +472,43 @@ def _remove_child(parent: Node, child_nid: str) -> None:
     parent.children = [child for child in parent.children if child.nid != child_nid]
 
 
+def _source_line(node: Node) -> Optional[int]:
+    for span in node.source_spans or []:
+        locator = span.get("locator")
+        if not isinstance(locator, str):
+            continue
+        match = re.search(r"line:(\d+)", locator)
+        if match:
+            return int(match.group(1))
+    return None
+
+
+def _remove_duplicate_table_notes(parent: Node, table: RawTable, *, line_no_offset: int) -> None:
+    note_lines = {line_idx + line_no_offset + 1 for line_idx in table.note_line_indexes}
+    if not note_lines:
+        return
+
+    def overlaps_table_note(child: Node) -> bool:
+        if child.kind != "note":
+            return False
+        return any((_source_line(child) or -1) in note_lines for _span in child.source_spans or [None])
+
+    parent.children = [child for child in parent.children if not overlaps_table_note(child)]
+
+
+def _insert_child_by_source_order(parent: Node, child: Node) -> None:
+    child_line = _source_line(child)
+    if child_line is None:
+        parent.children.append(child)
+        return
+    for idx, existing in enumerate(parent.children):
+        existing_line = _source_line(existing)
+        if existing_line is not None and existing_line > child_line:
+            parent.children.insert(idx, child)
+            return
+    parent.children.append(child)
+
+
 def normalize_aseptic_processing_tables(
     root: Node,
     raw_lines: List[str],
@@ -388,6 +530,8 @@ def normalize_aseptic_processing_tables(
         remove_child_nid = spec.get("remove_child_nid")
         if isinstance(remove_child_nid, str):
             _remove_child(parent, remove_child_nid)
-        parent.children.append(_table_node(table, parent_nid=parent.nid, source_label=source_label, line_no_offset=line_no_offset))
+        _remove_duplicate_table_notes(parent, table, line_no_offset=line_no_offset)
+        table_node = _table_node(table, parent_nid=parent.nid, source_label=source_label, line_no_offset=line_no_offset)
+        _insert_child_by_source_order(parent, table_node)
         applied.append({"table_no": table.table_no, "parent_nid": parent.nid, "rows": len(table.raw_lines)})
     return {"applied": bool(applied), "tables": applied}
