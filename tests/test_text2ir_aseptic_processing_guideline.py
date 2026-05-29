@@ -46,10 +46,20 @@ def test_aseptic_profile_keeps_main_and_reference_sections_separate() -> None:
     )
     nodes = list(_walk(ir_doc.content))
     by_kind_num = {(node.kind, node.num): node for node in nodes}
+    by_nid = {node.nid: node for node in nodes}
 
     assert by_kind_num[("chapter", "3")].heading == "品質システム"
+    assert by_nid["cha2.sec2_1"].heading == "アイソレータ(isolator)"
+    assert by_nid["cha2.sec2_1"].text.startswith("環境及び職員の直接介入から")
+    assert by_nid["cha2.sec2_2"].heading == "アクセス制限バリアシステム（RABS: Restricted Access Barrier System）"
+    assert by_nid["cha2.sec2_2"].text.startswith("グローブを備えた")
     assert by_kind_num[("section", "3.1")].heading == "品質システム一般要求事項"
-    assert by_kind_num[("section", "3.1")].text.startswith("1） 全般")
+    assert by_nid["cha3.sec3_1"].text is None
+    assert by_nid["cha3.sec3_1.i1"].heading is None
+    assert by_nid["cha3.sec3_1.i1"].text.startswith("全般")
+    assert by_nid["cha3.sec3_1.i2"].text.startswith("適用範囲")
+    assert by_nid["cha15.sec15_4"].heading == "保守・管理"
+    assert "cha15.sec15_3.i15" not in by_nid
     assert by_kind_num[("chapter", "A1")].heading == "細胞培養／発酵により製造する原薬"
     assert by_kind_num[("paragraph", "A1.1")].text.startswith("一般要件")
 

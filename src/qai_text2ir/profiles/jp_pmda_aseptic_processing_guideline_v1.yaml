@@ -27,17 +27,27 @@ marker_types:
   - id: chapter_decimal
     kind: chapter
     kind_raw: "1."
-    match: '^(?P<n>[0-9０-９]{1,2})[．.](?![0-9０-９])\s*'
+    match: '^(?P<n>[0-9０-９]{1,2})[．.](?!\s*[0-9０-９])\s*'
     num_group: n
   - id: section_decimal
     kind: section
     kind_raw: "1.1"
-    match: '^(?![2２][．.])(?P<n>[0-9０-９]{1,2}[．.][0-9０-９]{1,2})(?![．.0-9０-９])\s*'
+    match: '^(?P<n>[0-9０-９]{1,2}[．.]\s*[0-9０-９]{1,2})(?!\s*[．.0-9０-９])\s*'
     num_group: n
   - id: paragraph_three_level
     kind: paragraph
     kind_raw: "1.1.1"
-    match: '^(?P<n>[0-9０-９]{1,2}[．.][0-9０-９]{1,2}[．.][0-9０-９]{1,2})\s*'
+    match: '^(?P<n>[0-9０-９]{1,2}[．.]\s*[0-9０-９]{1,2}[．.]\s*[0-9０-９]{1,2})\s*'
+    num_group: n
+  - id: item_jp_digit_paren
+    kind: item
+    kind_raw: "1）"
+    match: '^(?P<n>[0-9０-９]{1,2})[）)]\s*'
+    num_group: n
+  - id: item_digit_dot
+    kind: item
+    kind_raw: "1."
+    match: '^(?P<n>[0-9０-９]{1,3})[．.]\s+(?![0-9０-９])'
     num_group: n
 
 structure:

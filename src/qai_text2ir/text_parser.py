@@ -1435,6 +1435,17 @@ def _split_section_heading_and_chapeau(remaining: str) -> Tuple[str, Optional[st
     text = remaining.strip()
     if not text:
         return "", None
+    definition_sep_positions = [
+        match.start()
+        for match in re.finditer(r"[:：]", text)
+        if match.start() <= 160
+    ]
+    if definition_sep_positions:
+        split_pos = definition_sep_positions[-1]
+        heading = text[:split_pos].strip()
+        chapeau = text[split_pos + 1 :].strip()
+        if heading and chapeau:
+            return heading, chapeau
     m = re.search(r"\.\s+([A-Z0-9(])", text)
     if not m:
         return text, None
