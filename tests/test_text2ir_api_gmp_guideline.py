@@ -75,7 +75,7 @@ def test_api_gmp_section_heading_with_chapeau_keeps_text_and_table_context() -> 
     assert table_1.heading == "表１：原薬生産に対する本ガイドラインの適用"
 
 
-def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() -> None:
+def test_api_gmp_table1_adapter_promotes_visual_reviewed_cells() -> None:
     profile = load_parser_profile(path=PROFILE)
     ir_doc = parse_text_to_ir(
         input_path=SOURCE,
@@ -91,22 +91,20 @@ def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() ->
     assert "postprocess=api_gmp_table1" in ir_doc.content.tags
     assert table_1.heading == "表１：原薬生産に対する本ガイドラインの適用"
     assert table_1.data["parser"] == "api_gmp_table1_adapter"
-    assert table_1.data["column_reconstruction"] == "prototype"
-    assert table_1.data["column_reconstruction_status"] == "partial"
-    assert table_1.data["reconstructed_columns"] == [
+    assert table_1.data["column_reconstruction"] == "visual_reviewed"
+    assert table_1.data["column_reconstruction_status"] == "complete_for_table1"
+    assert table_1.data["columns"] == [
         "production_type",
-        "early_stage_1",
-        "early_stage_2",
-        "middle_stage",
-        "late_stage",
-        "final_stage",
+        "api_starting_material_manufacture",
+        "api_starting_material_introduction_or_preliminary_processing",
+        "intermediate_manufacture_or_equivalent",
+        "isolation_and_purification_or_further_extraction",
+        "physical_processing_and_packaging",
     ]
     assert len(table_1.data["reconstructed_records"]) == 7
-    assert table_1.data["record_review"]["candidate_granularity"] == "reconstructed_record"
-    assert table_1.data["record_review"]["table_row_promotion"] == "deferred"
-    assert table_1.data["record_review"]["deferred_raw_rows"] == [1, 2, 26]
-    assert table_1.data["reconstructed_records"][0]["review_status"] == "reviewed_candidate"
-    assert table_1.data["reconstructed_records"][0]["promotion_status"] == "deferred"
+    assert table_1.data["record_review"]["candidate_granularity"] == "visual_reconstructed_table_row"
+    assert table_1.data["record_review"]["table_row_promotion"] == "promoted"
+    assert table_1.data["record_review"]["deferred_raw_rows"] == []
     assert table_1.data["reconstructed_records"][0]["cells"] == [
         "化学的合成による原薬",
         "原薬出発物質の製造",
@@ -115,12 +113,26 @@ def test_api_gmp_table1_adapter_keeps_raw_rows_without_manual_input_rewrite() ->
         "分離及び精製",
         "物理的加工処理及び包装",
     ]
-    assert header.text == "raw_line"
-    assert header.data["columns"] == ["raw_line"]
-    assert len(rows) == 26
-    assert rows[0].text == "生産形態                  形態ごとの生産工程の事例"
-    assert rows[2].data["column_reconstruction_record_id"] == "api_gmp_table1.r1"
-    assert rows[25].data["column_reconstruction_warning"] == "non_data_row_not_cell_reconstructed"
-    assert rows[-1].text == "ＧＭＰ要求事項の増大"
+    assert table_1.data["reconstructed_records"][0]["guideline_applicable"] == [False, True, True, True, True]
+    assert table_1.data["visual_notes"][0]["meaning"] == "guideline_applicable=true"
+    assert header.text.startswith("生産形態 | 原薬出発物質の製造")
+    assert header.data["columns"] == table_1.data["columns"]
+    assert len(rows) == 7
+    assert rows[0].data["record_id"] == "api_gmp_table1.r1"
+    assert rows[0].data["cells"] == table_1.data["reconstructed_records"][0]["cells"]
+    assert rows[0].data["guideline_applicable"] == [False, True, True, True, True]
+    assert rows[0].data["visual_fill"] == ["not_applicable", "white", "gray", "gray", "gray", "gray"]
+    assert rows[3].data["cells"] == [
+        "原薬として使用する生薬抽出物",
+        "植物の収集",
+        "細断及び初期抽出",
+        "",
+        "再抽出",
+        "物理的加工処理及び包装",
+    ]
+    assert rows[3].data["guideline_applicable"] == [False, False, False, True, True]
+    assert rows[4].data["guideline_applicable"] == [False, False, False, False, True]
+    assert rows[-1].data["record_id"] == "api_gmp_table1.r7"
+    assert rows[-1].data["guideline_applicable"] == [False, True, True, True, True]
     assert "表１：原薬生産に対する本ガイドラインの適用" not in (section_1_3.text or "")
     assert not qualitycheck_document(ir_doc.content)
