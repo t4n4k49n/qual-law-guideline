@@ -1197,7 +1197,9 @@ def _append_content(
     else:
         if state.in_pre or pre:
             sep = "\n"
-        elif state.pending_paragraph_break and _should_keep_pending_paragraph_break(current_value):
+        elif state.pending_paragraph_break and (
+            not normalize_japanese_text or _should_keep_pending_paragraph_break(current_value)
+        ):
             sep = "\n\n"
         else:
             sep = " "
