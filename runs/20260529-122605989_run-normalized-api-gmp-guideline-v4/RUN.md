@@ -91,6 +91,17 @@ Result: `253 passed, 1 skipped`.
 
 ## Promotion Status
 
-Not promoted.
+Promotion prepared in child promotion branch.
 
-Do not copy to `data/normalized/` until this parent PR is approved. The promotion copy must be done in a child promotion PR.
+- Parent PR: `#218`
+- Parent merge commit: `4ca0420`
+- Promotion branch: `promote/api-gmp-guideline-v4`
+- Destination: `data/normalized/jp_pmda_api_gmp_guideline_20011102/`
+- Copied files:
+  - `jp_pmda_api_gmp_guideline_20011102.regdoc_ir.yaml`
+  - `jp_pmda_api_gmp_guideline_20011102.parser_profile.yaml`
+  - `jp_pmda_api_gmp_guideline_20011102.regdoc_profile.yaml`
+  - `jp_pmda_api_gmp_guideline_20011102.meta.yaml`
+- SHA-256 match between `promotion_candidate/` and `data/normalized/`: confirmed.
+- Promotion goal check on `data/normalized/jp_pmda_api_gmp_guideline_20011102/`: pass.
+- IR structure check on `data/normalized/jp_pmda_api_gmp_guideline_20011102/`: pass.
