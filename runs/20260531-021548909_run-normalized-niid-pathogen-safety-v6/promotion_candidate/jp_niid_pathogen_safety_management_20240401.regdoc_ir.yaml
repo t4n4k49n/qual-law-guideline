@@ -6235,7 +6235,7 @@ content:
         num: null
         ord: 287
         heading: null
-        text: 大区分 | 中区分 | 基準 | 1種 BSL4 | 2種 BSL3 | 2種 BSL2 | 3種 BSL3 | 3種 BSL2 | 4種 BSL3 | 4種 BSL2
+        text: 大項目 | 小項目 | 1種 BSL4 | 2種 BSL3 | 2種 BSL2 | 3種 BSL3 | 3種 BSL2 | 4種 BSL3 | 4種 BSL2
         role: structural
         normativity: null
         tags: []
@@ -6251,7 +6251,7 @@ content:
           num: '1'
           ord: 288
           heading: null
-          text: 対象病原体等BSL |  | BSL | BSL4 | BSL3 | BSL2 | BSL3 | BSL2 | BSL3 | BSL2
+          text: 対象病原体等BSL | － | BSL4 | BSL3 | BSL2 | BSL3 | BSL2 | BSL3 | BSL2
           role: normative
           normativity: must
           tags: []
@@ -6264,8 +6264,7 @@ content:
           data:
             cells:
             - 対象病原体等BSL
-            - ''
-            - BSL
+            - －
             - BSL4
             - BSL3
             - BSL2
@@ -6275,7 +6274,6 @@ content:
             - BSL2
             columns: &id011
             - section
-            - subsection
             - criterion
             - type1_bsl4
             - type2_bsl3
@@ -6286,8 +6284,7 @@ content:
             - type4_bsl2
             record:
               section: 対象病原体等BSL
-              subsection: ''
-              criterion: BSL
+              criterion: －
               type1_bsl4: BSL4
               type2_bsl3: BSL3
               type2_bsl2: BSL2
@@ -6303,7 +6300,7 @@ content:
           num: '2'
           ord: 289
           heading: null
-          text: 位置・構造 |  | 位置（地崩れ、浸水） | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 位置（地崩れ、浸水） | － | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -6315,9 +6312,8 @@ content:
           children: []
           data:
             cells:
-            - 位置・構造
-            - ''
             - 位置（地崩れ、浸水）
+            - －
             - ○
             - ○
             - ○
@@ -6327,9 +6323,8 @@ content:
             - ○
             columns: *id011
             record:
-              section: 位置・構造
-              subsection: ''
-              criterion: 位置（地崩れ、浸水）
+              section: 位置（地崩れ、浸水）
+              criterion: －
               type1_bsl4: ○
               type2_bsl3: ○
               type2_bsl2: ○
@@ -6345,7 +6340,7 @@ content:
           num: '3'
           ord: 290
           heading: null
-          text: 位置・構造 |  | 耐火構造又は不燃材料（建築基準法） | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 耐火構造又は不燃材料（建築基準法） | － | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -6357,9 +6352,8 @@ content:
           children: []
           data:
             cells:
-            - 位置・構造
-            - ''
             - 耐火構造又は不燃材料（建築基準法）
+            - －
             - ○
             - ○
             - ○
@@ -6369,9 +6363,8 @@ content:
             - ○
             columns: *id011
             record:
-              section: 位置・構造
-              subsection: ''
-              criterion: 耐火構造又は不燃材料（建築基準法）
+              section: 耐火構造又は不燃材料（建築基準法）
+              criterion: －
               type1_bsl4: ○
               type2_bsl3: ○
               type2_bsl2: ○
@@ -6387,7 +6380,7 @@ content:
           num: '4'
           ord: 291
           heading: null
-          text: 位置・構造 |  | 耐震構造 | ○ | － | － | － | － | － | －
+          text: 耐震構造 | － | ○ | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -6399,9 +6392,8 @@ content:
           children: []
           data:
             cells:
-            - 位置・構造
-            - ''
             - 耐震構造
+            - －
             - ○
             - －
             - －
@@ -6411,9 +6403,8 @@ content:
             - －
             columns: *id011
             record:
-              section: 位置・構造
-              subsection: ''
-              criterion: 耐震構造
+              section: 耐震構造
+              criterion: －
               type1_bsl4: ○
               type2_bsl3: －
               type2_bsl2: －
@@ -6429,7 +6420,7 @@ content:
           num: '5'
           ord: 292
           heading: null
-          text: 管理区域 |  | 管理区域（例） | 実験室・前室、シャワー室、給排気・排水設備、監視室等 | 実験室、前室、保管庫、滅菌設備等 | 実験室、保管庫、滅菌設備等 | 実験室、前室、保管庫、滅菌設備等 | 実験室、保管庫、滅菌設備等 | 実験室、前室、保管庫、滅菌設備等 | 実験室、保管庫、滅菌設備等
+          text: 管理区域（例） | － | 実験室・前室、シャワー室、給排気・排水設備、監視室等 | 実験室、前室、保管庫、滅菌設備等 | 実験室、保管庫、滅菌設備等 | 実験室、前室、保管庫、滅菌設備等 | 実験室、保管庫、滅菌設備等 | 実験室、前室、保管庫、滅菌設備等 | 実験室、保管庫、滅菌設備等
           role: normative
           normativity: must
           tags: []
@@ -6441,9 +6432,8 @@ content:
           children: []
           data:
             cells:
-            - 管理区域
-            - ''
             - 管理区域（例）
+            - －
             - 実験室・前室、シャワー室、給排気・排水設備、監視室等
             - 実験室、前室、保管庫、滅菌設備等
             - 実験室、保管庫、滅菌設備等
@@ -6453,9 +6443,8 @@ content:
             - 実験室、保管庫、滅菌設備等
             columns: *id011
             record:
-              section: 管理区域
-              subsection: ''
-              criterion: 管理区域（例）
+              section: 管理区域（例）
+              criterion: －
               type1_bsl4: 実験室・前室、シャワー室、給排気・排水設備、監視室等
               type2_bsl3: 実験室、前室、保管庫、滅菌設備等
               type2_bsl2: 実験室、保管庫、滅菌設備等
@@ -6471,7 +6460,7 @@ content:
           num: '6'
           ord: 293
           heading: null
-          text: 管理区域 |  | 補助設備 | ○（予備電源等） | － | － | － | － | － | －
+          text: 補助設備 | － | ○（予備電源等） | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -6483,9 +6472,8 @@ content:
           children: []
           data:
             cells:
-            - 管理区域
-            - ''
             - 補助設備
+            - －
             - ○（予備電源等）
             - －
             - －
@@ -6495,9 +6483,8 @@ content:
             - －
             columns: *id011
             record:
-              section: 管理区域
-              subsection: ''
-              criterion: 補助設備
+              section: 補助設備
+              criterion: －
               type1_bsl4: ○（予備電源等）
               type2_bsl3: －
               type2_bsl2: －
@@ -6513,7 +6500,7 @@ content:
           num: '7'
           ord: 294
           heading: null
-          text: 管理区域 |  | 管理区域の監視室 | ○ | － | － | － | － | － | －
+          text: 管理区域の監視室 | － | ○ | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -6525,9 +6512,8 @@ content:
           children: []
           data:
             cells:
-            - 管理区域
-            - ''
             - 管理区域の監視室
+            - －
             - ○
             - －
             - －
@@ -6537,9 +6523,8 @@ content:
             - －
             columns: *id011
             record:
-              section: 管理区域
-              subsection: ''
-              criterion: 管理区域の監視室
+              section: 管理区域の監視室
+              criterion: －
               type1_bsl4: ○
               type2_bsl3: －
               type2_bsl2: －
@@ -6555,7 +6540,7 @@ content:
           num: '8'
           ord: 295
           heading: null
-          text: 管理区域 |  | 侵入防止の施設 | さく等 | － | － | － | － | － | －
+          text: 侵入防止の施設 | － | さく等 | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -6567,9 +6552,8 @@ content:
           children: []
           data:
             cells:
-            - 管理区域
-            - ''
             - 侵入防止の施設
+            - －
             - さく等
             - －
             - －
@@ -6579,9 +6563,8 @@ content:
             - －
             columns: *id011
             record:
-              section: 管理区域
-              subsection: ''
-              criterion: 侵入防止の施設
+              section: 侵入防止の施設
+              criterion: －
               type1_bsl4: さく等
               type2_bsl3: －
               type2_bsl2: －
@@ -6597,7 +6580,7 @@ content:
           num: '9'
           ord: 296
           heading: null
-          text: 管理区域 |  | 実験室まで通行制限 | ○ | ○ | － | ○ | － | ○ | －
+          text: 実験室まで通行制限 | － | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -6609,9 +6592,8 @@ content:
           children: []
           data:
             cells:
-            - 管理区域
-            - ''
             - 実験室まで通行制限
+            - －
             - ○
             - ○
             - －
@@ -6621,9 +6603,8 @@ content:
             - －
             columns: *id011
             record:
-              section: 管理区域
-              subsection: ''
-              criterion: 実験室まで通行制限
+              section: 実験室まで通行制限
+              criterion: －
               type1_bsl4: ○
               type2_bsl3: ○
               type2_bsl2: －
@@ -6639,7 +6620,7 @@ content:
           num: '10'
           ord: 297
           heading: null
-          text: 保管施設（庫） |  | 保管施設（庫） | 実験室内 | 実験室内・管理区域内 | 実験室内・管理区域内 | 実験室内・管理区域内 | 実験室内・管理区域内 | 管理区域内 | 管理区域内
+          text: 保管施設（庫） | － | 実験室内 | 実験室内・管理区域内 | 実験室内・管理区域内 | 実験室内・管理区域内 | 実験室内・管理区域内 | 管理区域内 | 管理区域内
           role: normative
           normativity: must
           tags: []
@@ -6652,8 +6633,7 @@ content:
           data:
             cells:
             - 保管施設（庫）
-            - ''
-            - 保管施設（庫）
+            - －
             - 実験室内
             - 実験室内・管理区域内
             - 実験室内・管理区域内
@@ -6664,8 +6644,7 @@ content:
             columns: *id011
             record:
               section: 保管施設（庫）
-              subsection: ''
-              criterion: 保管施設（庫）
+              criterion: －
               type1_bsl4: 実験室内
               type2_bsl3: 実験室内・管理区域内
               type2_bsl2: 実験室内・管理区域内
@@ -6681,7 +6660,7 @@ content:
           num: '11'
           ord: 298
           heading: null
-          text: 保管施設（庫） |  | 施錠等の設備・器具 | ○*1 | ○ | ○ | ○ | ○ | ○ | ○
+          text: 保管施設（庫） | 施錠等の設備・器具 | ○*1 | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -6694,7 +6673,6 @@ content:
           data:
             cells:
             - 保管施設（庫）
-            - ''
             - 施錠等の設備・器具
             - ○*1
             - ○
@@ -6706,7 +6684,6 @@ content:
             columns: *id011
             record:
               section: 保管施設（庫）
-              subsection: ''
               criterion: 施錠等の設備・器具
               type1_bsl4: ○*1
               type2_bsl3: ○
@@ -6723,7 +6700,7 @@ content:
           num: '12'
           ord: 299
           heading: null
-          text: 保管施設（庫） |  | 通行制限等措置 | － | ○ | ○ | ○ | ○ | － | －
+          text: 保管施設（庫） | 通行制限等措置 | － | ○ | ○ | ○ | ○ | － | －
           role: normative
           normativity: must
           tags: []
@@ -6736,7 +6713,6 @@ content:
           data:
             cells:
             - 保管施設（庫）
-            - ''
             - 通行制限等措置
             - －
             - ○
@@ -6748,7 +6724,6 @@ content:
             columns: *id011
             record:
               section: 保管施設（庫）
-              subsection: ''
               criterion: 通行制限等措置
               type1_bsl4: －
               type2_bsl3: ○
@@ -6765,7 +6740,7 @@ content:
           num: '13'
           ord: 300
           heading: null
-          text: '実験室 |  | 実験室 | 実験室 |  |  |  |  | 実験室 | '
+          text: '実験室 | － | 実験室 |  |  |  |  | 実験室 | '
           role: normative
           normativity: must
           tags: []
@@ -6778,8 +6753,7 @@ content:
           data:
             cells:
             - 実験室
-            - ''
-            - 実験室
+            - －
             - 実験室
             - ''
             - ''
@@ -6790,8 +6764,7 @@ content:
             columns: *id011
             record:
               section: 実験室
-              subsection: ''
-              criterion: 実験室
+              criterion: －
               type1_bsl4: 実験室
               type2_bsl3: ''
               type2_bsl2: ''
@@ -6807,7 +6780,7 @@ content:
           num: '14'
           ord: 301
           heading: null
-          text: 実験室 |  | 鍵 | ○（3重以上） | ○ | ○ | ○ | ○ | ○ | ○
+          text: 実験室 | 鍵 | ○（3重以上） | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -6820,7 +6793,6 @@ content:
           data:
             cells:
             - 実験室
-            - ''
             - 鍵
             - ○（3重以上）
             - ○
@@ -6832,7 +6804,6 @@ content:
             columns: *id011
             record:
               section: 実験室
-              subsection: ''
               criterion: 鍵
               type1_bsl4: ○（3重以上）
               type2_bsl3: ○
@@ -6849,7 +6820,7 @@ content:
           num: '15'
           ord: 302
           heading: null
-          text: 実験室 |  | 専用の前室 | ○ | ○ | － | ○ | － | ○ | －
+          text: 実験室 | 専用の前室 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -6862,7 +6833,6 @@ content:
           data:
             cells:
             - 実験室
-            - ''
             - 専用の前室
             - ○
             - ○
@@ -6874,7 +6844,6 @@ content:
             columns: *id011
             record:
               section: 実験室
-              subsection: ''
               criterion: 専用の前室
               type1_bsl4: ○
               type2_bsl3: ○
@@ -6891,7 +6860,7 @@ content:
           num: '16'
           ord: 303
           heading: null
-          text: 実験室 |  | シャワー室 | ○ | － | － | － | － | － | －
+          text: 実験室 | シャワー室 | ○ | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -6904,7 +6873,6 @@ content:
           data:
             cells:
             - 実験室
-            - ''
             - シャワー室
             - ○
             - －
@@ -6916,7 +6884,6 @@ content:
             columns: *id011
             record:
               section: 実験室
-              subsection: ''
               criterion: シャワー室
               type1_bsl4: ○
               type2_bsl3: －
@@ -6933,7 +6900,7 @@ content:
           num: '17'
           ord: 304
           heading: null
-          text: 実験室 |  | インターロック | ○ | ○ | － | ○ | － | ○ | －
+          text: 実験室 | インターロック | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -6946,7 +6913,6 @@ content:
           data:
             cells:
             - 実験室
-            - ''
             - インターロック
             - ○
             - ○
@@ -6958,7 +6924,6 @@ content:
             columns: *id011
             record:
               section: 実験室
-              subsection: ''
               criterion: インターロック
               type1_bsl4: ○
               type2_bsl3: ○
@@ -6975,7 +6940,7 @@ content:
           num: '18'
           ord: 305
           heading: null
-          text: '実験室内 |  | 実験室内 | 実験室 |  |  |  |  | 実験室 | '
+          text: '実験室内 | － | 実験室 |  |  |  |  | 実験室 | '
           role: normative
           normativity: must
           tags: []
@@ -6988,8 +6953,7 @@ content:
           data:
             cells:
             - 実験室内
-            - ''
-            - 実験室内
+            - －
             - 実験室
             - ''
             - ''
@@ -7000,8 +6964,7 @@ content:
             columns: *id011
             record:
               section: 実験室内
-              subsection: ''
-              criterion: 実験室内
+              criterion: －
               type1_bsl4: 実験室
               type2_bsl3: ''
               type2_bsl2: ''
@@ -7017,7 +6980,7 @@ content:
           num: '19'
           ord: 306
           heading: null
-          text: 実験室内 |  | 壁・床等の消毒 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 実験室内 | 壁・床等の消毒 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -7030,7 +6993,6 @@ content:
           data:
             cells:
             - 実験室内
-            - ''
             - 壁・床等の消毒
             - ○
             - ○
@@ -7042,7 +7004,6 @@ content:
             columns: *id011
             record:
               section: 実験室内
-              subsection: ''
               criterion: 壁・床等の消毒
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7059,7 +7020,7 @@ content:
           num: '20'
           ord: 307
           heading: null
-          text: 実験室内 |  | 壁・床・天井等の耐水・気密、消毒 | ○ | ○ | － | ○ | － | ○ | －
+          text: 実験室内 | 壁・床・天井等の耐水・気密、消毒 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7072,7 +7033,6 @@ content:
           data:
             cells:
             - 実験室内
-            - ''
             - 壁・床・天井等の耐水・気密、消毒
             - ○
             - ○
@@ -7084,7 +7044,6 @@ content:
             columns: *id011
             record:
               section: 実験室内
-              subsection: ''
               criterion: 壁・床・天井等の耐水・気密、消毒
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7101,7 +7060,7 @@ content:
           num: '21'
           ord: 308
           heading: null
-          text: 実験室内 |  | 通話又は警報装置 | ○ | ○ | － | ○ | － | ○ | －
+          text: 実験室内 | 通話又は警報装置 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7114,7 +7073,6 @@ content:
           data:
             cells:
             - 実験室内
-            - ''
             - 通話又は警報装置
             - ○
             - ○
@@ -7126,7 +7084,6 @@ content:
             columns: *id011
             record:
               section: 実験室内
-              subsection: ''
               criterion: 通話又は警報装置
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7143,7 +7100,7 @@ content:
           num: '22'
           ord: 309
           heading: null
-          text: 実験室内 |  | 窓等措置 | ○ | ○ | － | ○ | － | ○ | －
+          text: 実験室内 | 窓等措置 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7156,7 +7113,6 @@ content:
           data:
             cells:
             - 実験室内
-            - ''
             - 窓等措置
             - ○
             - ○
@@ -7168,7 +7124,6 @@ content:
             columns: *id011
             record:
               section: 実験室内
-              subsection: ''
               criterion: 窓等措置
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7185,7 +7140,7 @@ content:
           num: '23'
           ord: 310
           heading: null
-          text: 実験室内 |  | 監視カメラ等 | ○ | － | － | － | － | － | －
+          text: 実験室内 | 監視カメラ等 | ○ | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -7198,7 +7153,6 @@ content:
           data:
             cells:
             - 実験室内
-            - ''
             - 監視カメラ等
             - ○
             - －
@@ -7210,7 +7164,6 @@ content:
             columns: *id011
             record:
               section: 実験室内
-              subsection: ''
               criterion: 監視カメラ等
               type1_bsl4: ○
               type2_bsl3: －
@@ -7227,7 +7180,7 @@ content:
           num: '24'
           ord: 311
           heading: null
-          text: 実験室内 |  | 安全キャビネット | ○（高度：クラスIII） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上）
+          text: 実験室内 | 安全キャビネット | ○（高度：クラスIII） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上）
           role: normative
           normativity: must
           tags: []
@@ -7240,7 +7193,6 @@ content:
           data:
             cells:
             - 実験室内
-            - ''
             - 安全キャビネット
             - ○（高度：クラスIII）
             - ○（クラスII以上）
@@ -7252,7 +7204,6 @@ content:
             columns: *id011
             record:
               section: 実験室内
-              subsection: ''
               criterion: 安全キャビネット
               type1_bsl4: ○（高度：クラスIII）
               type2_bsl3: ○（クラスII以上）
@@ -7269,7 +7220,7 @@ content:
           num: '25'
           ord: 312
           heading: null
-          text: '給気設備 |  | 専用（鍵） | ○ | － | ○ | － | ○ | － | '
+          text: '給気設備 | 専用（鍵） | ○ | － | ○ | － | ○ | － | '
           role: normative
           normativity: must
           tags: []
@@ -7282,7 +7233,6 @@ content:
           data:
             cells:
             - 給気設備
-            - ''
             - 専用（鍵）
             - ○
             - －
@@ -7294,7 +7244,6 @@ content:
             columns: *id011
             record:
               section: 給気設備
-              subsection: ''
               criterion: 専用（鍵）
               type1_bsl4: ○
               type2_bsl3: －
@@ -7311,7 +7260,7 @@ content:
           num: '26'
           ord: 313
           heading: null
-          text: 給気設備 |  | HEPAフィルター | ○ | ○ | － | ○ | － | ○ | －
+          text: 給気設備 | HEPAフィルター | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7324,7 +7273,6 @@ content:
           data:
             cells:
             - 給気設備
-            - ''
             - HEPAフィルター
             - ○
             - ○
@@ -7336,7 +7284,6 @@ content:
             columns: *id011
             record:
               section: 給気設備
-              subsection: ''
               criterion: HEPAフィルター
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7353,7 +7300,7 @@ content:
           num: '27'
           ord: 314
           heading: null
-          text: 給気設備 |  | 稼働状況確認の装置 | ○ | ○ | － | ○ | － | ○ | －
+          text: 給気設備 | 稼働状況確認の装置 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7366,7 +7313,6 @@ content:
           data:
             cells:
             - 給気設備
-            - ''
             - 稼働状況確認の装置
             - ○
             - ○
@@ -7378,7 +7324,6 @@ content:
             columns: *id011
             record:
               section: 給気設備
-              subsection: ''
               criterion: 稼働状況確認の装置
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7395,7 +7340,7 @@ content:
           num: '28'
           ord: 315
           heading: null
-          text: '排気設備 |  | 専用（鍵） | ○*3 | － | ○*3 | － | ○*3 | － | '
+          text: '排気設備 | 専用（鍵） | ○*3 | － | ○*3 | － | ○*3 | － | '
           role: normative
           normativity: must
           tags: []
@@ -7408,7 +7353,6 @@ content:
           data:
             cells:
             - 排気設備
-            - ''
             - 専用（鍵）
             - ○*3
             - －
@@ -7420,7 +7364,6 @@ content:
             columns: *id011
             record:
               section: 排気設備
-              subsection: ''
               criterion: 専用（鍵）
               type1_bsl4: ○*3
               type2_bsl3: －
@@ -7437,7 +7380,7 @@ content:
           num: '29'
           ord: 316
           heading: null
-          text: 排気設備 |  | HEPAフィルター | ○（2重以上） | ○（1以上） | － | ○（1以上） | － | ○（1以上） | －
+          text: 排気設備 | HEPAフィルター | ○（2重以上） | ○（1以上） | － | ○（1以上） | － | ○（1以上） | －
           role: normative
           normativity: must
           tags: []
@@ -7450,7 +7393,6 @@ content:
           data:
             cells:
             - 排気設備
-            - ''
             - HEPAフィルター
             - ○（2重以上）
             - ○（1以上）
@@ -7462,7 +7404,6 @@ content:
             columns: *id011
             record:
               section: 排気設備
-              subsection: ''
               criterion: HEPAフィルター
               type1_bsl4: ○（2重以上）
               type2_bsl3: ○（1以上）
@@ -7479,7 +7420,7 @@ content:
           num: '30'
           ord: 317
           heading: null
-          text: 排気設備 |  | 再循環防止の措置 | ○ | ○ | － | ○ | － | ○ | －
+          text: 排気設備 | 再循環防止の措置 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7492,7 +7433,6 @@ content:
           data:
             cells:
             - 排気設備
-            - ''
             - 再循環防止の措置
             - ○
             - ○
@@ -7504,7 +7444,6 @@ content:
             columns: *id011
             record:
               section: 排気設備
-              subsection: ''
               criterion: 再循環防止の措置
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7521,7 +7460,7 @@ content:
           num: '31'
           ord: 318
           heading: null
-          text: 排気設備 |  | 差圧管理できる構造 | ○ | ○ | － | ○ | － | ○ | －
+          text: 排気設備 | 差圧管理できる構造 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7534,7 +7473,6 @@ content:
           data:
             cells:
             - 排気設備
-            - ''
             - 差圧管理できる構造
             - ○
             - ○
@@ -7546,7 +7484,6 @@ content:
             columns: *id011
             record:
               section: 排気設備
-              subsection: ''
               criterion: 差圧管理できる構造
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7563,7 +7500,7 @@ content:
           num: '32'
           ord: 319
           heading: null
-          text: 排気設備 |  | 稼働状況確認の装置 | ○ | ○ | － | ○ | － | ○ | －
+          text: 排気設備 | 稼働状況確認の装置 | ○ | ○ | － | ○ | － | ○ | －
           role: normative
           normativity: must
           tags: []
@@ -7576,7 +7513,6 @@ content:
           data:
             cells:
             - 排気設備
-            - ''
             - 稼働状況確認の装置
             - ○
             - ○
@@ -7588,7 +7524,6 @@ content:
             columns: *id011
             record:
               section: 排気設備
-              subsection: ''
               criterion: 稼働状況確認の装置
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7605,7 +7540,7 @@ content:
           num: '33'
           ord: 320
           heading: null
-          text: '排水設備*3 |  | 専用（鍵）、高圧蒸気滅菌装置及び薬液装置 | ○ | － | ○ | － | ○ | － | '
+          text: '排水設備*3 | 専用（鍵）、高圧蒸気滅菌装置及び薬液装置 | ○ | － | ○ | － | ○ | － | '
           role: normative
           normativity: must
           tags: []
@@ -7618,7 +7553,6 @@ content:
           data:
             cells:
             - 排水設備*3
-            - ''
             - 専用（鍵）、高圧蒸気滅菌装置及び薬液装置
             - ○
             - －
@@ -7630,7 +7564,6 @@ content:
             columns: *id011
             record:
               section: 排水設備*3
-              subsection: ''
               criterion: 専用（鍵）、高圧蒸気滅菌装置及び薬液装置
               type1_bsl4: ○
               type2_bsl3: －
@@ -7647,7 +7580,7 @@ content:
           num: '34'
           ord: 321
           heading: null
-          text: 排水設備*3 |  | 稼働状況確認の装置 | ○ | － | － | － | － | － | －
+          text: 排水設備*3 | 稼働状況確認の装置 | ○ | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -7660,7 +7593,6 @@ content:
           data:
             cells:
             - 排水設備*3
-            - ''
             - 稼働状況確認の装置
             - ○
             - －
@@ -7672,7 +7604,6 @@ content:
             columns: *id011
             record:
               section: 排水設備*3
-              subsection: ''
               criterion: 稼働状況確認の装置
               type1_bsl4: ○
               type2_bsl3: －
@@ -7689,7 +7620,7 @@ content:
           num: '35'
           ord: 322
           heading: null
-          text: 感染動物の飼育設備 |  | 感染動物の飼育設備 | 実験室内 | 実験室内 | 実験室内*2 | 実験室内 | 実験室内 | 実験室内 | 実験室内*2
+          text: 感染動物の飼育設備 | － | 実験室内 | 実験室内 | 実験室内*2 | 実験室内 | 実験室内 | 実験室内 | 実験室内*2
           role: normative
           normativity: must
           tags: []
@@ -7702,8 +7633,7 @@ content:
           data:
             cells:
             - 感染動物の飼育設備
-            - ''
-            - 感染動物の飼育設備
+            - －
             - 実験室内
             - 実験室内
             - 実験室内*2
@@ -7714,8 +7644,7 @@ content:
             columns: *id011
             record:
               section: 感染動物の飼育設備
-              subsection: ''
-              criterion: 感染動物の飼育設備
+              criterion: －
               type1_bsl4: 実験室内
               type2_bsl3: 実験室内
               type2_bsl2: 実験室内*2
@@ -7731,7 +7660,7 @@ content:
           num: '36'
           ord: 323
           heading: null
-          text: 滅菌設備 |  | 滅菌設備 | 実験室内外に扉のある高圧蒸気滅菌装置 | 実験室内 | 実験室内又は取扱施設内 | 実験室内 | 実験室内又は取扱施設内 | 実験室内 | 実験室内又は取扱施設内
+          text: 滅菌設備 | － | 実験室内外に扉のある高圧蒸気滅菌装置 | 実験室内 | 実験室内又は取扱施設内 | 実験室内 | 実験室内又は取扱施設内 | 実験室内 | 実験室内又は取扱施設内
           role: normative
           normativity: must
           tags: []
@@ -7744,8 +7673,7 @@ content:
           data:
             cells:
             - 滅菌設備
-            - ''
-            - 滅菌設備
+            - －
             - 実験室内外に扉のある高圧蒸気滅菌装置
             - 実験室内
             - 実験室内又は取扱施設内
@@ -7756,8 +7684,7 @@ content:
             columns: *id011
             record:
               section: 滅菌設備
-              subsection: ''
-              criterion: 滅菌設備
+              criterion: －
               type1_bsl4: 実験室内外に扉のある高圧蒸気滅菌装置
               type2_bsl3: 実験室内
               type2_bsl2: 実験室内又は取扱施設内
@@ -7773,7 +7700,7 @@ content:
           num: '37'
           ord: 324
           heading: null
-          text: 維持管理 |  | 点検・基準維持 | 年1回以上 | 年1回以上 | 年1回以上 | 年1回以上 | 年1回以上 | 定期的 | 定期的
+          text: 維持管理 | 点検・基準維持 | 年1回以上 | 年1回以上 | 年1回以上 | 年1回以上 | 年1回以上 | 定期的 | 定期的
           role: normative
           normativity: must
           tags: []
@@ -7786,7 +7713,6 @@ content:
           data:
             cells:
             - 維持管理
-            - ''
             - 点検・基準維持
             - 年1回以上
             - 年1回以上
@@ -7798,7 +7724,6 @@ content:
             columns: *id011
             record:
               section: 維持管理
-              subsection: ''
               criterion: 点検・基準維持
               type1_bsl4: 年1回以上
               type2_bsl3: 年1回以上
@@ -7815,7 +7740,7 @@ content:
           num: '38'
           ord: 325
           heading: null
-          text: 維持管理 |  | HEPA交換時滅菌 | ○ | ○ | ○（安全キャビネット） | ○ | ○（安全キャビネット） | ○ | ○（安全キャビネット）
+          text: 維持管理 | HEPA交換時滅菌 | ○ | ○ | ○（安全キャビネット） | ○ | ○（安全キャビネット） | ○ | ○（安全キャビネット）
           role: normative
           normativity: must
           tags: []
@@ -7828,7 +7753,6 @@ content:
           data:
             cells:
             - 維持管理
-            - ''
             - HEPA交換時滅菌
             - ○
             - ○
@@ -7840,7 +7764,6 @@ content:
             columns: *id011
             record:
               section: 維持管理
-              subsection: ''
               criterion: HEPA交換時滅菌
               type1_bsl4: ○
               type2_bsl3: ○
@@ -7854,9 +7777,8 @@ content:
         data:
           columns: *id011
           display_columns:
-          - 大区分
-          - 中区分
-          - 基準
+          - 大項目
+          - 小項目
           - 1種 BSL4
           - 2種 BSL3
           - 2種 BSL2
@@ -8269,7 +8191,7 @@ content:
         num: null
         ord: 335
         heading: null
-        text: 大区分 | 中区分 | 基準 | 1種 BSL4 | 2種 BSL3 | 2種 BSL2 | 3種 BSL3 | 3種 BSL2 | 4種 BSL3 | 4種 BSL2
+        text: 大項目 | 小項目 | 1種 BSL4 | 2種 BSL3 | 2種 BSL2 | 3種 BSL3 | 3種 BSL2 | 4種 BSL3 | 4種 BSL2
         role: structural
         normativity: null
         tags: []
@@ -8285,7 +8207,7 @@ content:
           num: '1'
           ord: 336
           heading: null
-          text: 対象病原体等BSL |  | BSL | BSL4 | BSL3 | BSL2 | BSL3 | BSL2 | BSL3 | BSL2
+          text: 対象病原体等BSL | BSL | BSL4 | BSL3 | BSL2 | BSL3 | BSL2 | BSL3 | BSL2
           role: normative
           normativity: must
           tags: []
@@ -8298,7 +8220,6 @@ content:
           data:
             cells:
             - 対象病原体等BSL
-            - ''
             - BSL
             - BSL4
             - BSL3
@@ -8309,7 +8230,6 @@ content:
             - BSL2
             columns: &id014
             - section
-            - subsection
             - criterion
             - type1_bsl4
             - type2_bsl3
@@ -8320,7 +8240,6 @@ content:
             - type4_bsl2
             record:
               section: 対象病原体等BSL
-              subsection: ''
               criterion: BSL
               type1_bsl4: BSL4
               type2_bsl3: BSL3
@@ -8337,7 +8256,7 @@ content:
           num: '2'
           ord: 337
           heading: null
-          text: 保管の基準 |  | 密封容器に入れ保管庫で保管 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 保管の基準 | 密封容器に入れ保管庫で保管 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8350,7 +8269,6 @@ content:
           data:
             cells:
             - 保管の基準
-            - ''
             - 密封容器に入れ保管庫で保管
             - ○
             - ○
@@ -8362,7 +8280,6 @@ content:
             columns: *id014
             record:
               section: 保管の基準
-              subsection: ''
               criterion: 密封容器に入れ保管庫で保管
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8379,7 +8296,7 @@ content:
           num: '3'
           ord: 338
           heading: null
-          text: 保管の基準 |  | 保管庫等の施錠 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 保管の基準 | 保管庫等の施錠 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8392,7 +8309,6 @@ content:
           data:
             cells:
             - 保管の基準
-            - ''
             - 保管庫等の施錠
             - ○
             - ○
@@ -8404,7 +8320,6 @@ content:
             columns: *id014
             record:
               section: 保管の基準
-              subsection: ''
               criterion: 保管庫等の施錠
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8421,7 +8336,7 @@ content:
           num: '4'
           ord: 339
           heading: null
-          text: 保管の基準 |  | 複数名での出し入れ | ○ | － | － | － | － | － | －
+          text: 保管の基準 | 複数名での出し入れ | ○ | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -8434,7 +8349,6 @@ content:
           data:
             cells:
             - 保管の基準
-            - ''
             - 複数名での出し入れ
             - ○
             - －
@@ -8446,7 +8360,6 @@ content:
             columns: *id014
             record:
               section: 保管の基準
-              subsection: ''
               criterion: 複数名での出し入れ
               type1_bsl4: ○
               type2_bsl3: －
@@ -8463,7 +8376,7 @@ content:
           num: '5'
           ord: 340
           heading: null
-          text: 保管の基準 |  | 保管施設のバイオハザード標示 | － | ○ | ○ | ○ | ○ | ○ | ○
+          text: 保管の基準 | 保管施設のバイオハザード標示 | － | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8476,7 +8389,6 @@ content:
           data:
             cells:
             - 保管の基準
-            - ''
             - 保管施設のバイオハザード標示
             - －
             - ○
@@ -8488,7 +8400,6 @@ content:
             columns: *id014
             record:
               section: 保管の基準
-              subsection: ''
               criterion: 保管施設のバイオハザード標示
               type1_bsl4: －
               type2_bsl3: ○
@@ -8505,7 +8416,7 @@ content:
           num: '6'
           ord: 341
           heading: null
-          text: 使用の基準 |  | 複数名での作業 | ○ | － | － | － | － | － | －
+          text: 使用の基準 | 複数名での作業 | ○ | － | － | － | － | － | －
           role: normative
           normativity: must
           tags: []
@@ -8518,7 +8429,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 複数名での作業
             - ○
             - －
@@ -8530,7 +8440,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 複数名での作業
               type1_bsl4: ○
               type2_bsl3: －
@@ -8547,7 +8456,7 @@ content:
           num: '7'
           ord: 342
           heading: null
-          text: 使用の基準 |  | 安全キャビネット内での適切な使用 | ○（高度：クラスIII）※クラスIIB以上 | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上）
+          text: 使用の基準 | 安全キャビネット内での適切な使用 | ○（高度：クラスIII）※クラスIIB以上 | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上） | ○（クラスII以上）
           role: normative
           normativity: must
           tags: []
@@ -8560,7 +8469,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 安全キャビネット内での適切な使用
             - ○（高度：クラスIII）※クラスIIB以上
             - ○（クラスII以上）
@@ -8572,7 +8480,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 安全キャビネット内での適切な使用
               type1_bsl4: ○（高度：クラスIII）※クラスIIB以上
               type2_bsl3: ○（クラスII以上）
@@ -8589,7 +8496,7 @@ content:
           num: '8'
           ord: 343
           heading: null
-          text: 使用の基準 |  | 飲食、喫煙、化粧の禁止 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 使用の基準 | 飲食、喫煙、化粧の禁止 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8602,7 +8509,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 飲食、喫煙、化粧の禁止
             - ○
             - ○
@@ -8614,7 +8520,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 飲食、喫煙、化粧の禁止
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8631,7 +8536,7 @@ content:
           num: '9'
           ord: 344
           heading: null
-          text: 使用の基準 |  | 防御具の着用 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 使用の基準 | 防御具の着用 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8644,7 +8549,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 防御具の着用
             - ○
             - ○
@@ -8656,7 +8560,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 防御具の着用
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8673,7 +8576,7 @@ content:
           num: '10'
           ord: 345
           heading: null
-          text: 使用の基準 |  | 退出時の汚染除去等 | ○ ※消毒剤の使用 | ○ | ○ | ○ | ○ | ○ | ○
+          text: 使用の基準 | 退出時の汚染除去等 | ○ ※消毒剤の使用 | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8686,7 +8589,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 退出時の汚染除去等
             - ○ ※消毒剤の使用
             - ○
@@ -8698,7 +8600,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 退出時の汚染除去等
               type1_bsl4: ○ ※消毒剤の使用
               type2_bsl3: ○
@@ -8715,7 +8616,7 @@ content:
           num: '11'
           ord: 346
           heading: null
-          text: 使用の基準 |  | 排気、汚染排水・汚染物品の滅菌等 | ○（排気、汚染排水・汚染物品） | ○（排気、汚染排水・汚染物品） | ○（汚染排水・汚染物品） | ○（排気、汚染排水・汚染物品） | ○（汚染排水・汚染物品） | ○（排気、汚染排水・汚染物品） | ○（汚染排水・汚染物品）
+          text: 使用の基準 | 排気、汚染排水・汚染物品の滅菌等 | ○（排気、汚染排水・汚染物品） | ○（排気、汚染排水・汚染物品） | ○（汚染排水・汚染物品） | ○（排気、汚染排水・汚染物品） | ○（汚染排水・汚染物品） | ○（排気、汚染排水・汚染物品） | ○（汚染排水・汚染物品）
           role: normative
           normativity: must
           tags: []
@@ -8728,7 +8629,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 排気、汚染排水・汚染物品の滅菌等
             - ○（排気、汚染排水・汚染物品）
             - ○（排気、汚染排水・汚染物品）
@@ -8740,7 +8640,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 排気、汚染排水・汚染物品の滅菌等
               type1_bsl4: ○（排気、汚染排水・汚染物品）
               type2_bsl3: ○（排気、汚染排水・汚染物品）
@@ -8757,7 +8656,7 @@ content:
           num: '12'
           ord: 347
           heading: null
-          text: 使用の基準 |  | 管理区域に人がみだりに立入らない措置 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 使用の基準 | 管理区域に人がみだりに立入らない措置 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8770,7 +8669,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 管理区域に人がみだりに立入らない措置
             - ○
             - ○
@@ -8782,7 +8680,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 管理区域に人がみだりに立入らない措置
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8799,7 +8696,7 @@ content:
           num: '13'
           ord: 348
           heading: null
-          text: 使用の基準 |  | 感染させた動物の持ち出し制限 | ○ | ○ | ○*1 | ○ | ○ | ○ | ○*1
+          text: 使用の基準 | 感染させた動物の持ち出し制限 | ○ | ○ | ○*1 | ○ | ○ | ○ | ○*1
           role: normative
           normativity: must
           tags: []
@@ -8812,7 +8709,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 感染させた動物の持ち出し制限
             - ○
             - ○
@@ -8824,7 +8720,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 感染させた動物の持ち出し制限
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8841,7 +8736,7 @@ content:
           num: '14'
           ord: 349
           heading: null
-          text: 使用の基準 |  | 感染動物の逸走防止の措置 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 使用の基準 | 感染動物の逸走防止の措置 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8854,7 +8749,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 感染動物の逸走防止の措置
             - ○
             - ○
@@ -8866,7 +8760,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 感染動物の逸走防止の措置
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8883,7 +8776,7 @@ content:
           num: '15'
           ord: 350
           heading: null
-          text: 使用の基準 |  | 実験室出入口へのバイオハザード標示 | ○ | ○ | ○ | ○ | ○ | ○ | ○
+          text: 使用の基準 | 実験室出入口へのバイオハザード標示 | ○ | ○ | ○ | ○ | ○ | ○ | ○
           role: normative
           normativity: must
           tags: []
@@ -8896,7 +8789,6 @@ content:
           data:
             cells:
             - 使用の基準
-            - ''
             - 実験室出入口へのバイオハザード標示
             - ○
             - ○
@@ -8908,7 +8800,6 @@ content:
             columns: *id014
             record:
               section: 使用の基準
-              subsection: ''
               criterion: 実験室出入口へのバイオハザード標示
               type1_bsl4: ○
               type2_bsl3: ○
@@ -8925,7 +8816,7 @@ content:
           num: '16'
           ord: 351
           heading: null
-          text: 滅菌等の基準 |  | 汚染物品等の滅菌等 | 121℃、15分以上の高圧蒸気滅菌又は同等以上の効果を有する方法 | 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法 | 【毒素】1分以上の煮沸又は2.5％以上水酸化Na浸漬1時間以上又は同等以上の効果を有する方法。【毒素以外】左記の方法 | 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法 | 左記の方法 | 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法 | 【毒素】1分以上の煮沸又は2.5％以上水酸化Na浸漬1時間以上又は同等以上の効果を有する方法。【毒素以外】左記の方法
+          text: 滅菌等の基準 | 汚染物品等の滅菌等 | 121℃、15分以上の高圧蒸気滅菌又は同等以上の効果を有する方法 | 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法 | 【毒素】1分以上の煮沸又は2.5％以上水酸化Na浸漬1時間以上又は同等以上の効果を有する方法。【毒素以外】左記の方法 | 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法 | 左記の方法 | 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法 | 【毒素】1分以上の煮沸又は2.5％以上水酸化Na浸漬1時間以上又は同等以上の効果を有する方法。【毒素以外】左記の方法
           role: normative
           normativity: must
           tags: []
@@ -8938,7 +8829,6 @@ content:
           data:
             cells:
             - 滅菌等の基準
-            - ''
             - 汚染物品等の滅菌等
             - 121℃、15分以上の高圧蒸気滅菌又は同等以上の効果を有する方法
             - 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法
@@ -8950,7 +8840,6 @@ content:
             columns: *id014
             record:
               section: 滅菌等の基準
-              subsection: ''
               criterion: 汚染物品等の滅菌等
               type1_bsl4: 121℃、15分以上の高圧蒸気滅菌又は同等以上の効果を有する方法
               type2_bsl3: 121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法
@@ -8967,7 +8856,7 @@ content:
           num: '17'
           ord: 352
           heading: null
-          text: 滅菌等の基準 |  | 排水の滅菌等 | ○（121℃、15分以上の高圧蒸気滅菌、かつ0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（0.00003％以上の残留次亜塩素酸Na、又は同等以上の効果を有する方法） | ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（0.00003％以上の残留次亜塩素酸Na、又は同等以上の効果を有する方法） | ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（0.00003％以上の残留次亜塩素酸Na、又は同等以上の効果を有する方法）
+          text: 滅菌等の基準 | 排水の滅菌等 | ○（121℃、15分以上の高圧蒸気滅菌、かつ0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（0.00003％以上の残留次亜塩素酸Na、又は同等以上の効果を有する方法） | ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（0.00003％以上の残留次亜塩素酸Na、又は同等以上の効果を有する方法） | ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法） | ○（0.00003％以上の残留次亜塩素酸Na、又は同等以上の効果を有する方法）
           role: normative
           normativity: must
           tags: []
@@ -8980,7 +8869,6 @@ content:
           data:
             cells:
             - 滅菌等の基準
-            - ''
             - 排水の滅菌等
             - ○（121℃、15分以上の高圧蒸気滅菌、かつ0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法）
             - ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法）
@@ -8992,7 +8880,6 @@ content:
             columns: *id014
             record:
               section: 滅菌等の基準
-              subsection: ''
               criterion: 排水の滅菌等
               type1_bsl4: ○（121℃、15分以上の高圧蒸気滅菌、かつ0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法）
               type2_bsl3: ○（121℃、15分以上の高圧蒸気滅菌又は0.01％以上の次亜塩素酸Na浸漬1時間以上又は同等以上の効果を有する方法）
@@ -9009,7 +8896,7 @@ content:
           num: '18'
           ord: 353
           heading: null
-          text: 運搬の基準 |  | 運搬する場合には容器に封入すること。 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通
+          text: 運搬の基準 | 運搬する場合には容器に封入すること。 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通
           role: normative
           normativity: must
           tags: []
@@ -9022,7 +8909,6 @@ content:
           data:
             cells:
             - 運搬の基準
-            - ''
             - 運搬する場合には容器に封入すること。
             - 1種から4種共通
             - 1種から4種共通
@@ -9034,7 +8920,6 @@ content:
             columns: *id014
             record:
               section: 運搬の基準
-              subsection: ''
               criterion: 運搬する場合には容器に封入すること。
               type1_bsl4: 1種から4種共通
               type2_bsl3: 1種から4種共通
@@ -9051,7 +8936,7 @@ content:
           num: '19'
           ord: 354
           heading: null
-          text: 運搬の基準 |  | 容器は基準に適合するものであること。 | 容易かつ安全に取り扱える、破損等のおそれがない、容易に破れないシール、漏洩のおそれのない強度・耐水性、感染性物質危険物表示。 | 同左 | 同左 | 同左 | 同左 | 同左 | 同左
+          text: 運搬の基準 | 容器は基準に適合するものであること。 | 容易かつ安全に取り扱える、破損等のおそれがない、容易に破れないシール、漏洩のおそれのない強度・耐水性、感染性物質危険物表示。 | 同左 | 同左 | 同左 | 同左 | 同左 | 同左
           role: normative
           normativity: must
           tags: []
@@ -9064,7 +8949,6 @@ content:
           data:
             cells:
             - 運搬の基準
-            - ''
             - 容器は基準に適合するものであること。
             - 容易かつ安全に取り扱える、破損等のおそれがない、容易に破れないシール、漏洩のおそれのない強度・耐水性、感染性物質危険物表示。
             - 同左
@@ -9076,7 +8960,6 @@ content:
             columns: *id014
             record:
               section: 運搬の基準
-              subsection: ''
               criterion: 容器は基準に適合するものであること。
               type1_bsl4: 容易かつ安全に取り扱える、破損等のおそれがない、容易に破れないシール、漏洩のおそれのない強度・耐水性、感染性物質危険物表示。
               type2_bsl3: 同左
@@ -9093,7 +8976,7 @@ content:
           num: '20'
           ord: 355
           heading: null
-          text: 運搬の基準 |  | 容器の車両等への積付けは安全性が損なわれないように行うこと。 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通
+          text: 運搬の基準 | 容器の車両等への積付けは安全性が損なわれないように行うこと。 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通
           role: normative
           normativity: must
           tags: []
@@ -9106,7 +8989,6 @@ content:
           data:
             cells:
             - 運搬の基準
-            - ''
             - 容器の車両等への積付けは安全性が損なわれないように行うこと。
             - 1種から4種共通
             - 1種から4種共通
@@ -9118,7 +9000,6 @@ content:
             columns: *id014
             record:
               section: 運搬の基準
-              subsection: ''
               criterion: 容器の車両等への積付けは安全性が損なわれないように行うこと。
               type1_bsl4: 1種から4種共通
               type2_bsl3: 1種から4種共通
@@ -9135,7 +9016,7 @@ content:
           num: '21'
           ord: 356
           heading: null
-          text: 運搬の基準 |  | この他厚生労働大臣が定める基準に適合すること。 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号
+          text: 運搬の基準 | この他厚生労働大臣が定める基準に適合すること。 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号
           role: normative
           normativity: must
           tags: []
@@ -9148,7 +9029,6 @@ content:
           data:
             cells:
             - 運搬の基準
-            - ''
             - この他厚生労働大臣が定める基準に適合すること。
             - 告示第209号
             - 告示第209号
@@ -9160,7 +9040,6 @@ content:
             columns: *id014
             record:
               section: 運搬の基準
-              subsection: ''
               criterion: この他厚生労働大臣が定める基準に適合すること。
               type1_bsl4: 告示第209号
               type2_bsl3: 告示第209号
@@ -9174,9 +9053,8 @@ content:
         data:
           columns: *id014
           display_columns:
-          - 大区分
-          - 中区分
-          - 基準
+          - 大項目
+          - 小項目
           - 1種 BSL4
           - 2種 BSL3
           - 2種 BSL2

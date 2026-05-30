@@ -189,9 +189,11 @@ def test_niid_full_profile_reconstructs_wide_tables_without_decimal_item_artifac
         if header.kind == "table_header"
         for row in header.children
     ]
-    assert betsu4_table.children[0].data["columns"][:3] == ["section", "subsection", "criterion"]
-    assert any(record["section"] == "実験室" and record["criterion"] == "実験室" for record in betsu4_records)
-    assert any(record["section"] == "実験室内" and record["criterion"] == "実験室内" for record in betsu4_records)
+    assert betsu4_table.children[0].data["columns"][:2] == ["section", "criterion"]
+    assert any(record["section"] == "実験室" and record["criterion"] == "－" for record in betsu4_records)
+    assert any(record["section"] == "実験室内" and record["criterion"] == "－" for record in betsu4_records)
+    assert any(record["section"] == "感染動物の飼育設備" and record["criterion"] == "－" for record in betsu4_records)
+    assert any(record["section"] == "滅菌設備" and record["criterion"] == "－" for record in betsu4_records)
     betsu5_records = [
         row.data["record"]
         for header in betsu5_table.children

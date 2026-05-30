@@ -4,7 +4,7 @@ Status: **PASS**
 
 ## Summary
 
-- Bundle dir: `runs\20260531-000950321_run-normalized-niid-pathogen-safety-v5\promotion_candidate`
+- Bundle dir: `runs\20260531-021548909_run-normalized-niid-pathogen-safety-v6\promotion_candidate`
 - Schema: `qai.regdoc_ir.v4`
 - Nodes: 423
 - Verify: pass

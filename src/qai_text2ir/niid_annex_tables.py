@@ -34,12 +34,12 @@ TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
     },
     "別表4": {
         "start_contains": "対象病原体等ＢＳＬ",
-        "columns": ["section", "subsection", "criterion", "type1_bsl4", "type2_bsl3", "type2_bsl2", "type3_bsl3", "type3_bsl2", "type4_bsl3", "type4_bsl2"],
+        "columns": ["section", "criterion", "type1_bsl4", "type2_bsl3", "type2_bsl2", "type3_bsl3", "type3_bsl2", "type4_bsl3", "type4_bsl2"],
         "source_format": "fixed_width_matrix",
     },
     "別表5": {
         "start_contains": "対象病原体等ＢＳＬ",
-        "columns": ["section", "subsection", "criterion", "type1_bsl4", "type2_bsl3", "type2_bsl2", "type3_bsl3", "type3_bsl2", "type4_bsl3", "type4_bsl2"],
+        "columns": ["section", "criterion", "type1_bsl4", "type2_bsl3", "type2_bsl2", "type3_bsl3", "type3_bsl2", "type4_bsl3", "type4_bsl2"],
         "source_format": "fixed_width_matrix",
     },
     "別表8": {
@@ -58,8 +58,8 @@ DISPLAY_COLUMNS_BY_NUM: Dict[str, List[str]] = {
     "付表2": ["病原体等のリスク群", "実験室のBSL", "実験室の使用目的", "実験手技及び運用", "実験室の安全機器"],
     "付表3": ["criterion", "parent", "BSL1", "BSL2", "BSL3", "BSL4"],
     "付表4": ["ABSL", "実験手技", "安全機器", "設備基準"],
-    "別表4": ["大区分", "中区分", "基準", "1種 BSL4", "2種 BSL3", "2種 BSL2", "3種 BSL3", "3種 BSL2", "4種 BSL3", "4種 BSL2"],
-    "別表5": ["大区分", "中区分", "基準", "1種 BSL4", "2種 BSL3", "2種 BSL2", "3種 BSL3", "3種 BSL2", "4種 BSL3", "4種 BSL2"],
+    "別表4": ["大項目", "小項目", "1種 BSL4", "2種 BSL3", "2種 BSL2", "3種 BSL3", "3種 BSL2", "4種 BSL3", "4種 BSL2"],
+    "別表5": ["大項目", "小項目", "1種 BSL4", "2種 BSL3", "2種 BSL2", "3種 BSL3", "3種 BSL2", "4種 BSL3", "4種 BSL2"],
     "別表7": ["category", "省令での記載項目", "記帳の内容", "1種病原体等", "2種病原体等", "3種病原体等"],
     "別表8": ["業務区分", "対象者", "省令での記載項目", "回数等", "備考"],
     "別表10": ["category", "省令での記載項目", "具体的内容", "国立感染症研究所病原体等安全管理規程における該当部分"],
@@ -240,8 +240,6 @@ def _apply_visual_reviewed_records(table: Node, annex_num: str, source_span: Dic
         normalized_record = dict(record)
         if "section" in columns and "section" not in normalized_record:
             normalized_record["section"] = str(record.get("category", ""))
-        if "subsection" in columns and "subsection" not in normalized_record:
-            normalized_record["subsection"] = str(record.get("subsection", ""))
         cells = [str(normalized_record.get(column, "")) for column in columns]
         header.children.append(
             _make_node(
