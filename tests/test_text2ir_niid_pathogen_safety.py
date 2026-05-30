@@ -103,8 +103,17 @@ def test_niid_full_profile_keeps_body_and_annexes_without_toc_duplicates() -> No
         "別表9",
         "別表10",
     ]
-    assert [table.data["annex_num"] for table in tables] == ["付表2", "付表3", "付表4", "別表7", "別表10"]
-    assert len(table_rows) == 54
+    assert [table.data["annex_num"] for table in tables] == [
+        "付表2",
+        "付表3",
+        "付表4",
+        "別表4",
+        "別表5",
+        "別表7",
+        "別表8",
+        "別表10",
+    ]
+    assert len(table_rows) == 114
     assert not qualitycheck_document(ir_doc.content)
 
 
@@ -157,7 +166,7 @@ def test_niid_full_profile_preserves_numbered_annex_items_as_nodes() -> None:
     assert any(node.kind == "note" and node.text.startswith("註：") for node in _walk(annexes["付表1-3"]))
 
 
-def test_niid_full_profile_does_not_create_items_from_raw_hold_table_decimals() -> None:
+def test_niid_full_profile_reconstructs_wide_tables_without_decimal_item_artifacts() -> None:
     profile = load_parser_profile(path=FULL_PROFILE)
     ir_doc = parse_text_to_ir(
         input_path=SOURCE,
@@ -168,5 +177,8 @@ def test_niid_full_profile_does_not_create_items_from_raw_hold_table_decimals() 
 
     for annex_num in ["別表4", "別表5", "別表8"]:
         annex = annexes[annex_num]
-        assert {child.kind for child in annex.children} <= {"note", "history"}
-    assert "0.01％以上の次亜" in (annexes["別表5"].text or "")
+        assert any(child.kind == "table" for child in annex.children)
+        assert not any(child.kind in {"item", "subitem"} for child in annex.children)
+    betsu5_table = next(child for child in annexes["別表5"].children if child.kind == "table")
+    betsu5_text = " ".join(row.text or "" for header in betsu5_table.children if header.kind == "table_header" for row in header.children)
+    assert "0.01％以上の次亜" in betsu5_text
