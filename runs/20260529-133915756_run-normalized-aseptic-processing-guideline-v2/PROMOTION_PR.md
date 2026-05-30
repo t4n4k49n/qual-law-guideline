@@ -21,7 +21,7 @@
 
 - 親PR: `#221`
 - 親PR merge commit: `99976f2501465113a68e23acd67ee7f6f6edfcd7`
-- 昇格コミット: `4e2e73c`
+- 昇格コミット: `32b876d19ecf8ca693d4f8c96faceb8255373172`
 - `promotion_candidate/` と `data/normalized/` のSHA-256一致を確認済み。
 - `data/normalized/jp_pmda_aseptic_processing_guideline_20110420/` のpromotion goal check: pass。
 - `data/normalized/jp_pmda_aseptic_processing_guideline_20110420/` のIR構造チェック: pass。

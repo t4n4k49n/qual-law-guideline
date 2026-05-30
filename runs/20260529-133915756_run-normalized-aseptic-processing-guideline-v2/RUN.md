@@ -80,7 +80,7 @@ v2 では parser/profile を修正し、本文階層を再生成したうえで�
 - Parent PR: `#221`
 - Parent merge commit: `99976f2501465113a68e23acd67ee7f6f6edfcd7`
 - Promotion branch: `promote/aseptic-processing-guideline-v2`
-- Promotion commit: `4e2e73c`
+- Promotion commit: `32b876d19ecf8ca693d4f8c96faceb8255373172`
 - Promotion source: `runs/20260529-133915756_run-normalized-aseptic-processing-guideline-v2/promotion_candidate/`
 - Destination: `data/normalized/jp_pmda_aseptic_processing_guideline_20110420/`
 - Copied files:
