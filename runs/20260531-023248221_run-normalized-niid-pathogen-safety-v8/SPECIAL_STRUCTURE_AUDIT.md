@@ -6,7 +6,7 @@
 
 | doc_id | source_tables | source_figures | generated_tables | generated_rows | generated_figures | unresolved_special_blocks | status |
 |---|---:|---:|---:|---:|---:|---:|---|
-| jp_niid_pathogen_safety_management_20240401 | 0 | 0 | 8 | 116 | 0 | 0 | pass |
+| jp_niid_pathogen_safety_management_20240401 | 0 | 0 | 8 | 112 | 0 | 0 | pass |
 
 ## Unresolved Blocks
 

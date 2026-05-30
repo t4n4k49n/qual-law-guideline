@@ -1,14 +1,14 @@
 schema: qai.run_manifest.v1
 run_id: promotion_candidate
-created_at: '2026-05-30T17:00:18Z'
+created_at: '2026-05-30T17:22:20Z'
 git:
-  commit: 059fa5ac11bf24c58fc1c4d48949bf56a40f8cb7
+  commit: d2da42a4a32c3dd9486fbd6e71460e3cba49d06b
   branch: run/normalized-niid-pathogen-safety-v2
 input:
   path: data\human-readable\niid\pathogen_safety_management\source_texts\Kanrikitei3_20240401.txt
   checksum: 701f9d8df320ed9847d10de4c1466fa29302d2437388a88229ab950455e34f62
 command:
-  argv: .\.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input data/human-readable/niid/pathogen_safety_management/source_texts/Kanrikitei3_20240401.txt --out-dir runs/20260531-021548909_run-normalized-niid-pathogen-safety-v6/promotion_candidate --doc-id jp_niid_pathogen_safety_management_20240401 --title "国立感染症研究所病原体等安全管理規程" --short-title "NIID病原体等安全管理規程" --doc-type regulation --source-url https://www.niid.go.jp/niid/images/cepr/kanrikitei/Kanrikitei3_20240401.pdf --source-format pdf --retrieved-at 2026-02-18 --parser-profile src/qai_text2ir/profiles/jp_niid_pathogen_safety_management_full_v1.yaml --candidate-visibility-profile src/qai_text2ir/candidate_visibility_profiles/jp_niid_pathogen_safety_management_full_visibility_v1.yaml --jurisdiction JP --language ja --family JP_GUIDELINE --strict --write-manifest --overwrite-manifest
+  argv: '.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input data/human-readable/niid/pathogen_safety_management/source_texts/Kanrikitei3_20240401.txt --out-dir runs/20260531-023248221_run-normalized-niid-pathogen-safety-v8/promotion_candidate --doc-id jp_niid_pathogen_safety_management_20240401 --title ''国立感染症研究所病原体等安全管理規程'' --short-title ''NIID病原体等安全管理規程'' --doc-type regulation --source-url https://www.niid.go.jp/niid/images/cepr/kanrikitei/Kanrikitei3_20240401.pdf --source-format pdf --retrieved-at 2026-02-18 --parser-profile src/qai_text2ir/profiles/jp_niid_pathogen_safety_management_full_v1.yaml --candidate-visibility-profile src/qai_text2ir/candidate_visibility_profiles/jp_niid_pathogen_safety_management_full_visibility_v1.yaml --jurisdiction JP --language ja --family JP_GUIDELINE --strict --write-manifest --overwrite-manifest'
 outputs:
   doc_id: jp_niid_pathogen_safety_management_20240401
   files:

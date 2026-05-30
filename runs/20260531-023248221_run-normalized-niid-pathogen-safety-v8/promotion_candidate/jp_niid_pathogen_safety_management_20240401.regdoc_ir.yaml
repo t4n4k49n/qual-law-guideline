@@ -6740,7 +6740,7 @@ content:
           num: '13'
           ord: 300
           heading: null
-          text: '実験室 | － | 実験室 |  |  |  |  | 実験室 | '
+          text: 実験室 | － | 実験室 | 実験室 | 実験室 | 実験室 | 実験室 | 実験室 | 実験室
           role: normative
           normativity: must
           tags: []
@@ -6755,23 +6755,23 @@ content:
             - 実験室
             - －
             - 実験室
-            - ''
-            - ''
-            - ''
-            - ''
             - 実験室
-            - ''
+            - 実験室
+            - 実験室
+            - 実験室
+            - 実験室
+            - 実験室
             columns: *id011
             record:
               section: 実験室
               criterion: －
               type1_bsl4: 実験室
-              type2_bsl3: ''
-              type2_bsl2: ''
-              type3_bsl3: ''
-              type3_bsl2: ''
+              type2_bsl3: 実験室
+              type2_bsl2: 実験室
+              type3_bsl3: 実験室
+              type3_bsl2: 実験室
               type4_bsl3: 実験室
-              type4_bsl2: ''
+              type4_bsl2: 実験室
             cell_reconstruction: visual_reviewed_cells
             visual_reviewed: true
         - nid: ann4_2.tbl1.tblh_visual.tblr14
@@ -6940,7 +6940,7 @@ content:
           num: '18'
           ord: 305
           heading: null
-          text: '実験室内 | － | 実験室 |  |  |  |  | 実験室 | '
+          text: 実験室内 | － | 実験室 | 実験室 | 実験室 | 実験室 | 実験室 | 実験室 | 実験室
           role: normative
           normativity: must
           tags: []
@@ -6955,23 +6955,23 @@ content:
             - 実験室内
             - －
             - 実験室
-            - ''
-            - ''
-            - ''
-            - ''
             - 実験室
-            - ''
+            - 実験室
+            - 実験室
+            - 実験室
+            - 実験室
+            - 実験室
             columns: *id011
             record:
               section: 実験室内
               criterion: －
               type1_bsl4: 実験室
-              type2_bsl3: ''
-              type2_bsl2: ''
-              type3_bsl3: ''
-              type3_bsl2: ''
+              type2_bsl3: 実験室
+              type2_bsl2: 実験室
+              type3_bsl3: 実験室
+              type3_bsl2: 実験室
               type4_bsl3: 実験室
-              type4_bsl2: ''
+              type4_bsl2: 実験室
             cell_reconstruction: visual_reviewed_cells
             visual_reviewed: true
         - nid: ann4_2.tbl1.tblh_visual.tblr19
@@ -8890,166 +8890,6 @@ content:
               type4_bsl2: ○（0.00003％以上の残留次亜塩素酸Na、又は同等以上の効果を有する方法）
             cell_reconstruction: visual_reviewed_cells
             visual_reviewed: true
-        - nid: ann5.tbl1.tblh_visual.tblr18
-          kind: table_row
-          kind_raw: table_row
-          num: '18'
-          ord: 353
-          heading: null
-          text: 運搬の基準 | 運搬する場合には容器に封入すること。 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通
-          role: normative
-          normativity: must
-          tags: []
-          refs:
-            internal: []
-            external: []
-          source_spans:
-          - *id013
-          children: []
-          data:
-            cells:
-            - 運搬の基準
-            - 運搬する場合には容器に封入すること。
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            columns: *id014
-            record:
-              section: 運搬の基準
-              criterion: 運搬する場合には容器に封入すること。
-              type1_bsl4: 1種から4種共通
-              type2_bsl3: 1種から4種共通
-              type2_bsl2: 1種から4種共通
-              type3_bsl3: 1種から4種共通
-              type3_bsl2: 1種から4種共通
-              type4_bsl3: 1種から4種共通
-              type4_bsl2: 1種から4種共通
-            cell_reconstruction: visual_reviewed_cells
-            visual_reviewed: true
-        - nid: ann5.tbl1.tblh_visual.tblr19
-          kind: table_row
-          kind_raw: table_row
-          num: '19'
-          ord: 354
-          heading: null
-          text: 運搬の基準 | 容器は基準に適合するものであること。 | 容易かつ安全に取り扱える、破損等のおそれがない、容易に破れないシール、漏洩のおそれのない強度・耐水性、感染性物質危険物表示。 | 同左 | 同左 | 同左 | 同左 | 同左 | 同左
-          role: normative
-          normativity: must
-          tags: []
-          refs:
-            internal: []
-            external: []
-          source_spans:
-          - *id013
-          children: []
-          data:
-            cells:
-            - 運搬の基準
-            - 容器は基準に適合するものであること。
-            - 容易かつ安全に取り扱える、破損等のおそれがない、容易に破れないシール、漏洩のおそれのない強度・耐水性、感染性物質危険物表示。
-            - 同左
-            - 同左
-            - 同左
-            - 同左
-            - 同左
-            - 同左
-            columns: *id014
-            record:
-              section: 運搬の基準
-              criterion: 容器は基準に適合するものであること。
-              type1_bsl4: 容易かつ安全に取り扱える、破損等のおそれがない、容易に破れないシール、漏洩のおそれのない強度・耐水性、感染性物質危険物表示。
-              type2_bsl3: 同左
-              type2_bsl2: 同左
-              type3_bsl3: 同左
-              type3_bsl2: 同左
-              type4_bsl3: 同左
-              type4_bsl2: 同左
-            cell_reconstruction: visual_reviewed_cells
-            visual_reviewed: true
-        - nid: ann5.tbl1.tblh_visual.tblr20
-          kind: table_row
-          kind_raw: table_row
-          num: '20'
-          ord: 355
-          heading: null
-          text: 運搬の基準 | 容器の車両等への積付けは安全性が損なわれないように行うこと。 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通 | 1種から4種共通
-          role: normative
-          normativity: must
-          tags: []
-          refs:
-            internal: []
-            external: []
-          source_spans:
-          - *id013
-          children: []
-          data:
-            cells:
-            - 運搬の基準
-            - 容器の車両等への積付けは安全性が損なわれないように行うこと。
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            - 1種から4種共通
-            columns: *id014
-            record:
-              section: 運搬の基準
-              criterion: 容器の車両等への積付けは安全性が損なわれないように行うこと。
-              type1_bsl4: 1種から4種共通
-              type2_bsl3: 1種から4種共通
-              type2_bsl2: 1種から4種共通
-              type3_bsl3: 1種から4種共通
-              type3_bsl2: 1種から4種共通
-              type4_bsl3: 1種から4種共通
-              type4_bsl2: 1種から4種共通
-            cell_reconstruction: visual_reviewed_cells
-            visual_reviewed: true
-        - nid: ann5.tbl1.tblh_visual.tblr21
-          kind: table_row
-          kind_raw: table_row
-          num: '21'
-          ord: 356
-          heading: null
-          text: 運搬の基準 | この他厚生労働大臣が定める基準に適合すること。 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号 | 告示第209号
-          role: normative
-          normativity: must
-          tags: []
-          refs:
-            internal: []
-            external: []
-          source_spans:
-          - *id013
-          children: []
-          data:
-            cells:
-            - 運搬の基準
-            - この他厚生労働大臣が定める基準に適合すること。
-            - 告示第209号
-            - 告示第209号
-            - 告示第209号
-            - 告示第209号
-            - 告示第209号
-            - 告示第209号
-            - 告示第209号
-            columns: *id014
-            record:
-              section: 運搬の基準
-              criterion: この他厚生労働大臣が定める基準に適合すること。
-              type1_bsl4: 告示第209号
-              type2_bsl3: 告示第209号
-              type2_bsl2: 告示第209号
-              type3_bsl3: 告示第209号
-              type3_bsl2: 告示第209号
-              type4_bsl3: 告示第209号
-              type4_bsl2: 告示第209号
-            cell_reconstruction: visual_reviewed_cells
-            visual_reviewed: true
         data:
           columns: *id014
           display_columns:
@@ -9070,7 +8910,7 @@ content:
         kind: note
         kind_raw: note
         num: '1'
-        ord: 357
+        ord: 353
         heading: '*1'
         text: 毒素を使用した動物は除く。
         role: informative
@@ -9088,7 +8928,7 @@ content:
         kind: note
         kind_raw: note
         num: '2'
-        ord: 358
+        ord: 354
         heading: ※
         text: 陽圧気密防護服着用の場合（着用前に異常の有無を確認）。
         role: informative
@@ -9172,7 +9012,7 @@ content:
         - ○ 運搬の基準（１種～４種病原体等）
         cell_reconstruction: visual_reviewed_cells
         cell_reconstruction_status: complete
-        cell_reconstructed_rows: 21
+        cell_reconstructed_rows: 17
         cell_deferred_rows: 0
         raw_table_audit:
           source_format: fixed_width_matrix
@@ -9202,7 +9042,7 @@ content:
     kind: annex
     kind_raw: 別表1
     num: 別表6
-    ord: 359
+    ord: 355
     heading: 病原体等安全管理区域運営規則作成基準
     text: null
     role: structural
@@ -9219,7 +9059,7 @@ content:
       kind: item
       kind_raw: １．
       num: '1'
-      ord: 360
+      ord: 356
       heading: null
       text: ＢＳＬ２、３及び４実験室の設備及び運営は、別表２と３の条件に適合すること。
       role: normative
@@ -9236,7 +9076,7 @@ content:
       kind: item
       kind_raw: ２．
       num: '2'
-      ord: 361
+      ord: 357
       heading: null
       text: 感染研安全管理規程に適合する安全管理体制、実験室の使用について具体的に規定すること。
       role: normative
@@ -9255,7 +9095,7 @@ content:
       kind: item
       kind_raw: ３．
       num: '3'
-      ord: 362
+      ord: 358
       heading: null
       text: その他、本規定の内容に適合する安全設備の定期点検、事故時の処理方法、連絡系統等を具体的に規定すること。
       role: normative
@@ -9274,7 +9114,7 @@ content:
       kind: item
       kind_raw: ４．
       num: '4'
-      ord: 363
+      ord: 359
       heading: null
       text: 病原体等を取り扱う実験においては、標準微生物学実験手技に従うこと。
       role: normative
@@ -9291,7 +9131,7 @@ content:
       kind: item
       kind_raw: ５．
       num: '5'
-      ord: 364
+      ord: 360
       heading: null
       text: 病原体等及びこれを含む可能性のある実験材料を廃棄するに当たっては、別に定める方法で滅菌するものとすること。
       role: normative
@@ -9310,7 +9150,7 @@ content:
       kind: item
       kind_raw: ６．
       num: '6'
-      ord: 365
+      ord: 361
       heading: null
       text: 実験室での飲食、喫煙、化粧及び食物を含む私物の保管等を禁止すること。
       role: normative
@@ -9327,7 +9167,7 @@ content:
       kind: item
       kind_raw: ７．
       num: '7'
-      ord: 366
+      ord: 362
       heading: null
       text: ＢＳＬ２、３及び４実験室の範囲を外部より容易に知り得るように明確に指定し、国際バイオハザード標識等を表示すること。
       role: normative
@@ -9346,7 +9186,7 @@ content:
       kind: item
       kind_raw: ８．
       num: '8'
-      ord: 367
+      ord: 363
       heading: null
       text: ＢＳＬ２、３及び４病原体等の保管場所は当該病原体等のBSL実験室と同一の安全基準を満たし、保管容器は施錠し、保管及び出し入れの記録を整備すること。
       role: normative
@@ -9365,7 +9205,7 @@ content:
       kind: item
       kind_raw: ９．
       num: '9'
-      ord: 368
+      ord: 364
       heading: null
       text: ＢＳＬ２、３及び４実験室において、病原体等を取り扱う者の健康管理について規定すること。また、予防接種その他の予防法がある場合は、その実施を義務づけること。
       role: normative
@@ -9384,7 +9224,7 @@ content:
       kind: item
       kind_raw: １０．
       num: '10'
-      ord: 369
+      ord: 365
       heading: null
       text: 事故、機械の保守等のために、職員等以外の者が立入る必要が生じた場合は、ＢＳＬ２実験室にあっては部・センター長、ＢＳＬ３及び４実験室にあっては安全管理研究センター長に申請し、その指示に従うように規定すること。
       role: normative
@@ -9405,7 +9245,7 @@ content:
       kind: item
       kind_raw: １１．
       num: '11'
-      ord: 370
+      ord: 366
       heading: null
       text: その他ＢＳＬ２，３及び４実験室の安全管理（バイオセーフティ及びバイオセキュリティ）に必要な事項を規定すること。
       role: normative
@@ -9430,7 +9270,7 @@ content:
     kind: annex
     kind_raw: 別表1
     num: 別表7
-    ord: 371
+    ord: 367
     heading: 記帳事項に関する一覧（法第５６条の２３関係）
     text: null
     role: structural
@@ -9507,7 +9347,7 @@ content:
       kind: table
       kind_raw: table
       num: '1'
-      ord: 372
+      ord: 368
       heading: 記帳事項に関する一覧（法第５６条の２３関係）
       text: null
       role: structural
@@ -9525,7 +9365,7 @@ content:
         kind: table_header
         kind_raw: table_header
         num: null
-        ord: 373
+        ord: 369
         heading: null
         text: category | 省令での記載項目 | 記帳の内容 | 1種病原体等 | 2種病原体等 | 3種病原体等
         role: structural
@@ -9541,7 +9381,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '1'
-          ord: 374
+          ord: 370
           heading: null
           text: 病原体等 | 受入れ又は払出しに係る病原体等の種類（毒素にあっては、その種類及び量） | 事業所ごとに受入れ元、払出し先等を記帳（実験室が複数ある場合にはそれら実験室ごとに記帳） | 有 | 有 | 有
           role: normative
@@ -9581,7 +9421,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '2'
-          ord: 375
+          ord: 371
           heading: null
           text: 病原体等 | 病原体等の受入れ又は払出しの日時 | 事業所ごとに記帳（同上） | 年月日・時刻 | 年月日 | 年月日
           role: normative
@@ -9615,7 +9455,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '3'
-          ord: 376
+          ord: 372
           heading: null
           text: 病原体等 | 病原体等の保管の方法及び場所 | 受入れした病原体等の保管形態及び保管場所を記帳（同上）、使用ごとの保管庫の施錠状況も記帳 | 有 | 有 | 有
           role: normative
@@ -9649,7 +9489,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '4'
-          ord: 377
+          ord: 373
           heading: null
           text: 病原体等 | 使用に係る病原体等の種類 | 実験室での使用ごとに、その使用者が記帳 | 有 | 有 | 有
           role: normative
@@ -9683,7 +9523,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '5'
-          ord: 378
+          ord: 374
           heading: null
           text: 病原体等 | 病原体等の使用に係る日時 | 病原体等を使用した時刻を記帳 | 年月日・時刻 | － | －
           role: normative
@@ -9717,7 +9557,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '6'
-          ord: 379
+          ord: 375
           heading: null
           text: 病原体等 | 滅菌等に係る病原体等の種類 | 実験室ごとに滅菌・無害化した病原体等を記帳 | 有 | 有 | 有
           role: normative
@@ -9751,7 +9591,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '7'
-          ord: 380
+          ord: 376
           heading: null
           text: 病原体等 | 病原体等の滅菌等の日時 | 滅菌・無害化の日時を記帳 | 年月日・時刻 | 年月日 | 年月日
           role: normative
@@ -9785,7 +9625,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '8'
-          ord: 381
+          ord: 377
           heading: null
           text: 病原体等 | 病原体等の滅菌等の方法及び場所 | 滅菌・無害化の条件等を記帳（委託等の場合にはその場所も記帳） | 有 | 有 | 有
           role: normative
@@ -9819,7 +9659,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '9'
-          ord: 382
+          ord: 378
           heading: null
           text: ヒト | 実験室に立入り又は退出に係る者の氏名 | 実験室ごとに記帳 | 有 | 有 | 有
           role: normative
@@ -9853,7 +9693,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '10'
-          ord: 383
+          ord: 379
           heading: null
           text: ヒト | 実験室への立入り又は退出の日時 | 実験室ごとに記帳 | 年月日・時刻 | 年月日 | 年月日
           role: normative
@@ -9887,7 +9727,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '11'
-          ord: 384
+          ord: 380
           heading: null
           text: ヒト | 実験室への立入りの目的 | 病原体等を使用の有無を含め目的を記帳 | 有 | － | －
           role: normative
@@ -9921,7 +9761,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '12'
-          ord: 385
+          ord: 381
           heading: null
           text: ヒト | 病原体等の受入れ又は払出しする者の氏名 | 病原体等を受入れ、払出しした者の氏名を記帳 | 有 | 有 | 有
           role: normative
@@ -9955,7 +9795,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '13'
-          ord: 386
+          ord: 382
           heading: null
           text: ヒト | 病原体等の使用に従事する者の氏名 | 実験室で病原体等を使用した者の氏名を記帳 | 有 | 有 | 有
           role: normative
@@ -9989,7 +9829,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '14'
-          ord: 387
+          ord: 383
           heading: null
           text: ヒト | 病原体等の滅菌等に従事する者の氏名 | 病原体等を滅菌・無害化した者の氏名を記帳 | 有 | 有 | 有
           role: normative
@@ -10023,7 +9863,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '15'
-          ord: 388
+          ord: 384
           heading: null
           text: 施設 | 病原体等取扱施設の点検等の実施日時 | 事業所ごとに記帳 | 年月日 | 年月日 | 年月日
           role: normative
@@ -10057,7 +9897,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '16'
-          ord: 389
+          ord: 385
           heading: null
           text: 施設 | 点検を行った者の氏名 | 事業所ごとに記帳（実験室ごとに担当者が分かれる場合には、実験室ごとの者の氏名を記帳） | 有 | 有 | 有
           role: normative
@@ -10091,7 +9931,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '17'
-          ord: 390
+          ord: 386
           heading: null
           text: 施設 | 点検の内容、結果及びこれに伴う措置内容 | 措置を伴う項目については具体的に記帳 | 有 | 有 | 有
           role: normative
@@ -10125,7 +9965,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '18'
-          ord: 391
+          ord: 387
           heading: null
           text: 教育 | 教育訓練の実施年月日、対象者及び内容等 | 教育訓練ごとに記帳 | 有 | 有 | －
           role: normative
@@ -10238,7 +10078,7 @@ content:
     kind: annex
     kind_raw: 別表1
     num: 別表8
-    ord: 392
+    ord: 388
     heading: 特定病原体等の取扱いに必要な教育訓練（法第５６条の２１関係）
     text: null
     role: structural
@@ -10283,7 +10123,7 @@ content:
       kind: note
       kind_raw: note
       num: null
-      ord: 393
+      ord: 389
       heading: null
       text: ※上記の項目又は事項の全部又は一部に関し十分な知識及び技能を有していると認められた者に対する当該項目又は事項の教育及び訓練の省略規定を設けた。
       role: informative
@@ -10302,7 +10142,7 @@ content:
       kind: table
       kind_raw: table
       num: '1'
-      ord: 394
+      ord: 390
       heading: 特定病原体等の取扱いに必要な教育訓練（法第５６条の２１関係）
       text: null
       role: structural
@@ -10320,7 +10160,7 @@ content:
         kind: table_header
         kind_raw: table_header
         num: null
-        ord: 395
+        ord: 391
         heading: null
         text: 業務区分 | 対象者 | 省令での記載項目 | 回数等 | 備考
         role: structural
@@ -10336,7 +10176,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '1'
-          ord: 396
+          ord: 392
           heading: null
           text: 病原体等の取扱い、管理又はこれに付随する業務に従事する者 | 管理区域に立ち入る者 | 病原体等の性質。病原体等のセキュリティ及びセーフティ。病原体等の管理。病原体等による感染症の発生の予防及びまん延の防止に関する法令。感染症発生予防規程。 | 初回前（*）、年1回以上 | 項目ごとに、その詳細な内容の教育等を行う。
           role: normative
@@ -10373,7 +10213,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '2'
-          ord: 397
+          ord: 393
           heading: null
           text: 病原体等の取扱い、管理又はこれに付随する業務に従事する者 | 管理区域に立ち入らない者 | 病原体等の管理。病原体等による感染症の発生の予防及びまん延の防止に関する法令。感染症発生予防規程。 | 初回前（*）、年1回以上 | 主に病原体等のセキュリティについて、項目ごとに、一般的事項（概要）を中心とした教育等を行う。
           role: normative
@@ -10405,7 +10245,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '3'
-          ord: 398
+          ord: 394
           heading: null
           text: その他の者 | その他の者 | 病原体等による感染症の発生の予防・まん延防止に関して必要な事項。 | 必要に応じて適宜 | 設備のメンテナンスに立入る者、施設の見学者、共同研究者等が対象となる。対象者に応じた必要最低限の教育等を行う。
           role: normative
@@ -10449,7 +10289,7 @@ content:
         kind: note
         kind_raw: note
         num: '1'
-        ord: 399
+        ord: 395
         heading: ※
         text: 上記の項目又は事項の全部又は一部に関し十分な知識及び技能を有していると認められた者に対する当該項目又は事項の教育及び訓練の省略規定を設けた。
         role: informative
@@ -10467,7 +10307,7 @@ content:
         kind: note
         kind_raw: note
         num: '2'
-        ord: 400
+        ord: 396
         heading: (*)
         text: 施行時点で現に1種又は2種病原体等を所持している者に対しては、所要の経過措置がある。
         role: informative
@@ -10533,7 +10373,7 @@ content:
     kind: annex
     kind_raw: 別表1
     num: 別表9
-    ord: 401
+    ord: 397
     heading: 災害時の対応内容（法第５６条の２９関係）
     text: null
     role: structural
@@ -10550,7 +10390,7 @@ content:
       kind: item
       kind_raw: １.
       num: '1'
-      ord: 402
+      ord: 398
       heading: null
       text: 火災発生時・延焼のおそれがある場合に、消火又は延焼防止に努めるとともに、直ちにその旨を消防署又は消防法第２４条の規定により、戸山庁舎においては新宿区長、村山庁舎においては武蔵村山市、ハンセン病研究センターにおいては東村山市の指定した場所への通報。
       role: normative
@@ -10573,7 +10413,7 @@ content:
       kind: item
       kind_raw: ２.
       num: '2'
-      ord: 403
+      ord: 399
       heading: null
       text: 感染症の発生・まん延防止に必要がある場合には、病原体取扱施設内にいる者、運搬に従事する者、又はこれらの付近にいる者に対して避難を警告。
       role: normative
@@ -10592,7 +10432,7 @@ content:
       kind: item
       kind_raw: ３.
       num: '3'
-      ord: 404
+      ord: 400
       heading: null
       text: 必要に応じて病原体等を安全な場所に移すとともに、縄を張る・標識を設ける・見張り人を付ける等により、関係者以外の者が入らないための措置を講ずるよう努めること。
       role: normative
@@ -10613,7 +10453,7 @@ content:
       kind: item
       kind_raw: ４.
       num: '4'
-      ord: 405
+      ord: 401
       heading: null
       text: その他、感染症の発生・まん延防止に必要な措置。
       role: normative
@@ -10630,7 +10470,7 @@ content:
       kind: item
       kind_raw: ５.
       num: '5'
-      ord: 406
+      ord: 402
       heading: null
       text: 上記の緊急作業を行う場合には、防御具の着用、曝露時間の短縮等により、曝露を出来る限り少なくするものとすること。
       role: normative
@@ -10655,7 +10495,7 @@ content:
     kind: annex
     kind_raw: 別表1
     num: 別表10
-    ord: 407
+    ord: 403
     heading: 感染症発生予防規程対照表（法第５６条の１８関係）
     text: null
     role: structural
@@ -10744,7 +10584,7 @@ content:
       kind: table
       kind_raw: table
       num: '1'
-      ord: 408
+      ord: 404
       heading: 感染症発生予防規程対照表（法第５６条の１８関係）
       text: null
       role: structural
@@ -10762,7 +10602,7 @@ content:
         kind: table_header
         kind_raw: table_header
         num: null
-        ord: 409
+        ord: 405
         heading: null
         text: category | 省令での記載項目 | 具体的内容 | 国立感染症研究所病原体等安全管理規程における該当部分
         role: structural
@@ -10778,7 +10618,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '1'
-          ord: 410
+          ord: 406
           heading: null
           text: 組織及び職務 | 病原体等取扱主任者その他の病原体等の取扱い及び管理に従事する者に関する職務及び組織に関すること。 | 病原体等安全管理委員会（仮称）の設置を含む事業所全体の組織体制、委員会の運営等。（委員会の構成・運営は別途事業所ごとに規定。）予防規程の制定・改廃等、立入り検査等への立ち会い、従事者等への教育訓練、所持者に対する意見具申など、病原体等取扱主任者の職務の規定。 | 特定病原体等保持者：第3条；病原体等取扱主任者：第4条；組織体制と運営等：第7条から第14条、第23条；予防規程の制定・改廃等：第1条、第42条；その他：第40条、41条その他
           role: normative
@@ -10812,7 +10652,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '2'
-          ord: 411
+          ord: 407
           heading: null
           text: 管理区域 | 病原体等の取扱いに従事する者であって、管理区域に立入るものの制限に関すること。 | 管理区域、実験室等へのヒトの立入り制限。 | 第15条2項
           role: normative
@@ -10842,7 +10682,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '3'
-          ord: 412
+          ord: 408
           heading: null
           text: 管理区域 | 管理区域の設定並びに管理区域の内部において感染症の発生を予防し、及びそのまん延を防止するために講ずる措置に関すること。 | 管理区域の設定、管理区域内の遵守事項等。 | 第5条、第6条、第12条、第13条、第14条、第22条
           role: normative
@@ -10872,7 +10712,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '4'
-          ord: 413
+          ord: 409
           heading: null
           text: 施設の維持管理 | 一種病原体等取扱施設又は二種病原体等取扱施設の維持及び管理に関すること。 | 定期的な点検、必要な措置等。点検結果の記録（→記帳）。 | 第14条（3）、（4）
           role: normative
@@ -10902,7 +10742,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '5'
-          ord: 414
+          ord: 410
           heading: null
           text: 病原体等の取扱い等 | 病原体等の使用、保管、運搬及び滅菌譲渡に関すること。 | 病原体等の使用、保管、滅菌等の基準の遵守事項・手続等。保管状況（施錠、鍵の管理等を含む）の確認等。事業所内の運搬の規定。 | 第18条から第22条、第24条3項
           role: normative
@@ -10932,7 +10772,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '6'
-          ord: 415
+          ord: 411
           heading: null
           text: 病原体等の取扱い等 | 病原体等の受入れ、払出し及び移動の制限に関すること。 | 病原体等のみだりな移動の制限、受入れ・払出しの手続等。 | 第20条
           role: normative
@@ -10962,7 +10802,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '7'
-          ord: 416
+          ord: 412
           heading: null
           text: 教育訓練 | 病原体等による感染症の発生を予防し、並びにそのまん延を防止するために必要な教育及び訓練に関すること。 | 教育訓練の対象者及びその内容等。（実施要領は別途事業所ごとに規定。） | 第27条
           role: normative
@@ -10992,7 +10832,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '8'
-          ord: 417
+          ord: 413
           heading: null
           text: 健康管理等 | 病原体等に曝露した者又は曝露したおそれのある者に対する保健上の必要な措置に関すること。 | 病原体等取扱者の定期的な健康診断。病原体等に曝露した場合の必要な措置等。 | 第23条(2)、第28条、第33条から第39条
           role: normative
@@ -11022,7 +10862,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '9'
-          ord: 418
+          ord: 414
           heading: null
           text: 記帳等 | 法第56条の23に規定による記帳及び保存に関すること。 | 病原体等の管理、ヒトの立入り等に係る記帳。保存方法。 | 第25条
           role: normative
@@ -11052,7 +10892,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '10'
-          ord: 419
+          ord: 415
           heading: null
           text: 情報管理 | 病原体等の取扱いに係る情報の管理に関すること。 | 病原体等の取扱いに係る情報へのアクセス制限等。 | 第26条
           role: normative
@@ -11082,7 +10922,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '11'
-          ord: 420
+          ord: 416
           heading: null
           text: 事故等対応 | 病原体等の盗取、所在不明その他の事故が生じたときの措置に関すること。 | 連絡体制、警察官等への届出の手続等。 | 第29条
           role: normative
@@ -11112,7 +10952,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '12'
-          ord: 421
+          ord: 417
           heading: null
           text: 応急措置 | 災害時の応急措置に関すること。 | 災害発生時の連絡・通報体制、汚染拡大の防止、関係者以外の立入り禁止等の応急措置等。届出の手続等。 | 第30条、第31条
           role: normative
@@ -11142,7 +10982,7 @@ content:
           kind: table_row
           kind_raw: table_row
           num: '13'
-          ord: 422
+          ord: 418
           heading: null
           text: その他 | その他病原体等による感染症の発生の予防及びまん延の防止に関し必要な事項。 | その他必要な事項。 | その他
           role: normative
@@ -11667,10 +11507,6 @@ index:
     ann5.tbl1.tblh_visual.tblr15: table_row 15
     ann5.tbl1.tblh_visual.tblr16: table_row 16
     ann5.tbl1.tblh_visual.tblr17: table_row 17
-    ann5.tbl1.tblh_visual.tblr18: table_row 18
-    ann5.tbl1.tblh_visual.tblr19: table_row 19
-    ann5.tbl1.tblh_visual.tblr20: table_row 20
-    ann5.tbl1.tblh_visual.tblr21: table_row 21
     ann5.tbl1.note1: '*1'
     ann5.tbl1.note2: ※
     ann6: 病原体等安全管理区域運営規則作成基準

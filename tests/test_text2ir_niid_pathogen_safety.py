@@ -113,7 +113,7 @@ def test_niid_full_profile_keeps_body_and_annexes_without_toc_duplicates() -> No
         "別表8",
         "別表10",
     ]
-    assert len(table_rows) == 116
+    assert len(table_rows) == 112
     assert not qualitycheck_document(ir_doc.content)
 
 
@@ -192,6 +192,8 @@ def test_niid_full_profile_reconstructs_wide_tables_without_decimal_item_artifac
     assert betsu4_table.children[0].data["columns"][:2] == ["section", "criterion"]
     assert any(record["section"] == "実験室" and record["criterion"] == "－" for record in betsu4_records)
     assert any(record["section"] == "実験室内" and record["criterion"] == "－" for record in betsu4_records)
+    for merged_row in [record for record in betsu4_records if record["section"] in {"実験室", "実験室内"} and record["criterion"] == "－"]:
+        assert all(merged_row[column] == "実験室" for column in betsu4_table.children[0].data["columns"][2:])
     assert any(record["section"] == "感染動物の飼育設備" and record["criterion"] == "－" for record in betsu4_records)
     assert any(record["section"] == "滅菌設備" and record["criterion"] == "－" for record in betsu4_records)
     betsu5_records = [
@@ -202,6 +204,8 @@ def test_niid_full_profile_reconstructs_wide_tables_without_decimal_item_artifac
     ]
     assert next(record for record in betsu5_records if record["criterion"] == "複数名での作業")["section"] == "使用の基準"
     assert next(record for record in betsu5_records if record["criterion"] == "安全キャビネット内での適切な使用")["section"] == "使用の基準"
+    assert not any(record["section"] == "運搬の基準" for record in betsu5_records)
+    assert any(node.kind == "note" and "運搬する場合には容器に封入すること" in (node.text or "") for node in annexes["別表5"].children)
 
     for table in [child for node in annexes.values() for child in node.children if child.kind == "table"]:
         for header in [child for child in table.children if child.kind == "table_header"]:
