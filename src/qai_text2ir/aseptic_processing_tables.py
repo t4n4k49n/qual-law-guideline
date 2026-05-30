@@ -13,7 +13,7 @@ TABLE_SPECS = [
         "caption_re": re.compile(r"^\s*表１\s+清浄区域の分類\s*$"),
         "end_re": re.compile(r"^\s*注\s*1）"),
         "parent_nid": "cha7.sec7_1",
-        "strip_re": re.compile(r"\n?\s*表１\s+清浄区域の分類.*$", flags=re.DOTALL),
+        "strip_re": re.compile(r"\n?\s*表１\s*清浄区域の分類.*$", flags=re.DOTALL),
         "heading": "表１ 清浄区域の分類",
     },
     {
@@ -21,7 +21,7 @@ TABLE_SPECS = [
         "caption_re": re.compile(r"^\s*表２\s+微生物管理に係る環境モニタリングの頻度\s*$"),
         "end_re": re.compile(r"^\s*表\s*3\s+環境微生物の許容基準"),
         "parent_nid": "cha11.sec11_3",
-        "strip_re": re.compile(r"\n?\s*表２\s+微生物管理に係る環境モニタリングの頻度.*$", flags=re.DOTALL),
+        "strip_re": re.compile(r"\n?\s*表２\s*微生物管理に係る環境モニタリングの頻度.*$", flags=re.DOTALL),
         "heading": "表２ 微生物管理に係る環境モニタリングの頻度",
     },
     {
@@ -496,6 +496,63 @@ def _remove_duplicate_table_notes(parent: Node, table: RawTable, *, line_no_offs
     parent.children = [child for child in parent.children if not overlaps_table_note(child)]
 
 
+def _source_lines(node: Node) -> set[int]:
+    lines: set[int] = set()
+    for span in node.source_spans or []:
+        locator = span.get("locator")
+        if not isinstance(locator, str):
+            continue
+        match = re.search(r"line:(\d+)", locator)
+        if match:
+            lines.add(int(match.group(1)))
+    return lines
+
+
+def _remove_generated_table_artifacts(parent: Node, table: RawTable, spec: Dict[str, Any], *, line_no_offset: int) -> None:
+    table_lines = {
+        line_idx + line_no_offset + 1
+        for line_idx in [table.caption_idx, *table.raw_line_indexes, *table.note_line_indexes]
+    }
+    strip_re = spec.get("strip_re")
+
+    def clean(node: Node) -> None:
+        if strip_re is not None and node.text:
+            cleaned = strip_re.sub("", node.text).rstrip()
+            if cleaned != node.text:
+                node.text = cleaned or None
+                node.source_spans = [
+                    span
+                    for span in node.source_spans
+                    if _locator_line_not_in(span, table_lines)
+                ]
+
+        kept_children: List[Node] = []
+        for child in node.children:
+            child_lines = _source_lines(child)
+            generated_table_artifact = (
+                child.kind == "preformatted"
+                or "possible_plaintext_table_not_structured" in child.tags
+                or (child.data or {}).get("warning") == "possible_plaintext_table_not_structured"
+            )
+            if generated_table_artifact and child_lines and child_lines.issubset(table_lines):
+                continue
+            clean(child)
+            kept_children.append(child)
+        node.children = kept_children
+
+    clean(parent)
+
+
+def _locator_line_not_in(span: Dict[str, str], blocked_lines: set[int]) -> bool:
+    locator = span.get("locator")
+    if not isinstance(locator, str):
+        return True
+    match = re.search(r"line:(\d+)", locator)
+    if not match:
+        return True
+    return int(match.group(1)) not in blocked_lines
+
+
 def _insert_child_by_source_order(parent: Node, child: Node) -> None:
     child_line = _source_line(child)
     if child_line is None:
@@ -530,6 +587,7 @@ def normalize_aseptic_processing_tables(
         remove_child_nid = spec.get("remove_child_nid")
         if isinstance(remove_child_nid, str):
             _remove_child(parent, remove_child_nid)
+        _remove_generated_table_artifacts(parent, table, spec, line_no_offset=line_no_offset)
         _remove_duplicate_table_notes(parent, table, line_no_offset=line_no_offset)
         table_node = _table_node(table, parent_nid=parent.nid, source_label=source_label, line_no_offset=line_no_offset)
         _insert_child_by_source_order(parent, table_node)

@@ -1098,6 +1098,30 @@ def normalize_visible_chars(s: str) -> str:
     return s.replace("\r", "").replace("\u00ad", "").rstrip()
 
 
+def _is_ascii_alnum(value: str) -> bool:
+    return bool(re.fullmatch(r"[A-Za-z0-9]", value))
+
+
+def _normalize_japanese_prose_text(value: str) -> str:
+    normalized = value.replace("\u3000", " ")
+    normalized = re.sub(r"[ \t]+", " ", normalized)
+    normalized = re.sub(r"\s*\n+\s*", "\n", normalized)
+    result: List[str] = []
+    for idx, char in enumerate(normalized):
+        if char != " ":
+            result.append(char)
+            continue
+        prev_char = normalized[idx - 1] if idx > 0 else ""
+        next_char = normalized[idx + 1] if idx + 1 < len(normalized) else ""
+        if _is_ascii_alnum(prev_char) and _is_ascii_alnum(next_char):
+            result.append(char)
+    return "".join(result).strip()
+
+
+def _should_keep_pending_paragraph_break(current_value: str) -> bool:
+    return bool(re.search(r"[。．.!?！？]\s*$", current_value))
+
+
 def _leading_space_count(raw_line: str) -> int:
     return len(raw_line) - len(raw_line.lstrip(" "))
 
@@ -1153,6 +1177,7 @@ def _append_content(
     line_no: int,
     source_label: str,
     states: Dict[Tuple[str, str], AppendState],
+    normalize_japanese_text: bool = False,
 ) -> None:
     state = _get_append_state(states, node, field)
     normalized = normalize_visible_chars(raw_line)
@@ -1172,11 +1197,16 @@ def _append_content(
     else:
         if state.in_pre or pre:
             sep = "\n"
-        elif state.pending_paragraph_break:
+        elif state.pending_paragraph_break and (
+            not normalize_japanese_text or _should_keep_pending_paragraph_break(current_value)
+        ):
             sep = "\n\n"
         else:
             sep = " "
         updated = f"{current_value}{sep}{incoming}"
+
+    if normalize_japanese_text and not pre and not state.in_pre and field in {"text", "heading"}:
+        updated = _normalize_japanese_prose_text(updated)
 
     setattr(node, field, updated)
     state.pending_paragraph_break = False
@@ -1203,6 +1233,7 @@ def _append_text(
     line_no: int,
     source_label: str,
     states: Dict[Tuple[str, str], AppendState],
+    normalize_japanese_text: bool = False,
 ) -> None:
     _append_content(
         node,
@@ -1211,6 +1242,7 @@ def _append_text(
         line_no=line_no,
         source_label=source_label,
         states=states,
+        normalize_japanese_text=normalize_japanese_text,
     )
 
 
@@ -1220,6 +1252,7 @@ def _append_heading(
     line_no: int,
     source_label: str,
     states: Dict[Tuple[str, str], AppendState],
+    normalize_japanese_text: bool = False,
 ) -> None:
     _append_content(
         node,
@@ -1228,6 +1261,7 @@ def _append_heading(
         line_no=line_no,
         source_label=source_label,
         states=states,
+        normalize_japanese_text=normalize_japanese_text,
     )
 
 
@@ -1435,6 +1469,17 @@ def _split_section_heading_and_chapeau(remaining: str) -> Tuple[str, Optional[st
     text = remaining.strip()
     if not text:
         return "", None
+    definition_sep_positions = [
+        match.start()
+        for match in re.finditer(r"[:：]", text)
+        if match.start() <= 160
+    ]
+    if definition_sep_positions:
+        split_pos = definition_sep_positions[-1]
+        heading = text[:split_pos].strip()
+        chapeau = text[split_pos + 1 :].strip()
+        if heading and chapeau:
+            return heading, chapeau
     m = re.search(r"\.\s+([A-Z0-9(])", text)
     if not m:
         return text, None
@@ -1793,6 +1838,8 @@ def parse_text_to_ir(
     drop_line_regexes = [re.compile(p) for p in (preprocess.get("drop_line_regexes") or [])]
     drop_line_exact = {v for v in (preprocess.get("drop_line_exact") or []) if isinstance(v, str) and v}
     strip_inline_regexes = [re.compile(p) for p in (preprocess.get("strip_inline_regexes") or [])]
+    normalize_japanese_text_cfg = preprocess.get("normalize_japanese_text") or {}
+    normalize_japanese_text_enabled = bool(normalize_japanese_text_cfg.get("enabled"))
     use_indent_dedent = bool(preprocess.get("use_indent_dedent"))
     dedent_pop_kinds = set(preprocess.get("dedent_pop_kinds") or [])
     skip_block_rules = _compile_skip_blocks(preprocess)
@@ -2305,7 +2352,14 @@ def parse_text_to_ir(
 
         if created_nodes:
             if current.kind in {"note", "history"}:
-                _append_text(current, cleaned_line, line_no, source_label, append_states)
+                _append_text(
+                    current,
+                    cleaned_line,
+                    line_no,
+                    source_label,
+                    append_states,
+                    normalize_japanese_text=normalize_japanese_text_enabled,
+                )
             elif current.kind in structural_kinds:
                 if remaining:
                     if current.kind == "section":
@@ -2313,11 +2367,32 @@ def parse_text_to_ir(
                     else:
                         heading = _normalize_structural_heading(current.kind, remaining)
                         chapeau = None
-                    _append_heading(current, heading, line_no, source_label, append_states)
+                    _append_heading(
+                        current,
+                        heading,
+                        line_no,
+                        source_label,
+                        append_states,
+                        normalize_japanese_text=normalize_japanese_text_enabled,
+                    )
                     if chapeau:
-                        _append_text(current, chapeau, line_no, source_label, append_states)
+                        _append_text(
+                            current,
+                            chapeau,
+                            line_no,
+                            source_label,
+                            append_states,
+                            normalize_japanese_text=normalize_japanese_text_enabled,
+                        )
             elif remaining:
-                _append_text(current, remaining, line_no, source_label, append_states)
+                _append_text(
+                    current,
+                    remaining,
+                    line_no,
+                    source_label,
+                    append_states,
+                    normalize_japanese_text=normalize_japanese_text_enabled,
+                )
             continue
 
         if use_indent_dedent:
@@ -2376,7 +2451,14 @@ def parse_text_to_ir(
                     )
                     stack = stack[: fallback_idx + 1]
                     current = fallback
-        _append_text(current, cleaned_line, line_no, source_label, append_states)
+        _append_text(
+            current,
+            cleaned_line,
+            line_no,
+            source_label,
+            append_states,
+            normalize_japanese_text=normalize_japanese_text_enabled,
+        )
 
     if finalize:
         _refine_subtrees(
