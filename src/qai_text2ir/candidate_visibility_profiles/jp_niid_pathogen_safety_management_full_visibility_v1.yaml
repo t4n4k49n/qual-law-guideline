@@ -1,0 +1,16 @@
+schema: qai.candidate_visibility_profile.v1
+id: jp_niid_pathogen_safety_management_full_visibility_v1
+title: NIID pathogen safety management regulation full candidate visibility
+applies_to:
+  parser_profile_id: jp_niid_pathogen_safety_management_full_v1
+  doc_id: jp_niid_pathogen_safety_management_20240401
+
+candidate_visibility:
+  allow_rules: []
+  deny_rules:
+    - nid_prefix: cha1
+      reason: 総則・定義は対象外OK範囲として候補表示から除外する
+    - nid_prefix: cha5
+      reason: 第5章は対象外OK範囲として候補表示から除外する
+    - nid_prefix: cha6
+      reason: 第6章は対象外OK範囲として候補表示から除外する
