@@ -113,7 +113,7 @@ def test_niid_full_profile_keeps_body_and_annexes_without_toc_duplicates() -> No
         "別表8",
         "別表10",
     ]
-    assert len(table_rows) == 114
+    assert len(table_rows) == 116
     assert not qualitycheck_document(ir_doc.content)
 
 
@@ -182,3 +182,28 @@ def test_niid_full_profile_reconstructs_wide_tables_without_decimal_item_artifac
     betsu5_table = next(child for child in annexes["別表5"].children if child.kind == "table")
     betsu5_text = " ".join(row.text or "" for header in betsu5_table.children if header.kind == "table_header" for row in header.children)
     assert "0.01％以上の次亜" in betsu5_text
+    betsu4_table = next(child for child in annexes["別表4"].children if child.kind == "table")
+    betsu4_records = [
+        row.data["record"]
+        for header in betsu4_table.children
+        if header.kind == "table_header"
+        for row in header.children
+    ]
+    assert betsu4_table.children[0].data["columns"][:3] == ["section", "subsection", "criterion"]
+    assert any(record["section"] == "実験室" and record["criterion"] == "実験室" for record in betsu4_records)
+    assert any(record["section"] == "実験室内" and record["criterion"] == "実験室内" for record in betsu4_records)
+    betsu5_records = [
+        row.data["record"]
+        for header in betsu5_table.children
+        if header.kind == "table_header"
+        for row in header.children
+    ]
+    assert next(record for record in betsu5_records if record["criterion"] == "複数名での作業")["section"] == "使用の基準"
+    assert next(record for record in betsu5_records if record["criterion"] == "安全キャビネット内での適切な使用")["section"] == "使用の基準"
+
+    for table in [child for node in annexes.values() for child in node.children if child.kind == "table"]:
+        for header in [child for child in table.children if child.kind == "table_header"]:
+            columns = header.data["columns"]
+            for row in header.children:
+                assert len(row.data["cells"]) == len(columns), f"{row.nid}: {row.text}"
+                assert row.text.count(" | ") == len(columns) - 1, f"{row.nid}: {row.text}"

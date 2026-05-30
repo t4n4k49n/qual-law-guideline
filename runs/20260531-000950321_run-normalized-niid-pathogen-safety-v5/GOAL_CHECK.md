@@ -4,9 +4,9 @@ Status: **PASS**
 
 ## Summary
 
-- Bundle dir: `runs\20260530-233420456_run-normalized-niid-pathogen-safety-v4\promotion_candidate`
+- Bundle dir: `runs\20260531-000950321_run-normalized-niid-pathogen-safety-v5\promotion_candidate`
 - Schema: `qai.regdoc_ir.v4`
-- Nodes: 421
+- Nodes: 423
 - Verify: pass
 - Source span coverage: 1.0
 
@@ -34,7 +34,7 @@ Status: **PASS**
 | subitem | 58 |
 | table | 8 |
 | table_header | 8 |
-| table_row | 114 |
+| table_row | 116 |
 
 ## dq_gmp_checklist
 

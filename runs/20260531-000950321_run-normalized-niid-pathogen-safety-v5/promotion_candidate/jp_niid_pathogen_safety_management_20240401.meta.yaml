@@ -42,7 +42,7 @@ bundle:
     schema: qai.regdoc_profile.v1
     path: jp_niid_pathogen_safety_management_20240401.regdoc_profile.yaml
 generation:
-  created_at: '2026-05-30T14:40:53Z'
+  created_at: '2026-05-30T16:44:55Z'
   tool:
     name: qai_text2ir
     version: null
