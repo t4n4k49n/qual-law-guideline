@@ -404,6 +404,15 @@ def _normalize_annex_table(annex: Node, *, source_label: str) -> Optional[Dict[s
 
 
 def _apply_readiness_decision(annex: Node) -> None:
+    if (
+        annex.num == "別表1"
+        and annex.heading
+        and annex.heading.startswith("病原体等の取扱いにおいては")
+    ):
+        heading_text = annex.heading.rstrip()
+        body_text = (annex.text or "").lstrip()
+        annex.heading = None
+        annex.text = f"{heading_text}{body_text}" if body_text else heading_text
     if annex.num in HEADING_BY_NUM:
         annex.heading = HEADING_BY_NUM[str(annex.num)]
     if annex.num not in READINESS_BY_NUM:
@@ -419,6 +428,8 @@ def _apply_readiness_decision(annex: Node) -> None:
                 **decision,
                 "status": "ready_for_readiness_review",
             }
+    if decision.get("promotion_mode") == "annex_text_raw_hold":
+        annex.children = [child for child in annex.children if child.kind in {"note", "history"}]
 
 
 def normalize_niid_annex_tables(root: Node, *, source_label: str) -> Dict[str, Any]:

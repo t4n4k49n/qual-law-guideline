@@ -126,3 +126,47 @@ def test_niid_full_profile_normalizes_display_prose_spacing() -> None:
             assert not pattern.search(value), f"{node.nid}: {value!r}"
             assert "\\r" not in value
             assert "\\n" not in value
+
+
+def test_niid_full_profile_preserves_numbered_annex_items_as_nodes() -> None:
+    profile = load_parser_profile(path=FULL_PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_20240401",
+        parser_profile=profile,
+    )
+    nodes = list(_walk(ir_doc.content))
+    annexes = {node.num: node for node in nodes if node.kind == "annex"}
+
+    expected = {
+        "付表1-2": [str(num) for num in range(1, 9)],
+        "付表1-3": [str(num) for num in range(1, 5)],
+        "別表6": [str(num) for num in range(1, 12)],
+        "別表9": [str(num) for num in range(1, 6)],
+    }
+    for annex_num, item_nums in expected.items():
+        annex = annexes[annex_num]
+        assert [child.num for child in annex.children if child.kind == "item"] == item_nums
+        assert "１．" not in (annex.text or "")
+        assert "２．" not in (annex.text or "")
+        assert "。。" not in (annex.text or "")
+
+    assert annexes["別表1"].heading is None
+    assert annexes["別表1"].text.startswith("病原体等の取扱いにおいては")
+    assert any(node.kind == "note" and node.text.startswith("註：") for node in _walk(annexes["付表1-2"]))
+    assert any(node.kind == "note" and node.text.startswith("註：") for node in _walk(annexes["付表1-3"]))
+
+
+def test_niid_full_profile_does_not_create_items_from_raw_hold_table_decimals() -> None:
+    profile = load_parser_profile(path=FULL_PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_20240401",
+        parser_profile=profile,
+    )
+    annexes = {node.num: node for node in _walk(ir_doc.content) if node.kind == "annex"}
+
+    for annex_num in ["別表4", "別表5", "別表8"]:
+        annex = annexes[annex_num]
+        assert {child.kind for child in annex.children} <= {"note", "history"}
+    assert "0.01％以上の次亜" in (annexes["別表5"].text or "")

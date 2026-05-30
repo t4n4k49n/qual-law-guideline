@@ -63,7 +63,8 @@ def test_niid_annex_profile_preserves_annex_text_without_body_chapters() -> None
 
     assert [node.kind for node in ir_doc.content.children] == ["annex"] * 16
     assert "第１章" not in all_text
-    assert annex_by_num["別表1"].heading.startswith("病原体等の取扱いにおいては")
+    assert annex_by_num["別表1"].heading is None
+    assert annex_by_num["別表1"].text.startswith("病原体等の取扱いにおいては")
     assert "における該当部分" in all_text
     assert "特定病原体等の取扱いに必要な教育訓練" in all_text
 
