@@ -80,6 +80,7 @@ After this parent PR is approved and merged, create a child promotion PR that co
 - Parent PR: `#223`
 - Parent merge commit: `925652b6dfc6e383479cf125934f77395fdd0502`
 - Promotion branch: `promote/niid-pathogen-safety-v1`
+- Promotion commit: `f5614dcb1ee7e3312da6af846e5cf923aff5d761`
 - Promotion source: `runs/20260530-200255218_run-normalized-niid-pathogen-safety-v1/promotion_candidate/`
 - Destination: `data/normalized/jp_niid_pathogen_safety_management_20240401/`
 - Copied files:

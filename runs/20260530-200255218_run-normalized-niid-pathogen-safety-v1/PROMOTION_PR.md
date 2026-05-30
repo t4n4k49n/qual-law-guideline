@@ -21,6 +21,7 @@
 
 - 親PR: `#223`
 - 親PR merge commit: `925652b6dfc6e383479cf125934f77395fdd0502`
+- 昇格コミット: `f5614dcb1ee7e3312da6af846e5cf923aff5d761`
 - `promotion_candidate/` と `data/normalized/` のSHA-256一致を確認済み。
 - `data/normalized/jp_niid_pathogen_safety_management_20240401/` のpromotion goal check: pass。
 - `data/normalized/jp_niid_pathogen_safety_management_20240401/` のIR構造チェック: pass。
