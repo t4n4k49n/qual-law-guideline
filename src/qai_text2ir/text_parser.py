@@ -1118,6 +1118,19 @@ def _normalize_japanese_prose_text(value: str) -> str:
     return "".join(result).strip()
 
 
+def _normalize_japanese_document_text(root: Node) -> None:
+    def _visit(node: Node) -> None:
+        if node.kind not in {"table", "table_header", "table_row", "preformatted"}:
+            for field in ("heading", "text"):
+                current = getattr(node, field)
+                if isinstance(current, str) and current:
+                    setattr(node, field, _normalize_japanese_prose_text(current))
+        for child in node.children:
+            _visit(child)
+
+    _visit(root)
+
+
 def _should_keep_pending_paragraph_break(current_value: str) -> bool:
     return bool(re.search(r"[。．.!?！？]\s*$", current_value))
 
@@ -2525,7 +2538,11 @@ def parse_text_to_ir(
             applied_who_general = normalize_who_lbm_general_tables(root, raw_lines, source_label=source_label)
             if applied_who_general.get("applied") and "postprocess=who_lbm_general_tables" not in root.tags:
                 root.tags.append("postprocess=who_lbm_general_tables")
+        if normalize_japanese_text_enabled:
+            _normalize_japanese_document_text(root)
         _quality_warnings = run_text_postprocess_and_qualitycheck(root)
+        if normalize_japanese_text_enabled:
+            _normalize_japanese_document_text(root)
         for warning in _quality_warnings:
             LOGGER.warning("qualitycheck: %s", warning)
         assign_document_order(root)

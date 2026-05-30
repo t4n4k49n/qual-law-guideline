@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from qai_xml2ir.verify import verify_document
 
 SOURCE = Path("data/human-readable/niid/pathogen_safety_management/source_texts/Kanrikitei3_20240401.txt")
 PROFILE = Path("src/qai_text2ir/profiles/jp_niid_pathogen_safety_management_v1.yaml")
+FULL_PROFILE = Path("src/qai_text2ir/profiles/jp_niid_pathogen_safety_management_full_v1.yaml")
 
 
 def _walk(node):
@@ -58,3 +60,69 @@ def test_niid_profile_parses_articles_paragraphs_and_numbered_items() -> None:
     assert article_9_2.text.startswith("ポリオウイルス取扱施設運営委員会")
     assert article_1_para_2.text.startswith("安全管理規程は、感染症法に基づく")
     assert article_2_item_1.text.startswith("「病原体等」とは")
+
+
+def test_niid_full_profile_keeps_body_and_annexes_without_toc_duplicates() -> None:
+    profile = load_parser_profile(path=FULL_PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_20240401",
+        parser_profile=profile,
+    )
+    verify_document(ir_doc.to_dict())
+
+    root_children = ir_doc.content.children
+    chapters = [node for node in root_children if node.kind == "chapter"]
+    annexes = [node for node in root_children if node.kind == "annex"]
+    tables = [node for node in _walk(ir_doc.content) if node.kind == "table" and node.data.get("parser") == "niid_annex_table_adapter"]
+    table_rows = [
+        row
+        for table in tables
+        for header in table.children
+        if header.kind == "table_header"
+        for row in header.children
+        if row.kind == "table_row"
+    ]
+
+    assert [node.num for node in chapters] == ["1", "2", "3", "4", "5", "6"]
+    assert [node.num for node in annexes] == [
+        "別表1",
+        "付表1-1",
+        "付表1-2",
+        "付表1-3",
+        "付表2",
+        "付表3",
+        "付表4",
+        "別表2",
+        "別表3",
+        "別表4",
+        "別表5",
+        "別表6",
+        "別表7",
+        "別表8",
+        "別表9",
+        "別表10",
+    ]
+    assert [table.data["annex_num"] for table in tables] == ["付表2", "付表3", "付表4", "別表7", "別表10"]
+    assert len(table_rows) == 54
+    assert not qualitycheck_document(ir_doc.content)
+
+
+def test_niid_full_profile_normalizes_display_prose_spacing() -> None:
+    profile = load_parser_profile(path=FULL_PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_20240401",
+        parser_profile=profile,
+    )
+    pattern = re.compile(r"[一-龯ぁ-んァ-ヶー々〆〇Ａ-Ｚａ-ｚ０-９][ 　]+[一-龯ぁ-んァ-ヶー々〆〇Ａ-Ｚａ-ｚ０-９]")
+
+    for node in _walk(ir_doc.content):
+        if node.kind in {"table", "table_header", "table_row", "preformatted"}:
+            continue
+        for value in (node.heading, node.text):
+            if not value:
+                continue
+            assert not pattern.search(value), f"{node.nid}: {value!r}"
+            assert "\\r" not in value
+            assert "\\n" not in value

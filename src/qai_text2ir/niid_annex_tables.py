@@ -128,6 +128,10 @@ READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
         "reason": "PDF image visual review restored row-spanned categories and comparison cells into reviewed records",
     },
 }
+HEADING_BY_NUM: Dict[str, str] = {
+    "付表2": "病原体等のリスク群分類と、実験室のＢＳＬ分類、実験室使用目的、実験手技及び安全機器との関連性",
+    "付表4": "病原体等取扱動物実験施設のＡＢＳＬ分類、実験手技、安全機器及び設備基準",
+}
 
 
 def _split_fixed_width_cells(line: str) -> List[str]:
@@ -386,20 +390,22 @@ def _normalize_annex_table(annex: Node, *, source_label: str) -> Optional[Dict[s
     annex.data["table_adapter"] = PARSER_ID
     annex.data["table_adapter_status"] = "table_node_created_raw_rows"
     annex.text = "\n\n".join(preamble) or None
-    annex.children.append(
-        _table_node(
-            annex,
-            table_lines=table_lines,
-            start_idx=start_idx,
-            source_label=source_label,
-            columns=list(config["columns"]),
-            source_format=str(config["source_format"]),
-        )
+    table_node = _table_node(
+        annex,
+        table_lines=table_lines,
+        start_idx=start_idx,
+        source_label=source_label,
+        columns=list(config["columns"]),
+        source_format=str(config["source_format"]),
     )
+    annex.children = [child for child in annex.children if child.kind in {"note", "history"}]
+    annex.children.append(table_node)
     return {"annex_num": annex.num, "rows": len(table_lines), "columns": list(config["columns"])}
 
 
 def _apply_readiness_decision(annex: Node) -> None:
+    if annex.num in HEADING_BY_NUM:
+        annex.heading = HEADING_BY_NUM[str(annex.num)]
     if annex.num not in READINESS_BY_NUM:
         return
     decision = READINESS_BY_NUM[str(annex.num)]
