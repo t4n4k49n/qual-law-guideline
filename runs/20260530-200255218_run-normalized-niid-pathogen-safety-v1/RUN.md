@@ -74,3 +74,19 @@ This run follows `docs/NORMALIZED_RUN_PLAYBOOK.md`. It changes only the promotio
 This parent PR changes only parser/profile code, the run promotion candidate, and review artifacts. It does not copy files to `data/normalized/`.
 
 After this parent PR is approved and merged, create a child promotion PR that copies the four candidate files from `promotion_candidate/` to `data/normalized/jp_niid_pathogen_safety_management_20240401/`.
+
+## Promotion Preparation
+
+- Parent PR: `#223`
+- Parent merge commit: `925652b6dfc6e383479cf125934f77395fdd0502`
+- Promotion branch: `promote/niid-pathogen-safety-v1`
+- Promotion source: `runs/20260530-200255218_run-normalized-niid-pathogen-safety-v1/promotion_candidate/`
+- Destination: `data/normalized/jp_niid_pathogen_safety_management_20240401/`
+- Copied files:
+  - `jp_niid_pathogen_safety_management_20240401.regdoc_ir.yaml`
+  - `jp_niid_pathogen_safety_management_20240401.parser_profile.yaml`
+  - `jp_niid_pathogen_safety_management_20240401.regdoc_profile.yaml`
+  - `jp_niid_pathogen_safety_management_20240401.meta.yaml`
+- SHA-256 match between `promotion_candidate/` and `data/normalized/`: confirmed.
+- Promotion goal check on `data/normalized/jp_niid_pathogen_safety_management_20240401/`: pass. `manifest.yaml` is not copied to `data/normalized/` by design.
+- IR structure check on `data/normalized/jp_niid_pathogen_safety_management_20240401/`: pass.
