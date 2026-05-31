@@ -206,6 +206,15 @@ def test_niid_full_profile_reconstructs_wide_tables_without_decimal_item_artifac
     assert next(record for record in betsu5_records if record["criterion"] == "安全キャビネット内での適切な使用")["section"] == "使用の基準"
     assert not any(record["section"] == "運搬の基準" for record in betsu5_records)
     assert any(node.kind == "note" and "運搬する場合には容器に封入すること" in (node.text or "") for node in annexes["別表5"].children)
+    betsu5_children = list(annexes["別表5"].children)
+    betsu5_table_index = next(idx for idx, node in enumerate(betsu5_children) if node.kind == "table")
+    transport_note_index = next(
+        idx
+        for idx, node in enumerate(betsu5_children)
+        if node.kind == "note" and "運搬する場合には容器に封入すること" in (node.text or "")
+    )
+    assert betsu5_table_index < transport_note_index
+    assert not any(node.kind == "note" and (node.text or "").strip() == "•" for node in betsu5_children)
 
     for table in [child for node in annexes.values() for child in node.children if child.kind == "table"]:
         for header in [child for child in table.children if child.kind == "table_header"]:
