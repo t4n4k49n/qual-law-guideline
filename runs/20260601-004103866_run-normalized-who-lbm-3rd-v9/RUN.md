@@ -128,3 +128,17 @@ Target path:
 - This is the parent review PR only.
 - `data/normalized/` was not changed.
 - Promotion to `data/normalized/` must be done in a child PR after parent approval.
+
+## Promotion child PR
+
+- parent PR: `#243`
+- parent merge confirmed: `2026-06-01`
+- source candidate: `runs/20260601-004103866_run-normalized-who-lbm-3rd-v9/promotion_candidate/`
+- destination: `data/normalized/who_lbm_3rd_2004_9241546506/`
+- source main commit before promotion: `b02db8b3b24411e57c3f9abf0b9122135abbf5a7`
+- promotion commit: recorded by the child PR Git history; final main ancestry check is required after merge
+- promoted files:
+  - `who_lbm_3rd_2004_9241546506.regdoc_ir.yaml`
+  - `who_lbm_3rd_2004_9241546506.parser_profile.yaml`
+  - `who_lbm_3rd_2004_9241546506.regdoc_profile.yaml`
+  - `who_lbm_3rd_2004_9241546506.meta.yaml`
