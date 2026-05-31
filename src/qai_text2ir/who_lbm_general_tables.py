@@ -310,7 +310,7 @@ RAW_FIXED_WIDTH_TABLE_SPECS: List[RawFixedWidthTableSpec] = [
             "Safety precautions",
             "Incompatible chemicals / other hazards",
         ],
-        slices=[(0, 24), (24, 50), (50, 76), (76, 98), (98, 128), (128, None)],
+        slices=[(0, 24), (24, 50), (50, 76), (76, 98), (98, 125), (125, None)],
         end_marker="INDEX",
         parent_heading="Chemicals: hazards and precautions",
     ),
