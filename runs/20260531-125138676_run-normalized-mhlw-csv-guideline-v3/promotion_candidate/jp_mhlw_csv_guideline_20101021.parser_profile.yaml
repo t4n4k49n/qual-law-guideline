@@ -1,0 +1,163 @@
+schema: qai.parser_profile.v1
+id: jp_mhlw_csv_guideline_v1
+title: MHLW CSV guideline markers
+applies_to:
+  family: JP_GUIDELINE
+  jurisdiction: JP
+  defaults: true
+language: ja
+source_label: MHLW CSV guideline
+context_root_kind: chapter
+structural_kinds:
+- chapter
+preprocess:
+  drop_line_regexes:
+  - ^\s*\d{1,4}\s*$
+  - ^\s*[IVXLCDM]+\s*$
+  - ^\s*[-－]?\d{1,4}[-－]?\s*$
+  - ^目\s*次$
+  - ^目次$
+  - ^頁$
+  - ^別添$
+  - ^医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン$
+  strip_inline_regexes:
+  - \f
+  use_indent_dedent: true
+  dedent_pop_kinds:
+  - subitem
+  - item
+  skip_blocks:
+  - start_regex: ^目\s*次$|^目次$
+    end_regex: ^(?:１[．.]|1[．.]|第１章|1[.]3|１[．.]３)\s*
+    include_start: false
+    include_end: true
+    max_lines: 500
+  - start_regex: ^○医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドラインについて$
+    end_regex: ^1[．.]\s*総則\s*$
+    include_start: false
+    include_end: true
+    max_lines: 80
+  detect_plaintext_tables:
+    enabled: true
+    min_rows: 2
+    max_rows: 80
+  extract_notes:
+    enabled: true
+    max_lines: 40
+  mhlw_csv_annexes:
+    enabled: true
+    annex2_html_path: data/human-readable/mhlw/csv_guideline/00tb6573_page2.html
+marker_types:
+- id: chapter_jp
+  kind: chapter
+  kind_raw: 第1章
+  match: ^第(?P<n>[0-9０-９]+(?:の[0-9０-９]+)?)章\s*
+  num_group: n
+- id: article_jp
+  kind: paragraph
+  kind_raw: 第1条
+  match: ^第(?P<n>[0-9０-９]+条(?:の[0-9０-９]+)?)\s*
+  num_group: n
+- id: chapter_decimal
+  kind: chapter
+  kind_raw: '1.'
+  match: ^(?P<n>[0-9０-９]{1,2})[．.](?![0-9０-９])\s*
+  num_group: n
+- id: section_decimal
+  kind: paragraph
+  kind_raw: '1.1'
+  match: ^(?P<n>[0-9０-９]{1,2}[．.][0-9０-９]{1,2}(?:[．.][0-9０-９]{1,2})?)\s*
+  num_group: n
+  heading_from_remainder: true
+- id: appendix_chapter
+  kind: chapter
+  kind_raw: A1
+  match: ^(?P<n>[AＡ][0-9０-９]+)\s+
+  num_group: n
+- id: appendix_section
+  kind: paragraph
+  kind_raw: A1.1
+  match: ^(?P<n>[AＡ][0-9０-９]+[．.][0-9０-９]+(?:[．.][0-9０-９]+)?)\s*
+  num_group: n
+- id: item_paren_digit
+  kind: item
+  kind_raw: (1)
+  match: ^[\(（](?P<n>[0-9０-９]+)[\)）]\s*
+  num_group: n
+- id: item_circled_digit
+  kind: subitem
+  kind_raw: ①
+  match: ^(?P<n>[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳])\s*
+  num_group: n
+- id: item_digit_dot
+  kind: item
+  kind_raw: '1.'
+  match: ^(?P<n>[0-9０-９]{1,3})[．.]\s+
+  num_group: n
+- id: bullet
+  kind: point
+  kind_raw: ・
+  match: ^[・●]\s*
+structure:
+  root:
+    children:
+    - chapter
+    - paragraph
+    - item
+    - subitem
+    - table
+    - preformatted
+    - note
+    - history
+  chapter:
+    children:
+    - paragraph
+    - item
+    - subitem
+    - table
+    - preformatted
+    - note
+    - history
+  paragraph:
+    children:
+    - item
+    - subitem
+    - point
+    - table
+    - preformatted
+    - note
+    - history
+  item:
+    children:
+    - subitem
+    - point
+    - note
+    - history
+  subitem:
+    children:
+    - point
+    - note
+    - history
+  table:
+    children:
+    - table_header
+    - note
+  table_header:
+    children:
+    - table_row
+  table_row:
+    children: []
+  preformatted:
+    children:
+    - note
+  note:
+    children: []
+  history:
+    children: []
+  point:
+    children:
+    - note
+    - history
+compound_prefix:
+  enabled: false
+  max_depth: 1
