@@ -36,3 +36,20 @@
 
 - この親PRでは `data/normalized/` は変更しない。
 - PR承認後、子PRで `promotion_candidate/` から `data/normalized/` へ複写する。
+
+## Promotion Preparation
+
+- Parent PR: `#227`
+- Parent merge commit: `83ab4a8`
+- Promotion branch: `promote/niid-pathogen-safety-v10`
+- Promotion source: `runs/20260531-113511077_run-normalized-niid-pathogen-safety-v10/promotion_candidate/`
+- Destination: `data/normalized/jp_niid_pathogen_safety_management_20240401/`
+- Copied files:
+  - `jp_niid_pathogen_safety_management_20240401.regdoc_ir.yaml`
+  - `jp_niid_pathogen_safety_management_20240401.parser_profile.yaml`
+  - `jp_niid_pathogen_safety_management_20240401.regdoc_profile.yaml`
+  - `jp_niid_pathogen_safety_management_20240401.meta.yaml`
+- SHA-256 match between `promotion_candidate/` and `data/normalized/`: confirmed.
+- Promotion goal check on `data/normalized/jp_niid_pathogen_safety_management_20240401/`: pass. `manifest.yaml` is not copied to `data/normalized/` by design.
+- IR structure check on `data/normalized/jp_niid_pathogen_safety_management_20240401/`: pass.
+- Position check on `data/normalized/`: `ann5.tbl1` -> `ann5.not1` -> `ann5.not2` -> `ann5.not3`.
