@@ -1,11 +1,12 @@
 <!-- PR_BODY_FILE: runs/20260531-124738598_chore-track-vscode-settings-v2/PR.md -->
 
 ## まとめ
-VS Codeのワークスペース設定をリポジトリで共有できるようにし、同じ表示・Python仮想環境設定を複数環境で再利用できる状態にします。
+VS Codeのワークスペース設定をリポジトリで共有できるようにし、赤系の配色、表示、Python仮想環境設定を複数環境で再利用できる状態にします。
 
 ## 変更内容
 - `.gitignore` から `.vscode/` の除外を削除
 - `.vscode/settings.json` を追跡対象に追加
+- `workbench.colorCustomizations` の赤系配色を共有対象として追加
 - 作業記録としてRUN文書を追加
 
 ## 確認

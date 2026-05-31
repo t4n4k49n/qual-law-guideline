@@ -8,6 +8,7 @@
 ## 実施内容
 - `.gitignore` から `.vscode/` の除外を削除する。
 - `.vscode/settings.json` を追跡対象に追加する。
+- `workbench.colorCustomizations` の赤系配色を全環境で共有する設定として含める。
 - PR本文ガードに備え、同run内に `PR.md` を用意する。
 
 ## 注意点
