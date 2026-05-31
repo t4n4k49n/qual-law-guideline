@@ -671,6 +671,19 @@ def _strip_known_blocks(text: Optional[str]) -> Optional[str]:
     return cleaned or None
 
 
+def _normalize_prose_continuation_whitespace(text: Optional[str]) -> Optional[str]:
+    if not text:
+        return text
+    paragraphs = re.split(r"\n{2,}", text.strip())
+    cleaned_paragraphs = []
+    for paragraph in paragraphs:
+        cleaned = re.sub(r"\s*\n\s*", " ", paragraph.strip())
+        cleaned = re.sub(r" {2,}", " ", cleaned).strip()
+        if cleaned:
+            cleaned_paragraphs.append(cleaned)
+    return "\n\n".join(cleaned_paragraphs) or None
+
+
 def _remove_matching_preformatted(root: Node, captions: Iterable[str]) -> int:
     tokens = {_caption_token(caption) for caption in captions}
     removed = 0
@@ -703,7 +716,7 @@ def normalize_who_lbm_general_tables(
     _remove_matching_preformatted(root, captions)
     for _parent, node in _walk_with_parent(root):
         if node.kind in {"chapter", "annex", "part", "section", "item", "subitem", "preamble"}:
-            node.text = _strip_known_blocks(node.text)
+            node.text = _normalize_prose_continuation_whitespace(_strip_known_blocks(node.text))
 
     for spec in TABLE_SPECS:
         caption_idx = _find_caption_idx(raw_lines, spec.caption)

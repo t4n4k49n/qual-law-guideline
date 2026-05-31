@@ -155,6 +155,17 @@ def test_who_lbm_general_target_captions_not_embedded_in_ordinary_text() -> None
             assert caption not in text
 
 
+def test_who_lbm_general_prose_continuation_indent_is_collapsed() -> None:
+    ir = _ir()
+    nodes = _flatten(ir["content"])
+    ann4_si10 = next(node for node in nodes if node.get("nid") == "ann4.si10")
+    chapter9 = next(node for node in nodes if node.get("kind") == "chapter" and node.get("num") == "9")
+
+    assert ann4_si10["text"] == "Wear gloves to protect skin against chemical effects of detergents."
+    assert "The Laboratory biosafety manual has in the past focused" in (chapter9.get("text") or "")
+    assert "The  has in the past focused" not in (chapter9.get("text") or "")
+
+
 def test_who_lbm_general_figures_are_structured() -> None:
     figures = [
         node
