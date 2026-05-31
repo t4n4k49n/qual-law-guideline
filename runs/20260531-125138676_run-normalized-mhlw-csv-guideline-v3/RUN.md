@@ -45,6 +45,7 @@ PR #230 で修正した本文階層を前提に、本文、別紙、別紙2の�
 - `TEXT_CLEANLINESS_REVIEW.md`
 - `DOUBLE_CHECK.md`
 - `SAMPLE_EXTRACT.md`
+- `ANNEX2_TABLE_RECONSTRUCTION_FROM_IR.md`
 
 ## 検証結果
 
@@ -62,6 +63,7 @@ check_ir_structure: [OK] no structure problems found (scanned: 5 yaml files)
 - 本文階層: `cha3.i1.si4` の配下に5つの中黒項目が `point` として入ることを確認。
 - 表: 別紙2配下に `カテゴリ分類表`、`本ガイドラインの対象外` の順で配置されることを確認。
 - 結合セル: カテゴリ3の2 display rows が同一 semantic record `csv_annex2.category3` に対応し、`raw_row_nums: [4, 5]` で保持されることを確認。
+- 別紙2表復元: `ANNEX2_TABLE_RECONSTRUCTION_FROM_IR.md` で `annex2.tbl1.tblh.tblr1` を表示ヘッダ、`tblr2`-`tblr7` をデータ行として逆組み上げ。原表の20列・カテゴリ1-5の行対応を確認。
 - note / 表外: 別紙1は画像参照、別紙2は page2 HTML 表として扱い、表外テキストが表先頭に混入しないことを確認。
 - 不要改行・スペース: paragraph の見出し混入は0件。表行 `text` の空セル区切りは結合セル由来の表示用表現として維持。
 
