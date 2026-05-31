@@ -97,3 +97,20 @@ check_ir_structure: [OK] no structure problems found (scanned: 5 yaml files)
 
 このPRでは `data/normalized/` へは複写しない。
 PR承認後、別ブランチで `promotion_candidate/` から `data/normalized/jp_mhlw_csv_guideline_20101021/` への昇格専用PRを作成する。
+
+## Promotion Preparation
+
+- Parent PR: `#232`
+- Parent merge commit: `f0941b7`
+- Promotion branch: `promote/mhlw-csv-guideline-v3`
+- Promotion source: `runs/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/promotion_candidate/`
+- Destination: `data/normalized/jp_mhlw_csv_guideline_20101021/`
+- Copied files:
+  - `jp_mhlw_csv_guideline_20101021.regdoc_ir.yaml`
+  - `jp_mhlw_csv_guideline_20101021.parser_profile.yaml`
+  - `jp_mhlw_csv_guideline_20101021.regdoc_profile.yaml`
+  - `jp_mhlw_csv_guideline_20101021.meta.yaml`
+- SHA-256 match between `promotion_candidate/` and `data/normalized/`: confirmed.
+- Promotion goal check on `data/normalized/jp_mhlw_csv_guideline_20101021/`: pass. `manifest.yaml` is not copied to `data/normalized/` by design, so the only warning is `missing_manifest`.
+- Special structure audit on `data/normalized/jp_mhlw_csv_guideline_20101021/`: pass.
+- IR structure check on `data/normalized/jp_mhlw_csv_guideline_20101021/`: pass.
