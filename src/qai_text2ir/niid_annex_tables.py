@@ -336,6 +336,21 @@ def _span_for_line(annex: Node, line_idx: int, source_label: str) -> Dict[str, A
     return _line_span(source_label, 1)
 
 
+def _node_source_line(node: Node) -> int:
+    for span in node.source_spans or []:
+        locator = str(span.get("locator") or "")
+        match = re.search(r"line:(\d+)", locator)
+        if match:
+            return int(match.group(1))
+    return 10**9
+
+
+def _is_orphan_marker_note(node: Node) -> bool:
+    if node.kind != "note":
+        return False
+    return (node.text or "").strip() in {"•", "・", "○"}
+
+
 def _table_node(
     annex: Node,
     *,
@@ -431,8 +446,12 @@ def _normalize_annex_table(annex: Node, *, source_label: str) -> Optional[Dict[s
     )
     if annex.num in {"別表4", "別表5"} and table_node.data.get("visual_review_parser"):
         annex.text = None
-    annex.children = [child for child in annex.children if child.kind in {"note", "history"}]
-    annex.children.append(table_node)
+    retained_children = [
+        child
+        for child in annex.children
+        if child.kind in {"note", "history"} and not _is_orphan_marker_note(child)
+    ]
+    annex.children = sorted([*retained_children, table_node], key=_node_source_line)
     return {"annex_num": annex.num, "rows": len(table_lines), "columns": list(config["columns"])}
 
 

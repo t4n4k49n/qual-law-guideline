@@ -1,0 +1,40 @@
+schema: qai.run_manifest.v1
+run_id: promotion_candidate
+created_at: '2026-05-31T02:35:20Z'
+git:
+  commit: 922f00e2493e2a5e0d657d10eb1d5266ea286146
+  branch: run/normalized-niid-pathogen-safety-v10
+input:
+  path: data\human-readable\niid\pathogen_safety_management\source_texts\Kanrikitei3_20240401.txt
+  checksum: 701f9d8df320ed9847d10de4c1466fa29302d2437388a88229ab950455e34f62
+command:
+  argv: '.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input data/human-readable/niid/pathogen_safety_management/source_texts/Kanrikitei3_20240401.txt --out-dir runs/20260531-113511077_run-normalized-niid-pathogen-safety-v10/promotion_candidate --doc-id jp_niid_pathogen_safety_management_20240401 --title ''国立感染症研究所病原体等安全管理規程'' --short-title ''NIID病原体等安全管理規程'' --doc-type regulation --source-url https://www.niid.go.jp/niid/images/cepr/kanrikitei/Kanrikitei3_20240401.pdf --source-format pdf --retrieved-at 2026-02-18 --parser-profile src/qai_text2ir/profiles/jp_niid_pathogen_safety_management_full_v1.yaml --candidate-visibility-profile src/qai_text2ir/candidate_visibility_profiles/jp_niid_pathogen_safety_management_full_visibility_v1.yaml --jurisdiction JP --language ja --family JP_GUIDELINE --strict --write-manifest --overwrite-manifest'
+outputs:
+  doc_id: jp_niid_pathogen_safety_management_20240401
+  files:
+  - jp_niid_pathogen_safety_management_20240401.regdoc_ir.yaml
+  - jp_niid_pathogen_safety_management_20240401.parser_profile.yaml
+  - jp_niid_pathogen_safety_management_20240401.regdoc_profile.yaml
+  - jp_niid_pathogen_safety_management_20240401.meta.yaml
+parser_profile:
+  id: jp_niid_pathogen_safety_management_full_v1
+  resolved_sha256: 0715928b86ffd6a142f42a21e0989a0df8062f4f7483683c3f45fc493279772d
+  provenance:
+  - profile_id: jp_guideline_default_v1
+    internal_id: jp_guideline_default_v1
+    path: src\qai_text2ir\profiles\jp_guideline_default_v1.yaml
+    sha256: ca5708eae61661d6ac29be0dca5b420a03b87ba8ca4ec64a39960dc0ad38a8ce
+    extends: ''
+  - profile_id: jp_niid_pathogen_safety_management_full_v1
+    internal_id: jp_niid_pathogen_safety_management_full_v1
+    path: src\qai_text2ir\profiles\jp_niid_pathogen_safety_management_full_v1.yaml
+    sha256: eec4d4aa658b9fb6a53985afb58bb6521350786dd1f47c7f4647b22944cd9a8c
+    extends: jp_guideline_default_v1
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []
