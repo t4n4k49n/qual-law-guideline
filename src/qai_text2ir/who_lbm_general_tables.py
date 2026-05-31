@@ -436,7 +436,7 @@ def _caption_token(caption: str) -> str:
 def _find_target_node(root: Node, caption: str) -> Optional[Node]:
     token = _caption_token(caption)
     for _parent, node in _walk_with_parent(root):
-        if node.kind in {"chapter", "annex", "part", "item", "subitem", "preamble"}:
+        if node.kind in {"chapter", "annex", "part", "section", "item", "subitem", "preamble"}:
             haystack = _normalized_text(" ".join(v for v in [node.heading, node.text] if v))
             if token in haystack:
                 return node
@@ -447,7 +447,7 @@ def _find_nearest_structural_node(root: Node, caption_idx: int) -> Node:
     best = root
     best_line = -1
     for _parent, node in _walk_with_parent(root):
-        if node.kind not in {"chapter", "annex", "part", "preamble"}:
+        if node.kind not in {"chapter", "annex", "part", "section", "preamble"}:
             continue
         for span in node.source_spans:
             locator = span.get("locator")
@@ -479,6 +479,10 @@ STRIP_PATTERNS: List[Tuple[re.Pattern[str], str]] = [
 ]
 
 FIGURE_STRIP_PATTERNS = [
+    re.compile(
+        r"\s*Figure\s+1\. Biohazard warning sign for laboratory doors.*?Responsible Investigator named above\.",
+        re.IGNORECASE | re.DOTALL,
+    ),
     re.compile(r"\s*Figure\s+1\. Biohazard warning sign for laboratory doors.*?(?=Personal protection)", re.IGNORECASE | re.DOTALL),
     re.compile(r"\s*Figure\s+2\. A typical Biosafety Level 1 laboratory.*?(?=Training)", re.IGNORECASE | re.DOTALL),
     re.compile(r"\s*Figure\s+3\. A typical Biosafety Level 2 laboratory.*?(?=Essential biosafety equipment)", re.IGNORECASE | re.DOTALL),
@@ -545,7 +549,7 @@ def normalize_who_lbm_general_tables(
 
     _remove_matching_preformatted(root, captions)
     for _parent, node in _walk_with_parent(root):
-        if node.kind in {"chapter", "annex", "part", "item", "subitem", "preamble"}:
+        if node.kind in {"chapter", "annex", "part", "section", "item", "subitem", "preamble"}:
             node.text = _strip_known_blocks(node.text)
 
     for spec in TABLE_SPECS:

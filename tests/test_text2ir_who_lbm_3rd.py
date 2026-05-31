@@ -98,6 +98,32 @@ def test_profile_loader_defaults_to_who_lbm_v4() -> None:
     assert profile["id"] == "who_lbm_3rd_default_v4"
 
 
+def test_who_lbm_v4_unnumbered_headings_are_sections() -> None:
+    ir_doc = parse_text_to_ir(
+        input_path=Path("data/human-readable/who/WHO_LBM_3rd.txt"),
+        doc_id="who_lbm_3rd_2004_9241546506",
+        parser_profile=_load_profile("src/qai_text2ir/profiles/who_lbm_3rd_default_v4.yaml"),
+    )
+    ir_dict = ir_doc.to_dict()
+    nodes = _flatten(ir_dict["content"])
+    by_nid = {node["nid"]: node for node in nodes}
+
+    chapter3 = by_nid["cha3"]
+    sections = [child for child in chapter3["children"] if child["kind"] == "section"]
+    headings = [section["heading"] for section in sections]
+
+    assert "Code of practice" in headings
+    assert "Access" in headings
+    assert "Personal protection" in headings
+    assert "Laboratory design and facilities" in headings
+
+    access = next(section for section in sections if section["heading"] == "Access")
+    access_items = [child for child in access["children"] if child["kind"] == "item"]
+    assert access_items[0]["text"].startswith("The international biohazard warning symbol")
+    assert access_items[-1]["text"] == "No animals should be admitted other than those involved in the work of the laboratory."
+    assert "Access Personal protection Procedures" not in (chapter3.get("text") or "")
+
+
 def test_drop_toc_entries_dont_create_chapters(tmp_path: Path) -> None:
     text = "\n".join(
         [
