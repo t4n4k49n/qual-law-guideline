@@ -140,6 +140,9 @@ def test_who_lbm_annex_fixed_width_tables_are_line_preserving() -> None:
     assert any(row["data"]["cells"][0] == "Acetaldehyde" for row in a5_1_rows)
     assert any(row["data"]["cells"][0].startswith("Acetic acid") for row in a5_1_rows)
 
+    assert a4_2_rows[0]["data"]["cells"] == ["Faulty design or construction", "", ""]
+    assert not any("alarms 21, 60" in row["data"]["raw_line"] for row in a5_1_rows)
+
     acetaldehyde = next(row for row in a5_1_rows if row["data"]["cells"][0] == "Acetaldehyde")
     assert acetaldehyde["data"]["cells"][4] == "No open flames, no"
     assert acetaldehyde["data"]["cells"][5] == "Can form explosive"
