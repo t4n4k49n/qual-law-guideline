@@ -61,10 +61,23 @@ def test_csv_profile_preserves_expected_nested_items(tmp_path: Path) -> None:
     )
     nodes = list(_walk(ir_doc.content))
     by_kind_num = {(node.kind, node.num): node for node in nodes}
+    by_nid = {node.nid: node for node in nodes}
 
     assert by_kind_num[("chapter", "1")].heading == "総則"
-    assert by_kind_num[("paragraph", "1.3")].text.startswith("カテゴリ分類")
+    assert by_kind_num[("paragraph", "1.1")].heading == "目的"
+    assert by_kind_num[("paragraph", "1.1")].text.startswith("このガイドラインは")
+    assert by_kind_num[("paragraph", "1.3")].heading == "カテゴリ分類"
+    assert by_kind_num[("paragraph", "1.3")].text.startswith("このガイドラインの適用を受ける")
     assert by_kind_num[("chapter", "3")].heading == "コンピュータ化システムの開発、検証及び運用管理に関する文書の作成"
+    assert by_nid["cha3.i1.si4"].text == "基本的な考え方"
+    assert [child.kind for child in by_nid["cha3.i1.si4"].children] == ["point"] * 5
+    assert [child.text for child in by_nid["cha3.i1.si4"].children] == [
+        "ソフトウェアのカテゴリ分類",
+        "製品品質に対するリスクアセスメント",
+        "供給者アセスメント",
+        "開発、検証及び運用段階で実施すべき項目等",
+        "コンピュータシステムの廃棄に関する事項",
+    ]
     assert any(node.kind == "item" and node.num == "7" for node in nodes)
     assert any(node.kind == "subitem" and node.num == "1" for node in nodes)
 

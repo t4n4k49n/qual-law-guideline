@@ -28,3 +28,39 @@ marker_types:
     kind_raw: "1."
     match: '^(?P<n>[0-9０-９]{1,2})[．.](?![0-9０-９])\s*'
     num_group: n
+  - id: section_decimal
+    kind: paragraph
+    kind_raw: "1.1"
+    match: '^(?P<n>[0-9０-９]{1,2}[．.][0-9０-９]{1,2}(?:[．.][0-9０-９]{1,2})?)\s*'
+    num_group: n
+    heading_from_remainder: true
+  - id: bullet
+    kind: point
+    kind_raw: "・"
+    match: '^[・●]\s*'
+
+structure:
+  root:
+    children: [chapter, paragraph, item, subitem, table, preformatted, note, history]
+  chapter:
+    children: [paragraph, item, subitem, table, preformatted, note, history]
+  paragraph:
+    children: [item, subitem, point, table, preformatted, note, history]
+  item:
+    children: [subitem, point, note, history]
+  subitem:
+    children: [point, note, history]
+  point:
+    children: [note, history]
+  table:
+    children: [table_header, note]
+  table_header:
+    children: [table_row]
+  table_row:
+    children: []
+  preformatted:
+    children: [note]
+  note:
+    children: []
+  history:
+    children: []
