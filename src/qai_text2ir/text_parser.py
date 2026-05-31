@@ -116,6 +116,7 @@ class MarkerMatch:
     raw_token: str
     span_end: int
     order: int
+    heading_from_remainder: bool = False
 
 
 @dataclass
@@ -1011,6 +1012,7 @@ def _select_marker_with_context(
                 raw_token=m.group(0).strip(),
                 span_end=m.end(),
                 order=order,
+                heading_from_remainder=bool(marker.get("heading_from_remainder")),
             )
         )
     if not marker_matches:
@@ -2373,7 +2375,7 @@ def parse_text_to_ir(
                     append_states,
                     normalize_japanese_text=normalize_japanese_text_enabled,
                 )
-            elif current.kind in structural_kinds:
+            elif current.kind in structural_kinds or marker_match.heading_from_remainder:
                 if remaining:
                     if current.kind == "section":
                         heading, chapeau = _split_section_heading_and_chapeau(remaining)
