@@ -103,8 +103,17 @@ def test_niid_full_profile_keeps_body_and_annexes_without_toc_duplicates() -> No
         "別表9",
         "別表10",
     ]
-    assert [table.data["annex_num"] for table in tables] == ["付表2", "付表3", "付表4", "別表7", "別表10"]
-    assert len(table_rows) == 54
+    assert [table.data["annex_num"] for table in tables] == [
+        "付表2",
+        "付表3",
+        "付表4",
+        "別表4",
+        "別表5",
+        "別表7",
+        "別表8",
+        "別表10",
+    ]
+    assert len(table_rows) == 112
     assert not qualitycheck_document(ir_doc.content)
 
 
@@ -126,3 +135,81 @@ def test_niid_full_profile_normalizes_display_prose_spacing() -> None:
             assert not pattern.search(value), f"{node.nid}: {value!r}"
             assert "\\r" not in value
             assert "\\n" not in value
+
+
+def test_niid_full_profile_preserves_numbered_annex_items_as_nodes() -> None:
+    profile = load_parser_profile(path=FULL_PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_20240401",
+        parser_profile=profile,
+    )
+    nodes = list(_walk(ir_doc.content))
+    annexes = {node.num: node for node in nodes if node.kind == "annex"}
+
+    expected = {
+        "付表1-2": [str(num) for num in range(1, 9)],
+        "付表1-3": [str(num) for num in range(1, 5)],
+        "別表6": [str(num) for num in range(1, 12)],
+        "別表9": [str(num) for num in range(1, 6)],
+    }
+    for annex_num, item_nums in expected.items():
+        annex = annexes[annex_num]
+        assert [child.num for child in annex.children if child.kind == "item"] == item_nums
+        assert "１．" not in (annex.text or "")
+        assert "２．" not in (annex.text or "")
+        assert "。。" not in (annex.text or "")
+
+    assert annexes["別表1"].heading is None
+    assert annexes["別表1"].text.startswith("病原体等の取扱いにおいては")
+    assert any(node.kind == "note" and node.text.startswith("註：") for node in _walk(annexes["付表1-2"]))
+    assert any(node.kind == "note" and node.text.startswith("註：") for node in _walk(annexes["付表1-3"]))
+
+
+def test_niid_full_profile_reconstructs_wide_tables_without_decimal_item_artifacts() -> None:
+    profile = load_parser_profile(path=FULL_PROFILE)
+    ir_doc = parse_text_to_ir(
+        input_path=SOURCE,
+        doc_id="jp_niid_pathogen_safety_management_20240401",
+        parser_profile=profile,
+    )
+    annexes = {node.num: node for node in _walk(ir_doc.content) if node.kind == "annex"}
+
+    for annex_num in ["別表4", "別表5", "別表8"]:
+        annex = annexes[annex_num]
+        assert any(child.kind == "table" for child in annex.children)
+        assert not any(child.kind in {"item", "subitem"} for child in annex.children)
+    betsu5_table = next(child for child in annexes["別表5"].children if child.kind == "table")
+    betsu5_text = " ".join(row.text or "" for header in betsu5_table.children if header.kind == "table_header" for row in header.children)
+    assert "0.01％以上の次亜" in betsu5_text
+    betsu4_table = next(child for child in annexes["別表4"].children if child.kind == "table")
+    betsu4_records = [
+        row.data["record"]
+        for header in betsu4_table.children
+        if header.kind == "table_header"
+        for row in header.children
+    ]
+    assert betsu4_table.children[0].data["columns"][:2] == ["section", "criterion"]
+    assert any(record["section"] == "実験室" and record["criterion"] == "－" for record in betsu4_records)
+    assert any(record["section"] == "実験室内" and record["criterion"] == "－" for record in betsu4_records)
+    for merged_row in [record for record in betsu4_records if record["section"] in {"実験室", "実験室内"} and record["criterion"] == "－"]:
+        assert all(merged_row[column] == "実験室" for column in betsu4_table.children[0].data["columns"][2:])
+    assert any(record["section"] == "感染動物の飼育設備" and record["criterion"] == "－" for record in betsu4_records)
+    assert any(record["section"] == "滅菌設備" and record["criterion"] == "－" for record in betsu4_records)
+    betsu5_records = [
+        row.data["record"]
+        for header in betsu5_table.children
+        if header.kind == "table_header"
+        for row in header.children
+    ]
+    assert next(record for record in betsu5_records if record["criterion"] == "複数名での作業")["section"] == "使用の基準"
+    assert next(record for record in betsu5_records if record["criterion"] == "安全キャビネット内での適切な使用")["section"] == "使用の基準"
+    assert not any(record["section"] == "運搬の基準" for record in betsu5_records)
+    assert any(node.kind == "note" and "運搬する場合には容器に封入すること" in (node.text or "") for node in annexes["別表5"].children)
+
+    for table in [child for node in annexes.values() for child in node.children if child.kind == "table"]:
+        for header in [child for child in table.children if child.kind == "table_header"]:
+            columns = header.data["columns"]
+            for row in header.children:
+                assert len(row.data["cells"]) == len(columns), f"{row.nid}: {row.text}"
+                assert row.text.count(" | ") == len(columns) - 1, f"{row.nid}: {row.text}"

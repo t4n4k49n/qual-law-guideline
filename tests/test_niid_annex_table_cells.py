@@ -56,5 +56,7 @@ def test_niid_annex_readiness_decisions_cover_all_annexes() -> None:
     assert all(decision.get("status") == "ready_for_readiness_review" for decision in decisions.values())
     assert decisions["付表2"]["decision"] == "promotion_candidate_as_visual_reviewed_table"
     assert decisions["付表3"]["decision"] == "promotion_candidate_as_visual_reviewed_table"
-    assert decisions["別表4"]["decision"] == "promotion_candidate_as_raw_annex_text"
+    assert decisions["別表4"]["decision"] == "promotion_candidate_as_visual_reviewed_table"
+    assert decisions["別表5"]["decision"] == "promotion_candidate_as_visual_reviewed_table"
+    assert decisions["別表8"]["decision"] == "promotion_candidate_as_visual_reviewed_table"
     assert decisions["別表2"]["promotion_mode"] == "annex_text"

@@ -60,4 +60,4 @@ def test_niid_annex_inventory_marks_column_restoration_candidates() -> None:
 
     assert by_num["別表6"].column_restoration == "not_applicable"
     assert by_num["別表9"].structure_type == "numbered_requirements"
-    assert by_num["別表8"].subitem_count == 7
+    assert by_num["別表8"].subitem_count == 0

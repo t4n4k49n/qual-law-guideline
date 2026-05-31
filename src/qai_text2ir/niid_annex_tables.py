@@ -11,7 +11,7 @@ from .niid_visual_reviewed_tables import VISUAL_REVIEW_PARSER, VISUAL_REVIEWED_T
 PARSER_ID = "niid_annex_table_adapter"
 TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
     "付表2": {
-        "start_contains": "病原体等の",
+        "start_contains": "実験室の BSL",
         "columns": ["risk_group", "laboratory_bsl", "laboratory_purpose", "laboratory_practice_operation", "safety_equipment"],
         "source_format": "fixed_width_matrix",
     },
@@ -32,6 +32,21 @@ TABLE_CONFIGS: Dict[str, Dict[str, Any]] = {
         "fixed_width_columns": ["ordinance_item", "record_content", "pathogen_type_1", "pathogen_type_2", "pathogen_type_3"],
         "source_format": "fixed_width_matrix",
     },
+    "別表4": {
+        "start_contains": "対象病原体等ＢＳＬ",
+        "columns": ["section", "criterion", "type1_bsl4", "type2_bsl3", "type2_bsl2", "type3_bsl3", "type3_bsl2", "type4_bsl3", "type4_bsl2"],
+        "source_format": "fixed_width_matrix",
+    },
+    "別表5": {
+        "start_contains": "対象病原体等ＢＳＬ",
+        "columns": ["section", "criterion", "type1_bsl4", "type2_bsl3", "type2_bsl2", "type3_bsl3", "type3_bsl2", "type4_bsl3", "type4_bsl2"],
+        "source_format": "fixed_width_matrix",
+    },
+    "別表8": {
+        "start_contains": "省令での記載項目",
+        "columns": ["work_category", "target_person", "ordinance_item", "frequency", "remarks"],
+        "source_format": "fixed_width_matrix",
+    },
     "別表10": {
         "start_contains": "省令での記載項目",
         "columns": ["category", "ordinance_item", "specific_content", "regulation_reference"],
@@ -43,7 +58,10 @@ DISPLAY_COLUMNS_BY_NUM: Dict[str, List[str]] = {
     "付表2": ["病原体等のリスク群", "実験室のBSL", "実験室の使用目的", "実験手技及び運用", "実験室の安全機器"],
     "付表3": ["criterion", "parent", "BSL1", "BSL2", "BSL3", "BSL4"],
     "付表4": ["ABSL", "実験手技", "安全機器", "設備基準"],
+    "別表4": ["大項目", "小項目", "1種 BSL4", "2種 BSL3", "2種 BSL2", "3種 BSL3", "3種 BSL2", "4種 BSL3", "4種 BSL2"],
+    "別表5": ["大項目", "小項目", "1種 BSL4", "2種 BSL3", "2種 BSL2", "3種 BSL3", "3種 BSL2", "4種 BSL3", "4種 BSL2"],
     "別表7": ["category", "省令での記載項目", "記帳の内容", "1種病原体等", "2種病原体等", "3種病原体等"],
+    "別表8": ["業務区分", "対象者", "省令での記載項目", "回数等", "備考"],
     "別表10": ["category", "省令での記載項目", "具体的内容", "国立感染症研究所病原体等安全管理規程における該当部分"],
 }
 READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
@@ -93,14 +111,14 @@ READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
         "reason": "ABSL criteria are section-style text, not a column reconstruction target",
     },
     "別表4": {
-        "decision": "promotion_candidate_as_raw_annex_text",
-        "promotion_mode": "annex_text_raw_hold",
-        "reason": "complex wide matrix is fully preserved as annex text; cell reconstruction is not required for readiness",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF text visual review restored the wide matrix into reviewed table records",
     },
     "別表5": {
-        "decision": "promotion_candidate_as_raw_annex_text",
-        "promotion_mode": "annex_text_raw_hold",
-        "reason": "complex wide matrix is fully preserved as annex text; cell reconstruction is not required for readiness",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF text visual review restored the wide matrix into reviewed table records",
     },
     "別表6": {
         "decision": "promotion_candidate_as_numbered_annex_text",
@@ -113,9 +131,9 @@ READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
         "reason": "PDF image visual review restored row-spanned categories and wrapped cells into reviewed records",
     },
     "別表8": {
-        "decision": "promotion_candidate_as_raw_annex_text",
-        "promotion_mode": "annex_text_raw_hold",
-        "reason": "embedded item table is fully preserved as annex text; cell reconstruction is not required for readiness",
+        "decision": "promotion_candidate_as_visual_reviewed_table",
+        "promotion_mode": "visual_reviewed_table_records",
+        "reason": "PDF text visual review restored the education/training matrix into reviewed table records",
     },
     "別表9": {
         "decision": "promotion_candidate_as_numbered_annex_text",
@@ -130,7 +148,13 @@ READINESS_BY_NUM: Dict[str, Dict[str, str]] = {
 }
 HEADING_BY_NUM: Dict[str, str] = {
     "付表2": "病原体等のリスク群分類と、実験室のＢＳＬ分類、実験室使用目的、実験手技及び安全機器との関連性",
+    "付表3": "ＢＳＬ実験室の安全設備基準",
     "付表4": "病原体等取扱動物実験施設のＡＢＳＬ分類、実験手技、安全機器及び設備基準",
+    "別表4": "国立感染症研究所における施設の位置、構造及び設備の技術上の基準一覧",
+    "別表5": "国立感染症研究所における特定病原体等の保管等の技術上の基準一覧",
+    "別表7": "記帳事項に関する一覧（法第５６条の２３関係）",
+    "別表8": "特定病原体等の取扱いに必要な教育訓練（法第５６条の２１関係）",
+    "別表10": "感染症発生予防規程対照表（法第５６条の１８関係）",
 }
 
 
@@ -213,7 +237,10 @@ def _apply_visual_reviewed_records(table: Node, annex_num: str, source_span: Dic
         },
     )
     for row_no, record in enumerate(records, start=1):
-        cells = [str(record.get(column, "")) for column in columns]
+        normalized_record = dict(record)
+        if "section" in columns and "section" not in normalized_record:
+            normalized_record["section"] = str(record.get("category", ""))
+        cells = [str(normalized_record.get(column, "")) for column in columns]
         header.children.append(
             _make_node(
                 nid=f"{header.nid}.tblr{row_no}",
@@ -226,7 +253,7 @@ def _apply_visual_reviewed_records(table: Node, annex_num: str, source_span: Dic
                 data={
                     "cells": cells,
                     "columns": columns,
-                    "record": {column: record.get(column, "") for column in columns},
+                    "record": {column: normalized_record.get(column, "") for column in columns},
                     "cell_reconstruction": "visual_reviewed_cells",
                     "visual_reviewed": True,
                 },
@@ -377,12 +404,16 @@ def _table_node(
 def _normalize_annex_table(annex: Node, *, source_label: str) -> Optional[Dict[str, Any]]:
     if annex.num not in TABLE_CONFIGS:
         return None
+    if annex.num in HEADING_BY_NUM:
+        annex.heading = HEADING_BY_NUM[str(annex.num)]
     config = TABLE_CONFIGS[str(annex.num)]
     lines = _content_lines(annex)
     if not lines:
         return None
     start_idx = _find_table_start(lines, str(config["start_contains"]))
     preamble = lines[:start_idx]
+    if preamble and annex.heading and str(annex.heading).endswith(preamble[0].strip()):
+        preamble = preamble[1:]
     table_lines = [line for line in lines[start_idx:] if not _is_page_marker(line)]
     if not table_lines:
         return None
@@ -398,12 +429,23 @@ def _normalize_annex_table(annex: Node, *, source_label: str) -> Optional[Dict[s
         columns=list(config["columns"]),
         source_format=str(config["source_format"]),
     )
+    if annex.num in {"別表4", "別表5"} and table_node.data.get("visual_review_parser"):
+        annex.text = None
     annex.children = [child for child in annex.children if child.kind in {"note", "history"}]
     annex.children.append(table_node)
     return {"annex_num": annex.num, "rows": len(table_lines), "columns": list(config["columns"])}
 
 
 def _apply_readiness_decision(annex: Node) -> None:
+    if (
+        annex.num == "別表1"
+        and annex.heading
+        and annex.heading.startswith("病原体等の取扱いにおいては")
+    ):
+        heading_text = annex.heading.rstrip()
+        body_text = (annex.text or "").lstrip()
+        annex.heading = None
+        annex.text = f"{heading_text}{body_text}" if body_text else heading_text
     if annex.num in HEADING_BY_NUM:
         annex.heading = HEADING_BY_NUM[str(annex.num)]
     if annex.num not in READINESS_BY_NUM:
@@ -419,6 +461,8 @@ def _apply_readiness_decision(annex: Node) -> None:
                 **decision,
                 "status": "ready_for_readiness_review",
             }
+    if decision.get("promotion_mode") == "annex_text_raw_hold":
+        annex.children = [child for child in annex.children if child.kind in {"note", "history"}]
 
 
 def normalize_niid_annex_tables(root: Node, *, source_label: str) -> Dict[str, Any]:

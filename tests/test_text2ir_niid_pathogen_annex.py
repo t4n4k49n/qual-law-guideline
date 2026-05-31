@@ -63,7 +63,8 @@ def test_niid_annex_profile_preserves_annex_text_without_body_chapters() -> None
 
     assert [node.kind for node in ir_doc.content.children] == ["annex"] * 16
     assert "第１章" not in all_text
-    assert annex_by_num["別表1"].heading.startswith("病原体等の取扱いにおいては")
+    assert annex_by_num["別表1"].heading is None
+    assert annex_by_num["別表1"].text.startswith("病原体等の取扱いにおいては")
     assert "における該当部分" in all_text
     assert "特定病原体等の取扱いに必要な教育訓練" in all_text
 
@@ -80,12 +81,22 @@ def test_niid_annex_table_adapter_creates_raw_row_tables_for_selected_annexes() 
     tables = [node for node in nodes if node.kind == "table" and node.data.get("parser") == "niid_annex_table_adapter"]
 
     assert "postprocess=niid_annex_tables" in ir_doc.content.tags
-    assert [table.data["annex_num"] for table in tables] == ["付表2", "付表3", "付表4", "別表7", "別表10"]
-    assert len(tables) == 5
-    assert by_num["付表2"].text.startswith("実験手技及び安全機器との関連性")
+    assert [table.data["annex_num"] for table in tables] == [
+        "付表2",
+        "付表3",
+        "付表4",
+        "別表4",
+        "別表5",
+        "別表7",
+        "別表8",
+        "別表10",
+    ]
+    assert len(tables) == 8
+    assert by_num["付表2"].heading == "病原体等のリスク群分類と、実験室のＢＳＬ分類、実験室使用目的、実験手技及び安全機器との関連性"
+    assert by_num["付表2"].text.startswith("病原体等の取り扱う実験室は")
     assert by_num["付表3"].text is None
     assert by_num["付表2"].data["normalization_readiness"]["decision"] == "promotion_candidate_as_visual_reviewed_table"
-    assert by_num["別表4"].data["normalization_readiness"]["decision"] == "promotion_candidate_as_raw_annex_text"
+    assert by_num["別表4"].data["normalization_readiness"]["decision"] == "promotion_candidate_as_visual_reviewed_table"
 
     fuhyo3_table = next(table for table in tables if table.data["annex_num"] == "付表3")
     betsu7_table = next(table for table in tables if table.data["annex_num"] == "別表7")

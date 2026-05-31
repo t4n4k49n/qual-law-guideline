@@ -25,6 +25,14 @@ preprocess:
     - '^国立感染症研究所病原体等安全管理規程$'
     - '^（[^）]{1,30}）$'
     - '^\s*-+\s*\d{1,3}\s*-+\s*$'
+    - '^\s*。\s*$'
+  extract_notes:
+    enabled: true
+    max_lines: 40
+    start_regexes:
+      - '^(?:注|注記|備考|註|※|（注）)\s*[:：]?\s*'
+      - '^[*†‡•]+\s*'
+      - '^\([a-z0-9ivxlcdm]+\)\s+'
 
 marker_types:
   - id: annex_betsuhyo
@@ -65,7 +73,7 @@ marker_types:
   - id: item_digit_dot
     kind: item
     kind_raw: "1."
-    match: 'a^'
+    match: '^(?P<n>[0-9０-９]{1,2})[．.]\s*'
     num_group: n
   - id: legal_paragraph_digit
     kind: item
