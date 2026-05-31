@@ -124,6 +124,20 @@ def test_who_lbm_v4_unnumbered_headings_are_sections() -> None:
     assert "Access Personal protection Procedures" not in (chapter3.get("text") or "")
 
 
+def test_who_lbm_v4_preserves_title_phrase_inside_prose() -> None:
+    ir_doc = parse_text_to_ir(
+        input_path=Path("data/human-readable/who/WHO_LBM_3rd.txt"),
+        doc_id="who_lbm_3rd_2004_9241546506",
+        parser_profile=_load_profile("src/qai_text2ir/profiles/who_lbm_3rd_default_v4.yaml"),
+    )
+    ir_dict = ir_doc.to_dict()
+    nodes = _flatten(ir_dict["content"])
+    chapter9 = next(node for node in nodes if node["kind"] == "chapter" and node.get("num") == "9")
+
+    assert (chapter9.get("text") or "").startswith("The Laboratory biosafety manual has in the past focused")
+    assert "The  has in the past focused" not in (chapter9.get("text") or "")
+
+
 def test_drop_toc_entries_dont_create_chapters(tmp_path: Path) -> None:
     text = "\n".join(
         [
