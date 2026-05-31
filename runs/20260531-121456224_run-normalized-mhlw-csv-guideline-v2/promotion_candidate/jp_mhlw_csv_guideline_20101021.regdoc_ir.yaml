@@ -1,0 +1,6267 @@
+schema: qai.regdoc_ir.v4
+doc_id: jp_mhlw_csv_guideline_20101021
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags:
+  - postprocess=mhlw_csv_annexes
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: cha1
+    kind: chapter
+    kind_raw: '1.'
+    num: '1'
+    ord: 1
+    heading: 総則
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:9
+    children:
+    - nid: cha1.p1_1
+      kind: paragraph
+      kind_raw: 1．1
+      num: '1.1'
+      ord: 2
+      heading: 目的
+      text: このガイドラインは、「コンピュータ使用医薬品等製造所適正管理ガイドライン」(平成4年2月21日薬監第11号：平成17年3月30日付薬食監麻発第0330001号により廃止)に代わるものとして、「医薬品及び医薬部外品の製造管理及び品質管理の基準に関する省令」(平成16年厚生労働省令第179号。以下「GMP省令」という。)の適用を受ける医薬品又は医薬部外品を製造販売する製造販売業者又は製造する製造業者等(以下「製造販売業者等」という。)が、「医薬品、医薬部外品、化粧品及び医療機器の品質管理の基準に関する省令」(平成16年厚生労働省令第136号。以下「GQP省令」という。)及びGMP省令に基づく業務を行うためのコンピュータ化システムの要件を明確にし、コンピュータ化システムが意図したとおりに動作することを保証するため、これを開発する際に必要な事項、これを検証するバリデーションに関する事項及び運用管理に関する遵守事項(バリデートされた状態の維持や廃棄に関する事項等)を定め、GQP省令及びGMP省令の適正な実施の確保を図ることを目的とする。 このガイドラインにおいては、コンピュータ化システムの開発から、検証、運用管理及び廃棄までの流れを総合してコンピュータ化システムのライフサイクルという。ライフサイクル全体の構成を別紙1「コンピュータ化システムのライフサイクルモデル」に示す。また、このガイドラインに示した管理方法は標準的な例を示したものであり、これに代わる方法で、それが同等又はそれ以上の目的を達成できるものである場合には、その方法を用いても差し支えない。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:10
+      - source_label: MHLW CSV guideline
+        locator: line:11
+      - source_label: MHLW CSV guideline
+        locator: line:12
+      children: []
+    - nid: cha1.p1_2
+      kind: paragraph
+      kind_raw: 1．2
+      num: '1.2'
+      ord: 3
+      heading: コンピュータ化システムの取扱い
+      text: このガイドラインは、GQP省令及びGMP省令に関連するシステム並びに相互に連携したコンピュータ化システムを対象として取り扱うこととしているため、GQP省令やGMP省令における組織・役割に応じた表現を用いていないが、バリデーションや変更・逸脱の管理など、GMP省令においては品質部門等の承認が必要であり、GQP省令においては品質保証部門による管理体制の中で進めなければならない。従って、製造販売業者等において組織の形態や該当するシステムの範囲を考慮して各々の組織・役割に応じた責任と権限を3．に規定する「コンピュータ化システムの開発、検証及び運用管理に関する文書」の中に明確にすることが必要である。 また、このガイドラインの対象となるコンピュータ化システムで「医薬品等の承認又は許可等に係る申請等に関する電磁的記録・電子署名利用のための指針」(平成17年4月1日薬食発第0401022号)及び「薬事法及び採血及び供血あつせん業取締法の一部を改正する法律の施行に伴う医薬品，医療機器等の製造管理及び品質管理(GMP／QMS)に係る省令及び告示の制定及び改廃について」(平成17年3月30日薬食監麻発第0330001号)第3章第3 35．「その他(電磁的記録等について)」の適用を受けるコンピュータ化システムは、併せてそれら要件を備える必要がある。 なお、このガイドラインの適用日以前に開発又は運用が開始されているシステムであって、「コンピュータ使用医薬品等製造所適正管理ガイドライン」に示された方法又はそれに代わる適切な方法で開発、検証及び運用等が行われていないシステムについては、当該システムの適格性を確認する必要がある。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:13
+      - source_label: MHLW CSV guideline
+        locator: line:14
+      - source_label: MHLW CSV guideline
+        locator: line:15
+      - source_label: MHLW CSV guideline
+        locator: line:16
+      children: []
+    - nid: cha1.p1_3
+      kind: paragraph
+      kind_raw: 1．3
+      num: '1.3'
+      ord: 4
+      heading: カテゴリ分類
+      text: このガイドラインの適用を受けるコンピュータ化システムについては、開発、検証及び運用の各段階において実施する内容を決定(「4．3 システムアセスメントの実施」を参照)するために、システムを構成するソフトウェアの種類に応じて、あらかじめソフトウェアカテゴリを決定するものとする。 カテゴリ分類の基準及びカテゴリ毎の一般的対応の例を別紙2「カテゴリ分類表と対応例」に示す。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:17
+      - source_label: MHLW CSV guideline
+        locator: line:18
+      - source_label: MHLW CSV guideline
+        locator: line:19
+      children: []
+  - nid: cha2
+    kind: chapter
+    kind_raw: '1.'
+    num: '2'
+    ord: 5
+    heading: 適用の範囲
+    text: このガイドラインは、コンピュータ化システムを使用してGQP省令及びGMP省令が適用される業務を行う製造販売業者等に適用する。 このガイドラインの対象となるコンピュータ化システムの例として、(1)～(7)が考えられる。また、対象外となるコンピュータ化システムは別紙2に記載する。
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:20
+    - source_label: MHLW CSV guideline
+      locator: line:21
+    - source_label: MHLW CSV guideline
+      locator: line:22
+    children:
+    - nid: cha2.i1
+      kind: item
+      kind_raw: (1)
+      num: '1'
+      ord: 6
+      heading: null
+      text: 医薬品、医薬部外品の市場への出荷の可否の決定に係るシステム及び市場への出荷に係る記録を作成、保存管理するためのシステム
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:23
+      children: []
+    - nid: cha2.i2
+      kind: item
+      kind_raw: (2)
+      num: '2'
+      ord: 7
+      heading: null
+      text: 製造指図書、製造に関する記録等を作成及び保存管理するためのシステム
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:24
+      children: []
+    - nid: cha2.i3
+      kind: item
+      kind_raw: (3)
+      num: '3'
+      ord: 8
+      heading: null
+      text: 製造工程を制御又は管理するためのシステム及びその管理データを保存管理するためのシステム
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:25
+      children: []
+    - nid: cha2.i4
+      kind: item
+      kind_raw: (4)
+      num: '4'
+      ord: 9
+      heading: null
+      text: 原材料及び製品(製造の中間工程で造られるものを含む。以下同じ。)の保管、出納等の生産を管理するシステム
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:26
+      children: []
+    - nid: cha2.i5
+      kind: item
+      kind_raw: (5)
+      num: '5'
+      ord: 10
+      heading: null
+      text: 品質試験に用いる機器を制御又は管理するためのシステム並びに品質試験結果及び管理データを保存管理するためのシステム
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:27
+      children: []
+    - nid: cha2.i6
+      kind: item
+      kind_raw: (6)
+      num: '6'
+      ord: 11
+      heading: null
+      text: 空調、製造用水製造設備など、製品の品質に重大な影響を及ぼす可能性のある製造支援設備・施設を制御又は管理するためのシステム及びその管理データを保存管理するためのシステム
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:28
+      children: []
+    - nid: cha2.i7
+      kind: item
+      kind_raw: (7)
+      num: '7'
+      ord: 12
+      heading: null
+      text: 文書(手順書類、品質標準書、製品標準書等)を作成、承認、保存管理するためのシステム
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:29
+      children: []
+  - nid: cha3
+    kind: chapter
+    kind_raw: '1.'
+    num: '3'
+    ord: 13
+    heading: コンピュータ化システムの開発、検証及び運用管理に関する文書の作成
+    text: 製造販売業者等はコンピュータ化システムの開発、検証及び運用にあたっては、あらかじめ、その基本方針等に関する文書(以下「コンピュータ化システム管理規定」という。)を定めるものとする。 コンピュータ化システム管理規定は、原則として次の事項を記載するものとする。
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:30
+    - source_label: MHLW CSV guideline
+      locator: line:31
+    - source_label: MHLW CSV guideline
+      locator: line:32
+    children:
+    - nid: cha3.i1
+      kind: item
+      kind_raw: (1)
+      num: '1'
+      ord: 14
+      heading: null
+      text: コンピュータ化システムの開発、検証及び運用管理に関する基本方針
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:33
+      children:
+      - nid: cha3.i1.si1
+        kind: subitem
+        kind_raw: ①
+        num: '1'
+        ord: 15
+        heading: null
+        text: 目的
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:34
+        children: []
+      - nid: cha3.i1.si2
+        kind: subitem
+        kind_raw: ②
+        num: '2'
+        ord: 16
+        heading: null
+        text: 適用範囲
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:35
+        children: []
+      - nid: cha3.i1.si3
+        kind: subitem
+        kind_raw: ③
+        num: '3'
+        ord: 17
+        heading: null
+        text: システム台帳の作成
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:36
+        children: []
+      - nid: cha3.i1.si4
+        kind: subitem
+        kind_raw: ④
+        num: '4'
+        ord: 18
+        heading: null
+        text: 基本的な考え方
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:37
+        children: []
+      - nid: cha3.i1.si1_2
+        kind: subitem
+        kind_raw: ・
+        num: null
+        ord: 19
+        heading: null
+        text: ソフトウェアのカテゴリ分類
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:38
+        children: []
+      - nid: cha3.i1.si2_2
+        kind: subitem
+        kind_raw: ・
+        num: null
+        ord: 20
+        heading: null
+        text: 製品品質に対するリスクアセスメント
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:39
+        children: []
+      - nid: cha3.i1.si3_2
+        kind: subitem
+        kind_raw: ・
+        num: null
+        ord: 21
+        heading: null
+        text: 供給者アセスメント
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:40
+        children: []
+      - nid: cha3.i1.si4_2
+        kind: subitem
+        kind_raw: ・
+        num: null
+        ord: 22
+        heading: null
+        text: 開発、検証及び運用段階で実施すべき項目等
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:41
+        children: []
+      - nid: cha3.i1.si5
+        kind: subitem
+        kind_raw: ・
+        num: null
+        ord: 23
+        heading: null
+        text: コンピュータシステムの廃棄に関する事項
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:42
+        children: []
+    - nid: cha3.i2
+      kind: item
+      kind_raw: (2)
+      num: '2'
+      ord: 24
+      heading: null
+      text: 開発業務、検証業務及び運用管理業務における責任体制と役割
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:43
+      children: []
+    - nid: cha3.i3
+      kind: item
+      kind_raw: (3)
+      num: '3'
+      ord: 25
+      heading: null
+      text: 開発業務、検証業務及び運用管理業務で作成すべき文書及びその管理方法
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:44
+      children: []
+    - nid: cha3.i4
+      kind: item
+      kind_raw: (4)
+      num: '4'
+      ord: 26
+      heading: null
+      text: 開発業務、検証業務及び運用管理業務の業務完了の確認及び承認の手続き
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:45
+      children: []
+  - nid: cha4
+    kind: chapter
+    kind_raw: '1.'
+    num: '4'
+    ord: 27
+    heading: 開発業務
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:46
+    children:
+    - nid: cha4.p4_1
+      kind: paragraph
+      kind_raw: 4．1
+      num: '4.1'
+      ord: 28
+      heading: 開発計画に関する文書の作成
+      text: 製造販売業者等は、開発計画に関する事項を記載した文書(以下「開発計画書」という。)を作成するものとする。開発計画書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:47
+      - source_label: MHLW CSV guideline
+        locator: line:48
+      children:
+      - nid: cha4.p4_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 29
+        heading: null
+        text: 開発目的
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:49
+        children: []
+      - nid: cha4.p4_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 30
+        heading: null
+        text: 開発条件
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:50
+        children: []
+      - nid: cha4.p4_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 31
+        heading: null
+        text: 開発体制
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:51
+        children:
+        - nid: cha4.p4_1.i3.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 32
+          heading: null
+          text: 組織
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:52
+          children: []
+        - nid: cha4.p4_1.i3.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 33
+          heading: null
+          text: 責任者
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:53
+          children: []
+        - nid: cha4.p4_1.i3.si1_2
+          kind: subitem
+          kind_raw: ・
+          num: null
+          ord: 34
+          heading: null
+          text: 開発責任者
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:54
+          children: []
+        - nid: cha4.p4_1.i3.si2_2
+          kind: subitem
+          kind_raw: ・
+          num: null
+          ord: 35
+          heading: null
+          text: 検証責任者
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:55
+          children: []
+      - nid: cha4.p4_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 36
+        heading: null
+        text: 開発スケジュール
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:56
+        children: []
+    - nid: cha4.p4_2
+      kind: paragraph
+      kind_raw: 4．2
+      num: '4.2'
+      ord: 37
+      heading: 要求仕様に関する文書の作成
+      text: 開発責任者はコンピュータ化システムに求められている事項を記載した文書(以下「要求仕様書」という。)を作成するものとする。要求仕様書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:57
+      - source_label: MHLW CSV guideline
+        locator: line:58
+      children:
+      - nid: cha4.p4_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 38
+        heading: null
+        text: 適用される法規制及び適用する規定等
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:59
+        children: []
+      - nid: cha4.p4_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 39
+        heading: null
+        text: ハードウェアの概要
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:60
+        children: []
+      - nid: cha4.p4_2.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 40
+        heading: null
+        text: 要求機能
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:61
+        children:
+        - nid: cha4.p4_2.i3.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 41
+          heading: null
+          text: システム機能の概要
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:62
+          children: []
+        - nid: cha4.p4_2.i3.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 42
+          heading: null
+          text: 運用要件の概要
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:63
+          children: []
+        - nid: cha4.p4_2.i3.si3
+          kind: subitem
+          kind_raw: ③
+          num: '3'
+          ord: 43
+          heading: null
+          text: 性能要件の概要
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:64
+          children: []
+        - nid: cha4.p4_2.i3.si4
+          kind: subitem
+          kind_raw: ④
+          num: '4'
+          ord: 44
+          heading: null
+          text: 障害対策機能の概要
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:65
+          children: []
+        - nid: cha4.p4_2.i3.si5
+          kind: subitem
+          kind_raw: ⑤
+          num: '5'
+          ord: 45
+          heading: null
+          text: 機密保護機能の概要(セキュリティ)
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:66
+          children: []
+      - nid: cha4.p4_2.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 46
+        heading: null
+        text: データ
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:67
+        children:
+        - nid: cha4.p4_2.i4.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 47
+          heading: null
+          text: 入出力情報の項目一覧
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:68
+          children: []
+        - nid: cha4.p4_2.i4.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 48
+          heading: null
+          text: 保存方法
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:69
+          children: []
+      - nid: cha4.p4_2.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 49
+        heading: null
+        text: インターフェース(関連設備及び他システム等)
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:70
+        children: []
+      - nid: cha4.p4_2.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 50
+        heading: null
+        text: 環境
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:71
+        children:
+        - nid: cha4.p4_2.i6.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 51
+          heading: null
+          text: 設置条件
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:72
+          children: []
+        - nid: cha4.p4_2.i6.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 52
+          heading: null
+          text: システムの配置
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:73
+          children: []
+      - nid: cha4.p4_2.i7
+        kind: item
+        kind_raw: (7)
+        num: '7'
+        ord: 53
+        heading: null
+        text: 電源、接地等の設置条件
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:74
+        children: []
+    - nid: cha4.p4_3
+      kind: paragraph
+      kind_raw: 4．3
+      num: '4.3'
+      ord: 54
+      heading: システムアセスメントの実施
+      text: 開発責任者は、開発、検証及び運用の各段階にて実施すべきそれぞれの内容を定めるために、コンピュータ化システム管理規定に基づき、原則として以下の事項を実施する。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:75
+      - source_label: MHLW CSV guideline
+        locator: line:76
+      children:
+      - nid: cha4.p4_3.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 55
+        heading: null
+        text: ソフトウェアカテゴリ分類
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:77
+        children: []
+      - nid: cha4.p4_3.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 56
+        heading: null
+        text: 製品品質に対するリスクアセスメント
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:78
+        children: []
+      - nid: cha4.p4_3.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 57
+        heading: null
+        text: 供給者アセスメント
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:79
+        children: []
+    - nid: cha4.p4_4
+      kind: paragraph
+      kind_raw: 4．4
+      num: '4.4'
+      ord: 58
+      heading: 機能仕様に関する文書の作成
+      text: 開発責任者は、供給者に要求仕様書に記載された要件に対応した具体的なコンピュータ化システムの機能と性能を記載した機能仕様に関する文書(以下「機能仕様書」という。)を作成させ、承認するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:80
+      - source_label: MHLW CSV guideline
+        locator: line:81
+      children: []
+    - nid: cha4.p4_5
+      kind: paragraph
+      kind_raw: 4．5
+      num: '4.5'
+      ord: 59
+      heading: 設計仕様に関する文書の作成
+      text: 開発責任者は、供給者に機能仕様書に基づいてコンピュータ化システムの詳細機能を記載した設計仕様に関する文書(以下「設計仕様書」という。)を作成させ、承認するものとする。 設計仕様書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:82
+      - source_label: MHLW CSV guideline
+        locator: line:83
+      - source_label: MHLW CSV guideline
+        locator: line:84
+      children: []
+    - nid: cha4.p4_5_1
+      kind: paragraph
+      kind_raw: 4．5．1
+      num: 4.5.1
+      ord: 60
+      heading: ハードウェア設計仕様
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:85
+      children:
+      - nid: cha4.p4_5_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 61
+        heading: null
+        text: ハードウェア構成
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:86
+        children: []
+      - nid: cha4.p4_5_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 62
+        heading: null
+        text: ハードウェアリスト及び仕様
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:87
+        children: []
+      - nid: cha4.p4_5_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 63
+        heading: null
+        text: インターフェース
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:88
+        children: []
+      - nid: cha4.p4_5_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 64
+        heading: null
+        text: 入出力信号の詳細
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:89
+        children: []
+      - nid: cha4.p4_5_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 65
+        heading: null
+        text: 環境
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:90
+        children:
+        - nid: cha4.p4_5_1.i5.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 66
+          heading: null
+          text: 設置の詳細条件
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:91
+          children: []
+        - nid: cha4.p4_5_1.i5.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 67
+          heading: null
+          text: システム機器の配置
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:92
+          children: []
+      - nid: cha4.p4_5_1.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 68
+        heading: null
+        text: 電源、接地等の設置条件
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:93
+        children: []
+    - nid: cha4.p4_5_2
+      kind: paragraph
+      kind_raw: 4．5．2
+      num: 4.5.2
+      ord: 69
+      heading: ソフトウェア設計仕様
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:94
+      children:
+      - nid: cha4.p4_5_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 70
+        heading: null
+        text: 入出力情報の詳細
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:95
+        children: []
+      - nid: cha4.p4_5_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 71
+        heading: null
+        text: ファイル及びデータ構造
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:96
+        children: []
+      - nid: cha4.p4_5_2.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 72
+        heading: null
+        text: データ処理の詳細
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:97
+        children: []
+      - nid: cha4.p4_5_2.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 73
+        heading: null
+        text: 機能・モジュールの構成
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:98
+        children: []
+      - nid: cha4.p4_5_2.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 74
+        heading: null
+        text: インターフェースの詳細
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:99
+        children: []
+      - nid: cha4.p4_5_2.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 75
+        heading: null
+        text: 選択したパッケージソフトウェア
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:100
+        children: []
+    - nid: cha4.p4_6
+      kind: paragraph
+      kind_raw: 4．6
+      num: '4.6'
+      ord: 76
+      heading: プログラムの作成及びプログラムテスト
+      text: 開発責任者は、必要に応じて、供給者にプログラム作成及びプログラムテストを実施させるものとする。プログラム作成及びプログラムテストには、以下の内容が含まれるものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:101
+      - source_label: MHLW CSV guideline
+        locator: line:102
+      children: []
+    - nid: cha4.p4_6_1
+      kind: paragraph
+      kind_raw: 4．6．1
+      num: 4.6.1
+      ord: 77
+      heading: プログラムの作成
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:103
+      children:
+      - nid: cha4.p4_6_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 78
+        heading: null
+        text: 供給者は、プログラムの仕様に関する文書(以下「プログラム仕様書」という。)を設計仕様書に従って作成するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:104
+        children: []
+      - nid: cha4.p4_6_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 79
+        heading: null
+        text: 供給者は、プログラムをプログラム仕様書どおりに作成するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:105
+        children: []
+    - nid: cha4.p4_6_2
+      kind: paragraph
+      kind_raw: 4．6．2
+      num: 4.6.2
+      ord: 80
+      heading: プログラムテストの実施
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:106
+      children:
+      - nid: cha4.p4_6_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 81
+        heading: null
+        text: 供給者は、プログラムテスト方法、プログラムテスト結果の判定方法及び判定基準を記載したプログラムテストの計画に関する文書(以下「プログラムテスト計画書」という。)を作成するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:107
+        children: []
+      - nid: cha4.p4_6_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 82
+        heading: null
+        text: 供給者は、プログラムテスト計画書に基づき、プログラムテストを実施し、その結果を記録するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:108
+        children: []
+      - nid: cha4.p4_6_2.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 83
+        heading: null
+        text: 供給者は、プログラムテストの結果の適否を判定するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:109
+        children: []
+    - nid: cha4.p4_7
+      kind: paragraph
+      kind_raw: 4．7
+      num: '4.7'
+      ord: 84
+      heading: システムテスト
+      text: 開発責任者は、必要に応じて供給者にシステムテストを実施させるものとする。システムテストには以下の内容が含まれるものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:110
+      - source_label: MHLW CSV guideline
+        locator: line:111
+      children: []
+    - nid: cha4.p4_7_1
+      kind: paragraph
+      kind_raw: 4．7．1
+      num: 4.7.1
+      ord: 85
+      heading: システムテストに関する文書の作成
+      text: 供給者はシステムテストにあたっては、システムテストの計画に関する文書(以下「システムテスト計画書」という。)を作成するものとする。システムテスト計画書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:112
+      - source_label: MHLW CSV guideline
+        locator: line:113
+      children:
+      - nid: cha4.p4_7_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 86
+        heading: null
+        text: システムテストの実施環境(テスト時のハードウェアの設置状況及びソフトウェア構成等をいう。)
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:114
+        children: []
+      - nid: cha4.p4_7_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 87
+        heading: null
+        text: システムテストの項目及び使用するテストデータ
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:115
+        children: []
+      - nid: cha4.p4_7_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 88
+        heading: null
+        text: システムテストの方法及び結果の確認方法
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:116
+        children: []
+      - nid: cha4.p4_7_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 89
+        heading: null
+        text: システムテストの判定基準
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:117
+        children: []
+      - nid: cha4.p4_7_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 90
+        heading: null
+        text: システムテストのスケジュール
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:118
+        children: []
+      - nid: cha4.p4_7_1.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 91
+        heading: null
+        text: システムテストを実施する場合の実施体制
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:119
+        children: []
+    - nid: cha4.p4_7_2
+      kind: paragraph
+      kind_raw: 4．7．2
+      num: 4.7.2
+      ord: 92
+      heading: システムテストの実施
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:120
+      children:
+      - nid: cha4.p4_7_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 93
+        heading: null
+        text: 供給者は、システムテスト計画書に基づいてシステムテストを実施し、その結果(システムテストの実施時に発生したトラブルの内容及びその措置内容を含む。)を記録するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:121
+        children: []
+      - nid: cha4.p4_7_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 94
+        heading: null
+        text: 供給者は、システムテストの結果の適否を判定する。この場合において、システムテストの結果の適否の判定事項は、原則として次のとおりとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:122
+        children:
+        - nid: cha4.p4_7_2.i2.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 95
+          heading: null
+          text: 機能(機能仕様書及び設計仕様書に規定されたとおりに機能するか等)
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:123
+          children: []
+        - nid: cha4.p4_7_2.i2.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 96
+          heading: null
+          text: 性能(機能仕様書及び設計仕様書で期待された応答性等を確保しているか等)
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:124
+          children: []
+    - nid: cha4.p4_8
+      kind: paragraph
+      kind_raw: 4．8
+      num: '4.8'
+      ord: 97
+      heading: 受入試験
+      text: 開発責任者は、システムの機能及び性能の全てあるいは一部が要求仕様を満足していることを確認するために供給者に受入試験を実施させる。受入試験には、供給者の工場出荷前に機能及び性能を確認するテスト(工場出荷試験，FAT)並びにこれらシステム設置場所等における受け入れ時に機能及び性能を確認するテスト(現地受入試験，SAT)があり、適宜選択し実施させる。受入試験の結果は開発責任者が承認する。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:125
+      - source_label: MHLW CSV guideline
+        locator: line:126
+      children: []
+  - nid: cha5
+    kind: chapter
+    kind_raw: '1.'
+    num: '5'
+    ord: 98
+    heading: 検証業務
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:127
+    children:
+    - nid: cha5.p5_1
+      kind: paragraph
+      kind_raw: 5．1
+      num: '5.1'
+      ord: 99
+      heading: バリデーションの全体計画に関する文書の作成
+      text: 検証責任者は、コンピュータ化システム管理規定に基づき、システムの検証を行う場合には、実施するバリデーションの全体計画に関する文書(以下「バリデーション計画書」という。)を作成するものとする。なお、バリデーション計画書は「4．3 システムアセスメント」により実施した評価結果等に基づき作成する。なお、検証業務は開発業務と併行して行われることもあるため、バリデーション計画書は開発段階の適切な時期に作成する。 また、「6．6 変更の管理」においてバリデーションが必要となった場合は、変更の状況にあわせて適宜バリデーション計画書を作成すること。バリデーション計画書には、原則として次の事項を記載するものとする。また、必要な場合には詳細なリスクアセスメント、供給者監査等の計画についても記載すること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:128
+      - source_label: MHLW CSV guideline
+        locator: line:129
+      - source_label: MHLW CSV guideline
+        locator: line:130
+      children:
+      - nid: cha5.p5_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 100
+        heading: null
+        text: 目的
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:131
+        children: []
+      - nid: cha5.p5_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 101
+        heading: null
+        text: システム概要
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:132
+        children: []
+      - nid: cha5.p5_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 102
+        heading: null
+        text: 責任体制と役割
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:133
+        children:
+        - nid: cha5.p5_1.i3.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 103
+          heading: null
+          text: 組織
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:134
+          children: []
+        - nid: cha5.p5_1.i3.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 104
+          heading: null
+          text: 検証責任者
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:135
+          children: []
+      - nid: cha5.p5_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 105
+        heading: null
+        text: 適用される法規制及び適用する規定等
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:136
+        children: []
+      - nid: cha5.p5_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 106
+        heading: null
+        text: バリデーション方針
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:137
+        children:
+        - nid: cha5.p5_1.i5.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 107
+          heading: null
+          text: バリデーションの範囲及びバリデーションとして実施すべき項目等
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:138
+          children: []
+      - nid: cha5.p5_1.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 108
+        heading: null
+        text: スケジュール
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:139
+        children: []
+      - nid: cha5.p5_1.i7
+        kind: item
+        kind_raw: (7)
+        num: '7'
+        ord: 109
+        heading: null
+        text: バリデーション実施時の変更・逸脱の管理に関する手順
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:140
+        children: []
+    - nid: cha5.p5_2
+      kind: paragraph
+      kind_raw: 5．2
+      num: '5.2'
+      ord: 110
+      heading: 設計時適格性評価(DQ)
+      text: 検証責任者は、要求仕様書に記載された要求事項が、機能仕様書、設計仕様書等に正しく反映されていることを確認するため設計時適格性評価を実施する。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:141
+      - source_label: MHLW CSV guideline
+        locator: line:142
+      children: []
+    - nid: cha5.p5_2_1
+      kind: paragraph
+      kind_raw: 5．2．1
+      num: 5.2.1
+      ord: 111
+      heading: 設計時適格性評価の計画に関する文書の作成
+      text: 検証責任者は、設計時適格性評価の計画に関する文書(以下「設計時適格性評価計画書」という。)を作成するものとする。設計時適格性評価計画書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:143
+      - source_label: MHLW CSV guideline
+        locator: line:144
+      children:
+      - nid: cha5.p5_2_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 112
+        heading: null
+        text: 設計時適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:145
+        children: []
+      - nid: cha5.p5_2_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 113
+        heading: null
+        text: 具体的な確認の方法
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:146
+        children: []
+      - nid: cha5.p5_2_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 114
+        heading: null
+        text: 設計時適格性評価における判定基準
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:147
+        children: []
+      - nid: cha5.p5_2_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 115
+        heading: null
+        text: スケジュール
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:148
+        children: []
+      - nid: cha5.p5_2_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 116
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:149
+        children: []
+    - nid: cha5.p5_2_2
+      kind: paragraph
+      kind_raw: 5．2．2
+      num: 5.2.2
+      ord: 117
+      heading: 設計時適格性評価の実施
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:150
+      children:
+      - nid: cha5.p5_2_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 118
+        heading: null
+        text: 検証担当者は、設計時適格性評価計画書に基づいて評価を実施し、その結果を記録するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:151
+        children: []
+      - nid: cha5.p5_2_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 119
+        heading: null
+        text: 検証責任者は、設計時適格性評価の結果の適否を判定するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:152
+        children: []
+    - nid: cha5.p5_2_3
+      kind: paragraph
+      kind_raw: 5．2．3
+      num: 5.2.3
+      ord: 120
+      heading: 設計時適格性評価の報告に関する文書の作成
+      text: 検証責任者は、設計時適格性評価の報告に関する文書(以下「設計時適格性評価報告書」という。)を作成するものとする。設計時適格性評価報告書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:153
+      - source_label: MHLW CSV guideline
+        locator: line:154
+      children:
+      - nid: cha5.p5_2_3.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 121
+        heading: null
+        text: 設計時適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:155
+        children: []
+      - nid: cha5.p5_2_3.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 122
+        heading: null
+        text: 評価結果と是正措置
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:156
+        children: []
+      - nid: cha5.p5_2_3.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 123
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:157
+        children: []
+    - nid: cha5.p5_3
+      kind: paragraph
+      kind_raw: 5．3
+      num: '5.3'
+      ord: 124
+      heading: 据付時適格性評価(IQ)
+      text: 検証責任者は、コンピュータ化システムが、設計仕様等に記載されたとおりに据え付けられ、プログラムがインストールされたことを確認するため据付時適格性評価を実施する。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:158
+      - source_label: MHLW CSV guideline
+        locator: line:159
+      children: []
+    - nid: cha5.p5_3_1
+      kind: paragraph
+      kind_raw: 5．3．1
+      num: 5.3.1
+      ord: 125
+      heading: 据付時適格性評価の計画に関する文書の作成
+      text: 検証責任者は、ハードウェア及びソフトウェアの据付時適格性評価の計画に関する文書(以下「据付時適格性評価計画書」という。)を作成するものとする。据付時適格性評価計画書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:160
+      - source_label: MHLW CSV guideline
+        locator: line:161
+      children:
+      - nid: cha5.p5_3_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 126
+        heading: null
+        text: 据付時適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:162
+        children: []
+      - nid: cha5.p5_3_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 127
+        heading: null
+        text: ハードウェア構成及び設置場所
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:163
+        children: []
+      - nid: cha5.p5_3_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 128
+        heading: null
+        text: ハードウェアの温度、湿度、振動等の環境条件
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:164
+        children: []
+      - nid: cha5.p5_3_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 129
+        heading: null
+        text: 電源、接地等の設置条件
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:165
+        children: []
+      - nid: cha5.p5_3_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 130
+        heading: null
+        text: 通信、入出力に関する仕様
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:166
+        children: []
+      - nid: cha5.p5_3_1.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 131
+        heading: null
+        text: ハードウェアの設置の確認方法
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:167
+        children: []
+      - nid: cha5.p5_3_1.i7
+        kind: item
+        kind_raw: (7)
+        num: '7'
+        ord: 132
+        heading: null
+        text: ソフトウェアのインストールの確認方法
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:168
+        children: []
+      - nid: cha5.p5_3_1.i8
+        kind: item
+        kind_raw: (8)
+        num: '8'
+        ord: 133
+        heading: null
+        text: 据付時適格性評価における判定基準
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:169
+        children: []
+      - nid: cha5.p5_3_1.i9
+        kind: item
+        kind_raw: (9)
+        num: '9'
+        ord: 134
+        heading: null
+        text: スケジュール
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:170
+        children: []
+      - nid: cha5.p5_3_1.i10
+        kind: item
+        kind_raw: (10)
+        num: '10'
+        ord: 135
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:171
+        children: []
+    - nid: cha5.p5_3_2
+      kind: paragraph
+      kind_raw: 5．3．2
+      num: 5.3.2
+      ord: 136
+      heading: 据付時適格性評価の実施
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:172
+      children:
+      - nid: cha5.p5_3_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 137
+        heading: null
+        text: ハードウェアの設置の確認
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:173
+        children:
+        - nid: cha5.p5_3_2.i1.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 138
+          heading: null
+          text: 検証担当者は、据付時適格性評価計画書に基づいて、ハードウェアが適切に設置されていることを確認し、その結果を記録するものとする。
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:174
+          children: []
+        - nid: cha5.p5_3_2.i1.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 139
+          heading: null
+          text: 検証責任者は、ハードウェアの設置の適否を判定するものとする。
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:175
+          children: []
+      - nid: cha5.p5_3_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 140
+        heading: null
+        text: ソフトウェアのインストールの確認
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:176
+        children:
+        - nid: cha5.p5_3_2.i2.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 141
+          heading: null
+          text: 検証担当者は、基本ソフトウェアを含め、適切にインストールされていることを確認し、その結果を記録するものとする。
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:177
+          children: []
+        - nid: cha5.p5_3_2.i2.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 142
+          heading: null
+          text: 検証責任者は、ソフトウェアのインストールの結果の適否を判定するものとする。
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:178
+          children: []
+    - nid: cha5.p5_3_3
+      kind: paragraph
+      kind_raw: 5．3．3
+      num: 5.3.3
+      ord: 143
+      heading: 据付時適格性評価の報告に関する文書の作成
+      text: 検証責任者は、据付時適格性評価の報告に関する文書(以下「据付時適格性評価報告書」という。)を作成するものとする。据付時適格性評価報告書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:179
+      - source_label: MHLW CSV guideline
+        locator: line:180
+      children:
+      - nid: cha5.p5_3_3.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 144
+        heading: null
+        text: 据付時適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:181
+        children: []
+      - nid: cha5.p5_3_3.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 145
+        heading: null
+        text: 評価結果と是正措置
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:182
+        children: []
+      - nid: cha5.p5_3_3.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 146
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:183
+        children: []
+    - nid: cha5.p5_4
+      kind: paragraph
+      kind_raw: 5．4
+      num: '5.4'
+      ord: 147
+      heading: 運転時適格性評価(OQ)
+      text: 検証責任者は、コンピュータ化システムが運転時において、機能仕様等に示された機能及び性能を発揮することを確認するため運転時適格性評価を実施する。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:184
+      - source_label: MHLW CSV guideline
+        locator: line:185
+      children: []
+    - nid: cha5.p5_4_1
+      kind: paragraph
+      kind_raw: 5．4．1
+      num: 5.4.1
+      ord: 148
+      heading: 運転時適格性評価の計画に関する文書の作成
+      text: 検証責任者は、運転時適格性評価の計画に関する文書(以下「運転時適格性評価計画書」という。)を作成するものとする。運転時適格性評価計画書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:186
+      - source_label: MHLW CSV guideline
+        locator: line:187
+      children:
+      - nid: cha5.p5_4_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 149
+        heading: null
+        text: 運転時適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:188
+        children: []
+      - nid: cha5.p5_4_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 150
+        heading: null
+        text: システムの運転環境における機能の確認方法
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:189
+        children: []
+      - nid: cha5.p5_4_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 151
+        heading: null
+        text: 運転時適格性評価における判定基準
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:190
+        children: []
+      - nid: cha5.p5_4_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 152
+        heading: null
+        text: スケジュール
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:191
+        children: []
+      - nid: cha5.p5_4_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 153
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:192
+        children: []
+    - nid: cha5.p5_4_2
+      kind: paragraph
+      kind_raw: 5．4．2
+      num: 5.4.2
+      ord: 154
+      heading: 運転時適格性評価の実施
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:193
+      children:
+      - nid: cha5.p5_4_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 155
+        heading: null
+        text: 検証担当者は、運転時適格性評価計画書に基づいて評価を実施し、その結果を記録するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:194
+        children: []
+      - nid: cha5.p5_4_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 156
+        heading: null
+        text: 検証責任者は、運転時適格性評価の結果の適否を判定するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:195
+        children: []
+    - nid: cha5.p5_4_3
+      kind: paragraph
+      kind_raw: 5．4．3
+      num: 5.4.3
+      ord: 157
+      heading: 運転時適格性評価の報告に関する文書の作成
+      text: 検証責任者は、運転時適格性評価の報告に関する文書(以下「運転時適格性評価報告書」という。)を作成するものとする。運転時適格性評価報告書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:196
+      - source_label: MHLW CSV guideline
+        locator: line:197
+      children:
+      - nid: cha5.p5_4_3.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 158
+        heading: null
+        text: 運転時適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:198
+        children: []
+      - nid: cha5.p5_4_3.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 159
+        heading: null
+        text: 評価結果と是正措置
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:199
+        children: []
+      - nid: cha5.p5_4_3.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 160
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:200
+        children: []
+    - nid: cha5.p5_5
+      kind: paragraph
+      kind_raw: 5．5
+      num: '5.5'
+      ord: 161
+      heading: 性能適格性評価(PQ)
+      text: 検証責任者は、コンピュータ化システムが稼働時において、要求仕様等どおりに機能し、性能を発揮して運転できることを確認するため性能適格性評価を実施する。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:201
+      - source_label: MHLW CSV guideline
+        locator: line:202
+      children: []
+    - nid: cha5.p5_5_1
+      kind: paragraph
+      kind_raw: 5．5．1
+      num: 5.5.1
+      ord: 162
+      heading: 性能適格性評価の計画に関する文書の作成
+      text: 検証責任者は、性能適格性評価の計画に関する文書(以下「性能適格性評価計画書」という。)を作成するものとする。性能適格性評価計画書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:203
+      - source_label: MHLW CSV guideline
+        locator: line:204
+      children:
+      - nid: cha5.p5_5_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 163
+        heading: null
+        text: 性能適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:205
+        children: []
+      - nid: cha5.p5_5_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 164
+        heading: null
+        text: システムの稼働時における機能及び性能の確認方法
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:206
+        children: []
+      - nid: cha5.p5_5_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 165
+        heading: null
+        text: 性能適格性評価における判定基準
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:207
+        children: []
+      - nid: cha5.p5_5_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 166
+        heading: null
+        text: スケジュール
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:208
+        children: []
+      - nid: cha5.p5_5_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 167
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:209
+        children: []
+    - nid: cha5.p5_5_2
+      kind: paragraph
+      kind_raw: 5．5．2
+      num: 5.5.2
+      ord: 168
+      heading: 性能適格性評価の実施
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:210
+      children:
+      - nid: cha5.p5_5_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 169
+        heading: null
+        text: 検証担当者は、性能適格性評価計画書に基づいて、性能適格性評価を実施し、その結果を記録するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:211
+        children: []
+      - nid: cha5.p5_5_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 170
+        heading: null
+        text: 検証責任者は、性能適格性評価の結果の適否を判定するものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:212
+        children: []
+    - nid: cha5.p5_5_3
+      kind: paragraph
+      kind_raw: 5．5．3
+      num: 5.5.3
+      ord: 171
+      heading: 性能適格性評価の報告に関する文書の作成
+      text: 検証責任者は、性能適格性評価の報告に関する文書(以下「性能適格性評価報告書」という。)を作成するものとする。性能適格性評価報告書には、原則として次の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:213
+      - source_label: MHLW CSV guideline
+        locator: line:214
+      children:
+      - nid: cha5.p5_5_3.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 172
+        heading: null
+        text: 性能適格性評価の対象となる文書名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:215
+        children: []
+      - nid: cha5.p5_5_3.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 173
+        heading: null
+        text: 評価結果と是正措置
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:216
+        children: []
+      - nid: cha5.p5_5_3.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 174
+        heading: null
+        text: 責任者及び担当者の氏名
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:217
+        children: []
+    - nid: cha5.p5_6
+      kind: paragraph
+      kind_raw: 5．6
+      num: '5.6'
+      ord: 175
+      heading: 適格性評価の一部省略と引用
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:218
+      children:
+      - nid: cha5.p5_6.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 176
+        heading: null
+        text: 「5．4 運転時適格性評価(OQ)」における検証内容、環境、条件などが「5．5 性能適格性評価(PQ)」の内容と差がない場合は運転時適格性評価を省略しても差し支えないものとする。但しその場合、省略の旨を「バリデーション計画書」若しくは「性能適格性評価計画書」又はいずれかの報告書に明記すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:219
+        children: []
+      - nid: cha5.p5_6.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 177
+        heading: null
+        text: 工場出荷試験又は現地受入試験を行った場合等、その確認の方法及び記録が検証責任者によって適切と認められる場合には、適格性評価にあたって、その結果を引用しても差し支えないものとする。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:220
+        children: []
+    - nid: cha5.p5_7
+      kind: paragraph
+      kind_raw: 5．7
+      num: '5.7'
+      ord: 178
+      heading: バリデーションの全体報告に関する文書の作成
+      text: 検証責任者は、バリデーションの各段階の結果及び総合評価をまとめたバリデーションの全体報告に関する文書を作成するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:221
+      - source_label: MHLW CSV guideline
+        locator: line:222
+      children: []
+  - nid: cha6
+    kind: chapter
+    kind_raw: '1.'
+    num: '6'
+    ord: 179
+    heading: 運用管理業務
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:223
+    children:
+    - nid: cha6.p6_1
+      kind: paragraph
+      kind_raw: 6．1
+      num: '6.1'
+      ord: 180
+      heading: 運用管理に関する文書の作成
+      text: 製造販売業者等はコンピュータ化システムの運用管理に関する文書(以下「運用管理基準書」という。)を作成するものとする。運用管理基準書には、原則として次の事項を記載するものとする。但し、GQP省令又はGMP省令に関する手順書に基づき管理を行う項目については、その旨を記載すること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:224
+      - source_label: MHLW CSV guideline
+        locator: line:225
+      children:
+      - nid: cha6.p6_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 181
+        heading: null
+        text: 運用に関する責任体制と役割
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:226
+        children:
+        - nid: cha6.p6_1.i1.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 182
+          heading: null
+          text: 組織
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:227
+          children: []
+        - nid: cha6.p6_1.i1.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 183
+          heading: null
+          text: 運用責任者
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:228
+          children: []
+      - nid: cha6.p6_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 184
+        heading: null
+        text: コンピュータ化システムの操作
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:229
+        children: []
+      - nid: cha6.p6_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 185
+        heading: null
+        text: 保守点検管理
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:230
+        children:
+        - nid: cha6.p6_1.i3.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 186
+          heading: null
+          text: 日常点検事項
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:231
+          children: []
+        - nid: cha6.p6_1.i3.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 187
+          heading: null
+          text: 定期点検事項
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:232
+          children: []
+        - nid: cha6.p6_1.i3.si3
+          kind: subitem
+          kind_raw: ③
+          num: '3'
+          ord: 188
+          heading: null
+          text: 保守点検を専門業者に委託する場合の取決め事項
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:233
+          children: []
+      - nid: cha6.p6_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 189
+        heading: null
+        text: セキュリティ管理
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:234
+        children:
+        - nid: cha6.p6_1.i4.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 190
+          heading: null
+          text: データの入力、修正、削除等に関する担当者のアクセス権限の設定と不正アクセス防止
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:235
+          children: []
+        - nid: cha6.p6_1.i4.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 191
+          heading: null
+          text: 識別構成要素の管理
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:236
+          children: []
+        - nid: cha6.p6_1.i4.si3
+          kind: subitem
+          kind_raw: ③
+          num: '3'
+          ord: 192
+          heading: null
+          text: ハードウェア設置場所への立入制限
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:237
+          children: []
+      - nid: cha6.p6_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 193
+        heading: null
+        text: バックアップ及びリストア
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:238
+        children: []
+      - nid: cha6.p6_1.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 194
+        heading: null
+        text: 変更の管理
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:239
+        children:
+        - nid: cha6.p6_1.i6.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 195
+          heading: null
+          text: 変更の計画、承認の手順
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:240
+          children: []
+        - nid: cha6.p6_1.i6.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 196
+          heading: null
+          text: 変更の影響評価
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:241
+          children: []
+        - nid: cha6.p6_1.i6.si3
+          kind: subitem
+          kind_raw: ③
+          num: '3'
+          ord: 197
+          heading: null
+          text: その他、変更に必要な事項
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:242
+          children: []
+      - nid: cha6.p6_1.i7
+        kind: item
+        kind_raw: (7)
+        num: '7'
+        ord: 198
+        heading: null
+        text: 逸脱(システムトラブル)の管理
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:243
+        children:
+        - nid: cha6.p6_1.i7.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 199
+          heading: null
+          text: 逸脱(システムトラブル)発生時の対応のための組織等
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:244
+          children: []
+        - nid: cha6.p6_1.i7.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 200
+          heading: null
+          text: 逸脱(システムトラブル)の原因の究明及び影響評価
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:245
+          children: []
+        - nid: cha6.p6_1.i7.si3
+          kind: subitem
+          kind_raw: ③
+          num: '3'
+          ord: 201
+          heading: null
+          text: 再発防止対策
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:246
+          children: []
+        - nid: cha6.p6_1.i7.si4
+          kind: subitem
+          kind_raw: ④
+          num: '4'
+          ord: 202
+          heading: null
+          text: 回復措置
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:247
+          children: []
+        - nid: cha6.p6_1.i7.si5
+          kind: subitem
+          kind_raw: ⑤
+          num: '5'
+          ord: 203
+          heading: null
+          text: システム停止後の再開手順及び再開時の確認事項
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:248
+          children: []
+        - nid: cha6.p6_1.i7.si6
+          kind: subitem
+          kind_raw: ⑥
+          num: '6'
+          ord: 204
+          heading: null
+          text: その他逸脱の管理に必要な事項
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:249
+          children: []
+      - nid: cha6.p6_1.i8
+        kind: item
+        kind_raw: (8)
+        num: '8'
+        ord: 205
+        heading: null
+        text: 担当者の教育訓練
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:250
+        children: []
+      - nid: cha6.p6_1.i9
+        kind: item
+        kind_raw: (9)
+        num: '9'
+        ord: 206
+        heading: null
+        text: 自己点検
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:251
+        children: []
+    - nid: cha6.p6_2
+      kind: paragraph
+      kind_raw: 6．2
+      num: '6.2'
+      ord: 207
+      heading: コンピュータ化システムの操作の手順に関する文書の作成
+      text: コンピュータ化システムの操作の手順に関する文書(以下「標準操作手順書」という。)をコンピュータ化システムごとに作成し、それに基づき操作するものとする。 標準操作手順書には、原則として以下の事項を記載する
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:252
+      - source_label: MHLW CSV guideline
+        locator: line:253
+      - source_label: MHLW CSV guideline
+        locator: line:254
+      children:
+      - nid: cha6.p6_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 208
+        heading: null
+        text: システムの担当者
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:255
+        children: []
+      - nid: cha6.p6_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 209
+        heading: null
+        text: コンピュータ化システムの操作
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:256
+        children: []
+      - nid: cha6.p6_2.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 210
+        heading: null
+        text: コンピュータ化システムの保守点検
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:257
+        children: []
+      - nid: cha6.p6_2.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 211
+        heading: null
+        text: コンピュータ化システムのセキュリティ管理
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:258
+        children: []
+      - nid: cha6.p6_2.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 212
+        heading: null
+        text: その他、コンピュータ化システムの特性に応じた運用管理
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:259
+        children: []
+    - nid: cha6.p6_3
+      kind: paragraph
+      kind_raw: 6．3
+      num: '6.3'
+      ord: 213
+      heading: 保守点検事項の実施
+      text: 運用責任者は、運用管理基準書及び標準操作手順書(以下「運用管理基準書等」という。)に基づき、次に掲げる業務を行うものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:260
+      - source_label: MHLW CSV guideline
+        locator: line:261
+      children:
+      - nid: cha6.p6_3.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 214
+        heading: null
+        text: 担当者に保守点検を実施させ、その結果を記録し、保管すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:262
+        children: []
+      - nid: cha6.p6_3.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 215
+        heading: null
+        text: 保守点検の記録により保守点検管理が適切に行われていることを確認すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:263
+        children: []
+    - nid: cha6.p6_4
+      kind: paragraph
+      kind_raw: 6．4
+      num: '6.4'
+      ord: 216
+      heading: セキュリティ管理の実施
+      text: 運用責任者は、運用管理基準書等に基づき、次に掲げる業務を行うものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:264
+      - source_label: MHLW CSV guideline
+        locator: line:265
+      children:
+      - nid: cha6.p6_4.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 217
+        heading: null
+        text: データの入力、修正、削除等に関する担当者のアクセス権限の設定と、不正アクセスの防止措置を講じること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:266
+        children: []
+      - nid: cha6.p6_4.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 218
+        heading: null
+        text: 識別構成要素等の取扱いについて、機密保護を図ること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:267
+        children: []
+      - nid: cha6.p6_4.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 219
+        heading: null
+        text: 必要に応じてハードウェア設置場所への立入制限を行うこと。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:268
+        children: []
+      - nid: cha6.p6_4.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 220
+        heading: null
+        text: セキュリティ管理に関する記録を作成するとともに、これを保管すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:269
+        children: []
+    - nid: cha6.p6_5
+      kind: paragraph
+      kind_raw: 6．5
+      num: '6.5'
+      ord: 221
+      heading: バックアップ及びリストア
+      text: 運用責任者は、あらかじめ指定した者に対し、運用管理基準書等に基づき、次に掲げる業務を行わせること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:270
+      - source_label: MHLW CSV guideline
+        locator: line:271
+      children:
+      - nid: cha6.p6_5.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 222
+        heading: null
+        text: ソフトウェア及びデータのバックアップを行うこと。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:272
+        children: []
+      - nid: cha6.p6_5.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 223
+        heading: null
+        text: 障害発生からの回復のためにソフトウェア及びデータのリストアを行うこと。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:273
+        children: []
+      - nid: cha6.p6_5.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 224
+        heading: null
+        text: バックアップ及びリストアに関する記録を作成するとともに、これを保管すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:274
+        children: []
+    - nid: cha6.p6_6
+      kind: paragraph
+      kind_raw: 6．6
+      num: '6.6'
+      ord: 225
+      heading: 変更の管理
+      text: 運用責任者は、あらかじめ指定した者に対し、運用管理基準書に基づき、次に掲げる業務を行わせること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:275
+      - source_label: MHLW CSV guideline
+        locator: line:276
+      children:
+      - nid: cha6.p6_6.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 226
+        heading: null
+        text: 変更がコンピュータ化システムに与える影響を評価し、評価の結果に基づき適切な措置を実施すること。なお評価の結果、バリデーションが必要と判断された場合は、リスクの程度に応じて「4．開発業務」及び「5．検証業務」に戻ってバリデーションを実施すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:277
+        children: []
+      - nid: cha6.p6_6.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 227
+        heading: null
+        text: 変更に伴い発生する手順に関する文書の変更箇所を特定し、必要な改定を実施すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:278
+        children: []
+      - nid: cha6.p6_6.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 228
+        heading: null
+        text: 変更内容の関係者への周知の方法を決定し、必要に応じて教育訓練を実施すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:279
+        children: []
+      - nid: cha6.p6_6.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 229
+        heading: null
+        text: 変更の管理の記録を作成し、運用責任者の確認を得るとともに、運用責任者及び変更の管理に関する責任者等の承認を得てこれを保管すること。 GMP省令に係るシステムに関する変更の管理については、GMP省令における変更の管理の手順に従って運用すること。ただし、その場合も上記(1)から(4)の内容を含むこと。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:280
+        - source_label: MHLW CSV guideline
+          locator: line:281
+        children: []
+    - nid: cha6.p6_7
+      kind: paragraph
+      kind_raw: 6．7
+      num: '6.7'
+      ord: 230
+      heading: 逸脱(システムトラブル)の管理
+      text: 運用責任者は、あらかじめ指定した者に対し、運用管理基準書に基づき、次に掲げる業務を行わせること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:282
+      - source_label: MHLW CSV guideline
+        locator: line:283
+      children:
+      - nid: cha6.p6_7.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 231
+        heading: null
+        text: 発生した逸脱(システムトラブル)が製品の品質に及ぼす影響を評価し、速やかに適切な対応措置を講じるとともに、その原因を究明し、必要な再発防止措置を実施すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:284
+        children: []
+      - nid: cha6.p6_7.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 232
+        heading: null
+        text: 逸脱(システムトラブル)発生後にコンピュータ化システムの運用を再開する場合には、復帰稼働が適切に行われていることを確認すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:285
+        children: []
+      - nid: cha6.p6_7.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 233
+        heading: null
+        text: 逸脱(システムトラブル)の管理の記録を作成し、運用責任者の確認を得るとともに、運用管理責任者及び逸脱の管理に関する責任者等の承認を得てこれを保管すること。 GMP省令に係るシステムに関する逸脱の管理については、GMP省令における逸脱の管理の手順に従って運用することでよいが、その場合も上記(1)から(3)の内容を含むこと。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:286
+        - source_label: MHLW CSV guideline
+          locator: line:287
+        children: []
+    - nid: cha6.p6_8
+      kind: paragraph
+      kind_raw: 6．8
+      num: '6.8'
+      ord: 234
+      heading: 教育訓練
+      text: null
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:288
+      children: []
+    - nid: cha6.p6_8_1
+      kind: paragraph
+      kind_raw: 6．8．1
+      num: 6.8.1
+      ord: 235
+      heading: 教育訓練計画の作成
+      text: 運用責任者は、運用管理基準書に基づき、あらかじめ指定した者に、コンピュータ化システムを使用した業務に従事する者に対する教育訓練計画を作成させること。なお、教育訓練についてはGQP省令、GMP省令における手順に従って運用することが望ましい。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:289
+      - source_label: MHLW CSV guideline
+        locator: line:290
+      children: []
+    - nid: cha6.p6_8_2
+      kind: paragraph
+      kind_raw: 6．8．2
+      num: 6.8.2
+      ord: 236
+      heading: 教育訓練の実施
+      text: 運用責任者は、教育訓練計画に基づき、あらかじめ指定した者に次に掲げる業務を行わせること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:291
+      - source_label: MHLW CSV guideline
+        locator: line:292
+      children:
+      - nid: cha6.p6_8_2.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 237
+        heading: null
+        text: コンピュータを使用した業務に従事する者に対して、コンピュータ化システムを使用した業務に関する教育訓練を計画的に実施し、その記録を作成すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:293
+        children: []
+      - nid: cha6.p6_8_2.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 238
+        heading: null
+        text: 教育訓練の実施状況について運用責任者の確認を得るとともに、品質保証責任者又は製造管理者若しくは責任技術者に対して文書により報告すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:294
+        children: []
+    - nid: cha6.p6_8_3
+      kind: paragraph
+      kind_raw: 6．8．3
+      num: 6.8.3
+      ord: 239
+      heading: 教育訓練の記録の保管
+      text: 運用責任者は教育訓練の実施の記録を保管すること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:295
+      - source_label: MHLW CSV guideline
+        locator: line:296
+      children: []
+  - nid: cha7
+    kind: chapter
+    kind_raw: '1.'
+    num: '7'
+    ord: 240
+    heading: 自己点検
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:297
+    children:
+    - nid: cha7.p7_1
+      kind: paragraph
+      kind_raw: 7．1
+      num: '7.1'
+      ord: 241
+      heading: 自己点検の実施
+      text: 製造販売業者等は、運用管理基準書に基づき、あらかじめ指定した者に次に掲げる業務を行わせること。なお、自己点検においては、GQP省令、GMP省令における手順に従って運用することが望ましい。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:298
+      - source_label: MHLW CSV guideline
+        locator: line:299
+      children:
+      - nid: cha7.p7_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 242
+        heading: null
+        text: コンピュータ化システムがこのガイドラインに基づき管理されていることを確認するために定期的に自己点検を実施すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:300
+        children: []
+      - nid: cha7.p7_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 243
+        heading: null
+        text: 自己点検の結果について品質保証責任者又は製造管理者若しくは責任技術者に対して文書により報告すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:301
+        children: []
+      - nid: cha7.p7_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 244
+        heading: null
+        text: 自己点検の結果の記録を作成し、これを保管すること。
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:302
+        children: []
+    - nid: cha7.p7_2
+      kind: paragraph
+      kind_raw: 7．2
+      num: '7.2'
+      ord: 245
+      heading: 改善措置の実施
+      text: 製造販売業者等は、自己点検の結果に基づき、改善が必要な場合には所要の措置を講じ、その記録を作成しこれを保管させること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:303
+      - source_label: MHLW CSV guideline
+        locator: line:304
+      children: []
+  - nid: cha8
+    kind: chapter
+    kind_raw: '1.'
+    num: '8'
+    ord: 246
+    heading: コンピュータシステムの廃棄
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:305
+    children:
+    - nid: cha8.p8_1
+      kind: paragraph
+      kind_raw: 8．1
+      num: '8.1'
+      ord: 247
+      heading: コンピュータシステムの廃棄の計画に関する文書の作成
+      text: 製造販売業者等は、コンピュータシステムの廃棄にあたっては、コンピュータシステムの種類や規模、カテゴリ等、必要に応じて、コンピュータシステムの廃棄に関する計画書(以下「廃棄計画書」という。)を作成すること。廃棄計画書には、原則として以下の事項を記載するものとする。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:306
+      - source_label: MHLW CSV guideline
+        locator: line:307
+      children:
+      - nid: cha8.p8_1.i1
+        kind: item
+        kind_raw: (1)
+        num: '1'
+        ord: 248
+        heading: null
+        text: 廃棄に関する責任体制と役割
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:308
+        children:
+        - nid: cha8.p8_1.i1.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 249
+          heading: null
+          text: 組織
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:309
+          children: []
+        - nid: cha8.p8_1.i1.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 250
+          heading: null
+          text: コンピュータシステムの廃棄の責任者
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:310
+          children: []
+      - nid: cha8.p8_1.i2
+        kind: item
+        kind_raw: (2)
+        num: '2'
+        ord: 251
+        heading: null
+        text: 廃棄対象とするコンピュータシステム
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:311
+        children: []
+      - nid: cha8.p8_1.i3
+        kind: item
+        kind_raw: (3)
+        num: '3'
+        ord: 252
+        heading: null
+        text: データの移行に関する事項
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:312
+        children: []
+      - nid: cha8.p8_1.i4
+        kind: item
+        kind_raw: (4)
+        num: '4'
+        ord: 253
+        heading: null
+        text: セキュリティに関する事項
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:313
+        children: []
+      - nid: cha8.p8_1.i5
+        kind: item
+        kind_raw: (5)
+        num: '5'
+        ord: 254
+        heading: null
+        text: コンピュータシステムの廃棄方法 コンピュータシステムの種類や規模、用途等に応じて以下を参考にして適切に定めること
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:314
+        - source_label: MHLW CSV guideline
+          locator: line:315
+        children:
+        - nid: cha8.p8_1.i5.si1
+          kind: subitem
+          kind_raw: ①
+          num: '1'
+          ord: 255
+          heading: null
+          text: リスクアセスメント
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:316
+          children: []
+        - nid: cha8.p8_1.i5.si2
+          kind: subitem
+          kind_raw: ②
+          num: '2'
+          ord: 256
+          heading: null
+          text: 前提条件
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:317
+          children: []
+        - nid: cha8.p8_1.i5.si3
+          kind: subitem
+          kind_raw: ③
+          num: '3'
+          ord: 257
+          heading: null
+          text: スケジュール
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:318
+          children: []
+        - nid: cha8.p8_1.i5.si4
+          kind: subitem
+          kind_raw: ④
+          num: '4'
+          ord: 258
+          heading: null
+          text: 具体的な廃棄の方法
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:319
+          children: []
+        - nid: cha8.p8_1.i5.si1_2
+          kind: subitem
+          kind_raw: ・
+          num: null
+          ord: 259
+          heading: null
+          text: ハードウェア
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:320
+          children: []
+        - nid: cha8.p8_1.i5.si2_2
+          kind: subitem
+          kind_raw: ・
+          num: null
+          ord: 260
+          heading: null
+          text: ソフトウェア
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:321
+          children: []
+        - nid: cha8.p8_1.i5.si3_2
+          kind: subitem
+          kind_raw: ・
+          num: null
+          ord: 261
+          heading: null
+          text: データ
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:322
+          children: []
+        - nid: cha8.p8_1.i5.si4_2
+          kind: subitem
+          kind_raw: ・
+          num: null
+          ord: 262
+          heading: null
+          text: 文書類(手順書、記録、契約書等)
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: line:323
+          children: []
+      - nid: cha8.p8_1.i6
+        kind: item
+        kind_raw: (6)
+        num: '6'
+        ord: 263
+        heading: null
+        text: 廃棄完了の判断基準
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: MHLW CSV guideline
+          locator: line:324
+        children: []
+    - nid: cha8.p8_2
+      kind: paragraph
+      kind_raw: 8．2
+      num: '8.2'
+      ord: 264
+      heading: コンピュータシステムの廃棄記録の作成
+      text: コンピュータシステムの廃棄の責任者は、廃棄計画書に基づきコンピュータシステムを廃棄するとともに、廃棄の記録を作成し、これを保管すること。
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: MHLW CSV guideline
+        locator: line:325
+      - source_label: MHLW CSV guideline
+        locator: line:326
+      children: []
+  - nid: cha9
+    kind: chapter
+    kind_raw: '1.'
+    num: '9'
+    ord: 265
+    heading: 文書及び記録の管理
+    text: このガイドラインに基づき作成された文書及び記録は、GQP省令又はGMP省令に基づき定めた文書及び記録の管理の方法に従って適切に保存管理するものとする。GQP省令及びGMP省令にまたがるシステムの場合は、あらかじめどちらの省令に従って管理するかをコンピュータ化システム管理規定等に明記しておくこと。
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:327
+    - source_label: MHLW CSV guideline
+      locator: line:328
+    children: []
+  - nid: cha10
+    kind: chapter
+    kind_raw: '1.'
+    num: '10'
+    ord: 266
+    heading: 用語集
+    text: 運転時適格性評価(OQ，Operational Qualification) コンピュータ化システムが、運転時において、機能仕様等に示された機能及び性能を発揮することを確認し文書化すること。 運用管理業務 コンピュータ化システムの運用開始後、コンピュータ化システムを、バリデートされた状態を維持し、要求仕様に記載された要件に基づいて適正に稼働させるための業務。 運用責任者 コンピュータ化システム運用業務を行うための責任者として、製造販売業者等により運用管理基準書において指定された者。 開発業務 指定されたコンピュータ化システムの計画、設計、製作、テスト、受入試験までの業務。 開発計画書 指定されたコンピュータ化システムを開発する際に目的、条件、責任、体制、スケジュールなどを記述した文書。 開発責任者 コンピュータ化システム開発業務を行うための責任者として、製造販売業者等により開発計画書においてあらかじめ指定された者。 機能仕様書(FS，Functional Specification) 要求仕様書に記載された要求仕様に対応する、より具体的な機能が記載された文書。 供給者 コンピュータ化システムを開発あるいは導入し、製造販売業者等に提供する者をいう。一般にサプライヤやベンダと呼ばれる。自社で開発する場合は自社のシステム開発者も含む。 供給者アセスメント 製造販売業者等による供給者の選定や委託の範囲、供給者監査が必要な場合の実施方法等を決定するために行う供給者の評価、一般的には開発段階の初期に行われる。 供給者監査 供給者の品質管理体制や品質保証のシステム、あるいは経験・能力や実績など多角的に供給者の調査を行い、供給者の総合的な品質マネジメントシステムや能力を評価・確認すること。実地又は書面による監査方法がある。 検証業務 コンピュータ化システムが、要求仕様等に定めた要件に合致して設計され、据え付けられ、システムの稼働環境及び稼働状態において、機能及び性能を発揮することを確認すること。 検証責任者 検証業務を行うための責任者として、製造販売業者等により開発計画書においてあらかじめ指定された者。 現地受入試験(SAT，Site Acceptance Test) 供給者がシステムを現地の稼働環境で機能及び性能の全てあるいは一部が機能仕様を満足していることを確認すること。ここでいう「現地」とは、製造販売業者等が当該のシステムを設置する予定の場所をいう。 工場出荷試験(FAT，Factory Acceptance Test) 供給者がシステムを出荷する前に製作環境で機能及び性能の全てあるいは一部が機能仕様を満足していることを確認すること。 構成設定 コンピュータシステムを利用するにあたってハードウェア及びソフトウェアの構成要素の組み合わせや稼働条件等を設定すること。すなわち、ハードウェアにおいては、システムを構成する、コンピュータ、周辺機器あるいはそれらに組み込まれる部品(ボード等)の組み合わせを設定し、登録すること。ソフトウェアにおいては、プログラムを作成、変更することなく、システムを構成するモジュールの組み合わせ、及びシステムが稼働する条件、パラメータ等を設定し、登録すること。 コンピュータ化システム(Computerized System) コンピュータシステムで統合された工程又は作業、及びコンピュータシステムにより実現される機能を利用する業務プロセス。 コンピュータシステム 特定の機能又は一連の機能を実行するために、設計し、組み立てられたハードウェア及び関連するソフトウェアのグループ。 コンピュータシステムの廃棄の責任者 コンピュータシステムの廃棄を行うための責任者として、製造販売業者等により廃棄計画書において指定された者。 識別構成要素 システムの運用において操作者を識別、特定するために用いられるデータの組み合わせ、もしくは機器とデータの組み合わせ、例えばIDとパスワードの組合せ。 システムアセスメント 開発対象とするコンピュータ化システムのバリデーションにおける検証内容や作成文書等を決定するために、システムのソフトウェアの複雑性や開発方法、当該システムにより製造される製品の安全性や品質への影響の度合い、又は当該システムにより作成、保存される電子記録の重要度、供給者のシステム開発過程での品質保証の状況等を総合的に評価すること。 システム台帳 このガイドラインの管理対象のシステムを適切に管理するため、このガイドラインの対象となるコンピュータ化システムを登録する。記載事項としてはシステム名称、管理番号、バリデーション対象の有無(カテゴリ分類)、システムの担当者等がある。 システムテスト 稼働するために結合された状態でモジュール、プログラムが機能仕様書、設計仕様書通りに機能することを確認すること。 据付時適格性評価(IQ，Installation Qualification) コンピュータ化システムが、設計仕様等に記載されたとおりに据え付けられ、プログラムがインストールされたことを確認し、文書化すること。 性能適格性評価(PQ，Performance Qualification) コンピュータ化システムが稼働時において、要求仕様等に記載されたとおりに機能し、性能を発揮して運転できることを確認し、文書化すること。 設計仕様書(DS，Design Specification) 機能仕様に記載された具体的な機能を実現するコンピュータ化システムを作成するための詳細仕様が記載された文書。ハードウェア仕様書とソフトウェア仕様書に分けられる場合がある。 ハードウェア仕様書：システムを構成するハードウェアの仕様、構成を記述する ソフトウェア仕様書：システムを構成するソフトウェアの詳細機能、構成を記述する 設計時適格性評価(DQ，Design Qualification) 要求仕様書に記載された要求事項が、機能仕様書、設計仕様書等に正しく反映されていることを確認し文書化すること。 ソフトウェアカテゴリ 同程度の信頼性を有するソフトウェアの属すべき範囲。ソフトウェアの性質や特徴を区分する上での基本的な分類。 プログラム仕様書 設計仕様書の機能を実現するためにモジュール、プログラムで実現すべき事項を記述した仕様書。 プログラムテスト モジュール、プログラムが単体でプログラム仕様書通りに機能することを確認すること。 モジュール ソフトウェアを構成する機能の最小単位。 要求仕様書(URS，User Requirement Specification) 指定されたコンピュータ化システムに関する機能上の要求仕様が記載された文書。 リスクアセスメント リスクマネジメントプロセスの中で、リスクに係わる決定を支持する情報を整理する系統だったプロセス。ハザードの特定、及びそれらハザードへの曝露に伴うリスクの分析と評価からなる。 リストア あらかじめ適切な媒体にバックアップしておいた、プログラム、パラメータ、データ等を、再度システムに読み込ませ、システムをバックアップした時点と同様の状態に戻すこと。 その他の用語については、GQP省令、GMP省令及び関連の通知類の用語を参照。
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:329
+    - source_label: MHLW CSV guideline
+      locator: line:330
+    - source_label: MHLW CSV guideline
+      locator: line:331
+    - source_label: MHLW CSV guideline
+      locator: line:332
+    - source_label: MHLW CSV guideline
+      locator: line:333
+    - source_label: MHLW CSV guideline
+      locator: line:334
+    - source_label: MHLW CSV guideline
+      locator: line:335
+    - source_label: MHLW CSV guideline
+      locator: line:336
+    - source_label: MHLW CSV guideline
+      locator: line:337
+    - source_label: MHLW CSV guideline
+      locator: line:338
+    - source_label: MHLW CSV guideline
+      locator: line:339
+    - source_label: MHLW CSV guideline
+      locator: line:340
+    - source_label: MHLW CSV guideline
+      locator: line:341
+    - source_label: MHLW CSV guideline
+      locator: line:342
+    - source_label: MHLW CSV guideline
+      locator: line:343
+    - source_label: MHLW CSV guideline
+      locator: line:344
+    - source_label: MHLW CSV guideline
+      locator: line:345
+    - source_label: MHLW CSV guideline
+      locator: line:346
+    - source_label: MHLW CSV guideline
+      locator: line:347
+    - source_label: MHLW CSV guideline
+      locator: line:348
+    - source_label: MHLW CSV guideline
+      locator: line:349
+    - source_label: MHLW CSV guideline
+      locator: line:350
+    - source_label: MHLW CSV guideline
+      locator: line:351
+    - source_label: MHLW CSV guideline
+      locator: line:352
+    - source_label: MHLW CSV guideline
+      locator: line:353
+    - source_label: MHLW CSV guideline
+      locator: line:354
+    - source_label: MHLW CSV guideline
+      locator: line:355
+    - source_label: MHLW CSV guideline
+      locator: line:356
+    - source_label: MHLW CSV guideline
+      locator: line:357
+    - source_label: MHLW CSV guideline
+      locator: line:358
+    - source_label: MHLW CSV guideline
+      locator: line:359
+    - source_label: MHLW CSV guideline
+      locator: line:360
+    - source_label: MHLW CSV guideline
+      locator: line:361
+    - source_label: MHLW CSV guideline
+      locator: line:362
+    - source_label: MHLW CSV guideline
+      locator: line:363
+    - source_label: MHLW CSV guideline
+      locator: line:364
+    - source_label: MHLW CSV guideline
+      locator: line:365
+    - source_label: MHLW CSV guideline
+      locator: line:366
+    - source_label: MHLW CSV guideline
+      locator: line:367
+    - source_label: MHLW CSV guideline
+      locator: line:368
+    - source_label: MHLW CSV guideline
+      locator: line:369
+    - source_label: MHLW CSV guideline
+      locator: line:370
+    - source_label: MHLW CSV guideline
+      locator: line:371
+    - source_label: MHLW CSV guideline
+      locator: line:372
+    - source_label: MHLW CSV guideline
+      locator: line:373
+    - source_label: MHLW CSV guideline
+      locator: line:374
+    - source_label: MHLW CSV guideline
+      locator: line:375
+    - source_label: MHLW CSV guideline
+      locator: line:376
+    - source_label: MHLW CSV guideline
+      locator: line:377
+    - source_label: MHLW CSV guideline
+      locator: line:378
+    - source_label: MHLW CSV guideline
+      locator: line:379
+    - source_label: MHLW CSV guideline
+      locator: line:380
+    - source_label: MHLW CSV guideline
+      locator: line:381
+    - source_label: MHLW CSV guideline
+      locator: line:382
+    - source_label: MHLW CSV guideline
+      locator: line:383
+    - source_label: MHLW CSV guideline
+      locator: line:384
+    - source_label: MHLW CSV guideline
+      locator: line:385
+    - source_label: MHLW CSV guideline
+      locator: line:386
+    - source_label: MHLW CSV guideline
+      locator: line:387
+    - source_label: MHLW CSV guideline
+      locator: line:388
+    - source_label: MHLW CSV guideline
+      locator: line:389
+    - source_label: MHLW CSV guideline
+      locator: line:390
+    - source_label: MHLW CSV guideline
+      locator: line:391
+    - source_label: MHLW CSV guideline
+      locator: line:392
+    - source_label: MHLW CSV guideline
+      locator: line:393
+    - source_label: MHLW CSV guideline
+      locator: line:394
+    - source_label: MHLW CSV guideline
+      locator: line:395
+    - source_label: MHLW CSV guideline
+      locator: line:396
+    - source_label: MHLW CSV guideline
+      locator: line:397
+    - source_label: MHLW CSV guideline
+      locator: line:398
+    - source_label: MHLW CSV guideline
+      locator: line:399
+    - source_label: MHLW CSV guideline
+      locator: line:400
+    - source_label: MHLW CSV guideline
+      locator: line:401
+    - source_label: MHLW CSV guideline
+      locator: line:402
+    children: []
+  - nid: annex1
+    kind: annex
+    kind_raw: 別紙
+    num: 別紙1
+    ord: 267
+    heading: コンピュータ化システムのライフサイクルモデル
+    text: 画像1 (36KB)
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:399
+    children: []
+    data:
+      parser: mhlw_csv_annex_adapter
+      source_format: html_image_reference
+      extractable_text: false
+      column_reconstruction: false
+      deferred_reason: HTML本文には画像リンク表示のみが残るため、内容テキスト化には画像取得/OCRが必要
+  - nid: annex2
+    kind: annex
+    kind_raw: 別紙
+    num: 別紙2
+    ord: 268
+    heading: カテゴリ分類表と対応例
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: MHLW CSV guideline
+      locator: line:401
+    children:
+    - nid: annex2.tbl1
+      kind: table
+      kind_raw: table
+      num: '1'
+      ord: 269
+      heading: カテゴリ分類表
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - &id001
+        source_label: MHLW CSV guideline
+        locator: html_table:e000000542
+      children:
+      - nid: annex2.tbl1.tblh
+        kind: table_header
+        kind_raw: table_header
+        num: null
+        ord: 270
+        heading: null
+        text: category_no | category_name | content | content_detail | development_plan | system_assessment | system_registry | urs | fs | ds | supplier_audit | acceptance_test | validation_plan_report | dq | iq | oq | pq | sop | document_control | remarks
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - *id001
+        children:
+        - nid: annex2.tbl1.tblh.tblr1
+          kind: table_row
+          kind_raw: table_row
+          num: '1'
+          ord: 271
+          heading: null
+          text: カテゴリ | カテゴリ | 内容 | 内容 | 開発計画書 | システムアセスメント | システム台帳登録 | 要求仕様書(URS) | 機能仕様書(FS) | 設計仕様書(DS) | 供給者監査 | 受入試験 | バリデーション計画書・報告書 | 設計時適格性評価(DQ) | 据付時適格性評価(IQ) | 運転時適格性評価(OQ) | 性能適格性評価(PQ) | 標準操作手順書 | 文書管理 | 備考
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000542:row:1
+          children: []
+          data:
+            cells:
+            - カテゴリ
+            - カテゴリ
+            - 内容
+            - 内容
+            - 開発計画書
+            - システムアセスメント
+            - システム台帳登録
+            - 要求仕様書(URS)
+            - 機能仕様書(FS)
+            - 設計仕様書(DS)
+            - 供給者監査
+            - 受入試験
+            - バリデーション計画書・報告書
+            - 設計時適格性評価(DQ)
+            - 据付時適格性評価(IQ)
+            - 運転時適格性評価(OQ)
+            - 性能適格性評価(PQ)
+            - 標準操作手順書
+            - 文書管理
+            - 備考
+            columns: &id002
+            - category_no
+            - category_name
+            - content
+            - content_detail
+            - development_plan
+            - system_assessment
+            - system_registry
+            - urs
+            - fs
+            - ds
+            - supplier_audit
+            - acceptance_test
+            - validation_plan_report
+            - dq
+            - iq
+            - oq
+            - pq
+            - sop
+            - document_control
+            - remarks
+            column_reconstruction: html_table_cells
+            semantic_reconstruction_warning: non_data_row_not_semantic_record
+        - nid: annex2.tbl1.tblh.tblr2
+          kind: table_row
+          kind_raw: table_row
+          num: '2'
+          ord: 272
+          heading: null
+          text: 1 | 基盤ソフト | ・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア | ・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア | ○1 | ○1 | ○1 | ○1 | ○1 | ○1 | ― | ○1 | ○1 | ― | ◎2 | ○1 | ○1 | ○1 | ○1 | 1 アプリケーションに含めて作成、実施(単独で作成する必要はない)2 インストールの確認、バージョン・製造番号等の記録
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000542:row:2
+          children: []
+          data:
+            cells:
+            - '1'
+            - 基盤ソフト
+            - ・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア
+            - ・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア
+            - ○1
+            - ○1
+            - ○1
+            - ○1
+            - ○1
+            - ○1
+            - ―
+            - ○1
+            - ○1
+            - ―
+            - ◎2
+            - ○1
+            - ○1
+            - ○1
+            - ○1
+            - 1 アプリケーションに含めて作成、実施(単独で作成する必要はない)2 インストールの確認、バージョン・製造番号等の記録
+            columns: *id002
+            column_reconstruction: html_table_cells
+            semantic_record_id: csv_annex2.category1
+        - nid: annex2.tbl1.tblh.tblr3
+          kind: table_row
+          kind_raw: table_row
+          num: '3'
+          ord: 273
+          heading: null
+          text: 2 |  | このカテゴリは設定しない | このカテゴリは設定しない | ― | ― | ― | ― | ― | ― |  | ― | ― | ― | ― | ― | ― | ― | ― | GAMP5との整合性を考慮し使用しない
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000542:row:3
+          children: []
+          data:
+            cells:
+            - '2'
+            - ''
+            - このカテゴリは設定しない
+            - このカテゴリは設定しない
+            - ―
+            - ―
+            - ―
+            - ―
+            - ―
+            - ―
+            - ''
+            - ―
+            - ―
+            - ―
+            - ―
+            - ―
+            - ―
+            - ―
+            - ―
+            - GAMP5との整合性を考慮し使用しない
+            columns: *id002
+            column_reconstruction: html_table_cells
+            semantic_record_id: csv_annex2.category2
+        - nid: annex2.tbl1.tblh.tblr4
+          kind: table_row
+          kind_raw: table_row
+          num: '4'
+          ord: 274
+          heading: null
+          text: 3 | 構成設定していないソフトウェア | 商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる) | 製造設備、分析機器、製造支援設備等に搭載されるシステム | ◎ | ◎ | ◎ | ◎3 | △ | ― | △ | ― | ◎3 | ― | ◎2 | △ | ◎3 | ◎3 | ◎ | 3 設備に合わせて仕様の設定及び機能の検証を行うことで差し支えない。単純なシステムに関しては校正で代用することも可
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000542:row:4
+          children: []
+          data:
+            cells:
+            - '3'
+            - 構成設定していないソフトウェア
+            - 商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる)
+            - 製造設備、分析機器、製造支援設備等に搭載されるシステム
+            - ◎
+            - ◎
+            - ◎
+            - ◎3
+            - △
+            - ―
+            - △
+            - ―
+            - ◎3
+            - ―
+            - ◎2
+            - △
+            - ◎3
+            - ◎3
+            - ◎
+            - 3 設備に合わせて仕様の設定及び機能の検証を行うことで差し支えない。単純なシステムに関しては校正で代用することも可
+            columns: *id002
+            column_reconstruction: html_table_cells
+            semantic_record_id: csv_annex2.category3
+        - nid: annex2.tbl1.tblh.tblr5
+          kind: table_row
+          kind_raw: table_row
+          num: '5'
+          ord: 275
+          heading: null
+          text: '3 |  | 商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる) | 単独のコンピュータシステム | ◎ | ◎ | ◎ | ◎ | ― | ― | △ | ― | ◎ | ― | ◎2 | ― | ◎ | ◎ | ◎ | '
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000542:row:5
+          children: []
+          data:
+            cells:
+            - '3'
+            - ''
+            - 商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる)
+            - 単独のコンピュータシステム
+            - ◎
+            - ◎
+            - ◎
+            - ◎
+            - ―
+            - ―
+            - △
+            - ―
+            - ◎
+            - ―
+            - ◎2
+            - ―
+            - ◎
+            - ◎
+            - ◎
+            - ''
+            columns: *id002
+            column_reconstruction: html_table_cells
+            semantic_record_id: csv_annex2.category3
+        - nid: annex2.tbl1.tblh.tblr6
+          kind: table_row
+          kind_raw: table_row
+          num: '6'
+          ord: 276
+          heading: null
+          text: 4 | 構成設定したソフトウェア | ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする | ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする | ◎ | ◎ | ◎ | ◎ | ○ | ○ | ○ | ○ | ◎ | △ | ◎ | ○ | ◎ | ◎ | ◎ | 設計仕様、システム構築に関する文書は供給者が管理してもよい
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000542:row:6
+          children: []
+          data:
+            cells:
+            - '4'
+            - 構成設定したソフトウェア
+            - ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする
+            - ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする
+            - ◎
+            - ◎
+            - ◎
+            - ◎
+            - ○
+            - ○
+            - ○
+            - ○
+            - ◎
+            - △
+            - ◎
+            - ○
+            - ◎
+            - ◎
+            - ◎
+            - 設計仕様、システム構築に関する文書は供給者が管理してもよい
+            columns: *id002
+            column_reconstruction: html_table_cells
+            semantic_record_id: csv_annex2.category4
+        - nid: annex2.tbl1.tblh.tblr7
+          kind: table_row
+          kind_raw: table_row
+          num: '7'
+          ord: 277
+          heading: null
+          text: 5 | カスタムソフトウェア | 業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む) | 業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む) | ◎ | ◎ | ◎ | ◎ | ◎4 | ◎4 | ◎4 | ○ | ◎ | ◎4 | ◎ | ◎ | ◎ | ◎ | ◎ | 4 単純な機能で、URSのみでシステム設計が可能な場合作成(実施)しなくてもよい
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000542:row:7
+          children: []
+          data:
+            cells:
+            - '5'
+            - カスタムソフトウェア
+            - 業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)
+            - 業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)
+            - ◎
+            - ◎
+            - ◎
+            - ◎
+            - ◎4
+            - ◎4
+            - ◎4
+            - ○
+            - ◎
+            - ◎4
+            - ◎
+            - ◎
+            - ◎
+            - ◎
+            - ◎
+            - 4 単純な機能で、URSのみでシステム設計が可能な場合作成(実施)しなくてもよい
+            columns: *id002
+            column_reconstruction: html_table_cells
+            semantic_record_id: csv_annex2.category5
+        data:
+          columns: *id002
+      data:
+        parser: mhlw_csv_annex2_table_adapter
+        annex_num: 別紙2
+        source_format: mhlw_page2_html_table
+        html_table_id: e000000542
+        column_reconstruction: html_table_cells_with_column_schema
+        column_reconstruction_status: partial
+        reconstructed_columns: *id002
+        row_count: 7
+        semantic_reconstruction: csv_annex2_semantic_records_v1
+        semantic_reconstruction_status: reviewed_candidate
+        semantic_value_legend:
+          ◎:
+            status: required
+            meaning: 必須
+          ○:
+            status: conditional_required
+            meaning: システムアセスメントの結果による(基本的には必要)
+          △:
+            status: conditional_omittable
+            meaning: システムアセスメントの結果による(基本的には省略)
+          ―:
+            status: omittable
+            meaning: 省略可能
+        semantic_value_columns:
+        - development_plan
+        - system_assessment
+        - system_registry
+        - urs
+        - fs
+        - ds
+        - supplier_audit
+        - acceptance_test
+        - validation_plan_report
+        - dq
+        - iq
+        - oq
+        - pq
+        - sop
+        - document_control
+        semantic_records:
+        - record_id: csv_annex2.category1
+          raw_row_nums:
+          - 2
+          category_no: '1'
+          category_name: 基盤ソフト
+          content: ・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア
+          variants:
+          - raw_row_num: 2
+            content_detail: ・カテゴリ3以降のアプリケーションが構築される基盤となるもの(プラットフォーム)・運用環境を管理するソフトウェア
+            semantic_values:
+              development_plan:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              system_assessment:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              system_registry:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              urs:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              fs:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              ds:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              supplier_audit:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              acceptance_test:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              validation_plan_report:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              dq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              iq:
+                raw: ◎2
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '2'
+              oq:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              pq:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              sop:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+              document_control:
+                raw: ○1
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs:
+                - '1'
+            remarks: 1 アプリケーションに含めて作成、実施(単独で作成する必要はない)2 インストールの確認、バージョン・製造番号等の記録
+          footnote_refs:
+          - '1'
+          - '2'
+          review_status: reviewed_candidate
+          promotion_status: deferred
+        - record_id: csv_annex2.category2
+          raw_row_nums:
+          - 3
+          category_no: '2'
+          category_name: ''
+          content: このカテゴリは設定しない
+          variants:
+          - raw_row_num: 3
+            content_detail: このカテゴリは設定しない
+            semantic_values:
+              development_plan:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              system_assessment:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              system_registry:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              urs:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              fs:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              ds:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              supplier_audit:
+                raw: ''
+                symbol: ''
+                status: blank
+                meaning: ''
+                footnote_refs: []
+                semantic_warning: blank_semantic_value
+              acceptance_test:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              validation_plan_report:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              dq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              iq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              oq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              pq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              sop:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              document_control:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+            remarks: GAMP5との整合性を考慮し使用しない
+          footnote_refs: []
+          review_status: reviewed_candidate
+          promotion_status: deferred
+          semantic_warnings:
+          - raw_row_num: 3
+            warning: blank_semantic_value
+          - raw_row_num: 3
+            warning: blank_category_name_preserved
+        - record_id: csv_annex2.category3
+          raw_row_nums:
+          - 4
+          - 5
+          category_no: '3'
+          category_name: 構成設定していないソフトウェア
+          content: 商業ベースで販売されている既製のパッケージソフトウェアで、それ自体は業務プロセスに合わせて構成設定していないもの(実行時のパラメータの入力のみで調整されるアプリケーション等は本カテゴリに含まれる)
+          variants:
+          - raw_row_num: 4
+            content_detail: 製造設備、分析機器、製造支援設備等に搭載されるシステム
+            semantic_values:
+              development_plan:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_assessment:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_registry:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              urs:
+                raw: ◎3
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '3'
+              fs:
+                raw: △
+                symbol: △
+                status: conditional_omittable
+                meaning: システムアセスメントの結果による(基本的には省略)
+                footnote_refs: []
+              ds:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              supplier_audit:
+                raw: △
+                symbol: △
+                status: conditional_omittable
+                meaning: システムアセスメントの結果による(基本的には省略)
+                footnote_refs: []
+              acceptance_test:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              validation_plan_report:
+                raw: ◎3
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '3'
+              dq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              iq:
+                raw: ◎2
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '2'
+              oq:
+                raw: △
+                symbol: △
+                status: conditional_omittable
+                meaning: システムアセスメントの結果による(基本的には省略)
+                footnote_refs: []
+              pq:
+                raw: ◎3
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '3'
+              sop:
+                raw: ◎3
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '3'
+              document_control:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+            remarks: 3 設備に合わせて仕様の設定及び機能の検証を行うことで差し支えない。単純なシステムに関しては校正で代用することも可
+          - raw_row_num: 5
+            content_detail: 単独のコンピュータシステム
+            semantic_values:
+              development_plan:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_assessment:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_registry:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              urs:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              fs:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              ds:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              supplier_audit:
+                raw: △
+                symbol: △
+                status: conditional_omittable
+                meaning: システムアセスメントの結果による(基本的には省略)
+                footnote_refs: []
+              acceptance_test:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              validation_plan_report:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              dq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              iq:
+                raw: ◎2
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '2'
+              oq:
+                raw: ―
+                symbol: ―
+                status: omittable
+                meaning: 省略可能
+                footnote_refs: []
+              pq:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              sop:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              document_control:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+            remarks: ''
+          footnote_refs:
+          - '2'
+          - '3'
+          review_status: reviewed_candidate
+          promotion_status: deferred
+        - record_id: csv_annex2.category4
+          raw_row_nums:
+          - 6
+          category_no: '4'
+          category_name: 構成設定したソフトウェア
+          content: ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする
+          variants:
+          - raw_row_num: 6
+            content_detail: ユーザの業務プロセスに合わせて構成設定したソフトウェア(アプリケーション上で動作するマクロ等を含む)。但し、プログラムを変更した場合はカテゴリ5とする
+            semantic_values:
+              development_plan:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_assessment:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_registry:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              urs:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              fs:
+                raw: ○
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs: []
+              ds:
+                raw: ○
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs: []
+              supplier_audit:
+                raw: ○
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs: []
+              acceptance_test:
+                raw: ○
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs: []
+              validation_plan_report:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              dq:
+                raw: △
+                symbol: △
+                status: conditional_omittable
+                meaning: システムアセスメントの結果による(基本的には省略)
+                footnote_refs: []
+              iq:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              oq:
+                raw: ○
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs: []
+              pq:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              sop:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              document_control:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+            remarks: 設計仕様、システム構築に関する文書は供給者が管理してもよい
+          footnote_refs: []
+          review_status: reviewed_candidate
+          promotion_status: deferred
+        - record_id: csv_annex2.category5
+          raw_row_nums:
+          - 7
+          category_no: '5'
+          category_name: カスタムソフトウェア
+          content: 業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)
+          variants:
+          - raw_row_num: 7
+            content_detail: 業務プロセスに合わせて設計され、プログラムされたソフトウェア(アプリケーション上で動作するマクロ等を含む)
+            semantic_values:
+              development_plan:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_assessment:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              system_registry:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              urs:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              fs:
+                raw: ◎4
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '4'
+              ds:
+                raw: ◎4
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '4'
+              supplier_audit:
+                raw: ◎4
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '4'
+              acceptance_test:
+                raw: ○
+                symbol: ○
+                status: conditional_required
+                meaning: システムアセスメントの結果による(基本的には必要)
+                footnote_refs: []
+              validation_plan_report:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              dq:
+                raw: ◎4
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs:
+                - '4'
+              iq:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              oq:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              pq:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              sop:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+              document_control:
+                raw: ◎
+                symbol: ◎
+                status: required
+                meaning: 必須
+                footnote_refs: []
+            remarks: 4 単純な機能で、URSのみでシステム設計が可能な場合作成(実施)しなくてもよい
+          footnote_refs:
+          - '4'
+          review_status: reviewed_candidate
+          promotion_status: deferred
+        semantic_record_count: 5
+        record_review:
+          status: reviewed_candidate
+          candidate_granularity: semantic_record
+          table_row_promotion: deferred
+          table_row_promotion_reason: HTML table rows are preserved; semantic records need normalized run review before replacing table_row candidates
+          reviewed_records: 5
+    - nid: annex2.tbl2
+      kind: table
+      kind_raw: table
+      num: '2'
+      ord: 278
+      heading: 本ガイドラインの対象外
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - &id003
+        source_label: MHLW CSV guideline
+        locator: html_table:e000000845
+      children:
+      - nid: annex2.tbl2.tblh
+        kind: table_header
+        kind_raw: table_header
+        num: null
+        ord: 279
+        heading: null
+        text: excluded_item | description
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - *id003
+        children:
+        - nid: annex2.tbl2.tblh.tblr1
+          kind: table_row
+          kind_raw: table_row
+          num: '1'
+          ord: 280
+          heading: null
+          text: 本ガイドラインの対象外 | ・電卓、電子時計、表示のみの電磁はかり等、商業ベースで販売されている汎用の機器・製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用されない市販のワープロソフト、表計算ソフト等で、社会一般で広く利用されているパッケージソフトウェア及びPC。なお、それらソフトにより製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用する場合は、本ガイドラインの対象とせず、バージョン番号、PCの機種番号、製造番号の記録等をシステム台帳登録することで良い。
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: MHLW CSV guideline
+            locator: html_table:e000000845:row:1
+          children: []
+          data:
+            cells:
+            - 本ガイドラインの対象外
+            - ・電卓、電子時計、表示のみの電磁はかり等、商業ベースで販売されている汎用の機器・製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用されない市販のワープロソフト、表計算ソフト等で、社会一般で広く利用されているパッケージソフトウェア及びPC。なお、それらソフトにより製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用する場合は、本ガイドラインの対象とせず、バージョン番号、PCの機種番号、製造番号の記録等をシステム台帳登録することで良い。
+            columns: &id004
+            - excluded_item
+            - description
+            column_reconstruction: html_table_cells
+            semantic_record_id: csv_annex2.excluded.r1
+        data:
+          columns: *id004
+      data:
+        parser: mhlw_csv_annex2_table_adapter
+        annex_num: 別紙2
+        source_format: mhlw_page2_html_table
+        html_table_id: e000000845
+        column_reconstruction: html_table_cells_with_column_schema
+        column_reconstruction_status: partial
+        reconstructed_columns: *id004
+        row_count: 1
+        semantic_reconstruction: csv_annex2_semantic_records_v1
+        semantic_reconstruction_status: reviewed_candidate
+        semantic_value_legend: {}
+        semantic_value_columns: []
+        semantic_records:
+        - record_id: csv_annex2.excluded.r1
+          raw_row_nums:
+          - 1
+          excluded_item: 本ガイドラインの対象外
+          description: ・電卓、電子時計、表示のみの電磁はかり等、商業ベースで販売されている汎用の機器・製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用されない市販のワープロソフト、表計算ソフト等で、社会一般で広く利用されているパッケージソフトウェア及びPC。なお、それらソフトにより製造記録の作成や出荷判定等のGQP省令及びGMP省令に係る業務に使用する場合は、本ガイドラインの対象とせず、バージョン番号、PCの機種番号、製造番号の記録等をシステム台帳登録することで良い。
+          review_status: reviewed_candidate
+          promotion_status: deferred
+        semantic_record_count: 1
+        record_review:
+          status: reviewed_candidate
+          candidate_granularity: semantic_record
+          table_row_promotion: deferred
+          table_row_promotion_reason: HTML table rows are preserved; semantic records need normalized run review before replacing table_row candidates
+          reviewed_records: 1
+    data:
+      parser: mhlw_csv_annex_adapter
+      source_format: html_page1_placeholder_and_page2_tables
+      extractable_text: true
+      column_reconstruction: html_table_cells_with_column_schema
+      deferred_reason: HTML本文抽出範囲には表題行のみが残り、表本体行が確認できない
+      table_rows_found: 8
+      annex2_table_adapter: mhlw_csv_annex2_table_adapter
+      annex2_table_source_path: data/human-readable/mhlw/csv_guideline/00tb6573_page2.html
+      column_reconstruction_status: partial
+index:
+  display_name_by_nid:
+    root: document
+    cha1: 総則
+    cha1.p1_1: 目的
+    cha1.p1_2: コンピュータ化システムの取扱い
+    cha1.p1_3: カテゴリ分類
+    cha2: 適用の範囲
+    cha2.i1: item 1
+    cha2.i2: item 2
+    cha2.i3: item 3
+    cha2.i4: item 4
+    cha2.i5: item 5
+    cha2.i6: item 6
+    cha2.i7: item 7
+    cha3: コンピュータ化システムの開発、検証及び運用管理に関する文書の作成
+    cha3.i1: item 1
+    cha3.i1.si1: subitem 1
+    cha3.i1.si2: subitem 2
+    cha3.i1.si3: subitem 3
+    cha3.i1.si4: subitem 4
+    cha3.i1.si1_2: subitem
+    cha3.i1.si2_2: subitem
+    cha3.i1.si3_2: subitem
+    cha3.i1.si4_2: subitem
+    cha3.i1.si5: subitem
+    cha3.i2: item 2
+    cha3.i3: item 3
+    cha3.i4: item 4
+    cha4: 開発業務
+    cha4.p4_1: 開発計画に関する文書の作成
+    cha4.p4_1.i1: item 1
+    cha4.p4_1.i2: item 2
+    cha4.p4_1.i3: item 3
+    cha4.p4_1.i3.si1: subitem 1
+    cha4.p4_1.i3.si2: subitem 2
+    cha4.p4_1.i3.si1_2: subitem
+    cha4.p4_1.i3.si2_2: subitem
+    cha4.p4_1.i4: item 4
+    cha4.p4_2: 要求仕様に関する文書の作成
+    cha4.p4_2.i1: item 1
+    cha4.p4_2.i2: item 2
+    cha4.p4_2.i3: item 3
+    cha4.p4_2.i3.si1: subitem 1
+    cha4.p4_2.i3.si2: subitem 2
+    cha4.p4_2.i3.si3: subitem 3
+    cha4.p4_2.i3.si4: subitem 4
+    cha4.p4_2.i3.si5: subitem 5
+    cha4.p4_2.i4: item 4
+    cha4.p4_2.i4.si1: subitem 1
+    cha4.p4_2.i4.si2: subitem 2
+    cha4.p4_2.i5: item 5
+    cha4.p4_2.i6: item 6
+    cha4.p4_2.i6.si1: subitem 1
+    cha4.p4_2.i6.si2: subitem 2
+    cha4.p4_2.i7: item 7
+    cha4.p4_3: システムアセスメントの実施
+    cha4.p4_3.i1: item 1
+    cha4.p4_3.i2: item 2
+    cha4.p4_3.i3: item 3
+    cha4.p4_4: 機能仕様に関する文書の作成
+    cha4.p4_5: 設計仕様に関する文書の作成
+    cha4.p4_5_1: ハードウェア設計仕様
+    cha4.p4_5_1.i1: item 1
+    cha4.p4_5_1.i2: item 2
+    cha4.p4_5_1.i3: item 3
+    cha4.p4_5_1.i4: item 4
+    cha4.p4_5_1.i5: item 5
+    cha4.p4_5_1.i5.si1: subitem 1
+    cha4.p4_5_1.i5.si2: subitem 2
+    cha4.p4_5_1.i6: item 6
+    cha4.p4_5_2: ソフトウェア設計仕様
+    cha4.p4_5_2.i1: item 1
+    cha4.p4_5_2.i2: item 2
+    cha4.p4_5_2.i3: item 3
+    cha4.p4_5_2.i4: item 4
+    cha4.p4_5_2.i5: item 5
+    cha4.p4_5_2.i6: item 6
+    cha4.p4_6: プログラムの作成及びプログラムテスト
+    cha4.p4_6_1: プログラムの作成
+    cha4.p4_6_1.i1: item 1
+    cha4.p4_6_1.i2: item 2
+    cha4.p4_6_2: プログラムテストの実施
+    cha4.p4_6_2.i1: item 1
+    cha4.p4_6_2.i2: item 2
+    cha4.p4_6_2.i3: item 3
+    cha4.p4_7: システムテスト
+    cha4.p4_7_1: システムテストに関する文書の作成
+    cha4.p4_7_1.i1: item 1
+    cha4.p4_7_1.i2: item 2
+    cha4.p4_7_1.i3: item 3
+    cha4.p4_7_1.i4: item 4
+    cha4.p4_7_1.i5: item 5
+    cha4.p4_7_1.i6: item 6
+    cha4.p4_7_2: システムテストの実施
+    cha4.p4_7_2.i1: item 1
+    cha4.p4_7_2.i2: item 2
+    cha4.p4_7_2.i2.si1: subitem 1
+    cha4.p4_7_2.i2.si2: subitem 2
+    cha4.p4_8: 受入試験
+    cha5: 検証業務
+    cha5.p5_1: バリデーションの全体計画に関する文書の作成
+    cha5.p5_1.i1: item 1
+    cha5.p5_1.i2: item 2
+    cha5.p5_1.i3: item 3
+    cha5.p5_1.i3.si1: subitem 1
+    cha5.p5_1.i3.si2: subitem 2
+    cha5.p5_1.i4: item 4
+    cha5.p5_1.i5: item 5
+    cha5.p5_1.i5.si1: subitem 1
+    cha5.p5_1.i6: item 6
+    cha5.p5_1.i7: item 7
+    cha5.p5_2: 設計時適格性評価(DQ)
+    cha5.p5_2_1: 設計時適格性評価の計画に関する文書の作成
+    cha5.p5_2_1.i1: item 1
+    cha5.p5_2_1.i2: item 2
+    cha5.p5_2_1.i3: item 3
+    cha5.p5_2_1.i4: item 4
+    cha5.p5_2_1.i5: item 5
+    cha5.p5_2_2: 設計時適格性評価の実施
+    cha5.p5_2_2.i1: item 1
+    cha5.p5_2_2.i2: item 2
+    cha5.p5_2_3: 設計時適格性評価の報告に関する文書の作成
+    cha5.p5_2_3.i1: item 1
+    cha5.p5_2_3.i2: item 2
+    cha5.p5_2_3.i3: item 3
+    cha5.p5_3: 据付時適格性評価(IQ)
+    cha5.p5_3_1: 据付時適格性評価の計画に関する文書の作成
+    cha5.p5_3_1.i1: item 1
+    cha5.p5_3_1.i2: item 2
+    cha5.p5_3_1.i3: item 3
+    cha5.p5_3_1.i4: item 4
+    cha5.p5_3_1.i5: item 5
+    cha5.p5_3_1.i6: item 6
+    cha5.p5_3_1.i7: item 7
+    cha5.p5_3_1.i8: item 8
+    cha5.p5_3_1.i9: item 9
+    cha5.p5_3_1.i10: item 10
+    cha5.p5_3_2: 据付時適格性評価の実施
+    cha5.p5_3_2.i1: item 1
+    cha5.p5_3_2.i1.si1: subitem 1
+    cha5.p5_3_2.i1.si2: subitem 2
+    cha5.p5_3_2.i2: item 2
+    cha5.p5_3_2.i2.si1: subitem 1
+    cha5.p5_3_2.i2.si2: subitem 2
+    cha5.p5_3_3: 据付時適格性評価の報告に関する文書の作成
+    cha5.p5_3_3.i1: item 1
+    cha5.p5_3_3.i2: item 2
+    cha5.p5_3_3.i3: item 3
+    cha5.p5_4: 運転時適格性評価(OQ)
+    cha5.p5_4_1: 運転時適格性評価の計画に関する文書の作成
+    cha5.p5_4_1.i1: item 1
+    cha5.p5_4_1.i2: item 2
+    cha5.p5_4_1.i3: item 3
+    cha5.p5_4_1.i4: item 4
+    cha5.p5_4_1.i5: item 5
+    cha5.p5_4_2: 運転時適格性評価の実施
+    cha5.p5_4_2.i1: item 1
+    cha5.p5_4_2.i2: item 2
+    cha5.p5_4_3: 運転時適格性評価の報告に関する文書の作成
+    cha5.p5_4_3.i1: item 1
+    cha5.p5_4_3.i2: item 2
+    cha5.p5_4_3.i3: item 3
+    cha5.p5_5: 性能適格性評価(PQ)
+    cha5.p5_5_1: 性能適格性評価の計画に関する文書の作成
+    cha5.p5_5_1.i1: item 1
+    cha5.p5_5_1.i2: item 2
+    cha5.p5_5_1.i3: item 3
+    cha5.p5_5_1.i4: item 4
+    cha5.p5_5_1.i5: item 5
+    cha5.p5_5_2: 性能適格性評価の実施
+    cha5.p5_5_2.i1: item 1
+    cha5.p5_5_2.i2: item 2
+    cha5.p5_5_3: 性能適格性評価の報告に関する文書の作成
+    cha5.p5_5_3.i1: item 1
+    cha5.p5_5_3.i2: item 2
+    cha5.p5_5_3.i3: item 3
+    cha5.p5_6: 適格性評価の一部省略と引用
+    cha5.p5_6.i1: item 1
+    cha5.p5_6.i2: item 2
+    cha5.p5_7: バリデーションの全体報告に関する文書の作成
+    cha6: 運用管理業務
+    cha6.p6_1: 運用管理に関する文書の作成
+    cha6.p6_1.i1: item 1
+    cha6.p6_1.i1.si1: subitem 1
+    cha6.p6_1.i1.si2: subitem 2
+    cha6.p6_1.i2: item 2
+    cha6.p6_1.i3: item 3
+    cha6.p6_1.i3.si1: subitem 1
+    cha6.p6_1.i3.si2: subitem 2
+    cha6.p6_1.i3.si3: subitem 3
+    cha6.p6_1.i4: item 4
+    cha6.p6_1.i4.si1: subitem 1
+    cha6.p6_1.i4.si2: subitem 2
+    cha6.p6_1.i4.si3: subitem 3
+    cha6.p6_1.i5: item 5
+    cha6.p6_1.i6: item 6
+    cha6.p6_1.i6.si1: subitem 1
+    cha6.p6_1.i6.si2: subitem 2
+    cha6.p6_1.i6.si3: subitem 3
+    cha6.p6_1.i7: item 7
+    cha6.p6_1.i7.si1: subitem 1
+    cha6.p6_1.i7.si2: subitem 2
+    cha6.p6_1.i7.si3: subitem 3
+    cha6.p6_1.i7.si4: subitem 4
+    cha6.p6_1.i7.si5: subitem 5
+    cha6.p6_1.i7.si6: subitem 6
+    cha6.p6_1.i8: item 8
+    cha6.p6_1.i9: item 9
+    cha6.p6_2: コンピュータ化システムの操作の手順に関する文書の作成
+    cha6.p6_2.i1: item 1
+    cha6.p6_2.i2: item 2
+    cha6.p6_2.i3: item 3
+    cha6.p6_2.i4: item 4
+    cha6.p6_2.i5: item 5
+    cha6.p6_3: 保守点検事項の実施
+    cha6.p6_3.i1: item 1
+    cha6.p6_3.i2: item 2
+    cha6.p6_4: セキュリティ管理の実施
+    cha6.p6_4.i1: item 1
+    cha6.p6_4.i2: item 2
+    cha6.p6_4.i3: item 3
+    cha6.p6_4.i4: item 4
+    cha6.p6_5: バックアップ及びリストア
+    cha6.p6_5.i1: item 1
+    cha6.p6_5.i2: item 2
+    cha6.p6_5.i3: item 3
+    cha6.p6_6: 変更の管理
+    cha6.p6_6.i1: item 1
+    cha6.p6_6.i2: item 2
+    cha6.p6_6.i3: item 3
+    cha6.p6_6.i4: item 4
+    cha6.p6_7: 逸脱(システムトラブル)の管理
+    cha6.p6_7.i1: item 1
+    cha6.p6_7.i2: item 2
+    cha6.p6_7.i3: item 3
+    cha6.p6_8: 教育訓練
+    cha6.p6_8_1: 教育訓練計画の作成
+    cha6.p6_8_2: 教育訓練の実施
+    cha6.p6_8_2.i1: item 1
+    cha6.p6_8_2.i2: item 2
+    cha6.p6_8_3: 教育訓練の記録の保管
+    cha7: 自己点検
+    cha7.p7_1: 自己点検の実施
+    cha7.p7_1.i1: item 1
+    cha7.p7_1.i2: item 2
+    cha7.p7_1.i3: item 3
+    cha7.p7_2: 改善措置の実施
+    cha8: コンピュータシステムの廃棄
+    cha8.p8_1: コンピュータシステムの廃棄の計画に関する文書の作成
+    cha8.p8_1.i1: item 1
+    cha8.p8_1.i1.si1: subitem 1
+    cha8.p8_1.i1.si2: subitem 2
+    cha8.p8_1.i2: item 2
+    cha8.p8_1.i3: item 3
+    cha8.p8_1.i4: item 4
+    cha8.p8_1.i5: item 5
+    cha8.p8_1.i5.si1: subitem 1
+    cha8.p8_1.i5.si2: subitem 2
+    cha8.p8_1.i5.si3: subitem 3
+    cha8.p8_1.i5.si4: subitem 4
+    cha8.p8_1.i5.si1_2: subitem
+    cha8.p8_1.i5.si2_2: subitem
+    cha8.p8_1.i5.si3_2: subitem
+    cha8.p8_1.i5.si4_2: subitem
+    cha8.p8_1.i6: item 6
+    cha8.p8_2: コンピュータシステムの廃棄記録の作成
+    cha9: 文書及び記録の管理
+    cha10: 用語集
+    annex1: コンピュータ化システムのライフサイクルモデル
+    annex2: カテゴリ分類表と対応例
+    annex2.tbl1: カテゴリ分類表
+    annex2.tbl1.tblh: table_header
+    annex2.tbl1.tblh.tblr1: table_row 1
+    annex2.tbl1.tblh.tblr2: table_row 2
+    annex2.tbl1.tblh.tblr3: table_row 3
+    annex2.tbl1.tblh.tblr4: table_row 4
+    annex2.tbl1.tblh.tblr5: table_row 5
+    annex2.tbl1.tblh.tblr6: table_row 6
+    annex2.tbl1.tblh.tblr7: table_row 7
+    annex2.tbl2: 本ガイドラインの対象外
+    annex2.tbl2.tblh: table_header
+    annex2.tbl2.tblh.tblr1: table_row 1

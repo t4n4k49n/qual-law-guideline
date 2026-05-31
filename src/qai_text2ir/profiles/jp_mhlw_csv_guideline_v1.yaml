@@ -28,3 +28,9 @@ marker_types:
     kind_raw: "1."
     match: '^(?P<n>[0-9０-９]{1,2})[．.](?![0-9０-９])\s*'
     num_group: n
+  - id: section_decimal
+    kind: paragraph
+    kind_raw: "1.1"
+    match: '^(?P<n>[0-9０-９]{1,2}[．.][0-9０-９]{1,2}(?:[．.][0-9０-９]{1,2})?)\s*'
+    num_group: n
+    heading_from_remainder: true

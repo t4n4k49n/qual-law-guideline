@@ -63,7 +63,12 @@ def test_csv_profile_preserves_expected_nested_items(tmp_path: Path) -> None:
     by_kind_num = {(node.kind, node.num): node for node in nodes}
 
     assert by_kind_num[("chapter", "1")].heading == "総則"
-    assert by_kind_num[("paragraph", "1.3")].text.startswith("カテゴリ分類")
+    assert by_kind_num[("paragraph", "1.1")].heading == "目的"
+    assert by_kind_num[("paragraph", "1.1")].text.startswith("このガイドラインは")
+    assert by_kind_num[("paragraph", "1.3")].heading == "カテゴリ分類"
+    assert by_kind_num[("paragraph", "1.3")].text.startswith("このガイドラインの適用を受ける")
+    assert by_kind_num[("paragraph", "4.1")].heading == "開発計画に関する文書の作成"
+    assert by_kind_num[("paragraph", "4.1")].text.startswith("製造販売業者等は")
     assert by_kind_num[("chapter", "3")].heading == "コンピュータ化システムの開発、検証及び運用管理に関する文書の作成"
     assert any(node.kind == "item" and node.num == "7" for node in nodes)
     assert any(node.kind == "subitem" and node.num == "1" for node in nodes)

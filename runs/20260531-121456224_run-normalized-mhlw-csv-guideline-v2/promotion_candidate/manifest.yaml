@@ -1,0 +1,40 @@
+schema: qai.run_manifest.v1
+run_id: 20260531-121456224_run-normalized-mhlw-csv-guideline-v2
+created_at: '2026-05-31T03:15:14Z'
+git:
+  commit: a4f72663ef186fa48c7a82829a5e4a34a4bb8b06
+  branch: run/normalized-mhlw-csv-guideline-v2
+input:
+  path: runs\20260531-121456224_run-normalized-mhlw-csv-guideline-v2\00tb6573.extracted.txt
+  checksum: 6716b39dca7bb72ad7fa668c88b22df62478bcaf4f210777c3da969b06b06aee
+command:
+  argv: .venv\Scripts\python.exe -m qai_text2ir.cli bundle --input runs/20260531-121456224_run-normalized-mhlw-csv-guideline-v2/00tb6573.extracted.txt --out-dir runs/20260531-121456224_run-normalized-mhlw-csv-guideline-v2/promotion_candidate --doc-id jp_mhlw_csv_guideline_20101021 --title '医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン' --short-title 'CSVガイドライン' --doc-type guideline --source-url https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573 --source-format html --retrieved-at 2026-05-23 --jurisdiction JP --language ja --family JP_GUIDELINE --parser-profile-id jp_mhlw_csv_guideline_v1 --candidate-visibility-profile-id jp_mhlw_csv_guideline_visibility_v1 --strict --write-manifest --overwrite-manifest
+outputs:
+  doc_id: jp_mhlw_csv_guideline_20101021
+  files:
+  - jp_mhlw_csv_guideline_20101021.regdoc_ir.yaml
+  - jp_mhlw_csv_guideline_20101021.parser_profile.yaml
+  - jp_mhlw_csv_guideline_20101021.regdoc_profile.yaml
+  - jp_mhlw_csv_guideline_20101021.meta.yaml
+parser_profile:
+  id: jp_mhlw_csv_guideline_v1
+  resolved_sha256: bdb2908ece5cd1e45c43ffd75c15a04e8f03eaf499d44d0f314b4d7d2de70662
+  provenance:
+  - profile_id: jp_guideline_default_v1
+    internal_id: jp_guideline_default_v1
+    path: src\qai_text2ir\profiles\jp_guideline_default_v1.yaml
+    sha256: ca5708eae61661d6ac29be0dca5b420a03b87ba8ca4ec64a39960dc0ad38a8ce
+    extends: ''
+  - profile_id: jp_mhlw_csv_guideline_v1
+    internal_id: jp_mhlw_csv_guideline_v1
+    path: src\qai_text2ir\profiles\jp_mhlw_csv_guideline_v1.yaml
+    sha256: c1cb5b8f85b2d60e880eb2d911702e43830fbeac683227c412ce1bbd10887f91
+    extends: jp_guideline_default_v1
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []
