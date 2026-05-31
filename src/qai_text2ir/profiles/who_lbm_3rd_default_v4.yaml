@@ -8,7 +8,7 @@ applies_to:
 language: en
 source_label: "WHO LBM"
 context_root_kind: chapter
-structural_kinds: ["part", "chapter", "annex", "figure"]
+structural_kinds: ["part", "chapter", "annex", "section", "figure"]
 
 preprocess:
   skip_blocks:
@@ -72,6 +72,11 @@ marker_types:
     kind_raw: "Annex"
     match: '(?i)^ANNEX\s+(?P<n>\d+)(?!\s*[.:\-–—]\s*$)\s*(?:[.:\-–—])?\s*'
     num_group: n
+  - id: who_lbm_unnumbered_section
+    kind: section
+    kind_raw: null
+    heading_from_remainder: true
+    match: '^(?=(?:Introduction|Specimens for which there is limited information|Risk assessment and genetically modified microorganisms|Code of practice|Access|Personal protection|Procedures|Laboratory working areas|Biosafety management|Laboratory design and facilities|Design features|Laboratory equipment|Essential biosafety equipment|Health and medical surveillance|at Biosafety Level 1|at Biosafety Level 2|Training|Waste handling|Decontamination|Handling and disposal procedures for contaminated materials and wastes|Sharps|Contaminated \(potentially infectious\) materials for autoclaving and reuse|Contaminated \(potentially infectious\) materials for disposal|Chemical, fire, electrical, radiation and equipment safety|Animal facility – Biosafety Level 1|Animal facility – Biosafety Level 2|Animal facility – Biosafety Level 3|Animal facility – Biosafety Level 4|Invertebrates|International transport regulations|The basic triple packaging system|Spill clean-up procedure|Biosafety considerations for biological expression systems|Biosafety considerations for expression vectors|Viral vectors for gene transfer|Transgenic and “knock-out” animals|Transgenic plants|Risk assessments for genetically modified organisms|Further considerations|Routes of exposure|Storage of chemicals|General rules regarding chemical incompatibilities|Toxic effects of chemicals|Explosive chemicals|Chemical spills|Compressed and liquefied gases|Fire hazards|Electrical hazards|Noise|Ionizing radiation|Biosafety officer|Biosafety committee|Engineering and building maintenance services|Cleaning \(domestic\) services|Laboratory premises|Storage facilities|Sanitation and staff facilities|Heating and ventilation|Lighting|Services|Laboratory biosecurity|Fire prevention and fire protection|Flammable liquid storage|Health and safety of staff|Infectious materials|Chemicals and radioactive substances)$)'
   - id: item_num_dot
     kind: item
     kind_raw: "1."
@@ -91,10 +96,12 @@ structure:
   root:
     children: [part, chapter, annex]
   part:
-    children: [chapter, item, subitem, table, figure, preformatted, note, history]
+    children: [chapter, section, item, subitem, table, figure, preformatted, note, history]
   chapter:
-    children: [item, subitem, table, figure, preformatted, note, history]
+    children: [section, item, subitem, table, figure, preformatted, note, history]
   annex:
+    children: [section, item, subitem, table, figure, preformatted, note, history]
+  section:
     children: [item, subitem, table, figure, preformatted, note, history]
   item:
     children: [subitem, note, history]
