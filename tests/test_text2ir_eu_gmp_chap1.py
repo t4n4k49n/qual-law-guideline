@@ -208,3 +208,66 @@ def test_preformatted_block_still_repairs_hyphen_wrap(tmp_path: Path) -> None:
 def test_profile_loader_defaults_to_eu_gmp_v2() -> None:
     profile = load_parser_profile(family="EU_GMP")
     assert profile["id"] == "eu_gmp_chap1_default_v2"
+
+
+def test_eu_gmp_chapter2_sections_and_responsibility_items(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "Chapter 2: Personnel",
+            "Principle",
+            "The correct manufacture of medicinal products relies upon people.",
+            "General",
+            "2.1 The manufacturer should have an adequate number of personnel.",
+            "Key Personnel",
+            "2.6 The duties of the Qualified Person(s) are described in Article 51 of Directive 2001/83/EC1,",
+            "and can be summarised as follows:",
+            "a) for medicinal products manufactured within the European Union, a Qualified Person must",
+            "ensure that each batch has been manufactured and checked in accordance with the marketing",
+            "authorisation2;",
+            "The persons responsible for these duties must meet the qualification requirements laid down",
+            "in Article 49 3 of the same Directive.",
+            "(b) in the case of medicinal products coming from third countries, a Qualified Person must ensure",
+            "that each production batch has undergone tests.",
+            "2.7 The head of the Production Department generally has the following responsibilities:",
+            "      i.   To ensure that products are produced and stored according to the appropriate",
+            "           documentation in order to obtain the required quality;",
+            "     ii.   To approve the instructions relating to production operations.",
+            "1",
+            "    Article 55 of Directive 2001/82/EC",
+        ]
+    )
+    input_path = tmp_path / "eu_gmp_ch2.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+    parser_profile = load_parser_profile(path=Path("src/qai_text2ir/profiles/eu_gmp_chap2_default_v1.yaml"))
+
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="eu_gmp_ch2_sample",
+        parser_profile=parser_profile,
+    )
+    ir_dict = ir_doc.to_dict()
+    verify_document(ir_dict)
+
+    nodes = _flatten(ir_dict["content"])
+    chapter = next(n for n in nodes if n["kind"] == "chapter")
+    sections = [n for n in nodes if n["kind"] == "section"]
+    para_27 = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "2.7")
+    para_26 = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "2.6")
+    item_i = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "i")
+    item_ii = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "ii")
+    item_a = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "a")
+    item_b = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "b")
+    all_text = "\n".join(n.get("text") or "" for n in nodes)
+
+    assert chapter.get("heading") == "Personnel"
+    assert [s.get("heading") for s in sections[:3]] == ["Principle", "General", "Key Personnel"]
+    assert item_i["nid"].startswith(para_27["nid"])
+    assert item_ii["nid"].startswith(para_27["nid"])
+    assert "documentation in order to obtain the required quality" in (item_i.get("text") or "")
+    assert "\n" not in (item_i.get("text") or "")
+    assert item_a["nid"].startswith(para_26["nid"])
+    assert item_b["nid"].startswith(para_26["nid"])
+    assert "Article 55 of Directive 2001/82/EC" not in all_text
+    assert "Directive 2001/83/EC1" not in (para_26.get("text") or "")
+    assert "authorisation2" not in (item_a.get("text") or "")
+    assert "Article 49 3" not in (para_26.get("text") or "")
