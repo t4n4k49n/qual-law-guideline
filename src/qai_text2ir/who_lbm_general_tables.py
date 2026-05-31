@@ -27,6 +27,7 @@ class RawFixedWidthTableSpec:
     slices: List[Tuple[int, Optional[int]]]
     end_marker: str
     parent_heading: str
+    unindented_single_column_lines: bool = False
 
 
 TABLE_SPECS: List[TableSpec] = [
@@ -298,6 +299,7 @@ RAW_FIXED_WIDTH_TABLE_SPECS: List[RawFixedWidthTableSpec] = [
         slices=[(0, 26), (26, 57), (57, None)],
         end_marker="ANNEX 5",
         parent_heading="Equipment safety",
+        unindented_single_column_lines=True,
     ),
     RawFixedWidthTableSpec(
         no="A5-1",
@@ -390,9 +392,9 @@ def _raw_table_block(raw_lines: List[str], caption_idx: int, caption: str, end_m
     caption_token = _normalized_text(caption)
     for idx in range(caption_idx + 1, len(raw_lines)):
         line = raw_lines[idx]
-        if end_marker in line:
-            break
         stripped = line.strip()
+        if _normalized_text(stripped).startswith(_normalized_text(end_marker)):
+            break
         if not stripped:
             continue
         if _normalized_text(stripped) == caption_token:
@@ -413,6 +415,13 @@ def _raw_table_block(raw_lines: List[str], caption_idx: int, caption: str, end_m
 
 def _split_by_slices(line: str, slices: List[Tuple[int, Optional[int]]]) -> List[str]:
     return [line[start:end].strip() if end is not None else line[start:].strip() for start, end in slices]
+
+
+def _raw_fixed_width_cells(line: str, spec: RawFixedWidthTableSpec) -> List[str]:
+    stripped = line.strip()
+    if spec.unindented_single_column_lines and line == stripped and "  " not in stripped:
+        return [stripped, *["" for _ in spec.columns[1:]]]
+    return _split_by_slices(line, spec.slices)
 
 
 def _table_node(spec: TableSpec, *, parent_nid: str, source_label: str, caption_idx: int, raw_lines: List[str]) -> Node:
@@ -527,7 +536,7 @@ def _raw_fixed_width_table_node(
     )
     table.children.append(header)
     for row_no, (line_idx, line) in enumerate(block, start=1):
-        cells = _split_by_slices(line, spec.slices)
+        cells = _raw_fixed_width_cells(line, spec)
         header.children.append(
             _make_node(
                 nid=f"{header.nid}.tblr{row_no}",
