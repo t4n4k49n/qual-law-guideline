@@ -1,0 +1,195 @@
+schema: qai.parser_profile.v1
+id: who_lbm_3rd_default_v4
+title: WHO LBM 3rd (2004) markers (skip TOC block + part + annex punctuation fix)
+applies_to:
+  family: WHO_LBM
+  jurisdiction: WHO
+  defaults: true
+language: en
+source_label: WHO LBM
+context_root_kind: chapter
+structural_kinds:
+- part
+- chapter
+- annex
+- section
+- figure
+preprocess:
+  skip_blocks:
+  - start_regex: (?i)^\s*Contents\s*$
+    end_regex: (?i)^\s*Foreword\s*$
+    include_start: false
+    include_end: true
+    max_lines: 3000
+  drop_line_regexes:
+  - (?i)^\s*LABORATORY BIOSAFETY MANUAL\s*$
+  - ^(?:•\s*[0-9ivxlcdm]+\s*•)+$
+  - ^\f$
+  - ^\d{1,2}\.\s+.+\s{2,}\d{1,3}\s*$
+  - (?i)^Annex\s+\d+\s+.+\s{2,}\d{1,3}\s*$
+  - (?i)^PART\s+[IVXLCDM]+\.?\s+.+\s{2,}\d{1,3}\s*$
+  - (?i)^References\s{2,}\d{1,3}\s*$
+  - (?i)^Index\s{2,}\d{1,3}\s*$
+  strip_inline_regexes:
+  - •\s*[0-9ivxlcdm]+\s*•
+  use_indent_dedent: true
+  dedent_pop_kinds:
+  - subitem
+  - item
+  drop_repeated_structural_headers:
+    enabled: true
+    kinds:
+    - part
+    - chapter
+    - annex
+  merge_structural_heading_continuations:
+    enabled: true
+    kinds:
+    - chapter
+    - annex
+    - part
+    max_next_line_len: 80
+    max_merge_lines: 2
+    max_blank_lookahead: 2
+  join_mid_sentence_marker_refs_into_prev:
+    enabled: true
+    kinds:
+    - annex
+    max_ref_line_len: 40
+    prev_must_not_end_regex: '[.!?]\s*$'
+    prev_prefer_endwords:
+    - in
+    - to
+    - of
+    - see
+    - as
+    - with
+    - for
+    - from
+    - by
+    - at
+    - 'on'
+  detect_plaintext_tables:
+    enabled: true
+    min_rows: 2
+    max_rows: 80
+    mode: conservative
+  who_lbm_general_tables:
+    enabled: true
+  extract_notes:
+    enabled: true
+    max_lines: 40
+marker_types:
+- id: part_roman
+  kind: part
+  kind_raw: PART
+  match: (?i)^PART\s+(?P<n>[IVXLCDM]+)\.?(?:\s+|$)
+  num_group: n
+- id: chapter_num_dot
+  kind: chapter
+  kind_raw: '1.'
+  match: ^(?P<n>\d{1,2})\.\s+(?=[^.]{3,120}\s*$)(?!.*\b(must|should|shall|may)\b)(?!.*\s{2,}\d{1,3}\s*$)
+  num_group: n
+- id: annex
+  kind: annex
+  kind_raw: Annex
+  match: (?i)^ANNEX\s+(?P<n>\d+)(?!\s*[.:\-–—]\s*$)\s*(?:[.:\-–—])?\s*
+  num_group: n
+- id: who_lbm_unnumbered_section
+  kind: section
+  kind_raw: null
+  heading_from_remainder: true
+  match: ^(?=(?:Introduction|Specimens for which there is limited information|Risk assessment and genetically modified microorganisms|Code of practice|Access|Personal protection|Procedures|Laboratory working areas|Biosafety management|Laboratory design and facilities|Design features|Laboratory equipment|Essential biosafety equipment|Health and medical surveillance|at Biosafety Level 1|at Biosafety Level 2|Training|Waste handling|Decontamination|Handling and disposal procedures for contaminated materials and wastes|Sharps|Contaminated \(potentially infectious\) materials for autoclaving and reuse|Contaminated \(potentially infectious\) materials for disposal|Chemical, fire, electrical, radiation and equipment safety|Animal facility – Biosafety Level 1|Animal facility – Biosafety Level 2|Animal facility – Biosafety Level 3|Animal facility – Biosafety Level 4|Invertebrates|International transport regulations|The basic triple packaging system|Spill clean-up procedure|Biosafety considerations for biological expression systems|Biosafety considerations for expression vectors|Viral vectors for gene transfer|Transgenic and “knock-out” animals|Transgenic plants|Risk assessments for genetically modified organisms|Further considerations|Routes of exposure|Storage of chemicals|General rules regarding chemical incompatibilities|Toxic effects of chemicals|Explosive chemicals|Chemical spills|Compressed and liquefied gases|Fire hazards|Electrical hazards|Noise|Ionizing radiation|Biosafety officer|Biosafety committee|Engineering and building maintenance services|Cleaning \(domestic\) services|Laboratory premises|Storage facilities|Sanitation and staff facilities|Heating and ventilation|Lighting|Services|Laboratory biosecurity|Fire prevention and fire protection|Flammable liquid storage|Health and safety of staff|Infectious materials|Chemicals and radioactive substances)$)
+- id: item_num_dot
+  kind: item
+  kind_raw: '1.'
+  match: ^(?P<n>\d{1,3})\.\s+
+  num_group: n
+- id: item_alpha_upper_dot
+  kind: item
+  kind_raw: A.
+  match: ^(?P<n>[A-Z])\.\s+
+  num_group: n
+- id: bullet
+  kind: subitem
+  kind_raw: •
+  match: ^[•]\s+
+structure:
+  root:
+    children:
+    - part
+    - chapter
+    - annex
+  part:
+    children:
+    - chapter
+    - section
+    - item
+    - subitem
+    - table
+    - figure
+    - preformatted
+    - note
+    - history
+  chapter:
+    children:
+    - section
+    - item
+    - subitem
+    - table
+    - figure
+    - preformatted
+    - note
+    - history
+  annex:
+    children:
+    - section
+    - item
+    - subitem
+    - table
+    - figure
+    - preformatted
+    - note
+    - history
+  section:
+    children:
+    - item
+    - subitem
+    - table
+    - figure
+    - preformatted
+    - note
+    - history
+  item:
+    children:
+    - subitem
+    - note
+    - history
+  subitem:
+    children:
+    - note
+    - history
+  table:
+    children:
+    - table_header
+    - note
+  table_header:
+    children:
+    - table_row
+  table_row:
+    children: []
+  figure:
+    children: []
+  preformatted:
+    children:
+    - note
+  note:
+    children: []
+  history:
+    children: []
+compound_prefix:
+  enabled: false
+  max_depth: 1
+special_parsers:
+  who_lbm_chap8_survey:
+    enabled: true
