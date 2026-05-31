@@ -19,6 +19,16 @@ class TableSpec:
     notes: List[str]
 
 
+@dataclass(frozen=True)
+class RawFixedWidthTableSpec:
+    no: str
+    caption: str
+    columns: List[str]
+    slices: List[Tuple[int, Optional[int]]]
+    end_marker: str
+    parent_heading: str
+
+
 TABLE_SPECS: List[TableSpec] = [
     TableSpec(
         no="1",
@@ -272,6 +282,41 @@ FIGURE_CAPTIONS: Dict[str, str] = {
 }
 
 
+RAW_FIXED_WIDTH_TABLE_SPECS: List[RawFixedWidthTableSpec] = [
+    RawFixedWidthTableSpec(
+        no="A4-1",
+        caption="Table A4-1. Equipment and operations that may create hazards",
+        columns=["Equipment", "Hazard", "How to eliminate or reduce the hazard"],
+        slices=[(0, 17), (17, 44), (44, None)],
+        end_marker="In addition to microbiological hazards",
+        parent_heading="Equipment safety",
+    ),
+    RawFixedWidthTableSpec(
+        no="A4-2",
+        caption="Table A4-2. Common causes of equipment-related accidents",
+        columns=["Accident", "Accident cause", "Reducing or eliminating the hazard"],
+        slices=[(0, 26), (26, 57), (57, None)],
+        end_marker="ANNEX 5",
+        parent_heading="Equipment safety",
+    ),
+    RawFixedWidthTableSpec(
+        no="A5-1",
+        caption="Table A5-1. Chemicals: hazards and precautions",
+        columns=[
+            "Chemical",
+            "Physical properties",
+            "Health hazards",
+            "Fire hazards",
+            "Safety precautions",
+            "Incompatible chemicals / other hazards",
+        ],
+        slices=[(0, 24), (24, 50), (50, 76), (76, 98), (98, 128), (128, None)],
+        end_marker="INDEX",
+        parent_heading="Chemicals: hazards and precautions",
+    ),
+]
+
+
 def _line_span(source_label: str, line_idx: int) -> Dict[str, str]:
     return {"source_label": source_label, "locator": f"line:{line_idx + 1}"}
 
@@ -338,6 +383,36 @@ def _raw_block(raw_lines: List[str], caption_idx: int, max_lines: int = 90) -> L
         if blank_run >= 3 and len(out) > 5:
             break
     return out
+
+
+def _raw_table_block(raw_lines: List[str], caption_idx: int, caption: str, end_marker: str) -> List[Tuple[int, str]]:
+    block: List[Tuple[int, str]] = []
+    caption_token = _normalized_text(caption)
+    for idx in range(caption_idx + 1, len(raw_lines)):
+        line = raw_lines[idx]
+        if end_marker in line:
+            break
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if _normalized_text(stripped) == caption_token:
+            continue
+        if stripped.startswith("• ") and stripped.endswith("•"):
+            continue
+        if stripped in {"LABORATORY BIOSAFETY MANUAL", "ANNEX 4. EQUIPMENT SAFETY", "ANNEX 5. CHEMICALS: HAZARDS AND PRECAUTIONS"}:
+            continue
+        if stripped == "\f":
+            continue
+        if re.fullmatch(r"•\s*\d+\s*•", stripped):
+            continue
+        if stripped.startswith("CHEMICAL") or stripped.startswith("EQUIPMENT") or stripped.startswith("ACCIDENT"):
+            continue
+        block.append((idx, line.rstrip()))
+    return block
+
+
+def _split_by_slices(line: str, slices: List[Tuple[int, Optional[int]]]) -> List[str]:
+    return [line[start:end].strip() if end is not None else line[start:].strip() for start, end in slices]
 
 
 def _table_node(spec: TableSpec, *, parent_nid: str, source_label: str, caption_idx: int, raw_lines: List[str]) -> Node:
@@ -409,6 +484,71 @@ def _table_node(spec: TableSpec, *, parent_nid: str, source_label: str, caption_
     return table
 
 
+def _raw_fixed_width_table_node(
+    spec: RawFixedWidthTableSpec,
+    *,
+    parent_nid: str,
+    source_label: str,
+    caption_idx: int,
+    raw_lines: List[str],
+) -> Node:
+    block = _raw_table_block(raw_lines, caption_idx, spec.caption, spec.end_marker)
+    table_nid = f"{parent_nid}.tbl{spec.no.lower().replace('-', '_')}"
+    table = _make_node(
+        nid=table_nid,
+        kind="table",
+        kind_raw="table",
+        num=spec.no,
+        heading=spec.caption,
+        text=None,
+        source_label=source_label,
+        line_idx=caption_idx,
+        role="structural",
+        data={
+            "parser": PARSER_ID,
+            "table_no": spec.no,
+            "source_format": "fixed_width_line_preserving_table",
+            "cell_reconstruction": "fixed_width_slices_v1",
+            "reconstruction_note": "Each visual source line is preserved as a table_row; blank cells represent visual rowspans/continuations.",
+            "raw_lines": [line for _idx, line in block],
+        },
+    )
+    header = _make_node(
+        nid=f"{table_nid}.tblh",
+        kind="table_header",
+        kind_raw="table_header",
+        num=None,
+        heading=None,
+        text=" | ".join(spec.columns),
+        source_label=source_label,
+        line_idx=caption_idx,
+        role="structural",
+        data={"columns": spec.columns},
+    )
+    table.children.append(header)
+    for row_no, (line_idx, line) in enumerate(block, start=1):
+        cells = _split_by_slices(line, spec.slices)
+        header.children.append(
+            _make_node(
+                nid=f"{header.nid}.tblr{row_no}",
+                kind="table_row",
+                kind_raw="table_row",
+                num=str(row_no),
+                heading=None,
+                text=" | ".join(cells),
+                source_label=source_label,
+                line_idx=line_idx,
+                data={
+                    "parser": PARSER_ID,
+                    "cells": cells,
+                    "raw_line": line,
+                    "visual_row_reconstruction": "fixed_width_line_preserving",
+                },
+            )
+        )
+    return table
+
+
 def _figure_node(no: str, caption: str, *, parent_nid: str, source_label: str, caption_idx: int, raw_lines: List[str]) -> Node:
     return _make_node(
         nid=f"{parent_nid}.fig{no}",
@@ -463,6 +603,16 @@ def _find_nearest_structural_node(root: Node, caption_idx: int) -> Node:
     return best
 
 
+def _find_by_heading(root: Node, heading: str) -> Optional[Node]:
+    wanted = _normalized_text(heading)
+    for _parent, node in _walk_with_parent(root):
+        if node.kind not in {"chapter", "annex", "part", "section", "preamble"}:
+            continue
+        if _normalized_text(str(node.heading or "")) == wanted:
+            return node
+    return None
+
+
 STRIP_PATTERNS: List[Tuple[re.Pattern[str], str]] = [
     (re.compile(r"\s*Table 1\. Classification of infective microorganisms by risk group.*?(?=Laboratory facilities are designated)", re.IGNORECASE | re.DOTALL), " "),
     (re.compile(r"\n?\s{0,2}1\s+Basic\s+.*?BSC, biological safety cabinet; GMT, good microbiological techniques \(see Part IV of this manual\)", re.IGNORECASE | re.DOTALL), ""),
@@ -476,6 +626,9 @@ STRIP_PATTERNS: List[Tuple[re.Pattern[str], str]] = [
     (re.compile(r"\s*Table 13\. General rules for chemical incompatibilities.*?(?=Some solvent vapours are toxic)", re.IGNORECASE | re.DOTALL), " "),
     (re.compile(r"\s*Table 14\. Storage of compressed and liquefied gases.*?(?=For further information see references)", re.IGNORECASE | re.DOTALL), " "),
     (re.compile(r"\s*Table 15\. Types and uses of fire extinguishers.*?(?=For further information see reference)", re.IGNORECASE | re.DOTALL), " "),
+    (re.compile(r"\s*Table A4-1\. Equipment and operations that may create hazards.*?(?=In addition to microbiological hazards)", re.IGNORECASE | re.DOTALL), " "),
+    (re.compile(r"\s*Table A4-2\. Common causes of equipment-related accidents.*?(?=ANNEX 5|$)", re.IGNORECASE | re.DOTALL), " "),
+    (re.compile(r"\s*Table A5-1\. Chemicals: hazards and precautions.*?(?=INDEX)", re.IGNORECASE | re.DOTALL), " "),
 ]
 
 FIGURE_STRIP_PATTERNS = [
@@ -545,7 +698,7 @@ def normalize_who_lbm_general_tables(
 ) -> Dict[str, Any]:
     applied_tables = 0
     applied_figures = 0
-    captions = [spec.caption for spec in TABLE_SPECS] + list(FIGURE_CAPTIONS.values())
+    captions = [spec.caption for spec in TABLE_SPECS] + [spec.caption for spec in RAW_FIXED_WIDTH_TABLE_SPECS] + list(FIGURE_CAPTIONS.values())
 
     _remove_matching_preformatted(root, captions)
     for _parent, node in _walk_with_parent(root):
@@ -559,6 +712,22 @@ def normalize_who_lbm_general_tables(
         target = _find_target_node(root, spec.caption) or _find_nearest_structural_node(root, caption_idx)
         target.children.append(
             _table_node(
+                spec,
+                parent_nid=target.nid,
+                source_label=source_label,
+                caption_idx=caption_idx + line_no_offset,
+                raw_lines=raw_lines,
+            )
+        )
+        applied_tables += 1
+
+    for spec in RAW_FIXED_WIDTH_TABLE_SPECS:
+        caption_idx = _find_caption_idx(raw_lines, spec.caption)
+        if caption_idx is None:
+            continue
+        target = _find_by_heading(root, spec.parent_heading) or _find_nearest_structural_node(root, caption_idx)
+        target.children.append(
+            _raw_fixed_width_table_node(
                 spec,
                 parent_nid=target.nid,
                 source_label=source_label,
