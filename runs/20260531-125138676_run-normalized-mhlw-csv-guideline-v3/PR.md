@@ -8,7 +8,8 @@ MHLW CSVガイドラインを、本文階層と別紙2のカテゴリ分類表�
 
 - 文書: 医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン
 - doc_id: `jp_mhlw_csv_guideline_20101021`
-- source_url: `https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573`
+- source_url_page1: `https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=1`
+- source_url_page2: `https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=2`
 - source_format: `html`
 - 正本候補: `runs/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/promotion_candidate/`
 
@@ -37,17 +38,24 @@ MHLW CSVガイドラインを、本文階層と別紙2のカテゴリ分類表�
 
 ## 深い階層サンプル
 
-`runs/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/SAMPLE_EXTRACT.md`:
+`runs/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/SAMPLE_EXTRACT.md` から抜粋:
+
+| 階層 | nid | kind | 内容 |
+|---:|---|---|---|
+| 1 | `root` | `document` | 文書ルート |
+| 2 | `cha3` | `chapter` | コンピュータ化システムの開発、検証及び運用管理に関する文書の作成 |
+| 3 | `cha3.i1` | `item` | コンピュータ化システムの開発、検証及び運用管理に関する基本方針 |
+| 4 | `cha3.i1.si4` | `subitem` | 基本的な考え方 |
+| 5 | `cha3.i1.si4.poi1` | `point` | ソフトウェアのカテゴリ分類 |
+
+読み下し:
 
 ```text
-root
-  cha3
-    cha3.i1
-      cha3.i1.si4
-        cha3.i1.si4.poi1
+3. コンピュータ化システムの開発、検証及び運用管理に関する文書の作成
+  (1) コンピュータ化システムの開発、検証及び運用管理に関する基本方針
+    ④ 基本的な考え方
+      ・ソフトウェアのカテゴリ分類
 ```
-
-対象は `ソフトウェアのカテゴリ分類` で、原文上の `④ 基本的な考え方` 配下にある。
 
 ## 注意
 

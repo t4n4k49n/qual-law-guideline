@@ -19,11 +19,16 @@ doc:
     effective_to: null
     revision_note: null
   sources:
-  - url: https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573
+  - url: https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=1
     format: html
     retrieved_at: '2026-05-23'
     checksum: null
-    label: MHLW CSV guideline
+    label: MHLW CSV guideline page 1
+  - url: https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=2
+    format: html
+    retrieved_at: '2026-05-23'
+    checksum: null
+    label: MHLW CSV guideline page 2
   legal_meta:
     competent_authority: []
     legal_basis: []

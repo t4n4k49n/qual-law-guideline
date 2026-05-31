@@ -4,7 +4,8 @@
 - branch: `run/normalized-mhlw-csv-guideline-v3`
 - doc_id: `jp_mhlw_csv_guideline_20101021`
 - 対象: 医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン
-- source_url: `https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573`
+- source_url_page1: `https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=1`
+- source_url_page2: `https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=2`
 - source_format: `html`
 - retrieved_at: `2026-05-23`
 - base_commit: `92c85ef4c457a4cb3ffb5e4404b82e10908e74fe`
@@ -27,7 +28,7 @@ PR #230 で修正した本文階層を前提に、本文、別紙、別紙2の�
 
 ```powershell
 .\.venv\Scripts\python.exe -m qai_text2ir.cli extract-mhlw-html --input data/human-readable/mhlw/csv_guideline/00tb6573.html --output out/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/00tb6573.extracted.txt
-.\.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input out/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/00tb6573.extracted.txt --out-dir runs/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/promotion_candidate --doc-id jp_mhlw_csv_guideline_20101021 --title '医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン' --short-title 'CSVガイドライン' --doc-type guideline --source-url https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573 --source-format html --retrieved-at 2026-05-23 --jurisdiction JP --language ja --family JP_GUIDELINE --parser-profile-id jp_mhlw_csv_guideline_v1 --candidate-visibility-profile-id jp_mhlw_csv_guideline_visibility_v1 --strict --write-manifest --overwrite-manifest
+.\.venv\Scripts\python.exe -m qai_text2ir.cli bundle --input out/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/00tb6573.extracted.txt --out-dir runs/20260531-125138676_run-normalized-mhlw-csv-guideline-v3/promotion_candidate --doc-id jp_mhlw_csv_guideline_20101021 --title '医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン' --short-title 'CSVガイドライン' --doc-type guideline --source-url 'https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573&dataType=1&pageNo=1' --source-format html --retrieved-at 2026-05-23 --jurisdiction JP --language ja --family JP_GUIDELINE --parser-profile-id jp_mhlw_csv_guideline_v1 --candidate-visibility-profile-id jp_mhlw_csv_guideline_visibility_v1 --strict --write-manifest --overwrite-manifest
 ```
 
 ## 生成物
@@ -71,14 +72,23 @@ check_ir_structure: [OK] no structure problems found (scanned: 5 yaml files)
 
 ## 深い階層サンプル
 
-`SAMPLE_EXTRACT.md` に `cha3.i1.si4.poi1` の祖先経路を抽出した。
+`SAMPLE_EXTRACT.md` に `cha3.i1.si4.poi1` の祖先経路と内容を抽出した。
+
+| 階層 | nid | kind | 内容 |
+|---:|---|---|---|
+| 1 | `root` | `document` | 文書ルート |
+| 2 | `cha3` | `chapter` | コンピュータ化システムの開発、検証及び運用管理に関する文書の作成 |
+| 3 | `cha3.i1` | `item` | コンピュータ化システムの開発、検証及び運用管理に関する基本方針 |
+| 4 | `cha3.i1.si4` | `subitem` | 基本的な考え方 |
+| 5 | `cha3.i1.si4.poi1` | `point` | ソフトウェアのカテゴリ分類 |
+
+読み下し:
 
 ```text
-root
-  cha3
-    cha3.i1
-      cha3.i1.si4
-        cha3.i1.si4.poi1
+3. コンピュータ化システムの開発、検証及び運用管理に関する文書の作成
+  (1) コンピュータ化システムの開発、検証及び運用管理に関する基本方針
+    ④ 基本的な考え方
+      ・ソフトウェアのカテゴリ分類
 ```
 
 ## 昇格方針
