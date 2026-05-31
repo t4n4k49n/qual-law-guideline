@@ -358,6 +358,30 @@ def _walk_with_parent(node: Node, parent: Optional[Node] = None) -> Iterable[Tup
         yield from _walk_with_parent(child, node)
 
 
+def _source_line(node: Node) -> Optional[int]:
+    for span in node.source_spans or []:
+        locator = span.get("locator")
+        if not isinstance(locator, str):
+            continue
+        match = re.search(r"line:(\d+)", locator)
+        if match:
+            return int(match.group(1))
+    return None
+
+
+def _insert_child_by_source_order(parent: Node, child: Node) -> None:
+    child_line = _source_line(child)
+    if child_line is None:
+        parent.children.append(child)
+        return
+    for idx, existing in enumerate(parent.children):
+        existing_line = _source_line(existing)
+        if existing_line is not None and existing_line > child_line:
+            parent.children.insert(idx, child)
+            return
+    parent.children.append(child)
+
+
 def _normalized_text(value: str) -> str:
     return re.sub(r"\s+", " ", value).strip().lower()
 
@@ -640,6 +664,24 @@ STRIP_PATTERNS: List[Tuple[re.Pattern[str], str]] = [
     (re.compile(r"\s*Table A5-1\. Chemicals: hazards and precautions.*?(?=INDEX)", re.IGNORECASE | re.DOTALL), " "),
 ]
 
+TABLE_TEXT_BLOCK_PATTERNS_BY_NO: Dict[str, re.Pattern[str]] = {
+    "1": STRIP_PATTERNS[0][0],
+    "2": STRIP_PATTERNS[1][0],
+    "3": STRIP_PATTERNS[2][0],
+    "4": STRIP_PATTERNS[3][0],
+    "8": STRIP_PATTERNS[4][0],
+    "9": STRIP_PATTERNS[5][0],
+    "10": STRIP_PATTERNS[6][0],
+    "11": STRIP_PATTERNS[7][0],
+    "12": STRIP_PATTERNS[8][0],
+    "13": STRIP_PATTERNS[9][0],
+    "14": STRIP_PATTERNS[10][0],
+    "15": STRIP_PATTERNS[11][0],
+    "A4-1": STRIP_PATTERNS[12][0],
+    "A4-2": STRIP_PATTERNS[13][0],
+    "A5-1": STRIP_PATTERNS[14][0],
+}
+
 FIGURE_STRIP_PATTERNS = [
     re.compile(
         r"\s*Figure\s+1\. Biohazard warning sign for laboratory doors.*?Responsible Investigator named above\.",
@@ -693,6 +735,97 @@ def _normalize_prose_continuation_whitespace(text: Optional[str]) -> Optional[st
     return "\n\n".join(cleaned_paragraphs) or None
 
 
+def _find_text_start_line(raw_lines: List[str], text: str, fallback_line_idx: int) -> int:
+    token_words = re.findall(r"[A-Za-z0-9]+", text)
+    token = _normalized_text(" ".join(token_words[:8]))
+    if token:
+        for idx, line in enumerate(raw_lines):
+            if token in _normalized_text(line):
+                return idx
+            window = " ".join(raw_lines[idx : idx + 4])
+            if token in _normalized_text(window):
+                return idx
+    return fallback_line_idx
+
+
+def _continuation_node(
+    *,
+    parent: Node,
+    ordinal: int,
+    text: str,
+    source_label: str,
+    line_idx: int,
+) -> Node:
+    return _make_node(
+        nid=f"{parent.nid}.stmt{ordinal}",
+        kind="statement",
+        kind_raw="generated_continuation",
+        num=None,
+        heading=None,
+        text=text,
+        source_label=source_label,
+        line_idx=line_idx,
+        data={"parser": PARSER_ID, "generated_from": "table_block_interleaving"},
+    )
+
+
+def _interleave_generated_blocks(
+    target: Node,
+    blocks: List[Tuple[Node, re.Pattern[str], int]],
+    *,
+    raw_lines: List[str],
+    source_label: str,
+) -> None:
+    original_text = target.text
+    if not target.text:
+        for child, _pattern, _caption_idx in sorted(blocks, key=lambda item: item[2]):
+            _insert_child_by_source_order(target, child)
+        return
+
+    matches: List[Tuple[int, int, Node, int]] = []
+    unmatched: List[Tuple[Node, int]] = []
+    occupied: List[Tuple[int, int]] = []
+    for child, pattern, caption_idx in sorted(blocks, key=lambda item: item[2]):
+        match = pattern.search(target.text)
+        if match and not any(not (match.end() <= start or end <= match.start()) for start, end in occupied):
+            matches.append((match.start(), match.end(), child, caption_idx))
+            occupied.append((match.start(), match.end()))
+        else:
+            unmatched.append((child, caption_idx))
+
+    if not matches:
+        target.text = _normalize_prose_continuation_whitespace(_strip_known_blocks(target.text))
+        for child, _caption_idx in unmatched:
+            _insert_child_by_source_order(target, child)
+        return
+
+    matches.sort(key=lambda item: item[0])
+    first_start = matches[0][0]
+    target.text = _normalize_prose_continuation_whitespace(original_text[:first_start])
+
+    generated_counter = 1
+    for idx, (start, end, child, caption_idx) in enumerate(matches):
+        _insert_child_by_source_order(target, child)
+        next_start = matches[idx + 1][0] if idx + 1 < len(matches) else len(original_text)
+        continuation = _normalize_prose_continuation_whitespace(_strip_known_blocks(original_text[end:next_start]))
+        if continuation:
+            line_idx = _find_text_start_line(raw_lines, continuation, caption_idx)
+            _insert_child_by_source_order(
+                target,
+                _continuation_node(
+                    parent=target,
+                    ordinal=generated_counter,
+                    text=continuation,
+                    source_label=source_label,
+                    line_idx=line_idx,
+                ),
+            )
+            generated_counter += 1
+
+    for child, _caption_idx in unmatched:
+        _insert_child_by_source_order(target, child)
+
+
 def _remove_matching_preformatted(root: Node, captions: Iterable[str]) -> int:
     tokens = {_caption_token(caption) for caption in captions}
     removed = 0
@@ -723,23 +856,22 @@ def normalize_who_lbm_general_tables(
     captions = [spec.caption for spec in TABLE_SPECS] + [spec.caption for spec in RAW_FIXED_WIDTH_TABLE_SPECS] + list(FIGURE_CAPTIONS.values())
 
     _remove_matching_preformatted(root, captions)
-    for _parent, node in _walk_with_parent(root):
-        if node.kind in {"chapter", "annex", "part", "section", "item", "subitem", "preamble"}:
-            node.text = _normalize_prose_continuation_whitespace(_strip_known_blocks(node.text))
+    blocks_by_target: Dict[str, List[Tuple[Node, re.Pattern[str], int]]] = {}
 
     for spec in TABLE_SPECS:
         caption_idx = _find_caption_idx(raw_lines, spec.caption)
         if caption_idx is None:
             continue
         target = _find_target_node(root, spec.caption) or _find_nearest_structural_node(root, caption_idx)
-        target.children.append(
-            _table_node(
-                spec,
-                parent_nid=target.nid,
-                source_label=source_label,
-                caption_idx=caption_idx + line_no_offset,
-                raw_lines=raw_lines,
-            )
+        table_node = _table_node(
+            spec,
+            parent_nid=target.nid,
+            source_label=source_label,
+            caption_idx=caption_idx + line_no_offset,
+            raw_lines=raw_lines,
+        )
+        blocks_by_target.setdefault(target.nid, []).append(
+            (table_node, TABLE_TEXT_BLOCK_PATTERNS_BY_NO[spec.no], caption_idx + line_no_offset)
         )
         applied_tables += 1
 
@@ -748,23 +880,37 @@ def normalize_who_lbm_general_tables(
         if caption_idx is None:
             continue
         target = _find_by_heading(root, spec.parent_heading) or _find_nearest_structural_node(root, caption_idx)
-        target.children.append(
-            _raw_fixed_width_table_node(
-                spec,
-                parent_nid=target.nid,
-                source_label=source_label,
-                caption_idx=caption_idx + line_no_offset,
-                raw_lines=raw_lines,
-            )
+        table_node = _raw_fixed_width_table_node(
+            spec,
+            parent_nid=target.nid,
+            source_label=source_label,
+            caption_idx=caption_idx + line_no_offset,
+            raw_lines=raw_lines,
+        )
+        blocks_by_target.setdefault(target.nid, []).append(
+            (table_node, TABLE_TEXT_BLOCK_PATTERNS_BY_NO[spec.no], caption_idx + line_no_offset)
         )
         applied_tables += 1
+
+    for _parent, node in _walk_with_parent(root):
+        if node.kind in {"chapter", "annex", "part", "section", "item", "subitem", "preamble"}:
+            if node.nid in blocks_by_target:
+                _interleave_generated_blocks(
+                    node,
+                    blocks_by_target[node.nid],
+                    raw_lines=raw_lines,
+                    source_label=source_label,
+                )
+                continue
+            node.text = _normalize_prose_continuation_whitespace(_strip_known_blocks(node.text))
 
     for no, caption in FIGURE_CAPTIONS.items():
         caption_idx = _find_caption_idx(raw_lines, caption)
         if caption_idx is None:
             continue
         target = _find_target_node(root, caption) or _find_nearest_structural_node(root, caption_idx)
-        target.children.append(
+        _insert_child_by_source_order(
+            target,
             _figure_node(
                 no,
                 caption,
@@ -772,7 +918,7 @@ def normalize_who_lbm_general_tables(
                 source_label=source_label,
                 caption_idx=caption_idx + line_no_offset,
                 raw_lines=raw_lines,
-            )
+            ),
         )
         applied_figures += 1
 

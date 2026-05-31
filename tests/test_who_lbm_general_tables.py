@@ -60,6 +60,12 @@ def _rows(table: Dict[str, Any]) -> List[Dict[str, Any]]:
     return [child for child in header.get("children", []) if child.get("kind") == "table_row"]
 
 
+def _source_line(node: Dict[str, Any]) -> int:
+    span = (node.get("source_spans") or [{}])[0]
+    locator = span.get("locator") or ""
+    return int(locator.split(":", 1)[1])
+
+
 def test_who_lbm_general_table_1_risk_groups_are_structured() -> None:
     rows = _rows(_table(_ir(), "1"))
     assert [row["data"]["row_key"] for row in rows] == [
@@ -152,6 +158,48 @@ def test_who_lbm_annex_fixed_width_tables_are_line_preserving() -> None:
     acetaldehyde = next(row for row in a5_1_rows if row["data"]["cells"][0] == "Acetaldehyde")
     assert acetaldehyde["data"]["cells"][4] == "No open flames, no"
     assert acetaldehyde["data"]["cells"][5] == "Can form explosive"
+
+
+def test_who_lbm_general_tables_are_interleaved_with_surrounding_text() -> None:
+    ir = _ir()
+    nodes = _flatten(ir["content"])
+    introduction = next(node for node in nodes if node.get("nid") == "cha1.sec1")
+    children = introduction.get("children") or []
+
+    assert "Table 1 describes the risk groups." in (introduction.get("text") or "")
+    assert "Laboratory facilities are designated as basic" not in (introduction.get("text") or "")
+
+    table1_idx = next(
+        idx
+        for idx, child in enumerate(children)
+        if child.get("kind") == "table" and (child.get("data") or {}).get("table_no") == "1"
+    )
+    table2_idx = next(
+        idx
+        for idx, child in enumerate(children)
+        if child.get("kind") == "table" and (child.get("data") or {}).get("table_no") == "2"
+    )
+    table3_idx = next(
+        idx
+        for idx, child in enumerate(children)
+        if child.get("kind") == "table" and (child.get("data") or {}).get("table_no") == "3"
+    )
+
+    assert table1_idx < table2_idx < table3_idx
+    assert children[table1_idx + 1]["kind"] == "statement"
+    assert (children[table1_idx + 1].get("text") or "").startswith("Laboratory facilities are designated as basic")
+    assert "Countries (regions) should draw up" in (children[table1_idx + 1].get("text") or "")
+    post_table2_statement = next(
+        child
+        for child in children[table2_idx + 1 : table3_idx]
+        if child.get("kind") == "statement"
+    )
+    assert (post_table2_statement.get("text") or "").startswith(
+        "The assignment of an agent to a biosafety level"
+    )
+
+    ordered_lines = [_source_line(child) for child in children if child.get("kind") in {"table", "statement"}]
+    assert ordered_lines == sorted(ordered_lines)
 
 
 def test_who_lbm_general_target_captions_not_embedded_in_ordinary_text() -> None:
