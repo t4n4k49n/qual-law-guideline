@@ -141,6 +141,12 @@ def test_who_lbm_annex_fixed_width_tables_are_line_preserving() -> None:
     assert any(row["data"]["cells"][0].startswith("Acetic acid") for row in a5_1_rows)
 
     assert a4_2_rows[0]["data"]["cells"] == ["Faulty design or construction", "", ""]
+    domestic_refrigerator = next(row for row in a4_2_rows if row["data"]["cells"][0] == "Explosion in domestic-")
+    assert domestic_refrigerator["data"]["cells"][1] == "Dangerous chemical not"
+    assert domestic_refrigerator["data"]["cells"][2] == "• Store low-flashpoint solvents"
+    flame_photometer = next(row for row in a4_2_rows if row["data"]["cells"][0] == "Fire in flame")
+    assert flame_photometer["data"]["cells"][1] == "Incorrect reassembly of"
+    assert flame_photometer["data"]["cells"][2] == "• Train and supervise staff."
     assert not any("alarms 21, 60" in row["data"]["raw_line"] for row in a5_1_rows)
 
     acetaldehyde = next(row for row in a5_1_rows if row["data"]["cells"][0] == "Acetaldehyde")
