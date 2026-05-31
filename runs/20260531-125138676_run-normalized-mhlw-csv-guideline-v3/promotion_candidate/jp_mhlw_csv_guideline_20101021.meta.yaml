@@ -1,0 +1,52 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: jp_mhlw_csv_guideline_20101021
+  title: 医薬品・医薬部外品製造販売業者等におけるコンピュータ化システム適正管理ガイドライン
+  short_title: CSVガイドライン
+  jurisdiction: JP
+  doc_type: guideline
+  language: ja
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: null
+    e_gov_revision_id: null
+    law_number: null
+  version:
+    as_of: null
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://www.mhlw.go.jp/web/t_doc?dataId=00tb6573
+    format: html
+    retrieved_at: '2026-05-23'
+    checksum: null
+    label: MHLW CSV guideline
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+  family: JP_GUIDELINE
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v4
+    path: jp_mhlw_csv_guideline_20101021.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: jp_mhlw_csv_guideline_v1
+    path: jp_mhlw_csv_guideline_20101021.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: jp_mhlw_csv_guideline_20101021.regdoc_profile.yaml
+generation:
+  created_at: '2026-05-31T03:51:59Z'
+  tool:
+    name: qai_text2ir
+    version: null
+  inputs:
+  - path: out\20260531-125138676_run-normalized-mhlw-csv-guideline-v3\00tb6573.extracted.txt
+    checksum: 6716b39dca7bb72ad7fa668c88b22df62478bcaf4f210777c3da969b06b06aee
+  notes: []
