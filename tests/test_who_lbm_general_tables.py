@@ -24,6 +24,9 @@ TARGET_CAPTIONS = [
     "Table 13. General rules for chemical incompatibilities",
     "Table 14. Storage of compressed and liquefied gases",
     "Table 15. Types and uses of fire extinguishers",
+    "Table A4-1. Equipment and operations that may create hazards",
+    "Table A4-2. Common causes of equipment-related accidents",
+    "Table A5-1. Chemicals: hazards and precautions",
 ]
 
 
@@ -117,8 +120,29 @@ def test_who_lbm_general_table_15_fire_extinguisher_rows_are_structured() -> Non
     assert "burning metals" in rows[0]["data"]["cells"][2]
 
 
+def test_who_lbm_annex_fixed_width_tables_are_line_preserving() -> None:
+    ir = _ir()
+    table_a4_1 = _table(ir, "A4-1")
+    table_a4_2 = _table(ir, "A4-2")
+    table_a5_1 = _table(ir, "A5-1")
+
+    assert table_a4_1["data"]["source_format"] == "fixed_width_line_preserving_table"
+    assert table_a4_2["data"]["source_format"] == "fixed_width_line_preserving_table"
+    assert table_a5_1["data"]["source_format"] == "fixed_width_line_preserving_table"
+
+    a4_1_rows = _rows(table_a4_1)
+    a4_2_rows = _rows(table_a4_2)
+    a5_1_rows = _rows(table_a5_1)
+
+    assert not a4_1_rows[0]["data"]["raw_line"].startswith("Table A4-1")
+    assert any(row["data"]["cells"][0] == "Hypodermic" for row in a4_1_rows)
+    assert any("Electrical fires" in row["data"]["cells"][0] for row in a4_2_rows)
+    assert any(row["data"]["cells"][0] == "Acetaldehyde" for row in a5_1_rows)
+    assert any(row["data"]["cells"][0].startswith("Acetic acid") for row in a5_1_rows)
+
+
 def test_who_lbm_general_target_captions_not_embedded_in_ordinary_text() -> None:
-    ordinary = {"preamble", "part", "chapter", "annex", "item", "subitem"}
+    ordinary = {"preamble", "part", "chapter", "annex", "section", "item", "subitem"}
     for node in _flatten(_ir()["content"]):
         if node.get("kind") not in ordinary:
             continue
