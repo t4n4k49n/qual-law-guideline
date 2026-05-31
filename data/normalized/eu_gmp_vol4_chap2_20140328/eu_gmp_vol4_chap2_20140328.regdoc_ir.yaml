@@ -1,0 +1,1342 @@
+schema: qai.regdoc_ir.v4
+doc_id: eu_gmp_vol4_chap2_20140328
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags:
+  - postprocess=eu_gmp_chap2_cleanup
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: pre1
+    kind: preamble
+    kind_raw: null
+    num: null
+    ord: 1
+    heading: null
+    text: Ref. Ares(2014)968076 - 28/03/2014 EUROPEAN COMMISSION HEALTH AND CONSUMERS DIRECTORATE-GENERAL Public Health and Risk Assessment Medicinal Product – quality, safety and efficacy Brussels, 16 August 2013 EudraLex The Rules Governing Medicinal Products in the European Union Volume 4 EU Guidelines for Good Manufacturing Practice for Medicinal Products for Human and Veterinary Use Part 1
+    role: informative
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:1
+    - source_label: EU GMP
+      locator: line:4
+    - source_label: EU GMP
+      locator: line:5
+    - source_label: EU GMP
+      locator: line:7
+    - source_label: EU GMP
+      locator: line:8
+    - source_label: EU GMP
+      locator: line:13
+    - source_label: EU GMP
+      locator: line:16
+    - source_label: EU GMP
+      locator: line:18
+    - source_label: EU GMP
+      locator: line:20
+    - source_label: EU GMP
+      locator: line:21
+    - source_label: EU GMP
+      locator: line:22
+    - source_label: EU GMP
+      locator: line:23
+    - source_label: EU GMP
+      locator: line:25
+    children: []
+  - nid: cha2
+    kind: chapter
+    kind_raw: Chapter
+    num: '2'
+    ord: 2
+    heading: Personnel
+    text: 'Legal basis for publishing the detailed guidelines: Article 47 of Directive 2001/83/EC on the Community code relating to medicinal products for human use and Article 51 of Directive 2001/82/EC on the Community code relating to veterinary medicinal products. This document provides guidance for the interpretation of the principles and guidelines of good manufacturing practice (GMP) for medicinal products as laid down in Directive 2003/94/EC for medicinal products for human use and Directive 91/412/EEC for veterinary use. Status of the document: Revision Reasons for changes: Changes have been made in order to integrate the principles of “Pharmaceutical Quality System” as described in the ICH Q10 tripartite guideline. A section has been added on consultants Deadline for coming into operation: 16 February 2014'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:26
+    - source_label: EU GMP
+      locator: line:31
+    - source_label: EU GMP
+      locator: line:32
+    - source_label: EU GMP
+      locator: line:33
+    - source_label: EU GMP
+      locator: line:34
+    - source_label: EU GMP
+      locator: line:35
+    - source_label: EU GMP
+      locator: line:36
+    - source_label: EU GMP
+      locator: line:38
+    - source_label: EU GMP
+      locator: line:40
+    - source_label: EU GMP
+      locator: line:41
+    - source_label: EU GMP
+      locator: line:42
+    - source_label: EU GMP
+      locator: line:44
+    children:
+    - nid: cha2.sec1
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 3
+      heading: Principle
+      text: The correct manufacture of medicinal products relies upon people. For this reason there must be sufficient qualified personnel to carry out all the tasks which are the responsibility of the manufacturer. Individual responsibilities should be clearly understood by the individuals and recorded. All personnel should be aware of the principles of Good Manufacturing Practice that affect them and receive initial and continuing training, including hygiene instructions, relevant to their needs.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:57
+      - source_label: EU GMP
+        locator: line:59
+      - source_label: EU GMP
+        locator: line:60
+      - source_label: EU GMP
+        locator: line:61
+      - source_label: EU GMP
+        locator: line:62
+      - source_label: EU GMP
+        locator: line:63
+      - source_label: EU GMP
+        locator: line:64
+      children: []
+    - nid: cha2.sec2
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 4
+      heading: General
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:66
+      children:
+      - nid: cha2.sec2.p2_1
+        kind: paragraph
+        kind_raw: '2.1'
+        num: '2.1'
+        ord: 5
+        heading: null
+        text: The manufacturer should have an adequate number of personnel with the necessary qualifications and practical experience. Senior management should determine and provide adequate and appropriate resources (human, financial, materials, facilities and equipment) to implement and maintain the quality management system and continually improve its effectiveness. The responsibilities placed on any one individual should not be so extensive as to present any risk to quality.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:68
+        - source_label: EU GMP
+          locator: line:69
+        - source_label: EU GMP
+          locator: line:70
+        - source_label: EU GMP
+          locator: line:71
+        - source_label: EU GMP
+          locator: line:72
+        - source_label: EU GMP
+          locator: line:73
+        children: []
+      - nid: cha2.sec2.p2_2
+        kind: paragraph
+        kind_raw: '2.2'
+        num: '2.2'
+        ord: 6
+        heading: null
+        text: The manufacturer must have an organisation chart in which the relationships between the heads of Production, Quality Control and where applicable Head of Quality Assurance or Quality Unit referred to in point 2.5 and the position of the Qualified Person(s) are clearly shown in the managerial hierarchy.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:75
+        - source_label: EU GMP
+          locator: line:76
+        - source_label: EU GMP
+          locator: line:77
+        - source_label: EU GMP
+          locator: line:78
+        children: []
+      - nid: cha2.sec2.p2_3
+        kind: paragraph
+        kind_raw: '2.3'
+        num: '2.3'
+        ord: 7
+        heading: null
+        text: People in responsible positions should have specific duties recorded in written job descriptions and adequate authority to carry out their responsibilities. Their duties may be delegated to designated deputies of a satisfactory qualification level. There should be no gaps or unexplained overlaps in the responsibilities of those personnel concerned with the application of Good Manufacturing Practice.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:80
+        - source_label: EU GMP
+          locator: line:81
+        - source_label: EU GMP
+          locator: line:82
+        - source_label: EU GMP
+          locator: line:83
+        - source_label: EU GMP
+          locator: line:84
+        children: []
+      - nid: cha2.sec2.p2_4
+        kind: paragraph
+        kind_raw: '2.4'
+        num: '2.4'
+        ord: 8
+        heading: null
+        text: Senior management has the ultimate responsibility to ensure an effective quality management system is in place to achieve the quality objectives, and, that roles, responsibilities, and authorities are defined, communicated and implemented throughout the organisation. Senior management should establish a quality policy that describes the overall intentions and direction of the company related to quality and should ensure continuing suitability and effectiveness of the quality management system and GMP compliance through participation in management review.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:86
+        - source_label: EU GMP
+          locator: line:87
+        - source_label: EU GMP
+          locator: line:88
+        - source_label: EU GMP
+          locator: line:89
+        - source_label: EU GMP
+          locator: line:90
+        - source_label: EU GMP
+          locator: line:91
+        - source_label: EU GMP
+          locator: line:92
+        children: []
+    - nid: cha2.sec3
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 9
+      heading: Key Personnel
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:94
+      children:
+      - nid: cha2.sec3.p2_5
+        kind: paragraph
+        kind_raw: '2.5'
+        num: '2.5'
+        ord: 10
+        heading: null
+        text: Senior Management should appoint Key Management Personnel including the head of Production, the head of Quality Control, and if at least one of these persons is not responsible for the duties described in Article 51 of Directive 2001/83/EC, an adequate number, but at least one, Qualified Person(s) designated for the purpose. Normally, key posts should be occupied by full-time personnel. The heads of Production and Quality Control must be independent from each other. In large organisations, it may be necessary to delegate some of the functions listed in 2.7, 2.8 and 2.9. Additionally depending on the size and organisational structure of the company, a separate Head of Quality Assurance or Head of the Quality Unit may be appointed. Where such a function exists usually some of the responsibilities described in 2.7, 2.8 and 2.9 are shared with the Head of Quality Control and Head of Production and senior management should therefore take care that roles, responsibilities, and authorities are defined.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:96
+        - source_label: EU GMP
+          locator: line:97
+        - source_label: EU GMP
+          locator: line:98
+        - source_label: EU GMP
+          locator: line:99
+        - source_label: EU GMP
+          locator: line:100
+        - source_label: EU GMP
+          locator: line:101
+        - source_label: EU GMP
+          locator: line:102
+        - source_label: EU GMP
+          locator: line:103
+        - source_label: EU GMP
+          locator: line:104
+        - source_label: EU GMP
+          locator: line:105
+        - source_label: EU GMP
+          locator: line:111
+        - source_label: EU GMP
+          locator: line:112
+        children: []
+      - nid: cha2.sec3.p2_6
+        kind: paragraph
+        kind_raw: '2.6'
+        num: '2.6'
+        ord: 11
+        heading: null
+        text: 'The duties of the Qualified Person(s) are described in Article 51 of Directive 2001/83/EC, and can be summarised as follows:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:114
+        - source_label: EU GMP
+          locator: line:115
+        children:
+        - nid: cha2.sec3.p2_6.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 12
+          heading: null
+          text: for medicinal products manufactured within the European Union, a Qualified Person must ensure that each batch has been manufactured and checked in compliance with the laws in force in that Member State and in accordance with the requirements of the marketing authorisation;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:117
+          - source_label: EU GMP
+            locator: line:118
+          - source_label: EU GMP
+            locator: line:119
+          - source_label: EU GMP
+            locator: line:120
+          children: []
+        - nid: cha2.sec3.p2_6.ib
+          kind: item
+          kind_raw: (b)
+          num: b
+          ord: 13
+          heading: null
+          text: in the case of medicinal products coming from third countries, irrespective of whether the product has been manufactured in the European Union a Qualified Person must ensure that each production batch has undergone in a Member State a full qualitative analysis, a quantitative analysis of at least all the active substances and all the other tests or checks necessary to ensure the quality of medicinal products in accordance with the requirements of the marketing authorisation. The Qualified Person must certify in a register or equivalent document, as operations are carried out and before any release, that each production batch satisfies the provisions of Article 51. The persons responsible for these duties must meet the qualification requirements laid down in Article 49 of the same Directive, they shall be permanently and continuously at the disposal of the holder of the Manufacturing Authorisation to carry out their responsibilities. The responsibilities of a Qualified Person may be delegated, but only to other Qualified Person(s). Guidance on the role of the Qualified Person is elaborated in Annex 16.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:122
+          - source_label: EU GMP
+            locator: line:123
+          - source_label: EU GMP
+            locator: line:124
+          - source_label: EU GMP
+            locator: line:125
+          - source_label: EU GMP
+            locator: line:126
+          - source_label: EU GMP
+            locator: line:127
+          - source_label: EU GMP
+            locator: line:128
+          - source_label: EU GMP
+            locator: line:129
+          - source_label: EU GMP
+            locator: line:131
+          - source_label: EU GMP
+            locator: line:132
+          - source_label: EU GMP
+            locator: line:133
+          - source_label: EU GMP
+            locator: line:135
+          - source_label: EU GMP
+            locator: line:136
+          - source_label: EU GMP
+            locator: line:138
+          children: []
+      - nid: cha2.sec3.p2_7
+        kind: paragraph
+        kind_raw: '2.7'
+        num: '2.7'
+        ord: 14
+        heading: null
+        text: 'The head of the Production Department generally has the following responsibilities:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:140
+        children:
+        - nid: cha2.sec3.p2_7.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 15
+          heading: null
+          text: To ensure that products are produced and stored according to the appropriate documentation in order to obtain the required quality;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:142
+          - source_label: EU GMP
+            locator: line:143
+          children: []
+        - nid: cha2.sec3.p2_7.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 16
+          heading: null
+          text: To approve the instructions relating to production operations and to ensure their strict implementation;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:144
+          - source_label: EU GMP
+            locator: line:145
+          children: []
+        - nid: cha2.sec3.p2_7.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 17
+          heading: null
+          text: To ensure that the production records are evaluated and signed by an authorised person;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:146
+          - source_label: EU GMP
+            locator: line:147
+          children: []
+        - nid: cha2.sec3.p2_7.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 18
+          heading: null
+          text: To ensure the qualification and maintenance of his department, premises and equipment;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:148
+          - source_label: EU GMP
+            locator: line:149
+          children: []
+        - nid: cha2.sec3.p2_7.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 19
+          heading: null
+          text: To ensure that the appropriate validations are done;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:150
+          children: []
+        - nid: cha2.sec3.p2_7.ivi
+          kind: item
+          kind_raw: vi.
+          num: vi
+          ord: 20
+          heading: null
+          text: To ensure that the required initial and continuing training of his department personnel is carried out and adapted according to need.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:151
+          - source_label: EU GMP
+            locator: line:152
+          children: []
+      - nid: cha2.sec3.p2_8
+        kind: paragraph
+        kind_raw: '2.8'
+        num: '2.8'
+        ord: 21
+        heading: null
+        text: 'The head of Quality Control generally has the following responsibilities:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:154
+        children:
+        - nid: cha2.sec3.p2_8.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 22
+          heading: null
+          text: To approve or reject, as he sees fit, starting materials, packaging materials, intermediate, bulk and finished products;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:156
+          - source_label: EU GMP
+            locator: line:157
+          children: []
+        - nid: cha2.sec3.p2_8.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 23
+          heading: null
+          text: To ensure that all necessary testing is carried out and the associated records evaluated;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:158
+          children: []
+        - nid: cha2.sec3.p2_8.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 24
+          heading: null
+          text: To approve specifications, sampling instructions, test methods and other Quality Control procedures;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:168
+          - source_label: EU GMP
+            locator: line:169
+          children: []
+        - nid: cha2.sec3.p2_8.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 25
+          heading: null
+          text: To approve and monitor any contract analysts;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:170
+          children: []
+        - nid: cha2.sec3.p2_8.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 26
+          heading: null
+          text: To ensure the qualification and maintenance of his department, premises and equipment;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:171
+          - source_label: EU GMP
+            locator: line:172
+          children: []
+        - nid: cha2.sec3.p2_8.ivi
+          kind: item
+          kind_raw: vi.
+          num: vi
+          ord: 27
+          heading: null
+          text: To ensure that the appropriate validations are done;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:173
+          children: []
+        - nid: cha2.sec3.p2_8.ivii
+          kind: item
+          kind_raw: vii.
+          num: vii
+          ord: 28
+          heading: null
+          text: To ensure that the required initial and continuing training of his department personnel is carried out and adapted according to need. Other duties of Quality Control are summarised in Chapter 6.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:174
+          - source_label: EU GMP
+            locator: line:175
+          - source_label: EU GMP
+            locator: line:177
+          children: []
+      - nid: cha2.sec3.p2_9
+        kind: paragraph
+        kind_raw: '2.9'
+        num: '2.9'
+        ord: 29
+        heading: null
+        text: 'The heads of Production, Quality Control and where relevant, Head of Quality Assurance or Head of Quality Unit, generally have some shared, or jointly exercised, responsibilities relating to quality including in particular the design, effective implementation, monitoring and maintenance of the quality management system. These may include, subject to any national regulations:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:179
+        - source_label: EU GMP
+          locator: line:180
+        - source_label: EU GMP
+          locator: line:181
+        - source_label: EU GMP
+          locator: line:182
+        - source_label: EU GMP
+          locator: line:183
+        children:
+        - nid: cha2.sec3.p2_9.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 30
+          heading: null
+          text: The authorisation of written procedures and other documents, including amendments;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:185
+          - source_label: EU GMP
+            locator: line:186
+          children: []
+        - nid: cha2.sec3.p2_9.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 31
+          heading: null
+          text: The monitoring and control of the manufacturing environment;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:187
+          children: []
+        - nid: cha2.sec3.p2_9.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 32
+          heading: null
+          text: Plant hygiene;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:188
+          children: []
+        - nid: cha2.sec3.p2_9.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 33
+          heading: null
+          text: Process validation;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:189
+          children: []
+        - nid: cha2.sec3.p2_9.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 34
+          heading: null
+          text: Training;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:190
+          children: []
+        - nid: cha2.sec3.p2_9.ivi
+          kind: item
+          kind_raw: vi.
+          num: vi
+          ord: 35
+          heading: null
+          text: The approval and monitoring of suppliers of materials;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:191
+          children: []
+        - nid: cha2.sec3.p2_9.ivii
+          kind: item
+          kind_raw: vii.
+          num: vii
+          ord: 36
+          heading: null
+          text: The approval and monitoring of contract manufacturers and providers of other GMP related outsourced activities;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:192
+          - source_label: EU GMP
+            locator: line:193
+          children: []
+        - nid: cha2.sec3.p2_9.iviii
+          kind: item
+          kind_raw: viii.
+          num: viii
+          ord: 37
+          heading: null
+          text: The designation and monitoring of storage conditions for materials and products;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:194
+          children: []
+        - nid: cha2.sec3.p2_9.iix
+          kind: item
+          kind_raw: ix.
+          num: ix
+          ord: 38
+          heading: null
+          text: The retention of records;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:195
+          children: []
+        - nid: cha2.sec3.p2_9.ix
+          kind: item
+          kind_raw: x.
+          num: x
+          ord: 39
+          heading: null
+          text: The monitoring of compliance with the requirements of Good Manufacturing Practice;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:196
+          - source_label: EU GMP
+            locator: line:197
+          children: []
+        - nid: cha2.sec3.p2_9.ixi
+          kind: item
+          kind_raw: xi.
+          num: xi
+          ord: 40
+          heading: null
+          text: The inspection, investigation, and taking of samples, in order to monitor factors which may affect product quality;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:198
+          - source_label: EU GMP
+            locator: line:199
+          children: []
+        - nid: cha2.sec3.p2_9.ixii
+          kind: item
+          kind_raw: xii.
+          num: xii
+          ord: 41
+          heading: null
+          text: Participation in management reviews of process performance, product quality and of the quality management system and advocating continual improvement
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:200
+          - source_label: EU GMP
+            locator: line:201
+          children: []
+        - nid: cha2.sec3.p2_9.ixiii
+          kind: item
+          kind_raw: xiii.
+          num: xiii
+          ord: 42
+          heading: null
+          text: Ensuring that a timely and effective communication and escalation process exists to raise quality issues to the appropriate levels of management.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:202
+          - source_label: EU GMP
+            locator: line:203
+          children: []
+    - nid: cha2.sec4
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 43
+      heading: Training
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:206
+      children:
+      - nid: cha2.sec4.p2_10
+        kind: paragraph
+        kind_raw: '2.10'
+        num: '2.10'
+        ord: 44
+        heading: null
+        text: The manufacturer should provide training for all the personnel whose duties take them into production and storage areas or into control laboratories (including the technical, maintenance and cleaning personnel), and for other personnel whose activities could affect the quality of the product.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:208
+        - source_label: EU GMP
+          locator: line:209
+        - source_label: EU GMP
+          locator: line:210
+        - source_label: EU GMP
+          locator: line:211
+        children: []
+      - nid: cha2.sec4.p2_11
+        kind: paragraph
+        kind_raw: '2.11'
+        num: '2.11'
+        ord: 45
+        heading: null
+        text: Besides the basic training on the theory and practice of the quality management system and Good Manufacturing Practice, newly recruited personnel should receive training appropriate to the duties assigned to them. Continuing training should also be given, and its practical effectiveness should be periodically assessed. Training programmes should be available, approved by either the head of Production or the head of Quality Control, as appropriate. Training records should be kept.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:213
+        - source_label: EU GMP
+          locator: line:214
+        - source_label: EU GMP
+          locator: line:215
+        - source_label: EU GMP
+          locator: line:216
+        - source_label: EU GMP
+          locator: line:217
+        - source_label: EU GMP
+          locator: line:218
+        children: []
+      - nid: cha2.sec4.p2_12
+        kind: paragraph
+        kind_raw: '2.12'
+        num: '2.12'
+        ord: 46
+        heading: null
+        text: Personnel working in areas where contamination is a hazard, e.g. clean areas or areas where highly active, toxic, infectious or sensitising materials are handled, should be given specific training.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:222
+        - source_label: EU GMP
+          locator: line:223
+        - source_label: EU GMP
+          locator: line:224
+        children: []
+      - nid: cha2.sec4.p2_13
+        kind: paragraph
+        kind_raw: '2.13'
+        num: '2.13'
+        ord: 47
+        heading: null
+        text: Visitors or untrained personnel should, preferably, not be taken into the production and quality control areas. If this is unavoidable, they should be given information in advance, particularly about personal hygiene and the prescribed protective clothing. They should be closely supervised.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:226
+        - source_label: EU GMP
+          locator: line:227
+        - source_label: EU GMP
+          locator: line:228
+        - source_label: EU GMP
+          locator: line:229
+        children: []
+      - nid: cha2.sec4.p2_14
+        kind: paragraph
+        kind_raw: '2.14'
+        num: '2.14'
+        ord: 48
+        heading: null
+        text: The pharmaceutical quality system and all the measures capable of improving its understanding and implementation should be fully discussed during the training sessions.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:231
+        - source_label: EU GMP
+          locator: line:232
+        children: []
+    - nid: cha2.sec5
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 49
+      heading: Personnel Hygiene
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:234
+      children:
+      - nid: cha2.sec5.p2_15
+        kind: paragraph
+        kind_raw: '2.15'
+        num: '2.15'
+        ord: 50
+        heading: null
+        text: Detailed hygiene programmes should be established and adapted to the different needs within the factory. They should include procedures relating to the health, hygiene practices and clothing of personnel. These procedures should be understood and followed in a very strict way by every person whose duties take him into the production and control areas. Hygiene programmes should be promoted by management and widely discussed during training sessions.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:236
+        - source_label: EU GMP
+          locator: line:237
+        - source_label: EU GMP
+          locator: line:238
+        - source_label: EU GMP
+          locator: line:239
+        - source_label: EU GMP
+          locator: line:240
+        - source_label: EU GMP
+          locator: line:241
+        children: []
+      - nid: cha2.sec5.p2_16
+        kind: paragraph
+        kind_raw: '2.16'
+        num: '2.16'
+        ord: 51
+        heading: null
+        text: All personnel should receive medical examination upon recruitment. It must be the manufacturer’s responsibility that there are instructions ensuring that health conditions that can be of relevance to the quality of products come to the manufacturer’s knowledge. After the first medical examination, examinations should be carried out when necessary for the work and personal health.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:243
+        - source_label: EU GMP
+          locator: line:244
+        - source_label: EU GMP
+          locator: line:245
+        - source_label: EU GMP
+          locator: line:246
+        - source_label: EU GMP
+          locator: line:247
+        children: []
+      - nid: cha2.sec5.p2_17
+        kind: paragraph
+        kind_raw: '2.17'
+        num: '2.17'
+        ord: 52
+        heading: null
+        text: Steps should be taken to ensure as far as is practicable that no person affected by an infectious disease or having open lesions on the exposed surface of the body is engaged in the manufacture of medicinal products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:249
+        - source_label: EU GMP
+          locator: line:250
+        - source_label: EU GMP
+          locator: line:251
+        children: []
+      - nid: cha2.sec5.p2_18
+        kind: paragraph
+        kind_raw: '2.18'
+        num: '2.18'
+        ord: 53
+        heading: null
+        text: Every person entering the manufacturing areas should wear protective garments appropriate to the operations to be carried out.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:253
+        - source_label: EU GMP
+          locator: line:254
+        children: []
+      - nid: cha2.sec5.p2_19
+        kind: paragraph
+        kind_raw: '2.19'
+        num: '2.19'
+        ord: 54
+        heading: null
+        text: Eating, drinking, chewing or smoking, or the storage of food, drink, smoking materials or personal medication in the production and storage areas should be prohibited. In general, any unhygienic practice within the manufacturing areas or in any other area where the product might be adversely affected should be forbidden.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:256
+        - source_label: EU GMP
+          locator: line:257
+        - source_label: EU GMP
+          locator: line:258
+        - source_label: EU GMP
+          locator: line:259
+        children: []
+      - nid: cha2.sec5.p2_20
+        kind: paragraph
+        kind_raw: '2.20'
+        num: '2.20'
+        ord: 55
+        heading: null
+        text: Direct contact should be avoided between the operator’s hands and the exposed product as well as with any part of the equipment that comes into contact with the products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:261
+        - source_label: EU GMP
+          locator: line:262
+        children: []
+      - nid: cha2.sec5.p2_21
+        kind: paragraph
+        kind_raw: '2.21'
+        num: '2.21'
+        ord: 56
+        heading: null
+        text: Personnel should be instructed to use the hand-washing facilities.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:264
+        children: []
+      - nid: cha2.sec5.p2_22
+        kind: paragraph
+        kind_raw: '2.22'
+        num: '2.22'
+        ord: 57
+        heading: null
+        text: Any specific requirements for the manufacture of special groups of products, for example sterile preparations, are covered in the annexes.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:266
+        - source_label: EU GMP
+          locator: line:267
+        children: []
+    - nid: cha2.sec6
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 58
+      heading: Consultants
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:269
+      children:
+      - nid: cha2.sec6.p2_23
+        kind: paragraph
+        kind_raw: '2.23'
+        num: '2.23'
+        ord: 59
+        heading: null
+        text: Consultants should have adequate education, training, and experience, or any combination thereof, to advise on the subject for which they are retained. Records should be maintained stating the name, address, qualifications, and type of service provided by these consultants.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:271
+        - source_label: EU GMP
+          locator: line:272
+        - source_label: EU GMP
+          locator: line:276
+        - source_label: EU GMP
+          locator: line:277
+        children: []
+index:
+  display_name_by_nid:
+    root: document
+    pre1: preamble
+    cha2: Personnel
+    cha2.sec1: Principle
+    cha2.sec2: General
+    cha2.sec2.p2_1: paragraph 2.1
+    cha2.sec2.p2_2: paragraph 2.2
+    cha2.sec2.p2_3: paragraph 2.3
+    cha2.sec2.p2_4: paragraph 2.4
+    cha2.sec3: Key Personnel
+    cha2.sec3.p2_5: paragraph 2.5
+    cha2.sec3.p2_6: paragraph 2.6
+    cha2.sec3.p2_6.ia: item a
+    cha2.sec3.p2_6.ib: item b
+    cha2.sec3.p2_7: paragraph 2.7
+    cha2.sec3.p2_7.ii: item i
+    cha2.sec3.p2_7.iii: item ii
+    cha2.sec3.p2_7.iiii: item iii
+    cha2.sec3.p2_7.iiv: item iv
+    cha2.sec3.p2_7.iv: item v
+    cha2.sec3.p2_7.ivi: item vi
+    cha2.sec3.p2_8: paragraph 2.8
+    cha2.sec3.p2_8.ii: item i
+    cha2.sec3.p2_8.iii: item ii
+    cha2.sec3.p2_8.iiii: item iii
+    cha2.sec3.p2_8.iiv: item iv
+    cha2.sec3.p2_8.iv: item v
+    cha2.sec3.p2_8.ivi: item vi
+    cha2.sec3.p2_8.ivii: item vii
+    cha2.sec3.p2_9: paragraph 2.9
+    cha2.sec3.p2_9.ii: item i
+    cha2.sec3.p2_9.iii: item ii
+    cha2.sec3.p2_9.iiii: item iii
+    cha2.sec3.p2_9.iiv: item iv
+    cha2.sec3.p2_9.iv: item v
+    cha2.sec3.p2_9.ivi: item vi
+    cha2.sec3.p2_9.ivii: item vii
+    cha2.sec3.p2_9.iviii: item viii
+    cha2.sec3.p2_9.iix: item ix
+    cha2.sec3.p2_9.ix: item x
+    cha2.sec3.p2_9.ixi: item xi
+    cha2.sec3.p2_9.ixii: item xii
+    cha2.sec3.p2_9.ixiii: item xiii
+    cha2.sec4: Training
+    cha2.sec4.p2_10: paragraph 2.10
+    cha2.sec4.p2_11: paragraph 2.11
+    cha2.sec4.p2_12: paragraph 2.12
+    cha2.sec4.p2_13: paragraph 2.13
+    cha2.sec4.p2_14: paragraph 2.14
+    cha2.sec5: Personnel Hygiene
+    cha2.sec5.p2_15: paragraph 2.15
+    cha2.sec5.p2_16: paragraph 2.16
+    cha2.sec5.p2_17: paragraph 2.17
+    cha2.sec5.p2_18: paragraph 2.18
+    cha2.sec5.p2_19: paragraph 2.19
+    cha2.sec5.p2_20: paragraph 2.20
+    cha2.sec5.p2_21: paragraph 2.21
+    cha2.sec5.p2_22: paragraph 2.22
+    cha2.sec6: Consultants
+    cha2.sec6.p2_23: paragraph 2.23
