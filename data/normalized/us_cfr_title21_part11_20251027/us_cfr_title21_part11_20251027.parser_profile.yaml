@@ -1,0 +1,84 @@
+schema: qai.parser_profile.v1
+id: us_cfr_ecfr_xml_v1
+title: US CFR eCFR XML markers
+applies_to:
+  family: US_CFR
+  jurisdiction: US
+  defaults: false
+language: en
+source_label: CFR
+source_schema_reference: https://www.govinfo.gov/bulkdata/ECFR/resources/ECFR-XML-User-Guide.pdf
+marker_types:
+- id: part
+  kind: part
+  kind_raw: PART
+  match: DIV5[@TYPE='PART']
+- id: subpart
+  kind: subpart
+  kind_raw: Subpart
+  match: DIV6[@TYPE='SUBPART']
+- id: section
+  kind: section
+  kind_raw: §
+  match: DIV8[@TYPE='SECTION']
+- id: paren_alpha
+  kind: paragraph
+  kind_raw: (a)
+  match: ^\([a-z]\)
+- id: paren_digit
+  kind: item
+  kind_raw: (1)
+  match: ^\([0-9]+\)
+- id: paren_roman
+  kind: subitem
+  kind_raw: (i)
+  match: ^\([ivxlcdm]+\)
+- id: authority_source
+  kind: note
+  kind_raw: AUTH/SOURCE
+  match: AUTH|SOURCE
+- id: citation_note
+  kind: note
+  kind_raw: CITA
+  match: CITA
+- id: xref_note
+  kind: note
+  kind_raw: XREF
+  match: XREF
+structure:
+  root:
+    children:
+    - part
+  part:
+    children:
+    - subpart
+    - section
+    - note
+  subpart:
+    children:
+    - section
+    - note
+  section:
+    children:
+    - paragraph
+    - item
+    - note
+  paragraph:
+    children:
+    - item
+    - subitem
+    - note
+  item:
+    children:
+    - subitem
+    - note
+  subitem:
+    children:
+    - note
+  note:
+    children: []
+diagnostics: []
+warnings: {}
+compound_prefix:
+  enabled: true
+  max_depth: 6
