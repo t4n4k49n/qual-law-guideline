@@ -1,0 +1,2700 @@
+schema: qai.regdoc_ir.v4
+doc_id: eu_gmp_vol4_chap4_20110101
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags:
+  - postprocess=eu_gmp_chap2_cleanup
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: pre1
+    kind: preamble
+    kind_raw: null
+    num: null
+    ord: 1
+    heading: null
+    text: EUROPEAN COMMISSION HEALTH AND CONSUMERS DIRECTORATE-GENERAL Public Health and Risk Assessment Pharmaceuticals Brussels, SANCO/C8/AM/sl/ares(2010)1064587 EudraLex The Rules Governing Medicinal Products in the European Union Volume 4 Good Manufacturing Practice Medicinal Products for Human and Veterinary Use
+    role: informative
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:1
+    - source_label: EU GMP
+      locator: line:2
+    - source_label: EU GMP
+      locator: line:4
+    - source_label: EU GMP
+      locator: line:5
+    - source_label: EU GMP
+      locator: line:9
+    - source_label: EU GMP
+      locator: line:10
+    - source_label: EU GMP
+      locator: line:15
+    - source_label: EU GMP
+      locator: line:16
+    - source_label: EU GMP
+      locator: line:18
+    - source_label: EU GMP
+      locator: line:19
+    - source_label: EU GMP
+      locator: line:20
+    children: []
+  - nid: cha4
+    kind: chapter
+    kind_raw: Chapter
+    num: '4'
+    ord: 2
+    heading: Documentation
+    text: 'Legal basis for publishing the detailed guidelines: Article 47 of Directive 2001/83/EC on the Community code relating to medicinal products for human use and Article 51 of Directive 2001/82/EC on the Community code relating to veterinary medicinal products. This document provides guidance for the interpretation of the principles and guidelines of good manufacturing practice (GMP) for medicinal products as laid down in Directive 2003/94/EC for medicinal products for human use and Directive 91/412/EEC for veterinary use. Status of the document: revision 1 Reasons for changes: the sections on "generation and control of documentation" and "retention of documents" have been revised, in the light of the increasing use of electronic documents within the GMP environment. Deadline for coming into operation: 30 June 2011 Telephone: (32-2) 299 11 11'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:22
+    - source_label: EU GMP
+      locator: line:26
+    - source_label: EU GMP
+      locator: line:27
+    - source_label: EU GMP
+      locator: line:28
+    - source_label: EU GMP
+      locator: line:29
+    - source_label: EU GMP
+      locator: line:30
+    - source_label: EU GMP
+      locator: line:31
+    - source_label: EU GMP
+      locator: line:33
+    - source_label: EU GMP
+      locator: line:35
+    - source_label: EU GMP
+      locator: line:36
+    - source_label: EU GMP
+      locator: line:37
+    - source_label: EU GMP
+      locator: line:40
+    - source_label: EU GMP
+      locator: line:47
+    children:
+    - nid: cha4.sec1
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 3
+      heading: Principle
+      text: 'Good documentation constitutes an essential part of the quality assurance system and is key to operating in compliance with GMP requirements. The various types of documents and media used should be fully defined in the manufacturer''s Quality Management System. Documentation may exist in a variety of forms, including paper-based, electronic or photographic media. The main objective of the system of documentation utilized must be to establish, control, monitor and record all activities which directly or indirectly impact on all aspects of the quality of medicinal products. The Quality Management System should include sufficient instructional detail to facilitate a common understanding of the requirements, in addition to providing for sufficient recording of the various processes and evaluation of any observations, so that ongoing application of the requirements may be demonstrated. There are two primary types of documentation used to manage and record GMP compliance: instructions (directions, requirements) and records/reports. Appropriate good documentation practice should be applied with respect to the type of document. Suitable controls should be implemented to ensure the accuracy, integrity, availability and legibility of documents. Instruction documents should be free from errors and available in writing. The term ‘written’ means recorded, or documented on media from which data may be rendered in a human readable form. Required GMP documentation (by type): Site Master File: A document describing the GMP related activities of the manufacturer. Instructions (directions, or requirements) type: Specifications Describe in detail the requirements with which the products or materials used or obtained during manufacture have to conform. They serve as a basis for quality evaluation. Manufacturing Formulae, Processing, Packaging and Testing Instructions: Provide detail all the starting materials, equipment and computerised systems (if any) to be used and specify all processing, packaging, sampling and testing instructions. In-process controls and process analytical technologies to be employed should be specified where relevant, together with acceptance criteria. Procedures: (Otherwise known as Standard Operating Procedures, or SOPs), give directions for performing certain operations. Protocols: Give instructions for performing and recording certain discreet operations. Technical Agreements: Are agreed between contract givers and acceptors for outsourced activities. Record/Report type: Records: Provide evidence of various actions taken to demonstrate compliance with instructions, e.g. activities, events, investigations, and in the case of manufactured batches a history of each batch of product, including its distribution. Records include the raw data which is used to generate other records. For electronic records regulated users should define which data are to be used as raw data. At least, all data on which quality decisions are based should be defined as raw data Certificates of Analysis: Provide a summary of testing results on samples of products or materials together with the evaluation for compliance to a stated specification. Reports: Document the conduct of particular exercises, projects or investigations, together with results, conclusions and recommendations.'
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:59
+      - source_label: EU GMP
+        locator: line:60
+      - source_label: EU GMP
+        locator: line:61
+      - source_label: EU GMP
+        locator: line:62
+      - source_label: EU GMP
+        locator: line:63
+      - source_label: EU GMP
+        locator: line:64
+      - source_label: EU GMP
+        locator: line:65
+      - source_label: EU GMP
+        locator: line:66
+      - source_label: EU GMP
+        locator: line:67
+      - source_label: EU GMP
+        locator: line:68
+      - source_label: EU GMP
+        locator: line:69
+      - source_label: EU GMP
+        locator: line:71
+      - source_label: EU GMP
+        locator: line:72
+      - source_label: EU GMP
+        locator: line:73
+      - source_label: EU GMP
+        locator: line:75
+      - source_label: EU GMP
+        locator: line:76
+      - source_label: EU GMP
+        locator: line:77
+      - source_label: EU GMP
+        locator: line:78
+      - source_label: EU GMP
+        locator: line:80
+      - source_label: EU GMP
+        locator: line:81
+      - source_label: EU GMP
+        locator: line:83
+      - source_label: EU GMP
+        locator: line:85
+      - source_label: EU GMP
+        locator: line:86
+      - source_label: EU GMP
+        locator: line:87
+      - source_label: EU GMP
+        locator: line:89
+      - source_label: EU GMP
+        locator: line:90
+      - source_label: EU GMP
+        locator: line:91
+      - source_label: EU GMP
+        locator: line:92
+      - source_label: EU GMP
+        locator: line:93
+      - source_label: EU GMP
+        locator: line:95
+      - source_label: EU GMP
+        locator: line:96
+      - source_label: EU GMP
+        locator: line:97
+      - source_label: EU GMP
+        locator: line:99
+      - source_label: EU GMP
+        locator: line:100
+      - source_label: EU GMP
+        locator: line:102
+      - source_label: EU GMP
+        locator: line:103
+      - source_label: EU GMP
+        locator: line:104
+      - source_label: EU GMP
+        locator: line:105
+      - source_label: EU GMP
+        locator: line:106
+      - source_label: EU GMP
+        locator: line:107
+      - source_label: EU GMP
+        locator: line:108
+      - source_label: EU GMP
+        locator: line:109
+      - source_label: EU GMP
+        locator: line:110
+      - source_label: EU GMP
+        locator: line:111
+      - source_label: EU GMP
+        locator: line:113
+      - source_label: EU GMP
+        locator: line:114
+      children: []
+    - nid: cha4.sec2
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 4
+      heading: Generation and Control of Documentation
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:117
+      children:
+      - nid: cha4.sec2.p4_1
+        kind: paragraph
+        kind_raw: '4.1'
+        num: '4.1'
+        ord: 5
+        heading: null
+        text: All types of document should be defined and adhered to. The requirements apply equally to all forms of document media types. Complex systems need to be understood, well documented, validated, and adequate controls should be in place. Many documents (instructions and/or records) may exist in hybrid forms, i.e. some elements as electronic and others as paper based. Relationships and control measures for master documents, official copies, data handling and records need to be stated for both hybrid and homogenous systems. Appropriate controls for electronic documents such as templates, forms, and master documents should be implemented. Appropriate controls should be in place to ensure the integrity of the record throughout the retention period.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:118
+        - source_label: EU GMP
+          locator: line:119
+        - source_label: EU GMP
+          locator: line:120
+        - source_label: EU GMP
+          locator: line:121
+        - source_label: EU GMP
+          locator: line:122
+        - source_label: EU GMP
+          locator: line:123
+        - source_label: EU GMP
+          locator: line:124
+        - source_label: EU GMP
+          locator: line:125
+        - source_label: EU GMP
+          locator: line:126
+        children: []
+      - nid: cha4.sec2.p4_2
+        kind: paragraph
+        kind_raw: '4.2'
+        num: '4.2'
+        ord: 6
+        heading: null
+        text: Documents should be designed, prepared, reviewed, and distributed with care. They should comply with the relevant parts of Product Specification Files, Manufacturing and Marketing Authorisation dossiers, as appropriate. The reproduction of working documents from master documents should not allow any error to be introduced through the reproduction process.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:128
+        - source_label: EU GMP
+          locator: line:129
+        - source_label: EU GMP
+          locator: line:130
+        - source_label: EU GMP
+          locator: line:131
+        - source_label: EU GMP
+          locator: line:132
+        children: []
+      - nid: cha4.sec2.p4_3
+        kind: paragraph
+        kind_raw: '4.3'
+        num: '4.3'
+        ord: 7
+        heading: null
+        text: Documents containing instructions should be approved, signed and dated by appropriate and authorised persons. Documents should have unambiguous contents and be uniquely identifiable. The effective date should be defined.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:134
+        - source_label: EU GMP
+          locator: line:135
+        - source_label: EU GMP
+          locator: line:136
+        children: []
+      - nid: cha4.sec2.p4_4
+        kind: paragraph
+        kind_raw: '4.4'
+        num: '4.4'
+        ord: 8
+        heading: null
+        text: Documents containing instructions should be laid out in an orderly fashion and be easy to check. The style and language of documents should fit with their intended use. Standard Operating Procedures, Work Instructions and Methods should be written in an imperative mandatory style. Alternatively the certification may be based, in-whole or in-part, on the assessment of real time data (summaries and exception reports) from batch related process analytical technology (PAT), parameters or metrics as per the approved marketing authorisation dossier.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:138
+        - source_label: EU GMP
+          locator: line:139
+        - source_label: EU GMP
+          locator: line:140
+        - source_label: EU GMP
+          locator: line:141
+        - source_label: EU GMP
+          locator: line:146
+        - source_label: EU GMP
+          locator: line:147
+        - source_label: EU GMP
+          locator: line:148
+        children: []
+      - nid: cha4.sec2.p4_5
+        kind: paragraph
+        kind_raw: '4.5'
+        num: '4.5'
+        ord: 9
+        heading: null
+        text: Documents within the Quality Management System should be regularly reviewed and kept up-to-date.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:149
+        - source_label: EU GMP
+          locator: line:150
+        children: []
+      - nid: cha4.sec2.p4_6
+        kind: paragraph
+        kind_raw: '4.6'
+        num: '4.6'
+        ord: 10
+        heading: null
+        text: Documents should not be hand-written; although, where documents require the entry of data, sufficient space should be provided for such entries.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:152
+        - source_label: EU GMP
+          locator: line:153
+        children: []
+    - nid: cha4.sec3
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 11
+      heading: Good Documentation Practices
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:155
+      children:
+      - nid: cha4.sec3.p4_7
+        kind: paragraph
+        kind_raw: '4.7'
+        num: '4.7'
+        ord: 12
+        heading: null
+        text: Handwritten entries should be made in clear, legible, indelible way.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:156
+        children: []
+      - nid: cha4.sec3.p4_8
+        kind: paragraph
+        kind_raw: '4.8'
+        num: '4.8'
+        ord: 13
+        heading: null
+        text: Records should be made or completed at the time each action is taken and in such a way that all significant activities concerning the manufacture of medicinal products are traceable.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:158
+        - source_label: EU GMP
+          locator: line:159
+        - source_label: EU GMP
+          locator: line:160
+        children: []
+      - nid: cha4.sec3.p4_9
+        kind: paragraph
+        kind_raw: '4.9'
+        num: '4.9'
+        ord: 14
+        heading: null
+        text: Any alteration made to the entry on a document should be signed and dated; the alteration should permit the reading of the original information. Where appropriate, the reason for the alteration should be recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:162
+        - source_label: EU GMP
+          locator: line:163
+        - source_label: EU GMP
+          locator: line:164
+        children: []
+    - nid: cha4.sec4
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 15
+      heading: Retention of Documents
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:166
+      children:
+      - nid: cha4.sec4.p4_10
+        kind: paragraph
+        kind_raw: '4.10'
+        num: '4.10'
+        ord: 16
+        heading: null
+        text: It should be clearly defined which record is related to each manufacturing activity and where this record is located. Secure controls must be in place to ensure the integrity of the record throughout the retention period and validated where appropriate.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:167
+        - source_label: EU GMP
+          locator: line:168
+        - source_label: EU GMP
+          locator: line:169
+        children: []
+      - nid: cha4.sec4.p4_11
+        kind: paragraph
+        kind_raw: '4.11'
+        num: '4.11'
+        ord: 17
+        heading: null
+        text: Specific requirements apply to batch documentation which must be kept for one year after expiry of the batch to which it relates or at least five years after certification of the batch by the Qualified Person, whichever is the longer. For investigational medicinal products, the batch documentation must be kept for at least five years after the completion or formal discontinuation of the last clinical trial in which the batch was used. Other requirements for retention of documentation may be described in legislation in relation to specific types of product (e.g. Advanced Therapy Medicinal Products) and specify that longer retention periods be applied to certain documents.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:171
+        - source_label: EU GMP
+          locator: line:172
+        - source_label: EU GMP
+          locator: line:173
+        - source_label: EU GMP
+          locator: line:174
+        - source_label: EU GMP
+          locator: line:175
+        - source_label: EU GMP
+          locator: line:176
+        - source_label: EU GMP
+          locator: line:177
+        - source_label: EU GMP
+          locator: line:178
+        children: []
+      - nid: cha4.sec4.p4_12
+        kind: paragraph
+        kind_raw: '4.12'
+        num: '4.12'
+        ord: 18
+        heading: null
+        text: For other types of documentation, the retention period will depend on the business activity which the documentation supports. Critical documentation, including raw data (for example relating to validation or stability), which supports information in the Marketing Authorisation should be retained whilst the authorization remains in force. It may be considered acceptable to retire certain documentation (e.g. raw data supporting validation reports or stability reports) where the data has been superseded by a full set of new data. Justification for this should be documented and should take into account the requirements for retention of batch documentation; for example, in the case of process validation data, the accompanying raw data should be retained for a period at least as long as the records for all batches whose release has been supported on the basis of that validation exercise. The following section gives some examples of required documents. The quality management system should describe all documents required to ensure product quality and patient safety.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:180
+        - source_label: EU GMP
+          locator: line:181
+        - source_label: EU GMP
+          locator: line:182
+        - source_label: EU GMP
+          locator: line:183
+        - source_label: EU GMP
+          locator: line:184
+        - source_label: EU GMP
+          locator: line:185
+        - source_label: EU GMP
+          locator: line:186
+        - source_label: EU GMP
+          locator: line:187
+        - source_label: EU GMP
+          locator: line:188
+        - source_label: EU GMP
+          locator: line:189
+        - source_label: EU GMP
+          locator: line:191
+        - source_label: EU GMP
+          locator: line:192
+        children: []
+    - nid: cha4.sec5
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 19
+      heading: Specifications
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:194
+      children:
+      - nid: cha4.sec5.p4_13
+        kind: paragraph
+        kind_raw: '4.13'
+        num: '4.13'
+        ord: 20
+        heading: null
+        text: There should be appropriately authorised and dated specifications for starting and packaging materials, and finished products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:195
+        - source_label: EU GMP
+          locator: line:196
+        children: []
+    - nid: cha4.sec6
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 21
+      heading: Specifications for starting and packaging materials
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:197
+      children:
+      - nid: cha4.sec6.p4_14
+        kind: paragraph
+        kind_raw: '4.14'
+        num: '4.14'
+        ord: 22
+        heading: null
+        text: 'Specifications for starting and primary or printed packaging materials should include or provide reference to, if applicable:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:198
+        - source_label: EU GMP
+          locator: line:199
+        children:
+        - nid: cha4.sec6.p4_14.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 23
+          heading: null
+          text: 'A description of the materials, including:'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:200
+          children:
+          - nid: cha4.sec6.p4_14.ia.si1
+            kind: subitem
+            kind_raw: '-'
+            num: null
+            ord: 24
+            heading: null
+            text: The designated name and the internal code reference;
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: EU GMP
+              locator: line:201
+            children: []
+          - nid: cha4.sec6.p4_14.ia.si2
+            kind: subitem
+            kind_raw: '-'
+            num: null
+            ord: 25
+            heading: null
+            text: The reference, if any, to a pharmacopoeial monograph;
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: EU GMP
+              locator: line:202
+            children: []
+          - nid: cha4.sec6.p4_14.ia.si3
+            kind: subitem
+            kind_raw: '-'
+            num: null
+            ord: 26
+            heading: null
+            text: The approved suppliers and, if reasonable, the original producer of the material;
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: EU GMP
+              locator: line:203
+            children: []
+          - nid: cha4.sec6.p4_14.ia.si4
+            kind: subitem
+            kind_raw: '-'
+            num: null
+            ord: 27
+            heading: null
+            text: A specimen of printed materials;
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: EU GMP
+              locator: line:204
+            children: []
+        - nid: cha4.sec6.p4_14.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 28
+          heading: null
+          text: Directions for sampling and testing;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:205
+          children: []
+        - nid: cha4.sec6.p4_14.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 29
+          heading: null
+          text: Qualitative and quantitative requirements with acceptance limits;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:206
+          children: []
+        - nid: cha4.sec6.p4_14.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 30
+          heading: null
+          text: Storage conditions and precautions;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:207
+          children: []
+        - nid: cha4.sec6.p4_14.ie
+          kind: item
+          kind_raw: e)
+          num: e
+          ord: 31
+          heading: null
+          text: The maximum period of storage before re-examination.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:208
+          children: []
+    - nid: cha4.sec7
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 32
+      heading: Specifications for intermediate and bulk products
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:210
+      children:
+      - nid: cha4.sec7.p4_15
+        kind: paragraph
+        kind_raw: '4.15'
+        num: '4.15'
+        ord: 33
+        heading: null
+        text: Specifications for intermediate and bulk products should be available for critical steps or if these are purchased or dispatched. The specifications should be similar to specifications for starting materials or for finished products, as appropriate.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:211
+        - source_label: EU GMP
+          locator: line:212
+        - source_label: EU GMP
+          locator: line:213
+        children: []
+    - nid: cha4.sec8
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 34
+      heading: Specifications for finished products
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:215
+      children:
+      - nid: cha4.sec8.p4_16
+        kind: paragraph
+        kind_raw: '4.16'
+        num: '4.16'
+        ord: 35
+        heading: null
+        text: 'Specifications for finished products should include or provide reference to:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:216
+        children:
+        - nid: cha4.sec8.p4_16.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 36
+          heading: null
+          text: The designated name of the product and the code reference where applicable;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:217
+          children: []
+        - nid: cha4.sec8.p4_16.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 37
+          heading: null
+          text: The formula;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:218
+          children: []
+        - nid: cha4.sec8.p4_16.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 38
+          heading: null
+          text: A description of the pharmaceutical form and package details;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:219
+          children: []
+        - nid: cha4.sec8.p4_16.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 39
+          heading: null
+          text: Directions for sampling and testing
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:220
+          children: []
+        - nid: cha4.sec8.p4_16.ie
+          kind: item
+          kind_raw: e)
+          num: e
+          ord: 40
+          heading: null
+          text: The qualitative and quantitative requirements, with the acceptance limits;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:221
+          children: []
+        - nid: cha4.sec8.p4_16.if
+          kind: item
+          kind_raw: f)
+          num: f
+          ord: 41
+          heading: null
+          text: The storage conditions and any special handling precautions, where applicable;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:222
+          children: []
+        - nid: cha4.sec8.p4_16.ig
+          kind: item
+          kind_raw: g)
+          num: g
+          ord: 42
+          heading: null
+          text: The shelf-life.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:223
+          children: []
+    - nid: cha4.sec9
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 43
+      heading: Manufacturing Formula and Processing Instructions
+      text: Approved, written Manufacturing Formula and Processing Instructions should exist for each product and batch size to be manufactured.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:225
+      - source_label: EU GMP
+        locator: line:226
+      - source_label: EU GMP
+        locator: line:227
+      children:
+      - nid: cha4.sec9.p4_17
+        kind: paragraph
+        kind_raw: '4.17'
+        num: '4.17'
+        ord: 44
+        heading: null
+        text: 'The Manufacturing Formula should include:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:229
+        children:
+        - nid: cha4.sec9.p4_17.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 45
+          heading: null
+          text: The name of the product, with a product reference code relating to its specification;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:230
+          children: []
+        - nid: cha4.sec9.p4_17.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 46
+          heading: null
+          text: A description of the pharmaceutical form, strength of the product and batch size;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:231
+          children: []
+        - nid: cha4.sec9.p4_17.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 47
+          heading: null
+          text: A list of all starting materials to be used, with the amount of each, described; mention should be made of any substance that may disappear in the course of processing;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:232
+          - source_label: EU GMP
+            locator: line:233
+          children: []
+        - nid: cha4.sec9.p4_17.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 48
+          heading: null
+          text: A statement of the expected final yield with the acceptable limits, and of relevant intermediate yields, where applicable
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:234
+          - source_label: EU GMP
+            locator: line:235
+          children: []
+      - nid: cha4.sec9.p4_18
+        kind: paragraph
+        kind_raw: '4.18'
+        num: '4.18'
+        ord: 49
+        heading: null
+        text: 'The Processing Instructions should include:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:237
+        children:
+        - nid: cha4.sec9.p4_18.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 50
+          heading: null
+          text: A statement of the processing location and the principal equipment to be used;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:238
+          children: []
+        - nid: cha4.sec9.p4_18.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 51
+          heading: null
+          text: The methods, or reference to the methods, to be used for preparing the critical equipment (e.g. cleaning, assembling, calibrating, sterilising);
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:239
+          - source_label: EU GMP
+            locator: line:240
+          children: []
+        - nid: cha4.sec9.p4_18.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 52
+          heading: null
+          text: Checks that the equipment and work station are clear of previous products, documents or materials not required for the planned process, and that equipment is clean and suitable for use;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:241
+          - source_label: EU GMP
+            locator: line:242
+          - source_label: EU GMP
+            locator: line:243
+          children: []
+        - nid: cha4.sec9.p4_18.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 53
+          heading: null
+          text: Detailed stepwise processing instructions [e.g. checks on materials, pre-treatments, sequence for adding materials, critical process parameters (time, temp etc)];
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:244
+          - source_label: EU GMP
+            locator: line:245
+          children: []
+        - nid: cha4.sec9.p4_18.ie
+          kind: item
+          kind_raw: e)
+          num: e
+          ord: 54
+          heading: null
+          text: The instructions for any in-process controls with their limits;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:246
+          children: []
+        - nid: cha4.sec9.p4_18.if
+          kind: item
+          kind_raw: f)
+          num: f
+          ord: 55
+          heading: null
+          text: Where necessary, the requirements for bulk storage of the products; including the container, labeling and special storage conditions where applicable;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:247
+          - source_label: EU GMP
+            locator: line:248
+          children: []
+        - nid: cha4.sec9.p4_18.ig
+          kind: item
+          kind_raw: g)
+          num: g
+          ord: 56
+          heading: null
+          text: Any special precautions to be observed.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:249
+          children: []
+    - nid: cha4.sec10
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 57
+      heading: Packaging Instructions
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:251
+      children:
+      - nid: cha4.sec10.p4_19
+        kind: paragraph
+        kind_raw: '4.19'
+        num: '4.19'
+        ord: 58
+        heading: null
+        text: 'Approved Packaging Instructions for each product, pack size and type should exist. These should include, or have a reference to, the following:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:252
+        - source_label: EU GMP
+          locator: line:253
+        children:
+        - nid: cha4.sec10.p4_19.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 59
+          heading: null
+          text: Name of the product; including the batch number of bulk and finished product
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:254
+          children: []
+        - nid: cha4.sec10.p4_19.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 60
+          heading: null
+          text: Description of its pharmaceutical form, and strength where applicable;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:255
+          children: []
+        - nid: cha4.sec10.p4_19.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 61
+          heading: null
+          text: The pack size expressed in terms of the number, weight or volume of the product in the final container;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:256
+          - source_label: EU GMP
+            locator: line:257
+          children: []
+        - nid: cha4.sec10.p4_19.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 62
+          heading: null
+          text: A complete list of all the packaging materials required, including quantities, sizes and types, with the code or reference number relating to the specifications of each packaging material;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:258
+          - source_label: EU GMP
+            locator: line:259
+          - source_label: EU GMP
+            locator: line:260
+          children: []
+        - nid: cha4.sec10.p4_19.ie
+          kind: item
+          kind_raw: e)
+          num: e
+          ord: 63
+          heading: null
+          text: Where appropriate, an example or reproduction of the relevant printed packaging materials, and specimens indicating where to apply batch number references, and shelf life of the product;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:261
+          - source_label: EU GMP
+            locator: line:262
+          - source_label: EU GMP
+            locator: line:263
+          children: []
+        - nid: cha4.sec10.p4_19.if
+          kind: item
+          kind_raw: f)
+          num: f
+          ord: 64
+          heading: null
+          text: Checks that the equipment and work station are clear of previous products, documents or materials not required for the planned packaging operations (line clearance), and that equipment is clean and suitable for use.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:264
+          - source_label: EU GMP
+            locator: line:265
+          - source_label: EU GMP
+            locator: line:266
+          children: []
+        - nid: cha4.sec10.p4_19.ig
+          kind: item
+          kind_raw: g)
+          num: g
+          ord: 65
+          heading: null
+          text: Special precautions to be observed, including a careful examination of the area and equipment in order to ascertain the line clearance before operations begin;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:267
+          - source_label: EU GMP
+            locator: line:268
+          children: []
+        - nid: cha4.sec10.p4_19.ih
+          kind: item
+          kind_raw: h)
+          num: h
+          ord: 66
+          heading: null
+          text: A description of the packaging operation, including any significant subsidiary operations, and equipment to be used;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:269
+          - source_label: EU GMP
+            locator: line:270
+          children: []
+        - nid: cha4.sec10.p4_19.ii
+          kind: item
+          kind_raw: i)
+          num: i
+          ord: 67
+          heading: null
+          text: Details of in-process controls with instructions for sampling and acceptance limits.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:271
+          children: []
+    - nid: cha4.sec11
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 68
+      heading: Batch Processing Record
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:273
+      children:
+      - nid: cha4.sec11.p4_20
+        kind: paragraph
+        kind_raw: '4.20'
+        num: '4.20'
+        ord: 69
+        heading: null
+        text: 'A Batch Processing Record should be kept for each batch processed. It should be based on the relevant parts of the currently approved Manufacturing Formula and Processing Instructions, and should contain the following information: generated reports may be limited to compliance summaries and exception/ out-ofspecification (OOS) data reports.'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:274
+        - source_label: EU GMP
+          locator: line:275
+        - source_label: EU GMP
+          locator: line:276
+        - source_label: EU GMP
+          locator: line:294
+        - source_label: EU GMP
+          locator: line:295
+        children:
+        - nid: cha4.sec11.p4_20.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 70
+          heading: null
+          text: The name and batch number of the product;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:277
+          children: []
+        - nid: cha4.sec11.p4_20.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 71
+          heading: null
+          text: Dates and times of commencement, of significant intermediate stages and of completion of production;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:278
+          - source_label: EU GMP
+            locator: line:279
+          children: []
+        - nid: cha4.sec11.p4_20.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 72
+          heading: null
+          text: Identification (initials) of the operator(s) who performed each significant step of the process and, where appropriate, the name of any person who checked these operations;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:280
+          - source_label: EU GMP
+            locator: line:281
+          - source_label: EU GMP
+            locator: line:282
+          children: []
+        - nid: cha4.sec11.p4_20.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 73
+          heading: null
+          text: The batch number and/or analytical control number as well as the quantities of each starting material actually weighed (including the batch number and amount of any recovered or reprocessed material added);
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:283
+          - source_label: EU GMP
+            locator: line:284
+          - source_label: EU GMP
+            locator: line:285
+          children: []
+        - nid: cha4.sec11.p4_20.ie
+          kind: item
+          kind_raw: e)
+          num: e
+          ord: 74
+          heading: null
+          text: Any relevant processing operation or event and major equipment used;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:286
+          children: []
+        - nid: cha4.sec11.p4_20.if
+          kind: item
+          kind_raw: f)
+          num: f
+          ord: 75
+          heading: null
+          text: A record of the in-process controls and the initials of the person(s) carrying them out, and the results obtained;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:287
+          - source_label: EU GMP
+            locator: line:288
+          children: []
+        - nid: cha4.sec11.p4_20.ig
+          kind: item
+          kind_raw: g)
+          num: g
+          ord: 76
+          heading: null
+          text: The product yield obtained at different and pertinent stages of manufacture;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:289
+          children: []
+        - nid: cha4.sec11.p4_20.ih
+          kind: item
+          kind_raw: h)
+          num: h
+          ord: 77
+          heading: null
+          text: Notes on special problems including details, with signed authorisation for any deviation from the Manufacturing Formula and Processing Instructions;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:290
+          - source_label: EU GMP
+            locator: line:291
+          children: []
+        - nid: cha4.sec11.p4_20.ii
+          kind: item
+          kind_raw: i)
+          num: i
+          ord: 78
+          heading: null
+          text: Approval by the person responsible for the processing operations.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:292
+          children:
+          - nid: cha4.sec11.p4_20.ii.not1
+            kind: note
+            kind_raw: note
+            num: null
+            ord: 79
+            heading: null
+            text: 'Note: Where a validated process is continuously monitored and controlled, then automatically'
+            role: informative
+            normativity: null
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: EU GMP
+              locator: line:293
+            children: []
+    - nid: cha4.sec12
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 80
+      heading: Batch Packaging Record
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:297
+      children:
+      - nid: cha4.sec12.p4_21
+        kind: paragraph
+        kind_raw: '4.21'
+        num: '4.21'
+        ord: 81
+        heading: null
+        text: 'A Batch Packaging Record should be kept for each batch or part batch processed. It should be based on the relevant parts of the Packaging Instructions. The batch packaging record should contain the following information:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:298
+        - source_label: EU GMP
+          locator: line:299
+        - source_label: EU GMP
+          locator: line:301
+        children:
+        - nid: cha4.sec12.p4_21.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 82
+          heading: null
+          text: The name and batch number of the product,
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:302
+          children: []
+        - nid: cha4.sec12.p4_21.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 83
+          heading: null
+          text: The date(s) and times of the packaging operations;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:303
+          children: []
+        - nid: cha4.sec12.p4_21.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 84
+          heading: null
+          text: Identification (initials) of the operator(s) who performed each significant step of the process and, where appropriate, the name of any person who checked these operations;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:304
+          - source_label: EU GMP
+            locator: line:305
+          children: []
+        - nid: cha4.sec12.p4_21.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 85
+          heading: null
+          text: Records of checks for identity and conformity with the packaging instructions, including the results of in-process controls;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:306
+          - source_label: EU GMP
+            locator: line:307
+          children: []
+        - nid: cha4.sec12.p4_21.ie
+          kind: item
+          kind_raw: e)
+          num: e
+          ord: 86
+          heading: null
+          text: Details of the packaging operations carried out, including references to equipment and the packaging lines used;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:308
+          - source_label: EU GMP
+            locator: line:309
+          children: []
+        - nid: cha4.sec12.p4_21.if
+          kind: item
+          kind_raw: f)
+          num: f
+          ord: 87
+          heading: null
+          text: Whenever possible, samples of printed packaging materials used, including specimens of the batch coding, expiry dating and any additional overprinting;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:310
+          - source_label: EU GMP
+            locator: line:311
+          children: []
+        - nid: cha4.sec12.p4_21.ig
+          kind: item
+          kind_raw: g)
+          num: g
+          ord: 88
+          heading: null
+          text: Notes on any special problems or unusual events including details, with signed authorisation for any deviation from the Packaging Instructions;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:312
+          - source_label: EU GMP
+            locator: line:313
+          children: []
+        - nid: cha4.sec12.p4_21.ih
+          kind: item
+          kind_raw: h)
+          num: h
+          ord: 89
+          heading: null
+          text: The quantities and reference number or identification of all printed packaging materials and bulk product issued, used, destroyed or returned to stock and the quantities of obtained product, in order to provide for an adequate reconciliation. Where there are there are robust electronic controls in place during packaging there may be justification for not including this information
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:314
+          - source_label: EU GMP
+            locator: line:315
+          - source_label: EU GMP
+            locator: line:316
+          - source_label: EU GMP
+            locator: line:317
+          - source_label: EU GMP
+            locator: line:318
+          children: []
+        - nid: cha4.sec12.p4_21.ii
+          kind: item
+          kind_raw: i)
+          num: i
+          ord: 90
+          heading: null
+          text: Approval by the person responsible for the packaging operations
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:319
+          children: []
+    - nid: cha4.sec13
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 91
+      heading: Procedures and records
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:320
+      children: []
+    - nid: cha4.sec14
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 92
+      heading: Receipt
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:321
+      children:
+      - nid: cha4.sec14.p4_22
+        kind: paragraph
+        kind_raw: '4.22'
+        num: '4.22'
+        ord: 93
+        heading: null
+        text: There should be written procedures and records for the receipt of each delivery of each starting material, (including bulk, intermediate or finished goods), primary, secondary and printed packaging materials.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:322
+        - source_label: EU GMP
+          locator: line:323
+        - source_label: EU GMP
+          locator: line:324
+        children: []
+      - nid: cha4.sec14.p4_23
+        kind: paragraph
+        kind_raw: '4.23'
+        num: '4.23'
+        ord: 94
+        heading: null
+        text: 'The records of the receipts should include:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:326
+        children:
+        - nid: cha4.sec14.p4_23.ia
+          kind: item
+          kind_raw: a)
+          num: a
+          ord: 95
+          heading: null
+          text: The name of the material on the delivery note and the containers;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:327
+          children: []
+        - nid: cha4.sec14.p4_23.ib
+          kind: item
+          kind_raw: b)
+          num: b
+          ord: 96
+          heading: null
+          text: The "in-house" name and/or code of material (if different from a);
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:328
+          children: []
+        - nid: cha4.sec14.p4_23.ic
+          kind: item
+          kind_raw: c)
+          num: c
+          ord: 97
+          heading: null
+          text: Date of receipt;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:329
+          children: []
+        - nid: cha4.sec14.p4_23.id
+          kind: item
+          kind_raw: d)
+          num: d
+          ord: 98
+          heading: null
+          text: Supplier’s name and, manufacturer’s name;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:330
+          children: []
+        - nid: cha4.sec14.p4_23.ie
+          kind: item
+          kind_raw: e)
+          num: e
+          ord: 99
+          heading: null
+          text: Manufacturer’s batch or reference number;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:331
+          children: []
+        - nid: cha4.sec14.p4_23.if
+          kind: item
+          kind_raw: f)
+          num: f
+          ord: 100
+          heading: null
+          text: Total quantity and number of containers received;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:332
+          children: []
+        - nid: cha4.sec14.p4_23.ig
+          kind: item
+          kind_raw: g)
+          num: g
+          ord: 101
+          heading: null
+          text: The batch number assigned after receipt;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:333
+          children: []
+        - nid: cha4.sec14.p4_23.ih
+          kind: item
+          kind_raw: h)
+          num: h
+          ord: 102
+          heading: null
+          text: Any relevant comment.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:334
+          children: []
+      - nid: cha4.sec14.p4_24
+        kind: paragraph
+        kind_raw: '4.24'
+        num: '4.24'
+        ord: 103
+        heading: null
+        text: There should be written procedures for the internal labeling, quarantine and storage of starting materials, packaging materials and other materials, as appropriate.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:336
+        - source_label: EU GMP
+          locator: line:337
+        children: []
+    - nid: cha4.sec15
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 104
+      heading: Sampling
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:339
+      children:
+      - nid: cha4.sec15.p4_25
+        kind: paragraph
+        kind_raw: '4.25'
+        num: '4.25'
+        ord: 105
+        heading: null
+        text: There should be written procedures for sampling, which include the methods and equipment to be used, the amounts to be taken and any precautions to be observed to avoid contamination of the material or any deterioration in its quality.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:340
+        - source_label: EU GMP
+          locator: line:341
+        - source_label: EU GMP
+          locator: line:342
+        children: []
+    - nid: cha4.sec16
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 106
+      heading: Testing
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:344
+      children:
+      - nid: cha4.sec16.p4_26
+        kind: paragraph
+        kind_raw: '4.26'
+        num: '4.26'
+        ord: 107
+        heading: null
+        text: There should be written procedures for testing materials and products at different stages of manufacture, describing the methods and equipment to be used. The tests performed should be recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:345
+        - source_label: EU GMP
+          locator: line:346
+        - source_label: EU GMP
+          locator: line:347
+        children: []
+    - nid: cha4.sec17
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 108
+      heading: Other
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:349
+      children:
+      - nid: cha4.sec17.p4_27
+        kind: paragraph
+        kind_raw: '4.27'
+        num: '4.27'
+        ord: 109
+        heading: null
+        text: Written release and rejection procedures should be available for materials and products, and in particular for the certification for sale of the finished product by the Qualified Person(s). All records should be available to the Qualified Person. A system should be in place to indicate special observations and any changes to critical data.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:350
+        - source_label: EU GMP
+          locator: line:351
+        - source_label: EU GMP
+          locator: line:352
+        - source_label: EU GMP
+          locator: line:353
+        children: []
+      - nid: cha4.sec17.p4_28
+        kind: paragraph
+        kind_raw: '4.28'
+        num: '4.28'
+        ord: 110
+        heading: null
+        text: Records should be maintained for the distribution of each batch of a product in order to facilitate recall of any batch, if necessary.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:355
+        - source_label: EU GMP
+          locator: line:356
+        children: []
+      - nid: cha4.sec17.p4_29
+        kind: paragraph
+        kind_raw: '4.29'
+        num: '4.29'
+        ord: 111
+        heading: null
+        text: 'There should be written policies, procedures, protocols, reports and the associated records of actions taken or conclusions reached, where appropriate, for the following examples:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:358
+        - source_label: EU GMP
+          locator: line:359
+        - source_label: EU GMP
+          locator: line:360
+        children:
+        - nid: cha4.sec17.p4_29.si1
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 112
+          heading: null
+          text: Validation and qualification of processes, equipment and systems;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:361
+          children: []
+        - nid: cha4.sec17.p4_29.si2
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 113
+          heading: null
+          text: Equipment assembly and calibration;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:362
+          children: []
+        - nid: cha4.sec17.p4_29.si3
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 114
+          heading: null
+          text: Technology transfer;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:363
+          children: []
+        - nid: cha4.sec17.p4_29.si4
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 115
+          heading: null
+          text: Maintenance, cleaning and sanitation;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:364
+          children: []
+        - nid: cha4.sec17.p4_29.si5
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 116
+          heading: null
+          text: Personnel matters including signature lists, training in GMP and technical matters, clothing and hygiene and verification of the effectiveness of training.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:365
+          - source_label: EU GMP
+            locator: line:366
+          children: []
+        - nid: cha4.sec17.p4_29.si6
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 117
+          heading: null
+          text: Environmental monitoring;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:367
+          children: []
+        - nid: cha4.sec17.p4_29.si7
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 118
+          heading: null
+          text: Pest control;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:368
+          children: []
+        - nid: cha4.sec17.p4_29.si8
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 119
+          heading: null
+          text: Complaints;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:369
+          children: []
+        - nid: cha4.sec17.p4_29.si9
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 120
+          heading: null
+          text: Recalls;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:370
+          children: []
+        - nid: cha4.sec17.p4_29.si10
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 121
+          heading: null
+          text: Returns;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:371
+          children: []
+        - nid: cha4.sec17.p4_29.si11
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 122
+          heading: null
+          text: Change control;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:372
+          children: []
+        - nid: cha4.sec17.p4_29.si12
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 123
+          heading: null
+          text: Investigations into deviations and non-conformances;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:373
+          children: []
+        - nid: cha4.sec17.p4_29.si13
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 124
+          heading: null
+          text: Internal quality/GMP compliance audits;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:374
+          children: []
+        - nid: cha4.sec17.p4_29.si14
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 125
+          heading: null
+          text: Summaries of records where appropriate (e.g. product quality review);
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:375
+          children: []
+        - nid: cha4.sec17.p4_29.si15
+          kind: subitem
+          kind_raw: '-'
+          num: null
+          ord: 126
+          heading: null
+          text: Supplier audits.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:376
+          children: []
+      - nid: cha4.sec17.p4_30
+        kind: paragraph
+        kind_raw: '4.30'
+        num: '4.30'
+        ord: 127
+        heading: null
+        text: Clear operating procedures should be available for major items of manufacturing and test equipment.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:378
+        - source_label: EU GMP
+          locator: line:379
+        children: []
+      - nid: cha4.sec17.p4_31
+        kind: paragraph
+        kind_raw: '4.31'
+        num: '4.31'
+        ord: 128
+        heading: null
+        text: Logbooks should be kept for major or critical analytical testing, production equipment, and areas where product has been processed. They should be used to record in chronological order, as appropriate, any use of the area, equipment/method, calibrations, maintenance, cleaning or repair operations, including the dates and identity of people who carried these operations out.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:381
+        - source_label: EU GMP
+          locator: line:382
+        - source_label: EU GMP
+          locator: line:383
+        - source_label: EU GMP
+          locator: line:384
+        - source_label: EU GMP
+          locator: line:385
+        children: []
+      - nid: cha4.sec17.p4_32
+        kind: paragraph
+        kind_raw: '4.32'
+        num: '4.32'
+        ord: 129
+        heading: null
+        text: An inventory of documents within the Quality Management System should be maintained.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:387
+        - source_label: EU GMP
+          locator: line:388
+        children: []
+index:
+  display_name_by_nid:
+    root: document
+    pre1: preamble
+    cha4: Documentation
+    cha4.sec1: Principle
+    cha4.sec2: Generation and Control of Documentation
+    cha4.sec2.p4_1: paragraph 4.1
+    cha4.sec2.p4_2: paragraph 4.2
+    cha4.sec2.p4_3: paragraph 4.3
+    cha4.sec2.p4_4: paragraph 4.4
+    cha4.sec2.p4_5: paragraph 4.5
+    cha4.sec2.p4_6: paragraph 4.6
+    cha4.sec3: Good Documentation Practices
+    cha4.sec3.p4_7: paragraph 4.7
+    cha4.sec3.p4_8: paragraph 4.8
+    cha4.sec3.p4_9: paragraph 4.9
+    cha4.sec4: Retention of Documents
+    cha4.sec4.p4_10: paragraph 4.10
+    cha4.sec4.p4_11: paragraph 4.11
+    cha4.sec4.p4_12: paragraph 4.12
+    cha4.sec5: Specifications
+    cha4.sec5.p4_13: paragraph 4.13
+    cha4.sec6: Specifications for starting and packaging materials
+    cha4.sec6.p4_14: paragraph 4.14
+    cha4.sec6.p4_14.ia: item a
+    cha4.sec6.p4_14.ia.si1: subitem
+    cha4.sec6.p4_14.ia.si2: subitem
+    cha4.sec6.p4_14.ia.si3: subitem
+    cha4.sec6.p4_14.ia.si4: subitem
+    cha4.sec6.p4_14.ib: item b
+    cha4.sec6.p4_14.ic: item c
+    cha4.sec6.p4_14.id: item d
+    cha4.sec6.p4_14.ie: item e
+    cha4.sec7: Specifications for intermediate and bulk products
+    cha4.sec7.p4_15: paragraph 4.15
+    cha4.sec8: Specifications for finished products
+    cha4.sec8.p4_16: paragraph 4.16
+    cha4.sec8.p4_16.ia: item a
+    cha4.sec8.p4_16.ib: item b
+    cha4.sec8.p4_16.ic: item c
+    cha4.sec8.p4_16.id: item d
+    cha4.sec8.p4_16.ie: item e
+    cha4.sec8.p4_16.if: item f
+    cha4.sec8.p4_16.ig: item g
+    cha4.sec9: Manufacturing Formula and Processing Instructions
+    cha4.sec9.p4_17: paragraph 4.17
+    cha4.sec9.p4_17.ia: item a
+    cha4.sec9.p4_17.ib: item b
+    cha4.sec9.p4_17.ic: item c
+    cha4.sec9.p4_17.id: item d
+    cha4.sec9.p4_18: paragraph 4.18
+    cha4.sec9.p4_18.ia: item a
+    cha4.sec9.p4_18.ib: item b
+    cha4.sec9.p4_18.ic: item c
+    cha4.sec9.p4_18.id: item d
+    cha4.sec9.p4_18.ie: item e
+    cha4.sec9.p4_18.if: item f
+    cha4.sec9.p4_18.ig: item g
+    cha4.sec10: Packaging Instructions
+    cha4.sec10.p4_19: paragraph 4.19
+    cha4.sec10.p4_19.ia: item a
+    cha4.sec10.p4_19.ib: item b
+    cha4.sec10.p4_19.ic: item c
+    cha4.sec10.p4_19.id: item d
+    cha4.sec10.p4_19.ie: item e
+    cha4.sec10.p4_19.if: item f
+    cha4.sec10.p4_19.ig: item g
+    cha4.sec10.p4_19.ih: item h
+    cha4.sec10.p4_19.ii: item i
+    cha4.sec11: Batch Processing Record
+    cha4.sec11.p4_20: paragraph 4.20
+    cha4.sec11.p4_20.ia: item a
+    cha4.sec11.p4_20.ib: item b
+    cha4.sec11.p4_20.ic: item c
+    cha4.sec11.p4_20.id: item d
+    cha4.sec11.p4_20.ie: item e
+    cha4.sec11.p4_20.if: item f
+    cha4.sec11.p4_20.ig: item g
+    cha4.sec11.p4_20.ih: item h
+    cha4.sec11.p4_20.ii: item i
+    cha4.sec11.p4_20.ii.not1: note
+    cha4.sec12: Batch Packaging Record
+    cha4.sec12.p4_21: paragraph 4.21
+    cha4.sec12.p4_21.ia: item a
+    cha4.sec12.p4_21.ib: item b
+    cha4.sec12.p4_21.ic: item c
+    cha4.sec12.p4_21.id: item d
+    cha4.sec12.p4_21.ie: item e
+    cha4.sec12.p4_21.if: item f
+    cha4.sec12.p4_21.ig: item g
+    cha4.sec12.p4_21.ih: item h
+    cha4.sec12.p4_21.ii: item i
+    cha4.sec13: Procedures and records
+    cha4.sec14: Receipt
+    cha4.sec14.p4_22: paragraph 4.22
+    cha4.sec14.p4_23: paragraph 4.23
+    cha4.sec14.p4_23.ia: item a
+    cha4.sec14.p4_23.ib: item b
+    cha4.sec14.p4_23.ic: item c
+    cha4.sec14.p4_23.id: item d
+    cha4.sec14.p4_23.ie: item e
+    cha4.sec14.p4_23.if: item f
+    cha4.sec14.p4_23.ig: item g
+    cha4.sec14.p4_23.ih: item h
+    cha4.sec14.p4_24: paragraph 4.24
+    cha4.sec15: Sampling
+    cha4.sec15.p4_25: paragraph 4.25
+    cha4.sec16: Testing
+    cha4.sec16.p4_26: paragraph 4.26
+    cha4.sec17: Other
+    cha4.sec17.p4_27: paragraph 4.27
+    cha4.sec17.p4_28: paragraph 4.28
+    cha4.sec17.p4_29: paragraph 4.29
+    cha4.sec17.p4_29.si1: subitem
+    cha4.sec17.p4_29.si2: subitem
+    cha4.sec17.p4_29.si3: subitem
+    cha4.sec17.p4_29.si4: subitem
+    cha4.sec17.p4_29.si5: subitem
+    cha4.sec17.p4_29.si6: subitem
+    cha4.sec17.p4_29.si7: subitem
+    cha4.sec17.p4_29.si8: subitem
+    cha4.sec17.p4_29.si9: subitem
+    cha4.sec17.p4_29.si10: subitem
+    cha4.sec17.p4_29.si11: subitem
+    cha4.sec17.p4_29.si12: subitem
+    cha4.sec17.p4_29.si13: subitem
+    cha4.sec17.p4_29.si14: subitem
+    cha4.sec17.p4_29.si15: subitem
+    cha4.sec17.p4_30: paragraph 4.30
+    cha4.sec17.p4_31: paragraph 4.31
+    cha4.sec17.p4_32: paragraph 4.32

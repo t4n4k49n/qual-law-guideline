@@ -344,3 +344,123 @@ def test_eu_gmp_chapter3_sections_and_footnote_cleanup(tmp_path: Path) -> None:
     assert "\n" not in (para_334.get("text") or "")
     assert "ER 3 PREMISES" not in all_text
     assert "deadline for coming into operation was adapted" not in all_text
+
+
+def test_eu_gmp_chapter4_to_9_profile_preparation_samples(tmp_path: Path) -> None:
+    parser_profile = load_parser_profile(path=Path("src/qai_text2ir/profiles/eu_gmp_chap4_9_default_v1.yaml"))
+    samples = {
+        "chap4": [
+            "Chapter 4: Documentation",
+            "Table of Contents",
+            "Principle",
+            "Required GMP Documentation",
+            "Procedures and records",
+            "Principle",
+            "Good documentation constitutes an essential part of the quality assurance system.",
+            "Required GMP Documentation",
+            "Required GMP documentation (by type):",
+            "Specifications Describe in detail the requirements with which the products or",
+            "materials used or obtained during manufacture have to conform.",
+            "Specifications for starting and packaging materials",
+            "4.14 Specifications for starting and primary or printed packaging materials should include or",
+            "provide reference to, if applicable:",
+            "     a) A description of the materials, including:",
+            "              - The designated name and the internal code reference;",
+            "Note: Where a validated process is continuously monitored and controlled, then automatically",
+            "generated reports may be limited to compliance summaries.",
+        ],
+        "chap5": [
+            "CHAPTER 5 PRODUCTION",
+            "Chapter 5: Production",
+            "Status of the document: Revisiona.",
+            "a",
+            "  In January 2015 the deadline for coming into operation was adapted with regard to the toxicological evaluation",
+            "to align with the coming effect of the EMA guideline on setting health based exposure limits for use in risk",
+            "identification in the manufacture of different medicinal products in shared facilities. Furthermore, correction of",
+            "the reference in footnote 2 took place.",
+            "Principle",
+            "Production operations must follow clearly defined procedures.",
+            "General",
+            "5.1 Production should be performed and supervised by competent people.",
+            "Prevention of cross-contamination in production",
+            "5.20 A Quality Risk Management process should be used to assess and control the risks.",
+            "Starting materials",
+            "5.35 Manufacturers of finished products are responsible for any testing of starting materials.",
+            "Product shortage due to manufacturing constraints",
+            "5.71 The manufacturer should report restrictions in supply in accordance with its legal obligations4.",
+            "4",
+            "    Articles 23a and 81 of Directive 2001/83/EC",
+        ],
+        "chap7": [
+            "Chapter 7",
+            "Outsourced Activities",
+            "Principle",
+            "Any activity covered by the GMP Guide that is outsourced should be controlled.",
+            "Note: This Chapter deals with the responsibilities of manufacturers towards the",
+            "Competent Authorities of the Member States.",
+            "General",
+            "7.1 There should be a written Contract covering the outsourced activities.",
+            "The Contract Giver",
+            "7.4 The pharmaceutical quality system of the Contract Giver should include control.",
+        ],
+        "chap9": [
+            "CHAPTER 9 SELF INSPECTION",
+            "Principle",
+            "Self inspections should be conducted in order to monitor implementation.",
+            "9.1 Personnel matters should be examined at intervals.",
+            "59",
+        ],
+    }
+
+    parsed = {}
+    for name, lines in samples.items():
+        input_path = tmp_path / f"{name}.txt"
+        input_path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+        ir_doc = parse_text_to_ir(
+            input_path=input_path,
+            doc_id=f"eu_gmp_{name}_sample",
+            parser_profile=parser_profile,
+        )
+        ir_dict = ir_doc.to_dict()
+        verify_document(ir_dict)
+        parsed[name] = _flatten(ir_dict["content"])
+
+    chap4_sections = [n.get("heading") for n in parsed["chap4"] if n["kind"] == "section"]
+    chap4_text = "\n".join(n.get("text") or "" for n in parsed["chap4"])
+    chap4_note = next(n for n in parsed["chap4"] if n["kind"] == "note")
+    chap4_bullet = next(n for n in parsed["chap4"] if n["kind"] == "subitem")
+
+    assert chap4_sections.count("Principle") == 1
+    assert "Required GMP Documentation" in chap4_sections
+    assert "Specifications for starting and packaging materials" in chap4_sections
+    assert "Table of Contents" not in chap4_text
+    assert "validated process" in (chap4_note.get("text") or "")
+    assert "designated name" in (chap4_bullet.get("text") or "")
+
+    chap5_chapters = [n for n in parsed["chap5"] if n["kind"] == "chapter"]
+    chap5_sections = [n.get("heading") for n in parsed["chap5"] if n["kind"] == "section"]
+    chap5_text = "\n".join(n.get("text") or "" for n in parsed["chap5"])
+
+    assert len(chap5_chapters) == 1
+    assert chap5_chapters[0].get("heading") == "Production"
+    assert "Prevention of cross-contamination in production" in chap5_sections
+    assert "Product shortage due to manufacturing constraints" in chap5_sections
+    assert "footnote 2 took place" not in chap5_text
+    assert "legal obligations4" not in chap5_text
+    assert "Articles 23a" not in chap5_text
+
+    chap7_chapter = next(n for n in parsed["chap7"] if n["kind"] == "chapter")
+    chap7_note = next(n for n in parsed["chap7"] if n["kind"] == "note")
+    chap7_sections = [n.get("heading") for n in parsed["chap7"] if n["kind"] == "section"]
+
+    assert chap7_chapter.get("heading") == "Outsourced Activities"
+    assert "This Chapter deals" in (chap7_note.get("text") or "")
+    assert "The Contract Giver" in chap7_sections
+
+    chap9_chapter = next(n for n in parsed["chap9"] if n["kind"] == "chapter")
+    chap9_text = "\n".join(n.get("text") or "" for n in parsed["chap9"])
+
+    assert chap9_chapter.get("heading") == "SELF INSPECTION"
+    assert "Self inspections should be conducted" in chap9_text
+    assert all("\n" not in (n.get("text") or "") for n in parsed["chap9"])
+    assert "59" not in chap9_text

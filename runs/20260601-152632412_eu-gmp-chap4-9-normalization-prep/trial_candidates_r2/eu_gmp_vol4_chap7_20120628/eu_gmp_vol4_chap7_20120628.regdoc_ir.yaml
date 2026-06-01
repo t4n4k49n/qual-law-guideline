@@ -1,0 +1,650 @@
+schema: qai.regdoc_ir.v4
+doc_id: eu_gmp_vol4_chap7_20120628
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags:
+  - postprocess=eu_gmp_chap2_cleanup
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: pre1
+    kind: preamble
+    kind_raw: null
+    num: null
+    ord: 1
+    heading: null
+    text: Ref. Ares(2012)778531 - 28/06/2012 EUROPEAN COMMISSION HEALTH AND CONSUMERS DIRECTORATE-GENERAL Health Systems and Products Medicinal Products - Quality, safety and efficacy Brussels, SANCO/AM/sl/ddg1.d.6(2012)860362 EudraLex The Rules Governing Medicinal Products in the European Union Volume 4 EU Guidelines for Good Manufacturing Practice for Medicinal Products for Human and Veterinary Use
+    role: informative
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:1
+    - source_label: EU GMP
+      locator: line:5
+    - source_label: EU GMP
+      locator: line:6
+    - source_label: EU GMP
+      locator: line:8
+    - source_label: EU GMP
+      locator: line:9
+    - source_label: EU GMP
+      locator: line:12
+    - source_label: EU GMP
+      locator: line:13
+    - source_label: EU GMP
+      locator: line:18
+    - source_label: EU GMP
+      locator: line:20
+    - source_label: EU GMP
+      locator: line:21
+    - source_label: EU GMP
+      locator: line:22
+    - source_label: EU GMP
+      locator: line:23
+    - source_label: EU GMP
+      locator: line:24
+    children: []
+  - nid: cha7
+    kind: chapter
+    kind_raw: Chapter
+    num: '7'
+    ord: 2
+    heading: Outsourced Activities
+    text: 'Legal basis for publishing the detailed guidelines: Article 47 of Directive 2001/83/EC on the Community code relating to medicinal products for human use and Article 51 of Directive 2001/82/EC on the Community code relating to veterinary medicinal products. This document provides guidance for the interpretation of the principles and guidelines of good manufacturing practice (GMP) for medicinal products as laid down in Directive 2003/94/EC for medicinal products for human use and Directive 91/412/EEC for veterinary use. Status of the document: revision 1 Reasons for changes: In view of the ICH Q10 guideline on the Pharmaceutical Quality System, Chapter 7 of the GMP Guide has been revised in order to provide updated guidance on outsourced GMP regulated activities beyond the current scope of contract manufacture and analysis operations. The title of the Chapter has been changed to reflect this. Deadline for coming into operation: 31 January 2013'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:26
+    - source_label: EU GMP
+      locator: line:29
+    - source_label: EU GMP
+      locator: line:30
+    - source_label: EU GMP
+      locator: line:31
+    - source_label: EU GMP
+      locator: line:32
+    - source_label: EU GMP
+      locator: line:33
+    - source_label: EU GMP
+      locator: line:34
+    - source_label: EU GMP
+      locator: line:35
+    - source_label: EU GMP
+      locator: line:37
+    - source_label: EU GMP
+      locator: line:39
+    - source_label: EU GMP
+      locator: line:40
+    - source_label: EU GMP
+      locator: line:41
+    - source_label: EU GMP
+      locator: line:42
+    - source_label: EU GMP
+      locator: line:43
+    - source_label: EU GMP
+      locator: line:45
+    children:
+    - nid: cha7.sec1
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 3
+      heading: Principle
+      text: Any activity covered by the GMP Guide that is outsourced should be appropriately defined, agreed and controlled in order to avoid misunderstandings which could result in a product or operation of unsatisfactory quality. There must be a written Contract between the Contract Giver and the Contract Acceptor which clearly establishes the duties of each party. The Quality Management System of the Contract Giver must clearly state the way that the Qualified Person certifying each batch of product for release exercises his full responsibility.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:47
+      - source_label: EU GMP
+        locator: line:49
+      - source_label: EU GMP
+        locator: line:50
+      - source_label: EU GMP
+        locator: line:51
+      - source_label: EU GMP
+        locator: line:52
+      - source_label: EU GMP
+        locator: line:53
+      - source_label: EU GMP
+        locator: line:54
+      - source_label: EU GMP
+        locator: line:55
+      children:
+      - nid: cha7.sec1.not1
+        kind: note
+        kind_raw: note
+        num: null
+        ord: 4
+        heading: null
+        text: 'Note: This Chapter deals with the responsibilities of manufacturers towards the Competent Authorities of the Member States with respect to the granting of marketing and manufacturing authorizations. It is not intended in any way to affect the respective liability of Contract Acceptors and Contract Givers to consumers; this is governed by other provisions of Community and national law.'
+        role: informative
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:57
+        - source_label: EU GMP
+          locator: line:58
+        - source_label: EU GMP
+          locator: line:59
+        - source_label: EU GMP
+          locator: line:60
+        - source_label: EU GMP
+          locator: line:61
+        children: []
+    - nid: cha7.sec2
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 5
+      heading: General
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:63
+      children:
+      - nid: cha7.sec2.p7_1
+        kind: paragraph
+        kind_raw: '7.1'
+        num: '7.1'
+        ord: 6
+        heading: null
+        text: There should be a written Contract covering the outsourced activities, the products or operations to which they are related, and any technical arrangements made in connection with it.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:65
+        - source_label: EU GMP
+          locator: line:66
+        - source_label: EU GMP
+          locator: line:67
+        children: []
+      - nid: cha7.sec2.p7_2
+        kind: paragraph
+        kind_raw: '7.2'
+        num: '7.2'
+        ord: 7
+        heading: null
+        text: All arrangements for the outsourced activities including any proposed changes in technical or other arrangements should be in accordance with regulations in force, and the Marketing Authorisation for the product concerned, where applicable.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:69
+        - source_label: EU GMP
+          locator: line:70
+        - source_label: EU GMP
+          locator: line:71
+        children: []
+      - nid: cha7.sec2.p7_3
+        kind: paragraph
+        kind_raw: '7.3'
+        num: '7.3'
+        ord: 8
+        heading: null
+        text: Where the marketing authorization holder and the manufacturer are not the same, appropriate arrangements should be in place, taking into account the principles described in this chapter.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:73
+        - source_label: EU GMP
+          locator: line:74
+        - source_label: EU GMP
+          locator: line:75
+        children: []
+    - nid: cha7.sec3
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 9
+      heading: The Contract Giver
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:77
+      children:
+      - nid: cha7.sec3.p7_4
+        kind: paragraph
+        kind_raw: '7.4'
+        num: '7.4'
+        ord: 10
+        heading: null
+        text: 'The pharmaceutical quality system of the Contract Giver should include the control and review of any outsourced activities. The Contract Giver is ultimately responsible to ensure processes are in place to assure the control of outsourced activities. These processes should incorporate quality risk management principles and notably include:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:79
+        - source_label: EU GMP
+          locator: line:80
+        - source_label: EU GMP
+          locator: line:81
+        - source_label: EU GMP
+          locator: line:82
+        - source_label: EU GMP
+          locator: line:83
+        children: []
+      - nid: cha7.sec3.p7_5
+        kind: paragraph
+        kind_raw: '7.5'
+        num: '7.5'
+        ord: 11
+        heading: null
+        text: Prior to outsourcing activities, the Contract Giver is responsible for assessing the legality, suitability and the competence of the Contract Acceptor to carry out successfully the outsourced activities. The Contract Giver is also responsible for ensuring by means of the Contract that the principles and guidelines of GMP as interpreted in this Guide are followed.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:85
+        - source_label: EU GMP
+          locator: line:86
+        - source_label: EU GMP
+          locator: line:87
+        - source_label: EU GMP
+          locator: line:88
+        - source_label: EU GMP
+          locator: line:89
+        children: []
+      - nid: cha7.sec3.p7_6
+        kind: paragraph
+        kind_raw: '7.6'
+        num: '7.6'
+        ord: 12
+        heading: null
+        text: The Contract Giver should provide the Contract Acceptor with all the information and knowledge necessary to carry out the contracted operations correctly in accordance with regulations in force, and the Marketing Authorisation for the product concerned. The Contract Giver should ensure that the Contract Acceptor is fully aware of any problems associated with the product or the work which might pose a hazard to his premises, equipment, personnel, other materials or other products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:91
+        - source_label: EU GMP
+          locator: line:92
+        - source_label: EU GMP
+          locator: line:93
+        - source_label: EU GMP
+          locator: line:94
+        - source_label: EU GMP
+          locator: line:95
+        - source_label: EU GMP
+          locator: line:96
+        children: []
+      - nid: cha7.sec3.p7_7
+        kind: paragraph
+        kind_raw: '7.7'
+        num: '7.7'
+        ord: 13
+        heading: null
+        text: The Contract Giver should monitor and review the performance of the Contract Acceptor and the identification and implementation of any needed improvement.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:98
+        - source_label: EU GMP
+          locator: line:99
+        - source_label: EU GMP
+          locator: line:100
+        children: []
+      - nid: cha7.sec3.p7_8
+        kind: paragraph
+        kind_raw: '7.8'
+        num: '7.8'
+        ord: 14
+        heading: null
+        text: The Contract Giver should be responsible for reviewing and assessing the records and the results related to the outsourced activities. He should also ensure, either by himself, or based on the confirmation of the Contract Acceptor’s Qualified Person, that all products and materials delivered to him by the Contract Acceptor have been processed in accordance with GMP and the marketing authorisation.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:102
+        - source_label: EU GMP
+          locator: line:103
+        - source_label: EU GMP
+          locator: line:104
+        - source_label: EU GMP
+          locator: line:105
+        - source_label: EU GMP
+          locator: line:106
+        children: []
+    - nid: cha7.sec4
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 15
+      heading: The Contract Acceptor
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:108
+      children:
+      - nid: cha7.sec4.p7_9
+        kind: paragraph
+        kind_raw: '7.9'
+        num: '7.9'
+        ord: 16
+        heading: null
+        text: The Contract Acceptor must be able to carry out satisfactorily the work ordered by the Contract Giver such as having adequate premises, equipment, knowledge, experience, and competent personnel.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:110
+        - source_label: EU GMP
+          locator: line:111
+        - source_label: EU GMP
+          locator: line:112
+        children: []
+      - nid: cha7.sec4.p7_10
+        kind: paragraph
+        kind_raw: '7.10'
+        num: '7.10'
+        ord: 17
+        heading: null
+        text: The Contract Acceptor should ensure that all products, materials and knowledge delivered to him are suitable for their intended purpose.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:114
+        - source_label: EU GMP
+          locator: line:115
+        children: []
+      - nid: cha7.sec4.p7_11
+        kind: paragraph
+        kind_raw: '7.11'
+        num: '7.11'
+        ord: 18
+        heading: null
+        text: The Contract Acceptor should not subcontract to a third party any of the work entrusted to him under the Contract without the Contract Giver’s prior evaluation and approval of the arrangements. Arrangements made between the Contract Acceptor and any third party should ensure that information and knowledge, including those from assessments of the suitability of the third party, are made available in the same way as between the original Contract Giver and Contract Acceptor.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:117
+        - source_label: EU GMP
+          locator: line:118
+        - source_label: EU GMP
+          locator: line:119
+        - source_label: EU GMP
+          locator: line:120
+        - source_label: EU GMP
+          locator: line:121
+        - source_label: EU GMP
+          locator: line:122
+        children: []
+      - nid: cha7.sec4.p7_12
+        kind: paragraph
+        kind_raw: '7.12'
+        num: '7.12'
+        ord: 19
+        heading: null
+        text: The Contract Acceptor should not make unauthorized changes, outside the terms of the Contract, which may adversely affect the quality of the outsourced activities for the Contract Giver.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:124
+        - source_label: EU GMP
+          locator: line:125
+        - source_label: EU GMP
+          locator: line:126
+        children: []
+      - nid: cha7.sec4.p7_13
+        kind: paragraph
+        kind_raw: '7.13'
+        num: '7.13'
+        ord: 20
+        heading: null
+        text: The Contract Acceptor should understand that outsourced activities, including contract analysis, may be subject to inspection by the competent authorities.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:128
+        - source_label: EU GMP
+          locator: line:129
+        children: []
+    - nid: cha7.sec5
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 21
+      heading: The Contract
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:131
+      children:
+      - nid: cha7.sec5.p7_14
+        kind: paragraph
+        kind_raw: '7.14'
+        num: '7.14'
+        ord: 22
+        heading: null
+        text: A Contract should be drawn up between the Contract Giver and the Contract Acceptor which specifies their respective responsibilities and communication processes relating to the outsourced activities. Technical aspects of the Contract should be drawn up by competent persons suitably knowledgeable in related outsourced activities and Good Manufacturing Practice. All arrangements for outsourced activities must be in accordance with regulations in force and the Marketing Authorisation for the product concerned and agreed by both parties.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:133
+        - source_label: EU GMP
+          locator: line:134
+        - source_label: EU GMP
+          locator: line:135
+        - source_label: EU GMP
+          locator: line:136
+        - source_label: EU GMP
+          locator: line:137
+        - source_label: EU GMP
+          locator: line:138
+        - source_label: EU GMP
+          locator: line:139
+        children: []
+      - nid: cha7.sec5.p7_15
+        kind: paragraph
+        kind_raw: '7.15'
+        num: '7.15'
+        ord: 23
+        heading: null
+        text: The Contract should describe clearly who undertakes each step of the outsourced activity, e.g. knowledge management, technology transfer, supply chain, subcontracting, quality and purchasing of materials, testing and releasing materials, undertaking production and quality controls (including in-process controls, sampling and analysis).
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:141
+        - source_label: EU GMP
+          locator: line:142
+        - source_label: EU GMP
+          locator: line:143
+        - source_label: EU GMP
+          locator: line:144
+        - source_label: EU GMP
+          locator: line:145
+        children: []
+      - nid: cha7.sec5.p7_16
+        kind: paragraph
+        kind_raw: '7.16'
+        num: '7.16'
+        ord: 24
+        heading: null
+        text: All records related to the outsourced activities, e.g. manufacturing, analytical and distribution records, and reference samples, should be kept by, or be available to, the Contract Giver. Any records relevant to assessing the quality of a product in the event of complaints or a suspected defect or to investigating in the case of a suspected falsified product must be accessible and specified in the relevant procedures of the Contract Giver.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:147
+        - source_label: EU GMP
+          locator: line:148
+        - source_label: EU GMP
+          locator: line:149
+        - source_label: EU GMP
+          locator: line:150
+        - source_label: EU GMP
+          locator: line:151
+        - source_label: EU GMP
+          locator: line:152
+        children: []
+      - nid: cha7.sec5.p7_17
+        kind: paragraph
+        kind_raw: '7.17'
+        num: '7.17'
+        ord: 25
+        heading: null
+        text: The Contract should permit the Contract Giver to audit outsourced activities, performed by the Contract Acceptor or his mutually agreed subcontractors
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:154
+        - source_label: EU GMP
+          locator: line:155
+        children: []
+index:
+  display_name_by_nid:
+    root: document
+    pre1: preamble
+    cha7: Outsourced Activities
+    cha7.sec1: Principle
+    cha7.sec1.not1: note
+    cha7.sec2: General
+    cha7.sec2.p7_1: paragraph 7.1
+    cha7.sec2.p7_2: paragraph 7.2
+    cha7.sec2.p7_3: paragraph 7.3
+    cha7.sec3: The Contract Giver
+    cha7.sec3.p7_4: paragraph 7.4
+    cha7.sec3.p7_5: paragraph 7.5
+    cha7.sec3.p7_6: paragraph 7.6
+    cha7.sec3.p7_7: paragraph 7.7
+    cha7.sec3.p7_8: paragraph 7.8
+    cha7.sec4: The Contract Acceptor
+    cha7.sec4.p7_9: paragraph 7.9
+    cha7.sec4.p7_10: paragraph 7.10
+    cha7.sec4.p7_11: paragraph 7.11
+    cha7.sec4.p7_12: paragraph 7.12
+    cha7.sec4.p7_13: paragraph 7.13
+    cha7.sec5: The Contract
+    cha7.sec5.p7_14: paragraph 7.14
+    cha7.sec5.p7_15: paragraph 7.15
+    cha7.sec5.p7_16: paragraph 7.16
+    cha7.sec5.p7_17: paragraph 7.17
