@@ -27,6 +27,11 @@ def build_meta(
     input_checksum: Optional[str],
     tool_version: Optional[str] = None,
     notes: Optional[List[str]] = None,
+    jurisdiction: str = "JP",
+    language: str = "ja",
+    source_label: str = "e-Gov",
+    cfr_title: Optional[str] = None,
+    cfr_part: Optional[str] = None,
 ) -> Dict[str, Any]:
     return {
         "schema": "qai.regdoc_meta.v1",
@@ -34,16 +39,16 @@ def build_meta(
             "id": doc_id,
             "title": title,
             "short_title": short_title,
-            "jurisdiction": "JP",
+            "jurisdiction": jurisdiction,
             "doc_type": doc_type,
-            "language": "ja",
+            "language": language,
             "issuer": {"name": None, "kind": None},
             "identifiers": {
                 "e_gov_law_id": law_id,
                 "e_gov_revision_id": revision_id,
                 "law_number": law_number,
-                "cfr_title": None,
-                "cfr_part": None,
+                "cfr_title": cfr_title,
+                "cfr_part": cfr_part,
                 "eu_volume": None,
                 "pics_doc_id": None,
                 "who_publication_id": None,
@@ -60,7 +65,7 @@ def build_meta(
                     "format": "xml",
                     "retrieved_at": retrieved_at,
                     "checksum": None,
-                    "label": "e-Gov",
+                    "label": source_label,
                 }
             ]
             if source_url

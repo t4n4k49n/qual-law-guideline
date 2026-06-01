@@ -11,10 +11,13 @@ import tomllib
 import typer
 import yaml
 
-from .egov_parser import collect_display_names, parse_egov_xml
+from .egov_parser import collect_display_names as collect_egov_display_names
+from .egov_parser import parse_egov_xml
+from .ecfr_parser import collect_display_names as collect_ecfr_display_names
+from .ecfr_parser import parse_ecfr_xml
 from .models_ir import IRDocument
 from .models_meta import build_meta
-from .models_profiles import build_parser_profile, build_regdoc_profile
+from .models_profiles import build_ecfr_parser_profile, build_parser_profile, build_regdoc_profile
 from .nid_migration import (
     build_existing_nids,
     build_report,
@@ -71,6 +74,14 @@ def build_default_doc_id(
     return stem
 
 
+def build_default_cfr_doc_id(cfr_title: Optional[str], cfr_part: Optional[str], as_of: Optional[str], stem: str) -> str:
+    if cfr_title and cfr_part and as_of:
+        return f"us_cfr_title{cfr_title}_part{cfr_part}_{as_of.replace('-', '')}"
+    if cfr_title and cfr_part:
+        return f"us_cfr_title{cfr_title}_part{cfr_part}"
+    return stem
+
+
 def _resolve_tool_version() -> Optional[str]:
     try:
         return pkg_version("qai-xml2ir")
@@ -97,19 +108,57 @@ def bundle(
     short_title: Optional[str] = typer.Option(None, "--short-title"),
     retrieved_at: Optional[str] = typer.Option(None, "--retrieved-at"),
     source_url: Optional[str] = typer.Option(None, "--source-url"),
+    xml_family: str = typer.Option("egov", "--xml-family", help="XML family: egov or ecfr"),
     emit_only: str = typer.Option("all", "--emit-only"),
 ) -> None:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
-    parsed = parse_egov_xml(input)
-    doc_id = doc_id or build_default_doc_id(parsed.law_id, parsed.as_of, parsed.revision_id, input.stem)
+    if xml_family not in {"egov", "ecfr"}:
+        raise typer.BadParameter("--xml-family must be 'egov' or 'ecfr'")
 
     index = {"display_name_by_nid": {}}
-    collect_display_names(parsed.root, index["display_name_by_nid"])
+    if xml_family == "ecfr":
+        parsed = parse_ecfr_xml(input)
+        doc_id = doc_id or build_default_cfr_doc_id(parsed.cfr_title, parsed.cfr_part, parsed.as_of, input.stem)
+        collect_ecfr_display_names(parsed.root, index["display_name_by_nid"])
+        parser_profile = build_ecfr_parser_profile()
+        meta_kwargs = {
+            "title": parsed.title or doc_id,
+            "doc_type": "regulation",
+            "law_id": None,
+            "law_number": None,
+            "as_of": parsed.as_of,
+            "revision_id": None,
+            "jurisdiction": "US",
+            "language": "en",
+            "source_label": "eCFR",
+            "cfr_title": parsed.cfr_title,
+            "cfr_part": parsed.cfr_part,
+            "notes": parsed.notes,
+        }
+    else:
+        parsed = parse_egov_xml(input)
+        doc_id = doc_id or build_default_doc_id(parsed.law_id, parsed.as_of, parsed.revision_id, input.stem)
+        collect_egov_display_names(parsed.root, index["display_name_by_nid"])
+        parser_profile = build_parser_profile()
+        meta_kwargs = {
+            "title": parsed.title or doc_id,
+            "doc_type": guess_doc_type(parsed.law_number),
+            "law_id": parsed.law_id,
+            "law_number": parsed.law_number,
+            "as_of": parsed.as_of,
+            "revision_id": parsed.revision_id,
+            "jurisdiction": "JP",
+            "language": "ja",
+            "source_label": "e-Gov",
+            "cfr_title": None,
+            "cfr_part": None,
+            "notes": [],
+        }
+
     ir_doc = IRDocument(doc_id=doc_id, content=parsed.root, index=index)
     _run_verify_or_fail(ir_doc.content)
 
-    parser_profile = build_parser_profile()
     regdoc_profile = build_regdoc_profile(doc_id)
 
     stem = doc_id
@@ -132,13 +181,13 @@ def bundle(
         input_checksum = sha256_file(input)
         meta = build_meta(
             doc_id=doc_id,
-            title=parsed.title or doc_id,
+            title=meta_kwargs["title"],
             short_title=short_title,
-            doc_type=guess_doc_type(parsed.law_number),
-            law_id=parsed.law_id,
-            law_number=parsed.law_number,
-            as_of=parsed.as_of,
-            revision_id=parsed.revision_id,
+            doc_type=meta_kwargs["doc_type"],
+            law_id=meta_kwargs["law_id"],
+            law_number=meta_kwargs["law_number"],
+            as_of=meta_kwargs["as_of"],
+            revision_id=meta_kwargs["revision_id"],
             effective_from=None,
             effective_to=None,
             revision_note=None,
@@ -151,7 +200,12 @@ def bundle(
             input_path=str(input),
             input_checksum=input_checksum,
             tool_version=_resolve_tool_version(),
-            notes=[],
+            notes=meta_kwargs["notes"],
+            jurisdiction=meta_kwargs["jurisdiction"],
+            language=meta_kwargs["language"],
+            source_label=meta_kwargs["source_label"],
+            cfr_title=meta_kwargs["cfr_title"],
+            cfr_part=meta_kwargs["cfr_part"],
         )
         write_yaml(meta_path, meta)
 
