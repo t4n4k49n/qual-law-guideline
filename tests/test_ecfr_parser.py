@@ -53,3 +53,42 @@ def test_ecfr_part11_parser_metadata_from_filename() -> None:
     assert parsed.cfr_title == "21"
     assert parsed.cfr_part == "11"
     assert parsed.as_of == "2025-10-27"
+
+
+def test_ecfr_part211_alpha_after_items_returns_to_section_paragraph() -> None:
+    parsed = parse_ecfr_xml(Path("data/human-readable/cfr/source_xml/title21_part211_2025-10-27.xml"))
+    nodes = _flatten(parsed.root.to_dict())
+
+    paragraph_c = next(node for node in nodes if node["nid"].endswith(".sec211_67.pc"))
+    assert paragraph_c["kind"] == "paragraph"
+    assert paragraph_c["kind_raw"] == "(c)"
+    assert "Records shall be kept" in paragraph_c["text"]
+
+    misplaced = [node for node in nodes if node["nid"].endswith(".sec211_67.pb.i6.sic")]
+    assert misplaced == []
+
+
+def test_ecfr_part211_roman_subitems_stay_under_item() -> None:
+    parsed = parse_ecfr_xml(Path("data/human-readable/cfr/source_xml/title21_part211_2025-10-27.xml"))
+    nodes = _flatten(parsed.root.to_dict())
+
+    subitem_i = next(node for node in nodes if node["nid"].endswith(".sec211_42.pc.i10.sii"))
+    subitem_vi = next(node for node in nodes if node["nid"].endswith(".sec211_42.pc.i10.sivi"))
+    assert subitem_i["kind"] == "subitem"
+    assert subitem_i["kind_raw"] == "(i)"
+    assert subitem_vi["kind"] == "subitem"
+    assert subitem_vi["kind_raw"] == "(vi)"
+
+
+def test_ecfr_part211_section_xref_is_informative_note() -> None:
+    parsed = parse_ecfr_xml(Path("data/human-readable/cfr/source_xml/title21_part211_2025-10-27.xml"))
+    nodes = _flatten(parsed.root.to_dict())
+
+    note = next(
+        node
+        for node in nodes
+        if node["kind"] == "note" and node.get("kind_raw") == "XREF" and "89 FR 51769" in (node.get("text") or "")
+    )
+    assert note["role"] == "informative"
+    assert note["normativity"] is None
+    assert ".sec211_1." in note["nid"]

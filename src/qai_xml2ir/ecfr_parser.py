@@ -159,10 +159,39 @@ def _locator(elem: etree._Element, suffix: str = "") -> str:
     return f"{base}/{suffix}" if suffix else base
 
 
+def _alpha_ord(value: str) -> Optional[int]:
+    if len(value) != 1:
+        return None
+    c = value.lower()
+    if "a" <= c <= "z":
+        return ord(c) - ord("a") + 1
+    return None
+
+
+def _last_section_paragraph_num(stack: List[Node]) -> Optional[str]:
+    section = next((node for node in reversed(stack) if node.kind == "section"), None)
+    if section is None:
+        return None
+    nums = [child.num for child in section.children if child.kind == "paragraph" and child.num]
+    return nums[-1] if nums else None
+
+
+def _continues_section_alpha_sequence(raw_num: str, stack: List[Node]) -> bool:
+    current = _alpha_ord(raw_num)
+    previous = _alpha_ord(_last_section_paragraph_num(stack) or "")
+    if current is None:
+        return False
+    if previous is None:
+        return current == 1
+    return current == previous + 1
+
+
 def _classify_marker(raw_num: str, stack: List[Node], position: int) -> str:
     if raw_num.isdigit():
         return "item"
     lower = raw_num.lower()
+    if position == 0 and _continues_section_alpha_sequence(lower, stack):
+        return "paragraph"
     has_item_parent = any(node.kind == "item" for node in stack)
     if position > 0 and has_item_parent and re.fullmatch(r"[ivxlcdm]+", lower):
         return "subitem"
@@ -270,18 +299,18 @@ def _parse_section(elem: etree._Element, factory: _CFRNodeFactory, parent: Node)
         if tag == "P":
             p_index += 1
             stack = _parse_p(child, factory, section, stack, p_index)
-        elif tag == "CITA":
+        elif tag in {"CITA", "XREF"}:
             note_index += 1
             text = _note_text(child)
             if text:
                 note = factory.create(
                     kind="note",
-                    kind_raw="CITA",
+                    kind_raw=tag,
                     num=None,
                     heading=None,
                     text=text,
                     parent_nid=section.nid,
-                    locator=f"{_locator(elem)}/CITA[{note_index}]",
+                    locator=f"{_locator(elem)}/{tag}[{note_index}]",
                     role="informative",
                     normativity=None,
                 )

@@ -131,6 +131,7 @@ def build_ecfr_parser_profile() -> Dict[str, Any]:
             {"id": "paren_roman", "kind": "subitem", "kind_raw": "(i)", "match": r"^\([ivxlcdm]+\)"},
             {"id": "authority_source", "kind": "note", "kind_raw": "AUTH/SOURCE", "match": "AUTH|SOURCE"},
             {"id": "citation_note", "kind": "note", "kind_raw": "CITA", "match": "CITA"},
+            {"id": "xref_note", "kind": "note", "kind_raw": "XREF", "match": "XREF"},
         ],
         "structure": {
             "root": {"children": ["part"]},
