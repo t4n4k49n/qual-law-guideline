@@ -2,6 +2,9 @@ schema: qai.regdoc_profile.v1
 doc_id: jp_egov_335AC0000000145_20260501_507AC0000000037
 profiles:
   dq_gmp_checklist:
+    candidate_visibility:
+      allow_rules: []
+      deny_rules: []
     selectable_kinds:
     - subitem
     - item
