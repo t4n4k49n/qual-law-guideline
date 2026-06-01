@@ -1,0 +1,2812 @@
+schema: qai.regdoc_ir.v4
+doc_id: eu_gmp_vol4_chap5_20150123
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags:
+  - postprocess=eu_gmp_chap2_cleanup
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: pre1
+    kind: preamble
+    kind_raw: null
+    num: null
+    ord: 1
+    heading: null
+    text: Ref. Ares(2015)283689 - 23/01/2015 EUROPEAN COMMISSION HEALTH AND CONSUMERS DIRECTORATE-GENERAL Health systems and products Medicinal products – quality, safety and efficacy Brussels, 13 August 2014 EudraLex The Rules Governing Medicinal Products in the European Union Volume 4 EU Guidelines for Good Manufacturing Practice for Medicinal Products for Human and Veterinary Use Part 1
+    role: informative
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:1
+    - source_label: EU GMP
+      locator: line:5
+    - source_label: EU GMP
+      locator: line:6
+    - source_label: EU GMP
+      locator: line:8
+    - source_label: EU GMP
+      locator: line:9
+    - source_label: EU GMP
+      locator: line:14
+    - source_label: EU GMP
+      locator: line:17
+    - source_label: EU GMP
+      locator: line:20
+    - source_label: EU GMP
+      locator: line:22
+    - source_label: EU GMP
+      locator: line:23
+    - source_label: EU GMP
+      locator: line:24
+    - source_label: EU GMP
+      locator: line:25
+    - source_label: EU GMP
+      locator: line:27
+    children: []
+  - nid: cha5
+    kind: chapter
+    kind_raw: Chapter
+    num: '5'
+    ord: 2
+    heading: Production
+    text: 'Legal basis for publishing the detailed guidelines: Article 47 of Directive 2001/83/EC on the Community code relating to medicinal products for human use and Article 51 of Directive 2001/82/EC on the Community code relating to veterinary medicinal products. This document provides guidance for the interpretation of the principles and guidelines of good manufacturing practice (GMP) for medicinal products as laid down in Directive 2003/94/EC for medicinal products for human use and Directive 91/412/EEC for veterinary use. Status of the document: Revision. Reasons for changes: Changes have been made to sections 17 to 21, including adding a new section, to improve the guidance on prevention of cross-contamination and to refer to toxicological assessment. Changes were also introduced in sections 27 to 30, including adding a new section, on the qualification of suppliers in order to reflect the legal obligation of manufacturing authorisation holders to ensure that active substances are produced in accordance with GMP. The changes include supply chain traceability. Sections 35 and 36 are inserted to clarify and harmonise expectations of manufacturers regarding the testing of starting materials while section 71 introduces guidance on notification of restrictions in supply. Deadline for coming into operation: 1 March 2015. However, the toxicological evaluation mentioned in section 20 has to be carried out:'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:28
+    - source_label: EU GMP
+      locator: line:31
+    - source_label: EU GMP
+      locator: line:32
+    - source_label: EU GMP
+      locator: line:33
+    - source_label: EU GMP
+      locator: line:34
+    - source_label: EU GMP
+      locator: line:35
+    - source_label: EU GMP
+      locator: line:36
+    - source_label: EU GMP
+      locator: line:39
+    - source_label: EU GMP
+      locator: line:42
+    - source_label: EU GMP
+      locator: line:43
+    - source_label: EU GMP
+      locator: line:44
+    - source_label: EU GMP
+      locator: line:45
+    - source_label: EU GMP
+      locator: line:46
+    - source_label: EU GMP
+      locator: line:47
+    - source_label: EU GMP
+      locator: line:48
+    - source_label: EU GMP
+      locator: line:49
+    - source_label: EU GMP
+      locator: line:50
+    - source_label: EU GMP
+      locator: line:53
+    - source_label: EU GMP
+      locator: line:54
+    children:
+    - nid: cha5.si1
+      kind: subitem
+      kind_raw: 
+      num: null
+      ord: 3
+      heading: null
+      text: from 1 June 2015 onwards for any medicinal product newly introduced into shared manufacturing facilities;
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:63
+      - source_label: EU GMP
+        locator: line:64
+      children: []
+    - nid: cha5.si2
+      kind: subitem
+      kind_raw: 
+      num: null
+      ord: 4
+      heading: null
+      text: before 1 December 2015 for medicinal products already produced in a shared manufacturing facility producing only medicinal products for human use or producing both medicinal products for human use and veterinary medicinal products on 31 May 2015;
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:65
+      - source_label: EU GMP
+        locator: line:66
+      - source_label: EU GMP
+        locator: line:67
+      - source_label: EU GMP
+        locator: line:68
+      children: []
+    - nid: cha5.si3
+      kind: subitem
+      kind_raw: 
+      num: null
+      ord: 5
+      heading: null
+      text: before 1 June 2016 for veterinary medicinal products already produced in a shared manufacturing facility producing only veterinary medicinal products on 31 May 2015.
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:69
+      - source_label: EU GMP
+        locator: line:70
+      children: []
+    - nid: cha5.sec1
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 6
+      heading: Principle
+      text: Production operations must follow clearly defined procedures; they must comply with the principles of Good Manufacturing Practice in order to obtain products of the requisite quality and be in accordance with the relevant manufacturing and marketing authorisations.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:76
+      - source_label: EU GMP
+        locator: line:77
+      - source_label: EU GMP
+        locator: line:78
+      - source_label: EU GMP
+        locator: line:79
+      children: []
+    - nid: cha5.sec2
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 7
+      heading: General
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:81
+      children:
+      - nid: cha5.sec2.p5_1
+        kind: paragraph
+        kind_raw: '5.1'
+        num: '5.1'
+        ord: 8
+        heading: null
+        text: Production should be performed and supervised by competent people.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:83
+        children: []
+      - nid: cha5.sec2.p5_2
+        kind: paragraph
+        kind_raw: '5.2'
+        num: '5.2'
+        ord: 9
+        heading: null
+        text: All handling of materials and products, such as receipt and quarantine, sampling, storage, labelling, dispensing, processing, packaging and distribution should be done in accordance with written procedures or instructions and, where necessary, recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:85
+        - source_label: EU GMP
+          locator: line:86
+        - source_label: EU GMP
+          locator: line:87
+        children: []
+      - nid: cha5.sec2.p5_3
+        kind: paragraph
+        kind_raw: '5.3'
+        num: '5.3'
+        ord: 10
+        heading: null
+        text: All incoming materials should be checked to ensure that the consignment corresponds to the order. Containers should be cleaned where necessary and labelled with the prescribed data.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:89
+        - source_label: EU GMP
+          locator: line:90
+        - source_label: EU GMP
+          locator: line:91
+        children: []
+      - nid: cha5.sec2.p5_4
+        kind: paragraph
+        kind_raw: '5.4'
+        num: '5.4'
+        ord: 11
+        heading: null
+        text: Damage to containers and any other problem which might adversely affect the quality of a material should be investigated, recorded and reported to the Quality Control Department.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:93
+        - source_label: EU GMP
+          locator: line:94
+        - source_label: EU GMP
+          locator: line:95
+        children: []
+      - nid: cha5.sec2.p5_5
+        kind: paragraph
+        kind_raw: '5.5'
+        num: '5.5'
+        ord: 12
+        heading: null
+        text: Incoming materials and finished products should be physically or administratively quarantined immediately after receipt or processing, until they have been released for use or distribution.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:97
+        - source_label: EU GMP
+          locator: line:98
+        - source_label: EU GMP
+          locator: line:99
+        children: []
+      - nid: cha5.sec2.p5_6
+        kind: paragraph
+        kind_raw: '5.6'
+        num: '5.6'
+        ord: 13
+        heading: null
+        text: Intermediate and bulk products purchased as such should be handled on receipt as though they were starting materials.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:101
+        - source_label: EU GMP
+          locator: line:102
+        children: []
+      - nid: cha5.sec2.p5_7
+        kind: paragraph
+        kind_raw: '5.7'
+        num: '5.7'
+        ord: 14
+        heading: null
+        text: All materials and products should be stored under the appropriate conditions established by the manufacturer and in an orderly fashion to permit batch segregation and stock rotation.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:104
+        - source_label: EU GMP
+          locator: line:105
+        - source_label: EU GMP
+          locator: line:106
+        children: []
+      - nid: cha5.sec2.p5_8
+        kind: paragraph
+        kind_raw: '5.8'
+        num: '5.8'
+        ord: 15
+        heading: null
+        text: Checks on yields, and reconciliation of quantities, should be carried out as necessary to ensure that there are no discrepancies outside acceptable limits.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:108
+        - source_label: EU GMP
+          locator: line:109
+        children: []
+      - nid: cha5.sec2.p5_9
+        kind: paragraph
+        kind_raw: '5.9'
+        num: '5.9'
+        ord: 16
+        heading: null
+        text: Operations on different products should not be carried out simultaneously or consecutively in the same room unless there is no risk of mix-up or cross-contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:111
+        - source_label: EU GMP
+          locator: line:112
+        - source_label: EU GMP
+          locator: line:113
+        children: []
+      - nid: cha5.sec2.p5_10
+        kind: paragraph
+        kind_raw: '5.10'
+        num: '5.10'
+        ord: 17
+        heading: null
+        text: At every stage of processing, products and materials should be protected from microbial and other contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:115
+        - source_label: EU GMP
+          locator: line:116
+        children: []
+      - nid: cha5.sec2.p5_11
+        kind: paragraph
+        kind_raw: '5.11'
+        num: '5.11'
+        ord: 18
+        heading: null
+        text: When working with dry materials and products, special precautions should be taken to prevent the generation and dissemination of dust. This applies particularly to the handling of highly active or sensitising materials.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:118
+        - source_label: EU GMP
+          locator: line:119
+        - source_label: EU GMP
+          locator: line:120
+        children: []
+      - nid: cha5.sec2.p5_12
+        kind: paragraph
+        kind_raw: '5.12'
+        num: '5.12'
+        ord: 19
+        heading: null
+        text: At all times during processing, all materials, bulk containers, major items of equipment and where appropriate rooms used should be labelled or otherwise identified with an indication of the product or material being processed, its strength (where applicable) and batch number. Where applicable, this indication should also mention the stage of production.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:122
+        - source_label: EU GMP
+          locator: line:123
+        - source_label: EU GMP
+          locator: line:124
+        - source_label: EU GMP
+          locator: line:125
+        - source_label: EU GMP
+          locator: line:126
+        children: []
+      - nid: cha5.sec2.p5_13
+        kind: paragraph
+        kind_raw: '5.13'
+        num: '5.13'
+        ord: 20
+        heading: null
+        text: Labels applied to containers, equipment or premises should be clear, unambiguous and in the company’s agreed format. It is often helpful in addition to the wording on the labels to use colours to indicate status (for example, quarantined, accepted, rejected, clean).
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:128
+        - source_label: EU GMP
+          locator: line:129
+        - source_label: EU GMP
+          locator: line:130
+        - source_label: EU GMP
+          locator: line:131
+        children: []
+      - nid: cha5.sec2.p5_14
+        kind: paragraph
+        kind_raw: '5.14'
+        num: '5.14'
+        ord: 21
+        heading: null
+        text: Checks should be carried out to ensure that pipelines and other pieces of equipment used for the transportation of products from one area to another are connected in a correct manner.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:133
+        - source_label: EU GMP
+          locator: line:134
+        - source_label: EU GMP
+          locator: line:135
+        children: []
+      - nid: cha5.sec2.p5_15
+        kind: paragraph
+        kind_raw: '5.15'
+        num: '5.15'
+        ord: 22
+        heading: null
+        text: Any deviation from instructions or procedures should be avoided as far as possible. If a deviation occurs, it should be approved in writing by a competent person, with the involvement of the Quality Control department when appropriate.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:137
+        - source_label: EU GMP
+          locator: line:138
+        - source_label: EU GMP
+          locator: line:139
+        children: []
+      - nid: cha5.sec2.p5_16
+        kind: paragraph
+        kind_raw: '5.16'
+        num: '5.16'
+        ord: 23
+        heading: null
+        text: Access to production premises should be restricted to authorised personnel.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:141
+        children: []
+    - nid: cha5.sec3
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 24
+      heading: Prevention of cross-contamination in production
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:143
+      children:
+      - nid: cha5.sec3.p5_17
+        kind: paragraph
+        kind_raw: '5.17'
+        num: '5.17'
+        ord: 25
+        heading: null
+        text: Normally, the production of non-medicinal products should be avoided in areas and with equipment destined for the production of medicinal products but, where justified, could be allowed where the measures to prevent cross-contamination with medicinal products described below and in Chapter 3 can be applied. The production and/or storage of technical poisons, such as pesticides (except where these are used for manufacture of medicinal products) and herbicides, should not be allowed in areas used for the manufacture and / or storage of medicinal products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:145
+        - source_label: EU GMP
+          locator: line:146
+        - source_label: EU GMP
+          locator: line:147
+        - source_label: EU GMP
+          locator: line:148
+        - source_label: EU GMP
+          locator: line:149
+        - source_label: EU GMP
+          locator: line:150
+        - source_label: EU GMP
+          locator: line:151
+        children: []
+      - nid: cha5.sec3.p5_18
+        kind: paragraph
+        kind_raw: '5.18'
+        num: '5.18'
+        ord: 26
+        heading: null
+        text: Contamination of a starting material or of a product by another material or product should be prevented. This risk of accidental cross-contamination resulting from the uncontrolled release of dust, gases, vapours, aerosols, genetic material or organisms from active substances, other starting materials, and products in process, from residues on equipment, and from operators’ clothing should be assessed. The significance of this risk varies with the nature of the contaminant and that of the product being contaminated. Products in which cross-contamination is likely to be most significant are those administered by injection and those given over a long time. However, contamination of all products poses a risk to patient safety dependent on the nature and extent of contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:153
+        - source_label: EU GMP
+          locator: line:154
+        - source_label: EU GMP
+          locator: line:155
+        - source_label: EU GMP
+          locator: line:156
+        - source_label: EU GMP
+          locator: line:157
+        - source_label: EU GMP
+          locator: line:158
+        - source_label: EU GMP
+          locator: line:159
+        - source_label: EU GMP
+          locator: line:160
+        - source_label: EU GMP
+          locator: line:161
+        - source_label: EU GMP
+          locator: line:162
+        children: []
+      - nid: cha5.sec3.p5_19
+        kind: paragraph
+        kind_raw: '5.19'
+        num: '5.19'
+        ord: 27
+        heading: null
+        text: Cross-contamination should be prevented by attention to design of the premises and equipment as described in Chapter 3. This should be supported by attention to process design and implementation of any relevant technical or organizational measures, including effective and reproducible cleaning processes to control risk of cross-contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:163
+        - source_label: EU GMP
+          locator: line:164
+        - source_label: EU GMP
+          locator: line:165
+        - source_label: EU GMP
+          locator: line:166
+        - source_label: EU GMP
+          locator: line:167
+        children: []
+      - nid: cha5.sec3.p5_20
+        kind: paragraph
+        kind_raw: '5.20'
+        num: '5.20'
+        ord: 28
+        heading: null
+        text: A Quality Risk Management process, which includes a potency and toxicological evaluation, should be used to assess and control the cross-contamination risks presented by the products manufactured. Factors including; facility/equipment design and use, personnel and material flow, microbiological controls, physico-chemical characteristics of the active substance, process characteristics, cleaning processes and analytical capabilities relative to the relevant limits established from the evaluation of the products should also be taken into account. The outcome of the Quality Risk Management process should be the basis for determining the necessity for and extent to which premises and equipment should be dedicated to a particular product or product family. This may include dedicating specific product contact parts or dedication of the entire manufacturing facility. It may be acceptable to confine manufacturing activities to a segregated, self contained production area within a multiproduct facility, where justified.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:169
+        - source_label: EU GMP
+          locator: line:170
+        - source_label: EU GMP
+          locator: line:171
+        - source_label: EU GMP
+          locator: line:172
+        - source_label: EU GMP
+          locator: line:173
+        - source_label: EU GMP
+          locator: line:174
+        - source_label: EU GMP
+          locator: line:175
+        - source_label: EU GMP
+          locator: line:176
+        - source_label: EU GMP
+          locator: line:177
+        - source_label: EU GMP
+          locator: line:178
+        - source_label: EU GMP
+          locator: line:179
+        - source_label: EU GMP
+          locator: line:181
+        - source_label: EU GMP
+          locator: line:182
+        children: []
+      - nid: cha5.sec3.p5_21
+        kind: paragraph
+        kind_raw: '5.21'
+        num: '5.21'
+        ord: 29
+        heading: null
+        text: 'The outcome of the Quality Risk Management process should be the basis for determining the extent of technical and organisational measures required to control risks for cross-contamination. These could include, but are not limited to, the following: Technical Measures'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:184
+        - source_label: EU GMP
+          locator: line:185
+        - source_label: EU GMP
+          locator: line:186
+        - source_label: EU GMP
+          locator: line:188
+        children:
+        - nid: cha5.sec3.p5_21.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 30
+          heading: null
+          text: Dedicated manufacturing facility (premises and equipment);
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:190
+          children: []
+        - nid: cha5.sec3.p5_21.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 31
+          heading: null
+          text: Self-contained production areas having separate processing equipment and separate heating, ventilation and air-conditioning (HVAC) systems. It may also be desirable to isolate certain utilities from those used in other areas;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:191
+          - source_label: EU GMP
+            locator: line:192
+          - source_label: EU GMP
+            locator: line:193
+          children: []
+        - nid: cha5.sec3.p5_21.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 32
+          heading: null
+          text: Design of manufacturing process, premises and equipment to minimize opportunities for cross-contamination during processing, maintenance and cleaning;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:194
+          - source_label: EU GMP
+            locator: line:195
+          - source_label: EU GMP
+            locator: line:196
+          children: []
+        - nid: cha5.sec3.p5_21.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 33
+          heading: null
+          text: Use of “closed systems” for processing and material/product transfer between equipment;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:197
+          - source_label: EU GMP
+            locator: line:198
+          children: []
+        - nid: cha5.sec3.p5_21.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 34
+          heading: null
+          text: Use of physical barrier systems, including isolators, as containment measures;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:199
+          children: []
+        - nid: cha5.sec3.p5_21.ivi
+          kind: item
+          kind_raw: vi.
+          num: vi
+          ord: 35
+          heading: null
+          text: Controlled removal of dust close to source of the contaminant e.g. through localised extraction;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:200
+          - source_label: EU GMP
+            locator: line:201
+          children: []
+        - nid: cha5.sec3.p5_21.ivii
+          kind: item
+          kind_raw: vii.
+          num: vii
+          ord: 36
+          heading: null
+          text: Dedication of equipment, dedication of product contact parts or dedication of selected parts which are harder to clean (e.g. filters), dedication of maintenance tools;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:202
+          - source_label: EU GMP
+            locator: line:203
+          - source_label: EU GMP
+            locator: line:204
+          children: []
+        - nid: cha5.sec3.p5_21.iviii
+          kind: item
+          kind_raw: viii.
+          num: viii
+          ord: 37
+          heading: null
+          text: Use of single use disposable technologies;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:205
+          children: []
+        - nid: cha5.sec3.p5_21.iix
+          kind: item
+          kind_raw: ix.
+          num: ix
+          ord: 38
+          heading: null
+          text: Use of equipment designed for ease of cleaning;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:206
+          children: []
+        - nid: cha5.sec3.p5_21.ix
+          kind: item
+          kind_raw: x.
+          num: x
+          ord: 39
+          heading: null
+          text: Appropriate use of air-locks and pressure cascade to confine potential airborne contaminant within a specified area;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:207
+          - source_label: EU GMP
+            locator: line:208
+          children: []
+        - nid: cha5.sec3.p5_21.ixi
+          kind: item
+          kind_raw: xi.
+          num: xi
+          ord: 40
+          heading: null
+          text: Minimising the risk of contamination caused by recirculation or re-entry of untreated or insufficiently treated air;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:209
+          - source_label: EU GMP
+            locator: line:210
+          children: []
+        - nid: cha5.sec3.p5_21.ixii
+          kind: item
+          kind_raw: xii.
+          num: xii
+          ord: 41
+          heading: null
+          text: Use of automatic clean in place systems of validated effectiveness;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:211
+          children: []
+        - nid: cha5.sec3.p5_21.ixiii
+          kind: item
+          kind_raw: xiii.
+          num: xiii
+          ord: 42
+          heading: null
+          text: For common general wash areas, separation of equipment washing, drying and storage areas. Organisational Measures
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:212
+          - source_label: EU GMP
+            locator: line:213
+          - source_label: EU GMP
+            locator: line:215
+          children: []
+      - nid: cha5.sec3.ii
+        kind: item
+        kind_raw: i.
+        num: i
+        ord: 43
+        heading: null
+        text: Dedicating the whole manufacturing facility or a self contained production area on a campaign basis (dedicated by separation in time) followed by a cleaning process of validated effectiveness;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:217
+        - source_label: EU GMP
+          locator: line:218
+        - source_label: EU GMP
+          locator: line:219
+        children: []
+      - nid: cha5.sec3.iii
+        kind: item
+        kind_raw: ii.
+        num: ii
+        ord: 44
+        heading: null
+        text: Keeping specific protective clothing inside areas where products with high risk of cross-contamination are processed;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:220
+        - source_label: EU GMP
+          locator: line:221
+        children: []
+      - nid: cha5.sec3.iiii
+        kind: item
+        kind_raw: iii.
+        num: iii
+        ord: 45
+        heading: null
+        text: Cleaning verification after each product campaign should be considered as a detectability tool to support effectiveness of the Quality Risk Management approach for products deemed to present higher risk;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:222
+        - source_label: EU GMP
+          locator: line:223
+        - source_label: EU GMP
+          locator: line:224
+        children: []
+      - nid: cha5.sec3.iiv
+        kind: item
+        kind_raw: iv.
+        num: iv
+        ord: 46
+        heading: null
+        text: Depending on the contamination risk, verification of cleaning of non product contact surfaces and monitoring of air within the manufacturing area and/or adjoining areas in order to demonstrate effectiveness of control measures against airborne contamination or contamination by mechanical transfer;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:228
+        - source_label: EU GMP
+          locator: line:229
+        - source_label: EU GMP
+          locator: line:230
+        - source_label: EU GMP
+          locator: line:231
+        children: []
+      - nid: cha5.sec3.iv
+        kind: item
+        kind_raw: v.
+        num: v
+        ord: 47
+        heading: null
+        text: Specific measures for waste handling, contaminated rinsing water and soiled gowning;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:232
+        - source_label: EU GMP
+          locator: line:233
+        children: []
+      - nid: cha5.sec3.ivi
+        kind: item
+        kind_raw: vi.
+        num: vi
+        ord: 48
+        heading: null
+        text: Recording of spills, accidental events or deviations from procedures;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:234
+        children: []
+      - nid: cha5.sec3.ivii
+        kind: item
+        kind_raw: vii.
+        num: vii
+        ord: 49
+        heading: null
+        text: Design of cleaning processes for premises and equipment such that the cleaning processes in themselves do not present a cross-contamination risk;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:235
+        - source_label: EU GMP
+          locator: line:236
+        children: []
+      - nid: cha5.sec3.iviii
+        kind: item
+        kind_raw: viii.
+        num: viii
+        ord: 50
+        heading: null
+        text: Design of detailed records for cleaning processes to assure completion of cleaning in accordance with approved procedures and use of cleaning status labels on equipment and manufacturing areas;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:237
+        - source_label: EU GMP
+          locator: line:238
+        - source_label: EU GMP
+          locator: line:239
+        children: []
+      - nid: cha5.sec3.iix
+        kind: item
+        kind_raw: ix.
+        num: ix
+        ord: 51
+        heading: null
+        text: Use of common general wash areas on a campaign basis;
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:240
+        children: []
+      - nid: cha5.sec3.ix
+        kind: item
+        kind_raw: x.
+        num: x
+        ord: 52
+        heading: null
+        text: Supervision of working behaviour to ensure training effectiveness and compliance with the relevant procedural controls.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:241
+        - source_label: EU GMP
+          locator: line:242
+        children: []
+      - nid: cha5.sec3.p5_22
+        kind: paragraph
+        kind_raw: '5.22'
+        num: '5.22'
+        ord: 53
+        heading: null
+        text: Measures to prevent cross-contamination and their effectiveness should be reviewed periodically according to set procedures. Validation
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:244
+        - source_label: EU GMP
+          locator: line:245
+        - source_label: EU GMP
+          locator: line:247
+        children: []
+      - nid: cha5.sec3.p5_23
+        kind: paragraph
+        kind_raw: '5.23'
+        num: '5.23'
+        ord: 54
+        heading: null
+        text: Validation studies should reinforce Good Manufacturing Practice and be conducted in accordance with defined procedures. Results and conclusions should be recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:249
+        - source_label: EU GMP
+          locator: line:250
+        children: []
+      - nid: cha5.sec3.p5_24
+        kind: paragraph
+        kind_raw: '5.24'
+        num: '5.24'
+        ord: 55
+        heading: null
+        text: When any new manufacturing formula or method of preparation is adopted, steps should be taken to demonstrate its suitability for routine processing. The defined process, using the materials and equipment specified, should be shown to yield a product consistently of the required quality.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:252
+        - source_label: EU GMP
+          locator: line:253
+        - source_label: EU GMP
+          locator: line:254
+        - source_label: EU GMP
+          locator: line:255
+        children: []
+      - nid: cha5.sec3.p5_25
+        kind: paragraph
+        kind_raw: '5.25'
+        num: '5.25'
+        ord: 56
+        heading: null
+        text: Significant amendments to the manufacturing process, including any change in equipment or materials, which may affect product quality and/or the reproducibility of the process, should be validated.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:257
+        - source_label: EU GMP
+          locator: line:258
+        - source_label: EU GMP
+          locator: line:259
+        children: []
+      - nid: cha5.sec3.p5_26
+        kind: paragraph
+        kind_raw: '5.26'
+        num: '5.26'
+        ord: 57
+        heading: null
+        text: Processes and procedures should undergo periodic critical re-validation to ensure that they remain capable of achieving the intended results.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:261
+        - source_label: EU GMP
+          locator: line:262
+        children: []
+    - nid: cha5.sec4
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 58
+      heading: Starting materials
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:264
+      children:
+      - nid: cha5.sec4.p5_27
+        kind: paragraph
+        kind_raw: '5.27'
+        num: '5.27'
+        ord: 59
+        heading: null
+        text: The selection, qualification, approval and maintenance of suppliers of starting materials, together with their purchase and acceptance, should be documented as part of the pharmaceutical quality system. The level of supervision should be proportionate to the risks posed by the individual materials, taking account of their source, manufacturing process, supply chain complexity and the final use to which the material is put in the medicinal product. The supporting evidence for each supplier / material approval should be maintained. Staff involved in these activities should have a current knowledge of the suppliers, the supply chain and the associated risks involved. Where possible, starting materials should be purchased directly from the manufacturer of the starting material.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:266
+        - source_label: EU GMP
+          locator: line:267
+        - source_label: EU GMP
+          locator: line:268
+        - source_label: EU GMP
+          locator: line:269
+        - source_label: EU GMP
+          locator: line:270
+        - source_label: EU GMP
+          locator: line:271
+        - source_label: EU GMP
+          locator: line:272
+        - source_label: EU GMP
+          locator: line:273
+        - source_label: EU GMP
+          locator: line:274
+        children: []
+      - nid: cha5.sec4.p5_28
+        kind: paragraph
+        kind_raw: '5.28'
+        num: '5.28'
+        ord: 60
+        heading: null
+        text: The quality requirements established by the manufacturer for the starting materials should be discussed and agreed with the suppliers. Appropriate aspects of the production, testing and control, including handling, labelling, packaging and distribution requirements, complaints, recalls and rejection procedures should be documented in a formal quality agreement or specification.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:278
+        - source_label: EU GMP
+          locator: line:279
+        - source_label: EU GMP
+          locator: line:280
+        - source_label: EU GMP
+          locator: line:281
+        - source_label: EU GMP
+          locator: line:282
+        children: []
+      - nid: cha5.sec4.p5_29
+        kind: paragraph
+        kind_raw: '5.29'
+        num: '5.29'
+        ord: 61
+        heading: null
+        text: 'For the approval and maintenance of suppliers of active substances and excipients, the following is required: Active substances1 Supply chain traceability should be established and the associated risks, from active substance starting materials to the finished medicinal product, should be formally assessed and periodically verified. Appropriate measures should be put in place to reduce risks to the quality of the active substance. The supply chain and traceability records for each active substance (including active substance starting materials) should be available and be retained by the EEA based manufacturer or importer of the medicinal product. Audits should be carried out at the manufacturers and distributors of active substances to confirm that they comply with the relevant good manufacturing practice and good distribution practice requirements. The holder of the manufacturing authorisation shall verify such compliance either by himself or through an entity acting on his behalf under a contract. For veterinary medicinal products, audits should be conducted based on risk. Audits should be of an appropriate duration and scope to ensure that a full and clear assessment of GMP is made; consideration should be given to potential cross-contamination from other materials on site. The report should fully reflect what was done and seen on the audit with any deficiencies clearly identified. Any required corrective and preventive actions should be implemented. Further audits should be undertaken at intervals defined by the quality risk management process to ensure the maintenance of standards and continued use of the approved supply chain. Excipients Excipients and excipient suppliers should be controlled appropriately based on the results of a formalised quality risk assessment in accordance with the European Commission ‘Guidelines on the formalised risk assessment for ascertaining the appropriate Good Manufacturing Practice for excipients of medicinal products for human use’.'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:284
+        - source_label: EU GMP
+          locator: line:285
+        - source_label: EU GMP
+          locator: line:287
+        - source_label: EU GMP
+          locator: line:289
+        - source_label: EU GMP
+          locator: line:290
+        - source_label: EU GMP
+          locator: line:291
+        - source_label: EU GMP
+          locator: line:292
+        - source_label: EU GMP
+          locator: line:294
+        - source_label: EU GMP
+          locator: line:295
+        - source_label: EU GMP
+          locator: line:296
+        - source_label: EU GMP
+          locator: line:298
+        - source_label: EU GMP
+          locator: line:299
+        - source_label: EU GMP
+          locator: line:300
+        - source_label: EU GMP
+          locator: line:301
+        - source_label: EU GMP
+          locator: line:302
+        - source_label: EU GMP
+          locator: line:304
+        - source_label: EU GMP
+          locator: line:305
+        - source_label: EU GMP
+          locator: line:306
+        - source_label: EU GMP
+          locator: line:307
+        - source_label: EU GMP
+          locator: line:308
+        - source_label: EU GMP
+          locator: line:310
+        - source_label: EU GMP
+          locator: line:311
+        - source_label: EU GMP
+          locator: line:312
+        - source_label: EU GMP
+          locator: line:314
+        - source_label: EU GMP
+          locator: line:316
+        - source_label: EU GMP
+          locator: line:317
+        - source_label: EU GMP
+          locator: line:318
+        - source_label: EU GMP
+          locator: line:319
+        - source_label: EU GMP
+          locator: line:320
+        children: []
+      - nid: cha5.sec4.p5_30
+        kind: paragraph
+        kind_raw: '5.30'
+        num: '5.30'
+        ord: 62
+        heading: null
+        text: For each delivery of starting material the containers should be checked for integrity of package, including tamper evident seal where relevant, and for correspondence between the delivery note, the purchase order, the supplier’s labels and approved manufacturer and supplier information maintained by the medicinal product manufacturer. The receiving checks on each delivery should be documented. Specific requirements apply to the importation of active substances to be used in the manufacture of medicinal products for human use in article 46b of Directive 2001/83/EC.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:322
+        - source_label: EU GMP
+          locator: line:323
+        - source_label: EU GMP
+          locator: line:324
+        - source_label: EU GMP
+          locator: line:325
+        - source_label: EU GMP
+          locator: line:326
+        - source_label: EU GMP
+          locator: line:330
+        - source_label: EU GMP
+          locator: line:331
+        children: []
+      - nid: cha5.sec4.p5_31
+        kind: paragraph
+        kind_raw: '5.31'
+        num: '5.31'
+        ord: 63
+        heading: null
+        text: If one material delivery is made up of different batches, each batch must be considered as separate for sampling, testing and release.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:333
+        - source_label: EU GMP
+          locator: line:334
+        children: []
+      - nid: cha5.sec4.p5_32
+        kind: paragraph
+        kind_raw: '5.32'
+        num: '5.32'
+        ord: 64
+        heading: null
+        text: 'Starting materials in the storage area should be appropriately labelled (see section 13). Labels should bear at least the following information:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:336
+        - source_label: EU GMP
+          locator: line:337
+        children:
+        - nid: cha5.sec4.p5_32.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 65
+          heading: null
+          text: The designated name of the product and the internal code reference where applicable;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:339
+          - source_label: EU GMP
+            locator: line:340
+          children: []
+        - nid: cha5.sec4.p5_32.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 66
+          heading: null
+          text: A batch number given at receipt;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:341
+          children: []
+        - nid: cha5.sec4.p5_32.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 67
+          heading: null
+          text: Where appropriate, the status of the contents (e.g. in quarantine, on test, released, rejected);
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:342
+          - source_label: EU GMP
+            locator: line:343
+          children: []
+        - nid: cha5.sec4.p5_32.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 68
+          heading: null
+          text: Where appropriate, an expiry date or a date beyond which retesting is necessary. When fully computerised storage systems are used, all the above information need not necessarily be in a legible form on the label.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:344
+          - source_label: EU GMP
+            locator: line:345
+          - source_label: EU GMP
+            locator: line:346
+          children: []
+      - nid: cha5.sec4.p5_33
+        kind: paragraph
+        kind_raw: '5.33'
+        num: '5.33'
+        ord: 69
+        heading: null
+        text: There should be appropriate procedures or measures to assure the identity of the contents of each container of starting material. Bulk containers from which samples have been drawn should be identified (see Chapter 6).
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:348
+        - source_label: EU GMP
+          locator: line:349
+        - source_label: EU GMP
+          locator: line:350
+        children: []
+      - nid: cha5.sec4.p5_34
+        kind: paragraph
+        kind_raw: '5.34'
+        num: '5.34'
+        ord: 70
+        heading: null
+        text: Only starting materials which have been released by the Quality Control department and which are within their retest period should be used.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:352
+        - source_label: EU GMP
+          locator: line:353
+        children: []
+      - nid: cha5.sec4.p5_35
+        kind: paragraph
+        kind_raw: '5.35'
+        num: '5.35'
+        ord: 71
+        heading: null
+        text: Manufacturers of finished products are responsible for any testing of starting materials2 as described in the marketing authorisation dossier. They can utilise partial or full test results from the approved starting material manufacturer but must, as a minimum, perform identification testing3 of each batch according to Annex 8.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:355
+        - source_label: EU GMP
+          locator: line:356
+        - source_label: EU GMP
+          locator: line:357
+        - source_label: EU GMP
+          locator: line:358
+        children: []
+      - nid: cha5.sec4.p5_36
+        kind: paragraph
+        kind_raw: '5.36'
+        num: '5.36'
+        ord: 72
+        heading: null
+        text: 'The rationale for the outsourcing of this testing should be justified and documented and the following requirements should be fulfilled: A similar approach should apply to packaging materials as stated in section 5.45. Identity testing of starting materials should be performed according to the methods and the specifications of the relevant marketing authorisation dossier. including assessment of batches previously received and the history of compliance before reducing in-house testing. Any significant change in the manufacturing or testing processes should be considered;'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:360
+        - source_label: EU GMP
+          locator: line:361
+        - source_label: EU GMP
+          locator: line:381
+        - source_label: EU GMP
+          locator: line:383
+        - source_label: EU GMP
+          locator: line:384
+        - source_label: EU GMP
+          locator: line:387
+        - source_label: EU GMP
+          locator: line:388
+        - source_label: EU GMP
+          locator: line:389
+        children:
+        - nid: cha5.sec4.p5_36.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 73
+          heading: null
+          text: Special attention should be paid to the distribution controls (transport, wholesaling, storage and delivery) in order to maintain the quality characteristics of the starting materials and to ensure that test results remain applicable to the delivered material;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:363
+          - source_label: EU GMP
+            locator: line:364
+          - source_label: EU GMP
+            locator: line:365
+          - source_label: EU GMP
+            locator: line:366
+          children: []
+        - nid: cha5.sec4.p5_36.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 74
+          heading: null
+          text: The medicinal product manufacturer should perform audits, either itself or via third parties, at appropriate intervals based on risk at the site(s) carrying out the testing (including sampling) of the starting materials in order to assure compliance with Good Manufacturing Practice and with the specifications and testing methods described in the marketing authorisation dossier;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:367
+          - source_label: EU GMP
+            locator: line:368
+          - source_label: EU GMP
+            locator: line:369
+          - source_label: EU GMP
+            locator: line:370
+          - source_label: EU GMP
+            locator: line:371
+          children: []
+        - nid: cha5.sec4.p5_36.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 75
+          heading: null
+          text: The certificate of analysis provided by the starting material manufacturer/supplier should be signed by a designated person with appropriate qualifications and experience. The signature assures that each batch has been checked for compliance with the agreed product specification unless this assurance is provided separately;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:372
+          - source_label: EU GMP
+            locator: line:373
+          - source_label: EU GMP
+            locator: line:374
+          - source_label: EU GMP
+            locator: line:375
+          children: []
+        - nid: cha5.sec4.p5_36.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 76
+          heading: null
+          text: The medicinal product manufacturer should have appropriate experience in dealing with the starting material manufacturer (including experience via a supplier)
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:377
+          - source_label: EU GMP
+            locator: line:378
+          children: []
+        - nid: cha5.sec4.p5_36.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 77
+          heading: null
+          text: The medicinal product manufacturer should also perform (or via a separately approved contract laboratory) a full analysis at appropriate intervals based on risk and compare the results with the material manufacturer or supplier’s certificate of analysis in order to check the reliability of the latter. Should this testing identify any discrepancy then an investigation should be performed and appropriate measures taken. The acceptance of certificates of analysis from the material manufacturer or supplier should be discontinued until these measures are completed.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:391
+          - source_label: EU GMP
+            locator: line:392
+          - source_label: EU GMP
+            locator: line:393
+          - source_label: EU GMP
+            locator: line:394
+          - source_label: EU GMP
+            locator: line:395
+          - source_label: EU GMP
+            locator: line:396
+          - source_label: EU GMP
+            locator: line:397
+          - source_label: EU GMP
+            locator: line:398
+          children: []
+      - nid: cha5.sec4.p5_37
+        kind: paragraph
+        kind_raw: '5.37'
+        num: '5.37'
+        ord: 78
+        heading: null
+        text: Starting materials should only be dispensed by designated persons, following a written procedure, to ensure that the correct materials are accurately weighed or measured into clean and properly labelled containers.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:400
+        - source_label: EU GMP
+          locator: line:401
+        - source_label: EU GMP
+          locator: line:402
+        children: []
+      - nid: cha5.sec4.p5_38
+        kind: paragraph
+        kind_raw: '5.38'
+        num: '5.38'
+        ord: 79
+        heading: null
+        text: Each dispensed material and its weight or volume should be independently checked and the check recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:404
+        - source_label: EU GMP
+          locator: line:405
+        children: []
+      - nid: cha5.sec4.p5_39
+        kind: paragraph
+        kind_raw: '5.39'
+        num: '5.39'
+        ord: 80
+        heading: null
+        text: Materials dispensed for each batch should be kept together and conspicuously labelled as such.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:407
+        - source_label: EU GMP
+          locator: line:408
+        children: []
+    - nid: cha5.sec5
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 81
+      heading: Processing operations
+      text: intermediate and bulk products
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:410
+      children:
+      - nid: cha5.sec5.p5_40
+        kind: paragraph
+        kind_raw: '5.40'
+        num: '5.40'
+        ord: 82
+        heading: null
+        text: Before any processing operation is started, steps should be taken to ensure that the work area and equipment are clean and free from any starting materials, products, product residues or documents not required for the current operation.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:412
+        - source_label: EU GMP
+          locator: line:413
+        - source_label: EU GMP
+          locator: line:414
+        children: []
+      - nid: cha5.sec5.p5_41
+        kind: paragraph
+        kind_raw: '5.41'
+        num: '5.41'
+        ord: 83
+        heading: null
+        text: Intermediate and bulk products should be kept under appropriate conditions.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:416
+        children: []
+      - nid: cha5.sec5.p5_42
+        kind: paragraph
+        kind_raw: '5.42'
+        num: '5.42'
+        ord: 84
+        heading: null
+        text: Critical processes should be validated (see "Validation" in this Chapter).
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:418
+        children: []
+      - nid: cha5.sec5.p5_43
+        kind: paragraph
+        kind_raw: '5.43'
+        num: '5.43'
+        ord: 85
+        heading: null
+        text: Any necessary in-process controls and environmental controls should be carried out and recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:420
+        - source_label: EU GMP
+          locator: line:421
+        children: []
+      - nid: cha5.sec5.p5_44
+        kind: paragraph
+        kind_raw: '5.44'
+        num: '5.44'
+        ord: 86
+        heading: null
+        text: Any significant deviation from the expected yield should be recorded and investigated.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:423
+        children: []
+    - nid: cha5.sec6
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 87
+      heading: Packaging materials
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:425
+      children:
+      - nid: cha5.sec6.p5_45
+        kind: paragraph
+        kind_raw: '5.45'
+        num: '5.45'
+        ord: 88
+        heading: null
+        text: The selection, qualification, approval and maintenance of suppliers of primary and printed packaging materials shall be accorded attention similar to that given to starting materials.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:427
+        - source_label: EU GMP
+          locator: line:428
+        - source_label: EU GMP
+          locator: line:429
+        children: []
+      - nid: cha5.sec6.p5_46
+        kind: paragraph
+        kind_raw: '5.46'
+        num: '5.46'
+        ord: 89
+        heading: null
+        text: Particular attention should be paid to printed materials. They should be stored in adequately secure conditions such as to exclude unauthorised access. Cut labels and other loose printed materials should be stored and transported in separate closed containers so as to avoid mix-ups. Packaging materials should be issued for use only by authorised personnel following an approved and documented procedure.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:431
+        - source_label: EU GMP
+          locator: line:432
+        - source_label: EU GMP
+          locator: line:433
+        - source_label: EU GMP
+          locator: line:434
+        - source_label: EU GMP
+          locator: line:435
+        children: []
+      - nid: cha5.sec6.p5_47
+        kind: paragraph
+        kind_raw: '5.47'
+        num: '5.47'
+        ord: 90
+        heading: null
+        text: Each delivery or batch of printed or primary packaging material should be given a specific reference number or identification mark.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:441
+        - source_label: EU GMP
+          locator: line:442
+        children: []
+      - nid: cha5.sec6.p5_48
+        kind: paragraph
+        kind_raw: '5.48'
+        num: '5.48'
+        ord: 91
+        heading: null
+        text: Outdated or obsolete primary packaging material or printed packaging material should be destroyed and this disposal recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:444
+        - source_label: EU GMP
+          locator: line:445
+        children: []
+    - nid: cha5.sec7
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 92
+      heading: Packaging operations
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:447
+      children:
+      - nid: cha5.sec7.p5_49
+        kind: paragraph
+        kind_raw: '5.49'
+        num: '5.49'
+        ord: 93
+        heading: null
+        text: When setting up a programme for the packaging operations, particular attention should be given to minimising the risk of cross-contamination, mix-ups or substitutions. Different products should not be packaged in close proximity unless there is physical segregation.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:449
+        - source_label: EU GMP
+          locator: line:450
+        - source_label: EU GMP
+          locator: line:451
+        - source_label: EU GMP
+          locator: line:452
+        children: []
+      - nid: cha5.sec7.p5_50
+        kind: paragraph
+        kind_raw: '5.50'
+        num: '5.50'
+        ord: 94
+        heading: null
+        text: Before packaging operations are begun, steps should be taken to ensure that the work area, packaging lines, printing machines and other equipment are clean and free from any products, materials or documents previously used, if these are not required for the current operation. The line-clearance should be performed according to an appropriate check-list.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:454
+        - source_label: EU GMP
+          locator: line:455
+        - source_label: EU GMP
+          locator: line:456
+        - source_label: EU GMP
+          locator: line:457
+        - source_label: EU GMP
+          locator: line:458
+        children: []
+      - nid: cha5.sec7.p5_51
+        kind: paragraph
+        kind_raw: '5.51'
+        num: '5.51'
+        ord: 95
+        heading: null
+        text: The name and batch number of the product being handled should be displayed at each packaging station or line.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:460
+        - source_label: EU GMP
+          locator: line:461
+        children: []
+      - nid: cha5.sec7.p5_52
+        kind: paragraph
+        kind_raw: '5.52'
+        num: '5.52'
+        ord: 96
+        heading: null
+        text: All products and packaging materials to be used should be checked on delivery to the packaging department for quantity, identity and conformity with the Packaging Instructions.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:463
+        - source_label: EU GMP
+          locator: line:464
+        - source_label: EU GMP
+          locator: line:465
+        children: []
+      - nid: cha5.sec7.p5_53
+        kind: paragraph
+        kind_raw: '5.53'
+        num: '5.53'
+        ord: 97
+        heading: null
+        text: Containers for filling should be clean before filling. Attention should be given to avoid and remove any contaminants such as glass fragments and metal particles.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:467
+        - source_label: EU GMP
+          locator: line:468
+        children: []
+      - nid: cha5.sec7.p5_54
+        kind: paragraph
+        kind_raw: '5.54'
+        num: '5.54'
+        ord: 98
+        heading: null
+        text: Normally, filling and sealing should be followed as quickly as possible by labelling. If it is not the case, appropriate procedures should be applied to ensure that no mix-ups or mislabelling can occur.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:470
+        - source_label: EU GMP
+          locator: line:471
+        - source_label: EU GMP
+          locator: line:472
+        children: []
+      - nid: cha5.sec7.p5_55
+        kind: paragraph
+        kind_raw: '5.55'
+        num: '5.55'
+        ord: 99
+        heading: null
+        text: The correct performance of any printing operation (for example code numbers, expiry dates) to be done separately or in the course of the packaging should be checked and recorded. Attention should be paid to printing by hand which should be re-checked at regular intervals.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:474
+        - source_label: EU GMP
+          locator: line:475
+        - source_label: EU GMP
+          locator: line:476
+        - source_label: EU GMP
+          locator: line:477
+        children: []
+      - nid: cha5.sec7.p5_56
+        kind: paragraph
+        kind_raw: '5.56'
+        num: '5.56'
+        ord: 100
+        heading: null
+        text: Special care should be taken when using cut-labels and when over-printing is carried out off-line. Roll-feed labels are normally preferable to cut-labels, in helping to avoid mix-ups.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:479
+        - source_label: EU GMP
+          locator: line:480
+        - source_label: EU GMP
+          locator: line:481
+        children: []
+      - nid: cha5.sec7.p5_57
+        kind: paragraph
+        kind_raw: '5.57'
+        num: '5.57'
+        ord: 101
+        heading: null
+        text: Checks should be made to ensure that any electronic code readers, label counters or similar devices are operating correctly.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:483
+        - source_label: EU GMP
+          locator: line:484
+        children: []
+      - nid: cha5.sec7.p5_58
+        kind: paragraph
+        kind_raw: '5.58'
+        num: '5.58'
+        ord: 102
+        heading: null
+        text: Printed and embossed information on packaging materials should be distinct and resistant to fading or erasing.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:486
+        - source_label: EU GMP
+          locator: line:487
+        children: []
+      - nid: cha5.sec7.p5_59
+        kind: paragraph
+        kind_raw: '5.59'
+        num: '5.59'
+        ord: 103
+        heading: null
+        text: 'On-line control of the product during packaging should include at least checking the following:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:489
+        - source_label: EU GMP
+          locator: line:490
+        children:
+        - nid: cha5.sec7.p5_59.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 104
+          heading: null
+          text: General appearance of the packages;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:492
+          children: []
+        - nid: cha5.sec7.p5_59.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 105
+          heading: null
+          text: Whether the packages are complete;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:493
+          children: []
+        - nid: cha5.sec7.p5_59.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 106
+          heading: null
+          text: Whether the correct products and packaging materials are used;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:495
+          children: []
+        - nid: cha5.sec7.p5_59.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 107
+          heading: null
+          text: Whether any over-printing is correct;
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:496
+          children: []
+        - nid: cha5.sec7.p5_59.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 108
+          heading: null
+          text: Correct functioning of line monitors. Samples taken away from the packaging line should not be returned.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:497
+          - source_label: EU GMP
+            locator: line:498
+          children: []
+      - nid: cha5.sec7.p5_60
+        kind: paragraph
+        kind_raw: '5.60'
+        num: '5.60'
+        ord: 109
+        heading: null
+        text: Products which have been involved in an unusual event should only be reintroduced into the process after special inspection, investigation and approval by authorised personnel. Detailed record should be kept of this operation.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:500
+        - source_label: EU GMP
+          locator: line:501
+        - source_label: EU GMP
+          locator: line:502
+        children: []
+      - nid: cha5.sec7.p5_61
+        kind: paragraph
+        kind_raw: '5.61'
+        num: '5.61'
+        ord: 110
+        heading: null
+        text: Any significant or unusual discrepancy observed during reconciliation of the amount of bulk product and printed packaging materials and the number of units produced should be investigated and satisfactorily accounted for before release.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:504
+        - source_label: EU GMP
+          locator: line:505
+        - source_label: EU GMP
+          locator: line:506
+        children: []
+      - nid: cha5.sec7.p5_62
+        kind: paragraph
+        kind_raw: '5.62'
+        num: '5.62'
+        ord: 111
+        heading: null
+        text: Upon completion of a packaging operation, any unused batch-coded packaging materials should be destroyed and the destruction recorded. A documented procedure should be followed if un-coded printed materials are returned to stock.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:508
+        - source_label: EU GMP
+          locator: line:509
+        - source_label: EU GMP
+          locator: line:510
+        children: []
+    - nid: cha5.sec8
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 112
+      heading: Finished products
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:512
+      children:
+      - nid: cha5.sec8.p5_63
+        kind: paragraph
+        kind_raw: '5.63'
+        num: '5.63'
+        ord: 113
+        heading: null
+        text: Finished products should be held in quarantine until their final release under conditions established by the manufacturer.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:514
+        - source_label: EU GMP
+          locator: line:515
+        children: []
+      - nid: cha5.sec8.p5_64
+        kind: paragraph
+        kind_raw: '5.64'
+        num: '5.64'
+        ord: 114
+        heading: null
+        text: The evaluation of finished products and documentation which is necessary before release of product for sale is described in Chapter 6 (Quality Control).
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:517
+        - source_label: EU GMP
+          locator: line:518
+        children: []
+      - nid: cha5.sec8.p5_65
+        kind: paragraph
+        kind_raw: '5.65'
+        num: '5.65'
+        ord: 115
+        heading: null
+        text: After release, finished products should be stored as usable stock under conditions established by the manufacturer.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:520
+        - source_label: EU GMP
+          locator: line:521
+        children: []
+    - nid: cha5.sec9
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 116
+      heading: Rejected, recovered and returned materials
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:523
+      children:
+      - nid: cha5.sec9.p5_66
+        kind: paragraph
+        kind_raw: '5.66'
+        num: '5.66'
+        ord: 117
+        heading: null
+        text: Rejected materials and products should be clearly marked as such and stored separately in restricted areas. They should either be returned to the suppliers or, where appropriate, reprocessed or destroyed. Whatever action is taken should be approved and recorded by authorised personnel.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:525
+        - source_label: EU GMP
+          locator: line:526
+        - source_label: EU GMP
+          locator: line:527
+        - source_label: EU GMP
+          locator: line:528
+        children: []
+      - nid: cha5.sec9.p5_67
+        kind: paragraph
+        kind_raw: '5.67'
+        num: '5.67'
+        ord: 118
+        heading: null
+        text: The reprocessing of rejected products should be exceptional. It is only permitted if the quality of the final product is not affected, if the specifications are met and if it is done in accordance with a defined and authorised procedure after evaluation of the risks involved. Record should be kept of the reprocessing.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:530
+        - source_label: EU GMP
+          locator: line:531
+        - source_label: EU GMP
+          locator: line:532
+        - source_label: EU GMP
+          locator: line:533
+        children: []
+      - nid: cha5.sec9.p5_68
+        kind: paragraph
+        kind_raw: '5.68'
+        num: '5.68'
+        ord: 119
+        heading: null
+        text: The recovery of all or part of earlier batches which conform to the required quality by incorporation into a batch of the same product at a defined stage of manufacture should be authorised beforehand. This recovery should be carried out in accordance with a defined procedure after evaluation of the risks involved, including any possible effect on shelf life. The recovery should be recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:535
+        - source_label: EU GMP
+          locator: line:536
+        - source_label: EU GMP
+          locator: line:537
+        - source_label: EU GMP
+          locator: line:538
+        - source_label: EU GMP
+          locator: line:539
+        children: []
+      - nid: cha5.sec9.p5_69
+        kind: paragraph
+        kind_raw: '5.69'
+        num: '5.69'
+        ord: 120
+        heading: null
+        text: The need for additional testing of any finished product which has been reprocessed, or into which a recovered product has been incorporated, should be considered by the Quality Control Department.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:541
+        - source_label: EU GMP
+          locator: line:542
+        - source_label: EU GMP
+          locator: line:543
+        children: []
+      - nid: cha5.sec9.p5_70
+        kind: paragraph
+        kind_raw: '5.70'
+        num: '5.70'
+        ord: 121
+        heading: null
+        text: Products returned from the market and which have left the control of the manufacturer should be destroyed unless without doubt their quality is satisfactory; they may be considered for re-sale, re-labelling or recovery in a subsequent batch only after they have been critically assessed by the Quality Control Department in accordance with a written procedure. The nature of the product, any special storage conditions it requires, its condition and history, and the time elapsed since it was issued should all be taken into account in this assessment. Where any doubt arises over the quality of the product, it should not be considered suitable for re-issue or re-use, although basic chemical reprocessing to recover active ingredient may be possible. Any action taken should be appropriately recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:547
+        - source_label: EU GMP
+          locator: line:548
+        - source_label: EU GMP
+          locator: line:549
+        - source_label: EU GMP
+          locator: line:550
+        - source_label: EU GMP
+          locator: line:551
+        - source_label: EU GMP
+          locator: line:552
+        - source_label: EU GMP
+          locator: line:553
+        - source_label: EU GMP
+          locator: line:554
+        - source_label: EU GMP
+          locator: line:555
+        - source_label: EU GMP
+          locator: line:556
+        children: []
+    - nid: cha5.sec10
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 122
+      heading: Product shortage due to manufacturing constraints
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:558
+      children:
+      - nid: cha5.sec10.p5_71
+        kind: paragraph
+        kind_raw: '5.71'
+        num: '5.71'
+        ord: 123
+        heading: null
+        text: The manufacturer should report to the marketing authorisation holder (MAH) any constraints in manufacturing operations which may result in abnormal restriction in the supply. This should be done in a timely manner to facilitate reporting of the restriction in supply by the MAH, to the relevant competent authorities, in accordance with its legal obligations.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:560
+        - source_label: EU GMP
+          locator: line:561
+        - source_label: EU GMP
+          locator: line:562
+        - source_label: EU GMP
+          locator: line:563
+        - source_label: EU GMP
+          locator: line:564
+        children: []
+index:
+  display_name_by_nid:
+    root: document
+    pre1: preamble
+    cha5: Production
+    cha5.si1: subitem
+    cha5.si2: subitem
+    cha5.si3: subitem
+    cha5.sec1: Principle
+    cha5.sec2: General
+    cha5.sec2.p5_1: paragraph 5.1
+    cha5.sec2.p5_2: paragraph 5.2
+    cha5.sec2.p5_3: paragraph 5.3
+    cha5.sec2.p5_4: paragraph 5.4
+    cha5.sec2.p5_5: paragraph 5.5
+    cha5.sec2.p5_6: paragraph 5.6
+    cha5.sec2.p5_7: paragraph 5.7
+    cha5.sec2.p5_8: paragraph 5.8
+    cha5.sec2.p5_9: paragraph 5.9
+    cha5.sec2.p5_10: paragraph 5.10
+    cha5.sec2.p5_11: paragraph 5.11
+    cha5.sec2.p5_12: paragraph 5.12
+    cha5.sec2.p5_13: paragraph 5.13
+    cha5.sec2.p5_14: paragraph 5.14
+    cha5.sec2.p5_15: paragraph 5.15
+    cha5.sec2.p5_16: paragraph 5.16
+    cha5.sec3: Prevention of cross-contamination in production
+    cha5.sec3.p5_17: paragraph 5.17
+    cha5.sec3.p5_18: paragraph 5.18
+    cha5.sec3.p5_19: paragraph 5.19
+    cha5.sec3.p5_20: paragraph 5.20
+    cha5.sec3.p5_21: paragraph 5.21
+    cha5.sec3.p5_21.ii: item i
+    cha5.sec3.p5_21.iii: item ii
+    cha5.sec3.p5_21.iiii: item iii
+    cha5.sec3.p5_21.iiv: item iv
+    cha5.sec3.p5_21.iv: item v
+    cha5.sec3.p5_21.ivi: item vi
+    cha5.sec3.p5_21.ivii: item vii
+    cha5.sec3.p5_21.iviii: item viii
+    cha5.sec3.p5_21.iix: item ix
+    cha5.sec3.p5_21.ix: item x
+    cha5.sec3.p5_21.ixi: item xi
+    cha5.sec3.p5_21.ixii: item xii
+    cha5.sec3.p5_21.ixiii: item xiii
+    cha5.sec3.ii: item i
+    cha5.sec3.iii: item ii
+    cha5.sec3.iiii: item iii
+    cha5.sec3.iiv: item iv
+    cha5.sec3.iv: item v
+    cha5.sec3.ivi: item vi
+    cha5.sec3.ivii: item vii
+    cha5.sec3.iviii: item viii
+    cha5.sec3.iix: item ix
+    cha5.sec3.ix: item x
+    cha5.sec3.p5_22: paragraph 5.22
+    cha5.sec3.p5_23: paragraph 5.23
+    cha5.sec3.p5_24: paragraph 5.24
+    cha5.sec3.p5_25: paragraph 5.25
+    cha5.sec3.p5_26: paragraph 5.26
+    cha5.sec4: Starting materials
+    cha5.sec4.p5_27: paragraph 5.27
+    cha5.sec4.p5_28: paragraph 5.28
+    cha5.sec4.p5_29: paragraph 5.29
+    cha5.sec4.p5_30: paragraph 5.30
+    cha5.sec4.p5_31: paragraph 5.31
+    cha5.sec4.p5_32: paragraph 5.32
+    cha5.sec4.p5_32.ii: item i
+    cha5.sec4.p5_32.iii: item ii
+    cha5.sec4.p5_32.iiii: item iii
+    cha5.sec4.p5_32.iiv: item iv
+    cha5.sec4.p5_33: paragraph 5.33
+    cha5.sec4.p5_34: paragraph 5.34
+    cha5.sec4.p5_35: paragraph 5.35
+    cha5.sec4.p5_36: paragraph 5.36
+    cha5.sec4.p5_36.ii: item i
+    cha5.sec4.p5_36.iii: item ii
+    cha5.sec4.p5_36.iiii: item iii
+    cha5.sec4.p5_36.iiv: item iv
+    cha5.sec4.p5_36.iv: item v
+    cha5.sec4.p5_37: paragraph 5.37
+    cha5.sec4.p5_38: paragraph 5.38
+    cha5.sec4.p5_39: paragraph 5.39
+    cha5.sec5: Processing operations
+    cha5.sec5.p5_40: paragraph 5.40
+    cha5.sec5.p5_41: paragraph 5.41
+    cha5.sec5.p5_42: paragraph 5.42
+    cha5.sec5.p5_43: paragraph 5.43
+    cha5.sec5.p5_44: paragraph 5.44
+    cha5.sec6: Packaging materials
+    cha5.sec6.p5_45: paragraph 5.45
+    cha5.sec6.p5_46: paragraph 5.46
+    cha5.sec6.p5_47: paragraph 5.47
+    cha5.sec6.p5_48: paragraph 5.48
+    cha5.sec7: Packaging operations
+    cha5.sec7.p5_49: paragraph 5.49
+    cha5.sec7.p5_50: paragraph 5.50
+    cha5.sec7.p5_51: paragraph 5.51
+    cha5.sec7.p5_52: paragraph 5.52
+    cha5.sec7.p5_53: paragraph 5.53
+    cha5.sec7.p5_54: paragraph 5.54
+    cha5.sec7.p5_55: paragraph 5.55
+    cha5.sec7.p5_56: paragraph 5.56
+    cha5.sec7.p5_57: paragraph 5.57
+    cha5.sec7.p5_58: paragraph 5.58
+    cha5.sec7.p5_59: paragraph 5.59
+    cha5.sec7.p5_59.ii: item i
+    cha5.sec7.p5_59.iii: item ii
+    cha5.sec7.p5_59.iiii: item iii
+    cha5.sec7.p5_59.iiv: item iv
+    cha5.sec7.p5_59.iv: item v
+    cha5.sec7.p5_60: paragraph 5.60
+    cha5.sec7.p5_61: paragraph 5.61
+    cha5.sec7.p5_62: paragraph 5.62
+    cha5.sec8: Finished products
+    cha5.sec8.p5_63: paragraph 5.63
+    cha5.sec8.p5_64: paragraph 5.64
+    cha5.sec8.p5_65: paragraph 5.65
+    cha5.sec9: Rejected, recovered and returned materials
+    cha5.sec9.p5_66: paragraph 5.66
+    cha5.sec9.p5_67: paragraph 5.67
+    cha5.sec9.p5_68: paragraph 5.68
+    cha5.sec9.p5_69: paragraph 5.69
+    cha5.sec9.p5_70: paragraph 5.70
+    cha5.sec10: Product shortage due to manufacturing constraints
+    cha5.sec10.p5_71: paragraph 5.71

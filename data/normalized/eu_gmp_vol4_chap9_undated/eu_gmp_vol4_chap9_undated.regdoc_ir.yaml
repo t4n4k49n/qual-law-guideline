@@ -1,0 +1,131 @@
+schema: qai.regdoc_ir.v4
+doc_id: eu_gmp_vol4_chap9_undated
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags: []
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: cha9
+    kind: chapter
+    kind_raw: Chapter
+    num: '9'
+    ord: 1
+    heading: SELF INSPECTION
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:1
+    children:
+    - nid: cha9.sec1
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 2
+      heading: Principle
+      text: Self inspections should be conducted in order to monitor the implementation and compliance with Good Manufacturing Practice principles and to propose necessary corrective measures.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:5
+      - source_label: EU GMP
+        locator: line:6
+      - source_label: EU GMP
+        locator: line:7
+      - source_label: EU GMP
+        locator: line:8
+      children:
+      - nid: cha9.sec1.p9_1
+        kind: paragraph
+        kind_raw: '9.1'
+        num: '9.1'
+        ord: 3
+        heading: null
+        text: Personnel matters, premises, equipment, documentation, production, quality control, distribution of the medicinal products, arrangements for dealing with complaints and recalls, and self inspection, should be examined at intervals following a pre-arranged programme in order to verify their conformity with the principles of Quality Assurance.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:10
+        - source_label: EU GMP
+          locator: line:11
+        - source_label: EU GMP
+          locator: line:12
+        - source_label: EU GMP
+          locator: line:13
+        children: []
+      - nid: cha9.sec1.p9_2
+        kind: paragraph
+        kind_raw: '9.2'
+        num: '9.2'
+        ord: 4
+        heading: null
+        text: Self inspections should be conducted in an independent and detailed way by designated competent person(s) from the company. Independent audits by external experts may also be useful.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:15
+        - source_label: EU GMP
+          locator: line:16
+        - source_label: EU GMP
+          locator: line:17
+        children: []
+      - nid: cha9.sec1.p9_3
+        kind: paragraph
+        kind_raw: '9.3'
+        num: '9.3'
+        ord: 5
+        heading: null
+        text: All self inspections should be recorded. Reports should contain all the observations made during the inspections and, where applicable, proposals for corrective measures. Statements on the actions subsequently taken should also be recorded.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:19
+        - source_label: EU GMP
+          locator: line:20
+        - source_label: EU GMP
+          locator: line:21
+        children: []
+index:
+  display_name_by_nid:
+    root: document
+    cha9: SELF INSPECTION
+    cha9.sec1: Principle
+    cha9.sec1.p9_1: paragraph 9.1
+    cha9.sec1.p9_2: paragraph 9.2
+    cha9.sec1.p9_3: paragraph 9.3

@@ -1,0 +1,53 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: eu_gmp_vol4_chap7_20120628
+  title: EU GMP Vol.4 Chapter 7 Outsourced Activities
+  short_title: EU GMP Vol.4 Chapter 7
+  jurisdiction: EU
+  doc_type: guideline
+  language: en
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: null
+    e_gov_revision_id: null
+    law_number: null
+    eu_volume: '4'
+  version:
+    as_of: null
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://health.ec.europa.eu/document/download/58b5106a-cf6f-4352-9dca-1caf5d27d97e_en?filename=vol4-chap7_2012-06_en.pdf
+    format: pdf
+    retrieved_at: '2026-02-18'
+    checksum: null
+    label: EU GMP
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+  family: EU_GMP
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v4
+    path: eu_gmp_vol4_chap7_20120628.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: eu_gmp_chap4_9_default_v1
+    path: eu_gmp_vol4_chap7_20120628.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: eu_gmp_vol4_chap7_20120628.regdoc_profile.yaml
+generation:
+  created_at: '2026-06-01T07:10:42Z'
+  tool:
+    name: qai_text2ir
+    version: null
+  inputs:
+  - path: data\human-readable\eu_gmp\vol4\source_texts\vol4-chap7_2012-06_en.txt
+    checksum: 636586a997998be5cf579835fa50dd738113c601c6412a97e7dfa697a22ce642
+  notes: []
