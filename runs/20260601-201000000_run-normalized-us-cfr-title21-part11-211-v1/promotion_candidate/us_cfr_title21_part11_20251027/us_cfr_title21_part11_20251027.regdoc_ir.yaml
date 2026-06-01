@@ -1,0 +1,1584 @@
+schema: qai.regdoc_ir.v4
+doc_id: us_cfr_title21_part11_20251027
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags: []
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: part11
+    kind: part
+    kind_raw: PART
+    num: '11'
+    ord: 1
+    heading: ELECTRONIC RECORDS; ELECTRONIC SIGNATURES
+    text: null
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: CFR
+      locator: DIV5[@N='11']
+    children:
+    - nid: part11.note
+      kind: note
+      kind_raw: AUTH
+      num: null
+      ord: 2
+      heading: null
+      text: 'Authority: 21 U.S.C. 321-393; 42 U.S.C. 262.'
+      role: informative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: CFR
+        locator: DIV5[@N='11']/AUTH[1]
+      children: []
+    - nid: part11.note_2
+      kind: note
+      kind_raw: SOURCE
+      num: null
+      ord: 3
+      heading: null
+      text: 'Source: 62 FR 13464, Mar. 20, 1997, unless otherwise noted.'
+      role: informative
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: CFR
+        locator: DIV5[@N='11']/SOURCE[2]
+      children: []
+    - nid: part11.subpta
+      kind: subpart
+      kind_raw: Subpart
+      num: A
+      ord: 4
+      heading: General Provisions
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: CFR
+        locator: DIV6[@N='A']
+      children:
+      - nid: part11.subpta.sec11_1
+        kind: section
+        kind_raw: §
+        num: '11.1'
+        ord: 5
+        heading: Scope.
+        text: null
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.1']
+        children:
+        - nid: part11.subpta.sec11_1.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 6
+          heading: null
+          text: The regulations in this part set forth the criteria under which the agency considers electronic records, electronic signatures, and handwritten signatures executed to electronic records to be trustworthy, reliable, and generally equivalent to paper records and handwritten signatures executed on paper.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[1]
+          children: []
+        - nid: part11.subpta.sec11_1.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 7
+          heading: null
+          text: This part applies to records in electronic form that are created, modified, maintained, archived, retrieved, or transmitted, under any records requirements set forth in agency regulations. This part also applies to electronic records submitted to the agency under requirements of the Federal Food, Drug, and Cosmetic Act and the Public Health Service Act, even if such records are not specifically identified in agency regulations. However, this part does not apply to paper records that are, or have been, transmitted by electronic means.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[2]
+          children: []
+        - nid: part11.subpta.sec11_1.pc
+          kind: paragraph
+          kind_raw: (c)
+          num: c
+          ord: 8
+          heading: null
+          text: Where electronic signatures and their associated electronic records meet the requirements of this part, the agency will consider the electronic signatures to be equivalent to full handwritten signatures, initials, and other general signings as required by agency regulations, unless specifically excepted by regulation(s) effective on or after August 20, 1997.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[3]
+          children: []
+        - nid: part11.subpta.sec11_1.pd
+          kind: paragraph
+          kind_raw: (d)
+          num: d
+          ord: 9
+          heading: null
+          text: Electronic records that meet the requirements of this part may be used in lieu of paper records, in accordance with § 11.2, unless paper records are specifically required.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[4]
+          children: []
+        - nid: part11.subpta.sec11_1.pe
+          kind: paragraph
+          kind_raw: (e)
+          num: e
+          ord: 10
+          heading: null
+          text: Computer systems (including hardware and software), controls, and attendant documentation maintained under this part shall be readily available for, and subject to, FDA inspection.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[5]
+          children: []
+        - nid: part11.subpta.sec11_1.pf
+          kind: paragraph
+          kind_raw: (f)
+          num: f
+          ord: 11
+          heading: null
+          text: This part does not apply to records required to be established or maintained by §§ 1.326 through 1.368 of this chapter. Records that satisfy the requirements of part 1, subpart J of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[6]
+          children: []
+        - nid: part11.subpta.sec11_1.pg
+          kind: paragraph
+          kind_raw: (g)
+          num: g
+          ord: 12
+          heading: null
+          text: This part does not apply to electronic signatures obtained under § 101.11(d) of this chapter.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[7]
+          children: []
+        - nid: part11.subpta.sec11_1.ph
+          kind: paragraph
+          kind_raw: (h)
+          num: h
+          ord: 13
+          heading: null
+          text: This part does not apply to electronic signatures obtained under § 101.8(d) of this chapter.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[8]
+          children: []
+        - nid: part11.subpta.sec11_1.pi
+          kind: paragraph
+          kind_raw: (i)
+          num: i
+          ord: 14
+          heading: null
+          text: This part does not apply to records required to be established or maintained by part 117 of this chapter. Records that satisfy the requirements of part 117 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[9]
+          children: []
+        - nid: part11.subpta.sec11_1.pj
+          kind: paragraph
+          kind_raw: (j)
+          num: j
+          ord: 15
+          heading: null
+          text: This part does not apply to records required to be established or maintained by part 507 of this chapter. Records that satisfy the requirements of part 507 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[10]
+          children: []
+        - nid: part11.subpta.sec11_1.pk
+          kind: paragraph
+          kind_raw: (k)
+          num: k
+          ord: 16
+          heading: null
+          text: This part does not apply to records required to be established or maintained by part 112 of this chapter. Records that satisfy the requirements of part 112 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[11]
+          children: []
+        - nid: part11.subpta.sec11_1.pl
+          kind: paragraph
+          kind_raw: (l)
+          num: l
+          ord: 17
+          heading: null
+          text: This part does not apply to records required to be established or maintained by subpart L of part 1 of this chapter. Records that satisfy the requirements of subpart L of part 1 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[12]
+          children: []
+        - nid: part11.subpta.sec11_1.pm
+          kind: paragraph
+          kind_raw: (m)
+          num: m
+          ord: 18
+          heading: null
+          text: This part does not apply to records required to be established or maintained by subpart M of part 1 of this chapter. Records that satisfy the requirements of subpart M of part 1 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[13]
+          children: []
+        - nid: part11.subpta.sec11_1.pn
+          kind: paragraph
+          kind_raw: (n)
+          num: n
+          ord: 19
+          heading: null
+          text: This part does not apply to records required to be established or maintained by subpart O of part 1 of this chapter. Records that satisfy the requirements of subpart O of part 1 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[14]
+          children: []
+        - nid: part11.subpta.sec11_1.po
+          kind: paragraph
+          kind_raw: (o)
+          num: o
+          ord: 20
+          heading: null
+          text: This part does not apply to records required to be established or maintained by part 121 of this chapter. Records that satisfy the requirements of part 121 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[15]
+          children: []
+        - nid: part11.subpta.sec11_1.p
+          kind: paragraph
+          kind_raw: (p)
+          num: p
+          ord: 21
+          heading: null
+          text: This part does not apply to records required to be established or maintained by subpart R of part 1 of this chapter. Records that satisfy the requirements of subpart R of part 1 of this chapter, but that also are required under other applicable statutory provisions or regulations, remain subject to this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[16]
+          children: []
+        - nid: part11.subpta.sec11_1.note
+          kind: note
+          kind_raw: CITA
+          num: null
+          ord: 22
+          heading: null
+          text: '[62 FR 13464, Mar. 20, 1997, as amended at 69 FR 71655, Dec. 9, 2004; 79 FR 71253, 71291, Dec. 1, 2014; 80 FR 56144, 56336, Sept. 17, 2015; 80 FR 74352, 74547, 74667, Nov. 27, 2015; 81 FR 20170, Apr. 6, 2016; 81 FR 34218, May 27, 2016; 86 FR 68830, Dec. 3, 2021]'
+          role: informative
+          normativity: null
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: DIV8[@N='11.1']/CITA[1]
+          children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.1
+            citation: 21 CFR 11.1
+      - nid: part11.subpta.sec11_2
+        kind: section
+        kind_raw: §
+        num: '11.2'
+        ord: 23
+        heading: Implementation.
+        text: null
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.2']
+        children:
+        - nid: part11.subpta.sec11_2.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 24
+          heading: null
+          text: For records required to be maintained but not submitted to the agency, persons may use electronic records in lieu of paper records or electronic signatures in lieu of traditional signatures, in whole or in part, provided that the requirements of this part are met.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[1]
+          children: []
+        - nid: part11.subpta.sec11_2.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 25
+          heading: null
+          text: 'For records submitted to the agency, persons may use electronic records in lieu of paper records or electronic signatures in lieu of traditional signatures, in whole or in part, provided that:'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[2]
+          children:
+          - nid: part11.subpta.sec11_2.pb.i1
+            kind: item
+            kind_raw: (1)
+            num: '1'
+            ord: 26
+            heading: null
+            text: The requirements of this part are met; and
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[3]
+            children: []
+          - nid: part11.subpta.sec11_2.pb.i2
+            kind: item
+            kind_raw: (2)
+            num: '2'
+            ord: 27
+            heading: null
+            text: The document or parts of a document to be submitted have been identified in public docket No. 92S-0251 as being the type of submission the agency accepts in electronic form. This docket will identify specifically what types of documents or parts of documents are acceptable for submission in electronic form without paper records and the agency receiving unit(s) (e.g., specific center, office, division, branch) to which such submissions may be made. Documents to agency receiving unit(s) not specified in the public docket will not be considered as official if they are submitted in electronic form; paper forms of such documents will be considered as official and must accompany any electronic records. Persons are expected to consult with the intended agency receiving unit for details on how (e.g., method of transmission, media, file formats, and technical protocols) and whether to proceed with the electronic submission.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[4]
+            children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.2
+            citation: 21 CFR 11.2
+      - nid: part11.subpta.sec11_3
+        kind: section
+        kind_raw: §
+        num: '11.3'
+        ord: 28
+        heading: Definitions.
+        text: null
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.3']
+        children:
+        - nid: part11.subpta.sec11_3.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 29
+          heading: null
+          text: The definitions and interpretations of terms contained in section 201 of the act apply to those terms when used in this part.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[1]
+          children: []
+        - nid: part11.subpta.sec11_3.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 30
+          heading: null
+          text: 'The following definitions of terms also apply to this part:'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[2]
+          children:
+          - nid: part11.subpta.sec11_3.pb.i1
+            kind: item
+            kind_raw: (1)
+            num: '1'
+            ord: 31
+            heading: null
+            text: Act means the Federal Food, Drug, and Cosmetic Act (secs. 201-903 (21 U.S.C. 321-393)).
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[3]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i2
+            kind: item
+            kind_raw: (2)
+            num: '2'
+            ord: 32
+            heading: null
+            text: Agency means the Food and Drug Administration.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[4]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i3
+            kind: item
+            kind_raw: (3)
+            num: '3'
+            ord: 33
+            heading: null
+            text: Biometrics means a method of verifying an individual's identity based on measurement of the individual's physical feature(s) or repeatable action(s) where those features and/or actions are both unique to that individual and measurable.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[5]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i4
+            kind: item
+            kind_raw: (4)
+            num: '4'
+            ord: 34
+            heading: null
+            text: Closed system means an environment in which system access is controlled by persons who are responsible for the content of electronic records that are on the system.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[6]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i5
+            kind: item
+            kind_raw: (5)
+            num: '5'
+            ord: 35
+            heading: null
+            text: Digital signature means an electronic signature based upon cryptographic methods of originator authentication, computed by using a set of rules and a set of parameters such that the identity of the signer and the integrity of the data can be verified.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[7]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i6
+            kind: item
+            kind_raw: (6)
+            num: '6'
+            ord: 36
+            heading: null
+            text: Electronic record means any combination of text, graphics, data, audio, pictorial, or other information representation in digital form that is created, modified, maintained, archived, retrieved, or distributed by a computer system.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[8]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i7
+            kind: item
+            kind_raw: (7)
+            num: '7'
+            ord: 37
+            heading: null
+            text: Electronic signature means a computer data compilation of any symbol or series of symbols executed, adopted, or authorized by an individual to be the legally binding equivalent of the individual's handwritten signature.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[9]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i8
+            kind: item
+            kind_raw: (8)
+            num: '8'
+            ord: 38
+            heading: null
+            text: Handwritten signature means the scripted name or legal mark of an individual handwritten by that individual and executed or adopted with the present intention to authenticate a writing in a permanent form. The act of signing with a writing or marking instrument such as a pen or stylus is preserved. The scripted name or legal mark, while conventionally applied to paper, may also be applied to other devices that capture the name or mark.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[10]
+            children: []
+          - nid: part11.subpta.sec11_3.pb.i9
+            kind: item
+            kind_raw: (9)
+            num: '9'
+            ord: 39
+            heading: null
+            text: Open system means an environment in which system access is not controlled by persons who are responsible for the content of electronic records that are on the system.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[11]
+            children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.3
+            citation: 21 CFR 11.3
+      data:
+        hierarchy_metadata:
+          path: /on/_SUBSTITUTE_DATE_/title-21/part-11/subpart-A
+          citation: 21 CFR Part 11 Subpart A
+    - nid: part11.subptb
+      kind: subpart
+      kind_raw: Subpart
+      num: B
+      ord: 40
+      heading: Electronic Records
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: CFR
+        locator: DIV6[@N='B']
+      children:
+      - nid: part11.subptb.sec11_10
+        kind: section
+        kind_raw: §
+        num: '11.10'
+        ord: 41
+        heading: Controls for closed systems.
+        text: 'Persons who use closed systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, when appropriate, the confidentiality of electronic records, and to ensure that the signer cannot readily repudiate the signed record as not genuine. Such procedures and controls shall include the following:'
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.10']
+        children:
+        - nid: part11.subptb.sec11_10.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 42
+          heading: null
+          text: Validation of systems to ensure accuracy, reliability, consistent intended performance, and the ability to discern invalid or altered records.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[2]
+          children: []
+        - nid: part11.subptb.sec11_10.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 43
+          heading: null
+          text: The ability to generate accurate and complete copies of records in both human readable and electronic form suitable for inspection, review, and copying by the agency. Persons should contact the agency if there are any questions regarding the ability of the agency to perform such review and copying of the electronic records.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[3]
+          children: []
+        - nid: part11.subptb.sec11_10.pc
+          kind: paragraph
+          kind_raw: (c)
+          num: c
+          ord: 44
+          heading: null
+          text: Protection of records to enable their accurate and ready retrieval throughout the records retention period.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[4]
+          children: []
+        - nid: part11.subptb.sec11_10.pd
+          kind: paragraph
+          kind_raw: (d)
+          num: d
+          ord: 45
+          heading: null
+          text: Limiting system access to authorized individuals.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[5]
+          children: []
+        - nid: part11.subptb.sec11_10.pe
+          kind: paragraph
+          kind_raw: (e)
+          num: e
+          ord: 46
+          heading: null
+          text: Use of secure, computer-generated, time-stamped audit trails to independently record the date and time of operator entries and actions that create, modify, or delete electronic records. Record changes shall not obscure previously recorded information. Such audit trail documentation shall be retained for a period at least as long as that required for the subject electronic records and shall be available for agency review and copying.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[6]
+          children: []
+        - nid: part11.subptb.sec11_10.pf
+          kind: paragraph
+          kind_raw: (f)
+          num: f
+          ord: 47
+          heading: null
+          text: Use of operational system checks to enforce permitted sequencing of steps and events, as appropriate.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[7]
+          children: []
+        - nid: part11.subptb.sec11_10.pg
+          kind: paragraph
+          kind_raw: (g)
+          num: g
+          ord: 48
+          heading: null
+          text: Use of authority checks to ensure that only authorized individuals can use the system, electronically sign a record, access the operation or computer system input or output device, alter a record, or perform the operation at hand.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[8]
+          children: []
+        - nid: part11.subptb.sec11_10.ph
+          kind: paragraph
+          kind_raw: (h)
+          num: h
+          ord: 49
+          heading: null
+          text: Use of device (e.g., terminal) checks to determine, as appropriate, the validity of the source of data input or operational instruction.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[9]
+          children: []
+        - nid: part11.subptb.sec11_10.pi
+          kind: paragraph
+          kind_raw: (i)
+          num: i
+          ord: 50
+          heading: null
+          text: Determination that persons who develop, maintain, or use electronic record/electronic signature systems have the education, training, and experience to perform their assigned tasks.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[10]
+          children: []
+        - nid: part11.subptb.sec11_10.pj
+          kind: paragraph
+          kind_raw: (j)
+          num: j
+          ord: 51
+          heading: null
+          text: The establishment of, and adherence to, written policies that hold individuals accountable and responsible for actions initiated under their electronic signatures, in order to deter record and signature falsification.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[11]
+          children: []
+        - nid: part11.subptb.sec11_10.pk
+          kind: paragraph
+          kind_raw: (k)
+          num: k
+          ord: 52
+          heading: null
+          text: 'Use of appropriate controls over systems documentation including:'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[12]
+          children:
+          - nid: part11.subptb.sec11_10.pk.i1
+            kind: item
+            kind_raw: (1)
+            num: '1'
+            ord: 53
+            heading: null
+            text: Adequate controls over the distribution of, access to, and use of documentation for system operation and maintenance.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[13]
+            children: []
+          - nid: part11.subptb.sec11_10.pk.i2
+            kind: item
+            kind_raw: (2)
+            num: '2'
+            ord: 54
+            heading: null
+            text: Revision and change control procedures to maintain an audit trail that documents time-sequenced development and modification of systems documentation.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[14]
+            children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.10
+            citation: 21 CFR 11.10
+      - nid: part11.subptb.sec11_30
+        kind: section
+        kind_raw: §
+        num: '11.30'
+        ord: 55
+        heading: Controls for open systems.
+        text: Persons who use open systems to create, modify, maintain, or transmit electronic records shall employ procedures and controls designed to ensure the authenticity, integrity, and, as appropriate, the confidentiality of electronic records from the point of their creation to the point of their receipt. Such procedures and controls shall include those identified in § 11.10, as appropriate, and additional measures such as document encryption and use of appropriate digital signature standards to ensure, as necessary under the circumstances, record authenticity, integrity, and confidentiality.
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.30']
+        children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.30
+            citation: 21 CFR 11.30
+      - nid: part11.subptb.sec11_50
+        kind: section
+        kind_raw: §
+        num: '11.50'
+        ord: 56
+        heading: Signature manifestations.
+        text: null
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.50']
+        children:
+        - nid: part11.subptb.sec11_50.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 57
+          heading: null
+          text: 'Signed electronic records shall contain information associated with the signing that clearly indicates all of the following:'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[1]
+          children:
+          - nid: part11.subptb.sec11_50.pa.i1
+            kind: item
+            kind_raw: (1)
+            num: '1'
+            ord: 58
+            heading: null
+            text: The printed name of the signer;
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[2]
+            children: []
+          - nid: part11.subptb.sec11_50.pa.i2
+            kind: item
+            kind_raw: (2)
+            num: '2'
+            ord: 59
+            heading: null
+            text: The date and time when the signature was executed; and
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[3]
+            children: []
+          - nid: part11.subptb.sec11_50.pa.i3
+            kind: item
+            kind_raw: (3)
+            num: '3'
+            ord: 60
+            heading: null
+            text: The meaning (such as review, approval, responsibility, or authorship) associated with the signature.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[4]
+            children: []
+        - nid: part11.subptb.sec11_50.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 61
+          heading: null
+          text: The items identified in paragraphs (a)(1), (a)(2), and (a)(3) of this section shall be subject to the same controls as for electronic records and shall be included as part of any human readable form of the electronic record (such as electronic display or printout).
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[5]
+          children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.50
+            citation: 21 CFR 11.50
+      - nid: part11.subptb.sec11_70
+        kind: section
+        kind_raw: §
+        num: '11.70'
+        ord: 62
+        heading: Signature/record linking.
+        text: Electronic signatures and handwritten signatures executed to electronic records shall be linked to their respective electronic records to ensure that the signatures cannot be excised, copied, or otherwise transferred to falsify an electronic record by ordinary means.
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.70']
+        children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.70
+            citation: 21 CFR 11.70
+      data:
+        hierarchy_metadata:
+          path: /on/_SUBSTITUTE_DATE_/title-21/part-11/subpart-B
+          citation: 21 CFR Part 11 Subpart B
+    - nid: part11.subptc
+      kind: subpart
+      kind_raw: Subpart
+      num: C
+      ord: 63
+      heading: Electronic Signatures
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: CFR
+        locator: DIV6[@N='C']
+      children:
+      - nid: part11.subptc.sec11_100
+        kind: section
+        kind_raw: §
+        num: '11.100'
+        ord: 64
+        heading: General requirements.
+        text: null
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.100']
+        children:
+        - nid: part11.subptc.sec11_100.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 65
+          heading: null
+          text: Each electronic signature shall be unique to one individual and shall not be reused by, or reassigned to, anyone else.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[1]
+          children: []
+        - nid: part11.subptc.sec11_100.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 66
+          heading: null
+          text: Before an organization establishes, assigns, certifies, or otherwise sanctions an individual's electronic signature, or any element of such electronic signature, the organization shall verify the identity of the individual.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[2]
+          children: []
+        - nid: part11.subptc.sec11_100.pc
+          kind: paragraph
+          kind_raw: (c)
+          num: c
+          ord: 67
+          heading: null
+          text: Persons using electronic signatures shall, prior to or at the time of such use, certify to the agency that the electronic signatures in their system, used on or after August 20, 1997, are intended to be the legally binding equivalent of traditional handwritten signatures.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[3]
+          children:
+          - nid: part11.subptc.sec11_100.pc.i1
+            kind: item
+            kind_raw: (1)
+            num: '1'
+            ord: 68
+            heading: null
+            text: The certification shall be signed with a traditional handwritten signature and submitted in electronic or paper form. Information on where to submit the certification can be found on FDA's web page on Letters of Non-Repudiation Agreement.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[4]
+            children: []
+          - nid: part11.subptc.sec11_100.pc.i2
+            kind: item
+            kind_raw: (2)
+            num: '2'
+            ord: 69
+            heading: null
+            text: Persons using electronic signatures shall, upon agency request, provide additional certification or testimony that a specific electronic signature is the legally binding equivalent of the signer's handwritten signature.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[5]
+            children: []
+        - nid: part11.subptc.sec11_100.note
+          kind: note
+          kind_raw: CITA
+          num: null
+          ord: 70
+          heading: null
+          text: '[62 FR 13464, Mar. 20, 1997, as amended at 88 FR 13018, Mar. 2, 2023]'
+          role: informative
+          normativity: null
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: DIV8[@N='11.100']/CITA[1]
+          children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.100
+            citation: 21 CFR 11.100
+      - nid: part11.subptc.sec11_200
+        kind: section
+        kind_raw: §
+        num: '11.200'
+        ord: 71
+        heading: Electronic signature components and controls.
+        text: null
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.200']
+        children:
+        - nid: part11.subptc.sec11_200.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 72
+          heading: null
+          text: 'Electronic signatures that are not based upon biometrics shall:'
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[1]
+          children:
+          - nid: part11.subptc.sec11_200.pa.i1
+            kind: item
+            kind_raw: (1)
+            num: '1'
+            ord: 73
+            heading: null
+            text: Employ at least two distinct identification components such as an identification code and password.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[2]
+            children:
+            - nid: part11.subptc.sec11_200.pa.i1.sii
+              kind: subitem
+              kind_raw: (i)
+              num: i
+              ord: 74
+              heading: null
+              text: When an individual executes a series of signings during a single, continuous period of controlled system access, the first signing shall be executed using all electronic signature components; subsequent signings shall be executed using at least one electronic signature component that is only executable by, and designed to be used only by, the individual.
+              role: normative
+              normativity: must
+              tags: []
+              refs:
+                internal: []
+                external: []
+              source_spans:
+              - source_label: CFR
+                locator: P[3]
+              children: []
+            - nid: part11.subptc.sec11_200.pa.i1.siii
+              kind: subitem
+              kind_raw: (ii)
+              num: ii
+              ord: 75
+              heading: null
+              text: When an individual executes one or more signings not performed during a single, continuous period of controlled system access, each signing shall be executed using all of the electronic signature components.
+              role: normative
+              normativity: must
+              tags: []
+              refs:
+                internal: []
+                external: []
+              source_spans:
+              - source_label: CFR
+                locator: P[4]
+              children: []
+          - nid: part11.subptc.sec11_200.pa.i2
+            kind: item
+            kind_raw: (2)
+            num: '2'
+            ord: 76
+            heading: null
+            text: Be used only by their genuine owners; and
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[5]
+            children: []
+          - nid: part11.subptc.sec11_200.pa.i3
+            kind: item
+            kind_raw: (3)
+            num: '3'
+            ord: 77
+            heading: null
+            text: Be administered and executed to ensure that attempted use of an individual's electronic signature by anyone other than its genuine owner requires collaboration of two or more individuals.
+            role: normative
+            normativity: must
+            tags: []
+            refs:
+              internal: []
+              external: []
+            source_spans:
+            - source_label: CFR
+              locator: P[6]
+            children: []
+        - nid: part11.subptc.sec11_200.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 78
+          heading: null
+          text: Electronic signatures based upon biometrics shall be designed to ensure that they cannot be used by anyone other than their genuine owners.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[7]
+          children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.200
+            citation: 21 CFR 11.200
+      - nid: part11.subptc.sec11_300
+        kind: section
+        kind_raw: §
+        num: '11.300'
+        ord: 79
+        heading: Controls for identification codes/passwords.
+        text: 'Persons who use electronic signatures based upon use of identification codes in combination with passwords shall employ controls to ensure their security and integrity. Such controls shall include:'
+        role: structural
+        normativity: null
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: CFR
+          locator: DIV8[@N='11.300']
+        children:
+        - nid: part11.subptc.sec11_300.pa
+          kind: paragraph
+          kind_raw: (a)
+          num: a
+          ord: 80
+          heading: null
+          text: Maintaining the uniqueness of each combined identification code and password, such that no two individuals have the same combination of identification code and password.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[2]
+          children: []
+        - nid: part11.subptc.sec11_300.pb
+          kind: paragraph
+          kind_raw: (b)
+          num: b
+          ord: 81
+          heading: null
+          text: Ensuring that identification code and password issuances are periodically checked, recalled, or revised (e.g., to cover such events as password aging).
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[3]
+          children: []
+        - nid: part11.subptc.sec11_300.pc
+          kind: paragraph
+          kind_raw: (c)
+          num: c
+          ord: 82
+          heading: null
+          text: Following loss management procedures to electronically deauthorize lost, stolen, missing, or otherwise potentially compromised tokens, cards, and other devices that bear or generate identification code or password information, and to issue temporary or permanent replacements using suitable, rigorous controls.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[4]
+          children: []
+        - nid: part11.subptc.sec11_300.pd
+          kind: paragraph
+          kind_raw: (d)
+          num: d
+          ord: 83
+          heading: null
+          text: Use of transaction safeguards to prevent unauthorized use of passwords and/or identification codes, and to detect and report in an immediate and urgent manner any attempts at their unauthorized use to the system security unit, and, as appropriate, to organizational management.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[5]
+          children: []
+        - nid: part11.subptc.sec11_300.pe
+          kind: paragraph
+          kind_raw: (e)
+          num: e
+          ord: 84
+          heading: null
+          text: Initial and periodic testing of devices, such as tokens or cards, that bear or generate identification code or password information to ensure that they function properly and have not been altered in an unauthorized manner.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: CFR
+            locator: P[6]
+          children: []
+        data:
+          hierarchy_metadata:
+            path: /on/_SUBSTITUTE_DATE_/title-21/section-11.300
+            citation: 21 CFR 11.300
+      data:
+        hierarchy_metadata:
+          path: /on/_SUBSTITUTE_DATE_/title-21/part-11/subpart-C
+          citation: 21 CFR Part 11 Subpart C
+    data:
+      hierarchy_metadata:
+        path: /on/_SUBSTITUTE_DATE_/title-21/part-11
+        citation: 21 CFR Part 11
+index:
+  display_name_by_nid:
+    part11: Part 11 ELECTRONIC RECORDS; ELECTRONIC SIGNATURES
+    part11.subpta: Subpart A General Provisions
+    part11.subpta.sec11_1: § 11.1 Scope.
+    part11.subpta.sec11_1.pa: (a)
+    part11.subpta.sec11_1.pb: (b)
+    part11.subpta.sec11_1.pc: (c)
+    part11.subpta.sec11_1.pd: (d)
+    part11.subpta.sec11_1.pe: (e)
+    part11.subpta.sec11_1.pf: (f)
+    part11.subpta.sec11_1.pg: (g)
+    part11.subpta.sec11_1.ph: (h)
+    part11.subpta.sec11_1.pi: (i)
+    part11.subpta.sec11_1.pj: (j)
+    part11.subpta.sec11_1.pk: (k)
+    part11.subpta.sec11_1.pl: (l)
+    part11.subpta.sec11_1.pm: (m)
+    part11.subpta.sec11_1.pn: (n)
+    part11.subpta.sec11_1.po: (o)
+    part11.subpta.sec11_1.p: (p)
+    part11.subpta.sec11_2: § 11.2 Implementation.
+    part11.subpta.sec11_2.pa: (a)
+    part11.subpta.sec11_2.pb: (b)
+    part11.subpta.sec11_2.pb.i1: (1)
+    part11.subpta.sec11_2.pb.i2: (2)
+    part11.subpta.sec11_3: § 11.3 Definitions.
+    part11.subpta.sec11_3.pa: (a)
+    part11.subpta.sec11_3.pb: (b)
+    part11.subpta.sec11_3.pb.i1: (1)
+    part11.subpta.sec11_3.pb.i2: (2)
+    part11.subpta.sec11_3.pb.i3: (3)
+    part11.subpta.sec11_3.pb.i4: (4)
+    part11.subpta.sec11_3.pb.i5: (5)
+    part11.subpta.sec11_3.pb.i6: (6)
+    part11.subpta.sec11_3.pb.i7: (7)
+    part11.subpta.sec11_3.pb.i8: (8)
+    part11.subpta.sec11_3.pb.i9: (9)
+    part11.subptb: Subpart B Electronic Records
+    part11.subptb.sec11_10: § 11.10 Controls for closed systems.
+    part11.subptb.sec11_10.pa: (a)
+    part11.subptb.sec11_10.pb: (b)
+    part11.subptb.sec11_10.pc: (c)
+    part11.subptb.sec11_10.pd: (d)
+    part11.subptb.sec11_10.pe: (e)
+    part11.subptb.sec11_10.pf: (f)
+    part11.subptb.sec11_10.pg: (g)
+    part11.subptb.sec11_10.ph: (h)
+    part11.subptb.sec11_10.pi: (i)
+    part11.subptb.sec11_10.pj: (j)
+    part11.subptb.sec11_10.pk: (k)
+    part11.subptb.sec11_10.pk.i1: (1)
+    part11.subptb.sec11_10.pk.i2: (2)
+    part11.subptb.sec11_30: § 11.30 Controls for open systems.
+    part11.subptb.sec11_50: § 11.50 Signature manifestations.
+    part11.subptb.sec11_50.pa: (a)
+    part11.subptb.sec11_50.pa.i1: (1)
+    part11.subptb.sec11_50.pa.i2: (2)
+    part11.subptb.sec11_50.pa.i3: (3)
+    part11.subptb.sec11_50.pb: (b)
+    part11.subptb.sec11_70: § 11.70 Signature/record linking.
+    part11.subptc: Subpart C Electronic Signatures
+    part11.subptc.sec11_100: § 11.100 General requirements.
+    part11.subptc.sec11_100.pa: (a)
+    part11.subptc.sec11_100.pb: (b)
+    part11.subptc.sec11_100.pc: (c)
+    part11.subptc.sec11_100.pc.i1: (1)
+    part11.subptc.sec11_100.pc.i2: (2)
+    part11.subptc.sec11_200: § 11.200 Electronic signature components and controls.
+    part11.subptc.sec11_200.pa: (a)
+    part11.subptc.sec11_200.pa.i1: (1)
+    part11.subptc.sec11_200.pa.i1.sii: (i)
+    part11.subptc.sec11_200.pa.i1.siii: (ii)
+    part11.subptc.sec11_200.pa.i2: (2)
+    part11.subptc.sec11_200.pa.i3: (3)
+    part11.subptc.sec11_200.pb: (b)
+    part11.subptc.sec11_300: § 11.300 Controls for identification codes/passwords.
+    part11.subptc.sec11_300.pa: (a)
+    part11.subptc.sec11_300.pb: (b)
+    part11.subptc.sec11_300.pc: (c)
+    part11.subptc.sec11_300.pd: (d)
+    part11.subptc.sec11_300.pe: (e)

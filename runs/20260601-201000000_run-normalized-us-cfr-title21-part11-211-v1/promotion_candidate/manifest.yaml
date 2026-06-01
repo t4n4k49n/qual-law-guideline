@@ -1,0 +1,87 @@
+schema: qai.normalized_run_manifest.v1
+run_id: 20260601-201000000_run-normalized-us-cfr-title21-part11-211-v1
+branch: run/normalized-us-cfr-title21-part11-211-v1
+base_commit: 7d7e06b
+scope:
+  - 21 CFR Part 11
+  - 21 CFR Part 211
+source_schema_reference:
+  - https://www.govinfo.gov/bulkdata/ECFR/resources/ECFR-XML-User-Guide.pdf
+  - https://github.com/usgpo/bulk-data/blob/main/ECFR-XML-User-Guide.md
+environment:
+  runner: uv run python
+  python: 3.11.6
+  dependencies:
+    lxml: 6.1.1
+    PyYAML: 6.0.3
+    typer: 0.26.4
+  tool:
+    name: qai_xml2ir
+    version: 0.1.1
+documents:
+  - doc_id: us_cfr_title21_part11_20251027
+    input: data/human-readable/cfr/source_xml/title21_part11_2025-10-27.xml
+    source_url: https://www.ecfr.gov/current/title-21/part-11
+    retrieved_at: 2025-10-27
+    command: uv run python -m qai_xml2ir.cli bundle --xml-family ecfr --input data/human-readable/cfr/source_xml/title21_part11_2025-10-27.xml --out-dir runs/20260601-201000000_run-normalized-us-cfr-title21-part11-211-v1/promotion_candidate/us_cfr_title21_part11_20251027 --doc-id us_cfr_title21_part11_20251027 --short-title "21 CFR Part 11" --retrieved-at 2025-10-27 --source-url "https://www.ecfr.gov/current/title-21/part-11"
+    schema: qai.regdoc_ir.v4
+    parser_profile_id: us_cfr_ecfr_xml_v1
+    counts:
+      document: 1
+      part: 1
+      note: 4
+      subpart: 3
+      section: 10
+      paragraph: 43
+      item: 21
+      subitem: 2
+    sha256:
+      meta: 6447CB6546A2B7EEF59B69177E8E823F1B7AA00BB0D8485E3F05C69F6F1F3535
+      parser_profile: CCB0B252D77DA2199F87202929E14AB85CB1FF13D4B3B41601314F84CE0FB8ED
+      regdoc_ir: 7483D3F99C38168A1BA74CA7CB29F1BC7487996200336E1D2DD826875CF325ED
+      regdoc_profile: D91DB1C418C76C6F3C63246390304D9E73DA573415F1E55E3ADE5A05F5AC72A5
+  - doc_id: us_cfr_title21_part211_20251027
+    input: data/human-readable/cfr/source_xml/title21_part211_2025-10-27.xml
+    source_url: https://www.ecfr.gov/current/title-21/part-211
+    retrieved_at: 2025-10-27
+    command: uv run python -m qai_xml2ir.cli bundle --xml-family ecfr --input data/human-readable/cfr/source_xml/title21_part211_2025-10-27.xml --out-dir runs/20260601-201000000_run-normalized-us-cfr-title21-part11-211-v1/promotion_candidate/us_cfr_title21_part211_20251027 --doc-id us_cfr_title21_part211_20251027 --short-title "21 CFR Part 211" --retrieved-at 2025-10-27 --source-url "https://www.ecfr.gov/current/title-21/part-211"
+    schema: qai.regdoc_ir.v4
+    parser_profile_id: us_cfr_ecfr_xml_v1
+    counts:
+      document: 1
+      part: 1
+      note: 36
+      subpart: 11
+      section: 60
+      paragraph: 149
+      item: 104
+      subitem: 11
+    sha256:
+      meta: 9135109C9AF25324EAFAE54A7E00EEAAB61A564A2C5E40EF5BF1307DC28D654E
+      parser_profile: CCB0B252D77DA2199F87202929E14AB85CB1FF13D4B3B41601314F84CE0FB8ED
+      regdoc_ir: B1988167307DA48F88C2A2CE0A18135B49FBEDB5C28505C2D77C783DE56B1514
+      regdoc_profile: ACD43419C42CE9A1D55893B564D6EA58483EEBBDDD312BD071C70B3896E37C81
+validation:
+  pytest: 12 passed
+  check_ir_structure:
+    us_cfr_title21_part11_20251027: OK
+    us_cfr_title21_part211_20251027: OK
+  verify_document:
+    us_cfr_title21_part11_20251027: OK
+    us_cfr_title21_part211_20251027: OK
+  regdoc_profile_candidate_visibility:
+    us_cfr_title21_part11_20251027:
+      allow_rules: []
+      deny_rules: []
+    us_cfr_title21_part211_20251027:
+      allow_rules: []
+      deny_rules: []
+  whitespace_audit:
+    us_cfr_title21_part11_20251027: 0
+    us_cfr_title21_part211_20251027: 0
+review_samples:
+  - runs/20260601-201000000_run-normalized-us-cfr-title21-part11-211-v1/SAMPLE_PART11.md
+  - runs/20260601-201000000_run-normalized-us-cfr-title21-part11-211-v1/SAMPLE_PART211.md
+promotion_policy:
+  parent_pr_changes_data_normalized: false
+  promote_after_parent_approval_only: true

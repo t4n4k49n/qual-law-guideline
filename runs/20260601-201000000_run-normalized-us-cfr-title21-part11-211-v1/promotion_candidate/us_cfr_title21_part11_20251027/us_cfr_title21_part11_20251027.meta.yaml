@@ -1,0 +1,58 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: us_cfr_title21_part11_20251027
+  title: 21 CFR Part 11 - ELECTRONIC RECORDS; ELECTRONIC SIGNATURES
+  short_title: 21 CFR Part 11
+  jurisdiction: US
+  doc_type: regulation
+  language: en
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: null
+    e_gov_revision_id: null
+    law_number: null
+    cfr_title: '21'
+    cfr_part: '11'
+    eu_volume: null
+    pics_doc_id: null
+    who_publication_id: null
+  version:
+    as_of: '2025-10-27'
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://www.ecfr.gov/current/title-21/part-11
+    format: xml
+    retrieved_at: '2025-10-27'
+    checksum: null
+    label: eCFR
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v4
+    path: us_cfr_title21_part11_20251027.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: us_cfr_ecfr_xml_v1
+    path: us_cfr_title21_part11_20251027.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: us_cfr_title21_part11_20251027.regdoc_profile.yaml
+generation:
+  created_at: '2026-06-01T10:57:07Z'
+  tool:
+    name: qai_xml2ir
+    version: 0.1.1
+  inputs:
+  - path: data\human-readable\cfr\source_xml\title21_part11_2025-10-27.xml
+    checksum: 5848f97275cd890a723f7fca3f03f4d70277a9724e382c76ec66b79aa93360e0
+  notes:
+  - Parsed as eCFR XML using GPO/OFR ECFR XML User Guide.
+  - 'Schema reference: https://www.govinfo.gov/bulkdata/ECFR/resources/ECFR-XML-User-Guide.pdf'
