@@ -1,0 +1,188 @@
+schema: qai.parser_profile.v1
+id: eu_gmp_chap4_9_default_v1
+title: EU GMP Vol.4 Chapter 4-9 markers
+applies_to:
+  family: EU_GMP
+  jurisdiction: EU
+  defaults: false
+language: en
+source_label: EU GMP
+context_root_kind: chapter
+structural_kinds:
+- chapter
+- section
+preprocess:
+  drop_line_regexes:
+  - ^\d{1,3}$
+  - ^Commission.*B-1049.*Telephone:.*$
+  - ^Pharmaceutical Quality System\d*$
+  - ^\f$
+  - ^\s*a\s*$
+  - ^\s*On 26 March 2014 minor change to references to in paragraph 2\.5 to other paragraphs of Chapter 2\.\s*$
+  - ^\s*Article 55 of Directive 2001/82/EC\s*$
+  - ^\s*According to Article 51 paragraph 1 of Directive 2001/83/EC\), the batches of medicinal products which have\s*$
+  - ^\s*undergone such controls in a Member State shall be exempt from the controls if they are marketed in another\s*$
+  - ^\s*Member State, accompanied by the control reports signed by the qualified person\.\.\s*$
+  - ^\s*Article 53 of Directive 2001/82/EC\s*$
+  - ^\s*PT CHAPTER 5 PRODUCTION\s*$
+  - ^\s*ER 3 PREMISES AND EQUIPMENT\s*$
+  - ^\s*In January 2015 the deadline for coming into operation was adapted with regard to the toxicological evaluation\s*$
+  - ^\s*to align with the coming effect of the EMA guideline on setting health based exposure limits for use in risk\s*$
+  - ^\s*identification in the manufacture of different medicinal products in shared facilities\.\s*$
+  - ^\s*CHAPTER 5 PRODUCTION\s*$
+  - ^\s*Commission Européenne, B-1049 Bruxelles / Europese Commissie,?\s*$
+  - ^\s*B-1049 Brussel - Belgium\s*$
+  - ^\s*identification in the manufacture of different medicinal products in shared facilities\. Furthermore, correction of\s*$
+  - ^\s*the reference in footnote 2 took place\.\s*$
+  - ^\s*Articles 23a and 81 of Directive 2001/83/EC\s*$
+  use_indent_dedent: true
+  dedent_pop_kinds:
+  - subitem
+  - item
+  strip_inline_regexes:
+  - (?<=Revision)a\b
+  - (?<=Directive 2001/83/EC)1\b
+  - (?<=authorisation)2\b
+  - (?<=Article 49)\s+3\b
+  - (?<=materials)1\b
+  - (?<=legal obligations)4\b
+  merge_structural_heading_continuations:
+    enabled: true
+    kinds:
+    - chapter
+    max_next_line_len: 120
+    max_merge_lines: 1
+    max_blank_lookahead: 1
+  drop_repeated_structural_headers:
+    enabled: true
+    kinds:
+    - chapter
+  detect_plaintext_tables:
+    enabled: true
+    min_rows: 2
+    max_rows: 80
+    mode: conservative
+  extract_notes:
+    enabled: true
+    max_lines: 40
+  eu_gmp_chap2_cleanup:
+    enabled: true
+  skip_blocks:
+  - start_regex: ^\s*Table of Contents\s*$
+    end_regex: ^\s*Procedures and records\s*$
+    include_start: false
+    include_end: false
+    max_lines: 30
+marker_types:
+- id: chapter
+  kind: chapter
+  kind_raw: Chapter
+  match: ^Chapter\s+(?P<num>[4-9])\s*:?\s*
+  num_group: num
+  heading_from_remainder: true
+- id: paragraph_decimal
+  kind: paragraph
+  kind_raw: '1.1'
+  match: ^(?P<n>\d+(?:\.\d+)+)\s+
+  num_group: n
+- id: item_paren_roman
+  kind: item
+  kind_raw: (i)
+  match: ^\((?P<n>[ivxlcdm]+)\)\s+
+  num_group: n
+- id: item_roman_rparen
+  kind: item
+  kind_raw: i)
+  match: ^(?P<n>[ivxlcdm]+)\)\s+
+  num_group: n
+- id: bullet
+  kind: subitem
+  kind_raw: •
+  match: ^[-•\uF0B7]\s+
+- id: eu_gmp_chap2_unnumbered_section
+  kind: section
+  kind_raw: null
+  heading_from_remainder: true
+  match: '^(?=(?:Principle|General|Required GMP Documentation|Generation and Control of Documentation|Good Documentation Practices|Retention of Documents|Specifications|Specifications for starting and packaging materials|Specifications for intermediate and bulk products|Specifications for finished products|Manufacturing Formula and Processing Instructions|Packaging Instructions|Batch Processing Record|Batch Packaging Record|Procedures and records|Receipt|Sampling|Testing|Other|Prevention of cross-contamination in production|Starting materials|Processing operations: intermediate and bulk products|Packaging materials|Packaging operations|Finished products|Rejected, recovered and returned materials|Product shortage due to manufacturing constraints|Good Quality Control Laboratory Practice|Documentation|On-going stability programme|Technical transfer of testing methods|The Contract Giver|The Contract Acceptor|The Contract|Personnel and Organisation|Procedures for handling and investigating complaints including possible quality defects|Investigation and Decision-making|Root Cause Analysis and Corrective and Preventative Actions|Product Recalls and other potential risk-reducing actions)$)'
+- id: item_roman_dot
+  kind: item
+  kind_raw: i.
+  match: ^(?P<n>[ivxlcdm]+)\.\s+
+  num_group: n
+- id: item_alpha_rparen
+  kind: item
+  kind_raw: a)
+  match: ^(?P<n>[a-z])\)\s+
+  num_group: n
+- id: item_paren_alpha
+  kind: item
+  kind_raw: (a)
+  match: ^\((?P<n>[a-z])\)\s+
+  num_group: n
+- id: eu_gmp_chap3_further_guidance_paragraph
+  kind: paragraph
+  kind_raw: null
+  match: ^(?=Further guidance can be found in Chapter 5 and in Annexes 2, 3, 4, 5 & 6\.)
+- id: chapter9_upper
+  kind: chapter
+  kind_raw: Chapter
+  match: ^CHAPTER\s+(?P<num>9)\s+
+  num_group: num
+  heading_from_remainder: true
+structure:
+  root:
+    children:
+    - chapter
+  chapter:
+    children:
+    - section
+    - paragraph
+    - item
+    - subitem
+    - table
+    - preformatted
+    - note
+    - history
+  paragraph:
+    children:
+    - item
+    - subitem
+    - note
+    - history
+  item:
+    children:
+    - subitem
+    - note
+    - history
+  subitem:
+    children:
+    - note
+    - history
+  note:
+    children: []
+  section:
+    children:
+    - paragraph
+    - item
+    - subitem
+    - table
+    - preformatted
+    - note
+    - history
+  table:
+    children:
+    - table_header
+    - note
+  table_header:
+    children:
+    - table_row
+  table_row:
+    children: []
+  preformatted:
+    children:
+    - note
+  history:
+    children: []
+compound_prefix:
+  enabled: false
+  max_depth: 1

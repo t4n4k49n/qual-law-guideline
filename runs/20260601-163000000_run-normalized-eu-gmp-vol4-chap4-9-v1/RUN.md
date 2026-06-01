@@ -93,3 +93,28 @@ Copy-Item <each reviewed candidate yaml> "$run/promotion_candidate/<doc_id>/"
 
 この親PRでは `data/normalized/` は変更しない。
 承認後、`runs/20260601-163000000_run-normalized-eu-gmp-vol4-chap4-9-v1/promotion_candidate/` の各doc_id配下から `data/normalized/<doc_id>/` へ複写する子PRを別途作成する。
+
+## 昇格実施記録
+
+- 親PR: `#252`
+- 親PR main反映確認: `034bb71`
+- 昇格ブランチ: `promote/eu-gmp-vol4-chap4-9`
+- 昇格先:
+  - `data/normalized/eu_gmp_vol4_chap4_20110101/`
+  - `data/normalized/eu_gmp_vol4_chap5_20150123/`
+  - `data/normalized/eu_gmp_vol4_chap6_20140328/`
+  - `data/normalized/eu_gmp_vol4_chap7_20120628/`
+  - `data/normalized/eu_gmp_vol4_chap8_20140813/`
+  - `data/normalized/eu_gmp_vol4_chap9_undated/`
+- 昇格内容: 各doc_idで `promotion_candidate` の4ファイルを複写
+  - `regdoc_ir.yaml`
+  - `parser_profile.yaml`
+  - `regdoc_profile.yaml`
+  - `meta.yaml`
+- SHA256確認: 各doc_idの4ファイルは昇格元と昇格先で一致
+  - `eu_gmp_vol4_chap4_20110101.regdoc_ir.yaml`: `4AD367910455F8DFC9C43FECFC277424DE83B0D8D41D0797715D71A1750E755A`
+  - `eu_gmp_vol4_chap5_20150123.regdoc_ir.yaml`: `E02ACEC57DD2A4DE5D1180B9C6E82B7241A2C9BECDB5B21069E9B6573E6A6139`
+  - `eu_gmp_vol4_chap6_20140328.regdoc_ir.yaml`: `0F2D7DA11B6C676DA8928A0D395E5544B9374495048F460E14E42305E743ED2A`
+  - `eu_gmp_vol4_chap7_20120628.regdoc_ir.yaml`: `CCA15F94BC7202237080A697910A75C1A77A23E0FB17B163B53553AEDEC6F4D4`
+  - `eu_gmp_vol4_chap8_20140813.regdoc_ir.yaml`: `B5C653DADC4AC4A25C69FF1B858175046013554D5143A90ADCF65273CFCB0837`
+  - `eu_gmp_vol4_chap9_undated.regdoc_ir.yaml`: `DDEABD753BE3316427B08114E30C2D9B72AF353A8F920920DEBDF8DB390D5205`
