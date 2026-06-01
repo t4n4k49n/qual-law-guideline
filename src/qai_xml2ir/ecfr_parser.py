@@ -12,7 +12,7 @@ from lxml import etree
 from .models_ir import Node, build_root
 from .nid import NidBuilder
 from .ord_key import assign_document_order
-from .xml_common import flatten_text, lname, normalize_ws
+from .xml_common import flatten_text, lname, normalize_ws, parse_xml_document
 
 
 ECFR_XML_USER_GUIDE = "https://www.govinfo.gov/bulkdata/ECFR/resources/ECFR-XML-User-Guide.pdf"
@@ -348,7 +348,7 @@ def _parse_filename(path: Path) -> Dict[str, Optional[str]]:
 
 
 def parse_ecfr_xml(path: Path) -> ParsedCFR:
-    tree = etree.parse(str(path))
+    tree = parse_xml_document(path)
     xml_root = tree.getroot()
     if lname(xml_root) != "DIV5" or xml_root.get("TYPE") != "PART":
         raise ValueError("eCFR parser expects a DIV5 TYPE='PART' root")

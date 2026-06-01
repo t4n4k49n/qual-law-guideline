@@ -12,6 +12,7 @@ from lxml import etree
 from .models_ir import Node, build_root
 from .nid import IROHA_ORDER, NidBuilder, extract_digits, slug_iroha
 from .ord_key import assign_document_order, normalize_num_attr, num_attr_to_segments
+from .xml_common import parse_xml_document
 
 LOGGER = logging.getLogger(__name__)
 
@@ -679,14 +680,17 @@ class ParsedLaw:
 
 
 def parse_egov_xml(path: Path) -> ParsedLaw:
-    tree = etree.parse(str(path))
+    tree = parse_xml_document(path)
     root = tree.getroot()
-    law_body = find_first(root, "LawBody")
+    law_root = find_first(root, "Law")
+    if law_root is None:
+        law_root = root
+    law_body = find_first(law_root, "LawBody")
     if law_body is None:
-        law_body = root
+        law_body = law_root
 
     title = find_text(law_body, "LawTitle") or ""
-    law_number = find_text(root, "LawNum") or find_text(law_body, "LawNum")
+    law_number = find_text(law_root, "LawNum") or find_text(root, "LawNum")
     law_id = find_text(root, "LawId") or extract_law_id_from_filename(path.name)
 
     nid_builder = NidBuilder()

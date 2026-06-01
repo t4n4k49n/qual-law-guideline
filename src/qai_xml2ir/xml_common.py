@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from pathlib import Path
 from typing import Optional
 
 from lxml import etree
@@ -14,6 +15,10 @@ def lname(elem: etree._Element) -> str:
     if isinstance(tag, str) and "}" in tag:
         return tag.split("}", 1)[1]
     return str(tag)
+
+
+def parse_xml_document(path: Path) -> etree._ElementTree:
+    return etree.parse(str(path), parser=etree.XMLParser(huge_tree=True))
 
 
 def normalize_ws(text: Optional[str]) -> str:
