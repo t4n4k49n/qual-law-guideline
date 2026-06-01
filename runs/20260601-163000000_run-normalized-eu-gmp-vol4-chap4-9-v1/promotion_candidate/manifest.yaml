@@ -1,0 +1,60 @@
+schema: normalized_run_manifest.v1
+run_id: 20260601-163000000_run-normalized-eu-gmp-vol4-chap4-9-v1
+branch: run/normalized-eu-gmp-vol4-chap4-9-v1
+base_commit: 1a84c1e
+source_run: runs/20260601-152632412_eu-gmp-chap4-9-normalization-prep
+source_candidate_dir: runs/20260601-152632412_eu-gmp-chap4-9-normalization-prep/trial_candidates_r2
+promotion_candidate_dir: runs/20260601-163000000_run-normalized-eu-gmp-vol4-chap4-9-v1/promotion_candidate
+tooling:
+  pipeline: qai_text2ir
+  python: 3.11.6
+  dependencies:
+    PyYAML: 6.0.2
+    typer: 0.24.0
+    lxml: 6.0.2
+documents:
+  - doc_id: eu_gmp_vol4_chap4_20110101
+    chapter: 4
+    source_text: data/human-readable/eu_gmp/vol4/source_texts/chapter4_01-2011_en.txt
+    source_url: https://health.ec.europa.eu/document/download/104b3eb8-81a7-4858-9419-cb06562adb66_en?filename=chapter4_01-2011_en.pdf
+    parser_profile_id: eu_gmp_chap4_9_default_v1
+    schema: qai.regdoc_ir.v4
+  - doc_id: eu_gmp_vol4_chap5_20150123
+    chapter: 5
+    source_text: data/human-readable/eu_gmp/vol4/source_texts/chapter_5.txt
+    source_url: https://health.ec.europa.eu/document/download/4a1fdb4f-6f6f-49c4-b264-8056e5bbe078_en?filename=chapter_5.pdf
+    parser_profile_id: eu_gmp_chap4_9_default_v1
+    schema: qai.regdoc_ir.v4
+  - doc_id: eu_gmp_vol4_chap6_20140328
+    chapter: 6
+    source_text: data/human-readable/eu_gmp/vol4/source_texts/2014-11_vol4_chapter_6.txt
+    source_url: https://health.ec.europa.eu/document/download/c74c8720-27bf-4252-808f-d65a206a90bb_en?filename=2014-11_vol4_chapter_6.pdf
+    parser_profile_id: eu_gmp_chap4_9_default_v1
+    schema: qai.regdoc_ir.v4
+  - doc_id: eu_gmp_vol4_chap7_20120628
+    chapter: 7
+    source_text: data/human-readable/eu_gmp/vol4/source_texts/vol4-chap7_2012-06_en.txt
+    source_url: https://health.ec.europa.eu/document/download/58b5106a-cf6f-4352-9dca-1caf5d27d97e_en?filename=vol4-chap7_2012-06_en.pdf
+    parser_profile_id: eu_gmp_chap4_9_default_v1
+    schema: qai.regdoc_ir.v4
+  - doc_id: eu_gmp_vol4_chap8_20140813
+    chapter: 8
+    source_text: data/human-readable/eu_gmp/vol4/source_texts/2014-08_gmp_chap8.txt
+    source_url: https://health.ec.europa.eu/document/download/b1eb2292-cb0d-4e3f-aea9-e3fe79faf6e3_en?filename=2014-08_gmp_chap8.pdf
+    parser_profile_id: eu_gmp_chap4_9_default_v1
+    schema: qai.regdoc_ir.v4
+  - doc_id: eu_gmp_vol4_chap9_undated
+    chapter: 9
+    source_text: data/human-readable/eu_gmp/vol4/source_texts/cap9_en.txt
+    source_url: https://health.ec.europa.eu/document/download/07195808-d02e-4d7a-b8f4-f84a83278b62_en?filename=cap9_en.pdf
+    parser_profile_id: eu_gmp_chap4_9_default_v1
+    schema: qai.regdoc_ir.v4
+    note: Local source text does not expose a publication date. Keep doc_id as undated until the official date is confirmed.
+validation:
+  pytest: python -m pytest tests/test_text2ir_eu_gmp_chap1.py -q
+  pytest_result: 9 passed
+  goal_check: PASS for all six promotion candidates
+  special_structure_audit: pass for all six promotion candidates
+  check_ir_structure: OK for all six promotion candidates
+  whitespace_scan: no leading/trailing spaces, tabs, embedded newlines, or repeated spaces in heading/text fields
+  table_scan: source tables 0, generated tables 0, unresolved special blocks 0

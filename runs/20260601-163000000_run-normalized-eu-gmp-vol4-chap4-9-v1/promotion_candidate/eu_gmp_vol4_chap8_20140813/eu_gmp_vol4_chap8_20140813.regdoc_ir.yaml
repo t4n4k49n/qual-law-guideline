@@ -1,0 +1,1214 @@
+schema: qai.regdoc_ir.v4
+doc_id: eu_gmp_vol4_chap8_20140813
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags:
+  - postprocess=eu_gmp_chap2_cleanup
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: pre1
+    kind: preamble
+    kind_raw: null
+    num: null
+    ord: 1
+    heading: null
+    text: EUROPEAN COMMISSION HEALTH AND CONSUMERS DIRECTORATE-GENERAL Health systems and products Medicinal products – quality, safety and efficacy Brussels, 13 August 2014 Ares(2014)2674297 EudraLex The Rules Governing Medicinal Products in the European Union Volume 4 EU Guidelines for Good Manufacturing Practice for Medicinal Products for Human and Veterinary Use Part 1
+    role: informative
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:1
+    - source_label: EU GMP
+      locator: line:2
+    - source_label: EU GMP
+      locator: line:4
+    - source_label: EU GMP
+      locator: line:5
+    - source_label: EU GMP
+      locator: line:8
+    - source_label: EU GMP
+      locator: line:9
+    - source_label: EU GMP
+      locator: line:11
+    - source_label: EU GMP
+      locator: line:15
+    - source_label: EU GMP
+      locator: line:18
+    - source_label: EU GMP
+      locator: line:19
+    - source_label: EU GMP
+      locator: line:20
+    - source_label: EU GMP
+      locator: line:21
+    - source_label: EU GMP
+      locator: line:23
+    children: []
+  - nid: cha8
+    kind: chapter
+    kind_raw: Chapter
+    num: '8'
+    ord: 2
+    heading: Complaints, Quality Defects and Product Recalls
+    text: 'Legal basis for publishing the detailed guidelines: Article 47 of Directive 2001/83/EC on the Community code relating to medicinal products for human use and Article 51 of Directive 2001/82/EC on the Community code relating to veterinary medicinal products. This document provides guidance for the interpretation of the principles and guidelines of good manufacturing practice (GMP) for medicinal products as laid down in Directive 2003/94/EC for medicinal products for human use and Directive 91/412/EEC for veterinary use. Status of the document: Revision Reasons for changes: Extensive changes have been made to this Chapter which now reflect that Quality Risk Management principles should be applied when investigating quality defects or complaints and when making decisions in relation to product recalls or other risk-mitigating actions. It emphasises the need for the cause(s) of quality defects or complaints to be investigated and determined, and that appropriate preventative actions are put in place to guard against a recurrence of the issue and clarifies expectations and responsibilities in relation to the reporting of quality defects to the Competent Authorities. Deadline for coming into operation: 1 March 2015.'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:24
+    - source_label: EU GMP
+      locator: line:26
+    - source_label: EU GMP
+      locator: line:27
+    - source_label: EU GMP
+      locator: line:28
+    - source_label: EU GMP
+      locator: line:29
+    - source_label: EU GMP
+      locator: line:30
+    - source_label: EU GMP
+      locator: line:31
+    - source_label: EU GMP
+      locator: line:34
+    - source_label: EU GMP
+      locator: line:37
+    - source_label: EU GMP
+      locator: line:38
+    - source_label: EU GMP
+      locator: line:39
+    - source_label: EU GMP
+      locator: line:40
+    - source_label: EU GMP
+      locator: line:41
+    - source_label: EU GMP
+      locator: line:42
+    - source_label: EU GMP
+      locator: line:43
+    - source_label: EU GMP
+      locator: line:46
+    children:
+    - nid: cha8.sec1
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 3
+      heading: Principle
+      text: In order to protect public and animal health, a system and appropriate procedures should be in place to record, assess, investigate and review complaints including potential quality defects, and if necessary, to effectively and promptly recall medicinal products for human or veterinary use and investigational medicinal products from the distribution network. Quality Risk Management principles should be applied to the investigation and assessment of quality defects and to the decision-making process in relation to product recalls corrective and preventative actions and other risk-reducing actions. Guidance in relation to these principles is provided in Chapter 1. All concerned competent authorities should be informed in a timely manner in case of a confirmed quality defect (faulty manufacture, product deterioration, detection of falsification, non-compliance with the marketing authorisation or product specification file, or any other serious quality problems) with a medicinal or investigational medicinal product which may result in the recall of the product or an abnormal restriction in the supply. In situations where product on the market is found to be non-compliant with the marketing authorisation, there is no requirement to notify concerned competent authorities provided the degree of non-compliance satisfies the Annex 16 restrictions regarding the handling of unplanned deviations. In case of outsourced activities, a contract should describe the role and responsibilities of the manufacturer, the marketing authorisation holder and/or sponsor and any other relevant third parties in relation to assessment, decision-making, and dissemination of information and implementation of risk-reducing actions relating to a defective product. Guidance in relation to contracts is provided in Chapter 7. Such contracts should also address how to contact those responsible at each party for the management of quality defect and recall issues.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:52
+      - source_label: EU GMP
+        locator: line:54
+      - source_label: EU GMP
+        locator: line:55
+      - source_label: EU GMP
+        locator: line:56
+      - source_label: EU GMP
+        locator: line:57
+      - source_label: EU GMP
+        locator: line:58
+      - source_label: EU GMP
+        locator: line:59
+      - source_label: EU GMP
+        locator: line:60
+      - source_label: EU GMP
+        locator: line:61
+      - source_label: EU GMP
+        locator: line:62
+      - source_label: EU GMP
+        locator: line:63
+      - source_label: EU GMP
+        locator: line:64
+      - source_label: EU GMP
+        locator: line:65
+      - source_label: EU GMP
+        locator: line:66
+      - source_label: EU GMP
+        locator: line:67
+      - source_label: EU GMP
+        locator: line:68
+      - source_label: EU GMP
+        locator: line:69
+      - source_label: EU GMP
+        locator: line:70
+      - source_label: EU GMP
+        locator: line:71
+      - source_label: EU GMP
+        locator: line:72
+      - source_label: EU GMP
+        locator: line:73
+      - source_label: EU GMP
+        locator: line:74
+      - source_label: EU GMP
+        locator: line:75
+      children: []
+    - nid: cha8.sec2
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 4
+      heading: Personnel and Organisation
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:78
+      children:
+      - nid: cha8.sec2.p8_1
+        kind: paragraph
+        kind_raw: '8.1'
+        num: '8.1'
+        ord: 5
+        heading: null
+        text: Appropriately trained and experienced personnel should be responsible for managing complaint and quality defect investigations and for deciding the measures to be taken to manage any potential risk(s) presented by those issues, including recalls. These persons should be independent of the sales and marketing organisation, unless otherwise justified. If these persons do not include the Qualified Person involved in the certification for release of the concerned batch or batches, the latter should be made formally aware of any investigations, any risk-reducing actions and any recall operations, in a timely manner.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:80
+        - source_label: EU GMP
+          locator: line:81
+        - source_label: EU GMP
+          locator: line:82
+        - source_label: EU GMP
+          locator: line:83
+        - source_label: EU GMP
+          locator: line:84
+        - source_label: EU GMP
+          locator: line:85
+        - source_label: EU GMP
+          locator: line:86
+        children: []
+      - nid: cha8.sec2.p8_2
+        kind: paragraph
+        kind_raw: '8.2'
+        num: '8.2'
+        ord: 6
+        heading: null
+        text: Sufficient trained personnel and resources should be made available for the handling, assessment, investigation and review of complaints and quality defects and for implementing any risk-reducing actions. Sufficient trained personnel and resources should also be available for the management of interactions with competent authorities.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:87
+        - source_label: EU GMP
+          locator: line:88
+        - source_label: EU GMP
+          locator: line:89
+        - source_label: EU GMP
+          locator: line:90
+        children: []
+      - nid: cha8.sec2.p8_3
+        kind: paragraph
+        kind_raw: '8.3'
+        num: '8.3'
+        ord: 7
+        heading: null
+        text: The use of inter-disciplinary teams should be considered, including appropriately trained Quality Management personnel.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:91
+        - source_label: EU GMP
+          locator: line:92
+        children: []
+      - nid: cha8.sec2.p8_4
+        kind: paragraph
+        kind_raw: '8.4'
+        num: '8.4'
+        ord: 8
+        heading: null
+        text: In situations in which complaint and quality defect handling is managed centrally within an organisation, the relative roles and responsibilities of the concerned parties should be documented. Central management should not, however, result in delays in the investigation and management of the issue.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:93
+        - source_label: EU GMP
+          locator: line:94
+        - source_label: EU GMP
+          locator: line:95
+        - source_label: EU GMP
+          locator: line:96
+        children: []
+    - nid: cha8.sec3
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 9
+      heading: Procedures for handling and investigating complaints including possible quality defects
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:101
+      children:
+      - nid: cha8.sec3.p8_5
+        kind: paragraph
+        kind_raw: '8.5'
+        num: '8.5'
+        ord: 10
+        heading: null
+        text: There should be written procedures describing the actions to be taken upon receipt of a complaint. All complaints should be documented and assessed to establish if they represent a potential quality defect or other issue.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:103
+        - source_label: EU GMP
+          locator: line:104
+        - source_label: EU GMP
+          locator: line:105
+        children: []
+      - nid: cha8.sec3.p8_6
+        kind: paragraph
+        kind_raw: '8.6'
+        num: '8.6'
+        ord: 11
+        heading: null
+        text: Special attention should be given to establishing whether a complaint or suspected quality defect relates to falsification.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:106
+        - source_label: EU GMP
+          locator: line:107
+        children: []
+      - nid: cha8.sec3.p8_7
+        kind: paragraph
+        kind_raw: '8.7'
+        num: '8.7'
+        ord: 12
+        heading: null
+        text: As not all complaints received by a company may represent actual quality defects, complaints which do not indicate a potential quality defect should be documented appropriately and communicated to the relevant group or person responsible for the investigation and management of complaints of that nature, such as suspected adverse events.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:108
+        - source_label: EU GMP
+          locator: line:109
+        - source_label: EU GMP
+          locator: line:110
+        - source_label: EU GMP
+          locator: line:111
+        - source_label: EU GMP
+          locator: line:112
+        children: []
+      - nid: cha8.sec3.p8_8
+        kind: paragraph
+        kind_raw: '8.8'
+        num: '8.8'
+        ord: 13
+        heading: null
+        text: There should be procedures in place to facilitate a request to investigate the quality of a batch of a medicinal product in order to support an investigation into a reported suspected adverse event.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:113
+        - source_label: EU GMP
+          locator: line:114
+        - source_label: EU GMP
+          locator: line:115
+        children: []
+      - nid: cha8.sec3.p8_9
+        kind: paragraph
+        kind_raw: '8.9'
+        num: '8.9'
+        ord: 14
+        heading: null
+        text: 'When a quality defect investigation is initiated, procedures should be in place to address at least the following:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:116
+        - source_label: EU GMP
+          locator: line:117
+        children:
+        - nid: cha8.sec3.p8_9.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 15
+          heading: null
+          text: The description of the reported quality defect.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:118
+          children: []
+        - nid: cha8.sec3.p8_9.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 16
+          heading: null
+          text: The determination of the extent of the quality defect. The checking or testing of reference and/or retention samples should be considered as part of this, and in certain cases, a review of the batch production record, the batch certification record and the batch distribution records (especially for temperature-sensitive products) should be performed.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:119
+          - source_label: EU GMP
+            locator: line:120
+          - source_label: EU GMP
+            locator: line:121
+          - source_label: EU GMP
+            locator: line:122
+          - source_label: EU GMP
+            locator: line:123
+          children: []
+        - nid: cha8.sec3.p8_9.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 17
+          heading: null
+          text: The need to request a sample, or the return, of the defective product from the complainant and, where a sample is provided, the need for an appropriate evaluation to be carried out.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:124
+          - source_label: EU GMP
+            locator: line:125
+          - source_label: EU GMP
+            locator: line:126
+          children: []
+        - nid: cha8.sec3.p8_9.iiv
+          kind: item
+          kind_raw: iv.
+          num: iv
+          ord: 18
+          heading: null
+          text: The assessment of the risk(s) posed by the quality defect, based on the severity and extent of the quality defect.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:127
+          - source_label: EU GMP
+            locator: line:128
+          children: []
+        - nid: cha8.sec3.p8_9.iv
+          kind: item
+          kind_raw: v.
+          num: v
+          ord: 19
+          heading: null
+          text: The decision-making process that is to be used concerning the potential need for risk-reducing actions to be taken in the distribution network, such as batch or product recalls, or other actions.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:129
+          - source_label: EU GMP
+            locator: line:130
+          - source_label: EU GMP
+            locator: line:131
+          children: []
+        - nid: cha8.sec3.p8_9.ivi
+          kind: item
+          kind_raw: vi.
+          num: vi
+          ord: 20
+          heading: null
+          text: The assessment of the impact that any recall action may have on the availability of the medicinal product to patients/animals in any affected market, and the need to notify the relevant authorities of such impact.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:132
+          - source_label: EU GMP
+            locator: line:133
+          - source_label: EU GMP
+            locator: line:134
+          children: []
+        - nid: cha8.sec3.p8_9.ivii
+          kind: item
+          kind_raw: vii.
+          num: vii
+          ord: 21
+          heading: null
+          text: The internal and external communications that should be made in relation to a quality defect and its investigation.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:135
+          - source_label: EU GMP
+            locator: line:136
+          children: []
+        - nid: cha8.sec3.p8_9.iviii
+          kind: item
+          kind_raw: viii.
+          num: viii
+          ord: 22
+          heading: null
+          text: The identification of the potential root cause(s) of the quality defect.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:137
+          children: []
+        - nid: cha8.sec3.p8_9.iix
+          kind: item
+          kind_raw: ix.
+          num: ix
+          ord: 23
+          heading: null
+          text: The need for appropriate Corrective and Preventative Actions (CAPAs) to be identified and implemented for the issue, and for the assessment of the effectiveness of those CAPAs.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:138
+          - source_label: EU GMP
+            locator: line:139
+          - source_label: EU GMP
+            locator: line:140
+          children: []
+    - nid: cha8.sec4
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 24
+      heading: Investigation and Decision-making
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:146
+      children:
+      - nid: cha8.sec4.p8_10
+        kind: paragraph
+        kind_raw: '8.10'
+        num: '8.10'
+        ord: 25
+        heading: null
+        text: The information reported in relation to possible quality defects should be recorded, including all the original details. The validity and extent of all reported quality defects should be documented and assessed in accordance with Quality Risk Management principles in order to support decisions regarding the degree of investigation and action taken.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:148
+        - source_label: EU GMP
+          locator: line:149
+        - source_label: EU GMP
+          locator: line:150
+        - source_label: EU GMP
+          locator: line:151
+        - source_label: EU GMP
+          locator: line:152
+        children: []
+      - nid: cha8.sec4.p8_11
+        kind: paragraph
+        kind_raw: '8.11'
+        num: '8.11'
+        ord: 26
+        heading: null
+        text: If a quality defect is discovered or suspected in a batch, consideration should be given to checking other batches and in some cases other products, in order to determine whether they are also affected. In particular, other batches which may contain portions of the defective batch or defective components should be investigated.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:153
+        - source_label: EU GMP
+          locator: line:154
+        - source_label: EU GMP
+          locator: line:155
+        - source_label: EU GMP
+          locator: line:156
+        children: []
+      - nid: cha8.sec4.p8_12
+        kind: paragraph
+        kind_raw: '8.12'
+        num: '8.12'
+        ord: 27
+        heading: null
+        text: Quality defect investigations should include a review of previous quality defect reports or any other relevant information for any indication of specific or recurring problems requiring attention and possibly further regulatory action.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:157
+        - source_label: EU GMP
+          locator: line:158
+        - source_label: EU GMP
+          locator: line:159
+        children: []
+      - nid: cha8.sec4.p8_13
+        kind: paragraph
+        kind_raw: '8.13'
+        num: '8.13'
+        ord: 28
+        heading: null
+        text: The decisions that are made during and following quality defect investigations should reflect the level of risk that is presented by the quality defect as well as the seriousness of any non-compliance with respect to the requirements of the marketing authorisation/product specification file or GMP. Such decisions should be timely to ensure that patient and animal safety is maintained, in a way that is commensurate with the level of risk that is presented by those issues.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:160
+        - source_label: EU GMP
+          locator: line:161
+        - source_label: EU GMP
+          locator: line:162
+        - source_label: EU GMP
+          locator: line:163
+        - source_label: EU GMP
+          locator: line:164
+        - source_label: EU GMP
+          locator: line:165
+        children: []
+      - nid: cha8.sec4.p8_14
+        kind: paragraph
+        kind_raw: '8.14'
+        num: '8.14'
+        ord: 29
+        heading: null
+        text: As comprehensive information on the nature and extent of the quality defect may not always be available at the early stages of an investigation, the decision-making processes should still ensure that appropriate risk-reducing actions are taken at an appropriate time-point during such investigations. All the decisions and measures taken as a result of a quality defect should be documented.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:166
+        - source_label: EU GMP
+          locator: line:167
+        - source_label: EU GMP
+          locator: line:168
+        - source_label: EU GMP
+          locator: line:169
+        - source_label: EU GMP
+          locator: line:170
+        children: []
+      - nid: cha8.sec4.p8_15
+        kind: paragraph
+        kind_raw: '8.15'
+        num: '8.15'
+        ord: 30
+        heading: null
+        text: Quality defects should be reported in a timely manner by the manufacturer to the marketing authorisation holder/sponsor and all concerned Competent Authorities in cases where the quality defect may result in the recall of the product or in an abnormal restriction in the supply of the product.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:171
+        - source_label: EU GMP
+          locator: line:172
+        - source_label: EU GMP
+          locator: line:173
+        - source_label: EU GMP
+          locator: line:174
+        children: []
+    - nid: cha8.sec5
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 31
+      heading: Root Cause Analysis and Corrective and Preventative Actions
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:176
+      children:
+      - nid: cha8.sec5.p8_16
+        kind: paragraph
+        kind_raw: '8.16'
+        num: '8.16'
+        ord: 32
+        heading: null
+        text: An appropriate level of root cause analysis work should be applied during the investigation of quality defects. In cases where the true root cause(s) of the quality defect cannot be determined, consideration should be given to identifying the most likely root cause(s) and to addressing those.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:178
+        - source_label: EU GMP
+          locator: line:179
+        - source_label: EU GMP
+          locator: line:180
+        - source_label: EU GMP
+          locator: line:181
+        children: []
+      - nid: cha8.sec5.p8_17
+        kind: paragraph
+        kind_raw: '8.17'
+        num: '8.17'
+        ord: 33
+        heading: null
+        text: Where human error is suspected or identified as the cause of a quality defect, this should be formally justified and care should be exercised so as to ensure that process, procedural or system-based errors or problems are not overlooked, if present.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:182
+        - source_label: EU GMP
+          locator: line:183
+        - source_label: EU GMP
+          locator: line:184
+        children: []
+      - nid: cha8.sec5.p8_18
+        kind: paragraph
+        kind_raw: '8.18'
+        num: '8.18'
+        ord: 34
+        heading: null
+        text: Appropriate CAPAs should be identified and taken in response to a quality defect. The effectiveness of such actions should be monitored and assessed.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:185
+        - source_label: EU GMP
+          locator: line:186
+        children: []
+      - nid: cha8.sec5.p8_19
+        kind: paragraph
+        kind_raw: '8.19'
+        num: '8.19'
+        ord: 35
+        heading: null
+        text: Quality defect records should be reviewed and trend analyses should be performed regularly for any indication of specific or recurring problems requiring attention.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:187
+        - source_label: EU GMP
+          locator: line:188
+        children: []
+    - nid: cha8.sec6
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 36
+      heading: Product Recalls and other potential risk-reducing actions
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:193
+      children:
+      - nid: cha8.sec6.p8_20
+        kind: paragraph
+        kind_raw: '8.20'
+        num: '8.20'
+        ord: 37
+        heading: null
+        text: There should be established written procedures, regularly reviewed and updated when necessary, in order to undertake any recall activity or implement any other risk-reducing actions.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:195
+        - source_label: EU GMP
+          locator: line:196
+        - source_label: EU GMP
+          locator: line:197
+        children: []
+      - nid: cha8.sec6.p8_21
+        kind: paragraph
+        kind_raw: '8.21'
+        num: '8.21'
+        ord: 38
+        heading: null
+        text: After a product has been placed on the market, any retrieval of it from the distribution network as a result of a quality defect should be regarded and managed as a recall. (This provision does not apply to the retrieval (or return) of samples of the product from the distribution network to facilitate an investigation into a quality defect issue/report.)
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:198
+        - source_label: EU GMP
+          locator: line:199
+        - source_label: EU GMP
+          locator: line:200
+        - source_label: EU GMP
+          locator: line:201
+        children: []
+      - nid: cha8.sec6.p8_22
+        kind: paragraph
+        kind_raw: '8.22'
+        num: '8.22'
+        ord: 39
+        heading: null
+        text: Recall operations should be capable of being initiated promptly and at any time. In certain cases recall operations may need to be initiated to protect public or animal health prior to establishing the root cause(s) and full extent of the quality defect
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:202
+        - source_label: EU GMP
+          locator: line:203
+        - source_label: EU GMP
+          locator: line:204
+        children: []
+      - nid: cha8.sec6.p8_23
+        kind: paragraph
+        kind_raw: '8.23'
+        num: '8.23'
+        ord: 40
+        heading: null
+        text: The batch/product distribution records should be readily available to the persons responsible for recalls, and should contain sufficient information on wholesalers and directly supplied customers (with addresses, phone and/or fax numbers inside and outside working hours, batches and amounts delivered), including those for exported products and medical samples.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:205
+        - source_label: EU GMP
+          locator: line:206
+        - source_label: EU GMP
+          locator: line:207
+        - source_label: EU GMP
+          locator: line:208
+        - source_label: EU GMP
+          locator: line:209
+        children: []
+      - nid: cha8.sec6.p8_24
+        kind: paragraph
+        kind_raw: '8.24'
+        num: '8.24'
+        ord: 41
+        heading: null
+        text: In the case of investigational medicinal products, all trial sites should be identified and the countries of destination should be indicated. In the case of an investigational medicinal product for which a marketing authorisation has been issued, the manufacturer of the investigational medicinal product should, in cooperation with the sponsor, inform the marketing authorisation holder of any quality defect that could be related to the authorised medicinal product. The sponsor should implement a procedure for the rapid unblinding of blinded products, where this is necessary for a prompt recall. The sponsor should ensure that the procedure discloses the identity of the blinded product only in so far as is necessary.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:210
+        - source_label: EU GMP
+          locator: line:211
+        - source_label: EU GMP
+          locator: line:212
+        - source_label: EU GMP
+          locator: line:213
+        - source_label: EU GMP
+          locator: line:214
+        - source_label: EU GMP
+          locator: line:215
+        - source_label: EU GMP
+          locator: line:216
+        - source_label: EU GMP
+          locator: line:217
+        - source_label: EU GMP
+          locator: line:218
+        children: []
+      - nid: cha8.sec6.p8_25
+        kind: paragraph
+        kind_raw: '8.25'
+        num: '8.25'
+        ord: 42
+        heading: null
+        text: Consideration should be given following consultation with the concerned Competent Authorities, as to how far into the distribution network a recall action should extend, taking into account the potential risk to public or animal health and any impact that the proposed recall action may have. The Competent Authorities should also be informed in situations in which no recall action is being proposed for a defective batch because the batch has expired (such as with short shelf-life products.)
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:219
+        - source_label: EU GMP
+          locator: line:220
+        - source_label: EU GMP
+          locator: line:221
+        - source_label: EU GMP
+          locator: line:222
+        - source_label: EU GMP
+          locator: line:223
+        - source_label: EU GMP
+          locator: line:224
+        children: []
+      - nid: cha8.sec6.p8_26
+        kind: paragraph
+        kind_raw: '8.26'
+        num: '8.26'
+        ord: 43
+        heading: null
+        text: All concerned Competent Authorities should be informed in advance in cases where products are intended to be recalled. For very serious issues (i.e. those with the potential to seriously impact upon patient or animal health), rapid risk-reducing actions (such as a product recall) may have to be taken in advance of notifying the Competent Authorities. Wherever possible, attempts should be made to agree these in advance of their execution with the concerned Competent Authorities
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:225
+        - source_label: EU GMP
+          locator: line:226
+        - source_label: EU GMP
+          locator: line:227
+        - source_label: EU GMP
+          locator: line:228
+        - source_label: EU GMP
+          locator: line:229
+        - source_label: EU GMP
+          locator: line:230
+        children: []
+      - nid: cha8.sec6.p8_27
+        kind: paragraph
+        kind_raw: '8.27'
+        num: '8.27'
+        ord: 44
+        heading: null
+        text: It should also be considered whether the proposed recall action may affect different markets in different ways, and if this is the case, appropriate market-specific risk-reducing actions should be developed and discussed with the concerned competent authorities. Taking account of its therapeutic use the risk of shortage of a medicinal product which has no authorised alternative should be considered before deciding on a risk-reducing action such as a recall. Any decisions not to execute a risk-reducing action which would otherwise be required should be agreed with the competent authority in advance.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:231
+        - source_label: EU GMP
+          locator: line:232
+        - source_label: EU GMP
+          locator: line:233
+        - source_label: EU GMP
+          locator: line:234
+        - source_label: EU GMP
+          locator: line:235
+        - source_label: EU GMP
+          locator: line:236
+        - source_label: EU GMP
+          locator: line:237
+        children: []
+      - nid: cha8.sec6.p8_28
+        kind: paragraph
+        kind_raw: '8.28'
+        num: '8.28'
+        ord: 45
+        heading: null
+        text: Recalled products should be identified and stored separately in a secure area while awaiting a decision on their fate. A formal disposition of all recalled batches should be made and documented. The rationale for any decision to rework recalled products should be documented and discussed with the relevant competent authority. The extent of shelf-life remaining for any reworked batches that are being considered for placement onto the market should also be considered.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:241
+        - source_label: EU GMP
+          locator: line:242
+        - source_label: EU GMP
+          locator: line:243
+        - source_label: EU GMP
+          locator: line:244
+        - source_label: EU GMP
+          locator: line:245
+        - source_label: EU GMP
+          locator: line:246
+        children: []
+      - nid: cha8.sec6.p8_29
+        kind: paragraph
+        kind_raw: '8.29'
+        num: '8.29'
+        ord: 46
+        heading: null
+        text: The progress of the recall process should be recorded until closure and a final report issued, including a reconciliation between the delivered and recovered quantities of the concerned products/batches.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:247
+        - source_label: EU GMP
+          locator: line:248
+        - source_label: EU GMP
+          locator: line:249
+        children: []
+      - nid: cha8.sec6.p8_30
+        kind: paragraph
+        kind_raw: '8.30'
+        num: '8.30'
+        ord: 47
+        heading: null
+        text: The effectiveness of the arrangements in place for recalls should be periodically evaluated to confirm that they remain robust and fit for use. Such evaluations should extend to both within office-hour situations as well as out-of-office hour situations and, when performing such evaluations, consideration should be given as to whether mock-recall actions should be performed. This evaluation should be documented and justified.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:250
+        - source_label: EU GMP
+          locator: line:251
+        - source_label: EU GMP
+          locator: line:252
+        - source_label: EU GMP
+          locator: line:253
+        - source_label: EU GMP
+          locator: line:254
+        children: []
+      - nid: cha8.sec6.p8_31
+        kind: paragraph
+        kind_raw: '8.31'
+        num: '8.31'
+        ord: 48
+        heading: null
+        text: In addition to recalls, there are other potential risk-reducing actions that may be considered in order to manage the risks presented by quality defects. Such actions may include the issuance of cautionary communications to healthcare professionals in relation to their use of a batch that is potentially defective. These should be considered on a caseby-case basis and discussed with the concerned competent authorities.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:255
+        - source_label: EU GMP
+          locator: line:256
+        - source_label: EU GMP
+          locator: line:257
+        - source_label: EU GMP
+          locator: line:258
+        - source_label: EU GMP
+          locator: line:259
+        children: []
+index:
+  display_name_by_nid:
+    root: document
+    pre1: preamble
+    cha8: Complaints, Quality Defects and Product Recalls
+    cha8.sec1: Principle
+    cha8.sec2: Personnel and Organisation
+    cha8.sec2.p8_1: paragraph 8.1
+    cha8.sec2.p8_2: paragraph 8.2
+    cha8.sec2.p8_3: paragraph 8.3
+    cha8.sec2.p8_4: paragraph 8.4
+    cha8.sec3: Procedures for handling and investigating complaints including possible quality defects
+    cha8.sec3.p8_5: paragraph 8.5
+    cha8.sec3.p8_6: paragraph 8.6
+    cha8.sec3.p8_7: paragraph 8.7
+    cha8.sec3.p8_8: paragraph 8.8
+    cha8.sec3.p8_9: paragraph 8.9
+    cha8.sec3.p8_9.ii: item i
+    cha8.sec3.p8_9.iii: item ii
+    cha8.sec3.p8_9.iiii: item iii
+    cha8.sec3.p8_9.iiv: item iv
+    cha8.sec3.p8_9.iv: item v
+    cha8.sec3.p8_9.ivi: item vi
+    cha8.sec3.p8_9.ivii: item vii
+    cha8.sec3.p8_9.iviii: item viii
+    cha8.sec3.p8_9.iix: item ix
+    cha8.sec4: Investigation and Decision-making
+    cha8.sec4.p8_10: paragraph 8.10
+    cha8.sec4.p8_11: paragraph 8.11
+    cha8.sec4.p8_12: paragraph 8.12
+    cha8.sec4.p8_13: paragraph 8.13
+    cha8.sec4.p8_14: paragraph 8.14
+    cha8.sec4.p8_15: paragraph 8.15
+    cha8.sec5: Root Cause Analysis and Corrective and Preventative Actions
+    cha8.sec5.p8_16: paragraph 8.16
+    cha8.sec5.p8_17: paragraph 8.17
+    cha8.sec5.p8_18: paragraph 8.18
+    cha8.sec5.p8_19: paragraph 8.19
+    cha8.sec6: Product Recalls and other potential risk-reducing actions
+    cha8.sec6.p8_20: paragraph 8.20
+    cha8.sec6.p8_21: paragraph 8.21
+    cha8.sec6.p8_22: paragraph 8.22
+    cha8.sec6.p8_23: paragraph 8.23
+    cha8.sec6.p8_24: paragraph 8.24
+    cha8.sec6.p8_25: paragraph 8.25
+    cha8.sec6.p8_26: paragraph 8.26
+    cha8.sec6.p8_27: paragraph 8.27
+    cha8.sec6.p8_28: paragraph 8.28
+    cha8.sec6.p8_29: paragraph 8.29
+    cha8.sec6.p8_30: paragraph 8.30
+    cha8.sec6.p8_31: paragraph 8.31
