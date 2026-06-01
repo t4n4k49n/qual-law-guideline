@@ -76,3 +76,16 @@ python -m qai_text2ir.cli bundle --input data/human-readable/eu_gmp/vol4/source_
 
 この親PRでは `data/normalized/` は変更しない。
 承認後、`runs/20260601-145404466_run-normalized-eu-gmp-vol4-chap3-v2/promotion_candidate/` から `data/normalized/eu_gmp_vol4_chap3_20150123/` へ複写する子PRを別途作成する。
+
+## 昇格実施記録
+
+- 親PR: `#249`
+- 親PR main反映確認: `0afa6da`
+- 昇格先: `data/normalized/eu_gmp_vol4_chap3_20150123/`
+- 昇格内容: `promotion_candidate` の4ファイルを複写
+  - `eu_gmp_vol4_chap3_20150123.regdoc_ir.yaml`
+  - `eu_gmp_vol4_chap3_20150123.parser_profile.yaml`
+  - `eu_gmp_vol4_chap3_20150123.regdoc_profile.yaml`
+  - `eu_gmp_vol4_chap3_20150123.meta.yaml`
+- SHA256確認: `regdoc_ir.yaml` は昇格元と昇格先で一致
+  - `5F60CC15F647BAA388E9CA7AB9363FE873912223F5D0F651D576C70E33F1538E`
