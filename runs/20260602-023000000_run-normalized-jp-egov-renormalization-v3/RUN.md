@@ -94,3 +94,25 @@ uv run python -m qai_xml2ir.cli bundle `
 
 この親PRでは `data/normalized/` は変更しない。
 承認後、`runs/20260602-023000000_run-normalized-jp-egov-renormalization-v3/promotion_candidate/` の各doc_id配下から `data/normalized/<doc_id>/` へ複写する子PRを別途作成する。
+
+## 昇格実施記録
+
+- 親PR: `#263`
+- 親PR main反映確認: `486e073`
+- 昇格ブランチ: `promote/jp-egov-renormalization-v3`
+- 昇格元: `runs/20260602-023000000_run-normalized-jp-egov-renormalization-v3/promotion_candidate/`
+- 昇格先:
+  - `data/normalized/jp_egov_335AC0000000145_20260501_507AC0000000037/`
+  - `data/normalized/jp_egov_336CO0000000011_20260501_507CO0000000362/`
+  - `data/normalized/jp_egov_336M50000100001_20260501_507M60000100117/`
+  - `data/normalized/jp_egov_336M50000100002_20260501_507M60000100117/`
+  - `data/normalized/jp_egov_416M60000100179_20260501_507M60000100117/`
+- 昇格内容: 各doc_idで `promotion_candidate` の4ファイルを複写
+  - `regdoc_ir.yaml`
+  - `parser_profile.yaml`
+  - `regdoc_profile.yaml`
+  - `meta.yaml`
+- 昇格対象外: `data/normalized/ARCHIVE_jp_egov_336M50000100002_20260501_507M60000100117/`
+- 検証:
+  - `tools/check_ir_structure.py data/normalized/<doc_id>`: 5件すべて `OK`
+  - SHA256確認: 各doc_idの4ファイルは昇格元と昇格先で一致

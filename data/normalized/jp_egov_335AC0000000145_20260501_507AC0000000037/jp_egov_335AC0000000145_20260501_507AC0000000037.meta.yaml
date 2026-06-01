@@ -26,7 +26,7 @@ doc:
   sources:
   - url: https://laws.e-gov.go.jp/law/335AC0000000145/20260501_507AC0000000037
     format: xml
-    retrieved_at: '2026-02-20'
+    retrieved_at: '2026-06-02'
     checksum: null
     label: e-Gov
   legal_meta:
@@ -46,12 +46,11 @@ bundle:
     schema: qai.regdoc_profile.v1
     path: jp_egov_335AC0000000145_20260501_507AC0000000037.regdoc_profile.yaml
 generation:
-  created_at: '2026-02-20T09:36:51Z'
+  created_at: '2026-06-01T18:47:39Z'
   tool:
     name: qai_xml2ir
     version: 0.1.1
   inputs:
-  - path: %USERPROFILE%\Documents\GitHub\qual-law-guideline_OLD-HANDMADE\data\xml\335AC0000000145_20260501_507AC0000000037\335AC0000000145_20260501_507AC0000000037.xml
-    checksum: 30c0dfc3d98747a293217940b23a021bd5ad75f4b38011508a1bb405db20be4a
+  - path: data\human-readable\egov\source_xml\335AC0000000145_20260501_507AC0000000037.xml
+    checksum: af0ba349d8079d9ffd879a9e49c3fd159e5ce837850c0836c761572a2f13ad26
   notes: []
-
