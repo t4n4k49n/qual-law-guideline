@@ -1,0 +1,53 @@
+schema: qai.regdoc_meta.v1
+doc:
+  id: eu_gmp_vol4_chap3_20150123
+  title: EU GMP Vol.4 Chapter 3 Premises and Equipment
+  short_title: EU GMP Ch3 Premises and Equipment
+  jurisdiction: EU
+  doc_type: guideline
+  language: en
+  issuer:
+    name: null
+    kind: null
+  identifiers:
+    e_gov_law_id: null
+    e_gov_revision_id: null
+    law_number: null
+    eu_volume: '4'
+  version:
+    as_of: null
+    effective_from: null
+    effective_to: null
+    revision_note: null
+  sources:
+  - url: https://health.ec.europa.eu/document/download/18d76565-137b-41d2-a602-794527f708c1_en?filename=chapter_3.pdf
+    format: pdf
+    retrieved_at: '2026-02-18'
+    checksum: null
+    label: EU GMP
+  legal_meta:
+    competent_authority: []
+    legal_basis: []
+    binding_level: null
+    license_note: null
+  family: EU_GMP
+bundle:
+  ir:
+    schema: qai.regdoc_ir.v4
+    path: eu_gmp_vol4_chap3_20150123.regdoc_ir.yaml
+  parser_profile:
+    schema: qai.parser_profile.v1
+    id: eu_gmp_chap3_default_v1
+    path: eu_gmp_vol4_chap3_20150123.parser_profile.yaml
+  regdoc_profile:
+    schema: qai.regdoc_profile.v1
+    path: eu_gmp_vol4_chap3_20150123.regdoc_profile.yaml
+generation:
+  created_at: '2026-06-01T01:27:18Z'
+  tool:
+    name: qai_text2ir
+    version: null
+  inputs:
+  - path: data\human-readable\eu_gmp\vol4\source_texts\chapter_3.txt
+    checksum: 54a94af0609177003a644984fd9acdbda82a38f31591734da21634b5cd716d59
+  notes: []

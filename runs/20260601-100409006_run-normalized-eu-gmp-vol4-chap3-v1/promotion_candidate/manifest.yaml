@@ -1,0 +1,45 @@
+schema: qai.run_manifest.v1
+run_id: 20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1
+created_at: '2026-06-01T01:27:18Z'
+git:
+  commit: 41669de128e080bb806492990c3bb0019ed2809c
+  branch: run/normalized-eu-gmp-vol4-chap3-v1
+input:
+  path: data\human-readable\eu_gmp\vol4\source_texts\chapter_3.txt
+  checksum: 54a94af0609177003a644984fd9acdbda82a38f31591734da21634b5cd716d59
+command:
+  argv: python -m qai_text2ir.cli bundle --input data/human-readable/eu_gmp/vol4/source_texts/chapter_3.txt --out-dir runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/promotion_candidate --doc-id eu_gmp_vol4_chap3_20150123 --title "EU GMP Vol.4 Chapter 3 Premises and Equipment" --short-title "EU GMP Ch3 Premises and Equipment" --doc-type guideline --source-url "https://health.ec.europa.eu/document/download/18d76565-137b-41d2-a602-794527f708c1_en?filename=chapter_3.pdf" --source-format pdf --retrieved-at 2026-02-18 --parser-profile-id eu_gmp_chap3_default_v1 --jurisdiction EU --language en --family EU_GMP --eu-volume 4 --strict --write-manifest --overwrite-manifest
+outputs:
+  doc_id: eu_gmp_vol4_chap3_20150123
+  files:
+  - eu_gmp_vol4_chap3_20150123.regdoc_ir.yaml
+  - eu_gmp_vol4_chap3_20150123.parser_profile.yaml
+  - eu_gmp_vol4_chap3_20150123.regdoc_profile.yaml
+  - eu_gmp_vol4_chap3_20150123.meta.yaml
+parser_profile:
+  id: eu_gmp_chap3_default_v1
+  resolved_sha256: d2d952e314d60d4a9e4a0d6afcd1a5dd8d677bfe348c61cd072b430fbde2e8ec
+  provenance:
+  - profile_id: eu_gmp_chap1_default_v2
+    internal_id: eu_gmp_chap1_default_v2
+    path: src\qai_text2ir\profiles\eu_gmp_chap1_default_v2.yaml
+    sha256: d93258c872e18baa86af3d2c9e3cf835d17ad4cbede017f11fdffb40bb0cd4f2
+    extends: ''
+  - profile_id: eu_gmp_chap2_default_v1
+    internal_id: eu_gmp_chap2_default_v1
+    path: src\qai_text2ir\profiles\eu_gmp_chap2_default_v1.yaml
+    sha256: 31f6534e8406765397593092885d860a4497f27df39d581112ae0cf9270a860c
+    extends: eu_gmp_chap1_default_v2
+  - profile_id: eu_gmp_chap3_default_v1
+    internal_id: eu_gmp_chap3_default_v1
+    path: src\qai_text2ir\profiles\eu_gmp_chap3_default_v1.yaml
+    sha256: f68e48fad162ccea64defba4a396c700ac3e1a641c0cd59776c783111f64ab64
+    extends: eu_gmp_chap2_default_v1
+qualitycheck:
+  enabled: true
+  strict: true
+  warnings_count: 0
+  warnings: []
+refine:
+  kind: annex
+  applied: []

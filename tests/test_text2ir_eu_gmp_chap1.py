@@ -271,3 +271,76 @@ def test_eu_gmp_chapter2_sections_and_responsibility_items(tmp_path: Path) -> No
     assert "Directive 2001/83/EC1" not in (para_26.get("text") or "")
     assert "authorisation2" not in (item_a.get("text") or "")
     assert "Article 49 3" not in (para_26.get("text") or "")
+
+
+def test_eu_gmp_chapter3_sections_and_footnote_cleanup(tmp_path: Path) -> None:
+    text = "\n".join(
+        [
+            "Chapter 3: Premises and Equipment",
+            "Deadline for coming into operation: 1 March 2015.",
+            "    \uf0b7    from 1 June 2015 onwards for any medicinal product newly introduced into shared",
+            "         manufacturing facilities;",
+            "a",
+            "  In January 2015 the deadline for coming into operation was adapted with regard to the toxicological evaluation",
+            "to align with the coming effect of the EMA guideline on setting health based exposure limits for use in risk",
+            "identification in the manufacture of different medicinal products in shared facilities.",
+            "ER 3 PREMISES AND EQUIPMENT",
+            "PRINCIPLE",
+            "Premises and equipment must be located, designed, constructed, adapted and maintained to",
+            "suit the operations to be carried out.",
+            "PREMISES",
+            "General",
+            "3.1 Premises should be situated in an environment which, when considered together with",
+            "measures to protect the manufacture, presents minimal risk of causing contamination.",
+            "Production Area",
+            "3.6 Cross-contamination should be prevented for all products by appropriate design and",
+            "operation of manufacturing facilities.",
+            "      i.   the risk cannot be adequately controlled by operational and/ or technical measures,",
+            "     ii.   scientific data from the toxicological evaluation does not support a controllable",
+            "           risk.",
+            "Further guidance can be found in Chapter 5 and in Annexes 2, 3, 4, 5 & 6.",
+            "EQUIPMENT",
+            "3.34 Manufacturing equipment should be designed, located and maintained to suit its",
+            "intended purpose.",
+        ]
+    )
+    input_path = tmp_path / "eu_gmp_ch3.txt"
+    input_path.write_text(text, encoding="utf-8", newline="\n")
+    parser_profile = load_parser_profile(path=Path("src/qai_text2ir/profiles/eu_gmp_chap3_default_v1.yaml"))
+
+    ir_doc = parse_text_to_ir(
+        input_path=input_path,
+        doc_id="eu_gmp_ch3_sample",
+        parser_profile=parser_profile,
+    )
+    ir_dict = ir_doc.to_dict()
+    verify_document(ir_dict)
+
+    nodes = _flatten(ir_dict["content"])
+    sections = [n for n in nodes if n["kind"] == "section"]
+    para_36 = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "3.6")
+    para_334 = next(n for n in nodes if n["kind"] == "paragraph" and n.get("num") == "3.34")
+    item_i = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "i")
+    item_ii = next(n for n in nodes if n["kind"] == "item" and n.get("num") == "ii")
+    deadline_bullet = next(n for n in nodes if n["kind"] == "subitem" and "1 June 2015" in (n.get("text") or ""))
+    guidance_para = next(n for n in nodes if n["kind"] == "paragraph" and "Further guidance" in (n.get("text") or ""))
+    all_text = "\n".join(n.get("text") or "" for n in nodes)
+
+    assert [s.get("heading") for s in sections] == [
+        "PRINCIPLE",
+        "PREMISES",
+        "General",
+        "Production Area",
+        "EQUIPMENT",
+    ]
+    assert para_36["nid"].startswith("cha3.sec4")
+    assert item_i["nid"].startswith(para_36["nid"])
+    assert item_ii["nid"].startswith(para_36["nid"])
+    assert "\uf0b7" not in (deadline_bullet.get("text") or "")
+    assert "manufacturing facilities" in (deadline_bullet.get("text") or "")
+    assert guidance_para["nid"].startswith("cha3.sec4")
+    assert "Further guidance" not in (item_ii.get("text") or "")
+    assert "intended purpose" in (para_334.get("text") or "")
+    assert "\n" not in (para_334.get("text") or "")
+    assert "ER 3 PREMISES" not in all_text
+    assert "deadline for coming into operation was adapted" not in all_text
