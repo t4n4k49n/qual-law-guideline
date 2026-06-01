@@ -59,6 +59,10 @@ def text_without_rt(elem: etree._Element) -> str:
     return "".join(parts)
 
 
+def clean_extracted_text(text: str) -> str:
+    return re.sub(r"[ \t\r\n]+", " ", text).strip()
+
+
 def extract_sentence_text(
     container: etree._Element, sentence_tag: str = "Sentence"
 ) -> str:
@@ -102,7 +106,7 @@ def _extract_note_texts_from_direct_children(elem: etree._Element) -> List[str]:
     for child in elem:
         if lname(child) not in NOTE_CONTAINER_TAGS:
             continue
-        text = text_without_rt(child).strip()
+        text = clean_extracted_text(text_without_rt(child))
         if text:
             note_texts.append(text)
     return note_texts
@@ -136,7 +140,7 @@ def _parse_table_rows(table_elem: etree._Element) -> List[Dict[str, Any]]:
             cell_tag = lname(cell)
             if cell_tag not in TABLE_CELL_TAGS:
                 continue
-            cell_text = text_without_rt(cell).strip()
+            cell_text = clean_extracted_text(text_without_rt(cell))
             cells.append(
                 {
                     "text": cell_text,
@@ -150,7 +154,7 @@ def _parse_table_rows(table_elem: etree._Element) -> List[Dict[str, Any]]:
                 }
             )
         if not cells:
-            row_text = text_without_rt(row).strip()
+            row_text = clean_extracted_text(text_without_rt(row))
             if row_text:
                 cells.append(
                     {
@@ -428,7 +432,7 @@ def _extract_table_payload(
     }
     row_entries: List[Tuple[int, List[str], str]] = []
     for idx, cells in enumerate(flat_rows):
-        row_text = " | ".join(cells)
+        row_text = clean_extracted_text(" | ".join(cells))
         if row_text.strip():
             row_entries.append((idx, cells, row_text))
 
@@ -1699,7 +1703,7 @@ def parse_appdx(
     suffix = normalized_num or "_".join(str(seg) for seg in local_segments)
     prefix = f"{scope_prefix}" if scope_prefix else ""
     nid = nid_builder.unique(f"{prefix}{key}{suffix}")
-    text = text_without_rt(elem).strip() or None
+    text = clean_extracted_text(text_without_rt(elem)) or None
     node = Node(
         nid=nid,
         kind="appendix",
