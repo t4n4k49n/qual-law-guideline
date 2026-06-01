@@ -1,0 +1,1354 @@
+schema: qai.regdoc_ir.v4
+doc_id: eu_gmp_vol4_chap3_20150123
+content:
+  nid: root
+  kind: document
+  kind_raw: null
+  num: null
+  ord: null
+  heading: null
+  text: null
+  role: structural
+  normativity: null
+  tags:
+  - postprocess=eu_gmp_chap2_cleanup
+  refs:
+    internal: []
+    external: []
+  source_spans: []
+  children:
+  - nid: pre1
+    kind: preamble
+    kind_raw: null
+    num: null
+    ord: 1
+    heading: null
+    text: Ref. Ares(2015)283695 - 23/01/2015 EUROPEAN COMMISSION HEALTH AND CONSUMERS DIRECTORATE-GENERAL Health systems and products Medicinal products – quality, safety and efficacy Brussels, 13 August 2014 EudraLex The Rules Governing Medicinal Products in the European Union Volume 4 EU Guidelines for Good Manufacturing Practice for Medicinal Products for Human and Veterinary Use Part 1
+    role: informative
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:1
+    - source_label: EU GMP
+      locator: line:5
+    - source_label: EU GMP
+      locator: line:6
+    - source_label: EU GMP
+      locator: line:8
+    - source_label: EU GMP
+      locator: line:9
+    - source_label: EU GMP
+      locator: line:14
+    - source_label: EU GMP
+      locator: line:15
+    - source_label: EU GMP
+      locator: line:17
+    - source_label: EU GMP
+      locator: line:18
+    - source_label: EU GMP
+      locator: line:20
+    - source_label: EU GMP
+      locator: line:21
+    - source_label: EU GMP
+      locator: line:22
+    - source_label: EU GMP
+      locator: line:24
+    children: []
+  - nid: cha3
+    kind: chapter
+    kind_raw: Chapter
+    num: '3'
+    ord: 2
+    heading: Premises and Equipment
+    text: 'Legal basis for publishing the detailed guidelines: Article 47 of Directive 2001/83/EC on the Community code relating to medicinal products for human use and Article 51 of Directive 2001/82/EC on the Community code relating to veterinary medicinal products. This document provides guidance for the interpretation of the principles and guidelines of good manufacturing practice (GMP) for medicinal products as laid down in Directive 2003/94/EC for medicinal products for human use and Directive 91/412/EEC for veterinary use. Status of the document: Revision. Reasons for changes: The only change is to section 6 as part of the improved guidance on prevention of cross-contamination involving also Chapter 5. Deadline for coming into operation: 1 March 2015. However, the toxicological evaluation mentioned in section 6 is to be carried out:'
+    role: structural
+    normativity: null
+    tags: []
+    refs:
+      internal: []
+      external: []
+    source_spans:
+    - source_label: EU GMP
+      locator: line:25
+    - source_label: EU GMP
+      locator: line:28
+    - source_label: EU GMP
+      locator: line:29
+    - source_label: EU GMP
+      locator: line:30
+    - source_label: EU GMP
+      locator: line:31
+    - source_label: EU GMP
+      locator: line:32
+    - source_label: EU GMP
+      locator: line:33
+    - source_label: EU GMP
+      locator: line:36
+    - source_label: EU GMP
+      locator: line:39
+    - source_label: EU GMP
+      locator: line:40
+    - source_label: EU GMP
+      locator: line:43
+    - source_label: EU GMP
+      locator: line:44
+    children:
+    - nid: cha3.si1
+      kind: subitem
+      kind_raw: 
+      num: null
+      ord: 3
+      heading: null
+      text: from 1 June 2015 onwards for any medicinal product newly introduced into shared manufacturing facilities;
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:47
+      - source_label: EU GMP
+        locator: line:48
+      children: []
+    - nid: cha3.si2
+      kind: subitem
+      kind_raw: 
+      num: null
+      ord: 4
+      heading: null
+      text: before 1 December 2015 for medicinal products already produced in a shared manufacturing facility producing only medicinal products for human use or both producing medicinal products for human use and veterinary medicinal products on 31 May 2015;
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:49
+      - source_label: EU GMP
+        locator: line:50
+      - source_label: EU GMP
+        locator: line:51
+      - source_label: EU GMP
+        locator: line:52
+      children: []
+    - nid: cha3.si3
+      kind: subitem
+      kind_raw: 
+      num: null
+      ord: 5
+      heading: null
+      text: before 1 June 2016 for veterinary medicinal products already produced in a shared manufacturing facility producing only veterinary medicinal products on 31 May 2015.
+      role: normative
+      normativity: must
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:53
+      - source_label: EU GMP
+        locator: line:54
+      children: []
+    - nid: cha3.sec1
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 6
+      heading: PRINCIPLE
+      text: Premises and equipment must be located, designed, constructed, adapted and maintained to suit the operations to be carried out. Their layout and design must aim to minimise the risk of errors and permit effective cleaning and maintenance in order to avoid cross-contamination, build-up of dust or dirt and, in general, any adverse effect on the quality of products.
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:63
+      - source_label: EU GMP
+        locator: line:64
+      - source_label: EU GMP
+        locator: line:65
+      - source_label: EU GMP
+        locator: line:66
+      - source_label: EU GMP
+        locator: line:67
+      children: []
+    - nid: cha3.sec2
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 7
+      heading: PREMISES
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:69
+      children: []
+    - nid: cha3.sec3
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 8
+      heading: General
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:71
+      children:
+      - nid: cha3.sec3.p3_1
+        kind: paragraph
+        kind_raw: '3.1'
+        num: '3.1'
+        ord: 9
+        heading: null
+        text: Premises should be situated in an environment which, when considered together with measures to protect the manufacture, presents minimal risk of causing contamination of materials or products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:73
+        - source_label: EU GMP
+          locator: line:74
+        - source_label: EU GMP
+          locator: line:75
+        children: []
+      - nid: cha3.sec3.p3_2
+        kind: paragraph
+        kind_raw: '3.2'
+        num: '3.2'
+        ord: 10
+        heading: null
+        text: Premises should be carefully maintained, ensuring that repair and maintenance operations do not present any hazard to the quality of products. They should be cleaned and, where applicable, disinfected according to detailed written procedures.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:77
+        - source_label: EU GMP
+          locator: line:78
+        - source_label: EU GMP
+          locator: line:79
+        children: []
+      - nid: cha3.sec3.p3_3
+        kind: paragraph
+        kind_raw: '3.3'
+        num: '3.3'
+        ord: 11
+        heading: null
+        text: Lighting, temperature, humidity and ventilation should be appropriate and such that they do not adversely affect, directly or indirectly, either the medicinal products during their manufacture and storage, or the accurate functioning of equipment.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:81
+        - source_label: EU GMP
+          locator: line:82
+        - source_label: EU GMP
+          locator: line:83
+        children: []
+      - nid: cha3.sec3.p3_4
+        kind: paragraph
+        kind_raw: '3.4'
+        num: '3.4'
+        ord: 12
+        heading: null
+        text: Premises should be designed and equipped so as to afford maximum protection against the entry of insects or other animals.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:85
+        - source_label: EU GMP
+          locator: line:86
+        children: []
+      - nid: cha3.sec3.p3_5
+        kind: paragraph
+        kind_raw: '3.5'
+        num: '3.5'
+        ord: 13
+        heading: null
+        text: Steps should be taken in order to prevent the entry of unauthorised people. Production, storage and quality control areas should not be used as a right of way by personnel who do not work in them.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:88
+        - source_label: EU GMP
+          locator: line:89
+        - source_label: EU GMP
+          locator: line:90
+        children: []
+    - nid: cha3.sec4
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 14
+      heading: Production Area
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:92
+      children:
+      - nid: cha3.sec4.p3_6
+        kind: paragraph
+        kind_raw: '3.6'
+        num: '3.6'
+        ord: 15
+        heading: null
+        text: 'Cross-contamination should be prevented for all products by appropriate design and operation of manufacturing facilities. The measures to prevent cross-contamination should be commensurate with the risks. Quality Risk Management principles should be used to assess and control the risks. Depending of the level of risk, it may be necessary to dedicate premises and equipment for manufacturing and/or packaging operations to control the risk presented by some medicinal products. Dedicated facilities are required for manufacturing when a medicinal product presents a risk because:'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:94
+        - source_label: EU GMP
+          locator: line:95
+        - source_label: EU GMP
+          locator: line:96
+        - source_label: EU GMP
+          locator: line:97
+        - source_label: EU GMP
+          locator: line:98
+        - source_label: EU GMP
+          locator: line:99
+        - source_label: EU GMP
+          locator: line:100
+        - source_label: EU GMP
+          locator: line:102
+        - source_label: EU GMP
+          locator: line:103
+        children:
+        - nid: cha3.sec4.p3_6.ii
+          kind: item
+          kind_raw: i.
+          num: i
+          ord: 16
+          heading: null
+          text: the risk cannot be adequately controlled by operational and/ or technical measures,
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:105
+          children: []
+        - nid: cha3.sec4.p3_6.iii
+          kind: item
+          kind_raw: ii.
+          num: ii
+          ord: 17
+          heading: null
+          text: scientific data from the toxicological evaluation does not support a controllable risk (e.g. allergenic potential from highly sensitising materials such as beta lactams) or
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:106
+          - source_label: EU GMP
+            locator: line:107
+          - source_label: EU GMP
+            locator: line:108
+          children: []
+        - nid: cha3.sec4.p3_6.iiii
+          kind: item
+          kind_raw: iii.
+          num: iii
+          ord: 18
+          heading: null
+          text: relevant residue limits, derived from the toxicological evaluation, cannot be satisfactorily determined by a validated analytical method.
+          role: normative
+          normativity: must
+          tags: []
+          refs:
+            internal: []
+            external: []
+          source_spans:
+          - source_label: EU GMP
+            locator: line:109
+          - source_label: EU GMP
+            locator: line:110
+          children: []
+      - nid: cha3.sec4.p1
+        kind: paragraph
+        kind_raw: null
+        num: null
+        ord: 19
+        heading: null
+        text: Further guidance can be found in Chapter 5 and in Annexes 2, 3, 4, 5 & 6.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:114
+        children: []
+      - nid: cha3.sec4.p3_7
+        kind: paragraph
+        kind_raw: '3.7'
+        num: '3.7'
+        ord: 20
+        heading: null
+        text: Premises should preferably be laid out in such a way as to allow the production to take place in areas connected in a logical order corresponding to the sequence of the operations and to the requisite cleanliness levels.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:116
+        - source_label: EU GMP
+          locator: line:117
+        - source_label: EU GMP
+          locator: line:118
+        children: []
+      - nid: cha3.sec4.p3_8
+        kind: paragraph
+        kind_raw: '3.8'
+        num: '3.8'
+        ord: 21
+        heading: null
+        text: The adequacy of the working and in-process storage space should permit the orderly and logical positioning of equipment and materials so as to minimise the risk of confusion between different medicinal products or their components, to avoid cross-contamination and to minimise the risk of omission or wrong application of any of the manufacturing or control steps.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:120
+        - source_label: EU GMP
+          locator: line:121
+        - source_label: EU GMP
+          locator: line:122
+        - source_label: EU GMP
+          locator: line:123
+        - source_label: EU GMP
+          locator: line:124
+        children: []
+      - nid: cha3.sec4.p3_9
+        kind: paragraph
+        kind_raw: '3.9'
+        num: '3.9'
+        ord: 22
+        heading: null
+        text: Where starting and primary packaging materials, intermediate or bulk products are exposed to the environment, interior surfaces (walls, floors and ceilings) should be smooth, free from cracks and open joints, and should not shed particulate matter and should permit easy and effective cleaning and, if necessary, disinfection.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:126
+        - source_label: EU GMP
+          locator: line:127
+        - source_label: EU GMP
+          locator: line:128
+        - source_label: EU GMP
+          locator: line:129
+        children: []
+      - nid: cha3.sec4.p3_10
+        kind: paragraph
+        kind_raw: '3.10'
+        num: '3.10'
+        ord: 23
+        heading: null
+        text: Pipework, light fittings, ventilation points and other services should be designed and sited to avoid the creation of recesses which are difficult to clean. As far as possible, for maintenance purposes, they should be accessible from outside the manufacturing areas.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:131
+        - source_label: EU GMP
+          locator: line:132
+        - source_label: EU GMP
+          locator: line:133
+        - source_label: EU GMP
+          locator: line:134
+        children: []
+      - nid: cha3.sec4.p3_11
+        kind: paragraph
+        kind_raw: '3.11'
+        num: '3.11'
+        ord: 24
+        heading: null
+        text: Drains should be of adequate size, and have trapped gullies. Open channels should be avoided where possible, but if necessary, they should be shallow to facilitate cleaning and disinfection.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:136
+        - source_label: EU GMP
+          locator: line:137
+        - source_label: EU GMP
+          locator: line:138
+        children: []
+      - nid: cha3.sec4.p3_12
+        kind: paragraph
+        kind_raw: '3.12'
+        num: '3.12'
+        ord: 25
+        heading: null
+        text: Production areas should be effectively ventilated, with air control facilities (including temperature and, where necessary, humidity and filtration) appropriate both to the products handled, to the operations undertaken within them and to the external environment.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:140
+        - source_label: EU GMP
+          locator: line:141
+        - source_label: EU GMP
+          locator: line:142
+        - source_label: EU GMP
+          locator: line:143
+        children: []
+      - nid: cha3.sec4.p3_13
+        kind: paragraph
+        kind_raw: '3.13'
+        num: '3.13'
+        ord: 26
+        heading: null
+        text: Weighing of starting materials usually should be carried out in a separate weighing room designed for such use.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:145
+        - source_label: EU GMP
+          locator: line:146
+        children: []
+      - nid: cha3.sec4.p3_14
+        kind: paragraph
+        kind_raw: '3.14'
+        num: '3.14'
+        ord: 27
+        heading: null
+        text: In cases where dust is generated (e.g. during sampling, weighing, mixing and processing operations, packaging of dry products), specific provisions should be taken to avoid cross-contamination and facilitate cleaning.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:148
+        - source_label: EU GMP
+          locator: line:149
+        - source_label: EU GMP
+          locator: line:150
+        children: []
+      - nid: cha3.sec4.p3_15
+        kind: paragraph
+        kind_raw: '3.15'
+        num: '3.15'
+        ord: 28
+        heading: null
+        text: Premises for the packaging of medicinal products should be specifically designed and laid out so as to avoid mix-ups or cross-contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:152
+        - source_label: EU GMP
+          locator: line:153
+        children: []
+      - nid: cha3.sec4.p3_16
+        kind: paragraph
+        kind_raw: '3.16'
+        num: '3.16'
+        ord: 29
+        heading: null
+        text: Production areas should be well lit, particularly where visual on-line controls are carried out.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:155
+        - source_label: EU GMP
+          locator: line:156
+        children: []
+      - nid: cha3.sec4.p3_17
+        kind: paragraph
+        kind_raw: '3.17'
+        num: '3.17'
+        ord: 30
+        heading: null
+        text: In-process controls may be carried out within the production area provided they do not carry any risk to production.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:158
+        - source_label: EU GMP
+          locator: line:159
+        children: []
+    - nid: cha3.sec5
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 31
+      heading: Storage Areas
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:161
+      children:
+      - nid: cha3.sec5.p3_18
+        kind: paragraph
+        kind_raw: '3.18'
+        num: '3.18'
+        ord: 32
+        heading: null
+        text: 'Storage areas should be of sufficient capacity to allow orderly storage of the various categories of materials and products: starting and packaging materials, intermediate, bulk and finished products, products in quarantine, released, rejected, returned or recalled.'
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:163
+        - source_label: EU GMP
+          locator: line:164
+        - source_label: EU GMP
+          locator: line:165
+        - source_label: EU GMP
+          locator: line:166
+        children: []
+      - nid: cha3.sec5.p3_19
+        kind: paragraph
+        kind_raw: '3.19'
+        num: '3.19'
+        ord: 33
+        heading: null
+        text: Storage areas should be designed or adapted to ensure good storage conditions. In particular, they should be clean and dry and maintained within acceptable temperature limits. Where special storage conditions are required (e.g. temperature, humidity) these should be provided, checked and monitored.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:168
+        - source_label: EU GMP
+          locator: line:169
+        - source_label: EU GMP
+          locator: line:170
+        - source_label: EU GMP
+          locator: line:171
+        children: []
+      - nid: cha3.sec5.p3_20
+        kind: paragraph
+        kind_raw: '3.20'
+        num: '3.20'
+        ord: 34
+        heading: null
+        text: Receiving and dispatch bays should protect materials and products from the weather. Reception areas should be designed and equipped to allow containers of incoming materials to be cleaned where necessary before storage.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:173
+        - source_label: EU GMP
+          locator: line:174
+        - source_label: EU GMP
+          locator: line:175
+        children: []
+      - nid: cha3.sec5.p3_21
+        kind: paragraph
+        kind_raw: '3.21'
+        num: '3.21'
+        ord: 35
+        heading: null
+        text: Where quarantine status is ensured by storage in separate areas, these areas must be clearly marked and their access restricted to authorised personnel. Any system replacing the physical quarantine should give equivalent security.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:177
+        - source_label: EU GMP
+          locator: line:178
+        - source_label: EU GMP
+          locator: line:179
+        children: []
+      - nid: cha3.sec5.p3_22
+        kind: paragraph
+        kind_raw: '3.22'
+        num: '3.22'
+        ord: 36
+        heading: null
+        text: There should normally be a separate sampling area for starting materials. If sampling is performed in the storage area, it should be conducted in such a way as to prevent contamination or cross-contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:181
+        - source_label: EU GMP
+          locator: line:182
+        - source_label: EU GMP
+          locator: line:183
+        children: []
+      - nid: cha3.sec5.p3_23
+        kind: paragraph
+        kind_raw: '3.23'
+        num: '3.23'
+        ord: 37
+        heading: null
+        text: Segregated areas should be provided for the storage of rejected, recalled or returned materials or products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:185
+        - source_label: EU GMP
+          locator: line:186
+        children: []
+      - nid: cha3.sec5.p3_24
+        kind: paragraph
+        kind_raw: '3.24'
+        num: '3.24'
+        ord: 38
+        heading: null
+        text: Highly active materials or products should be stored in safe and secure areas.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:188
+        children: []
+      - nid: cha3.sec5.p3_25
+        kind: paragraph
+        kind_raw: '3.25'
+        num: '3.25'
+        ord: 39
+        heading: null
+        text: Printed packaging materials are considered critical to the conformity of the medicinal product and special attention should be paid to the safe and secure storage of these materials.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:190
+        - source_label: EU GMP
+          locator: line:191
+        - source_label: EU GMP
+          locator: line:192
+        children: []
+    - nid: cha3.sec6
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 40
+      heading: Quality Control Areas
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:194
+      children:
+      - nid: cha3.sec6.p3_26
+        kind: paragraph
+        kind_raw: '3.26'
+        num: '3.26'
+        ord: 41
+        heading: null
+        text: Normally, Quality Control laboratories should be separated from production areas. This is particularly important for laboratories for the control of biologicals, microbiologicals and radioisotopes, which should also be separated from each other.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:196
+        - source_label: EU GMP
+          locator: line:197
+        - source_label: EU GMP
+          locator: line:198
+        children: []
+      - nid: cha3.sec6.p3_27
+        kind: paragraph
+        kind_raw: '3.27'
+        num: '3.27'
+        ord: 42
+        heading: null
+        text: Control laboratories should be designed to suit the operations to be carried out in them. Sufficient space should be given to avoid mix-ups and cross-contamination. There should be adequate suitable storage space for samples and records.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:200
+        - source_label: EU GMP
+          locator: line:201
+        - source_label: EU GMP
+          locator: line:202
+        children: []
+      - nid: cha3.sec6.p3_28
+        kind: paragraph
+        kind_raw: '3.28'
+        num: '3.28'
+        ord: 43
+        heading: null
+        text: Separate rooms may be necessary to protect sensitive instruments from vibration, electrical interference, humidity, etc.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:204
+        - source_label: EU GMP
+          locator: line:205
+        children: []
+      - nid: cha3.sec6.p3_29
+        kind: paragraph
+        kind_raw: '3.29'
+        num: '3.29'
+        ord: 44
+        heading: null
+        text: Special requirements are needed in laboratories handling particular substances, such as biological or radioactive samples.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:207
+        - source_label: EU GMP
+          locator: line:208
+        children: []
+    - nid: cha3.sec7
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 45
+      heading: Ancillary Areas
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:210
+      children:
+      - nid: cha3.sec7.p3_30
+        kind: paragraph
+        kind_raw: '3.30'
+        num: '3.30'
+        ord: 46
+        heading: null
+        text: Rest and refreshment rooms should be separate from other areas.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:212
+        children: []
+      - nid: cha3.sec7.p3_31
+        kind: paragraph
+        kind_raw: '3.31'
+        num: '3.31'
+        ord: 47
+        heading: null
+        text: Facilities for changing clothes and for washing and toilet purposes should be easily accessible and appropriate for the number of users. Toilets should not directly communicate with production or storage areas.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:214
+        - source_label: EU GMP
+          locator: line:215
+        - source_label: EU GMP
+          locator: line:216
+        children: []
+      - nid: cha3.sec7.p3_32
+        kind: paragraph
+        kind_raw: '3.32'
+        num: '3.32'
+        ord: 48
+        heading: null
+        text: Maintenance workshops should as far as possible be separated from production areas. Whenever parts and tools are stored in the production area, they should be kept in rooms or lockers reserved for that use.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:218
+        - source_label: EU GMP
+          locator: line:219
+        - source_label: EU GMP
+          locator: line:220
+        children: []
+      - nid: cha3.sec7.p3_33
+        kind: paragraph
+        kind_raw: '3.33'
+        num: '3.33'
+        ord: 49
+        heading: null
+        text: Animal houses should be well isolated from other areas, with separate entrance (animal access) and air handling facilities.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:222
+        - source_label: EU GMP
+          locator: line:223
+        children: []
+    - nid: cha3.sec8
+      kind: section
+      kind_raw: null
+      num: null
+      ord: 50
+      heading: EQUIPMENT
+      text: null
+      role: structural
+      normativity: null
+      tags: []
+      refs:
+        internal: []
+        external: []
+      source_spans:
+      - source_label: EU GMP
+        locator: line:225
+      children:
+      - nid: cha3.sec8.p3_34
+        kind: paragraph
+        kind_raw: '3.34'
+        num: '3.34'
+        ord: 51
+        heading: null
+        text: Manufacturing equipment should be designed, located and maintained to suit its intended purpose.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:227
+        - source_label: EU GMP
+          locator: line:228
+        children: []
+      - nid: cha3.sec8.p3_35
+        kind: paragraph
+        kind_raw: '3.35'
+        num: '3.35'
+        ord: 52
+        heading: null
+        text: Repair and maintenance operations should not present any hazard to the quality of the products.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:230
+        - source_label: EU GMP
+          locator: line:231
+        children: []
+      - nid: cha3.sec8.p3_36
+        kind: paragraph
+        kind_raw: '3.36'
+        num: '3.36'
+        ord: 53
+        heading: null
+        text: Manufacturing equipment should be designed so that it can be easily and thoroughly cleaned. It should be cleaned according to detailed and written procedures and stored only in a clean and dry condition.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:233
+        - source_label: EU GMP
+          locator: line:234
+        - source_label: EU GMP
+          locator: line:235
+        children: []
+      - nid: cha3.sec8.p3_37
+        kind: paragraph
+        kind_raw: '3.37'
+        num: '3.37'
+        ord: 54
+        heading: null
+        text: Washing and cleaning equipment should be chosen and used in order not to be a source of contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:237
+        - source_label: EU GMP
+          locator: line:238
+        children: []
+      - nid: cha3.sec8.p3_38
+        kind: paragraph
+        kind_raw: '3.38'
+        num: '3.38'
+        ord: 55
+        heading: null
+        text: Equipment should be installed in such a way as to prevent any risk of error or of contamination.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:240
+        - source_label: EU GMP
+          locator: line:241
+        children: []
+      - nid: cha3.sec8.p3_39
+        kind: paragraph
+        kind_raw: '3.39'
+        num: '3.39'
+        ord: 56
+        heading: null
+        text: Production equipment should not present any hazard to products. Parts of production equipment that come into contact with the product must not be reactive, additive or absorptive to such an extent that it will affect the quality of the product and thus present any hazard.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:243
+        - source_label: EU GMP
+          locator: line:244
+        - source_label: EU GMP
+          locator: line:245
+        - source_label: EU GMP
+          locator: line:246
+        children: []
+      - nid: cha3.sec8.p3_40
+        kind: paragraph
+        kind_raw: '3.40'
+        num: '3.40'
+        ord: 57
+        heading: null
+        text: Balances and measuring equipment of an appropriate range and precision should be available for production and control operations.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:248
+        - source_label: EU GMP
+          locator: line:249
+        children: []
+      - nid: cha3.sec8.p3_41
+        kind: paragraph
+        kind_raw: '3.41'
+        num: '3.41'
+        ord: 58
+        heading: null
+        text: Measuring, weighing, recording and control equipment should be calibrated and checked at defined intervals by appropriate methods. Adequate records of such tests should be maintained.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:251
+        - source_label: EU GMP
+          locator: line:252
+        - source_label: EU GMP
+          locator: line:253
+        children: []
+      - nid: cha3.sec8.p3_42
+        kind: paragraph
+        kind_raw: '3.42'
+        num: '3.42'
+        ord: 59
+        heading: null
+        text: Fixed pipework should be clearly labelled to indicate the contents and, where applicable, the direction of flow.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:255
+        - source_label: EU GMP
+          locator: line:256
+        children: []
+      - nid: cha3.sec8.p3_43
+        kind: paragraph
+        kind_raw: '3.43'
+        num: '3.43'
+        ord: 60
+        heading: null
+        text: Distilled, deionised and, where appropriate, other water pipes should be sanitised according to written procedures that detail the action limits for microbiological contamination and the measures to be taken.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:258
+        - source_label: EU GMP
+          locator: line:259
+        - source_label: EU GMP
+          locator: line:260
+        children: []
+      - nid: cha3.sec8.p3_44
+        kind: paragraph
+        kind_raw: '3.44'
+        num: '3.44'
+        ord: 61
+        heading: null
+        text: Defective equipment should, if possible, be removed from production and quality control areas, or at least be clearly labelled as defective.
+        role: normative
+        normativity: must
+        tags: []
+        refs:
+          internal: []
+          external: []
+        source_spans:
+        - source_label: EU GMP
+          locator: line:262
+        - source_label: EU GMP
+          locator: line:263
+        children: []
+index:
+  display_name_by_nid:
+    root: document
+    pre1: preamble
+    cha3: Premises and Equipment
+    cha3.si1: subitem
+    cha3.si2: subitem
+    cha3.si3: subitem
+    cha3.sec1: PRINCIPLE
+    cha3.sec2: PREMISES
+    cha3.sec3: General
+    cha3.sec3.p3_1: paragraph 3.1
+    cha3.sec3.p3_2: paragraph 3.2
+    cha3.sec3.p3_3: paragraph 3.3
+    cha3.sec3.p3_4: paragraph 3.4
+    cha3.sec3.p3_5: paragraph 3.5
+    cha3.sec4: Production Area
+    cha3.sec4.p3_6: paragraph 3.6
+    cha3.sec4.p3_6.ii: item i
+    cha3.sec4.p3_6.iii: item ii
+    cha3.sec4.p3_6.iiii: item iii
+    cha3.sec4.p1: paragraph
+    cha3.sec4.p3_7: paragraph 3.7
+    cha3.sec4.p3_8: paragraph 3.8
+    cha3.sec4.p3_9: paragraph 3.9
+    cha3.sec4.p3_10: paragraph 3.10
+    cha3.sec4.p3_11: paragraph 3.11
+    cha3.sec4.p3_12: paragraph 3.12
+    cha3.sec4.p3_13: paragraph 3.13
+    cha3.sec4.p3_14: paragraph 3.14
+    cha3.sec4.p3_15: paragraph 3.15
+    cha3.sec4.p3_16: paragraph 3.16
+    cha3.sec4.p3_17: paragraph 3.17
+    cha3.sec5: Storage Areas
+    cha3.sec5.p3_18: paragraph 3.18
+    cha3.sec5.p3_19: paragraph 3.19
+    cha3.sec5.p3_20: paragraph 3.20
+    cha3.sec5.p3_21: paragraph 3.21
+    cha3.sec5.p3_22: paragraph 3.22
+    cha3.sec5.p3_23: paragraph 3.23
+    cha3.sec5.p3_24: paragraph 3.24
+    cha3.sec5.p3_25: paragraph 3.25
+    cha3.sec6: Quality Control Areas
+    cha3.sec6.p3_26: paragraph 3.26
+    cha3.sec6.p3_27: paragraph 3.27
+    cha3.sec6.p3_28: paragraph 3.28
+    cha3.sec6.p3_29: paragraph 3.29
+    cha3.sec7: Ancillary Areas
+    cha3.sec7.p3_30: paragraph 3.30
+    cha3.sec7.p3_31: paragraph 3.31
+    cha3.sec7.p3_32: paragraph 3.32
+    cha3.sec7.p3_33: paragraph 3.33
+    cha3.sec8: EQUIPMENT
+    cha3.sec8.p3_34: paragraph 3.34
+    cha3.sec8.p3_35: paragraph 3.35
+    cha3.sec8.p3_36: paragraph 3.36
+    cha3.sec8.p3_37: paragraph 3.37
+    cha3.sec8.p3_38: paragraph 3.38
+    cha3.sec8.p3_39: paragraph 3.39
+    cha3.sec8.p3_40: paragraph 3.40
+    cha3.sec8.p3_41: paragraph 3.41
+    cha3.sec8.p3_42: paragraph 3.42
+    cha3.sec8.p3_43: paragraph 3.43
+    cha3.sec8.p3_44: paragraph 3.44
