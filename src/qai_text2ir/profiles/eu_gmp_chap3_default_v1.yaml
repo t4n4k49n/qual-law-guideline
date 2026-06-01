@@ -1,0 +1,35 @@
+schema: qai.parser_profile.v1
+id: eu_gmp_chap3_default_v1
+title: EU GMP Vol.4 Chapter 3 Premises and Equipment markers
+extends: eu_gmp_chap2_default_v1
+applies_to:
+  family: EU_GMP
+  jurisdiction: EU
+  defaults: false
+language: en
+source_label: EU GMP
+context_root_kind: chapter
+structural_kinds: [chapter, section]
+
+preprocess:
+  drop_line_regexes:
+    - '^\s*PT CHAPTER 5 PRODUCTION\s*$'
+    - '^\s*ER 3 PREMISES AND EQUIPMENT\s*$'
+    - '^\s*In January 2015 the deadline for coming into operation was adapted with regard to the toxicological evaluation\s*$'
+    - '^\s*to align with the coming effect of the EMA guideline on setting health based exposure limits for use in risk\s*$'
+    - '^\s*identification in the manufacture of different medicinal products in shared facilities\.\s*$'
+
+marker_types:
+  - id: eu_gmp_chap2_unnumbered_section
+    kind: section
+    kind_raw: null
+    heading_from_remainder: true
+    match: '^(?=(?:PRINCIPLE|PREMISES|General|Production Area|Storage Areas|Quality Control Areas|Ancillary Areas|EQUIPMENT)$)'
+  - id: bullet
+    kind: subitem
+    kind_raw: "•"
+    match: '^[•\uF0B7]\s+'
+  - id: eu_gmp_chap3_further_guidance_paragraph
+    kind: paragraph
+    kind_raw: null
+    match: '^(?=Further guidance can be found in Chapter 5 and in Annexes 2, 3, 4, 5 & 6\.)'
