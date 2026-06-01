@@ -1,20 +1,22 @@
-# EU GMP Vol.4 Chapter 3 正規化候補を追加
+# EU GMP Vol.4 Chapter 3 正規化準備を追加
 
 ## まとめ
 
-EU GMP Vol.4 Chapter 3（Premises and Equipment）を、DQのGMPチェックシートで参照できる正規化候補として追加します。Chap1/Chap2と同じtext2ir系統で処理し、施設・設備に関する要求事項を段落単位で選択・祖先文脈表示できる状態にします。
+EU GMP Vol.4 Chapter 3（Premises and Equipment）を正規化する前段として、Chap3専用のparser profileと回帰テストを追加します。施設・設備に関する要求事項をChap1/Chap2と同じtext2ir系統で扱えるようにし、正式な正規化RUNをmain上で再現可能にするための準備です。
+
+このPRは **正規化RUN親PRではありません**。parser/profile改定と試作RUN記録を含む準備PRです。承認・merge後、mainから改めてplaybook準拠の正規化RUN親PRを作成します。
 
 ## 対象
 
 - doc_id: `eu_gmp_vol4_chap3_20150123`
 - source: `data/human-readable/eu_gmp/vol4/source_texts/chapter_3.txt`
 - official source URL: `https://health.ec.europa.eu/document/download/18d76565-137b-41d2-a602-794527f708c1_en?filename=chapter_3.pdf`
-- promotion candidate: `runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/promotion_candidate/`
+- trial candidate: `runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/promotion_candidate/`
 
 ## 変更内容
 
 - Chap3専用parser profile `eu_gmp_chap3_default_v1` を追加
-- Chapter 3の正規化候補4ファイルとmanifestを追加
+- Chapter 3の試作候補4ファイルとmanifestを追加
 - RUN記録、goal check、special structure audit、深い階層サンプル、構造再合成チェックを追加
 - EU GMP text2irテストにChap3の無番号heading・PDF bullet・脚注除去・3.6補足文分離の回帰テストを追加
 
@@ -25,7 +27,8 @@ EU GMP Vol.4 Chapter 3（Premises and Equipment）を、DQのGMPチェックシ�
 - `PRINCIPLE` / `PREMISES` / `General` / `Production Area` / `Storage Areas` / `Quality Control Areas` / `Ancillary Areas` / `EQUIPMENT` をsection化
 - 表紙側deadline箇条書きのPDF private-use bulletをsubitem化
 - 3.6のroman list後の `Further guidance can be found...` は最後のitemから分離
-- `data/normalized/` はこの親PRでは変更しない
+- `data/normalized/` は変更しない
+- 正式な正規化RUN親PRは、このprofile/testがmainへ反映された後に別途作成する
 
 ## 検証
 
@@ -54,8 +57,8 @@ EU GMP Vol.4 Chapter 3（Premises and Equipment）を、DQのGMPチェックシ�
 | 4 | `cha3.sec4.p3_6` | `paragraph` | `3.6` | `Cross-contamination should be prevented for all products by appropriate design and operation of manufacturing facilities. The measures to prevent cross-contamination should be commensurate with the risks. Quality Risk Management principles should be used to assess and control the risks. Depending of the level of risk, it may be necessary to dedicate premises and equipment for manufacturing and/or packaging operations to control the risk presented by some medicinal products. Dedicated facilities are required for manufacturing when a medicinal product presents a risk because:` |
 | 5 | `cha3.sec4.p3_6.iiii` | `item` | `iii.` | `relevant residue limits, derived from the toxicological evaluation, cannot be satisfactorily determined by a validated analytical method.` |
 
-## 昇格方針
+## 次工程
 
-承認後、子PRで `runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/promotion_candidate/` から `data/normalized/eu_gmp_vol4_chap3_20150123/` へ複写します。
+このPRのmerge後、mainから新しい正規化RUNを切り直し、playbookどおり `runs/<new_run_id>/promotion_candidate/` とRUN文書だけを含む親PRを作成します。`data/normalized/eu_gmp_vol4_chap3_20150123/` への昇格は、その親PR承認後の子PRで実施します。
 
 <!-- PR_BODY_FILE: runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/PR.md -->

@@ -1,11 +1,24 @@
-# EU GMP Vol.4 Chapter 3 正規化RUN v1
+# EU GMP Vol.4 Chapter 3 正規化準備RUN v1
 
 - run_id: `20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1`
 - branch: `run/normalized-eu-gmp-vol4-chap3-v1`
 - doc_id: `eu_gmp_vol4_chap3_20150123`
 - source: `data/human-readable/eu_gmp/vol4/source_texts/chapter_3.txt`
 - official source URL: `https://health.ec.europa.eu/document/download/18d76565-137b-41d2-a602-794527f708c1_en?filename=chapter_3.pdf`
-- promotion candidate: `runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/promotion_candidate/`
+- trial candidate: `runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/promotion_candidate/`
+
+## 位置づけ
+
+このRUNは **正規化RUN親PRではない**。
+Chapter 3を正規化RUNとして成立させるためのparser/profile改定と試作候補の記録である。
+
+理由:
+
+- Chap3専用parser profile `src/qai_text2ir/profiles/eu_gmp_chap3_default_v1.yaml` を新規追加している
+- 回帰テスト `tests/test_text2ir_eu_gmp_chap1.py` を更新している
+- 正規化RUN親PRは、playbook上 `runs/<run_id>/...` のレビュー成果物に限定する運用であり、parser/profile/test改定を同梱しない
+
+このPRをmergeした後、mainから改めて正規化RUNを切り直す。
 
 ## 前提確認
 
@@ -13,7 +26,7 @@
 - local git hooks: `.githooks`
 - 入力はEU GMP既存運用のhuman-readable text
   - `docs/NORMALIZED_RUN_PLAYBOOK.md` はXML前提を記載しているが、EU GMP Chapter 3はChap1/Chap2と同じtext2ir系統で扱う
-  - この差分はRUNに記録し、候補生成コマンドもmanifestへ残す
+  - この差分と、正規化RUN親PRではないことをRUNに記録する
 
 ## 実行環境
 
@@ -92,7 +105,8 @@ python -m qai_text2ir.cli bundle --input data/human-readable/eu_gmp/vol4/source_
 - `cha3.sec4.p3_6` / `paragraph` / `3.6`
 - `cha3.sec4.p3_6.iiii` / `item` / `iii.`
 
-## 昇格方針
+## 次工程
 
-この親PRでは `data/normalized/` は変更しない。
-承認後、`runs/20260601-100409006_run-normalized-eu-gmp-vol4-chap3-v1/promotion_candidate/` から `data/normalized/eu_gmp_vol4_chap3_20150123/` へ複写する子PRを別途作成する。
+この準備PRでは `data/normalized/` は変更しない。
+このPRのmerge後、mainから新しい正規化RUNを切り直し、playbook準拠の親PRを別途作成する。
+`data/normalized/eu_gmp_vol4_chap3_20150123/` への複写は、その親PR承認後の子PRで実施する。
