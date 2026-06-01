@@ -1,0 +1,55 @@
+schema: qai.parser_profile.v1
+id: eu_gmp_chap4_9_default_v1
+title: EU GMP Vol.4 Chapter 4-9 markers
+extends: eu_gmp_chap3_default_v1
+applies_to:
+  family: EU_GMP
+  jurisdiction: EU
+  defaults: false
+language: en
+source_label: EU GMP
+context_root_kind: chapter
+structural_kinds: [chapter, section]
+
+preprocess:
+  skip_blocks:
+      - start_regex: '^\s*Table of Contents\s*$'
+        end_regex: '^\s*Procedures and records\s*$'
+        include_start: false
+        include_end: false
+        max_lines: 30
+  drop_line_regexes:
+    - '^\s*CHAPTER 5 PRODUCTION\s*$'
+    - '^\s*Commission Européenne, B-1049 Bruxelles / Europese Commissie,?\s*$'
+    - '^\s*B-1049 Brussel - Belgium\s*$'
+    - '^\s*In January 2015 the deadline for coming into operation was adapted with regard to the toxicological evaluation\s*$'
+    - '^\s*to align with the coming effect of the EMA guideline on setting health based exposure limits for use in risk\s*$'
+    - '^\s*identification in the manufacture of different medicinal products in shared facilities\. Furthermore, correction of\s*$'
+    - '^\s*the reference in footnote 2 took place\.\s*$'
+    - '^\s*Articles 23a and 81 of Directive 2001/83/EC\s*$'
+  strip_inline_regexes:
+    - '(?<=materials)1\b'
+    - '(?<=legal obligations)4\b'
+
+marker_types:
+  - id: chapter
+    kind: chapter
+    kind_raw: Chapter
+    match: '^Chapter\s+(?P<num>[4-9])\s*:?\s*'
+    num_group: num
+    heading_from_remainder: true
+  - id: chapter9_upper
+    kind: chapter
+    kind_raw: Chapter
+    match: '^CHAPTER\s+(?P<num>9)\s+'
+    num_group: num
+    heading_from_remainder: true
+  - id: eu_gmp_chap2_unnumbered_section
+    kind: section
+    kind_raw: null
+    heading_from_remainder: true
+    match: '^(?=(?:Principle|General|Required GMP Documentation|Generation and Control of Documentation|Good Documentation Practices|Retention of Documents|Specifications|Specifications for starting and packaging materials|Specifications for intermediate and bulk products|Specifications for finished products|Manufacturing Formula and Processing Instructions|Packaging Instructions|Batch Processing Record|Batch Packaging Record|Procedures and records|Receipt|Sampling|Testing|Other|Prevention of cross-contamination in production|Starting materials|Processing operations: intermediate and bulk products|Packaging materials|Packaging operations|Finished products|Rejected, recovered and returned materials|Product shortage due to manufacturing constraints|Good Quality Control Laboratory Practice|Documentation|On-going stability programme|Technical transfer of testing methods|The Contract Giver|The Contract Acceptor|The Contract|Personnel and Organisation|Procedures for handling and investigating complaints including possible quality defects|Investigation and Decision-making|Root Cause Analysis and Corrective and Preventative Actions|Product Recalls and other potential risk-reducing actions)$)'
+  - id: bullet
+    kind: subitem
+    kind_raw: "•"
+    match: '^[-•\uF0B7]\s+'
