@@ -1,0 +1,205 @@
+schema: qai.normalized_run_manifest.v1
+run_id: 20260602-021000000_run-normalized-jp-egov-renormalization-v2
+branch: run/normalized-jp-egov-renormalization-v2
+base_commit: 3bb898e
+scope:
+- 旧e-Gov正規化の現行基準への再正規化
+source_schema_reference:
+- https://laws.e-gov.go.jp/docs/law-data-basic/419a603-xml-schema-for-japanese-law/
+environment:
+  runner: uv run python
+  python: 3.11.6
+  dependencies:
+    lxml: 6.1.1
+    PyYAML: 6.0.3
+    typer: 0.26.4
+  tool:
+    name: qai_xml2ir
+    version: 0.1.1
+documents:
+- doc_id: jp_egov_335AC0000000145_20260501_507AC0000000037
+  input: data/human-readable/egov/source_xml/335AC0000000145_20260501_507AC0000000037.xml
+  source_url: https://laws.e-gov.go.jp/law/335AC0000000145/20260501_507AC0000000037
+  retrieved_at: '2026-06-02'
+  command: uv run python -m qai_xml2ir.cli bundle --input data/human-readable/egov/source_xml/335AC0000000145_20260501_507AC0000000037.xml
+    --out-dir runs/20260602-021000000_run-normalized-jp-egov-renormalization-v2/promotion_candidate/jp_egov_335AC0000000145_20260501_507AC0000000037
+    --doc-id jp_egov_335AC0000000145_20260501_507AC0000000037 --retrieved-at 2026-06-02
+    --source-url https://laws.e-gov.go.jp/law/335AC0000000145/20260501_507AC0000000037
+    --xml-family egov --emit-only all
+  schema: qai.regdoc_ir.v4
+  parser_profile_id: jp_law_default_v1
+  counts:
+    document: 1
+    chapter: 18
+    article: 642
+    paragraph: 1467
+    item: 669
+    subitem: 71
+    table: 2
+    table_header: 2
+    table_row: 10
+    section: 11
+    annex: 57
+  sha256:
+    meta: 6D3E5AF6DC9035BA294933A99BD19FED5CBADE9D0D0257E1A463A39AF19F150C
+    parser_profile: 67703CAC29548D6530FE3940B83EA1BF3FE0D8DDDF24553CE91F04F89E142E3D
+    regdoc_ir: D466FA2F43DC999F40F8D04BA22E80458C5B0F8E5939EE92BAE82ABF24C6337E
+    regdoc_profile: 83050098C0EFCBB26785165D704D5CB20E7B52CE54C096C241CA9AB832924A90
+- doc_id: jp_egov_336CO0000000011_20260501_507CO0000000362
+  input: data/human-readable/egov/source_xml/336CO0000000011_20260501_507CO0000000362.xml
+  source_url: https://laws.e-gov.go.jp/law/336CO0000000011/20260501_507CO0000000362
+  retrieved_at: '2026-06-02'
+  command: uv run python -m qai_xml2ir.cli bundle --input data/human-readable/egov/source_xml/336CO0000000011_20260501_507CO0000000362.xml
+    --out-dir runs/20260602-021000000_run-normalized-jp-egov-renormalization-v2/promotion_candidate/jp_egov_336CO0000000011_20260501_507CO0000000362
+    --doc-id jp_egov_336CO0000000011_20260501_507CO0000000362 --retrieved-at 2026-06-02
+    --source-url https://laws.e-gov.go.jp/law/336CO0000000011/20260501_507CO0000000362
+    --xml-family egov --emit-only all
+  schema: qai.regdoc_ir.v4
+  parser_profile_id: jp_law_default_v1
+  counts:
+    document: 1
+    chapter: 15
+    article: 290
+    paragraph: 673
+    item: 95
+    table: 14
+    table_header: 14
+    table_row: 200
+    section: 2
+    subitem: 13
+    annex: 156
+    appendix: 2
+  sha256:
+    meta: 18544150F54245CF72A47C47143F38AA30831F5524F07DBEFA30B861B398D9A4
+    parser_profile: 67703CAC29548D6530FE3940B83EA1BF3FE0D8DDDF24553CE91F04F89E142E3D
+    regdoc_ir: 6AD5EF1A320AF2A3A3794B9E7995F8241DD35968EC31DA37AD548FA987D99095
+    regdoc_profile: 3760D2DE53140DC00496C46ACE460CFDD73CC33EE4D7969C07003E41D745087C
+- doc_id: jp_egov_336M50000100001_20260501_507M60000100117
+  input: data/human-readable/egov/source_xml/336M50000100001_20260501_507M60000100117.xml
+  source_url: https://laws.e-gov.go.jp/law/336M50000100001/20260501_507M60000100117
+  retrieved_at: '2026-06-02'
+  command: uv run python -m qai_xml2ir.cli bundle --input data/human-readable/egov/source_xml/336M50000100001_20260501_507M60000100117.xml
+    --out-dir runs/20260602-021000000_run-normalized-jp-egov-renormalization-v2/promotion_candidate/jp_egov_336M50000100001_20260501_507M60000100117
+    --doc-id jp_egov_336M50000100001_20260501_507M60000100117 --retrieved-at 2026-06-02
+    --source-url https://laws.e-gov.go.jp/law/336M50000100001/20260501_507M60000100117
+    --xml-family egov --emit-only all
+  schema: qai.regdoc_ir.v4
+  parser_profile_id: jp_law_default_v1
+  counts:
+    document: 1
+    chapter: 15
+    article: 967
+    paragraph: 2502
+    item: 2236
+    subitem: 465
+    point: 67
+    table: 26
+    table_header: 26
+    table_row: 706
+    section: 2
+    annex: 502
+    appendix: 342
+  sha256:
+    meta: 96677E58216BD77C44EDC6A14B4FFF14B1C0F0185494762D1146E33EC6A85920
+    parser_profile: 67703CAC29548D6530FE3940B83EA1BF3FE0D8DDDF24553CE91F04F89E142E3D
+    regdoc_ir: 1DBA8FCC0E5FA30C569848A1589092ABB419C2E62290D301A6D0F46DCB9694A4
+    regdoc_profile: 82292C70A01811CA42AD5FCF7734C056ADA2BAE4F1A7AE448250B0A9FC0CB238
+- doc_id: jp_egov_336M50000100002_20260501_507M60000100117
+  input: data/human-readable/egov/source_xml/336M50000100002_20260501_507M60000100117.xml
+  source_url: https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117
+  retrieved_at: '2026-06-02'
+  command: uv run python -m qai_xml2ir.cli bundle --input data/human-readable/egov/source_xml/336M50000100002_20260501_507M60000100117.xml
+    --out-dir runs/20260602-021000000_run-normalized-jp-egov-renormalization-v2/promotion_candidate/jp_egov_336M50000100002_20260501_507M60000100117
+    --doc-id jp_egov_336M50000100002_20260501_507M60000100117 --retrieved-at 2026-06-02
+    --source-url https://laws.e-gov.go.jp/law/336M50000100002/20260501_507M60000100117
+    --xml-family egov --emit-only all
+  schema: qai.regdoc_ir.v4
+  parser_profile_id: jp_law_default_v1
+  counts:
+    document: 1
+    chapter: 2
+    article: 35
+    paragraph: 86
+    item: 111
+    subitem: 175
+    section: 4
+    point: 48
+    annex: 42
+    appendix: 1
+    table: 1
+    table_header: 1
+    table_row: 1
+  sha256:
+    meta: 4E2B50D7AF420CBE175E4DF69F38B381EF059BAF364327AE4AEF0501AA18307C
+    parser_profile: 67703CAC29548D6530FE3940B83EA1BF3FE0D8DDDF24553CE91F04F89E142E3D
+    regdoc_ir: 690F2FDEE746D9A18735198F483A0645C8ADC76ED98971208B0D1A883A3BAD79
+    regdoc_profile: D8796CB5E671BE458844D61BD7335AA29110E7D1CE9C8F0DD71B64351971B4FC
+- doc_id: jp_egov_416M60000100179_20260501_507M60000100117
+  input: data/human-readable/egov/source_xml/416M60000100179_20260501_507M60000100117.xml
+  source_url: https://laws.e-gov.go.jp/law/416M60000100179/20260501_507M60000100117
+  retrieved_at: '2026-06-02'
+  command: uv run python -m qai_xml2ir.cli bundle --input data/human-readable/egov/source_xml/416M60000100179_20260501_507M60000100117.xml
+    --out-dir runs/20260602-021000000_run-normalized-jp-egov-renormalization-v2/promotion_candidate/jp_egov_416M60000100179_20260501_507M60000100117
+    --doc-id jp_egov_416M60000100179_20260501_507M60000100117 --retrieved-at 2026-06-02
+    --source-url https://laws.e-gov.go.jp/law/416M60000100179/20260501_507M60000100117
+    --xml-family egov --emit-only all
+  schema: qai.regdoc_ir.v4
+  parser_profile_id: jp_law_default_v1
+  counts:
+    document: 1
+    chapter: 3
+    article: 69
+    paragraph: 140
+    section: 8
+    item: 260
+    subitem: 64
+    point: 17
+    annex: 5
+  sha256:
+    meta: 5C2BF1351ECD40112B0BEB1CCC44A547D755363F6AD79E17569F04C344DE1155
+    parser_profile: 67703CAC29548D6530FE3940B83EA1BF3FE0D8DDDF24553CE91F04F89E142E3D
+    regdoc_ir: E3B3FC0E356E53EE68B154A1DE37C2E4150E0D94B40F245B4C9C4E4C441216EB
+    regdoc_profile: A2FC251779EB4F458575553B1CDFD7900814DE5B47EADC186197F61097201593
+validation:
+  pytest: 19 passed
+  check_ir_structure:
+    jp_egov_335AC0000000145_20260501_507AC0000000037: OK
+    jp_egov_336CO0000000011_20260501_507CO0000000362: OK
+    jp_egov_336M50000100001_20260501_507M60000100117: OK
+    jp_egov_336M50000100002_20260501_507M60000100117: OK
+    jp_egov_416M60000100179_20260501_507M60000100117: OK
+  verify_document:
+    jp_egov_335AC0000000145_20260501_507AC0000000037: OK
+    jp_egov_336CO0000000011_20260501_507CO0000000362: OK
+    jp_egov_336M50000100001_20260501_507M60000100117: OK
+    jp_egov_336M50000100002_20260501_507M60000100117: OK
+    jp_egov_416M60000100179_20260501_507M60000100117: OK
+  regdoc_profile_candidate_visibility:
+    jp_egov_335AC0000000145_20260501_507AC0000000037:
+      allow_rules: []
+      deny_rules: []
+    jp_egov_336CO0000000011_20260501_507CO0000000362:
+      allow_rules: []
+      deny_rules: []
+    jp_egov_336M50000100001_20260501_507M60000100117:
+      allow_rules: []
+      deny_rules: []
+    jp_egov_336M50000100002_20260501_507M60000100117:
+      allow_rules: []
+      deny_rules: []
+    jp_egov_416M60000100179_20260501_507M60000100117:
+      allow_rules: []
+      deny_rules: []
+  whitespace_audit:
+    jp_egov_335AC0000000145_20260501_507AC0000000037: 0
+    jp_egov_336CO0000000011_20260501_507CO0000000362: 0
+    jp_egov_336M50000100001_20260501_507M60000100117: 0
+    jp_egov_336M50000100002_20260501_507M60000100117: 0
+    jp_egov_416M60000100179_20260501_507M60000100117: 0
+review_samples:
+- runs/20260602-021000000_run-normalized-jp-egov-renormalization-v2/SAMPLE_EXTRACT.md
+promotion_policy:
+  parent_pr_changes_data_normalized: false
+  promote_after_parent_approval_only: true
+  archive_dirs_excluded:
+  - data/normalized/ARCHIVE_jp_egov_336M50000100002_20260501_507M60000100117
