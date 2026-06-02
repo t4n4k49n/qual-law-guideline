@@ -14,9 +14,11 @@ sys.modules.setdefault("streamlit", streamlit_stub)
 sys.modules.setdefault("streamlit.components", streamlit_components_stub)
 sys.modules.setdefault("streamlit.components.v1", streamlit_components_v1_stub)
 
+import apps.mock_gmp_checklist_ui as mock_ui
 from apps.mock_gmp_checklist_ui import (
     SOURCE_MODE_FOLDER,
     SOURCE_MODE_YAML_FOLDER,
+    _discover_selectable_bundles,
     _single_yaml_bundle_in_folder,
     _validate_and_store_yaml_folder_selection,
 )
@@ -65,6 +67,23 @@ def test_single_yaml_bundle_in_folder_rejects_mismatched_prefix(tmp_path) -> Non
 
     with pytest.raises(ValueError, match="prefix"):
         _single_yaml_bundle_in_folder(tmp_path)
+
+
+def test_discover_selectable_bundles_uses_only_normalized_root(tmp_path, monkeypatch) -> None:
+    normalized_root = tmp_path / "data" / "normalized"
+    out_root = tmp_path / "out"
+    normalized_doc = normalized_root / "normalized_doc"
+    out_doc = out_root / "out_doc"
+    normalized_doc.mkdir(parents=True)
+    out_doc.mkdir(parents=True)
+    _write_bundle(normalized_doc, "normalized_doc")
+    _write_bundle(out_doc, "out_doc")
+    monkeypatch.setattr(mock_ui, "NORMALIZED_ROOT", normalized_root)
+    monkeypatch.setattr(mock_ui, "OUT_DIR", out_root)
+
+    bundle_names = [bundle[0] for bundle in _discover_selectable_bundles()]
+
+    assert bundle_names == ["normalized_doc"]
 
 
 def test_validate_yaml_folder_selection_stores_only_valid_folder(tmp_path) -> None:
