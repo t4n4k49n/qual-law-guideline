@@ -14,11 +14,7 @@ import yaml
 from qai_mock_ui.ir_model import DocIndex, build_doc_index
 from qai_mock_ui.candidate_visibility import build_candidate_visibility_map
 from qai_mock_ui.render import build_render_debug_trace, render_selected_nodes
-from qai_mock_ui.txtconcat_loader import (
-    load_regdoc_bundle_from_txtconcat,
-)
 
-DEFAULT_TXTCONCAT = Path("txtconcat_20260222-040007081.txt")
 NORMALIZED_ROOT = Path("data/normalized")
 DISPLAY_EXAMPLES_CONFIG = Path("data/mock_ui/display_examples.yaml")
 FALLBACK_IR = Path(
@@ -35,6 +31,8 @@ FALLBACK_META = Path(
 )
 OUT_DIR = Path("out")
 DEFAULT_NORMALIZED_FOLDER = "jp_egov_336M50000100002_20260501_507M60000100117"
+SOURCE_MODE_FOLDER = "フォルダ選択"
+SOURCE_MODE_YAML_FOLDER = "4yaml内包フォルダ指定"
 
 
 def _load_default_yaml_pair() -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None]:
@@ -201,6 +199,111 @@ def _discover_selectable_bundles() -> List[Tuple[str, Path, Path, Path | None, s
     return merged
 
 
+def _single_yaml_bundle_in_folder(folder: Path) -> Tuple[Path, Path, Path, Path]:
+    if not folder.exists() or not folder.is_dir():
+        raise ValueError("フォルダが見つかりません。")
+
+    suffixes = {
+        ".regdoc_ir.yaml": "IR",
+        ".parser_profile.yaml": "parser profile",
+        ".regdoc_profile.yaml": "regdoc profile",
+        ".meta.yaml": "meta",
+    }
+    matches: Dict[str, List[Path]] = {suffix: [] for suffix in suffixes}
+    for child in sorted(folder.iterdir(), key=lambda p: p.name):
+        if not child.is_file():
+            continue
+        for suffix in suffixes:
+            if child.name.endswith(suffix):
+                matches[suffix].append(child)
+                break
+
+    missing = [label for suffix, label in suffixes.items() if not matches[suffix]]
+    if missing:
+        raise ValueError(f"4yamlセットが揃っていません: {', '.join(missing)} がありません。")
+
+    duplicated = [label for suffix, label in suffixes.items() if len(matches[suffix]) > 1]
+    if duplicated:
+        raise ValueError(f"4yamlセットが複数見つかりました: {', '.join(duplicated)} が複数あります。")
+
+    prefixes = {
+        suffix: matches[suffix][0].name[: -len(suffix)]
+        for suffix in suffixes
+    }
+    if len(set(prefixes.values())) != 1:
+        raise ValueError("4yamlのファイル名prefixが一致していません。")
+
+    return (
+        matches[".regdoc_ir.yaml"][0],
+        matches[".parser_profile.yaml"][0],
+        matches[".regdoc_profile.yaml"][0],
+        matches[".meta.yaml"][0],
+    )
+
+
+def _pick_directory_with_dialog(initial_dir: str | None = None) -> str | None:
+    try:
+        import tkinter as tk
+        from tkinter import filedialog
+    except Exception as exc:
+        raise RuntimeError(f"フォルダ選択ダイアログを開けません: {exc}") from exc
+
+    root = tk.Tk()
+    root.withdraw()
+    try:
+        root.attributes("-topmost", True)
+        selected = filedialog.askdirectory(
+            parent=root,
+            initialdir=initial_dir or str(Path.cwd()),
+            title="4yaml内包フォルダを選択",
+            mustexist=True,
+        )
+    finally:
+        root.destroy()
+    selected = selected.strip()
+    return selected or None
+
+
+def _restore_source_selection_state(mode: str, yaml_folder_path: str | None) -> None:
+    st.session_state["source_mode_key"] = mode
+    st.session_state["confirmed_source_mode_key"] = mode
+    st.session_state["source_mode_radio_nonce"] = (
+        int(st.session_state.get("source_mode_radio_nonce", 0)) + 1
+    )
+    if yaml_folder_path:
+        st.session_state["yaml_folder_source_selected_path"] = yaml_folder_path
+    else:
+        st.session_state.pop("yaml_folder_source_selected_path", None)
+
+
+def _validate_and_store_yaml_folder_selection(
+    selected_path: str | None,
+    previous_mode: str,
+    previous_yaml_folder_path: str | None,
+) -> bool:
+    if not selected_path:
+        _restore_source_selection_state(previous_mode, previous_yaml_folder_path)
+        st.session_state["yaml_folder_source_warning"] = (
+            "4yaml内包フォルダが選択されなかったため、法令選択は変更していません。"
+        )
+        return False
+    try:
+        _single_yaml_bundle_in_folder(Path(selected_path))
+    except Exception as exc:
+        _restore_source_selection_state(previous_mode, previous_yaml_folder_path)
+        st.session_state["yaml_folder_source_warning"] = (
+            f"4yaml内包フォルダが上手く選択されませんでした: {exc}"
+        )
+        return False
+    st.session_state["source_mode_key"] = SOURCE_MODE_YAML_FOLDER
+    st.session_state["confirmed_source_mode_key"] = SOURCE_MODE_YAML_FOLDER
+    st.session_state["yaml_folder_source_selected_path"] = selected_path
+    st.session_state["source_mode_radio_nonce"] = (
+        int(st.session_state.get("source_mode_radio_nonce", 0)) + 1
+    )
+    return True
+
+
 def _load_display_examples() -> List[Dict[str, Any]]:
     if not DISPLAY_EXAMPLES_CONFIG.exists():
         return []
@@ -240,12 +343,12 @@ def _example_tooltip(
             law_name = folder or "（未設定）"
     return f"法令名: {law_name} | プロファイル: {profile} | 選択: {selection_desc}"
 
-def _load_from_uploaded_or_local(
-    uploaded,
+def _load_from_selected_source(
     source_mode: str,
     selected_normalized_folder: str | None = None,
+    selected_yaml_folder_path: str | None = None,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any] | None, str]:
-    if source_mode in {"data/normalized選択", "フォルダ選択"}:
+    if source_mode in {"data/normalized選択", SOURCE_MODE_FOLDER}:
         bundles = _discover_selectable_bundles()
         if not bundles:
             raise ValueError("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
@@ -255,19 +358,12 @@ def _load_from_uploaded_or_local(
             raise ValueError(f"選択フォルダが見つかりません: {selected}")
         ir, profile, meta = _load_bundle_from_yaml_files(matched[1], matched[2], matched[3])
         return ir, profile, meta, f"normalized:{matched[0]}"
-    if source_mode in {"自動(アップロード/txtconcat/fallback)", "アップロード（4yamlのtxtconcat形式）"} and uploaded is not None:
-        raw = uploaded.getvalue().decode("utf-8")
-        temp = Path(".streamlit_tmp_txtconcat.txt")
-        temp.write_text(raw, encoding="utf-8")
-        try:
-            ir, profile, meta = load_regdoc_bundle_from_txtconcat(temp)
-            return ir, profile, meta, f"uploaded:{uploaded.name}"
-        finally:
-            if temp.exists():
-                temp.unlink()
-    if DEFAULT_TXTCONCAT.exists():
-        ir, profile, meta = load_regdoc_bundle_from_txtconcat(DEFAULT_TXTCONCAT)
-        return ir, profile, meta, str(DEFAULT_TXTCONCAT)
+    if source_mode == SOURCE_MODE_YAML_FOLDER and selected_yaml_folder_path:
+        ir_path, _parser_path, profile_path, meta_path = _single_yaml_bundle_in_folder(
+            Path(selected_yaml_folder_path)
+        )
+        ir, profile, meta = _load_bundle_from_yaml_files(ir_path, profile_path, meta_path)
+        return ir, profile, meta, f"yaml-folder:{Path(selected_yaml_folder_path).as_posix()}"
     ir, profile, meta = _load_default_yaml_pair()
     return ir, profile, meta, "fallback:data/normalized/*"
 
@@ -841,7 +937,7 @@ def main() -> None:
     st.set_page_config(page_title="GMPチェックシート生成UI（モック）", layout="wide")
     st.title("GMPチェックシート生成UI（モック）")
 
-    source_options = ["フォルダ選択", "アップロード（4yamlのtxtconcat形式）"]
+    source_options = [SOURCE_MODE_FOLDER, SOURCE_MODE_YAML_FOLDER]
     profile_options = ["オリジナル", "カスタマイズ"]
     dedup_mode_options = ["共通先祖省略", "兄弟のみ先祖省略"]
     selectable_bundles = _discover_selectable_bundles()
@@ -855,7 +951,13 @@ def main() -> None:
     source_url_map = {b[0]: _meta_source_urls(b[3]) for b in selectable_bundles}
 
     if "source_mode_key" not in st.session_state:
-        st.session_state["source_mode_key"] = source_options[0] if selectable_bundles else source_options[2]
+        st.session_state["source_mode_key"] = source_options[0]
+    if st.session_state.get("source_mode_key") not in source_options:
+        st.session_state["source_mode_key"] = source_options[0]
+    if "confirmed_source_mode_key" not in st.session_state:
+        st.session_state["confirmed_source_mode_key"] = st.session_state["source_mode_key"]
+    if st.session_state.get("confirmed_source_mode_key") not in source_options:
+        st.session_state["confirmed_source_mode_key"] = source_options[0]
     if "purpose_mode_key" not in st.session_state:
         st.session_state["purpose_mode_key"] = profile_options[0]
     pending_purpose_mode = st.session_state.pop("pending_purpose_mode_key", None)
@@ -937,21 +1039,58 @@ def main() -> None:
 
     current_source_mode = str(st.session_state.get("source_mode_key", source_options[0]))
     current_folder = str(st.session_state.get("normalized_folder_key", "")) if folder_names else ""
-    if current_source_mode == "フォルダ選択":
+    confirmed_source_mode = str(st.session_state.get("confirmed_source_mode_key", SOURCE_MODE_FOLDER))
+    confirmed_yaml_folder_path = str(
+        st.session_state.get("yaml_folder_source_selected_path", "")
+    ).strip()
+    if current_source_mode == SOURCE_MODE_FOLDER:
         law_display_for_header = label_map.get(current_folder, current_folder or "（未選択）")
     else:
-        law_display_for_header = "アップロード待ち"
+        law_display_for_header = "4yamlフォルダ指定"
 
-    uploaded = None
     with st.expander(f"法令選択：[{law_display_for_header}]", expanded=True):
+        pending_folder_warning = st.session_state.pop("yaml_folder_source_warning", "")
+        if pending_folder_warning:
+            st.warning(pending_folder_warning)
+        source_mode_radio_key = f"source_mode_radio_key_{int(st.session_state.get('source_mode_radio_nonce', 0))}"
+        source_mode_index = (
+            source_options.index(current_source_mode)
+            if current_source_mode in source_options
+            else 0
+        )
         source_mode = st.radio(
             "データソース切替",
             source_options,
             horizontal=True,
-            key="source_mode_key",
+            index=source_mode_index,
+            key=source_mode_radio_key,
         )
         selected_normalized_folder: str | None = None
-        if source_mode == "フォルダ選択":
+        selected_yaml_folder_path: str | None = None
+        effective_source_mode = confirmed_source_mode
+        if source_mode == SOURCE_MODE_YAML_FOLDER and (
+            confirmed_source_mode != SOURCE_MODE_YAML_FOLDER or not confirmed_yaml_folder_path
+        ):
+            try:
+                picked_path = _pick_directory_with_dialog(confirmed_yaml_folder_path or str(Path.cwd()))
+                accepted = _validate_and_store_yaml_folder_selection(
+                    picked_path, confirmed_source_mode, confirmed_yaml_folder_path or None
+                )
+            except Exception as exc:
+                _restore_source_selection_state(
+                    confirmed_source_mode, confirmed_yaml_folder_path or None
+                )
+                st.session_state["yaml_folder_source_warning"] = (
+                    f"フォルダ選択ダイアログを開けませんでした: {exc}"
+                )
+                accepted = False
+            if accepted:
+                st.session_state["confirmed_source_mode_key"] = SOURCE_MODE_YAML_FOLDER
+            st.rerun()
+        if source_mode == SOURCE_MODE_FOLDER:
+            st.session_state["confirmed_source_mode_key"] = SOURCE_MODE_FOLDER
+            st.session_state["source_mode_key"] = SOURCE_MODE_FOLDER
+            effective_source_mode = SOURCE_MODE_FOLDER
             if not selectable_bundles:
                 st.error("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
                 return
@@ -971,11 +1110,35 @@ def main() -> None:
                     st.markdown(f"- [{index}. {_source_url_display(url)}]({url})")
             else:
                 st.caption("元の法令ソースURL: meta.yaml に記載なし")
-        if source_mode == "アップロード（4yamlのtxtconcat形式）":
-            uploaded = st.file_uploader("txtconcat (*.txt) を選択", type=["txt"])
+        if source_mode == SOURCE_MODE_YAML_FOLDER:
+            selected_yaml_folder_path = confirmed_yaml_folder_path
+            effective_source_mode = SOURCE_MODE_YAML_FOLDER
+            st.caption(f"選択中フォルダ: {selected_yaml_folder_path}")
+            if st.button("フォルダを選び直す", key="yaml_folder_source_repick_button"):
+                try:
+                    picked_path = _pick_directory_with_dialog(selected_yaml_folder_path)
+                    accepted = _validate_and_store_yaml_folder_selection(
+                        picked_path, SOURCE_MODE_YAML_FOLDER, selected_yaml_folder_path
+                    )
+                except Exception as exc:
+                    _restore_source_selection_state(
+                        SOURCE_MODE_YAML_FOLDER, selected_yaml_folder_path
+                    )
+                    st.session_state["yaml_folder_source_warning"] = (
+                        f"フォルダ選択ダイアログを開けませんでした: {exc}"
+                    )
+                    accepted = False
+                if accepted:
+                    st.session_state["confirmed_source_mode_key"] = SOURCE_MODE_YAML_FOLDER
+                st.rerun()
+            if not selected_yaml_folder_path:
+                effective_source_mode = SOURCE_MODE_FOLDER
+                selected_normalized_folder = current_folder or (
+                    folder_names[0] if folder_names else None
+                )
     try:
-        regdoc_ir, regdoc_profile, regdoc_meta, source_label = _load_from_uploaded_or_local(
-            uploaded, source_mode, selected_normalized_folder
+        regdoc_ir, regdoc_profile, regdoc_meta, source_label = _load_from_selected_source(
+            effective_source_mode, selected_normalized_folder, selected_yaml_folder_path
         )
     except Exception as exc:
         st.error(f"YAML抽出/パースに失敗しました: {exc}")
@@ -985,8 +1148,9 @@ def main() -> None:
     # ソース署名が変わったタイミングで選択状態を初期化する。
     doc_signature = " | ".join(
         [
-            source_mode,
+            effective_source_mode,
             selected_normalized_folder or "",
+            selected_yaml_folder_path or "",
             str(regdoc_ir.get("doc_id") or ""),
         ]
     )
@@ -998,12 +1162,15 @@ def main() -> None:
     is_egov_doc = str(regdoc_ir.get("doc_id") or "").startswith("jp_egov_")
     base_purpose = _purpose(regdoc_profile)
     original_profile_tooltip = "参照元プロファイル: 不明"
-    if source_mode == "フォルダ選択" and selected_normalized_folder:
+    if effective_source_mode == SOURCE_MODE_FOLDER and selected_normalized_folder:
         matched = next((b for b in selectable_bundles if b[0] == selected_normalized_folder), None)
         if matched is not None:
             original_profile_tooltip = f"参照元プロファイル: {matched[2].as_posix()}"
-    elif source_mode == "アップロード（4yamlのtxtconcat形式）":
-        original_profile_tooltip = "参照元プロファイル: txtconcat由来のデモ専用YAML（実ファイル固定なし）"
+    elif effective_source_mode == SOURCE_MODE_YAML_FOLDER and selected_yaml_folder_path:
+        _ir_path, _parser_path, profile_path, _meta_path = _single_yaml_bundle_in_folder(
+            Path(selected_yaml_folder_path)
+        )
+        original_profile_tooltip = f"参照元プロファイル: {profile_path.as_posix()}"
 
     if "editable_purpose_yaml" not in st.session_state:
         st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
