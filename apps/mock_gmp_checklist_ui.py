@@ -102,6 +102,58 @@ def _meta_title(meta_path: Path | None) -> str | None:
     return str(title).strip() if isinstance(title, str) and title.strip() else None
 
 
+def _extract_source_urls(meta: Dict[str, Any] | None) -> List[str]:
+    if not isinstance(meta, dict):
+        return []
+    doc = meta.get("doc")
+    if not isinstance(doc, dict):
+        return []
+    sources = doc.get("sources")
+    if not isinstance(sources, list):
+        return []
+    urls: List[str] = []
+    seen: Set[str] = set()
+    for source in sources:
+        if not isinstance(source, dict):
+            continue
+        raw_url = source.get("url")
+        if not isinstance(raw_url, str):
+            continue
+        url = raw_url.strip()
+        if not url or url in seen:
+            continue
+        urls.append(url)
+        seen.add(url)
+    return urls
+
+
+def _meta_source_urls(meta_path: Path | None) -> List[str]:
+    if meta_path is None or not meta_path.exists():
+        return []
+    raw = meta_path.read_text(encoding="utf-8")
+    try:
+        parsed = yaml.safe_load(raw)
+    except Exception:
+        urls: List[str] = []
+        seen: Set[str] = set()
+        for match in re.finditer(r"^\s*(?:-\s*)?url:\s*(.+)\s*$", raw, flags=re.MULTILINE):
+            url = match.group(1).strip().strip("\"'")
+            if url and url not in seen:
+                urls.append(url)
+                seen.add(url)
+        return urls
+    if not isinstance(parsed, dict):
+        return []
+    return _extract_source_urls(parsed)
+
+
+def _source_url_display(url: str) -> str:
+    max_chars = 96
+    if len(url) <= max_chars:
+        return url
+    return f"{url[:72]}...{url[-21:]}"
+
+
 def _discover_normalized_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
     if not NORMALIZED_ROOT.exists():
         return []
@@ -800,6 +852,7 @@ def main() -> None:
         b[0]: f"{b[0]} | {(b[4] or '(meta.yaml から法令名を取得できません)')}"
         for b in selectable_bundles
     }
+    source_url_map = {b[0]: _meta_source_urls(b[3]) for b in selectable_bundles}
 
     if "source_mode_key" not in st.session_state:
         st.session_state["source_mode_key"] = source_options[0] if selectable_bundles else source_options[2]
@@ -908,6 +961,16 @@ def main() -> None:
                 key="normalized_folder_key",
                 format_func=lambda v: label_map.get(v, v),
             )
+            source_urls = source_url_map.get(selected_normalized_folder, [])
+            if len(source_urls) == 1:
+                url = source_urls[0]
+                st.markdown(f"元の法令ソース: [{_source_url_display(url)}]({url})")
+            elif len(source_urls) > 1:
+                st.markdown("元の法令ソース:")
+                for index, url in enumerate(source_urls, start=1):
+                    st.markdown(f"- [{index}. {_source_url_display(url)}]({url})")
+            else:
+                st.caption("元の法令ソースURL: meta.yaml に記載なし")
         if source_mode == "アップロード（4yamlのtxtconcat形式）":
             uploaded = st.file_uploader("txtconcat (*.txt) を選択", type=["txt"])
     try:
