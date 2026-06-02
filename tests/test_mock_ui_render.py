@@ -272,6 +272,24 @@ def test_prefix_dedup_uses_merged_context_chain() -> None:
     assert blocks[1].header_omitted is True
 
 
+def test_exact_dedup_does_not_omit_parent_child_context() -> None:
+    regdoc_ir, regdoc_profile = _load_fixture()
+    index = build_doc_index(_apply_mock_nodes(regdoc_ir))
+    purpose = _mock_purpose(regdoc_profile)
+
+    blocks = render_selected_nodes(
+        index,
+        purpose,
+        ["art1.p1", "art1.p1.i2"],
+        header_dedup_mode="exact",
+        render_options={"egov_merge_article_p1": True},
+    )
+
+    assert len(blocks) == 2
+    assert blocks[1].header_omitted is False
+    assert "第一条　薬局の構造設備の基準は、次のとおりとする。" in blocks[1].header_lines
+
+
 def test_prefix_dedup_treats_merged_paragraph1_as_article_context() -> None:
     regdoc_ir, regdoc_profile = _load_fixture()
     index = build_doc_index(_apply_mock_nodes(regdoc_ir))
@@ -337,6 +355,56 @@ def test_selected_subitem_keeps_unselected_parent_item_context_when_p1_is_merged
     assert "十二　第一類医薬品を販売し、又は授与する薬局にあつては、次に定めるところに適合するものであること。" in text
     assert "ロ　第一類医薬品を陳列する陳列設備から一・二メートル以内の範囲" in text
     assert text.splitlines().count("第一条") == 0
+
+
+def test_all_article1_subitems_keep_parent_item_context_by_default_when_p1_is_merged() -> None:
+    regdoc_ir, regdoc_profile = _load_fixture()
+    index = build_doc_index(_apply_mock_nodes(regdoc_ir))
+    purpose = _mock_purpose(regdoc_profile)
+    subitems = [
+        node
+        for node in index.by_nid.values()
+        if node.kind == "subitem" and node.nid.startswith("art1.p1.")
+    ]
+    assert subitems
+
+    for subitem in subitems:
+        parent = index.by_nid.get(subitem.parent_nid or "")
+        assert parent is not None
+        assert parent.kind == "item"
+
+        blocks = render_selected_nodes(
+            index,
+            purpose,
+            [subitem.nid],
+            header_dedup_mode="prefix",
+            render_options={"egov_merge_article_p1": True},
+        )
+
+        assert blocks[0].item_line_nids == [subitem.nid]
+        assert parent.nid in blocks[0].header_line_nids
+
+
+def test_profile_can_suppress_ancestor_chapeau_text_for_subitems() -> None:
+    regdoc_ir, regdoc_profile = _load_fixture()
+    index = build_doc_index(_apply_mock_nodes(regdoc_ir))
+    purpose = _mock_purpose(regdoc_profile)
+    for rule in purpose["context_display_policy"]:
+        if rule.get("when_kind") == "subitem":
+            rule["include_chapeau_text"] = False
+
+    blocks = render_selected_nodes(
+        index,
+        purpose,
+        ["art1.p1.i10.ha"],
+        header_dedup_mode="prefix",
+        render_options={"egov_merge_article_p1": True},
+    )
+
+    assert "art1.p1.i10" not in blocks[0].header_line_nids
+    assert "art1.p1" not in blocks[0].header_line_nids
+    assert "art1" in blocks[0].header_line_nids
+    assert blocks[0].header_lines == ["（薬局の構造設備）"]
 
 
 def test_item_ancestor_paragraph1_is_rendered_from_tree_not_forced_profile_option() -> None:
