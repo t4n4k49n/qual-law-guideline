@@ -21,6 +21,7 @@ from apps.mock_gmp_checklist_ui import (
     _discover_selectable_bundles,
     _display_preset_label,
     _display_preset_signature,
+    _normalize_effective_purpose,
     _single_yaml_bundle_in_folder,
     _validate_and_store_yaml_folder_selection,
 )
@@ -166,3 +167,29 @@ def test_display_preset_label_uses_display_name_and_title() -> None:
     )
 
     assert label == "表示例4：表の1行目と3行目"
+
+
+def test_normalize_effective_purpose_removes_legacy_mock_overrides() -> None:
+    purpose = {
+        "context_display_policy": [
+            {
+                "when_kind": "subitem",
+                "include_chapeau_text": False,
+                "force_article_p1_text": True,
+            },
+            {
+                "when_kind": "table_row",
+                "include_chapeau_text": False,
+                "force_article_p1_text": True,
+            },
+        ]
+    }
+
+    normalized = _normalize_effective_purpose(purpose)
+
+    subitem_rule = normalized["context_display_policy"][0]
+    table_rule = normalized["context_display_policy"][1]
+    assert subitem_rule["include_chapeau_text"] is True
+    assert "force_article_p1_text" not in subitem_rule
+    assert table_rule["include_chapeau_text"] is False
+    assert "force_article_p1_text" not in table_rule

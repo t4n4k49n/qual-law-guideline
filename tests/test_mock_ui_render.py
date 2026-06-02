@@ -91,8 +91,6 @@ def _apply_mock_nodes(regdoc_ir: Dict[str, Any]) -> Dict[str, Any]:
 def _mock_purpose(regdoc_profile: Dict[str, Any]) -> Dict[str, Any]:
     purpose = deepcopy(regdoc_profile["profiles"]["dq_gmp_checklist"])
     for rule in purpose["context_display_policy"]:
-        if rule.get("when_kind") == "subitem":
-            rule["include_chapeau_text"] = False
         if rule.get("when_kind") == "table_row":
             rule["include_ancestors_until_kind"] = "table"
     return purpose
@@ -120,6 +118,9 @@ def test_requirement1_subitem_preview_only_heading_and_item() -> None:
     text = render_text_preview(blocks)
     expected = (
         "（一般区分の医薬部外品製造業者等の製造所の構造設備）\n"
+        "第十二条\n"
+        "１　施行規則第二十五条第二項第二号の区分及び施行規則第三十五条第二項第二号の区分の製造業者及び医薬品等外国製造業者（以下「医薬部外品製造業者等」という。）の製造所の構造設備の基準は、次のとおりとする。ただし、法第十四条第二項第四号に規定する政令で定める医薬部外品にあつては、第六条の規定を準用する。\n"
+        "二　作業所は、次に定めるところに適合するものであること。\n"
         "ロ　常時居住する場所及び不潔な場所から明確に区別されていること。"
     )
     assert text == expected
@@ -208,7 +209,7 @@ def test_egov_merge_off_keeps_article_and_paragraph1_separated() -> None:
     )
     assert blocks
     assert "第一条" in blocks[0].header_lines
-    assert any(line.startswith("1　") for line in blocks[0].item_lines)
+    assert any(line.startswith("１　") for line in blocks[0].item_lines)
     assert not any(line.startswith("第一条　") for line in blocks[0].item_lines)
 
 
@@ -232,11 +233,6 @@ def test_egov_merge_is_consistent_between_selected_and_ancestor_rendering() -> N
     regdoc_ir, regdoc_profile = _load_fixture()
     index = build_doc_index(_apply_mock_nodes(regdoc_ir))
     purpose = _mock_purpose(regdoc_profile)
-
-    # item 選択時に p1 をヘッダへ補う（UIモックと同じ前提）
-    for rule in purpose["context_display_policy"]:
-        if rule.get("when_kind") in {"item", "subitem", "statement"}:
-            rule["force_article_p1_text"] = True
 
     p1_blocks = render_selected_nodes(
         index,
@@ -262,9 +258,6 @@ def test_prefix_dedup_uses_merged_context_chain() -> None:
     regdoc_ir, regdoc_profile = _load_fixture()
     index = build_doc_index(_apply_mock_nodes(regdoc_ir))
     purpose = _mock_purpose(regdoc_profile)
-    for rule in purpose["context_display_policy"]:
-        if rule.get("when_kind") in {"item", "subitem", "statement"}:
-            rule["force_article_p1_text"] = True
 
     blocks = render_selected_nodes(
         index,
@@ -279,13 +272,77 @@ def test_prefix_dedup_uses_merged_context_chain() -> None:
     assert blocks[1].header_omitted is True
 
 
-def test_force_article_p1_text_precedence_against_egov_merge_option() -> None:
+def test_prefix_dedup_treats_merged_paragraph1_as_article_context() -> None:
     regdoc_ir, regdoc_profile = _load_fixture()
     index = build_doc_index(_apply_mock_nodes(regdoc_ir))
     purpose = _mock_purpose(regdoc_profile)
-    for rule in purpose["context_display_policy"]:
-        if rule.get("when_kind") in {"item", "subitem", "statement"}:
-            rule["force_article_p1_text"] = True
+
+    blocks = render_selected_nodes(
+        index,
+        purpose,
+        ["art1.p1", "art1.p2", "art1.p3"],
+        header_dedup_mode="prefix",
+        render_options={"egov_merge_article_p1": True},
+    )
+    text = render_text_preview(blocks)
+
+    assert len(blocks) == 3
+    assert blocks[0].item_lines[0].startswith("第一条　薬局の構造設備の基準は、次のとおりとする。")
+    assert blocks[1].header_lines == []
+    assert blocks[1].header_omitted is True
+    assert blocks[2].header_lines == []
+    assert blocks[2].header_omitted is True
+    assert text.splitlines().count("第一条") == 0
+    assert text.count("第一条　薬局の構造設備の基準は、次のとおりとする。") == 1
+
+
+def test_exact_dedup_uses_logical_context_when_paragraph1_is_merged() -> None:
+    regdoc_ir, regdoc_profile = _load_fixture()
+    index = build_doc_index(_apply_mock_nodes(regdoc_ir))
+    purpose = _mock_purpose(regdoc_profile)
+
+    blocks = render_selected_nodes(
+        index,
+        purpose,
+        ["art1.p1", "art1.p2", "art1.p3"],
+        header_dedup_mode="exact",
+        render_options={"egov_merge_article_p1": True},
+    )
+    text = render_text_preview(blocks)
+
+    assert len(blocks) == 3
+    assert blocks[1].header_lines == []
+    assert blocks[1].header_omitted is True
+    assert blocks[2].header_lines == []
+    assert blocks[2].header_omitted is True
+    assert text.count("（薬局の構造設備）") == 1
+    assert text.splitlines().count("第一条") == 0
+
+
+def test_selected_subitem_keeps_unselected_parent_item_context_when_p1_is_merged() -> None:
+    regdoc_ir, regdoc_profile = _load_fixture()
+    index = build_doc_index(_apply_mock_nodes(regdoc_ir))
+    purpose = _mock_purpose(regdoc_profile)
+
+    blocks = render_selected_nodes(
+        index,
+        purpose,
+        ["art1.p1.i12.ro", "art1.p2", "art1.p3"],
+        header_dedup_mode="prefix",
+        render_options={"egov_merge_article_p1": True},
+    )
+    text = render_text_preview(blocks)
+
+    assert "第一条　薬局の構造設備の基準は、次のとおりとする。" in text
+    assert "十二　第一類医薬品を販売し、又は授与する薬局にあつては、次に定めるところに適合するものであること。" in text
+    assert "ロ　第一類医薬品を陳列する陳列設備から一・二メートル以内の範囲" in text
+    assert text.splitlines().count("第一条") == 0
+
+
+def test_item_ancestor_paragraph1_is_rendered_from_tree_not_forced_profile_option() -> None:
+    regdoc_ir, regdoc_profile = _load_fixture()
+    index = build_doc_index(_apply_mock_nodes(regdoc_ir))
+    purpose = _mock_purpose(regdoc_profile)
 
     off_blocks = render_selected_nodes(
         index,
@@ -301,11 +358,11 @@ def test_force_article_p1_text_precedence_against_egov_merge_option() -> None:
     )
 
     assert off_blocks and on_blocks
-    assert "1　薬局の構造設備の基準は、次のとおりとする。" in off_blocks[0].header_lines
+    assert "１　薬局の構造設備の基準は、次のとおりとする。" in off_blocks[0].header_lines
     assert "第一条　薬局の構造設備の基準は、次のとおりとする。" not in off_blocks[0].header_lines
 
     assert "第一条　薬局の構造設備の基準は、次のとおりとする。" in on_blocks[0].header_lines
-    assert "1　薬局の構造設備の基準は、次のとおりとする。" not in on_blocks[0].header_lines
+    assert "１　薬局の構造設備の基準は、次のとおりとする。" not in on_blocks[0].header_lines
 
 
 def test_missing_nid_raises_by_default_with_p1_suggestion() -> None:
