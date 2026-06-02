@@ -22,6 +22,7 @@ class RenderBlock:
 @dataclass
 class _RuleOptions:
     include_ancestors_until_kind: Optional[str]
+    include_ancestors_until_kinds: Optional[Set[str]]
     include_headings: bool
     include_chapeau_text: bool
     include_descendants: bool
@@ -29,6 +30,7 @@ class _RuleOptions:
     include_descendants_kinds: Optional[Set[str]]
     include_descendants_max_depth: int
     force_article_p1_text: bool
+    suppress_duplicate_headings: bool
 
 
 @dataclass
@@ -125,11 +127,18 @@ def _parse_rule_options(rule: Dict[str, Any]) -> _RuleOptions:
     include_ancestors_until_kind = (
         str(include_until) if isinstance(include_until, str) and include_until else None
     )
+    include_until_many = rule.get("include_ancestors_until_kinds")
+    include_ancestors_until_kinds = (
+        {str(v) for v in include_until_many if isinstance(v, str) and v}
+        if isinstance(include_until_many, list)
+        else None
+    )
     include_headings = bool(rule.get("include_headings"))
     include_chapeau_text = bool(rule.get("include_chapeau_text"))
     include_descendants = bool(rule.get("include_descendants"))
     include_descendants_of = str(rule.get("include_descendants_of") or "selected")
     force_article_p1_text = bool(rule.get("force_article_p1_text"))
+    suppress_duplicate_headings = bool(rule.get("suppress_duplicate_headings"))
     depth_raw = rule.get("include_descendants_max_depth")
     include_descendants_max_depth = depth_raw if isinstance(depth_raw, int) and depth_raw > 0 else 8
     kinds_raw = rule.get("include_descendants_kinds")
@@ -140,6 +149,7 @@ def _parse_rule_options(rule: Dict[str, Any]) -> _RuleOptions:
     )
     return _RuleOptions(
         include_ancestors_until_kind=include_ancestors_until_kind,
+        include_ancestors_until_kinds=include_ancestors_until_kinds,
         include_headings=include_headings,
         include_chapeau_text=include_chapeau_text,
         include_descendants=include_descendants,
@@ -147,6 +157,7 @@ def _parse_rule_options(rule: Dict[str, Any]) -> _RuleOptions:
         include_descendants_kinds=include_descendants_kinds,
         include_descendants_max_depth=include_descendants_max_depth,
         force_article_p1_text=force_article_p1_text,
+        suppress_duplicate_headings=suppress_duplicate_headings,
     )
 
 
@@ -154,6 +165,7 @@ def _included_ancestors(
     index: DocIndex,
     selected_nid: str,
     include_until_kind: Optional[str],
+    include_until_kinds: Optional[Set[str]] = None,
 ) -> List[Node]:
     ancestors = index.ancestors_of(selected_nid)
     if not ancestors:
@@ -163,6 +175,8 @@ def _included_ancestors(
         if anc.kind == "document" or anc.nid == "root":
             continue
         included_from_bottom.append(anc)
+        if include_until_kinds and anc.kind in include_until_kinds:
+            break
         if include_until_kind and anc.kind == include_until_kind:
             break
     included_from_bottom.reverse()
@@ -288,7 +302,10 @@ def _build_header_lines(
     dedup_lines: List[str] = []
     dedup_nids: List[str] = []
     for line, nid in zip(lines, nids):
-        if dedup_lines and dedup_lines[-1] == line and dedup_nids[-1] == nid:
+        if dedup_lines and dedup_lines[-1] == line:
+            if options.suppress_duplicate_headings or dedup_nids[-1] == nid:
+                continue
+        if options.suppress_duplicate_headings and line in dedup_lines:
             continue
         dedup_lines.append(line)
         dedup_nids.append(nid)
@@ -415,7 +432,12 @@ def _extract_selection_plan(
     render_options: _RenderOptions,
 ) -> _SelectionPlan:
     options = _parse_rule_options(rule)
-    included_ancestors = _included_ancestors(index, selected.nid, options.include_ancestors_until_kind)
+    included_ancestors = _included_ancestors(
+        index,
+        selected.nid,
+        options.include_ancestors_until_kind,
+        options.include_ancestors_until_kinds,
+    )
 
     header_lines, header_nids = _build_header_lines(index, included_ancestors, options)
     if options.force_article_p1_text and selected.kind != "paragraph":
@@ -679,6 +701,9 @@ def build_render_debug_trace(
                 "rule": {
                     "when_kind": rule.get("when_kind"),
                     "include_ancestors_until_kind": rule_opts.include_ancestors_until_kind,
+                    "include_ancestors_until_kinds": sorted(rule_opts.include_ancestors_until_kinds)
+                    if rule_opts.include_ancestors_until_kinds
+                    else [],
                     "include_headings": rule_opts.include_headings,
                     "include_chapeau_text": rule_opts.include_chapeau_text,
                     "include_descendants": rule_opts.include_descendants,
@@ -687,6 +712,7 @@ def build_render_debug_trace(
                     if rule_opts.include_descendants_kinds
                     else [],
                     "include_descendants_max_depth": rule_opts.include_descendants_max_depth,
+                    "suppress_duplicate_headings": rule_opts.suppress_duplicate_headings,
                 },
                 "render_templates": {
                     "egov_merge_article_p1": render_opts.egov_merge_article_p1,

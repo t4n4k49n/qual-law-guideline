@@ -45,17 +45,18 @@ examples:
 
   - id: "example4"
     display_name: "表示例4"
-    display_title: "表2行（更新せなあかん）"
+    display_title: "表2行（1行目＋3行目）"
     source_mode: "フォルダ選択"
-    law_folder: "jp_egov_336M50000100002_20260501_507M60000100117"
+    law_folder: "jp_pmda_api_gmp_guideline_20011102"
     profile:
       mode: "custom"
-      custom_yaml_path: ""
+      custom_yaml_path: "data/mock_ui/profiles/table_row_context_default.yaml"
     display:
       dedup_mode_label: "兄弟のみ先祖省略"
       egov_merge_article_p1: false
     selection_nids:
-      - "appdx_table1.tbl1.tblh.tblr1"
+      - "cha1.sec1_3.tbl1.tblh.tblr1"
+      - "cha1.sec1_3.tbl1.tblh.tblr3"
 
   - id: "example5"
     display_name: "表示例5"

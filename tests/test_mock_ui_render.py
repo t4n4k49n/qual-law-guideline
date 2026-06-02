@@ -98,6 +98,12 @@ def _mock_purpose(regdoc_profile: Dict[str, Any]) -> Dict[str, Any]:
     return purpose
 
 
+def _load_yaml(path: str) -> Dict[str, Any]:
+    loaded = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
+    assert isinstance(loaded, dict)
+    return loaded
+
+
 def _pick_existing_nid(index, *candidates: str) -> str:
     for nid in candidates:
         if nid in index.by_nid:
@@ -343,3 +349,77 @@ def test_render_templates_default_enables_egov_merge_without_render_options() ->
     blocks = render_selected_nodes(index, purpose, ["art1.p1"])
     assert blocks
     assert any(line.startswith("第一条　薬局の構造設備の基準は、次のとおりとする。") for line in blocks[0].item_lines)
+
+
+def test_display_example4_uses_nonconsecutive_real_table_rows() -> None:
+    config = _load_yaml("data/mock_ui/display_examples.yaml")
+    example4 = next(ex for ex in config["examples"] if ex["id"] == "example4")
+
+    assert example4["law_folder"] == "jp_pmda_api_gmp_guideline_20011102"
+    assert example4["profile"]["custom_yaml_path"] == "data/mock_ui/profiles/table_row_context_default.yaml"
+    assert example4["selection_nids"] == [
+        "cha1.sec1_3.tbl1.tblh.tblr1",
+        "cha1.sec1_3.tbl1.tblh.tblr3",
+    ]
+
+
+def test_table_row_profile_suppresses_duplicate_annex_table_heading() -> None:
+    regdoc_ir = {
+        "content": {
+            "nid": "root",
+            "kind": "document",
+            "num": None,
+            "ord": 0,
+            "heading": None,
+            "text": None,
+            "children": [
+                {
+                    "nid": "ann7",
+                    "kind": "annex",
+                    "num": "別表7",
+                    "ord": 1,
+                    "heading": "記帳事項に関する一覧",
+                    "text": None,
+                    "children": [
+                        {
+                            "nid": "ann7.tbl1",
+                            "kind": "table",
+                            "num": "1",
+                            "ord": 2,
+                            "heading": "記帳事項に関する一覧",
+                            "text": None,
+                            "children": [
+                                {
+                                    "nid": "ann7.tbl1.tblh",
+                                    "kind": "table_header",
+                                    "num": None,
+                                    "ord": 3,
+                                    "heading": None,
+                                    "text": "category | 内容",
+                                    "children": [
+                                        {
+                                            "nid": "ann7.tbl1.tblh.tblr1",
+                                            "kind": "table_row",
+                                            "num": "1",
+                                            "ord": 4,
+                                            "heading": None,
+                                            "text": "病原体等 | 受入れ",
+                                            "children": [],
+                                        }
+                                    ],
+                                }
+                            ],
+                        }
+                    ],
+                }
+            ],
+        },
+        "index": {"display_name_by_nid": {}},
+    }
+    index = build_doc_index(regdoc_ir)
+    purpose = _load_yaml("data/mock_ui/profiles/table_row_context_default.yaml")
+
+    blocks = render_selected_nodes(index, purpose, ["ann7.tbl1.tblh.tblr1"])
+
+    assert blocks[0].header_lines == ["記帳事項に関する一覧"]
+    assert "| category | 内容 |" in blocks[0].item_lines
