@@ -379,13 +379,20 @@ def _purpose(profile: Dict[str, Any]) -> Dict[str, Any]:
 def _mock_purpose(original: Dict[str, Any]) -> Dict[str, Any]:
     patched = deepcopy(original)
     for rule in patched.get("context_display_policy", []):
-        if rule.get("when_kind") == "subitem":
-            rule["include_chapeau_text"] = False
         if rule.get("when_kind") == "table_row":
             rule["include_ancestors_until_kind"] = "table"
-        if rule.get("when_kind") in {"paragraph", "item", "subitem", "statement"}:
-            rule["force_article_p1_text"] = True
     return patched
+
+
+def _normalize_effective_purpose(purpose: Dict[str, Any]) -> Dict[str, Any]:
+    normalized = deepcopy(purpose)
+    for rule in normalized.get("context_display_policy", []):
+        if not isinstance(rule, dict):
+            continue
+        rule.pop("force_article_p1_text", None)
+        if rule.get("when_kind") in {"subitem", "item", "paragraph", "statement"}:
+            rule["include_chapeau_text"] = True
+    return normalized
 
 
 def _node_options(index: DocIndex, selectable_kinds: List[str], query: str) -> List[Tuple[str, str]]:
@@ -395,7 +402,7 @@ def _node_options(index: DocIndex, selectable_kinds: List[str], query: str) -> L
         if node.kind not in selectable_kinds:
             continue
         text = " ".join((node.text or "").split())
-        display = index.display_name_by_nid.get(node.nid) or node.nid
+        display = _human_node_label(index, node.nid)
         if text:
             label = f"{display}：{text[:80]}"
         else:
@@ -451,7 +458,12 @@ def _human_node_label(index: DocIndex, nid: str) -> str:
     node = index.by_nid[nid]
     display = index.display_name_by_nid.get(nid)
     if display:
-        return _single_line(str(display))
+        display_label = _single_line(str(display))
+        if node.kind == "paragraph":
+            parent = index.by_nid.get(node.parent_nid or "")
+            if parent is not None and parent.kind == "article" and re.fullmatch(r"[0-9]+", display_label):
+                return display_label.translate(str.maketrans("0123456789", "０１２３４５６７８９"))
+        return display_label
     if node.heading:
         return _single_line(str(node.heading))
     if node.kind == "table_row":
@@ -461,7 +473,11 @@ def _human_node_label(index: DocIndex, nid: str) -> str:
     if node.kind == "table":
         return "表"
     if node.kind == "paragraph" and node.num:
-        return f"{node.num}項"
+        num = str(node.num)
+        parent = index.by_nid.get(node.parent_nid or "")
+        if parent is not None and parent.kind == "article" and re.fullmatch(r"[0-9]+", num):
+            num = num.translate(str.maketrans("0123456789", "０１２３４５６７８９"))
+        return f"{num}項"
     if node.kind == "article" and node.num:
         return f"第{node.num}条"
     if node.kind == "item" and node.num:
@@ -1175,7 +1191,7 @@ def main() -> None:
     st.session_state["active_doc_signature"] = doc_signature
     index = build_doc_index(regdoc_ir)
     is_egov_doc = str(regdoc_ir.get("doc_id") or "").startswith("jp_egov_")
-    base_purpose = _purpose(regdoc_profile)
+    base_purpose = _normalize_effective_purpose(_purpose(regdoc_profile))
     original_profile_tooltip = "参照元プロファイル: 不明"
     if effective_source_mode == SOURCE_MODE_FOLDER and selected_normalized_folder:
         matched = next((b for b in selectable_bundles if b[0] == selected_normalized_folder), None)
@@ -1206,12 +1222,12 @@ def main() -> None:
                 st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
                     loaded_custom, allow_unicode=True, sort_keys=False
                 )
-                st.session_state["applied_custom_purpose"] = loaded_custom
+                st.session_state["applied_custom_purpose"] = _normalize_effective_purpose(loaded_custom)
             except Exception as exc:
                 st.warning(f"表示例の custom_yaml_path 読込に失敗しました: {exc}")
     pending_seed = st.session_state.pop("pending_custom_profile_seed", None)
     if pending_seed == "mock":
-        seeded = _mock_purpose(base_purpose)
+        seeded = _normalize_effective_purpose(_mock_purpose(base_purpose))
         st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
             seeded, allow_unicode=True, sort_keys=False
         )
@@ -1238,6 +1254,7 @@ def main() -> None:
                     loaded = yaml.safe_load(st.session_state.get("editable_purpose_yaml", ""))
                     if not isinstance(loaded, dict):
                         raise ValueError("YAMLのトップレベルは辞書である必要があります。")
+                    loaded = _normalize_effective_purpose(loaded)
                     st.session_state["applied_custom_purpose"] = loaded
                     st.session_state["editable_purpose_yaml"] = yaml.safe_dump(
                         loaded, allow_unicode=True, sort_keys=False
@@ -1272,7 +1289,7 @@ def main() -> None:
                 st.info(str(message))
 
     purpose_mode = str(st.session_state.get("purpose_mode_key", profile_options[0]))
-    current = base_purpose if purpose_mode == "オリジナル" else deepcopy(
+    current = base_purpose if purpose_mode == "オリジナル" else _normalize_effective_purpose(
         st.session_state.get("applied_custom_purpose", base_purpose)
     )
 

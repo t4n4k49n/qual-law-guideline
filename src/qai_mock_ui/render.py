@@ -29,7 +29,6 @@ class _RuleOptions:
     include_descendants_of: str
     include_descendants_kinds: Optional[Set[str]]
     include_descendants_max_depth: int
-    force_article_p1_text: bool
     suppress_duplicate_headings: bool
 
 
@@ -37,6 +36,11 @@ class _RuleOptions:
 class _SelectionPlan:
     selected: Node
     included_ancestors: List[Node]
+    dedup_header_lines_full: List[str]
+    dedup_header_line_nids_full: List[str]
+    dedup_context_lines_full: List[str]
+    dedup_header_nids_full: List[str]
+    dedup_context_nids_full: List[str]
     header_lines_full: List[str]
     header_line_nids_full: List[str]
     item_lines: List[str]
@@ -49,6 +53,7 @@ class _RenderOptions:
 
 
 _ARTICLE_NID_RE = re.compile(r"^art\d+(?:_\d+)?$")
+_ASCII_DIGIT_TO_FULLWIDTH = str.maketrans("0123456789", "０１２３４５６７８９")
 
 
 def _single_line(text: str) -> str:
@@ -137,7 +142,6 @@ def _parse_rule_options(rule: Dict[str, Any]) -> _RuleOptions:
     include_chapeau_text = bool(rule.get("include_chapeau_text"))
     include_descendants = bool(rule.get("include_descendants"))
     include_descendants_of = str(rule.get("include_descendants_of") or "selected")
-    force_article_p1_text = bool(rule.get("force_article_p1_text"))
     suppress_duplicate_headings = bool(rule.get("suppress_duplicate_headings"))
     depth_raw = rule.get("include_descendants_max_depth")
     include_descendants_max_depth = depth_raw if isinstance(depth_raw, int) and depth_raw > 0 else 8
@@ -156,7 +160,6 @@ def _parse_rule_options(rule: Dict[str, Any]) -> _RuleOptions:
         include_descendants_of=include_descendants_of,
         include_descendants_kinds=include_descendants_kinds,
         include_descendants_max_depth=include_descendants_max_depth,
-        force_article_p1_text=force_article_p1_text,
         suppress_duplicate_headings=suppress_duplicate_headings,
     )
 
@@ -227,9 +230,24 @@ def _resolve_line_head(index: DocIndex, node: Node) -> Optional[str]:
             if heading and head.endswith(heading):
                 prefix = head[: -len(heading)].strip()
                 if prefix:
-                    return prefix
-            return head
-    return _line_head_from_num(node)
+                    return _normalize_jp_article_paragraph_head(index, node, prefix)
+            return _normalize_jp_article_paragraph_head(index, node, head)
+    return _normalize_jp_article_paragraph_head(index, node, _line_head_from_num(node))
+
+
+def _normalize_jp_article_paragraph_head(
+    index: DocIndex,
+    node: Node,
+    head: Optional[str],
+) -> Optional[str]:
+    if head is None or node.kind != "paragraph":
+        return head
+    parent = index.by_nid.get(node.parent_nid or "")
+    if parent is None or parent.kind != "article":
+        return head
+    if re.fullmatch(r"[0-9]+", head):
+        return head.translate(_ASCII_DIGIT_TO_FULLWIDTH)
+    return head
 
 
 def _build_common_line(index: DocIndex, node: Node) -> str:
@@ -440,35 +458,6 @@ def _extract_selection_plan(
     )
 
     header_lines, header_nids = _build_header_lines(index, included_ancestors, options)
-    if options.force_article_p1_text and selected.kind != "paragraph":
-        article_nid: Optional[str] = None
-        for anc in reversed(included_ancestors):
-            if anc.kind == "article":
-                article_nid = anc.nid
-                break
-        if article_nid is not None:
-            article = index.by_nid.get(article_nid)
-            if article is not None:
-                p1_node: Optional[Node] = None
-                for child in article.children:
-                    if child.kind != "paragraph":
-                        continue
-                    num = _single_line(str(child.num or ""))
-                    if num in {"1", "１"}:
-                        p1_node = child
-                        break
-                    if p1_node is None:
-                        p1_node = child
-                if p1_node is not None:
-                    p1_line = _build_common_line(index, p1_node)
-                    if p1_line and p1_line not in header_lines:
-                        insert_at = 0
-                        for i, nid in enumerate(header_nids):
-                            if nid == article_nid:
-                                insert_at = i + 1
-                        header_lines.insert(insert_at, p1_line)
-                        header_nids.insert(insert_at, p1_node.nid)
-
     selected_desc_lines: List[str] = []
     selected_desc_nids: List[str] = []
 
@@ -515,6 +504,11 @@ def _extract_selection_plan(
     item_lines.extend(selected_desc_lines)
     item_nids.extend(selected_desc_nids)
 
+    dedup_header_lines = list(header_lines)
+    dedup_header_nids = list(header_nids)
+    dedup_context_lines = list(header_lines) + list(item_lines)
+    dedup_context_nids = list(header_nids) + list(item_nids)
+
     (
         header_lines,
         header_nids,
@@ -532,6 +526,11 @@ def _extract_selection_plan(
     return _SelectionPlan(
         selected=selected,
         included_ancestors=included_ancestors,
+        dedup_header_lines_full=dedup_header_lines,
+        dedup_header_line_nids_full=dedup_header_nids,
+        dedup_context_lines_full=dedup_context_lines,
+        dedup_header_nids_full=dedup_header_nids,
+        dedup_context_nids_full=dedup_context_nids,
         header_lines_full=header_lines,
         header_line_nids_full=header_nids,
         item_lines=item_lines,
@@ -545,23 +544,45 @@ def _apply_header_dedup(
     current_lines: List[str],
     current_nids: List[str],
     previous_lines: Optional[List[str]],
+    current_compare_lines: Optional[List[str]] = None,
+    previous_nids: Optional[List[str]] = None,
+    current_compare_nids: Optional[List[str]] = None,
 ) -> Tuple[List[str], List[str], bool]:
-    if previous_lines is None:
+    if previous_lines is None and previous_nids is None:
         return current_lines, current_nids, False
+
+    compare_current = current_compare_lines if current_compare_lines is not None else current_lines
+    compare_current_nids = current_compare_nids if current_compare_nids is not None else current_nids
+    compare_previous_nids = previous_nids
 
     if mode == "prefix":
         common_len = 0
-        for prev_line, curr_line in zip(previous_lines, current_lines):
-            if prev_line != curr_line:
-                break
-            common_len += 1
-        shown_lines = current_lines[common_len:]
-        shown_nids = current_nids[common_len:]
-        omitted = bool(current_lines) and not shown_lines
+        if compare_previous_nids is not None:
+            for prev_nid, curr_nid in zip(compare_previous_nids, compare_current_nids):
+                if prev_nid != curr_nid:
+                    break
+                common_len += 1
+        else:
+            for prev_line, curr_line in zip(previous_lines or [], compare_current):
+                if prev_line != curr_line:
+                    break
+                common_len += 1
+        omitted_nids = set(compare_current_nids[:common_len])
+        shown_pairs = [
+            (line, nid)
+            for line, nid in zip(current_lines, current_nids)
+            if nid not in omitted_nids
+        ]
+        shown_lines = [line for line, _nid in shown_pairs]
+        shown_nids = [nid for _line, nid in shown_pairs]
+        omitted = bool(compare_current_nids) and not shown_lines
         return shown_lines, shown_nids, omitted
 
     # exact
-    omitted = bool(current_lines) and previous_lines == current_lines
+    if compare_previous_nids is not None:
+        omitted = bool(compare_current_nids) and compare_previous_nids == compare_current_nids
+    else:
+        omitted = bool(compare_current) and previous_lines == compare_current
     if omitted:
         return [], [], True
     return current_lines, current_nids, False
@@ -597,17 +618,28 @@ def render_selected_nodes(
         plans.append(_extract_selection_plan(index, selected, rule, render_options=options))
 
     blocks: List[RenderBlock] = []
-    prev_header_full_lines: Optional[List[str]] = None
+    prev_dedup_header_lines: Optional[List[str]] = None
+    prev_dedup_header_nids: Optional[List[str]] = None
     prev_context_for_prefix: Optional[List[str]] = None
+    prev_context_nids_for_prefix: Optional[List[str]] = None
+    prev_selected_parent_nid: Optional[str] = None
     for plan in plans:
-        compare_lines = prev_header_full_lines
+        compare_lines = prev_dedup_header_lines
+        compare_nids = prev_dedup_header_nids
+        if header_dedup_mode == "exact" and prev_selected_parent_nid != plan.selected.parent_nid:
+            compare_lines = None
+            compare_nids = None
         if header_dedup_mode == "prefix":
             compare_lines = prev_context_for_prefix
+            compare_nids = prev_context_nids_for_prefix
         shown_header_lines, shown_header_nids, header_omitted = _apply_header_dedup(
             mode=header_dedup_mode,
             current_lines=plan.header_lines_full,
             current_nids=plan.header_line_nids_full,
             previous_lines=compare_lines,
+            current_compare_lines=plan.dedup_header_lines_full,
+            previous_nids=compare_nids,
+            current_compare_nids=plan.dedup_header_nids_full,
         )
 
         blocks.append(
@@ -621,8 +653,11 @@ def render_selected_nodes(
                 header_omitted=header_omitted,
             )
         )
-        prev_header_full_lines = plan.header_lines_full
-        prev_context_for_prefix = plan.header_lines_full + plan.item_lines
+        prev_dedup_header_lines = plan.dedup_header_lines_full
+        prev_dedup_header_nids = plan.dedup_header_nids_full
+        prev_context_for_prefix = plan.dedup_context_lines_full
+        prev_context_nids_for_prefix = plan.dedup_context_nids_full
+        prev_selected_parent_nid = plan.selected.parent_nid
     return blocks
 
 
@@ -660,21 +695,32 @@ def build_render_debug_trace(
     selected_pairs.sort(key=lambda pair: (pair[1].ord, pair[1].nid))
 
     trace_rows: List[Dict[str, Any]] = []
-    prev_header_full_lines: Optional[List[str]] = None
+    prev_dedup_header_lines: Optional[List[str]] = None
+    prev_dedup_header_nids: Optional[List[str]] = None
     prev_context_for_prefix: Optional[List[str]] = None
+    prev_context_nids_for_prefix: Optional[List[str]] = None
+    prev_selected_parent_nid: Optional[str] = None
 
     for nid_input, selected in selected_pairs:
         rule = _pick_rule(purpose_profile, selected.kind)
         rule_opts = _parse_rule_options(rule)
         plan = _extract_selection_plan(index, selected, rule, render_options=render_opts)
-        compare_lines = prev_header_full_lines
+        compare_lines = prev_dedup_header_lines
+        compare_nids = prev_dedup_header_nids
+        if header_dedup_mode == "exact" and prev_selected_parent_nid != plan.selected.parent_nid:
+            compare_lines = None
+            compare_nids = None
         if header_dedup_mode == "prefix":
             compare_lines = prev_context_for_prefix
+            compare_nids = prev_context_nids_for_prefix
         shown_header_lines, shown_header_nids, header_omitted = _apply_header_dedup(
             mode=header_dedup_mode,
             current_lines=plan.header_lines_full,
             current_nids=plan.header_line_nids_full,
             previous_lines=compare_lines,
+            current_compare_lines=plan.dedup_header_lines_full,
+            previous_nids=compare_nids,
+            current_compare_nids=plan.dedup_header_nids_full,
         )
         ancestors = []
         for anc in plan.included_ancestors:
@@ -718,9 +764,14 @@ def build_render_debug_trace(
                     "egov_merge_article_p1": render_opts.egov_merge_article_p1,
                 },
                 "included_ancestors": ancestors,
+                "dedup_header_lines_full": plan.dedup_header_lines_full,
+                "dedup_context_lines_full": plan.dedup_context_lines_full,
+                "dedup_header_nids_full": plan.dedup_header_nids_full,
+                "dedup_context_nids_full": plan.dedup_context_nids_full,
                 "header_lines_full_before_dedup": plan.header_lines_full,
                 "header_line_nids_full_before_dedup": plan.header_line_nids_full,
                 "previous_header_lines_for_compare": compare_lines or [],
+                "previous_nids_for_compare": compare_nids or [],
                 "header_lines_after_dedup": shown_header_lines,
                 "header_line_nids_after_dedup": shown_header_nids,
                 "header_omitted": header_omitted,
@@ -728,7 +779,10 @@ def build_render_debug_trace(
                 "item_line_nids": plan.item_line_nids,
             }
         )
-        prev_header_full_lines = plan.header_lines_full
-        prev_context_for_prefix = plan.header_lines_full + plan.item_lines
+        prev_dedup_header_lines = plan.dedup_header_lines_full
+        prev_dedup_header_nids = plan.dedup_header_nids_full
+        prev_context_for_prefix = plan.dedup_context_lines_full
+        prev_context_nids_for_prefix = plan.dedup_context_nids_full
+        prev_selected_parent_nid = plan.selected.parent_nid
 
     return trace_rows
