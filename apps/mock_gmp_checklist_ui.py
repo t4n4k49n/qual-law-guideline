@@ -173,29 +173,9 @@ def _discover_normalized_bundles() -> List[Tuple[str, Path, Path, Path | None, s
     return bundles
 
 
-def _discover_out_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
-    if not OUT_DIR.exists():
-        return []
-    bundles: List[Tuple[str, Path, Path, Path | None, str | None]] = []
-    for child in sorted(OUT_DIR.iterdir(), key=lambda p: p.name):
-        if not child.is_dir():
-            continue
-        ir_files = sorted(child.glob("*.regdoc_ir.yaml"))
-        profile_files = sorted(child.glob("*.regdoc_profile.yaml"))
-        meta_files = sorted(child.glob("*.meta.yaml"))
-        if not ir_files or not profile_files:
-            continue
-        ir_path = ir_files[0]
-        profile_path = profile_files[0]
-        meta_path = meta_files[0] if meta_files else None
-        bundles.append((f"out/{child.name}", ir_path, profile_path, meta_path, _meta_title(meta_path)))
-    return bundles
-
-
 def _discover_selectable_bundles() -> List[Tuple[str, Path, Path, Path | None, str | None]]:
     merged: List[Tuple[str, Path, Path, Path | None, str | None]] = []
     merged.extend(_discover_normalized_bundles())
-    merged.extend(_discover_out_bundles())
     return merged
 
 
@@ -375,7 +355,7 @@ def _load_from_selected_source(
     if source_mode in {"data/normalized選択", SOURCE_MODE_FOLDER}:
         bundles = _discover_selectable_bundles()
         if not bundles:
-            raise ValueError("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
+            raise ValueError("選択可能なフォルダ（data/normalized）が見つかりません。")
         selected = selected_normalized_folder or bundles[0][0]
         matched = next((b for b in bundles if b[0] == selected), None)
         if matched is None:
@@ -989,6 +969,8 @@ def main() -> None:
         st.session_state["purpose_mode_key"] = pending_purpose_mode
     if "normalized_folder_key" not in st.session_state and folder_names:
         st.session_state["normalized_folder_key"] = folder_names[0]
+    if folder_names and st.session_state.get("normalized_folder_key") not in folder_names:
+        st.session_state["normalized_folder_key"] = folder_names[0]
     if "dedup_mode_label_key" not in st.session_state:
         st.session_state["dedup_mode_label_key"] = dedup_mode_options[0]
     if "egov_merge_article_p1_key" not in st.session_state:
@@ -1125,10 +1107,10 @@ def main() -> None:
             st.session_state["source_mode_key"] = SOURCE_MODE_FOLDER
             effective_source_mode = SOURCE_MODE_FOLDER
             if not selectable_bundles:
-                st.error("選択可能なフォルダ（data/normalized, out/*）が見つかりません。")
+                st.error("選択可能なフォルダ（data/normalized）が見つかりません。")
                 return
             selected_normalized_folder = st.selectbox(
-                "フォルダ選択（data/normalized, out/*）",
+                "フォルダ選択（data/normalized）",
                 folder_names,
                 key="normalized_folder_key",
                 format_func=lambda v: label_map.get(v, v),
