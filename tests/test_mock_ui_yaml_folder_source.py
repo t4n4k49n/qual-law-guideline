@@ -17,6 +17,8 @@ sys.modules.setdefault("streamlit.components.v1", streamlit_components_v1_stub)
 from apps.mock_gmp_checklist_ui import (
     SOURCE_MODE_FOLDER,
     SOURCE_MODE_YAML_FOLDER,
+    _display_preset_label,
+    _display_preset_signature,
     _single_yaml_bundle_in_folder,
     _validate_and_store_yaml_folder_selection,
 )
@@ -104,3 +106,44 @@ def test_validate_yaml_folder_selection_restores_folder_mode_on_cancel() -> None
     assert streamlit_stub.session_state["source_mode_key"] == SOURCE_MODE_FOLDER
     assert streamlit_stub.session_state["confirmed_source_mode_key"] == SOURCE_MODE_FOLDER
     assert "yaml_folder_source_selected_path" not in streamlit_stub.session_state
+
+
+def test_display_preset_signature_normalizes_selected_nids_order() -> None:
+    left = _display_preset_signature(
+        SOURCE_MODE_FOLDER,
+        "law_a",
+        None,
+        "オリジナル",
+        ["tblr3", "tblr1"],
+    )
+    right = _display_preset_signature(
+        SOURCE_MODE_FOLDER,
+        "law_a",
+        "",
+        "オリジナル",
+        ["tblr1", "tblr3"],
+    )
+
+    assert left == right
+
+
+def test_display_preset_signature_ignores_display_customization() -> None:
+    signature = _display_preset_signature(
+        SOURCE_MODE_FOLDER,
+        "law_a",
+        None,
+        "オリジナル",
+        ["tblr1"],
+    )
+
+    assert "dedup_mode_label" not in signature
+    assert "egov_merge_article_p1" not in signature
+
+
+def test_display_preset_label_uses_display_name_and_title() -> None:
+    label = _display_preset_label(
+        "example4",
+        {"display_name": "表示例4", "display_title": "表の1行目と3行目"},
+    )
+
+    assert label == "表示例4：表の1行目と3行目"

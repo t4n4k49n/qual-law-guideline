@@ -324,6 +324,30 @@ def _load_display_examples() -> List[Dict[str, Any]]:
     return examples
 
 
+def _display_preset_signature(
+    source_mode: str,
+    normalized_folder: str | None,
+    yaml_folder_path: str | None,
+    purpose_mode: str,
+    selected_nids: List[str],
+) -> Dict[str, Any]:
+    return {
+        "source_mode": source_mode,
+        "normalized_folder": normalized_folder or "",
+        "yaml_folder_path": yaml_folder_path or "",
+        "purpose_mode": purpose_mode,
+        "selected_nids": sorted(str(nid) for nid in selected_nids),
+    }
+
+
+def _display_preset_label(example_id: str, example: Dict[str, Any] | None) -> str:
+    if not isinstance(example, dict):
+        return example_id
+    display_name = str(example.get("display_name", example_id)).strip() or example_id
+    display_title = str(example.get("display_title", "")).strip()
+    return f"{display_name}：{display_title}" if display_title else display_name
+
+
 def _example_tooltip(
     example: Dict[str, Any],
     bundles: List[Tuple[str, Path, Path, Path | None, str | None]],
@@ -971,6 +995,8 @@ def main() -> None:
         st.session_state["egov_merge_article_p1_key"] = True
     if "active_demo_preset_key" not in st.session_state:
         st.session_state["active_demo_preset_key"] = ""
+    if "active_demo_preset_signature" not in st.session_state:
+        st.session_state["active_demo_preset_signature"] = {}
     if "shortcut_preset_key" not in st.session_state:
         st.session_state["shortcut_preset_key"] = ""
     if st.session_state.pop("pending_clear_shortcut_preset_key", False):
@@ -1005,11 +1031,11 @@ def main() -> None:
             else []
         )
         st.session_state["active_demo_preset_key"] = example_id
+        st.session_state["pending_demo_preset_signature_key"] = example_id
         st.session_state["pending_clear_shortcut_preset_key"] = True
         st.rerun()
 
     st.subheader("モック用設定項目")
-    st.markdown("#### 表示例へのショートカット（幾つかの典型例（自動設定）をご用意しました）")
     preset_order = [("", "（表示例を選択）")]
     for ex in display_examples:
         ex_id = str(ex.get("id", "")).strip()
@@ -1028,14 +1054,21 @@ def main() -> None:
         ex = example_by_id.get(key, {})
         return f"{preset_label_map[key]} | {_example_tooltip(ex, selectable_bundles)}"
 
-    chosen_preset = st.selectbox(
-        "表示例（法令・プロファイル・選択を一括適用）",
-        preset_keys,
-        key="shortcut_preset_key",
-        format_func=_format_preset_option,
+    active_preset_key_for_header = str(st.session_state.get("active_demo_preset_key", "")).strip()
+    active_preset_header = (
+        _display_preset_label(active_preset_key_for_header, example_by_id.get(active_preset_key_for_header))
+        if active_preset_key_for_header
+        else "未選択"
     )
-    if chosen_preset:
-        _queue_example(chosen_preset)
+    with st.expander(f"表示例：{active_preset_header}", expanded=True):
+        chosen_preset = st.selectbox(
+            "あらかじめ準備してある典型サンプルを選択（法令・プロファイル・選択を一括適用）",
+            preset_keys,
+            key="shortcut_preset_key",
+            format_func=_format_preset_option,
+        )
+        if chosen_preset:
+            _queue_example(chosen_preset)
 
     current_source_mode = str(st.session_state.get("source_mode_key", source_options[0]))
     current_folder = str(st.session_state.get("normalized_folder_key", "")) if folder_names else ""
@@ -1292,7 +1325,20 @@ def main() -> None:
         if resolved:
             st.session_state["draft_selected_nids"] = resolved
             st.session_state["selected_nids"] = resolved
+            pending_preset_key = str(st.session_state.pop("pending_demo_preset_signature_key", "")).strip()
+            if pending_preset_key:
+                st.session_state["active_demo_preset_key"] = pending_preset_key
+                st.session_state["active_demo_preset_signature"] = _display_preset_signature(
+                    effective_source_mode,
+                    selected_normalized_folder,
+                    selected_yaml_folder_path,
+                    purpose_mode,
+                    resolved,
+                )
         else:
+            st.session_state.pop("pending_demo_preset_signature_key", None)
+            st.session_state["active_demo_preset_key"] = ""
+            st.session_state["active_demo_preset_signature"] = {}
             st.warning("表示例の selection_nids はこのデータセットに存在しません。")
 
     left, right = st.columns(2)
@@ -1456,6 +1502,27 @@ def main() -> None:
             st.success(f"{len(merged)}件を確定しました。")
 
         st.caption(f"確定済み: {len(st.session_state.get('selected_nids', []))}件")
+
+    current_preset_signature = _display_preset_signature(
+        effective_source_mode,
+        selected_normalized_folder,
+        selected_yaml_folder_path,
+        purpose_mode,
+        [str(nid) for nid in st.session_state.get("selected_nids", []) if isinstance(nid, str)],
+    )
+    active_preset_key = str(st.session_state.get("active_demo_preset_key", "")).strip()
+    active_preset_signature = st.session_state.get("active_demo_preset_signature", {})
+    if (
+        active_preset_key
+        and isinstance(active_preset_signature, dict)
+        and active_preset_signature == current_preset_signature
+    ):
+        pass
+    else:
+        if active_preset_key:
+            st.session_state["active_demo_preset_key"] = ""
+            st.session_state["active_demo_preset_signature"] = {}
+            st.rerun()
 
     with right:
         st.subheader("チェックシート")
